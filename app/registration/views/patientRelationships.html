@@ -29,8 +29,7 @@
                         </label>
                     </div>
                     <div class="field-value">
-                        <select ng-model="newRelationship.relationshipType.uuid" ng-options="type.uuid as type.aIsToB for type in ::relationshipTypes"
-                                ng-change="clearRelationshipRow(newRelationship, $index);">
+                        <select ng-model="newRelationship.relationshipType.uuid" ng-options="type.uuid as type.aIsToB for type in ::relationshipTypes">
                             <option value="">{{ ::'REGISTRATION_LABEL_SELECT_RELATIONSHIP_TYPE' | translate}}</option>
                         </select>
                     </div>
@@ -76,11 +75,11 @@
                         <input type="date" ng-model="newRelationship.endDate" ng-disabled="!newRelationship.relationshipType.uuid"/>
                     </div>
                 </div>-->
-                <div class="col col4">
+               <!-- <div class="col col4">
                     <button type="button" class="small-btn row-remover" ng-if="!isEmpty(newRelationship)" ng-click="removeRelationship(newRelationship, $index)">
                         <span class="fa fa-remove"></span>
                     </button>
-                </div>
+                </div>-->
             </div>
         </div>
     

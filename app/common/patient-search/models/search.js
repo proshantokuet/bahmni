@@ -48,6 +48,8 @@ Bahmni.Common.PatientSearch.Search = function (searchTypes) {
             var patient = self.activePatients[i];
             if (patient.gender == 'H') {
                 self.activePatients.splice(i);
+            } else {
+                console.log(patient);
             }
         }
         /* end by proshanto */

@@ -35,6 +35,10 @@ angular.module('bahmni.common.patient')
                     q: query,
                     startIndex: offset,
                     identifier: identifier,
+                    patientAttributes: ["motherNameEnglish"],
+                    patientSearchResultsConfig: ["motherNameEnglish"],
+                    addressFieldName: ["address2"],
+                    addressSearchResultsConfig: ["address2"],
                     loginLocationUuid: sessionService.getLoginLocationUuid()
                 },
                 withCredentials: true

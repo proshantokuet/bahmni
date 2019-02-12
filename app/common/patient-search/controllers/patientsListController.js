@@ -134,10 +134,27 @@ angular.module('bahmni.common.patientSearch')
             var year = Math.floor(ageAsDay / 365);
             var day = ageAsDay % 365;
             var month = Math.floor(day / 30);
-            var age = year + " years " + month + " months";
+            var remainDay = day % 30;
+            var days = Math.floor(remainDay / 30);
+            var age = year + " years " + month + " months " + remainDay + " days";
             return age;
         };
-
+        $scope.motherName = function (patient) {
+            var motherName = "";
+            var attrubutes = JSON.parse(patient.customAttribute);
+            if (attrubutes != null) {
+                motherName = attrubutes.motherNameEnglish;
+            }
+            return motherName;
+        };
+        $scope.address = function (patient) {
+            var ward = "";
+            var address = JSON.parse(patient.addressFieldValue);
+            if (address != null) {
+                ward = address.address2;
+            }
+            return ward;
+        };
         $scope.forwardPatient = function (patient, heading) {
             var options = $.extend({}, $stateParams);
             $rootScope.patientAdmitLocationStatus = patient.Status;
