@@ -480,9 +480,14 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 }, 200);
             };
             var createChild = function (groupMembers, birthDate, i) {
-                var genderConceptId = "581ed5fd-bfcd-4852-a8cf-373e54d9b815";
+                // for 44
+                var genderConceptId = "e4aae12c-ad9c-445d-a0d3-a8312ce9d3df";
+                var birthWeightConceptId = "9d4aa237-b866-43a1-a75b-9b9490d4a3b9";
+                var nameConceptId = "7a4ffef1-97d9-4c07-add7-9a6138559ff7";
+
+                /* var genderConceptId = "581ed5fd-bfcd-4852-a8cf-373e54d9b815";
                 var nameConceptId = "627aefb4-8de5-4259-94d4-855acf0c3a63";
-                var birthWeightConceptId = "d56380f3-c513-47eb-9f02-44ef55c20f28";
+                var birthWeightConceptId = "d56380f3-c513-47eb-9f02-44ef55c20f28"; */
                 var name = "";
                 var gender = "";
                 var birhtWeight = "";
@@ -526,8 +531,11 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 });
             };
             var createChildPatient = function (name, fn, gender, birthDate, healthId, birhtWeight) {
-                var motherNameEnglishAttributeuuid = "c41568ce-8194-4065-b6fa-91ff43098aee";
-                var BirthWeightAttributeuuid = "b756a8bc-23fe-420f-90dd-713614bba9d9";
+                // for 44
+                var motherNameEnglishAttributeuuid = "93bbf6fc-e04c-4eb1-8ce3-952dbe46249a";
+                var BirthWeightAttributeuuid = "0f7263eb-ed90-4dd2-b6c8-12bc89cf0296";
+                /* var motherNameEnglishAttributeuuid = "c41568ce-8194-4065-b6fa-91ff43098aee";
+                var BirthWeightAttributeuuid = "b756a8bc-23fe-420f-90dd-713614bba9d9"; */
                 var openMRSPatient = {
                     patient: {
                         person: {
@@ -637,22 +645,22 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                         var formFieldPath = observation.formFieldPath;
                         var splitFormName = formFieldPath.split(".");
                         formName = splitFormName[0];
-                        if (formName == "গর্ভাবস্থার তথ্য" || formName == "ডেলিভারি সেবা") {
+                        if (formName == "গর্ভাবস্থার তথ্য") {
                             var attribute = {};
                             var conceptUuid = observation.concept.uuid;
                             var attributeType = "";
                             // for 44
-                            /* var pregnancyStatusConceptUuid = "e3162bc6-7c67-4620-af44-6d66d6ff664f";
+                            var pregnancyStatusConceptUuid = "e3162bc6-7c67-4620-af44-6d66d6ff664f";
                             var pregnancyStatusAttributeUuid = "44a5a1e0-fa14-4119-a08b-b7ce38e751e1";
                             var lmpConceptUuid = "c45a7e4b-3f10-11e4-adec-0800271c1b75";
                             var lmpAttributeUuid = "f4732414-9db7-48ca-a806-7b806b59569c";
                             var deliveryDateConceptUuid = "aaae5d8c-da92-49a2-914e-63d029b3501f";
                             var deliveryDateTimeConceptUuid = "7150e240-d92d-4f72-9262-ef32d62952c5";
                             var deliveryDateAttributeUuid = "f8a74ac8-dd11-45cd-a867-58a40b071e7e";
-                            var deliveryDetailConceptId = "";
-                            var birthDateConceptId = ""; */
+                            var deliveryDetailConceptId = "e5d6de8f-2017-4046-be8d-4bf3124ec376";
+                            var birthDateConceptId = "e5d6de8f-2017-4046-be8d-4bf3124ec376";
 
-                            var pregnancyStatusConceptUuid = "58fa4284-a100-450e-91b6-e302032f6bf6";
+                           /* var pregnancyStatusConceptUuid = "58fa4284-a100-450e-91b6-e302032f6bf6";
                             var pregnancyStatusAttributeUuid = "40715084-f03a-4cff-836a-52736fbdc1ff";
                             var lmpConceptUuid = "c45a7e4b-3f10-11e4-adec-0800271c1b75";
                             var lmpAttributeUuid = "260a8a1a-42d1-4d10-805a-3c9750afbd7d";
@@ -660,13 +668,10 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                             var deliveryDateTimeConceptUuid = "7150e240-d92d-4f72-9262-ef32d62952c5";
                             var deliveryDateAttributeUuid = "443763d6-9c53-463b-9b82-518a05c73958";
                             var deliveryDetailConceptId = "41299bce-f9b7-4ac1-99e8-061846546a5d";
-                            var birthDateConceptId = "7150e240-d92d-4f72-9262-ef32d62952c5";
+                            var birthDateConceptId = "7150e240-d92d-4f72-9262-ef32d62952c5"; */
                             var value = "";
                             if (conceptUuid == deliveryDetailConceptId) {
                                 childs.push(observation.groupMembers);
-                            }
-                            if (conceptUuid == birthDateConceptId) {
-                                birthDate = observation.value.substr(0, 10);
                             }
                             if (conceptUuid == pregnancyStatusConceptUuid) {
                                 attributeType = pregnancyStatusAttributeUuid;
@@ -690,6 +695,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                                 attributeType = deliveryDateAttributeUuid;
                                 var valueWithTime = observation.value;
                                 value = valueWithTime.substr(0, 10);
+                                birthDate = value;
                                 attribute['value'] = "Postnatal";
                                 attribute['attributeType'] = pregnancyStatusAttributeUuid;
                                 attributes.push(attribute);
@@ -707,7 +713,9 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                             attributes: attributes
                         }
                     };
-                    childToBeCraeted(childs, birthDate);
+                    if (childs.length != 0) {
+                        childToBeCraeted(childs, birthDate);
+                    }
                     updatePatient(patientInfo, attributes);
                         // .then(saveEncounter(encounterData, params, toStateConfig));
                     // encounterData
