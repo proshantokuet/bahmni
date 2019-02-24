@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state',
-        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state) {
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', '$timeout', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state',
+        function ($scope, $rootScope, $http, $timeout, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
             var personAttributes = [];
@@ -17,6 +17,7 @@ angular.module('bahmni.registration')
             $scope.readOnlyExtraIdentifiers = appService.getAppDescriptor().getConfigValue("readOnlyExtraIdentifiers");
             $scope.showSaveConfirmDialogConfig = appService.getAppDescriptor().getConfigValue("showSaveConfirmDialog");
             $scope.showSaveAndContinueButton = false;
+            var dateUtil = Bahmni.Common.Util.DateUtil;
 
             $scope.riskyHabits = [
                 { engName: "Cigarette", benName: "বিড়ি/সিগারেট" },
@@ -195,10 +196,73 @@ angular.module('bahmni.registration')
             };
 
             $scope.handleUpdate = function (attribute) {
+                console.log(attribute);
+                console.log($scope.patient[attribute]);
                 var ruleFunction = Bahmni.Registration.AttributesConditions.rules && Bahmni.Registration.AttributesConditions.rules[attribute];
                 if (ruleFunction) {
                     executeRule(ruleFunction);
                 }
+                var attributesToHide = [];
+                if (attribute == 'gender') {
+                    hideAttributes(genderCondition($scope.patient[attribute]));
+                }
+
+                if (attribute == 'birthdate') {
+                    dateToDay($scope.patient[attribute]);
+                }
+                if (attribute == 'age') {
+                    dateToDay(calculateBirthDate($scope.patient[attribute]));
+                }
+
+                /* var x = document.getElementById("id_caste");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                } */
+            };
+            var calculateBirthDate = function (age) {
+                var birthDate = dateUtil.now();
+                birthDate = dateUtil.subtractYears(birthDate, age.years);
+                birthDate = dateUtil.subtractMonths(birthDate, age.months);
+                birthDate = dateUtil.subtractDays(birthDate, age.days);
+                return birthDate;
+            };
+            var dateToDay = function (dob) {
+                console.log(dob);
+                var dob = new Date(dob);
+                var today = new Date();
+                var timeDiff = Math.abs(today.getTime() - dob.getTime());
+                var age = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
+                console.log(age);
+            };
+            var genderCondition = function (gender) {
+                var attributesToHide = [];
+                if (gender == 'M') {
+                    attributesToHide.push('id_caste');
+                    attributesToHide.push('id_class');
+                    attributesToHide.push('id_delivery_date');
+                } else if (gender == 'F') {
+                    attributesToHide.push('id_caste');
+                    attributesToHide.push('id_class');
+                    attributesToHide.push('id_delivery_date');
+                    attributesToHide.push('id_BirthWeight');
+                    attributesToHide.push('id_motherNameEnglish');
+                } else if (gender == O) {
+
+                }
+                return attributesToHide;
+            };
+
+            var hideAttributes = function (attributesToHide) {
+                _.each(attributesToHide, function (attribute) {
+                    console.log("Att:" + attribute);
+                    var x = document.getElementById(attribute);
+                    x.style.display = "none";
+                });
+            };
+            var showAttributes = function () {
+
             };
 
             var executeShowOrHideRules = function () {
@@ -211,6 +275,11 @@ angular.module('bahmni.registration')
                 if ($scope.patientLoaded) {
                     executeShowOrHideRules();
                 }
+                $timeout(function () {
+                    var x = document.getElementById("id_caste");
+                    console.log(x);
+                    x.style.display = "none";
+                }, 200);
             });
 
             $scope.getAutoCompleteList = function (attributeName, query, type) {
