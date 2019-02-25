@@ -196,31 +196,145 @@ angular.module('bahmni.registration')
             };
 
             $scope.handleUpdate = function (attribute) {
-                console.log(attribute);
-                console.log($scope.patient[attribute]);
+                var age = "";
                 var ruleFunction = Bahmni.Registration.AttributesConditions.rules && Bahmni.Registration.AttributesConditions.rules[attribute];
                 if (ruleFunction) {
                     executeRule(ruleFunction);
                 }
                 var attributesToHide = [];
                 if (attribute == 'gender') {
-                    hideAttributes(genderCondition($scope.patient[attribute]));
+                    var e = document.getElementById("MaritalStatus");
+                    var maritalStatus = e.options[e.selectedIndex].text;
+                    var gender = $scope.patient[attribute];
+                    maritalStatusAndGenderCondition(gender, maritalStatus);
+                    age = dateToDay(document.getElementById("birthdate").value);
+                    marriedFemalelessThan55(gender, maritalStatus, age);
                 }
-
                 if (attribute == 'birthdate') {
-                    dateToDay($scope.patient[attribute]);
+                    age = dateToDay($scope.patient[attribute]);
+                    above13YearCondition(age);
+                    aboveTenYearCondition(age);
+                    aboveThreeYearCondition(age);
+                    aboveFiveYearCondition(age);
+                    var e = document.getElementById("MaritalStatus");
+                    var maritalStatus = e.options[e.selectedIndex].text;
+                    var gender = document.getElementById("gender").value;
+                    marriedFemalelessThan55(gender, maritalStatus, age);
                 }
                 if (attribute == 'age') {
-                    dateToDay(calculateBirthDate($scope.patient[attribute]));
+                    age = dateToDay(calculateBirthDate($scope.patient[attribute]));
+                    above13YearCondition(age);
+                    aboveTenYearCondition(age);
+                    aboveThreeYearCondition(age);
+                    aboveFiveYearCondition(age);
+                    marriedFemalelessThan55(age);
+                    var e = document.getElementById("MaritalStatus");
+                    var maritalStatus = e.options[e.selectedIndex].text;
+                    var gender = document.getElementById("gender").value;
+                    marriedFemalelessThan55(gender, maritalStatus, age);
                 }
-
-                /* var x = document.getElementById("id_caste");
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                } else {
-                    x.style.display = "none";
-                } */
+                if (attribute == 'MaritalStatus') {
+                    var gender = document.getElementById("gender").value;
+                    var maritalStatus = $scope.patient[attribute].value;
+                    maritalStatusAndGenderCondition(gender, maritalStatus);
+                    age = dateToDay(document.getElementById("birthdate").value);
+                    console.log(age);
+                    marriedFemalelessThan55(gender, maritalStatus, age);
+                }
             };
+            var marriedFemalelessThan55 = function (gender, maritalStatus, age) {
+                var attributes = [];
+                attributes.push('id_familyplanning');
+                attributes.push('id_PregnancyStatus');
+                console.log(maritalStatus);
+                if (age <= Bahmni.Common.Constants.lessThanFiftyFive && gender == Bahmni.Common.Constants.female && maritalStatus == Bahmni.Common.Constants.married) {
+                    showAttributes(attributes);
+                } else if (gender == Bahmni.Common.Constants.male && maritalStatus == Bahmni.Common.Constants.married) {
+                    var attributes = [];
+                    attributes.push('id_familyplanning');
+                    showAttributes(attributes);
+                    var attributes = [];
+                    attributes.push('id_PregnancyStatus');
+                    hideAttributes(attributes);
+                } else {
+                    hideAttributes(attributes);
+                }
+            };
+            var maritalStatusAndGenderCondition = function (gender, maritalStatus) {
+                if (gender == Bahmni.Common.Constants.male && maritalStatus == Bahmni.Common.Constants.married) {
+                    marriedMale();
+                } else if (gender == Bahmni.Common.Constants.female && maritalStatus == Bahmni.Common.Constants.married) {
+                    marriedFemale();
+                } else {
+                    var attributes = [];
+                    attributes.push('id_Husband Name_English');
+                    attributes.push('id_Husband Name_Bangla');
+                    attributes.push('id_Wife Name_English');
+                    attributes.push('id_Wife Name_Bangla');
+                    hideAttributes(attributes);
+                }
+            };
+            var aboveTenYearCondition = function (age) {
+                var attributes = [];
+                attributes.push('id_phoneNumber');
+                if (age > Bahmni.Common.Constants.aboveTenYear) {
+                    showAttributes(attributes);
+                } else {
+                    hideAttributes(attributes);
+                }
+            };
+            var aboveThreeYearCondition = function (age) {
+                var attributes = [];
+                attributes.push('id_education');
+                if (age > Bahmni.Common.Constants.aboveThreeYear) {
+                    showAttributes(attributes);
+                } else {
+                    hideAttributes(attributes);
+                }
+            };
+            var aboveFiveYearCondition = function (age) {
+                var attributes = [];
+                attributes.push('id_occupation');
+                if (age > Bahmni.Common.Constants.aboveFiveYear) {
+                    showAttributes(attributes);
+                } else {
+                    hideAttributes(attributes);
+                }
+            };
+            var above13YearCondition = function (age) {
+                var attributes = [];
+                attributes.push('id_MaritalStatus');
+                if (age > Bahmni.Common.Constants.above13Year) {
+                    showAttributes(attributes);
+                } else {
+                    attributes.push('id_familyplanning');
+                    attributes.push('id_PregnancyStatus');
+                    var e = document.getElementById("MaritalStatus").selectedIndex = "0";
+                    // var maritalStatus = e.options[e.selectedIndex] = 0;
+                    hideAttributes(attributes);
+                }
+            };
+            var marriedFemale = function () {
+                var attributesToHide = [];
+                attributesToHide.push('id_Husband Name_English');
+                attributesToHide.push('id_Husband Name_Bangla');
+                showAttributes(attributesToHide);
+                var attributesToHide = [];
+                attributesToHide.push('id_Wife Name_English');
+                attributesToHide.push('id_Wife Name_Bangla');
+                hideAttributes(attributesToHide);
+            };
+            var marriedMale = function () {
+                var attributes = [];
+                attributes.push('id_Wife Name_English');
+                attributes.push('id_Wife Name_Bangla');
+                showAttributes(attributes);
+                var attributes = [];
+                attributes.push('id_Husband Name_English');
+                attributes.push('id_Husband Name_Bangla');
+                hideAttributes(attributes);
+            };
+
             var calculateBirthDate = function (age) {
                 var birthDate = dateUtil.now();
                 birthDate = dateUtil.subtractYears(birthDate, age.years);
@@ -229,40 +343,28 @@ angular.module('bahmni.registration')
                 return birthDate;
             };
             var dateToDay = function (dob) {
-                console.log(dob);
                 var dob = new Date(dob);
                 var today = new Date();
                 var timeDiff = Math.abs(today.getTime() - dob.getTime());
                 var age = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
-                console.log(age);
-            };
-            var genderCondition = function (gender) {
-                var attributesToHide = [];
-                if (gender == 'M') {
-                    attributesToHide.push('id_caste');
-                    attributesToHide.push('id_class');
-                    attributesToHide.push('id_delivery_date');
-                } else if (gender == 'F') {
-                    attributesToHide.push('id_caste');
-                    attributesToHide.push('id_class');
-                    attributesToHide.push('id_delivery_date');
-                    attributesToHide.push('id_BirthWeight');
-                    attributesToHide.push('id_motherNameEnglish');
-                } else if (gender == O) {
-
-                }
-                return attributesToHide;
+                return age;
             };
 
             var hideAttributes = function (attributesToHide) {
                 _.each(attributesToHide, function (attribute) {
-                    console.log("Att:" + attribute);
                     var x = document.getElementById(attribute);
-                    x.style.display = "none";
+                    if (x != null) {
+                        x.style.display = "none";
+                    }
                 });
             };
-            var showAttributes = function () {
-
+            var showAttributes = function (attributesToHide) {
+                _.each(attributesToHide, function (attribute) {
+                    var x = document.getElementById(attribute);
+                    if (x != null) {
+                        x.style.display = "block";
+                    }
+                });
             };
 
             var executeShowOrHideRules = function () {
@@ -276,9 +378,23 @@ angular.module('bahmni.registration')
                     executeShowOrHideRules();
                 }
                 $timeout(function () {
-                    var x = document.getElementById("id_caste");
-                    console.log(x);
-                    x.style.display = "none";
+                    var attributesToHide = [];
+                    attributesToHide.push('id_Used_7.1%_Chlorohexidin');
+                    attributesToHide.push('id_BirthWeight');
+                    attributesToHide.push('id_phoneNumber');
+                    attributesToHide.push('id_education');
+                    attributesToHide.push('id_occupation');
+                    attributesToHide.push('id_PregnancyStatus');
+                    attributesToHide.push('id_LMP');
+                    attributesToHide.push('id_DeliveryDate');
+                    attributesToHide.push('id_familyplanning');
+                    attributesToHide.push('id_RiskyHabits');
+                    attributesToHide.push('id_MaritalStatus');
+                    attributesToHide.push('id_Husband Name_English');
+                    attributesToHide.push('id_Husband Name_Bangla');
+                    attributesToHide.push('id_Wife Name_English');
+                    attributesToHide.push('id_Wife Name_Bangla');
+                    hideAttributes(attributesToHide);
                 }, 200);
             });
 

@@ -254,7 +254,16 @@ Bahmni.Common = Bahmni.Common || {};
         followUpConditionConcept: 'Follow-up Condition',
         localeLangs: "/bahmni_config/openmrs/apps/home/locale_languages.json",
         privilegeRequiredErrorMessage: "PRIVILEGE_REQUIRED",
-        defaultPossibleRelativeSearchLimit: 10
+        defaultPossibleRelativeSearchLimit: 10,
+        above13Year: 4745,
+        male: 'M',
+        female: 'F',
+        married: 'বিবাহিত',
+        unmarried: 'অবিবাহিত',
+        aboveTenYear: 3650,
+        aboveThreeYear: 1095,
+        aboveFiveYear: 1825,
+        lessThanFiftyFive: 20075
     };
 })();
 
