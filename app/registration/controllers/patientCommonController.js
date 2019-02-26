@@ -201,7 +201,7 @@ angular.module('bahmni.registration')
                 if (ruleFunction) {
                     executeRule(ruleFunction);
                 }
-                var attributesToHide = [];
+                /* var attributesToHide = [];
                 if (attribute == 'gender') {
                     var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text;
@@ -240,7 +240,7 @@ angular.module('bahmni.registration')
                     age = dateToDay(document.getElementById("birthdate").value);
                     console.log(age);
                     marriedFemalelessThan55(gender, maritalStatus, age);
-                }
+                } */
             };
             var marriedFemalelessThan55 = function (gender, maritalStatus, age) {
                 var attributes = [];
@@ -294,6 +294,7 @@ angular.module('bahmni.registration')
             };
             var aboveFiveYearCondition = function (age) {
                 var attributes = [];
+                console.log( ":age" + age);
                 attributes.push('id_occupation');
                 if (age > Bahmni.Common.Constants.aboveFiveYear) {
                     showAttributes(attributes);
