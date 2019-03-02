@@ -294,7 +294,7 @@ angular.module('bahmni.registration')
             };
             var aboveFiveYearCondition = function (age) {
                 var attributes = [];
-                console.log( ":age" + age);
+                console.log(":age" + age);
                 attributes.push('id_occupation');
                 if (age > Bahmni.Common.Constants.aboveFiveYear) {
                     showAttributes(attributes);
@@ -378,7 +378,7 @@ angular.module('bahmni.registration')
                 if ($scope.patientLoaded) {
                     executeShowOrHideRules();
                 }
-                $timeout(function () {
+                /* $timeout(function () {
                     var attributesToHide = [];
                     attributesToHide.push('id_Used_7.1%_Chlorohexidin');
                     attributesToHide.push('id_BirthWeight');
@@ -396,7 +396,7 @@ angular.module('bahmni.registration')
                     attributesToHide.push('id_Wife Name_English');
                     attributesToHide.push('id_Wife Name_Bangla');
                     hideAttributes(attributesToHide);
-                }, 200);
+                }, 200); */
             });
 
             $scope.getAutoCompleteList = function (attributeName, query, type) {

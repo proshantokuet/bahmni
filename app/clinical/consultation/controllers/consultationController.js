@@ -459,7 +459,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 var i = 0;
                 _.each(childs, function (child) {
                     createChild(child, birthDate, i);
-                    console.log("cc:");
                     /* var j = 0;
                     _.each(encounterData.observations, function (observation) {
                         var conceptUuid = observation.concept.uuid;
@@ -494,6 +493,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 var sex = "";
                 var fn = "Girl";
                 _.each(groupMembers, function (groupMember) {
+                    console.log(groupMember);
                     var conceptUuid = groupMember.concept.uuid;
                     if (conceptUuid == genderConceptId) {
                         gender = groupMember.value.name.name;
@@ -510,10 +510,10 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 // console.log(set);
                 // console.log("Health:" + set.values().next(i).value);
                 patientService.getHealthId().then(function (response) {
-                    if (gender == "Male") {
+                    if (gender == "পুরুষ") {
                         sex = "M";
                         fn = "Baby";
-                    } else if (gender == "Female") {
+                    } else if (gender == "মহিলা") {
                         sex = "F";
                     } else {
                         sex = "O";
@@ -660,7 +660,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                             var deliveryDetailConceptId = "e5d6de8f-2017-4046-be8d-4bf3124ec376";
                             var birthDateConceptId = "e5d6de8f-2017-4046-be8d-4bf3124ec376";
 
-                           /* var pregnancyStatusConceptUuid = "58fa4284-a100-450e-91b6-e302032f6bf6";
+                            /* var pregnancyStatusConceptUuid = "58fa4284-a100-450e-91b6-e302032f6bf6";
                             var pregnancyStatusAttributeUuid = "40715084-f03a-4cff-836a-52736fbdc1ff";
                             var lmpConceptUuid = "c45a7e4b-3f10-11e4-adec-0800271c1b75";
                             var lmpAttributeUuid = "260a8a1a-42d1-4d10-805a-3c9750afbd7d";

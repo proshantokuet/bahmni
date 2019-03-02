@@ -65,7 +65,7 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
                     openMRSPatientProfile.patient.person.attributes[i].voided = true;
                 }
             }
-            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "Family Disease History") {
+            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "family_diseases_details") {
                 if (this.getStringFromJsonArray(patient.familyDiseaseHistory)) {
                     openMRSPatientProfile.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.familyDiseaseHistory);
                 } else {
