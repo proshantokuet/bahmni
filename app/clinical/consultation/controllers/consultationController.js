@@ -512,7 +512,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 patientService.getHealthId().then(function (response) {
                     if (gender == "পুরুষ") {
                         sex = "M";
-                        fn = "Baby";
+                        fn = "Boy";
                     } else if (gender == "মহিলা") {
                         sex = "F";
                     } else {
