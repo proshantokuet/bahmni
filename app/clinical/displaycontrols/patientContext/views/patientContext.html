@@ -15,12 +15,15 @@
             <li ng-repeat="(key, value) in patientContext.additionalPatientIdentifiers">
                 {{key}}: {{value}}
             </li>
-            <li ng-repeat="(key, value) in patientContext.personAttributes">
-                {{value.description}}: {{value.value}}
-            </li>
+           <!-- <li ng-repeat="(key, value) in patientContext.personAttributes">
+                {{value.description}}: {{value.value.substr(0, 10)}}
+            </li>-->
+            <li> {{edd(patientContext.personAttributes.LMP.value)}}</li>
             <li ng-repeat="(key, value) in patientContext.programAttributes">
                 {{value.description}}: {{value.value}}
             </li>
+
+
         </ul>
     </div>
 </div>

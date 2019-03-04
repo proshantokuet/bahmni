@@ -30,6 +30,24 @@ angular.module('bahmni.clinical')
                     $scope.patientContext.image = Bahmni.Common.Constants.patientImageUrlByPatientUuid + $scope.patientContext.uuid;
                 }
                 $scope.patientContext.gender = $rootScope.genderMap[$scope.patientContext.gender];
+                $scope.edd = function (lmp) {
+                    if (lmp == undefined) {
+                        return "";
+                    } else {
+                        var lmpDate = new Date(lmp);
+                        var today = new Date();
+                        var timeDiff = Math.abs(today.getTime() - lmpDate.getTime());
+                        var daydiff = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
+                        if (daydiff >= Bahmni.Common.Constants.eddNotShowingConditionInDay) {
+                            return "";
+                        }
+                        lmpDate.setDate(lmpDate.getDate() + Bahmni.Common.Constants.eddShowingConditionInDay);
+                        var month = ("0" + (lmpDate.getMonth() + 1)).slice(-2);
+                        var day = ("0" + lmpDate.getDay()).slice(-2);
+                        var edd = lmpDate.getUTCFullYear() + "-" + month + "-" + day;
+                        return "EDD: " + edd;
+                    }
+                };
             });
         };
 

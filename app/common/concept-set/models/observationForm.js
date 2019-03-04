@@ -81,28 +81,29 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         console.log(context.patient);
         // console.log(conceptSet);
         var pregnancyStatus = "";
+
         if (typeof context.patient.PregnancyStatus !== "undefined") {
             pregnancyStatus = context.patient.PregnancyStatus.value.uuid;
         }
-        if (age <= 61 && formName == 'শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা') {
+        if (age <= Bahmni.Common.Constants.zeroToTwoMonthInDay && formName == Bahmni.Common.Constants.zeroToTwoMonthFormName) {
             return true;
-        } else if (age >= 62 && age <= 1826 && formName == 'শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা') {
+        } else if (age >= Bahmni.Common.Constants.TwoMonthInDay && age <= Bahmni.Common.Constants.twoMonthToFiveYearInDay && formName == Bahmni.Common.Constants.twoMonthToFiveYearFormName) {
             return true;
-        } else if (pregnancyStatus == antenatal && (formName == 'প্রসব পূর্ব সেবা')) {
+        } else if (pregnancyStatus == antenatal && (formName == Bahmni.Common.Constants.antenatalFormName)) {
             return true;
-        } else if (deliveryDayDifference <= 61 && pregnancyStatus == postnatal && formName == 'প্রসব পরবর্তী সেবা') {
+        } else if (deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition && pregnancyStatus == postnatal && formName == Bahmni.Common.Constants.postnatalFormName) {
             return true;
-        } else if (formName == 'সাধারন রোগীর সেবা' && age >= 1827) {
+        } else if (formName == Bahmni.Common.Constants.generalDiseaseFormName && age >= Bahmni.Common.Constants.moreThanFiveYearInDay) {
             return true;
-        } else if (formName == 'গর্ভাবস্থার তথ্য' && gender == 'F' && maritalStatus == married) {
+        } else if (formName == Bahmni.Common.Constants.pregnantStatusFormName && gender == Bahmni.Common.Constants.female && maritalStatus == married) {
             if (deliveryDayDifference == "") {
                 return true;
-            } else if (deliveryDayDifference >= 44) {
+            } else if (deliveryDayDifference >= Bahmni.Common.Constants.pregnantStatusFormDeliveryDayCondition) {
                 return true;
             }
-        } else if (gender == 'M' && maritalStatus == married && formName == 'পরিবার পরিকল্পনা সেবা') {
+        } else if (gender == Bahmni.Common.Constants.male && maritalStatus == married && formName == Bahmni.Common.Constants.familyPlaningFormName) {
             return true;
-        } else if (pregnancyStatus != antenatal && gender == 'F' && maritalStatus == married && age <= 18262 && formName == 'পরিবার পরিকল্পনা সেবা') {
+        } else if (pregnancyStatus != antenatal && gender == Bahmni.Common.Constants.female && maritalStatus == married && age <= Bahmni.Common.Constants.fiftyYearInDay && formName == Bahmni.Common.Constants.familyPlaningFormName) {
             return true;
         } else {
             return false;

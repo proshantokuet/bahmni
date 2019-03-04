@@ -263,7 +263,24 @@ Bahmni.Common = Bahmni.Common || {};
         aboveTenYear: 3650,
         aboveThreeYear: 1095,
         aboveFiveYear: 1825,
-        lessThanFiftyFive: 20075
+        lessThanFiftyFive: 20075,
+        zeroToTwoMonthInDay: 61,
+        TwoMonthInDay: 62,
+        twoMonthToFiveYearInDay: 1826,
+        zeroToTwoMonthFormName: 'শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা',
+        twoMonthToFiveYearFormName: 'শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা',
+        antenatalFormName: 'প্রসব পূর্ব সেবা',
+        postnatalFormName: 'প্রসব পরবর্তী সেবা',
+        generalDiseaseFormName: 'সাধারন রোগীর সেবা',
+        moreThanFiveYearInDay: 1827,
+        pregnantStatusFormName: 'গর্ভাবস্থার তথ্য',
+        familyPlaningFormName: 'পরিবার পরিকল্পনা সেবা',
+        fiftyYearInDay: 18262,
+        postnatalFormDeliveryDayCondition: 61,
+        pregnantStatusFormDeliveryDayCondition: 44,
+        eddShowingConditionInDay: 281,
+        eddNotShowingConditionInDay: 308
+
     };
 })();
 
