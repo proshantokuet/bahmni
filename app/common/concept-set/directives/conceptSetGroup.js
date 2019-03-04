@@ -10,7 +10,48 @@ angular.module('bahmni.common.conceptSet')
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             var init = function () {
                 $scope.validationHandler = new Bahmni.ConceptSet.ConceptSetGroupPanelViewValidationHandler($scope.allTemplates);
+                // console.log($scope.allTemplates);
+
+                var orderTemplates = [
+                    "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা",
+                    "শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা",
+                    "প্রসব পূর্ব সেবা",
+                    "প্রসব পরবর্তী সেবা",
+                    "সাধারন রোগীর সেবা",
+                    "গর্ভাবস্থার তথ্য",
+                    "পরিবার পরিকল্পনা সেবা"
+                ];
+
+                /* var i = 0;
+                for (i = 0; i < $scope.allTemplates.length; i++) {
+                    /!*  if ($scope.allTemplates[i].formName == "নবজাতক ও শিশু সেবা ফর্ম") {
+
+                        // clone($scope.allTemplates[i - 1], $scope.allTemplates[i]);
+                        /!* var src = $scope.allTemplates[i - 1];
+                        var target = $scope.allTemplates[i];
+                        for (var attr in src) {
+                            if (src.hasOwnProperty(attr)) target[attr] = src[attr];
+                        } *!/
+                        console.log("templates");
+                        console.log($scope.allTemplates[i]);
+                    }   *!/
+                    console.log($scope.allTemplates[i]);
+                } */
+
+                $scope.allTemplates.sort(function (a, b) {
+                    return orderTemplates.indexOf(a.formName) - orderTemplates.indexOf(b.formName);
+                });
+                console.log($scope.allTemplates);
+
                 contextChangeHandler.add($scope.validationHandler.validate);
+            };
+
+            var clone = function (src, target) {
+                // var copy = obj.constructor();
+                for (var attr in src) {
+                    if (src.hasOwnProperty(attr)) target[attr] = src[attr];
+                }
+                // return copy;
             };
             $scope.toggleSideBar = function () {
                 $rootScope.showLeftpanelToggle = !$rootScope.showLeftpanelToggle;
