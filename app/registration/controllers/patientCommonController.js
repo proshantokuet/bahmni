@@ -31,7 +31,7 @@ angular.module('bahmni.registration')
             $scope.diseaseStatus = [
                 { engName: "High Blood Pressure", benName: "উচ্চ রক্তচাপ" },
                 { engName: "Diabetes", benName: "ডায়াবেটিস" },
-                { engName: "Very severe disease", benName: "খুব মারাত্বক রোগ" },
+                { engName: "Very severe disease", benName: "খুব মারাত্মক রোগ" },
                 { engName: "Pneumonia", benName: "নিউমোনিয়া" },
                 { engName: "Pneumonia unspec", benName: "কাশি/সর্দি" },
                 { engName: "dieria and dysentry", benName: "ডায়ারিয়া ও আমাশয়" },
@@ -44,7 +44,7 @@ angular.module('bahmni.registration')
                 { engName: "maleria", benName: "জ্বর (ম্যালারিয়া)" },
                 { engName: "Tuberculosis", benName: "যক্ষ্মা" },
                 { engName: "Jaundice", benName: "জন্ডিস" },
-                { engName: "Probable Limited Infection", benName: "সম্ভাব্য সীমিত সংক্রামণ" },
+                { engName: "Probable Limited Infection", benName: "সম্ভাব্য সীমিত সংক্রমণ" },
                 { engName: "Diarrhoea No Dehydration", benName: "পানি স্বল্পতাহীন ডায়রিয়া" },
                 { engName: "Malnutrition", benName: "অপুষ্টি" },
                 { engName: "Anemia", benName: "রক্ত স্বল্পতা" },
