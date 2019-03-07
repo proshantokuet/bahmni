@@ -77,6 +77,18 @@ angular.module('bahmni.registration')
                 $scope.patient.familyDiseaseHistory[disease] = isChecked;
             };
 
+            $scope.getGendersToDisplay = function () {
+                var array = [];
+                var i;
+                for (i = 0; i < $scope.genderCodes.length; i++) {
+                    if ($scope.genderCodes[i] != "H") {
+                        console.log($scope.genderCodes[i]);
+                        array.push($scope.genderCodes[i]);
+                    }
+                }
+                return array;
+            };
+
             $rootScope.onHomeNavigate = function (event) {
                 if ($scope.showSaveConfirmDialogConfig && $state.current.name != "patient.visit") {
                     event.preventDefault();
