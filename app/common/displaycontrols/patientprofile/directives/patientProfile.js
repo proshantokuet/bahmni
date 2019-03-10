@@ -41,6 +41,13 @@
                         var configName = $stateParams.configName || Bahmni.Common.Constants.defaultExtensionName;
                         $window.open("../clinical/#/" + configName + "/patient/" + patientUuid + "/dashboard");
                     };
+                    $scope.getDiseaseFields = function (patientAttribute) {
+                        var diseasesArray = ["ঝুকিপূর্ন অভ্যাস", "পারিবারিক রোগ সম্পর্কিত তথ্য", "রোগ"];
+                        if (diseasesArray.includes(patientAttribute)) {
+                            return true;
+                        }
+                        return false;
+                    };
                     $scope.getBengaliName = function (patientAttributeValue) {
                         var bengaliArrayList = "";
                         var bengaliArray = [];
