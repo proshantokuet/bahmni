@@ -42,7 +42,7 @@
                         $window.open("../clinical/#/" + configName + "/patient/" + patientUuid + "/dashboard");
                     };
                     $scope.getDiseaseFields = function (patientAttribute) {
-                        var diseasesArray = ["ঝুকিপূর্ন অভ্যাস", "পারিবারিক রোগ সম্পর্কিত তথ্য", "রোগ"];
+                        var diseasesArray = ["RiskyHabit", "Disease_status", "family_diseases_details"];
                         if (diseasesArray.includes(patientAttribute)) {
                             return true;
                         }
