@@ -215,16 +215,16 @@ angular.module('bahmni.registration')
                 }
                 /* start by proshanto  */
                 var households = [];
-                var households = response.data.pageOfResults;
+                var length = response.data.pageOfResults.length;
                 var i;
-                for (i = 0; i < response.data.pageOfResults.length; i++) {
+                for (i = 0; i < length; i++) {
                     var patient = response.data.pageOfResults[i];
-                    if (patient.gender != 'H') {
-                        response.data.pageOfResults.splice(i);
+                    if (patient.gender == 'H') {
+                        households.push(patient);
                     }
                 }
                 /* end by proshanto */
-                return response.data.pageOfResults.map(function (patient) {
+                return households.map(function (patient) {
                     return {
                         value: getName(patient) + " - " + patient.identifier,
                         uuid: patient.uuid,

@@ -166,9 +166,9 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                             houswholdRelationship["relationshipType"] = { "uuid": "03ed3084-4c7a-11e5-9192-080027b662ec" };
                             houswholdRelationship["personB"] = { "display": relationship.personB.display, "uuid": relationship.personB.uuid };
                             relationships.push(houswholdRelationship);
-                            motherRelationship["relationshipType"] = { "uuid": "03ed79c5-4c7a-11e5-9192-080027b662ec" };
+                            /* motherRelationship["relationshipType"] = { "uuid": "03ed79c5-4c7a-11e5-9192-080027b662ec" };
                             motherRelationship["personB"] = { "display": $scope.patient.name, "uuid": $scope.patient.uuid };
-                            relationships.push(motherRelationship);
+                            relationships.push(motherRelationship); */
                             $scope.childRelationships = relationships;
                         }
                     });
@@ -459,15 +459,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 var i = 0;
                 _.each(childs, function (child) {
                     createChild(child, birthDate, i);
-                    /* var j = 0;
-                    _.each(encounterData.observations, function (observation) {
-                        var conceptUuid = observation.concept.uuid;
-                    if (conceptUuid == "41299bce-f9b7-4ac1-99e8-061846546a5d") {
-                    var gms = createChild(child, birthDate, i);
-                    encounterData.observations[j].groupMembers = gms;
-                    }
-                    j++;
-                    }); */
                     i++;
                 });
             };
