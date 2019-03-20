@@ -42,17 +42,7 @@ Bahmni.Common.PatientSearch.Search = function (searchTypes) {
 
     self.updatePatientList = function (patientList) {
         self.activePatients = patientList.map(mapPatient);
-        /* start by proshanto  */
-        var i;
-        for (i = 0; i < self.activePatients.length; i++) {
-            var patient = self.activePatients[i];
-            if (patient.gender == 'H') {
-                self.activePatients.splice(i);
-            } else {
-                console.log(patient);
-            }
-        }
-        /* end by proshanto */
+
         self.searchResults = self.activePatients;
     };
 
