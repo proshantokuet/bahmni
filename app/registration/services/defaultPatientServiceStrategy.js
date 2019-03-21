@@ -38,7 +38,6 @@ angular.module('bahmni.registration')
         var create = function (patient, jumpAccepted) {
             var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient);
             var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
-            console.log(data);
             return healthId().then(function (response) {
                 var memberHealthId = response.identifiers;
                 data.patient.identifiers[0].identifier = memberHealthId;
