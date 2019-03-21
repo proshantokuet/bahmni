@@ -22,7 +22,7 @@ angular.module('consultation')
         function ($stateProvider, $httpProvider, $urlRouterProvider, $bahmniTranslateProvider, $compileProvider) {
             $urlRouterProvider.otherwise('/' + Bahmni.Clinical.Constants.defaultExtensionName + '/patient/search');
             var patientSearchBackLink = {
-                label: "Visit",
+                label: "Patient",
                 state: "search.patientsearch",
                 accessKey: "p",
                 id: "patients-link",
