@@ -82,7 +82,6 @@ angular.module('bahmni.registration')
                 var i;
                 for (i = 0; i < $scope.genderCodes.length; i++) {
                     if ($scope.genderCodes[i] != "H") {
-                        console.log($scope.genderCodes[i]);
                         array.push($scope.genderCodes[i]);
                     }
                 }
