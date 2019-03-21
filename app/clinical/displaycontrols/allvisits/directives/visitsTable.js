@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .directive('visitsTable', ['patientVisitHistoryService', 'conceptSetService', 'spinner', '$state', '$q',
-        function (patientVisitHistoryService, conceptSetService, spinner, $state, $q) {
+    .directive('visitsTable', ['patientVisitHistoryService', 'conceptSetService', 'visitService', 'spinner', '$state', '$q',
+        function (patientVisitHistoryService, conceptSetService, visitService, spinner, $state, $q) {
             var controller = function ($scope) {
                 var emitNoDataPresentEvent = function () {
                     $scope.$emit("no-data-present-event");
@@ -16,6 +16,34 @@ angular.module('bahmni.clinical')
 
                 $scope.hasVisits = function () {
                     return $scope.visits && $scope.visits.length > 0;
+                };
+
+                $scope.visitInfoArray = [];
+                var getObservationInVisit = function (visit) {
+                    return visitService.getObservations(visit.uuid)
+                        .then(function (saveResponse) {
+                            var i = 0;
+                            var jsonArrayList = "";
+                            var keys = [];
+                            var formName = "";
+                            for (i = 0; i < saveResponse.data.length; i++) {
+                                formName = saveResponse.data[i].formFieldPath.substr(0, saveResponse.data[i].formFieldPath.indexOf('.'));
+                                if (!keys.includes(formName)) {
+                                    keys.push(formName);
+                                }
+                                console.log(saveResponse.data[i]);
+                            }
+                            jsonArrayList = keys.join();
+                            console.log(jsonArrayList);
+                            $scope.obsString = jsonArrayList;
+                            $scope.visitInfoArray.push({
+                                visitObj: visit,
+                                formName: jsonArrayList,
+                                visitStartDateTime: saveResponse.data[0].visitStartDateTime
+                            });
+                            console.log($scope.visitInfoArray);
+                            return saveResponse.data;
+                        });
                 };
 
                 $scope.params = angular.extend(
@@ -79,6 +107,10 @@ angular.module('bahmni.clinical')
                 var init = function () {
                     return $q.all([getVisits()]).then(function (results) {
                         $scope.visits = results[0].visits;
+                        var i = 0;
+                        for (i = 0; i < $scope.visits.length; i++) {
+                            var observations = getObservationInVisit($scope.visits[i]);
+                        }
                         $scope.patient = {uuid: $scope.patientUuid};
                         if (!$scope.hasVisits()) emitNoDataPresentEvent();
                     });
