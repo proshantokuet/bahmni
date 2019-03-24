@@ -109,15 +109,18 @@ angular.module('bahmni.registration')
             };
 
             var addNewRelationships = function () {
-                var newRelationships = _.filter($scope.patient.newlyAddedRelationships, function (relationship) {
-                    return relationship.relationshipType && relationship.relationshipType.uuid;
-                });
-                newRelationships = _.each(newRelationships, function (relationship) {
-                    delete relationship.patientIdentifier;
-                    delete relationship.content;
-                    delete relationship.providerName;
-                });
-                $scope.patient.relationships = _.concat(newRelationships, $scope.patient.deletedRelationships);
+                var relationshipType = {};
+                var relationObject = {};
+                var relationArray = [];
+                if ($scope.patient.newlyAddedRelationships[0].personB != undefined) {
+                    var personB = $scope.patient.newlyAddedRelationships[0].personB;
+                    console.log(personB);
+                    relationshipType['uuid'] = "03ed3084-4c7a-11e5-9192-080027b662ec";
+                    relationObject["relationshipType"] = relationshipType;
+                    relationObject["personB"] = personB;
+                    relationArray.push(relationObject);
+                }
+                $scope.patient.relationships = _.concat(relationArray, $scope.patient.deletedRelationships);
             };
 
             $scope.isReadOnly = function (field) {

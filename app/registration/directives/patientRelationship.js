@@ -288,7 +288,14 @@ angular.module('bahmni.registration')
                 $scope.relationshipTypes = $rootScope.relationshipTypes;
                 $scope.patient.relationships = $scope.patient.relationships || [];
             };
-
+            $scope.hasRelationShip = function (relationship) {
+                var length = relationship.length;
+                console.log(relationship);
+                if (length > 0) {
+                    return false;
+                }
+                return true;
+            };
             init();
         }
     ]);

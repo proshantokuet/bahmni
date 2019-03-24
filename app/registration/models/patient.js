@@ -37,6 +37,7 @@ angular.module('bahmni.registration')
                 fullNameLocal: fullNameLocal,
                 getImageData: getImageData,
                 relationships: [],
+
                 newlyAddedRelationships: [{}],
                 deletedRelationships: [],
                 calculateBirthDate: calculateBirthDate,
