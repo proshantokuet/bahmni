@@ -212,7 +212,7 @@ angular.module('bahmni.registration')
                 if (ruleFunction) {
                     executeRule(ruleFunction);
                 }
-                /* var attributesToHide = [];
+                var attributesToHide = [];
                 if (attribute == 'gender') {
                     var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text;
@@ -251,7 +251,7 @@ angular.module('bahmni.registration')
                     age = dateToDay(document.getElementById("birthdate").value);
                     console.log(age);
                     marriedFemalelessThan55(gender, maritalStatus, age);
-                } */
+                }
             };
             var marriedFemalelessThan55 = function (gender, maritalStatus, age) {
                 var attributes = [];
@@ -259,6 +259,7 @@ angular.module('bahmni.registration')
                 attributes.push('id_PregnancyStatus');
                 console.log(maritalStatus);
                 if (age <= Bahmni.Common.Constants.lessThanFiftyFive && gender == Bahmni.Common.Constants.female && maritalStatus == Bahmni.Common.Constants.married) {
+                    console.log(attributes);
                     showAttributes(attributes);
                 } else if (gender == Bahmni.Common.Constants.male && maritalStatus == Bahmni.Common.Constants.married) {
                     var attributes = [];
@@ -300,6 +301,10 @@ angular.module('bahmni.registration')
                 if (age > Bahmni.Common.Constants.aboveThreeYear) {
                     showAttributes(attributes);
                 } else {
+                    attributes.push('id_Husband Name_English');
+                    attributes.push('id_Husband Name_Bangla');
+                    attributes.push('id_Wife Name_English');
+                    attributes.push('id_Wife Name_Bangla');
                     hideAttributes(attributes);
                 }
             };
@@ -310,6 +315,10 @@ angular.module('bahmni.registration')
                 if (age > Bahmni.Common.Constants.aboveFiveYear) {
                     showAttributes(attributes);
                 } else {
+                    attributes.push('id_Husband Name_English');
+                    attributes.push('id_Husband Name_Bangla');
+                    attributes.push('id_Wife Name_English');
+                    attributes.push('id_Wife Name_Bangla');
                     hideAttributes(attributes);
                 }
             };
@@ -321,6 +330,10 @@ angular.module('bahmni.registration')
                 } else {
                     attributes.push('id_familyplanning');
                     attributes.push('id_PregnancyStatus');
+                    attributes.push('id_Husband Name_English');
+                    attributes.push('id_Husband Name_Bangla');
+                    attributes.push('id_Wife Name_English');
+                    attributes.push('id_Wife Name_Bangla');
                     var e = document.getElementById("MaritalStatus").selectedIndex = "0";
                     // var maritalStatus = e.options[e.selectedIndex] = 0;
                     hideAttributes(attributes);
@@ -389,7 +402,7 @@ angular.module('bahmni.registration')
                 if ($scope.patientLoaded) {
                     executeShowOrHideRules();
                 }
-                /* $timeout(function () {
+                $timeout(function () {
                     var attributesToHide = [];
                     attributesToHide.push('id_Used_7.1%_Chlorohexidin');
                     attributesToHide.push('id_BirthWeight');
@@ -407,7 +420,7 @@ angular.module('bahmni.registration')
                     attributesToHide.push('id_Wife Name_English');
                     attributesToHide.push('id_Wife Name_Bangla');
                     hideAttributes(attributesToHide);
-                }, 200); */
+                }, 200);
             });
 
             $scope.getAutoCompleteList = function (attributeName, query, type) {
