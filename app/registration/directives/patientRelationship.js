@@ -290,7 +290,7 @@ angular.module('bahmni.registration')
             };
             $scope.hasRelationShip = function (relationship) {
                 var length = relationship.length;
-                console.log(relationship);
+                // console.log(relationship);
                 if (length > 0) {
                     return false;
                 }

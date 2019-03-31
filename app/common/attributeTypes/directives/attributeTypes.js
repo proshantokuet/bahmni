@@ -31,7 +31,6 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
                 attributeValueConceptType.value = concept && concept.fullySpecifiedName;
             };
             $scope.restrictLMPDate = function (attributeName) {
-                console.log(attributeName);
                 var max = new Date();
                 max.setDate(max.getDate() - 42);
                 var month = max.getMonth() + 1;

@@ -23,6 +23,11 @@
                              <i class="ipd-indication fa fa-bed" ng-if="::hasBeenAdmitted"></i>
                          </div>
                      </td>
+                     <td>
+                         <a ng-click="openEditPatient(patient.uuid)" target="_blank" class="title-link">
+                            Edit Patient
+                        </a>
+                     </td>
                 </tr>
                 <tr ng-if="::showBirthDate" >
                     <td class="name">{{ 'DOB_LABEL' | translate }}</td>

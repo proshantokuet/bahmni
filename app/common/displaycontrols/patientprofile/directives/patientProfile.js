@@ -41,6 +41,9 @@
                         var configName = $stateParams.configName || Bahmni.Common.Constants.defaultExtensionName;
                         $window.open("../clinical/#/" + configName + "/patient/" + patientUuid + "/dashboard");
                     };
+                    $scope.openEditPatient = function (patientUuid) {
+                        $window.open("../registration/#/patient/" + patientUuid);
+                    };
                     $scope.getDiseaseFields = function (patientAttribute) {
                         var diseasesArray = ["RiskyHabit", "Disease_status", "family_diseases_details"];
                         if (diseasesArray.includes(patientAttribute)) {

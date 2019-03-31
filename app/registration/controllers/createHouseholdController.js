@@ -132,7 +132,7 @@ angular.module('bahmni.registration')
             };
 
             var createPatient = function (jumpAccepted) {
-                console.log($scope.patient);
+                // console.log($scope.patient);
                 return patientService.create($scope.patient, jumpAccepted).then(function (response) {
                     copyPatientProfileDataToScope(response);
                 }, function (response) {
