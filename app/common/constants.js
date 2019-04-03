@@ -254,7 +254,7 @@ Bahmni.Common = Bahmni.Common || {};
         followUpConditionConcept: 'Follow-up Condition',
         localeLangs: "/bahmni_config/openmrs/apps/home/locale_languages.json",
         privilegeRequiredErrorMessage: "PRIVILEGE_REQUIRED",
-        defaultPossibleRelativeSearchLimit: 10,
+        defaultPossibleRelativeSearchLimit: 1000,
         above13Year: 4745,
         male: 'M',
         female: 'F',
