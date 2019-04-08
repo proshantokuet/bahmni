@@ -72,6 +72,36 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
                     openMRSPatientProfile.patient.person.attributes[i].voided = true;
                 }
             }
+            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "nationalId") {
+                if (patient.nationalIdCheckbox == true && patient.noidCheckbox == false) {
+                    openMRSPatientProfile.patient.person.attributes[i].value = patient.nationalId;
+                } else {
+                    openMRSPatientProfile.patient.person.attributes[i].voided = true;
+                }
+            }
+            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "nationalIdCheckbox") {
+                openMRSPatientProfile.patient.person.attributes[i].value = patient.nationalIdCheckbox;
+            }
+            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "birthRegistrationID") {
+                if (patient.bridCheckbox == true && patient.noidCheckbox == false) {
+                    openMRSPatientProfile.patient.person.attributes[i].value = patient.brid;
+                } else {
+                    openMRSPatientProfile.patient.person.attributes[i].voided = true;
+                }
+            }
+            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "bridCheckbox") {
+                openMRSPatientProfile.patient.person.attributes[i].value = patient.bridCheckbox;
+            }
+            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "epicardnumber") {
+                if (patient.epiCheckbox == true && patient.noidCheckbox == false) {
+                    openMRSPatientProfile.patient.person.attributes[i].value = patient.epi;
+                } else {
+                    openMRSPatientProfile.patient.person.attributes[i].voided = true;
+                }
+            }
+            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "epiCheckbox") {
+                openMRSPatientProfile.patient.person.attributes[i].value = patient.epiCheckbox;
+            }
         }
 
         this.setImage(patient, openMRSPatientProfile);
@@ -80,6 +110,7 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
             openMRSPatientProfile.relationships = patient.relationships;
         }
 
+        console.log(openMRSPatientProfile);
         return openMRSPatientProfile;
     };
 
@@ -114,7 +145,12 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
     };
 
     var setAttributeValue = function (attributeType, attr, value) {
-        if (attributeType.name == "RiskyHabit" || attributeType.name == "Disease_status" || attributeType.name == "family_diseases_details") {
+        if (attributeType.name == "RiskyHabit" || attributeType.name == "Disease_status"
+            || attributeType.name == "family_diseases_details" || attributeType.name == "nationalId"
+            || attributeType.name == "nationalIdCheckbox" || attributeType.name == "birthRegistrationID"
+            || attributeType.name == "epicardnumber" || attributeType.name == "bridCheckbox"
+            || attributeType.name == "epiCheckbox"
+        ) {
             attr.value = "";
         } else if (value === "" || value === null || value === undefined || value.conceptUuid === null) {
             attr.voided = true;

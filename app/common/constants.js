@@ -260,6 +260,7 @@ Bahmni.Common = Bahmni.Common || {};
         female: 'F',
         married: 'বিবাহিত',
         unmarried: 'অবিবাহিত',
+        twoMonth: 60,
         aboveTenYear: 3650,
         aboveThreeYear: 1095,
         aboveFiveYear: 1825,

@@ -79,7 +79,32 @@ angular.module('bahmni.registration')
                     "Psychological Disease": false,
                     "Respiratory Disease": false,
                     "Others (Family Disease)": false
-                }
+                },
+                nationalId: '',
+                brid: '',
+                epi: '',
+                noid: '',
+                nationalIdCheckbox: false,
+                bridCheckbox: false,
+                epiCheckbox: false,
+                showRiskyHabits: false,
+                showDiseaseStatus: false,
+                diseaseStartIndex: 0,
+                diseaseEndIndex: 0,
+                yesNoCheckbox: "না",
+                noidCheckbox: false,
+                showMaritalStatus: false,
+                showPregnancyStatus: false,
+                showPhoneNumber: false,
+                showEducation: false,
+                showOccupation: false,
+                showHusbandName: false,
+                showWifeName: false,
+                showChlorohexidin: false,
+                showBirthWeight: false,
+                showLMP: false,
+                showDeliveryDate: false,
+                showFamilyplanning: false
             };
             return _.assign(patient, identifierDetails);
         };

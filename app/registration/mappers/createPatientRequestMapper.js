@@ -50,6 +50,7 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
             }
         };
 
+        console.log(":attribute" + openMRSPatient.patient.person.attributes);
         var i = 0;
         for (i = 0; i < openMRSPatient.patient.person.attributes.length; i++) {
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "RiskyHabit") {
@@ -60,7 +61,10 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
                 }
             }
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "Disease_status") {
-                if (this.getStringFromJsonArray(patient.diseaseStatus)) {
+                if (this.getStringFromJsonArray(patient.diseaseStatus) && patient.showDiseaseStatus == true) {
+                    var d = this.getStringFromJsonArray(patient.diseaseStatus);
+                    console.log(d);
+                    console.log(patient.showDiseaseStatus);
                     openMRSPatient.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.diseaseStatus);
                 } else {
                     openMRSPatient.patient.person.attributes[i].voided = true;
@@ -73,7 +77,49 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
                     openMRSPatient.patient.person.attributes[i].voided = true;
                 }
             }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "nationalId") {
+                if (patient.nationalIdCheckbox == true && patient.noidCheckbox == false) {
+                    openMRSPatient.patient.person.attributes[i].value = patient.nationalId;
+                } else {
+                    openMRSPatient.patient.person.attributes[i].voided = true;
+                }
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "nationalIdCheckbox") {
+                openMRSPatient.patient.person.attributes[i].value = patient.nationalIdCheckbox;
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "birthRegistrationID") {
+                if (patient.nationalIdCheckbox == true && patient.noidCheckbox == false) {
+                    openMRSPatient.patient.person.attributes[i].value = patient.brid;
+                } else {
+                    openMRSPatient.patient.person.attributes[i].voided = true;
+                }
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "bridCheckbox") {
+                openMRSPatient.patient.person.attributes[i].value = patient.bridCheckbox;
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "epicardnumber") {
+                if (patient.nationalIdCheckbox == true && patient.noidCheckbox == false) {
+                    openMRSPatient.patient.person.attributes[i].value = patient.epi;
+                } else {
+                    openMRSPatient.patient.person.attributes[i].voided = true;
+                }
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "epiCheckbox") {
+                openMRSPatient.patient.person.attributes[i].value = patient.epiCheckbox;
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "showRiskyHabits") {
+                openMRSPatient.patient.person.attributes[i].value = patient.showRiskyHabits;
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "noidCheckbox") {
+            }
+/*            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "diseaseStartIndex") {
+                openMRSPatient.patient.person.attributes[i].value = patient.diseaseStartIndex;
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "diseaseEndIndex") {
+                openMRSPatient.patient.person.attributes[i].value = patient.diseaseEndIndex;
+            } */
         }
+        console.log(openMRSPatient);
 
         this.setImage(patient, openMRSPatient);
         openMRSPatient.relationships = patient.relationships;

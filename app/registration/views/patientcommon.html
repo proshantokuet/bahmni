@@ -231,7 +231,7 @@
                  ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
             <article class="form-field" ng-repeat="attribute in ::attributeRow"
                      ng-class="::{'right-form-field' : $index%2 != 0}">
-                <span id="id_{{attribute.name}}">
+                <span ng-show="getShowValueString(attribute.name)">
                     <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
                                  is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                                  get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
@@ -239,6 +239,22 @@
             </article>
         </section>
     </div>
+
+    <!--<div class="box-container form">
+        <legend class="registraion_legend">
+            <span class="mylegend">সাধারণ তথ্য</span>
+        </legend>
+        <section class="form-field-inline-checkbox clearfix">
+            <article class="form-field" ng-repeat="x in riskyHabits" ng-class="::{'right-form-field' : $index%2 != 0}">
+                <div class="field-attribute estimated-label" ng-show="patient.showRiskyHabits">
+                    <label>{{ x.benName }}<br></label>
+                </div>
+                <div class="field-value">
+                    <input ng-show="patient.showRiskyHabits" id="{{ x.id }}" type="checkbox" ng-model="patient.riskyHabit[x.engName]" ng-change="updateRiskyHabitCheckboxChange(x, patient.riskyHabit[x])">
+                </div>
+            </article>
+        </section>
+    </div>-->
 
     <div  class="additional-info-wrapper">
        <!-- <div ng-if="section.canShow">-->
@@ -262,9 +278,63 @@
                                          is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                                          get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></checkbox-attribute-types>
                     </article>
-                </section>
--->
-                <div class="box-container form" id="id_RiskyHabits">
+                </section> -->
+
+                <div class="box-container form" id="id_idtype">
+                     <legend class="registraion_legend">
+                         <span class="mylegend">পরিচয় পত্র</span>
+                     </legend>
+                    <section class="form-field-inline-checkbox clearfix">
+                       <article class="form-field">
+                            <div class="field-attribute estimated-label">
+                                <label>নিচের কোন কোন পরিচয় পত্রটি আছে?<br></label>
+                                <!--<select>
+                                    <option > </option>
+                                    <option ng-repeat="x in idTypes" value="x.engName">{{x.benName}}</option>
+                                </select>-->
+                            </div>
+
+                            <div class="field-attribute estimated-label">
+                                    <label>জাতীয় পরিচয় পত্র</label>
+                                </div>
+                            <div class="field-value">
+                                <input type="checkbox" ng-model="patient.nationalIdCheckbox" ng-change="updateNationalIdCheckboxChange(patient.nationalIdCheckbox)">
+                            </div>
+                            <div class="field-value">
+                                <input type=text ng-model="patient.nationalId" ng-show="patient.nationalIdCheckbox" pattern="[0-9]{13}" title="National Id must be thirteen digit">
+                            </div>
+
+                            <div class="field-attribute estimated-label">
+                                    <label>জন্ম নিবন্ধন কার্ড<br></label>
+                                </div>
+                            <div class="field-value">
+                                <input type="checkbox" ng-model="patient.bridCheckbox" ng-change="updateBRIDCheckboxChange(patient.bridCheckbox)">
+                            </div>
+                            <div class="field-value">
+                                <input type=text ng-model="patient.brid" ng-show="patient.bridCheckbox" pattern="[0-9]{13}" title="National Id must be thirteen digit">
+                            </div>
+
+                            <div class="field-attribute estimated-label">
+                                    <label>ই পি আই কার্ড<br></label>
+                            </div>
+                            <div class="field-value">
+                                <input type="checkbox" ng-model="patient.epiCheckbox" ng-change="updateEPICheckboxChange(patient.epiCheckbox)">
+                            </div>
+                            <div class="field-value">
+                                <input type=text ng-model="patient.epi" ng-show="patient.epiCheckbox" pattern="[0-9]{13}" title="National Id must be thirteen digit">
+                            </div>
+
+                            <div class="field-attribute estimated-label">
+                                <label>আই ডি জানা নাই<br></label>
+                            </div>
+                            <div class="field-value">
+                                <input type="checkbox" ng-model="patient.noidCheckbox" ng-change="updateNoIDCheckboxChange(patient.noidCheckbox)">
+                            </div>
+                        </article>
+                    </section>
+                </div>
+
+                <div class="box-container form" ng-show="patient.showRiskyHabits">
                      <legend class="registraion_legend">
                          <span class="mylegend">ঝুকিপূর্ন অভ্যাস</span>
                      </legend>
@@ -274,10 +344,9 @@
                                 <label>{{ x.benName }}<br></label>
                             </div>
                             <div class="field-value">
-                                <input type="checkbox" ng-model="patient.riskyHabit[x.engName]" ng-change="updateRiskyHabitCheckboxChange(x, patient.riskyHabit[x])">
+                                <input id="{{ x.id }}" type="checkbox" ng-model="patient.riskyHabit[x.engName]" ng-change="updateRiskyHabitCheckboxChange(x, patient.riskyHabit[x])">
                             </div>
                         </article>
-                    </section>
                     </section>
                 </div>
 
@@ -285,14 +354,37 @@
                      <legend class="registraion_legend">
                          <span class="mylegend">রোগ</span>
                      </legend>
-
                     <section class="form-field-inline-checkbox clearfix">
+                        <article class="form-field">
+                            <div class="field-attribute estimated-label">
+                                <label>কোন রোগ আছে কি<br></label>
+                            </div>
+
+                            <div class="field-attribute estimated-label">
+                                <label>হ্যাঁ<br></label>
+                            </div>
+                            <div class="field-value">
+                                <input type="radio" value="হ্যাঁ" ng-model="patient.yesNoCheckbox" ng-change="updateYesNoCheckboxChange(patient.yesNoCheckbox)">
+                            </div>
+
+                            <div class="field-attribute estimated-label">
+                                <label>না<br></label>
+                            </div>
+                            <div class="field-value">
+                                <input type="radio" value="না" ng-model="patient.yesNoCheckbox" ng-change="updateYesNoCheckboxChange(patient.yesNoCheckbox)">
+                            </div>
+                        </article>
+                    </section>
+
+                    <section class="form-field-inline-checkbox clearfix" ng-show="patient.showDiseaseStatus">
                         <article class="form-field" ng-repeat="x in diseaseStatus" ng-class="::{'right-form-field' : $index%2 != 0}">
+                            <div ng-if="patient.diseaseStartIndex <= $index && patient.diseaseEndIndex > $index" >
                             <div class="field-attribute estimated-label">
                                 <label>{{ x.benName }}<br></label>
                             </div>
                             <div class="field-value">
                                 <input type="checkbox" ng-model="patient.diseaseStatus[x.engName]" ng-change="updateDiseaseStatusCheckboxChange(x, patient.diseaseStatus[x])">
+                            </div>
                             </div>
                         </article>
                     </section>
