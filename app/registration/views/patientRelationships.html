@@ -32,14 +32,14 @@
                         <input type="text" ng-if="hasRelationShip(patient.relationships)"  bahmni-autocomplete=""
                                validation-message="Please select a patient from the autocomplete list" on-edit="onEdit(newRelationship)"
                                ng-model="newRelationship.patientIdentifier" response-map="getPatientList" source="searchByPatientIdentifierOrName"
-                               ng-change="clearPatient(newRelationship)" on-select="patientSelected(newRelationship)" placeholder="খানা প্রধানের নাম বা আইডি"
+                               ng-change="clearPatient(newRelationship)" on-select="patientSelected(newRelationship)" placeholder="খানা প্রধানের নাম বা ফোন নম্বর"
                                ng-class="{'illegalValue': !newRelationship.personB.uuid||duplicateRelationship(newRelationship)}"
                                is-invalid="isInvalidRelation(newRelationship)" class="ui-autocomplete-input illegalValue ng-invalid ng-invalid-selection ng-dirty ng-valid-parse ng-touched"
                                autocomplete="off">
                         <input type="hidden" ng-if="hasRelationShip(patient.relationships)" ng-model="newRelationship.personB"/>
                     </div>
                     <span class="asterick showOn-desktop" ng-if="hasRelationShip(patient.relationships)">*</span>
-                    <span class="no-person" ng-show="showPersonNotFound(newRelationship)">{{ ::'REGISTRATION_LABEL_PERSON_NOT_FOUND' | translate}}</span>
+                    <span class="no-person" ng-show="showPersonNotFound(newRelationship)">{{ ::'REGISTRATION_LABEL_SEARCHING' | translate}}</span>
                     <span ng-show="!showPersonNotFound(newRelationship)">{{newRelationship.content}}</span>
                     <span class="no-person" ng-show="duplicateRelationship(newRelationship)">{{ ::'REGISTRATION_LABEL_RELATIONSHIP_EXISTS' | translate}}</span>
                 </div>

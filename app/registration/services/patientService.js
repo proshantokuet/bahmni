@@ -47,7 +47,31 @@ angular.module('bahmni.registration')
                 params: {
                     q: query,
                     s: "byIdOrName",
+                    patientAttributes: ["phoneNumber"],
+                    patientSearchResultsConfig: ["phoneNumber"],
+                    addressFieldName: ["address2"],
+                    addressSearchResultsConfig: ["address2"],
                     limit: limit,
+                    loginLocationUuid: sessionService.getLoginLocationUuid()
+                },
+                withCredentials: true
+            });
+        };
+
+        var searchByNameOrMobile = function (value, limit) {
+            return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {
+                method: "GET",
+                params: {
+                    q: "",
+                    s: "byIdOrNameOrVillage",
+                    customAttribute: value,
+                    startIndex: 0,
+                    patientAttributes: "phoneNumber",
+                    addressFieldName: "address2",
+                    addressFieldValue: "",
+                    addressSearchResultsConfig: "address2",
+                    patientSearchResultsConfig: "phoneNumber",
+                    programAttributeFieldValue: "",
                     loginLocationUuid: sessionService.getLoginLocationUuid()
                 },
                 withCredentials: true
@@ -86,6 +110,7 @@ angular.module('bahmni.registration')
             update: update,
             get: get,
             updateImage: updateImage,
-            searchByNameOrIdentifier: searchByNameOrIdentifier
+            searchByNameOrIdentifier: searchByNameOrIdentifier,
+            searchByNameOrMobile: searchByNameOrMobile
         };
     }]);

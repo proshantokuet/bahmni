@@ -56,10 +56,7 @@
                     </td>
                     <td class="name" ng-if="::relationship.personB.uuid === patient.uuid">{{::relationship.relationshipType.bIsToA}}</td>
                     <td ng-if="::relationship.personB.uuid === patient.uuid" class="value">
-                        <a ng-click="::openPatientDashboard(relationship.personA.uuid)"
-                           title="Go to Clinical Dashboard">
-                            {{::relationship.personA.display}}
-                        </a>
+                        {{::relationship.personA.display}}
                     </td>
                 </tr>
                 </tbody>

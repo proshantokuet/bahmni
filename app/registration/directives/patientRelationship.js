@@ -78,6 +78,11 @@ angular.module('bahmni.registration')
                     (patient.familyName ? " " + patient.familyName : "");
             };
 
+            var getPhoneNumber = function (patient) {
+                var json = JSON.parse(patient.customAttribute);
+                return json["phoneNumber"];
+            };
+
             var getPersonB = function (personName, personUuid) {
                 return {'display': personName, 'uuid': personUuid};
             };
@@ -190,11 +195,27 @@ angular.module('bahmni.registration')
                 return appService.getAppDescriptor().getConfigValue(configName) || defaultValue;
             };
 
+            $scope.isSearching = false;
+
             $scope.searchByPatientIdentifierOrName = function (searchAttrs) {
                 var term = searchAttrs.term;
-                if (term && term.length >= getLimit("minCharRequireToSearch", 1)) {
-                    return patientService.searchByNameOrIdentifier(term, getLimit("possibleRelativeSearchLimit", Bahmni.Common.Constants.defaultPossibleRelativeSearchLimit));
+                if (isNaN(term)) {
+                    console.log("not a number");
+                    if (term && term.length >= getLimit("minCharRequireToSearch", 1)) {
+                        return patientService.searchByNameOrIdentifier(term, getLimit("possibleRelativeSearchLimit", Bahmni.Common.Constants.defaultPossibleRelativeSearchLimit));
+                    }
+                } else {
+                    console.log("new service");
+                    if (term && term.length >= getLimit("minCharRequireToSearch", 3)) {
+                        return patientService.searchByNameOrMobile(term, getLimit("possibleRelativeSearchLimit", Bahmni.Common.Constants.defaultPossibleRelativeSearchLimit)).then(function (response) {
+                            return response;
+                        });
+                    }
                 }
+
+                /* if (term && term.length >= getLimit("minCharRequireToSearch", 1)) {
+                    return patientService.searchByNameOrIdentifier(term, getLimit("possibleRelativeSearchLimit", Bahmni.Common.Constants.defaultPossibleRelativeSearchLimit));
+                } */
                 return $q.when();
             };
 
@@ -226,7 +247,7 @@ angular.module('bahmni.registration')
                 /* end by proshanto */
                 return households.map(function (patient) {
                     return {
-                        value: getName(patient) + " - " + patient.identifier,
+                        value: patient.identifier + " - " + getName(patient) + " - " + getPhoneNumber(patient),
                         uuid: patient.uuid,
                         identifier: patient.identifier
                     };

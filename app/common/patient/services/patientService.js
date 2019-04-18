@@ -29,20 +29,41 @@ angular.module('bahmni.common.patient')
 
         this.search = function (query, offset, identifier) {
             offset = offset || 0;
-            return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {
-                method: "GET",
-                params: {
-                    q: query,
-                    startIndex: offset,
-                    identifier: identifier,
-                    patientAttributes: ["motherNameEnglish"],
-                    patientSearchResultsConfig: ["motherNameEnglish"],
-                    addressFieldName: ["address2"],
-                    addressSearchResultsConfig: ["address2"],
-                    loginLocationUuid: sessionService.getLoginLocationUuid()
-                },
-                withCredentials: true
-            });
+
+            if (isNaN(query)) {
+                return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {
+                    method: "GET",
+                    params: {
+                        q: query,
+                        startIndex: offset,
+                        identifier: identifier,
+                        patientAttributes: ["motherNameEnglish"],
+                        patientSearchResultsConfig: ["motherNameEnglish"],
+                        addressFieldName: ["address2"],
+                        addressSearchResultsConfig: ["address2"],
+                        loginLocationUuid: sessionService.getLoginLocationUuid()
+                    },
+                    withCredentials: true
+                });
+            } else {
+                return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {
+                    method: "GET",
+                    params: {
+                        q: "",
+                        s: "byIdOrNameOrVillage",
+                        customAttribute: query,
+                        startIndex: offset,
+                        patientAttributes: "phoneNumber",
+                        addressFieldValue: "",
+                        patientSearchResultsConfig: "phoneNumber",
+                        programAttributeFieldValue: "",
+                        addressFieldName: ["address2"],
+                        addressSearchResultsConfig: ["address2"],
+                        loginLocationUuid: sessionService.getLoginLocationUuid()
+                    },
+                    withCredentials: true
+                });
+            }
         };
 
         this.getPatientContext = function (patientUuid, programUuid, personAttributes, programAttributes, patientIdentifiers) {
