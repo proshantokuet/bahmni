@@ -13,28 +13,6 @@ angular.module('authentication')
             });
         };
 
-        var getTeamMemberFromServer = function (uuid) {
-            var teamMemberUrl = Bahmni.Common.Constants.teamMemberUrl + "/" + uuid;
-            return $http.get(teamMemberUrl, {
-                method: "GET",
-                params: {
-                    v: "full"
-                },
-                cache: false
-            });
-        };
-
-        this.getTeamMember = function (uuid) {
-            var deferrable = $q.defer();
-            getTeamMemberFromServer(uuid).success(function (data) {
-                deferrable.resolve(data);
-            }).error(function () {
-                deferrable.reject('Unable to get user data');
-            });
-
-            return deferrable.promise;
-        };
-
         this.getUser = function (userName) {
             var deferrable = $q.defer();
             getUserFromServer(userName).success(function (data) {

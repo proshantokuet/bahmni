@@ -90,15 +90,15 @@ angular.module('bahmni.registration')
             prepopulateFields();
 
             var addNewRelationships = function () {
-                var personB = $scope.patient.newlyAddedRelationships[0].personB;
-                var relationshipType = {};
-                var relationObject = {};
-                var relationArray = [];
-                relationshipType['uuid'] = "03ed3084-4c7a-11e5-9192-080027b662ec";
-                relationObject["relationshipType"] = relationshipType;
-                relationObject["personB"] = personB;
-                relationArray.push(relationObject);
-                $scope.patient.relationships = relationArray;
+                var newRelationships = _.filter($scope.patient.newlyAddedRelationships, function (relationship) {
+                    return relationship.relationshipType && relationship.relationshipType.uuid;
+                });
+                newRelationships = _.each(newRelationships, function (relationship) {
+                    delete relationship.patientIdentifier;
+                    delete relationship.content;
+                    delete relationship.providerName;
+                });
+                $scope.patient.relationships = newRelationships;
             };
 
             var getConfirmationViaNgDialog = function (config) {
@@ -128,7 +128,6 @@ angular.module('bahmni.registration')
             };
 
             var createPatient = function (jumpAccepted) {
-                // console.log($scope.patient.newlyAddedRelationships);
                 return patientService.create($scope.patient, jumpAccepted).then(function (response) {
                     copyPatientProfileDataToScope(response);
                 }, function (response) {
@@ -187,4 +186,3 @@ angular.module('bahmni.registration')
             };
         }
     ]);
-

@@ -19,11 +19,11 @@
   ],
   "homepage": "https://github.com/openmrs/openmrs-module-uicommons",
   "description": "Common SASS for OpenMrs Reference Application",
-  "_release": "94dbf34253",
+  "_release": "4a613a5910",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "94dbf3425370f4ec5e6173a7fac66fa147dd090f"
+    "commit": "4a613a5910e84de5489b06a93090dc4cdd4ddb0d"
   },
   "_source": "https://github.com/openmrs/openmrs-module-uicommons.git",
   "_target": "master",

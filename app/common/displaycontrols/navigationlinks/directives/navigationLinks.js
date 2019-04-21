@@ -10,11 +10,11 @@ angular.module('bahmni.common.displaycontrol.navigationlinks')
             }
 
             $scope.standardLinks = [
-                /* {
+                {
                     "name": "home",
                     "translationKey": "HOME_DASHBOARD_KEY",
                     "url": "../home/#/dashboard"
-                }, */
+                },
                 {
                     "name": "visit",
                     "url": "../clinical/#/default/patient/{{patientUuid}}/dashboard/visit/{{visitUuid}}/?encounterUuid=active",
@@ -34,12 +34,12 @@ angular.module('bahmni.common.displaycontrol.navigationlinks')
                     "name": "visitAttribute",
                     "translationKey": "PATIENT_VISIT_ATTRIBUTES_PAGE_KEY",
                     "url": "../registration/#/patient/{{patientUuid}}/visit"
-                }
-                /* {
+                },
+                {
                     "name": "registration",
                     "translationKey": "PATIENT_REGISTRATION_PAGE_KEY",
                     "url": "../registration/#/patient/{{patientUuid}}"
-                } */
+                }
 
             ];
 

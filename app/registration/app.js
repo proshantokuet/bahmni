@@ -47,18 +47,6 @@ angular
                     }
                 }
             })
-            .state('newhousehold', {
-                url: '/household/new',
-                views: {
-                    'layout': {templateUrl: 'views/layout.html', controller: 'CreateHouseholdController'},
-                    'content@newhousehold': {templateUrl: 'views/newhousehold.html'}
-                },
-                resolve: {
-                    initialize: function (initialization) {
-                        return initialization();
-                    }
-                }
-            })
             .state('patient', {
                 url: '/patient/:patientUuid',
                 abstract: true,
@@ -77,26 +65,6 @@ angular
                     'layout': {templateUrl: 'views/layout.html', controller: 'EditPatientController'},
                     'content@patient.edit': {templateUrl: 'views/editpatient.html'},
                     'headerExtension@patient.edit': {template: '<div print-options></div>'}
-                }
-            })
-
-            .state('household', {
-                url: '/household/:patientUuid',
-                abstract: true,
-                views: {
-                    'layout': {template: '<div ui-view="layout"></div>'}
-                },
-                resolve: {
-                    initialize: function (initialization) {
-                        return initialization();
-                    }
-                }
-            })
-            .state('household.edit', {
-                url: '?serverError',
-                views: {
-                    'layout': {templateUrl: 'views/layout.html', controller: 'EditHouseholdController'},
-                    'content@household.edit': {templateUrl: 'views/edithousehold.html'}
                 }
             })
             .state('patient.visit', {
@@ -134,7 +102,7 @@ angular
             var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
             locationService.getVisitLocation(loginLocationUuid).then(function (response) {
                 if (response.data) {
-                    $rootScope.visitLocation = (Bahmni.Common.Constants.locationCookieName).uuid;
+                    $rootScope.visitLocation = response.data.uuid;
                 }
             });
 

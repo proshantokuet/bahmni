@@ -37,12 +37,12 @@
     "lib/jasmine-core/*.py",
     "sauce_connect.log"
   ],
-  "version": "3.3.0",
-  "_release": "3.3.0",
+  "version": "3.4.0",
+  "_release": "3.4.0",
   "_resolution": {
     "type": "version",
-    "tag": "v3.3.0",
-    "commit": "74f9eb7e468701a6112f1327210d1e24668fbfaf"
+    "tag": "v3.4.0",
+    "commit": "74bd96aebe36288f604af662e7ad8717214f034d"
   },
   "_source": "https://github.com/pivotal/jasmine.git",
   "_target": ">=2",

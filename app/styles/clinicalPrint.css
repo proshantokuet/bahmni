@@ -18060,14 +18060,13 @@ div[ng-app="adt"] .ward-details-container .no-data-info {
 /* line 113, adt/_adt.scss */
 .ngdialog.ngdialog-theme-default {
   padding-bottom: 160px;
-  padding-top: 160px;
 }
 
-/* line 117, adt/_adt.scss */
+/* line 116, adt/_adt.scss */
 .ngdialog.ngdialog-theme-default.ng-dialog-all-details-page {
   padding: 0;
 }
-/* line 119, adt/_adt.scss */
+/* line 118, adt/_adt.scss */
 .ngdialog.ngdialog-theme-default.ng-dialog-all-details-page .ngdialog-content {
   width: 80%;
 }
@@ -18729,6 +18728,11 @@ div[ng-app="ot"] .non-icon-back-btn {
 .patient-search-wrapper {
   margin: 0 auto;
   max-width: 1300px;
+}
+
+/* line 410, ot/_ot.scss */
+.ot-dialog.ngdialog.ngdialog-theme-default {
+  padding-top: 160px;
 }
 
 /* line 1, ot/_otSurgical.scss */

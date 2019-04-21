@@ -9039,7 +9039,7 @@ category: Components - Alerts
 }
 /* line 38, registration/_patientPhoto.scss */
 .capture-photo-btn .camera-btn.btn, .upload-photo-btn .camera-btn.btn {
-  background-image: url('../images/photo.png?1545049618');
+  background-image: url('../images/photo.png?1554701473');
 }
 /* line 41, registration/_patientPhoto.scss */
 .capture-photo-btn .upload-btn.btn, .upload-photo-btn .upload-btn.btn {
@@ -9324,85 +9324,6 @@ section.form-field-inline.form-field-inline-one-col article.form-field .field-at
 }
 
 /* line 103, registration/_patientCommonInformation.scss */
-section.form-field-inline-checkbox {
-  *zoom: 1;
-}
-/* line 291, bahmni-helper/_variables.scss */
-section.form-field-inline-checkbox:before, section.form-field-inline-checkbox:after {
-  content: "";
-  display: table;
-}
-/* line 296, bahmni-helper/_variables.scss */
-section.form-field-inline-checkbox:after {
-  clear: both;
-}
-@media (max-width: 768px) {
-  /* line 103, registration/_patientCommonInformation.scss */
-  section.form-field-inline-checkbox {
-    margin-bottom: 0;
-  }
-}
-/* line 109, registration/_patientCommonInformation.scss */
-section.form-field-inline-checkbox .mylegend.registraion_Basic_info {
-  width: auto;
-}
-/* line 113, registration/_patientCommonInformation.scss */
-section.form-field-inline-checkbox article {
-  display: inline;
-  float: left;
-  width: 22%;
-  margin: 0 1.04167%;
-}
-/* line 116, registration/_patientCommonInformation.scss */
-section.form-field-inline-checkbox article.form-field .field-attribute label {
-  width: 17em;
-}
-@media (max-width: 990px) {
-  /* line 116, registration/_patientCommonInformation.scss */
-  section.form-field-inline-checkbox article.form-field .field-attribute label {
-    text-align: left;
-  }
-}
-@media (max-width: 768px) {
-  /* line 116, registration/_patientCommonInformation.scss */
-  section.form-field-inline-checkbox article.form-field .field-attribute label {
-    text-align: right;
-  }
-}
-@media (max-width: 580px) {
-  /* line 116, registration/_patientCommonInformation.scss */
-  section.form-field-inline-checkbox article.form-field .field-attribute label {
-    text-align: left;
-  }
-}
-@media (max-width: 768px) {
-  /* line 113, registration/_patientCommonInformation.scss */
-  section.form-field-inline-checkbox article {
-    display: inline;
-    float: left;
-    width: 97.91667%;
-    margin: 0 1.04167%;
-  }
-}
-/* line 136, registration/_patientCommonInformation.scss */
-section.form-field-inline-checkbox.form-field-inline-one-col article {
-  display: inline;
-  float: left;
-  width: 97.91667%;
-  margin: 0 1.04167%;
-}
-/* line 140, registration/_patientCommonInformation.scss */
-section.form-field-inline-checkbox.form-field-inline-one-col article.form-field .field-attribute label {
-  width: auto;
-}
-@media (max-width: 768px) {
-  /* line 140, registration/_patientCommonInformation.scss */
-  section.form-field-inline-checkbox.form-field-inline-one-col article.form-field .field-attribute label {
-    width: 17em;
-  }
-}
-
-/* line 152, registration/_patientCommonInformation.scss */
 .mylegend {
   background: #eee;
   line-height: 16px;
@@ -9411,22 +9332,22 @@ section.form-field-inline-checkbox.form-field-inline-one-col article.form-field 
   border-radius: 3px;
   border: 1px solid #ccc;
 }
-/* line 159, registration/_patientCommonInformation.scss */
+/* line 110, registration/_patientCommonInformation.scss */
 .mylegend span {
   display: inline-block;
   padding: 2px 10px;
   font-weight: bold;
 }
-/* line 164, registration/_patientCommonInformation.scss */
+/* line 115, registration/_patientCommonInformation.scss */
 .mylegend.registraion_Basic_info {
   width: auto;
 }
 
-/* line 170, registration/_patientCommonInformation.scss */
+/* line 121, registration/_patientCommonInformation.scss */
 .patient-common-info-container input, .patient-common-info-container form .input-prepend .add-on, form .input-prepend .patient-common-info-container .add-on, .patient-common-info-container .form .input-prepend .add-on, .form .input-prepend .patient-common-info-container .add-on, .patient-common-info-container textarea, .patient-common-info-container ul.select {
   min-width: 0;
 }
-/* line 173, registration/_patientCommonInformation.scss */
+/* line 124, registration/_patientCommonInformation.scss */
 .patient-common-info-container .patient-name-wrapper {
   *zoom: 1;
 }
@@ -9439,15 +9360,15 @@ section.form-field-inline-checkbox.form-field-inline-one-col article.form-field 
 .patient-common-info-container .patient-name-wrapper:after {
   clear: both;
 }
-/* line 175, registration/_patientCommonInformation.scss */
+/* line 126, registration/_patientCommonInformation.scss */
 .patient-common-info-container .patient-name-wrapper input[type="text"], .patient-common-info-container .patient-name-wrapper form .input-prepend [type="text"].add-on, form .input-prepend .patient-common-info-container .patient-name-wrapper [type="text"].add-on, .patient-common-info-container .patient-name-wrapper .form .input-prepend [type="text"].add-on, .form .input-prepend .patient-common-info-container .patient-name-wrapper [type="text"].add-on {
   margin-right: 5px;
 }
-/* line 178, registration/_patientCommonInformation.scss */
+/* line 129, registration/_patientCommonInformation.scss */
 .patient-common-info-container .patient-name-wrapper label#casteSameAsLastNameCheckLabel {
   width: auto;
 }
-/* line 181, registration/_patientCommonInformation.scss */
+/* line 132, registration/_patientCommonInformation.scss */
 .patient-common-info-container .patient-name-wrapper .patient-name span {
   *zoom: 1;
   float: left;
@@ -9462,145 +9383,145 @@ section.form-field-inline-checkbox.form-field-inline-one-col article.form-field 
   clear: both;
 }
 @media (max-width: 768px) {
-  /* line 181, registration/_patientCommonInformation.scss */
+  /* line 132, registration/_patientCommonInformation.scss */
   .patient-common-info-container .patient-name-wrapper .patient-name span {
     display: block;
     float: none;
   }
 }
 
-/* line 194, registration/_patientCommonInformation.scss */
+/* line 145, registration/_patientCommonInformation.scss */
 .age-wrapper .age-field .input-prepend {
   margin: 5px 5px 0px 0px;
 }
-/* line 196, registration/_patientCommonInformation.scss */
+/* line 147, registration/_patientCommonInformation.scss */
 .age-wrapper .age-field .input-prepend .add-on {
   min-width: 0;
   background-color: #eee !important;
   height: 19px;
 }
-/* line 202, registration/_patientCommonInformation.scss */
+/* line 153, registration/_patientCommonInformation.scss */
 .age-wrapper .age-field .input-prepend input[type="number"], .age-wrapper .age-field form .input-prepend [type="number"].add-on, form .age-wrapper .age-field .input-prepend [type="number"].add-on, .age-wrapper .age-field .form .input-prepend [type="number"].add-on, .form .age-wrapper .age-field .input-prepend [type="number"].add-on {
   width: 40px !important;
 }
 @media (max-width: 768px) {
-  /* line 204, registration/_patientCommonInformation.scss */
+  /* line 155, registration/_patientCommonInformation.scss */
   .age-wrapper .age-field .input-prepend input[type="number"]#ageMonths, .age-wrapper .age-field form .input-prepend [type="number"]#ageMonths.add-on, form .age-wrapper .age-field .input-prepend [type="number"]#ageMonths.add-on, .age-wrapper .age-field .form .input-prepend [type="number"]#ageMonths.add-on, .form .age-wrapper .age-field .input-prepend [type="number"]#ageMonths.add-on {
     width: 53px !important;
   }
 }
-/* line 213, registration/_patientCommonInformation.scss */
+/* line 164, registration/_patientCommonInformation.scss */
 .age-wrapper .dob-birthtime-wrapper .estimate-check {
   margin-top: 10px;
   margin-left: 7px;
 }
 @media (max-width: 768px) {
-  /* line 213, registration/_patientCommonInformation.scss */
+  /* line 164, registration/_patientCommonInformation.scss */
   .age-wrapper .dob-birthtime-wrapper .estimate-check {
     margin-left: 0px;
   }
 }
 @media (min-width: 990px) {
-  /* line 221, registration/_patientCommonInformation.scss */
+  /* line 172, registration/_patientCommonInformation.scss */
   .age-wrapper .dob-birthtime-wrapper .estimated-label label {
     width: auto !important;
     margin-top: 1em;
   }
 }
 @media (max-width: 990px) {
-  /* line 229, registration/_patientCommonInformation.scss */
+  /* line 180, registration/_patientCommonInformation.scss */
   .age-wrapper .dob-birthtime-wrapper .birth-time-label label {
     width: auto;
     margin: 1em 0.8em 0em 0em;
   }
 }
 @media (max-width: 768px) {
-  /* line 236, registration/_patientCommonInformation.scss */
+  /* line 187, registration/_patientCommonInformation.scss */
   .age-wrapper .dob-birthtime-wrapper .showOn-small-screen {
     float: left;
     width: 100%;
   }
 }
 @media (max-width: 768px) {
-  /* line 243, registration/_patientCommonInformation.scss */
+  /* line 194, registration/_patientCommonInformation.scss */
   .age-wrapper .dob-birthtime-wrapper #birthtime {
     width: 12.5em;
   }
 }
 
-/* line 251, registration/_patientCommonInformation.scss */
+/* line 202, registration/_patientCommonInformation.scss */
 .submit-btn-container {
   margin-top: 20px;
 }
-/* line 253, registration/_patientCommonInformation.scss */
+/* line 204, registration/_patientCommonInformation.scss */
 .submit-btn-container .submit-btn {
   margin-right: 10px;
 }
 
-/* line 258, registration/_patientCommonInformation.scss */
+/* line 209, registration/_patientCommonInformation.scss */
 .selectGender {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
-/* line 262, registration/_patientCommonInformation.scss */
+/* line 213, registration/_patientCommonInformation.scss */
 .selectGender ul li {
   display: inline-block;
 }
-/* line 264, registration/_patientCommonInformation.scss */
+/* line 215, registration/_patientCommonInformation.scss */
 .selectGender ul li a {
   padding: 5px 20px;
   display: block;
   border-right: 1px #ddd solid;
   color: #363463;
 }
-/* line 269, registration/_patientCommonInformation.scss */
+/* line 220, registration/_patientCommonInformation.scss */
 .selectGender ul li a:hover, .selectGender ul li a:active {
   background: #eee;
 }
-/* line 272, registration/_patientCommonInformation.scss */
+/* line 223, registration/_patientCommonInformation.scss */
 .selectGender ul li a:focus {
   outline: 2px solid #007fff;
   background: #eee;
 }
-/* line 277, registration/_patientCommonInformation.scss */
+/* line 228, registration/_patientCommonInformation.scss */
 .selectGender ul li:last-child a {
   border-right: none;
 }
 
-/* line 287, registration/_patientCommonInformation.scss */
+/* line 238, registration/_patientCommonInformation.scss */
 .new-patient form input[type="checkbox"]#hasOldIdentifier, .new-patient form .input-prepend [type="checkbox"]#hasOldIdentifier.add-on, .form .input-prepend .new-patient form [type="checkbox"]#hasOldIdentifier.add-on {
   margin-top: 9px;
   margin-left: 0;
   margin-bottom: 0;
 }
-/* line 297, registration/_patientCommonInformation.scss */
+/* line 248, registration/_patientCommonInformation.scss */
 .new-patient form .form-field.existing-patient .field-attribute.hasOldIdentifier-field-attribute label {
   width: auto;
 }
 @media (max-width: 990px) {
-  /* line 297, registration/_patientCommonInformation.scss */
+  /* line 248, registration/_patientCommonInformation.scss */
   .new-patient form .form-field.existing-patient .field-attribute.hasOldIdentifier-field-attribute label {
     width: 15em;
   }
 }
 @media (max-width: 768px) {
-  /* line 294, registration/_patientCommonInformation.scss */
+  /* line 245, registration/_patientCommonInformation.scss */
   .new-patient form .form-field.existing-patient {
     padding-left: 10px;
   }
 }
-/* line 309, registration/_patientCommonInformation.scss */
+/* line 260, registration/_patientCommonInformation.scss */
 .new-patient form .form-field #patientID {
   margin-right: 10px;
 }
 @media (max-width: 768px) {
-  /* line 309, registration/_patientCommonInformation.scss */
+  /* line 260, registration/_patientCommonInformation.scss */
   .new-patient form .form-field #patientID {
     margin-right: 0;
   }
 }
 @media (max-width: 990px) {
-  /* line 317, registration/_patientCommonInformation.scss */
+  /* line 268, registration/_patientCommonInformation.scss */
   .new-patient .field-value.field-value-has-identifier {
     clear: both;
     float: none;
@@ -9609,7 +9530,7 @@ section.form-field-inline-checkbox.form-field-inline-one-col article.form-field 
   }
 }
 @media (max-width: 990px) {
-  /* line 324, registration/_patientCommonInformation.scss */
+  /* line 275, registration/_patientCommonInformation.scss */
   .new-patient .field-value.field-value-has-identifier #registrationNumber {
     width: 10.8em;
     float: right !important;
@@ -9617,48 +9538,48 @@ section.form-field-inline-checkbox.form-field-inline-one-col article.form-field 
   }
 }
 @media (max-width: 800px) {
-  /* line 324, registration/_patientCommonInformation.scss */
+  /* line 275, registration/_patientCommonInformation.scss */
   .new-patient .field-value.field-value-has-identifier #registrationNumber {
     width: 9.8em;
   }
 }
 @media (max-width: 768px) {
-  /* line 324, registration/_patientCommonInformation.scss */
+  /* line 275, registration/_patientCommonInformation.scss */
   .new-patient .field-value.field-value-has-identifier #registrationNumber {
     width: 10.8em;
   }
 }
 @media screen and (max-width: 580px) {
-  /* line 324, registration/_patientCommonInformation.scss */
+  /* line 275, registration/_patientCommonInformation.scss */
   .new-patient .field-value.field-value-has-identifier #registrationNumber {
     float: none !important;
     width: 12.5em;
   }
 }
-/* line 342, registration/_patientCommonInformation.scss */
+/* line 293, registration/_patientCommonInformation.scss */
 .new-patient #registrationNumber {
   margin-right: 10px;
 }
 
 @media (max-width: 990px) {
-  /* line 349, registration/_patientCommonInformation.scss */
+  /* line 300, registration/_patientCommonInformation.scss */
   .addressContainer .form-field .field-attribute label, .otherInfoContainer .form-field .field-attribute label, .additional-info-wrapper .form-field .field-attribute label {
     text-align: left;
   }
 }
 @media (max-width: 768px) {
-  /* line 349, registration/_patientCommonInformation.scss */
+  /* line 300, registration/_patientCommonInformation.scss */
   .addressContainer .form-field .field-attribute label, .otherInfoContainer .form-field .field-attribute label, .additional-info-wrapper .form-field .field-attribute label {
     text-align: right;
   }
 }
 
-/* line 359, registration/_patientCommonInformation.scss */
+/* line 310, registration/_patientCommonInformation.scss */
 .oldId-wrapper {
   float: left;
 }
 
-/* line 363, registration/_patientCommonInformation.scss */
+/* line 314, registration/_patientCommonInformation.scss */
 .registration-dialog-message {
   padding: 15px 0 10px;
 }

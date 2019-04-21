@@ -55,17 +55,6 @@ angular.module('bahmni.common.domain')
             });
         };
 
-        this.getObservations = function (visitUuid) {
-            console.log("in service");
-            console.log(visitUuid);
-            return $http.get(Bahmni.Common.Constants.openmrsUrl + "/ws/rest/v1/bahmnicore/observations", {
-                params: {
-                    visitUuid: visitUuid
-                },
-                withCredentials: true
-            });
-        };
-
         this.getVisitType = function () {
             return $http.get(Bahmni.Common.Constants.visitTypeUrl, {
                 withCredentials: true

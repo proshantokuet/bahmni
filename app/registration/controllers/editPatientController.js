@@ -26,145 +26,7 @@ angular.module('bahmni.registration')
 
             var successCallBack = function (openmrsPatient) {
                 $scope.openMRSPatient = openmrsPatient["patient"];
-                console.log($scope.openMRSPatient);
-
-                $scope.genderValue = $scope.openMRSPatient.person.gender;
-                console.log($scope.genderValue);
-                var i;
-                $scope.riskyHabbitArray = "";
-                $scope.diseaseStatusString = "";
-                $scope.familyDiseaseHistoryString = "";
-                $scope.NIDString = "";
-                $scope.NIDCheckbox = false;
-                $scope.BRIDString = "";
-                $scope.BRIDCheckbox = false;
-                $scope.EPIString = "";
-                $scope.EPICheckbox = false;
-                $scope.showRiskyHabitsValue = false;
-                $scope.showDiseaseStatusValue = false;
-                $scope.spouseValue = false;
-                $scope.diseaseStartIndexValue = 0;
-                $scope.diseaseEndIndexValue = 0;
-                for (i = 0; i < $scope.openMRSPatient.person.attributes.length; i++) {
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "RiskyHabit") {
-                        $scope.riskyHabbitArray = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "Disease_status") {
-                        $scope.diseaseStatusString = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "family_diseases_details") {
-                        $scope.familyDiseaseHistoryString = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "nationalId") {
-                        $scope.NIDString = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "nationalIdCheckbox") {
-                        $scope.NIDCheckbox = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "birthRegistrationID") {
-                        $scope.BRIDString = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "bridCheckbox") {
-                        $scope.BRIDCheckbox = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "epicardnumber") {
-                        $scope.EPIString = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "epiCheckbox") {
-                        $scope.EPICheckbox = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "showRiskyHabits") {
-                        $scope.showRiskyHabitsValue = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "showDiseaseStatus") {
-                        $scope.showDiseaseStatusValue = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "diseaseStartIndex") {
-                        $scope.diseaseStartIndexValue = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "diseaseEndIndex") {
-                        $scope.diseaseEndIndexValue = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "MaritalStatus") {
-                        var s = $scope.openMRSPatient.person.attributes[i].value;
-                        /* console.log(s);
-                        if ($scope.openMRSPatient.person.attributes[i].value == "বিবাহিত") {
-                            console.log("বিবাহিত");
-                            $scope.patient.showHusbandName = true;
-                        } */
-
-                        if (s.display == "বিবাহিত") {
-                            console.log(s.display);
-                            $scope.spouseValue = true;
-                        }
-                    }
-                }
-
                 $scope.patient = openmrsPatientMapper.map(openmrsPatient);
-
-                var riskyArray = $scope.riskyHabbitArray.split(',');
-                for (i = 0; i < riskyArray.length; i++) {
-                    var a = riskyArray[i];
-                    $scope.patient.riskyHabit[a] = true;
-                }
-                var diseaseStatusArray = $scope.diseaseStatusString.split(',');
-                for (i = 0; i < diseaseStatusArray.length; i++) {
-                    var a = diseaseStatusArray[i];
-                    console.log(a);
-                    $scope.patient.diseaseStatus[a] = true;
-                }
-                var familyDiseaseHistoryArray = $scope.familyDiseaseHistoryString.split(',');
-                for (i = 0; i < familyDiseaseHistoryArray.length; i++) {
-                    var a = familyDiseaseHistoryArray[i];
-                    $scope.patient.familyDiseaseHistory[a] = true;
-                }
-                if ($scope.NIDCheckbox == true) {
-                    $scope.patient.nationalId = $scope.NIDString;
-                    $scope.patient.nationalIdCheckbox = true;
-                } else if ($scope.NIDCheckbox == false) {
-                    $scope.patient.nationalId = "";
-                    $scope.patient.nationalIdCheckbox = false;
-                }
-                if ($scope.BRIDCheckbox == true) {
-                    $scope.patient.brid = $scope.BRIDString;
-                    $scope.patient.bridCheckbox = true;
-                } else if ($scope.BRIDCheckbox == false) {
-                    $scope.patient.brid = "";
-                    $scope.patient.bridCheckbox = false;
-                }
-                if ($scope.EPICheckbox == true) {
-                    $scope.patient.epi = $scope.EPIString;
-                    $scope.patient.epiCheckbox = true;
-                } else if ($scope.EPICheckbox == false) {
-                    $scope.patient.epi = "";
-                    $scope.patient.epiCheckbox = false;
-                }
-                $scope.patient.showRiskyHabits = $scope.showRiskyHabitsValue;
-                $scope.patient.showDiseaseStatus = $scope.showDiseaseStatusValue;
-                $scope.patient.diseaseStartIndex = $scope.diseaseStartIndexValue;
-                $scope.patient.diseaseEndIndex = $scope.diseaseEndIndexValue;
-                console.log($scope.spouseValue);
-                console.log($scope.genderValue);
-
-                if ($scope.genderValue == 'F' && $scope.spouseValue) {
-                    console.log("female and married");
-                    $scope.patient.showHusbandName = $scope.spouseValue;
-                }
-
-                if ($scope.genderValue == 'M' && $scope.spouseValue) {
-                    $scope.patient.showWifeName = $scope.spouseValue;
-                }
-
-                if ($scope.patient.showMaritalStatus) {
-                    $scope.patient.showFamilyplanning = true;
-                    $scope.patient.showPregnancyStatus = true;
-                }
-
-                if ($scope.patient.showDiseaseStatus) {
-                    $scope.patient.yesNoCheckbox = "হ্যাঁ";
-                }
-                console.log($scope.patient);
-
                 setReadOnlyFields();
                 expandDataFilledSections();
                 $scope.patientLoaded = true;
@@ -181,6 +43,7 @@ angular.module('bahmni.registration')
 
             (function () {
                 var getPatientPromise = patientService.get(uuid).then(successCallBack);
+
                 var isDigitized = encounterService.getDigitized(uuid);
                 isDigitized.then(function (data) {
                     var encountersWithObservations = data.data.results.filter(function (encounter) {
@@ -212,18 +75,15 @@ angular.module('bahmni.registration')
             };
 
             var addNewRelationships = function () {
-                var relationshipType = {};
-                var relationObject = {};
-                var relationArray = [];
-                if ($scope.patient.newlyAddedRelationships[0].personB != undefined) {
-                    var personB = $scope.patient.newlyAddedRelationships[0].personB;
-                    console.log(personB);
-                    relationshipType['uuid'] = "03ed3084-4c7a-11e5-9192-080027b662ec";
-                    relationObject["relationshipType"] = relationshipType;
-                    relationObject["personB"] = personB;
-                    relationArray.push(relationObject);
-                }
-                $scope.patient.relationships = _.concat(relationArray, $scope.patient.deletedRelationships);
+                var newRelationships = _.filter($scope.patient.newlyAddedRelationships, function (relationship) {
+                    return relationship.relationshipType && relationship.relationshipType.uuid;
+                });
+                newRelationships = _.each(newRelationships, function (relationship) {
+                    delete relationship.patientIdentifier;
+                    delete relationship.content;
+                    delete relationship.providerName;
+                });
+                $scope.patient.relationships = _.concat(newRelationships, $scope.patient.deletedRelationships);
             };
 
             $scope.isReadOnly = function (field) {

@@ -13,10 +13,10 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
         });
         identifiers = _.map(identifiers, function (identifier) {
             return {
-                identifier: identifier,
+                identifier: identifier.identifier,
                 identifierSourceUuid: identifier.selectedIdentifierSource ? identifier.selectedIdentifierSource.uuid : undefined,
                 identifierPrefix: identifier.selectedIdentifierSource ? identifier.selectedIdentifierSource.prefix : undefined,
-                identifierType: identifier.identifierType,
+                identifierType: identifier.identifierType.uuid,
                 preferred: identifier.preferred,
                 voided: identifier.voided
             };
@@ -45,81 +45,10 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
                     causeOfDeath: patient.causeOfDeath ? patient.causeOfDeath.uuid : '',
                     uuid: patient.uuid
                 },
-                identifiers: [{"identifier": "", "identifierType": "Patient_Identifier", "preferred": true, "voided": false }],
+                identifiers: identifiers,
                 uuid: patient.uuid
             }
         };
-
-        console.log(":attribute" + openMRSPatient.patient.person.attributes);
-        var i = 0;
-        for (i = 0; i < openMRSPatient.patient.person.attributes.length; i++) {
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "RiskyHabit") {
-                if (this.getStringFromJsonArray(patient.riskyHabit)) {
-                    openMRSPatient.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.riskyHabit);
-                } else {
-                    openMRSPatient.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "Disease_status") {
-                if (this.getStringFromJsonArray(patient.diseaseStatus) && patient.showDiseaseStatus == true) {
-                    var d = this.getStringFromJsonArray(patient.diseaseStatus);
-                    console.log(d);
-                    console.log(patient.showDiseaseStatus);
-                    openMRSPatient.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.diseaseStatus);
-                } else {
-                    openMRSPatient.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "family_diseases_details") {
-                if (this.getStringFromJsonArray(patient.familyDiseaseHistory)) {
-                    openMRSPatient.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.familyDiseaseHistory);
-                } else {
-                    openMRSPatient.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "nationalId") {
-                if (patient.nationalIdCheckbox == true && patient.noidCheckbox == false) {
-                    openMRSPatient.patient.person.attributes[i].value = patient.nationalId;
-                } else {
-                    openMRSPatient.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "nationalIdCheckbox") {
-                openMRSPatient.patient.person.attributes[i].value = patient.nationalIdCheckbox;
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "birthRegistrationID") {
-                if (patient.nationalIdCheckbox == true && patient.noidCheckbox == false) {
-                    openMRSPatient.patient.person.attributes[i].value = patient.brid;
-                } else {
-                    openMRSPatient.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "bridCheckbox") {
-                openMRSPatient.patient.person.attributes[i].value = patient.bridCheckbox;
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "epicardnumber") {
-                if (patient.nationalIdCheckbox == true && patient.noidCheckbox == false) {
-                    openMRSPatient.patient.person.attributes[i].value = patient.epi;
-                } else {
-                    openMRSPatient.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "epiCheckbox") {
-                openMRSPatient.patient.person.attributes[i].value = patient.epiCheckbox;
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "showRiskyHabits") {
-                openMRSPatient.patient.person.attributes[i].value = patient.showRiskyHabits;
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "noidCheckbox") {
-            }
-/*            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "diseaseStartIndex") {
-                openMRSPatient.patient.person.attributes[i].value = patient.diseaseStartIndex;
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "diseaseEndIndex") {
-                openMRSPatient.patient.person.attributes[i].value = patient.diseaseEndIndex;
-            } */
-        }
-        console.log(openMRSPatient);
 
         this.setImage(patient, openMRSPatient);
         openMRSPatient.relationships = patient.relationships;
@@ -140,18 +69,6 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
             mnt = moment(this.currentDate).subtract('days', age.days).subtract('months', age.months).subtract('years', age.years);
         }
         return mnt.format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
-    };
-
-    CreatePatientRequestMapper.prototype.getStringFromJsonArray = function (jsonArray) {
-        var jsonArrayList = "";
-        var keys = [];
-        for (var k in jsonArray) {
-            if (jsonArray[k] == true) {
-                keys.push(k);
-            }
-        }
-        jsonArrayList = keys.join();
-        return jsonArrayList;
     };
 
     return CreatePatientRequestMapper;

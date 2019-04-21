@@ -3,30 +3,18 @@
     <div class="opd-header-wrapper clinical-consultation" id="opd-tabs" ng-class="{'retro-mode':isInEditEncounterMode()}">
 
         <div class="opd-header-bottom tabs">
-
-
-            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="h" href="../home/index.html" ng-click="onHomeNavigate($event)">
-                <i class="fa fa-home" style="line-height:1; font-size: 15px; margin-right:5px; font-weight: 700;"></i>Home</a>
-
-            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;"accesskey="r" href="../registration/index.html" ng-click="onHomeNavigate($event)">
-                <i class="fa fa-user" style="line-height:1; font-size: 15px; margin-right:5px; font-weight: 700;"></i>Registration</a>
-
             <bm-back-links></bm-back-links>
-
-            <!--<recent-patients ng-if="enablePatientSearch()"></recent-patients>-->
-            <!--<a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(consultation.uuid)}}"
+            <recent-patients ng-if="enablePatientSearch()"></recent-patients>
+            <a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(consultation.uuid)}}"
                title="{{adtNavigationConfig.title}}">
                 <i class="fa fa-bed fa-white"></i>
-            </a>-->
-
-
-
+            </a>
             <a class="back-btn-link" id="dashboard-link" accesskey="d" ng-click="gotoPatientDashboard()" title="Back to {{patient.name}} Dashboard">
                 <img class="patient-image" ng-src="{{::patient.image}}" fallback-src="../images/blank-user.gif">
               <span class="patient-info">
                 <span class="patient-name" >{{patient.name}} </span>
                 <span class="patient-id">{{patient.identifier}}</span>
-              </span>
+            </span>
             </a>
 
 
@@ -51,20 +39,12 @@
 <div ng-show="stateChange()" confirm-on-exit>
     <div bindonce class="dashboard-header opd-header-wrapper">
         <div class="opd-header-bottom tabs">
-
-
-            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="h" href="../home/index.html" ng-click="onHomeNavigate($event)">
-                <i class="fa fa-home" style="line-height:1; font-size: 15px; margin-right:5px; font-weight: 700;"></i>Home</a>
-
-            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html" ng-click="onHomeNavigate($event)">
-                <i class="fa fa-user" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i>Registration</a>
-
             <bm-back-links></bm-back-links>
-            <!--<recent-patients></recent-patients>-->
-            <!--<a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(visitHistory.activeVisit.uuid)}}"
+            <recent-patients></recent-patients>
+            <a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(visitHistory.activeVisit.uuid)}}"
                title="{{adtNavigationConfig.title}}">
                 <i class="fa fa-bed fa-white"></i>
-            </a>-->
+            </a>
             <div class="desktop-menu fl">
                 <ul class="header-tabs" ng-if="clinicalDashboardConfig.showTabs()">
                     <li class="tab-item dashboard" ng-repeat="dashboard in clinicalDashboardConfig.visibleTabs"
@@ -102,7 +82,7 @@
                 </ul>
             </div>
             <div class="dashboard-header-right-wrapper">
-               <!-- <div ng-if="::clinicalDashboardConfig.quickPrints" class="fl print-list-wrapper" toggle="togglePrintList">
+                <div ng-if="::clinicalDashboardConfig.quickPrints" class="fl print-list-wrapper" toggle="togglePrintList">
                     <button ng-if="clinicalDashboardConfig.showPrint()" class="dialog-button-group"
                             accesskey="{{'CLINICAL_PRINT_ACCESS_KEY'| translate}}">
                         <span ng-bind-html="'CLINICAL_PRINT_TRANSLATION_KEY'|translate"></span> <i class="fa fa-print"></i> <i class="fa fa-caret-down"></i>
@@ -117,7 +97,7 @@
                         accesskey="{{'CLINICAL_PRINT_ACCESS_KEY'| translate}}" ng-bind-html="'CLINICAL_PRINT_TRANSLATION_KEY'|translate">
                     <i class="fa fa-print"></i>
 
-                </button>-->
+                </button>
                 <div class="dashboard-date-picker" ng-controller="PatientListHeaderController">
                     <div class="retro-date-widget-wrapper fr">
                         <div class="retro-date-widget-header fr">

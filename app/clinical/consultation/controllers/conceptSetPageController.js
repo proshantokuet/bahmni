@@ -136,8 +136,8 @@ angular.module('bahmni.clinical')
                 spinner.forPromise(conceptSetService.getObsTemplatesForProgram($state.params.programUuid).success(function (data) {
                     if (data.results.length > 0 && data.results[0].mappings.length > 0) {
                         _.map(allConceptSections, function (conceptSection) {
-                            conceptSection.isAdded = true;
-                            conceptSection.alwaysShow = true;
+                            conceptSection.isAdded = false;
+                            conceptSection.alwaysShow = false;
                         });
 
                         _.map(data.results[0].mappings, function (template) {
