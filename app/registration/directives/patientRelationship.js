@@ -195,8 +195,6 @@ angular.module('bahmni.registration')
                 return appService.getAppDescriptor().getConfigValue(configName) || defaultValue;
             };
 
-            $scope.isSearching = false;
-
             $scope.searchByPatientIdentifierOrName = function (searchAttrs) {
                 var term = searchAttrs.term;
                 if (isNaN(term)) {

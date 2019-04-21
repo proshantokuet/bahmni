@@ -255,7 +255,7 @@
                 <div class="box-container form" ng-show="patient.showDiseaseStatus">
                     <section class="form-field-inline-checkbox clearfix">
                         <article class="form-field" ng-repeat="x in diseaseStatus" ng-class="::{'right-form-field' : $index%2 != 0}">
-                            <div ng-if="patient.diseaseStartIndex <= $index && patient.diseaseEndIndex > $index" >
+                            <div ng-if="patient.diseaseStartIndex <= $index && patient.diseaseEndIndex >= $index" >
                             <div class="field-attribute estimated-label">
                                 <label>{{ x.benName }}<br></label>
                             </div>

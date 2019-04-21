@@ -29,41 +29,49 @@ angular.module('bahmni.registration')
             ];
 
             $scope.diseaseStatus = [
-                { engName: "Arsenicosis", benName: "আর্সেনিকোসিস" },
-                { engName: "Leprosy", benName: "কুষ্ঠ" },
-                { engName: "Fever", benName: "জ্বর" },
                 { engName: "maleria", benName: "জ্বর (ম্যালারিয়া)" },
-                { engName: "Avian Flu", benName: "এভিয়েন ইনফ্লুয়েঞ্জা" },
                 { engName: "Dengue", benName: "ডেঙ্গু" },
+                { engName: "Leprosy", benName: "কুষ্ঠ" },
                 { engName: "Tuberculosis", benName: "যক্ষ্মা" },
-                { engName: "Acute Viral Hepatitis", benName: "যকৃতের ভাইরাস জনিত প্রদাহ" },
                 { engName: "Rabies", benName: "জলাতঙ্ক" },
+                { engName: "Avian Flu", benName: "এভিয়েন ইনফ্লুয়েঞ্জা" },
                 { engName: "Swine Flu", benName: "সোয়াইন ফ্লু" },
                 { engName: "Nipah", benName: "নিপাহ" },
+                { engName: "Acute Viral Hepatitis", benName: "যকৃতের ভাইরাস জনিত প্রদাহ" },
+                { engName: "Diarrhoea", benName: "ডায়ারিয়া" },
+                { engName: "Worms Infection", benName: "কৃমি সংক্রামণ" },
                 { engName: "Sexual Disease", benName: "যৌন রোগ" },
+                { engName: "Arsenicosis", benName: "আর্সেনিকোসিস" },
                 { engName: "Asthma", benName: "হাঁপানি বা এ্যাজমা" },
                 { engName: "Diabetes", benName: "ডায়াবেটিস" },
                 { engName: "High Blood Pressure", benName: "উচ্চ রক্তচাপ" },
                 { engName: "Stroke", benName: "স্ট্রোক" },
                 { engName: "Tumor or Cancer", benName: "টিউমার বা ক্যানসার" },
-                { engName: "Probable_Limited_Infection", benName: "সম্ভাব্য সীমিত সংক্রামণ" },
                 { engName: "Very_severe_disease", benName: "খুব মারাত্বক রোগ" },
-                { engName: "Pneumonia, unspec.", benName: "নিউমোনিয়া নয় সর্দি, কাশী" },
                 { engName: "Pneumonia", benName: "নিউমোনিয়া" },
-                { engName: "Diarrhoea", benName: "ডায়ারিয়া" },
+                { engName: "Pneumonia, unspec.", benName: "নিউমোনিয়া নয় সর্দি, কাশী" },
                 { engName: "dieriaanddysentry", benName: "ডায়ারিয়া ও আমাশয়" },
-                { engName: "Probable_Limited_Infection", benName: "পানি স্বল্পতাহীন ডায়রিয়া" },
+                { engName: "Fever", benName: "জ্বর" },
+                { engName: "maleria", benName: "জ্বর (ম্যালারিয়া)" },
+                { engName: "Hearing loss, unspec.", benName: "কানের সমস্যা" },
                 { engName: "Measles", benName: "হাম" },
-                { engName: "Jaundice", benName: "জন্ডিস" },
                 { engName: "Bellybutton_infection", benName: "নাভিতে সংক্রামন" },
                 { engName: "Conjunctivitis, unspec.", benName: "চোখ উঠা" },
-                { engName: "Hearing loss, unspec.", benName: "কানের সমস্যা" },
-                { engName: "Worms Infection", benName: "কৃমি সংক্রামণ" },
-                { engName: "Anemia", benName: "রক্ত স্বল্পতা" },
+                { engName: "Jaundice", benName: "জন্ডিস" },
                 { engName: "Malnutrition", benName: "অপুষ্টি" },
+                { engName: "Anemia", benName: "রক্ত স্বল্পতা" },
+                { engName: "Injury", benName: "আঘাত" },
+                { engName: "Others_member_disease", benName: "অন্যান্য" },
+                { engName: "Very_severe_disease", benName: "খুব মারাত্বক রোগ" },
+                { engName: "Probable_Limited_Infection", benName: "সম্ভাব্য সীমিত সংক্রামণ" },
+                { engName: "Jaundice", benName: "জন্ডিস" },
+                { engName: "Probable_Limited_Infection", benName: "পানি স্বল্পতাহীন ডায়রিয়া" },
+                { engName: "Bellybutton_infection", benName: "নাভিতে সংক্রামন" },
+                { engName: "Fever", benName: "জ্বর" },
+                { engName: "Pneumonia", benName: "নিউমোনিয়া" },
+                { engName: "Pneumonia, unspec.", benName: "নিউমোনিয়া নয় সর্দি, কাশী" },
                 { engName: "Injury", benName: "আঘাত" },
                 { engName: "Others_member_disease", benName: "অন্যান্য" }
-
             ];
 
             $scope.familyDiseaseHistory = [
@@ -90,7 +98,6 @@ angular.module('bahmni.registration')
             var isHref = false;
 
             $scope.updateYesNoCheckboxChange = function (checkBoxStatus) {
-                console.log(checkBoxStatus);
                 if (checkBoxStatus == "হ্যাঁ") {
                     $scope.patient.showDiseaseStatus = true;
                 } else {
@@ -287,7 +294,6 @@ angular.module('bahmni.registration')
                 if (attribute == 'gender') {
                     var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text;
-                    console.log(maritalStatus);
                     var gender = $scope.patient[attribute];
                     maritalStatusAndGenderCondition(gender, maritalStatus);
                     age = dateToDay(document.getElementById("birthdate").value);
@@ -332,7 +338,14 @@ angular.module('bahmni.registration')
                     marriedFemalelessThan55(gender, maritalStatus, age);
                 }
                 if (attribute == "PregnancyStatus") {
-                    showDeliveryDate();
+                    var pregnancyStatus = $scope.patient[attribute];
+                    console.log(pregnancyStatus);
+                    showDeliveryDate(pregnancyStatus.value);
+                }
+                if (attribute == "disable") {
+                    var disable = $scope.patient[attribute];
+                    console.log(disable);
+                    showDisabilityType(disable.value);
                 }
                 /* if (attribute == "হ্যাঁ") {
                     $scope.patient.showDiseaseStatus = true;
@@ -340,27 +353,26 @@ angular.module('bahmni.registration')
                     $scope.patient.showDiseaseStatus = false;
                 } */
             };
+
+            var showDisabilityType = function (disable) {
+                if (disable == "হ্যাঁ") {
+                    $scope.patient.showDisability = true;
+                } else {
+                    $scope.patient.showDisability = false;
+                }
+            };
+
             var marriedFemalelessThan55 = function (gender, maritalStatus, age) {
                 var attributes = [];
-                console.log("married femaleless than 55");
                 attributes.push('id_familyplanning');
                 attributes.push('id_PregnancyStatus');
-                console.log(maritalStatus);
-                console.log("in marriedFemalelessThan55");
-                console.log(age);
-                console.log(maritalStatus);
-                console.log(gender);
                 if (age <= Bahmni.Common.Constants.lessThanFiftyFive && age > Bahmni.Common.Constants.above13Year
                     && gender == Bahmni.Common.Constants.female && maritalStatus == Bahmni.Common.Constants.married) {
-                    // console.log(attributes);
-                    console.log("married female");
-                    $scope.patient.showFamilyplanning = true;
                     $scope.patient.showPregnancyStatus = true;
-                    $scope.patient.showLMP = true;
                     showAttributes(attributes);
                 } else if (gender == Bahmni.Common.Constants.male && maritalStatus == Bahmni.Common.Constants.married) {
                     var attributes = [];
-                    $scope.patient.showFamilyplanning = true;
+                    // $scope.patient.showFamilyplanning = true;
                     attributes.push('id_familyplanning');
                     showAttributes(attributes);
                     var attributes = [];
@@ -369,8 +381,6 @@ angular.module('bahmni.registration')
                     $scope.patient.showLMP = false;
                     hideAttributes(attributes);
                 } else {
-                    console.log("else");
-                    $scope.patient.showFamilyplanning = false;
                     $scope.patient.showPregnancyStatus = false;
                     $scope.patient.showLMP = false;
                     hideAttributes(attributes);
@@ -383,7 +393,7 @@ angular.module('bahmni.registration')
                     marriedFemale();
                 } else {
                     var attributes = [];
-                    console.log("marital and gender");
+                    $scope.patient.showFamilyplanning = false;
                     $scope.patient.showWifeName = false;
                     $scope.patient.showHusbandName = false;
                     attributes.push('id_Husband Name_English');
@@ -395,16 +405,13 @@ angular.module('bahmni.registration')
             };
             var aboveTenYearCondition = function (age) {
                 var attributes = [];
-                console.log("above 10");
                 attributes.push('id_phoneNumber');
                 if (age > Bahmni.Common.Constants.aboveTenYear) {
-                    $scope.patient.showRiskyHabits = true;
                     $scope.patient.showPhoneNumber = true;
+                    $scope.patient.showRiskyHabits = true;
                     showAttributes(attributes);
                 } else {
                     $scope.patient.showPhoneNumber = false;
-                    $scope.patient.showFamilyplanning = false;
-                    $scope.patient.showPregnancyStatus = false;
                     $scope.patient.showLMP = false;
                     hideRiskyHabits();
                     hideAttributes(attributes);
@@ -412,16 +419,12 @@ angular.module('bahmni.registration')
             };
             var aboveThreeYearCondition = function (age) {
                 var attributes = [];
-                console.log("above 3");
                 attributes.push('id_education');
-                hideRiskyHabits();
                 if (age > Bahmni.Common.Constants.aboveThreeYear) {
                     showAttributes(attributes);
                 } else {
                     $scope.patient.showWifeName = false;
                     $scope.patient.showHusbandName = false;
-                    $scope.patient.showFamilyplanning = false;
-                    $scope.patient.showPregnancyStatus = false;
                     $scope.patient.showLMP = false;
                     attributes.push('id_Husband Name_English');
                     attributes.push('id_Husband Name_Bangla');
@@ -432,17 +435,16 @@ angular.module('bahmni.registration')
             };
             var aboveTwoMonth = function (age) {
                 var attributes = [];
-
-                // attributes.push('id_education');
-                hideRiskyHabits();
                 if (age < Bahmni.Common.Constants.twoMonth) {
+                    console.log("less than 2 month");
                     $scope.patient.showChlorohexidin = true;
                     $scope.patient.showBirthWeight = true;
                 } else {
                     $scope.patient.showWifeName = false;
                     $scope.patient.showHusbandName = false;
-                    $scope.patient.showFamilyplanning = false;
                     $scope.patient.showPregnancyStatus = false;
+                    $scope.patient.showChlorohexidin = false;
+                    $scope.patient.showBirthWeight = false;
                     attributes.push('id_Husband Name_English');
                     attributes.push('id_Husband Name_Bangla');
                     attributes.push('id_Wife Name_English');
@@ -452,7 +454,6 @@ angular.module('bahmni.registration')
             };
             var aboveFiveYearCondition = function (age) {
                 var attributes = [];
-                console.log(":abovefive" + age);
                 attributes.push('id_occupation');
                 if (age > Bahmni.Common.Constants.aboveFiveYear) {
                     $scope.patient.showRiskyHabits = true;
@@ -462,11 +463,11 @@ angular.module('bahmni.registration')
                 } else {
                     hideRiskyHabits();
                     $scope.patient.showOccupation = false;
+                    $scope.patient.showEducation = false;
                     $scope.patient.showWifeName = false;
                     $scope.patient.showHusbandName = false;
-                    $scope.patient.showFamilyplanning = false;
                     $scope.patient.showPregnancyStatus = false;
-                    $scope.patient.showEducation = false;
+                    $scope.patient.showRiskyHabits = false;
                     attributes.push('id_Husband Name_English');
                     attributes.push('id_Husband Name_Bangla');
                     attributes.push('id_Wife Name_English');
@@ -476,21 +477,17 @@ angular.module('bahmni.registration')
             };
 
             var createDiseaseStatus = function (age) {
-                /* if ($scope.diseaseStatus.length > 0 && $scope.patient.showDiseaseStatus == false) {
-                    $scope.diseaseStatus.length = 0;
-                } */
-                console.log(age);
                 if (age > Bahmni.Common.Constants.aboveFiveYear) {
                     $scope.patient.diseaseStartIndex = 0;
-                    $scope.patient.diseaseEndIndex = 5;
+                    $scope.patient.diseaseEndIndex = 17;
                     console.log("age group 1");
                 } else if (age < Bahmni.Common.Constants.aboveFiveYear && age > Bahmni.Common.Constants.twoMonth) {
-                    $scope.patient.diseaseStartIndex = 6;
-                    $scope.patient.diseaseEndIndex = 10;
+                    $scope.patient.diseaseStartIndex = 18;
+                    $scope.patient.diseaseEndIndex = 32;
                     console.log("age group 2");
                 } else if (age < Bahmni.Common.Constants.twoMonth && age > 0) {
-                    $scope.patient.diseaseStartIndex = 10;
-                    $scope.patient.diseaseEndIndex = $scope.diseaseStatus.length;
+                    $scope.patient.diseaseStartIndex = 33;
+                    $scope.patient.diseaseEndIndex = $scope.diseaseStatus.length - 1;
                     console.log("age group 3");
                 } else {
                     $scope.patient.diseaseStartIndex = 0;
@@ -504,16 +501,24 @@ angular.module('bahmni.registration')
                 } */
                 if (pregnancyStatus == 'প্রসবোত্তর') {
                     $scope.patient.showDeliveryDate = true;
+                    $scope.patient.showLMP = false;
+                    $scope.patient.showFamilyplanning = true;
+                } else if (pregnancyStatus == 'প্রসব পূর্ব') {
+                    $scope.patient.showDeliveryDate = false;
+                    $scope.patient.showFamilyplanning = false;
+                    $scope.patient.showLMP = true;
                 } else {
                     $scope.patient.showDeliveryDate = false;
+                    $scope.patient.showLMP = false;
+                    $scope.patient.showFamilyplanning = true;
                 }
             };
 
             var above13YearCondition = function (age) {
-                console.log("above 13");
                 var attributes = [];
                 attributes.push('id_MaritalStatus');
                 if (age > Bahmni.Common.Constants.above13Year) {
+                    console.log("risky");
                     $scope.patient.showRiskyHabits = true;
                     $scope.patient.showMaritalStatus = true;
                     showAttributes(attributes);
@@ -522,7 +527,6 @@ angular.module('bahmni.registration')
                     $scope.patient.showWifeName = false;
                     $scope.patient.showHusbandName = false;
                     $scope.patient.showMaritalStatus = false;
-                    $scope.patient.showFamilyplanning = false;
                     $scope.patient.showPregnancyStatus = false;
                     // $('#MaritalStatus option:contains("")').prop('selected', true);
                     // $('#MaritalStatus').val("");
@@ -541,6 +545,7 @@ angular.module('bahmni.registration')
             var marriedFemale = function () {
                 var attributesToHide = [];
                 $scope.patient.showHusbandName = true;
+                $scope.patient.showFamilyplanning = true;
                 attributesToHide.push('id_Husband Name_English');
                 attributesToHide.push('id_Husband Name_Bangla');
                 showAttributes(attributesToHide);
@@ -553,6 +558,7 @@ angular.module('bahmni.registration')
             var marriedMale = function () {
                 var attributes = [];
                 $scope.patient.showWifeName = true;
+                $scope.patient.showFamilyplanning = true;
                 attributes.push('id_Wife Name_English');
                 attributes.push('id_Wife Name_Bangla');
                 showAttributes(attributes);
@@ -703,8 +709,10 @@ angular.module('bahmni.registration')
                     return $scope.patient.showDeliveryDate;
                 } else if (attributeName == "familyplanning") {
                     return $scope.patient.showFamilyplanning;
+                } else if (attributeName == "Disability_Type") {
+                    return $scope.patient.showDisability;
                 } else {
-                    return false;
+                    return true;
                 }
             };
         }]);
