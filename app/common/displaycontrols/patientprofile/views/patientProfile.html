@@ -22,7 +22,12 @@
                              </span>
                              <i class="ipd-indication fa fa-bed" ng-if="::hasBeenAdmitted"></i>
                          </div>
-                     </td>
+                    </td>
+                    <td>
+                        <a ng-click="openMoneyReceipt(patient.uuid)" target="_blank" class="title-link">
+                             Money Receipt
+                        </a>
+                    </td>
                 </tr>
                 <tr ng-if="::showBirthDate" >
                     <td class="name">{{ 'DOB_LABEL' | translate }}</td>

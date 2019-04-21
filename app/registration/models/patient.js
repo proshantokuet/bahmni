@@ -39,7 +39,8 @@ angular.module('bahmni.registration')
                 relationships: [],
                 newlyAddedRelationships: [{}],
                 deletedRelationships: [],
-                calculateBirthDate: calculateBirthDate
+                calculateBirthDate: calculateBirthDate,
+                birthRank: 0
             };
             return _.assign(patient, identifierDetails);
         };
