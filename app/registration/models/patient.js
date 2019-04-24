@@ -105,7 +105,9 @@ angular.module('bahmni.registration')
                 showLMP: false,
                 showDeliveryDate: false,
                 showFamilyplanning: false,
-                showDisability: false
+                showDisability: false,
+                showMotherNameEnglish: false,
+                showMemberType: false
             };
             return _.assign(patient, identifierDetails);
         };

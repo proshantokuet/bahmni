@@ -97,6 +97,16 @@ angular.module('bahmni.registration')
 
             var isHref = false;
 
+            $scope.checkMemberType = function (checkBoxStatus) {
+                console.log(checkBoxStatus);
+                if (checkBoxStatus == "কমিউনিটি ক্লিনিকের আওতাধীন") {
+                    console.log(checkBoxStatus);
+                    $scope.patient.showMemberType = true;
+                } else {
+                    $scope.patient.showMemberType = false;
+                }
+            };
+
             $scope.updateYesNoCheckboxChange = function (checkBoxStatus) {
                 if (checkBoxStatus == "হ্যাঁ") {
                     $scope.patient.showDiseaseStatus = true;
@@ -291,6 +301,11 @@ angular.module('bahmni.registration')
                 }
                 var attributesToHide = [];
                 console.log(attribute);
+                if (attribute == 'বহিরাগত') {
+                    $scope.patient.showPhoneNumber = true;
+                    $scope.patient.showMaritalStatus = true;
+                    $scope.patient.showMotherNameEnglish = true;
+                }
                 if (attribute == 'gender') {
                     var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text;
@@ -455,7 +470,7 @@ angular.module('bahmni.registration')
             var aboveFiveYearCondition = function (age) {
                 var attributes = [];
                 attributes.push('id_occupation');
-                if (age > Bahmni.Common.Constants.aboveFiveYear) {
+                if ((age > Bahmni.Common.Constants.aboveFiveYear) && $scope.patient.showMemberType) {
                     $scope.patient.showRiskyHabits = true;
                     $scope.patient.showOccupation = true;
                     $scope.patient.showEducation = true;
@@ -711,6 +726,10 @@ angular.module('bahmni.registration')
                     return $scope.patient.showFamilyplanning;
                 } else if (attributeName == "Disability_Type") {
                     return $scope.patient.showDisability;
+                } else if (attributeName == "motherNameEnglish") {
+                    return $scope.patient.showMotherNameEnglish;
+                } else if ($scope.patient.showMemberType == false) {
+                    return false;
                 } else {
                     return true;
                 }
