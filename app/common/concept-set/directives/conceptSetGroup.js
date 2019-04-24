@@ -2,10 +2,10 @@
 
 angular.module('bahmni.common.conceptSet')
     .controller('ConceptSetGroupController', ['$scope', 'contextChangeHandler', 'spinner', 'messagingService',
-        'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig',
+        'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig', '$q',
         'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate',
         function ($scope, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
-                  encounterService, treatmentConfig, retrospectiveEntryService, userService,
+                  encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
                   conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             var init = function () {
@@ -17,6 +17,56 @@ angular.module('bahmni.common.conceptSet')
             };
             $scope.showLeftpanelToggle = function () {
                 return $rootScope.showLeftpanelToggle;
+            };
+
+            $scope.itemNames = ["item1", "item2", "item3"];
+
+            $scope.submitMoneyReceiptData = function (data) {
+                console.log("submit receipt");
+                console.log(data);
+                var jsonData = {};
+
+                var moneyReceiptObj = {};
+                moneyReceiptObj['mid'] = "";
+                moneyReceiptObj['patientName'] = data.givenName;
+                moneyReceiptObj['patientUuid'] = data.uuid;
+                moneyReceiptObj['uic'] = data.uic;
+                moneyReceiptObj['contact'] = "01923445667";
+                moneyReceiptObj['dob'] = "2019-02-23";
+                moneyReceiptObj['address'] = data.address;
+                moneyReceiptObj['clinicName'] = data.clinicName;
+                moneyReceiptObj['clinicCode'] = data.clinicCode;
+                moneyReceiptObj['sateliteClinicId'] = data.sateliteClinicId;
+                moneyReceiptObj['teamNo'] = data.teamNo;
+                moneyReceiptObj['moneyReceiptDate'] = data.moneyReceiptDate;
+                moneyReceiptObj['reference'] = data.reference;
+                moneyReceiptObj['referenceId'] = data.referenceId;
+                moneyReceiptObj['shift'] = "Day";
+                moneyReceiptObj['wealth'] = "Poor";
+                moneyReceiptObj['servicePoint'] = data.servicePoint;
+                moneyReceiptObj['gender'] = data.gender;
+                moneyReceiptObj['slipNo'] = data.slipNo;
+                moneyReceiptObj['clinicType'] = "BmoC";
+
+                var servicesObj = {};
+                servicesObj['item'] = data.item;
+                servicesObj['description'] = data.description;
+                servicesObj['unitCost'] = data.unitCost;
+                servicesObj['quantity'] = data.quantity;
+                servicesObj['totalAmount'] = data.totalAmount;
+                servicesObj['discount'] = data.discount;
+                servicesObj['netPayable'] = data.netPayable;
+                servicesObj['moneyReceiptDate'] = data.moneyReceiptDate;
+
+                jsonData["moneyReceipt"] = moneyReceiptObj;
+                jsonData["services"] = [];
+
+                var jsonArrayObject = {};
+                jsonArrayObject["spid"] = servicesObj;
+
+                jsonData["services"].push(jsonArrayObject);
+
+                console.log(jsonData);
             };
 
             $scope.togglePref = function (conceptSet, conceptName) {

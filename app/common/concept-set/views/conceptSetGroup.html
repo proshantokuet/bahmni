@@ -1,358 +1,353 @@
 <style>
     table td, table th {
-    padding: 5px 0px;
+        padding: 5px 0px;
         border:none;
     }
 
     table tr {
-    border: 0;
-    border:none;
-}
+        border: 0;
+        border:none;
+    }
     .form .form-field .field-attribute label, form .form-field .field-attribute label {
-    width: 10em;
-    float: left;
-    text-align: right;
-    margin: .7em .8em 0 0;
-}
+        width: 10em;
+        float: left;
+        text-align: right;
+        margin: .7em .8em 0 0;
+    }
 
 </style>
 
 <div class="concept-set-panel clearfix">
-<div class="reg-body-wrapper">
-    <div class="simple-form-ui new-patient">
-        <form name="myForm" class="form-horizontal well" single-submit="create()">
-            <div class="box-container box-container-default">
-                <div class="box-container box-container-patient-info patient-common-info-container">
-                    <div class="form-field form-field-gender">
-                    <section class="form-field form-field-gender">
-                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
-                          <tr>
-                            <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Clinic Name<span class="asterick">*</span></label>
-                                    </div>
+    <div class="reg-body-wrapper">
+        <div class="simple-form-ui new-patient">
+            <form name="myForm" class="form-horizontal well" single-submit="create()">
+                <div class="box-container box-container-default">
+                    <div class="box-container box-container-patient-info patient-common-info-container">
+                        <div class="form-field form-field-gender">
+                            <section class="form-field form-field-gender">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Clinic Name<span class="asterick">*</span></label>
+                                                </div>
 
 
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
 
 
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field" >
-                                    <div class="field-attribute">
-                                        <label>Service Point<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field" >
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Date<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Clinic Id<span class="asterick">*</span></label>
-                                    </div>
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.clinicName" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Service Point<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.servicePoint" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Date<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.moneyReceiptDate" type=date >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Clinic Id<span class="asterick">*</span></label>
+                                                </div>
 
 
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.clinicCode" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Satellite Clinic Id<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.sateliteClinicId" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Team No<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.teamNo" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
 
-
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field" >
-                                    <div class="field-attribute">
-                                        <label>Satellite Clinic Id<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field" >
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Team No<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                          </tr>
-
-                            <tr>
-                            <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Slip No<span class="asterick">*</span></label>
-                                    </div>
-
-
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-
-
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field" >
-                                    <div class="field-attribute">
-                                        <label>Reference<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field" >
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Reference Id<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                          </tr>
-                        </table>
-
-                    </section>
-
-
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Slip No<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.slipNo" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Reference<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.reference" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Reference Id<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.referenceId" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
                         </div>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
 
-
-    <div class="simple-form-ui new-patient">
-        <form name="myForm" class="form-horizontal well" single-submit="create()">
-            <div class="box-container box-container-default">
-                <div class="box-container box-container-patient-info patient-common-info-container">
-                    <div class="form-field form-field-gender">
-                    <section class="form-field form-field-gender">
-                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
-                          <tr>
-                            <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Item<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <select >
-                                                <option ng-repeat="row in itemNames" value="{{row}}">{{row}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field" >
-                                    <div class="field-attribute">
-                                        <label>Description<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field" >
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input style="width: 3em;" type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Unit Cost<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input style="width: 3em;" type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Quantity<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input style="width: 3em;" type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field" >
-                                    <div class="field-attribute">
-                                        <label>Total Amount<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field" >
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input style="width: 3em;" type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                            <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Discount<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input style="width: 3em;" type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-attribute">
-                                        <label>Net Payable Amount<span class="asterick">*</span></label>
-                                    </div>
-                                </article>
-                            </td>
-                              <td>
-                                <article class="form-field">
-                                    <div class="field-value">
-                                        <div class="field-value">
-                                            <input style="width: 3em;" type=text >
-                                        </div>
-                                    </div>
-                                </article>
-                            </td>
-                          </tr>
-                        </table>
-                    </section>
+                <div class="box-container box-container-default">
+                    <div class="box-container box-container-patient-info patient-common-info-container">
+                        <div class="form-field form-field-gender">
+                            <section class="form-field form-field-gender">
+                                <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Item<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <select >
+                                                            <option ng-model="patient.item" ng-repeat="row in itemNames" value="{{row}}">{{row}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Description<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.description" style="width: 3em;" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Unit Cost<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.unitCost" style="width: 3em;" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Quantity<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.quantity" style="width: 3em;" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Total Amount<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.totalAmount" style="width: 3em;" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Discount<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.discount" style="width: 3em;" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Net Payable Amount<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patient.netPayable" style="width: 3em;" type=text >
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
                         </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="submit-btn-container clearfix">
-                <button type="submit" class="right submit-btn" ng-click="addItem('addItem')">
-                    Add Item
-                </button>
-            </div>
+                <div class="submit-btn-container clearfix">
+                    <button id="add_new" class="right submit-btn">
+                        Add Item
+                    </button>
+                </div>
 
-            <button type="submit" ng-click="setSubmitSource('save')">Submit</button>
-        </form>
+                <button type="submit" ng-click="submitMoneyReceiptData(patient)">Submit</button>
 
 
-        <!--<p>Click the button to open a new window called "MsgWindow" with some text.</p>
+            </form>
+        </div>
 
-        <button onclick="myFunction()">Try it</button>
 
-        <script>
-        function myFunction() {
-          var myWindow = window.open("", "MsgWindow", "width=200,height=100");
-          myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>" +
-              "<button>Confirm</button>");
-        }
-        </script>-->
+        <!--<div class="simple-form-ui new-patient">
+            <form name="myForm" class="form-horizontal well" single-submit="create()">
+
+            </form>
+
+
+            &lt;!&ndash;<p>Click the button to open a new window called "MsgWindow" with some text.</p>
+
+            <button onclick="myFunction()">Try it</button>
+
+            <script>
+            function myFunction() {
+              var myWindow = window.open("", "MsgWindow", "width=200,height=100");
+              myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>" +
+                  "<button>Confirm</button>");
+            }
+            </script>&ndash;&gt;
+        </div>-->
     </div>
-</div>
     <!--<a class="left-panel-toggle" ng-click="toggleSideBar()">
         <i ng-if="!showLeftpanelToggle()" class="fa fa-bars" aria-hidden="true"></i>
         <i ng-if="showLeftpanelToggle()" class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -394,3 +389,20 @@
         </section>
     </div>-->
 </div>
+
+<script>
+    $("#add_new").click(function () {
+    $("#addItemTable").each(function () {
+        var tds = '<tr>';
+        jQuery.each($('tr:last td', this), function () {
+            tds += '<td>' + $(this).html() + '</td>';
+        });
+        tds += '</tr>';
+        if ($('tbody', this).length > 0) {
+            $('tbody', this).append(tds);
+        } else {
+            $(this).append(tds);
+        }
+    });
+});
+</script>
