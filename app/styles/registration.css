@@ -9039,7 +9039,7 @@ category: Components - Alerts
 }
 /* line 38, registration/_patientPhoto.scss */
 .capture-photo-btn .camera-btn.btn, .upload-photo-btn .camera-btn.btn {
-  background-image: url('../images/photo.png?1554701473');
+  background-image: url('../images/photo.png?1556080799');
 }
 /* line 41, registration/_patientPhoto.scss */
 .capture-photo-btn .upload-btn.btn, .upload-photo-btn .upload-btn.btn {

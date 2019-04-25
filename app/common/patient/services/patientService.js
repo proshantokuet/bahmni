@@ -19,6 +19,14 @@ angular.module('bahmni.common.patient')
             });
         };
 
+        this.moneyReceipt = function () {
+            return $http.get(Bahmni.Common.Constants.moneyReceiptURL, {
+                method: "GET",
+               // params: params,
+                withCredentials: true
+            });
+        };
+
         this.findPatients = function (params) {
             return $http.get(Bahmni.Common.Constants.sqlUrl, {
                 method: "GET",

@@ -56,6 +56,13 @@
                             $scope.relationships = response.data.results;
                         });
                     };
+
+                    var moneyReceipt = function () {
+                        return patientService.moneyReceipt().then(function (response) {
+                            console.log(response.data);
+                            $scope.money = response.data;
+                        });
+                    };
                     var assignAdmissionDetails = function () {
                         var REP = "custom:(attributes:(value,attributeType:(display,name)))";
                         var ADMISSION_STATUS_ATTRIBUTE = "Admission Status";
@@ -81,7 +88,7 @@
                         $scope.showBirthDate = $scope.config.showDOB !== false;
                         $scope.showBirthDate = $scope.showBirthDate && !!$scope.patient.birthdate;
                     };
-                    var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails()]);
+                    var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails(), moneyReceipt()]);
                     initPromise.then(onDirectiveReady);
                     initPromise.then(setHasBeenAdmittedOnVisitUuidChange);
                     initPromise.then(setDirectiveAsReady);
