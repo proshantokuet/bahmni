@@ -363,16 +363,35 @@ angular.module('bahmni.registration')
                 return newS;
             };
 
-            var testService = function () {
+            var getBirthDistricts = function () {
                 return locationService.getAllByTag("Login Location").then(function (response) {
                     $scope.locations = response.data.results;
                     var i = 0;
                     for (i = 0; i < $scope.locations.length; i++) {
-                        $scope.locationDistricts.push($scope.locations[i].name);
+                        $scope.locationDistricts.push({districtName: $scope.locations[i].name, uuid: $scope.locations[i].uuid});
+                        // console.log($scope.locations[i].uuid);
                     }
-                    console.log($scope.locationDistricts);
                     return response;
                 });
+            };
+
+            $scope.getBirthUpazilla = function (districtName) {
+                console.log(districtName);
+
+                return locationService.getByUuid(districtName.uuid).then(function (response) {
+                    console.log(response);
+                    return response;
+                });
+
+                /* return locationrService.getAllByTag("Login Location").then(function (response) {
+                    $scope.locations = response.data.results;
+                    var i = 0;
+                    for (i = 0; i < $scope.locations.length; i++) {
+                        $scope.locationDistricts.push($scope.locations[i].name);
+                        // console.log($scope.locations[i].uuid);
+                    }
+                    return response;
+                }); */
             };
 
             var getSlicedString = function (original, rep, pos, rem) {
@@ -723,7 +742,7 @@ angular.module('bahmni.registration')
                 if ($scope.patientLoaded) {
                     executeShowOrHideRules();
                 }
-                testService();
+                getBirthDistricts();
                 /* $timeout(function () {
                     var attributesToHide = [];
                     attributesToHide.push('id_Used_7.1%_Chlorohexidin');

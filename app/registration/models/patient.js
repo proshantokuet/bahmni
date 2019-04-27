@@ -41,7 +41,8 @@ angular.module('bahmni.registration')
                 deletedRelationships: [],
                 calculateBirthDate: calculateBirthDate,
                 birthRank: 0,
-                uic: ""
+                uic: "",
+                birthDistrict: ""
             };
             return _.assign(patient, identifierDetails);
         };

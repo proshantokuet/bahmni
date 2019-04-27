@@ -65,7 +65,6 @@ angular.module('bahmni.common.conceptSet')
                 jsonArrayObject["spid"] = servicesObj;
 
                 jsonData["services"].push(jsonArrayObject);
-
                 console.log(jsonData);
             };
 
