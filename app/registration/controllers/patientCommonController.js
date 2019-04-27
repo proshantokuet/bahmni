@@ -21,6 +21,8 @@ angular.module('bahmni.registration')
 
             $scope.locationDistricts = [];
 
+            $scope.locationDUpazilla = [];
+
             $scope.uic = "____________";
 
             $scope.riskyHabits = [
@@ -379,7 +381,13 @@ angular.module('bahmni.registration')
                 console.log(districtName);
 
                 return locationService.getByUuid(districtName.uuid).then(function (response) {
-                    console.log(response);
+                    console.log(response.childLocations);
+                    $scope.locationDUpazilla = [];
+                    var i = 0;
+                    for (i = 0; i < response.childLocations.length; i++) {
+                        $scope.locationDUpazilla.push(response.childLocations[i].display);
+                        // console.log($scope.locations[i].uuid);
+                    }
                     return response;
                 });
 
