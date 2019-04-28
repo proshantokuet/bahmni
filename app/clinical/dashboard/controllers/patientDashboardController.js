@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .controller('PatientDashboardController', ['$scope', 'clinicalAppConfigService', 'clinicalDashboardConfig', 'printer',
+    .controller('PatientDashboardController', ['$scope', '$bahmniCookieStore', 'clinicalAppConfigService', 'clinicalDashboardConfig', 'printer',
         '$state', 'spinner', 'visitSummary', 'appService', '$stateParams', 'diseaseTemplateService', 'patientContext', '$location', '$filter',
-        function ($scope, clinicalAppConfigService, clinicalDashboardConfig, printer,
+        function ($scope, $bahmniCookieStore, clinicalAppConfigService, clinicalDashboardConfig, printer,
                   $state, spinner, visitSummary, appService, $stateParams, diseaseTemplateService, patientContext, $location, $filter) {
             $scope.patient = patientContext.patient;
             $scope.activeVisit = $scope.visitHistory.activeVisit;

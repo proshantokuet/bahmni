@@ -58,9 +58,8 @@
                     };
 
                     var moneyReceipt = function () {
-                        return patientService.moneyReceipt().then(function (response) {
-                            console.log(response.data);
-                            $scope.money = response.data;
+                        return patientService.moneyReceipt($scope.patientUuid).then(function (response) {
+                            $scope.services = response.data;
                         });
                     };
                     var assignAdmissionDetails = function () {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.common.patient')
-    .service('patientService', ['$http', 'sessionService', function ($http, sessionService) {
+    .service('patientService', ['$http', '$bahmniCookieStore', 'sessionService', function ($http, $bahmniCookieStore, sessionService) {
         this.getPatient = function (uuid) {
             var patient = $http.get(Bahmni.Common.Constants.openmrsUrl + "/ws/rest/v1/patient/" + uuid, {
                 method: "GET",
@@ -19,14 +19,27 @@ angular.module('bahmni.common.patient')
             });
         };
 
-        this.moneyReceipt = function () {
-            return $http.get(Bahmni.Common.Constants.moneyReceiptURL, {
+        this.moneyReceipt = function (uuid) {
+            // console.log("Data:");
+            // console.log($bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName));
+            return $http.get(Bahmni.Common.Constants.moneyReceiptURL + "/" + uuid, {
                 method: "GET",
-               // params: params,
                 withCredentials: true
             });
         };
-
+        this.getServices = function () {
+            return $http.get(Bahmni.Common.Constants.serviceUrl + "/" + $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
+        this.saveMoneyReceipt = function (data) {
+            var url = Bahmni.Common.Constants.serviceSaveUrl;
+            return $http.post(url, data, {
+                withCredentials: true,
+                headers: {"Accept": "application/json", "Content-Type": "application/json"}
+            });
+        };
         this.findPatients = function (params) {
             return $http.get(Bahmni.Common.Constants.sqlUrl, {
                 method: "GET",

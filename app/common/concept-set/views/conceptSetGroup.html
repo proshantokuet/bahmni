@@ -15,6 +15,31 @@
         margin: .7em .8em 0 0;
     }
 
+
+.click-to-edit {
+    display: inline-block;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+@-webkit-keyframes spin2 {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
 </style>
 
 <div class="concept-set-panel clearfix">
@@ -30,9 +55,8 @@
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-attribute">
-                                                    <label>Clinic Name<span class="asterick">*</span></label>
+                                                    <label>Clinic Name </label>
                                                 </div>
-
 
                                             </article>
                                         </td>
@@ -42,7 +66,8 @@
 
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.clinicName" type=text >
+                                                        <input ng-model="patientInfo.orgUnit" type="hidden"  />
+                                                        <input ng-model="patientInfo.clinicName" type="text" readonly />
                                                     </div>
                                                 </div>
                                             </article>
@@ -58,7 +83,8 @@
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.servicePoint" type=text >
+                                                        <select ng-model="patientInfo.servicePoint" ng-options="servicePoint.name as servicePoint.name for servicePoint in servicePoints" required>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </article>
@@ -74,7 +100,7 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.moneyReceiptDate" type=date >
+                                                        <input ng-model="patientInfo.moneyReceiptDate" type="date"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -84,7 +110,7 @@
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-attribute">
-                                                    <label>Clinic Id<span class="asterick">*</span></label>
+                                                    <label>Clinic Id</label>
                                                 </div>
 
 
@@ -94,39 +120,39 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.clinicCode" type=text >
+                                                        <input ng-model="patientInfo.clinicCode" type="text" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
                                             <article class="form-field" >
                                                 <div class="field-attribute">
-                                                    <label>Satellite Clinic Id<span class="asterick">*</span></label>
+                                                    <label>Satellite Clinic Id</label>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.sateliteClinicId" type=text >
+                                                        <input ng-model="patientInfo.sateliteClinicId" type="text"/>
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
                                             <article class="form-field">
                                                 <div class="field-attribute">
-                                                    <label>Team No<span class="asterick">*</span></label>
+                                                    <label>Team No</span></label>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.teamNo" type=text >
+                                                        <input ng-model="patientInfo.teamNo" type="text"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -145,7 +171,7 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.slipNo" type=text >
+                                                        <input ng-model="patientInfo.slipNo" type="text" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -161,23 +187,25 @@
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.reference" type=text >
+                                                         <select ng-model="patientInfo.reference" ng-options=" reference.name as reference.name for reference in references" ng-required="true">
+
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
+                                        <td ng-show="patientInfo.reference=='External'">
                                             <article class="form-field">
                                                 <div class="field-attribute">
-                                                    <label>Reference Id<span class="asterick">*</span></label>
+                                                    <label>Reference Id</label>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
+                                        <td ng-show="patientInfo.reference=='External'">
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.referenceId" type=text >
+                                                        <input ng-model="patientInfo.referenceId" type="text"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -194,120 +222,89 @@
                         <div class="form-field form-field-gender">
                             <section class="form-field form-field-gender">
                                 <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
-                                    <tr>
-                                        <td>
-                                            <article class="form-field">
-                                                <div class="field-attribute">
-                                                    <label>Item<span class="asterick">*</span></label>
-                                                </div>
-                                            </article>
-                                        </td>
+                                    <tr data-ng-repeat="service in services track by $index">
+
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <select >
-                                                            <option ng-model="patient.item" ng-repeat="row in itemNames" value="{{row}}">{{row}}</option>
+                                                        <label>Item<span class="asterick">*</span></label>
+                                                        <select ng-model="service.item" ng-change="onChanged(service.item, $index)"
+                                                                 ng-options="itm as itm.name for itm in serviceList" ng-required="true">
                                                         </select>
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
-                                            <article class="form-field" >
-                                                <div class="field-attribute">
-                                                    <label>Description<span class="asterick">*</span></label>
-                                                </div>
-                                            </article>
-                                        </td>
+
                                         <td>
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.description" style="width: 3em;" type=text >
+                                                         <label>Description<span class="asterick">*</span></label>
+                                                        <input ng-model="service.description" style="width: 15em;" type="text" />
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
-                                            <article class="form-field">
-                                                <div class="field-attribute">
-                                                    <label>Unit Cost<span class="asterick">*</span></label>
-                                                </div>
-                                            </article>
-                                        </td>
+
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.unitCost" style="width: 3em;" type=text >
+                                                         <label>Unit Cost<span class="asterick">*</span></label>
+                                                        <input ng-model="service.unitCost" ng-change="calculateTotalAmountFromUnitCost(service.quantity,$index)" style="width: 5em;" type="number"  step="any" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
-                                            <article class="form-field">
-                                                <div class="field-attribute">
-                                                    <label>Quantity<span class="asterick">*</span></label>
-                                                </div>
-                                            </article>
-                                        </td>
+
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.quantity" style="width: 3em;" type=text >
+                                                        <label>Quantity<span class="asterick">*</span></label>
+                                                        <input ng-model="service.quantity" ng-change="calculateTotalAmount(service.quantity,$index)" style="width: 3em;" type="number" step="any" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
-                                            <article class="form-field" >
-                                                <div class="field-attribute">
-                                                    <label>Total Amount<span class="asterick">*</span></label>
-                                                </div>
-                                            </article>
-                                        </td>
+
                                         <td>
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.totalAmount" style="width: 3em;" type=text >
+                                                         <label>Total Amount<span class="asterick">*</span></label>
+                                                        <input ng-model="service.totalAmount" style="width: 5em;" type="number" step="any" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
-                                            <article class="form-field">
-                                                <div class="field-attribute">
-                                                    <label>Discount<span class="asterick">*</span></label>
-                                                </div>
-                                            </article>
-                                        </td>
+
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.discount" style="width: 3em;" type=text >
+                                                        <label>Discount<span class="asterick">*</span></label>
+                                                        <input ng-model="service.discount"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" step="any" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td>
-                                            <article class="form-field">
-                                                <div class="field-attribute">
-                                                    <label>Net Payable Amount<span class="asterick">*</span></label>
-                                                </div>
-                                            </article>
-                                        </td>
+
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patient.netPayable" style="width: 3em;" type=text >
+                                                        <label>Net Payable Amount<span class="asterick">*</span></label>
+                                                        <input ng-model="service.netPayable" style="width: 5em;" type="number" step="any" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
+                                        </td>
+                                        <td><button class="remove" ng-show="$last" ng-click="removeChoice()">-</button>
+                                            <span><button class="remove" ng-show="$last" ng-click="addNewChoice()">+</button></span>
+
                                         </td>
                                     </tr>
                                 </table>
@@ -317,17 +314,60 @@
                 </div>
 
                 <div class="submit-btn-container clearfix">
-                    <button id="add_new" class="right submit-btn">
-                        Add Item
-                    </button>
+                   <button  style="margin: 10px 20px 0 0"  class="right submit-btn" type="submit" ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient)" ng-disabled="enable=='false'">
+
+                       <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+            {{ searchButtonText }}
+
+                   </button>
                 </div>
 
-                <button type="submit" ng-click="submitMoneyReceiptData(patient)">Submit</button>
-
-
             </form>
-        </div>
+            <br/>
 
+            <table id="table_id" class="display">
+                <thead>
+                <tr>
+                    <th>Service Code</th>
+                    <th>Service/Medicine/Other</th>
+                    <th>Description</th>
+                    <th>Unit Cost</th>
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                    <th>Discount</th>
+                    <th>Net Payable Amount</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="service in services">
+                    <td>{{service.item.code}} </td>
+                    <td>{{service.item.name}} </td>
+                    <td>{{service.description}} </td>
+                    <td>{{service.unitCost}}</td>
+                    <td>{{service.quantity}} </td>
+                    <td>{{service.totalAmount}} </td>
+                    <td>{{service.discount}}</td>
+                    <td>{{service.netPayable}} </td>
+                </tr>
+
+                <tr style="border: 1px solid #ddd;">
+                    <td>Total </td>
+                    <td> </td>
+                    <td> </td>
+                    <td></td>
+                    <td> </td>
+                    <td>{{calTotalAmount()}} </td>
+                    <td> </td>
+                    <td>234</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+       <!-- {{patient}}
+        {{services}}
+        {{patientInfo}}-->
 
         <!--<div class="simple-form-ui new-patient">
             <form name="myForm" class="form-horizontal well" single-submit="create()">
@@ -390,6 +430,7 @@
     </div>-->
 </div>
 
+<!--
 <script>
     $("#add_new").click(function () {
     $("#addItemTable").each(function () {
@@ -405,4 +446,4 @@
         }
     });
 });
-</script>
+</script>-->

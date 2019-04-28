@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('bahmni.common.conceptSet')
-    .controller('ConceptSetGroupController', ['$scope', 'contextChangeHandler', 'spinner', 'messagingService',
+    .controller('ConceptSetGroupController', ['$scope', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
         'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig', '$q',
         'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate',
-        function ($scope, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
+        function ($scope, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
                   encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
                   conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
@@ -19,56 +19,98 @@ angular.module('bahmni.common.conceptSet')
                 return $rootScope.showLeftpanelToggle;
             };
 
-            $scope.itemNames = ["item1", "item2", "item3"];
-
-            $scope.submitMoneyReceiptData = function (data) {
-                console.log("submit receipt");
-                console.log(data);
-                var jsonData = {};
-
-                var moneyReceiptObj = {};
-                moneyReceiptObj['mid'] = "";
-                moneyReceiptObj['patientName'] = data.givenName;
-                moneyReceiptObj['patientUuid'] = data.uuid;
-                moneyReceiptObj['uic'] = data.uic;
-                moneyReceiptObj['contact'] = "01923445667";
-                moneyReceiptObj['dob'] = "2019-02-23";
-                moneyReceiptObj['address'] = data.address;
-                moneyReceiptObj['clinicName'] = data.clinicName;
-                moneyReceiptObj['clinicCode'] = data.clinicCode;
-                moneyReceiptObj['sateliteClinicId'] = data.sateliteClinicId;
-                moneyReceiptObj['teamNo'] = data.teamNo;
-                moneyReceiptObj['moneyReceiptDate'] = data.moneyReceiptDate;
-                moneyReceiptObj['reference'] = data.reference;
-                moneyReceiptObj['referenceId'] = data.referenceId;
-                moneyReceiptObj['shift'] = "Day";
-                moneyReceiptObj['wealth'] = "Poor";
-                moneyReceiptObj['servicePoint'] = data.servicePoint;
-                moneyReceiptObj['gender'] = data.gender;
-                moneyReceiptObj['slipNo'] = data.slipNo;
-                moneyReceiptObj['clinicType'] = "BmoC";
-
-                var servicesObj = {};
-                servicesObj['item'] = data.item;
-                servicesObj['description'] = data.description;
-                servicesObj['unitCost'] = data.unitCost;
-                servicesObj['quantity'] = data.quantity;
-                servicesObj['totalAmount'] = data.totalAmount;
-                servicesObj['discount'] = data.discount;
-                servicesObj['netPayable'] = data.netPayable;
-                servicesObj['moneyReceiptDate'] = data.moneyReceiptDate;
-
-                jsonData["moneyReceipt"] = moneyReceiptObj;
-                jsonData["services"] = [];
-
-                var jsonArrayObject = {};
-                jsonArrayObject["spid"] = servicesObj;
-
-                jsonData["services"].push(jsonArrayObject);
-
-                console.log(jsonData);
+            $scope.itemNames = [{name: "MED", id: 23, price: 34}, {name: "MEDiceine MEDiceine MEDiceine", id: 34, price: 340}];
+            $scope.getItem = function (index) {
+                if (index == undefined) {
+                    return "";
+                }
+                var obj = JSON.parse(index);
+                console.log(obj);
+                return obj.price;
+            };
+            $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}, {name: "EPI"}, {name: "Garments"}, {name: "Coporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "N/A"}];
+            $scope.references = [{name: "Self"}, {name: "CSO"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
+            $scope.services = [{"discount": 0}];
+            $scope.patientInfo = {clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName, clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId, orgUnit: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).orgUnit};
+            $scope.addNewChoice = function () {
+                var newItemNo = $scope.services.length + 1;
+                $scope.services.push({"discount": 0});
+            };
+            $scope.removeChoice = function () {
+                var lastItem = $scope.services.length - 1;
+                console.log($scope.services.length);
+                if ($scope.services.length != 1) {
+                    $scope.services.splice(lastItem);
+                }
+            };
+            $scope.onChanged = function (item, index) {
+                console.log(item);
+                console.log(index);
+                $scope.services[index].unitCost = item.unitCost;
+            };
+            $scope.calculateTotalAmount = function (quantity, index) {
+                var totalAmount = quantity * $scope.services[index].unitCost;
+                $scope.services[index].totalAmount = totalAmount;
+                $scope.services[index].netPayable = totalAmount;
+            };
+            $scope.calculateTotalAmountFromUnitCost = function (quantity, index) {
+                var totalAmount = quantity * $scope.services[index].unitCost;
+                $scope.services[index].totalAmount = totalAmount;
+                $scope.services[index].netPayable = totalAmount;
+            };
+            $scope.calculateNetAmount = function (discount, index) {
+                var totalAmount = $scope.services[index].totalAmount;
+                var disccountAmount = (discount * totalAmount) / 100;
+                var netpayAmount = totalAmount - disccountAmount;
+                $scope.services[index].netPayable = totalAmount - discount;
+            };
+            $scope.calTotalAmount = function () {
+                $scope.to = 0;
+                angular.forEach($scope.services, function (listItem) {
+                    console.log(listItem.totalAmount);
+                    $scope.to = $scope.to + listItem.totalAmount;
+                });
+                return $scope.to;
             };
 
+            var saveMoneyReceipt = function (data) {
+                return patientService.saveMoneyReceipt(data).then(function (response) {
+                    console.log("save return");
+                    console.log(response);
+                });
+            };
+            $scope.searchButtonText = "Submit";
+            $scope.test = "true";
+            $scope.submitMoneyReceiptData = function (patientInfo, services, patient) {
+                $scope.enable = "false";
+                $scope.test = "true";
+                $scope.searchButtonText = "Submitting";
+                console.log("submit receipt");
+                console.log(services);
+                console.log(patient);
+                var jsonData = {};
+                patientInfo['mid'] = "";
+                patientInfo['patientName'] = patient.givenName + " " + patient.familyName;
+                patientInfo['patientUuid'] = patient.uuid;
+                patientInfo['uic'] = patient.UIC.value;
+                patientInfo['contact'] = patient.MobileNo.value;
+                patientInfo['dob'] = "2019-02-23";
+                patientInfo['gender'] = patient.gender;
+                patientInfo['dob'] = patient.birthdate;
+                patientInfo['wealth'] = patient.FinancialStatus.value.display;
+                jsonData["moneyReceipt"] = patientInfo;
+                jsonData["services"] = services;
+
+                return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
+                    console.log("after premise");
+                    console.log(results);
+                    $timeout(function () {
+                        $scope.enable = "true";
+                        $scope.searchButtonText = "Submit";
+                        return $window.open("#/default/patient/3d3de399-c4bf-4f5e-bc23-0f4c15a7485d/dashboard", "_self");
+                    }, 2000);
+                }));
+            };
             $scope.togglePref = function (conceptSet, conceptName) {
                 $rootScope.currentUser.toggleFavoriteObsTemplate(conceptName);
                 spinner.forPromise(userService.savePreferences());
@@ -230,12 +272,23 @@ angular.module('bahmni.common.conceptSet')
             $scope.isFormTemplate = function (data) {
                 return data.formUuid;
             };
+            var services = function () {
+                return patientService.getServices().then(function (response) {
+                    $scope.serviceList = response.data;
+                });
+            };
+            var initPromise = $q.all([services()]);
+            $scope.initialization = initPromise;
 
             init();
         }])
-    .directive('conceptSetGroup', function () {
+    .directive('conceptSetGroup', ['spinner', function (spinner) {
+        var link = function ($scope, element) {
+            spinner.forPromise($scope.initialization, element);
+        };
         return {
             restrict: 'EA',
+            link: link,
             scope: {
                 conceptSetGroupExtensionId: "=?",
                 observations: "=",
@@ -249,4 +302,4 @@ angular.module('bahmni.common.conceptSet')
             controller: 'ConceptSetGroupController',
             templateUrl: '../common/concept-set/views/conceptSetGroup.html'
         };
-    });
+    }]);

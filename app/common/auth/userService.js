@@ -70,4 +70,43 @@ angular.module('authentication')
                 withCredentials: true
             });
         };
+
+        var getTeamMemberFromServer = function (uuid) {
+            var teamMemberUrl = Bahmni.Common.Constants.teamMemberUrl + "/" + uuid;
+            return $http.get(teamMemberUrl, {
+                method: "GET",
+                params: {
+                    v: "full"
+                },
+                cache: false
+            });
+        };
+
+        this.getTeamMember = function (uuid) {
+            var deferrable = $q.defer();
+            getTeamMemberFromServer(uuid).success(function (data) {
+                deferrable.resolve(data);
+            }).error(function () {
+                deferrable.reject('Unable to get user data');
+            });
+
+            return deferrable.promise;
+        };
+
+        var getClinicInformation = function (username) {
+            var clinicUrl = Bahmni.Common.Constants.clinicUrl + "/" + username;
+            return $http.get(clinicUrl, {
+                method: "GET",
+                cache: false
+            });
+        };
+        this.getClinicInformation = function (username) {
+            var deferrable = $q.defer();
+            getClinicInformation(username).success(function (data) {
+                deferrable.resolve(data);
+            }).error(function () {
+                deferrable.reject('Unable to get user data');
+            });
+            return deferrable.promise;
+        };
     }]);

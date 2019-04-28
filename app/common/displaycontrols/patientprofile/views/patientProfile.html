@@ -69,20 +69,26 @@
 <table id="table_id" class="display">
                             <thead>
                                 <tr>
-                                    <th>Clinic Name</th>
-                                    <th>Clinic ID</th>
-                                    <th>Category</th>
-                                    <th>Address</th>
-                                    <th>Action</th>
+                                    <th>Item Name</th>
+                                    <th>Description</th>
+                                    <th>Unit Cost</th>
+                                    <th>Quantity</th>
+                                    <th>Total Amount</th>
+                                    <th>Discount</th>
+                                    <th>Net Payable Amount</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <tr ng-repeat="mr in money">
-                                    <td>{{mr.provider}} </td>
-                                    <td>clinic.clinicId </td>
-                                    <td> clinic.category </td>
-                                    <td>clinic.address </td>
+                                <tr ng-repeat="service in services">
+                                    <td>{{service.item}} </td>
+                                    <td>{{service.description}} </td>
+                                    <td>{{service.unitCost}}</td>
+                                    <td>{{service.quantity}} </td>
+                                    <td>{{service.totalAmount}} </td>
+                                    <td> {{service.discount}}</td>
+                                    <td>{{service.netPayable}} </td>
                                     <td>  </td>
                                 </tr>
 

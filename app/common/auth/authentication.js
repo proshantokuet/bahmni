@@ -104,10 +104,19 @@ angular.module('authentication')
             createSession(username, password, otp).then(function (data) {
                 if (data.authenticated) {
                     $bahmniCookieStore.put(Bahmni.Common.Constants.currentUser, username, {path: '/', expires: 7});
-                    if (location != undefined) {
-                        $bahmniCookieStore.remove(Bahmni.Common.Constants.locationCookieName);
-                        $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {name: location.display, uuid: location.uuid}, {path: '/', expires: 7});
-                    }
+                    userService.getUser(username).then(function (data) {
+                        userService.getTeamMember(data.results[0].person.uuid).then(function (data) {
+                            var locationInfo = data.locations[0];
+                            if (locationInfo != undefined) {
+                                userService.getClinicInformation(username).then(function (data) {
+                                    $bahmniCookieStore.put(Bahmni.Common.Constants.clinicCookieName, data, {path: '/', expires: 7});
+                                    $bahmniCookieStore.remove(Bahmni.Common.Constants.locationCookieName);
+                                    $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {name: locationInfo.display, uuid: locationInfo.uuid}, {path: '/', expires: 7});
+                                    // $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {name: "Ganiyari", uuid: "c1e42932-3f10-11e4-adec-0800271c1b75"}, {path: '/', expires: 7});
+                                });
+                            }
+                        });
+                    });
                     deferrable.resolve(data);
                 } else if (data.firstFactAuthorization) {
                     deferrable.resolve(data);
