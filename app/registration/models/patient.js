@@ -40,9 +40,11 @@ angular.module('bahmni.registration')
                 newlyAddedRelationships: [{}],
                 deletedRelationships: [],
                 calculateBirthDate: calculateBirthDate,
-                birthRank: 0,
-                uic: "",
-                birthDistrict: ""
+                birthRank: "0",
+                uic: "____________",
+                birthMothersFirstName: "",
+                birthDistrict: { districtName: "ABC", uuid: ""},
+                birthUpazilla: ""
             };
             return _.assign(patient, identifierDetails);
         };

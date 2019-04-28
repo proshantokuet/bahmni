@@ -122,13 +122,14 @@
                 </div>
 
                 <div class="field-value">
-                    <select ng-options="row.districtName for row in locationDistricts track by $index"
-                            ng-change="getBirthUpazilla(patient.birthDistrict)" ng-model="patient.birthDistrict">
-                        <option value="">--Select Birth District--</option>
-                    </select>
-                    <!--<select>
-                        <option ng-repeat="row in locationDistricts track by $index" value="{{row.districtName}}">{{row.districtName}}</option>
+                   <!-- <select ng-options="row.districtName for row in locationDistricts track by $index"
+                            ng-change="getBirthUpazilla(patient.birthDistrict); handleUpdate('birthDistrict')" ng-model="patient.birthDistrict">
                     </select>-->
+
+                    <select ng-model="patient.birthDistrict" ng-change="getBirthUpazilla(patient.birthDistrict); handleUpdate('birthDistrict')"
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.districtName for blisterPackTemplate in locationDistricts">
+                      <option value="">Select District</option>
+                    </select>
                 </div>
             </article>
         </section>
@@ -138,10 +139,10 @@
                 <div class="field-attribute">
                     <label>Birth Upazilla<span class="asterick">*</span></label>
                 </div>
-
                 <div class="field-value">
-                    <select >
-                        <option ng-repeat="row in locationDUpazilla track by $index" value="{{row}}">{{row}}</option>
+                    <select ng-options="row for row in locationDUpazilla track by $index"
+                            ng-change="handleUpdate('birthUpazilla')" ng-model="patient.birthUpazilla">
+                        <option value="">--Select Birth Upazilla--</option>
                     </select>
                 </div>
             </article>
@@ -192,7 +193,7 @@
 
                 <div class="field-value">
                     <div class="field-value">
-                        <input type=text ng-model="patient.uic" ng-value="uic" id="UIC">
+                        <input type=text ng-model="patient.uic" id="UIC">
                     </div>
                 </div>
             </article>
