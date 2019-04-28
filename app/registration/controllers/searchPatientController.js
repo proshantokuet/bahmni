@@ -80,7 +80,7 @@ angular.module('bahmni.registration')
             };
 
             $scope.openMoneyReceipt = function (patientUuid) {
-                $window.open("../clinical/index.html#/default/patient/" + patientUuid + "/dashboard/concept-set-group/observations");
+                $window.open("../clinical/index.html#/default/patient/" + patientUuid + "/dashboard");
             };
 
             $scope.getProgramAttributeValues = function (result) {
