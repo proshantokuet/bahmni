@@ -66,3 +66,37 @@
         </section>
     </div>
 </div>
+<table id="table_id" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Clinic Name</th>
+                                    <th>Clinic ID</th>
+                                    <th>Category</th>
+                                    <th>Address</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr ng-repeat="mr in money">
+                                    <td>{{mr.provider}} </td>
+                                    <td>clinic.clinicId </td>
+                                    <td> clinic.category </td>
+                                    <td>clinic.address </td>
+                                    <td>  </td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+
+
+
+<script type="text/javascript">
+
+//var $jq = jQuery.noConflict();
+$(document).ready(function() {
+	$('#table_id').DataTable();
+} );
+</script>

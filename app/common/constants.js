@@ -71,6 +71,7 @@ Bahmni.Common = Bahmni.Common || {};
         bahmniDeleteDiagnosisUrl: BAHMNI_CORE + "/diagnosis/delete",
         diseaseTemplateUrl: BAHMNI_CORE + "/diseaseTemplates",
         AllDiseaseTemplateUrl: BAHMNI_CORE + "/diseaseTemplate",
+        moneyReceiptURL: RESTWS_V1 + "/service-management/get-all/17",
         emrapiConceptUrl: EMRAPI + "/concept",
         encounterConfigurationUrl: BAHMNI_CORE + "/config/bahmniencounter",
         patientConfigurationUrl: BAHMNI_CORE + "/config/patient",
