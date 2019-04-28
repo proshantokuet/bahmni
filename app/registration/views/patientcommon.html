@@ -128,7 +128,7 @@
 
                     <select ng-model="patient.birthDistrict" ng-change="getBirthUpazilla(patient.birthDistrict); handleUpdate('birthDistrict')"
                             data-ng-options="blisterPackTemplate as blisterPackTemplate.districtName for blisterPackTemplate in locationDistricts">
-                      <option value="">Select District</option>
+                      <option value="">Select Birth District</option>
                     </select>
                 </div>
             </article>
@@ -142,7 +142,7 @@
                 <div class="field-value">
                     <select ng-options="row for row in locationDUpazilla track by $index"
                             ng-change="handleUpdate('birthUpazilla')" ng-model="patient.birthUpazilla">
-                        <option value="">--Select Birth Upazilla--</option>
+                        <option value="">Select Birth Upazilla</option>
                     </select>
                 </div>
             </article>
@@ -193,7 +193,7 @@
 
                 <div class="field-value">
                     <div class="field-value">
-                        <input type=text ng-model="patient.uic" id="UIC">
+                        <input type=text ng-model="patient.uic" id="UIC" readonly>
                     </div>
                 </div>
             </article>

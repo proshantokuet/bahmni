@@ -64,8 +64,8 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
             }
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "birthDistrict") {
                 console.log("birthDistrict in createmapper");
-                console.log(patient.birthDistrict);
-                // openMRSPatient.patient.person.attributes[i].value = patient.birthRank;
+                console.log(patient.birthDistrict.districtName);
+                openMRSPatient.patient.person.attributes[i].value = patient.birthDistrict.districtName;
             }
         }
         console.log(openMRSPatient);
