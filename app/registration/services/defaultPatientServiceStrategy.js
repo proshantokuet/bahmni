@@ -39,7 +39,7 @@ angular.module('bahmni.registration')
         var create = function (patient, jumpAccepted) {
             var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient);
             var randomIdentifier = createUUID();
-            console.log(randomIdentifier);
+            console.log(":generated random identifier: " + randomIdentifier);
             data.patient.identifiers[0].identifier = randomIdentifier;
             var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
             return $http.post(url, data, {
@@ -89,6 +89,11 @@ angular.module('bahmni.registration')
 
         var generateIdentifier = function (patient) {
             var data = {"identifierSourceName": patient.identifierPrefix ? patient.identifierPrefix.prefix : ""};
+
+            var randomIdentifier = createUUID();
+            console.log(":generated random identifier two: " + randomIdentifier);
+            data.patient.identifiers[0].identifier = randomIdentifier;
+
             var url = openmrsUrl + "/ws/rest/v1/idgen";
             var config = {
                 withCredentials: true,
