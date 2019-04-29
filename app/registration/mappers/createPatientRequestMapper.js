@@ -45,7 +45,7 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
                     causeOfDeath: patient.causeOfDeath ? patient.causeOfDeath.uuid : '',
                     uuid: patient.uuid
                 },
-                identifiers: identifiers,
+                identifiers: [{"identifier": "", "identifierType": "Patient_Identifier", "preferred": true, "voided": false }],
                 uuid: patient.uuid
             }
         };

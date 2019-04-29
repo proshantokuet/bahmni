@@ -125,12 +125,7 @@ angular.module('bahmni.common.conceptSet')
                 return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
                     console.log("after premise");
                     console.log(results);
-                    $timeout(function () {
-                        $scope.enable = "true";
-                        $scope.searchButtonText = "Submit";
-                        $location.path("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard");
-                        // return $window.open("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard", "_self");
-                    }, 2000);
+                    return $window.open("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard", "_self");
                 }));
 
                /* var moneyReceiptObj = {};
