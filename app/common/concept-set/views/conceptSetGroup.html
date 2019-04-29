@@ -275,7 +275,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                          <label>Total Amount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.totalAmount" style="width: 5em;" type="number" step="any" ng-required="true" readonly/>
+                                                        <input ng-model="service.totalAmount" style="width: 5em;" type="text"  ng-required="true" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -297,7 +297,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Net Payable Amount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.netPayable" style="width: 5em;" type="number" step="any" ng-required="true" readonly/>
+                                                        <input ng-model="service.netPayable" style="width: 5em;" type="text"  ng-required="true" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -320,6 +320,7 @@
             {{ searchButtonText }}
 
                    </button>
+                    <a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard"  class="right submit-btn" >Cancel</a>
                 </div>
 
             </form>

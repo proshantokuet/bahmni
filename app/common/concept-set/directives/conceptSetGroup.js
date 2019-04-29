@@ -50,25 +50,25 @@ angular.module('bahmni.common.conceptSet')
             };
             $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
                 var totalAmount = quantity * $scope.services[index].unitCost;
-                $scope.services[index].totalAmount = totalAmount;
+                $scope.services[index].totalAmount = parseFloat(totalAmount).toFixed(2);
                 if ($scope.services[index].discount != undefined) {
-                    $scope.services[index].netPayable = totalAmount - $scope.services[index].discount;
+                    $scope.services[index].netPayable = parseFloat(totalAmount) - $scope.services[index].discount.toFixed(2);
                 } else {
-                    $scope.services[index].netPayable = totalAmount;
+                    $scope.services[index].netPayable = parseFloat(totalAmount).toFixed(2);
                 }
             };
 
             $scope.calculateNetAmount = function (discount, index) {
-                var totalAmount = $scope.services[index].totalAmount;
+                var totalAmount = parseFloat($scope.services[index].totalAmount);
                 var disccountAmount = (discount * totalAmount) / 100;
                 var netpayAmount = totalAmount - disccountAmount;
-                $scope.services[index].netPayable = totalAmount - discount;
+                $scope.services[index].netPayable = (totalAmount - discount).toFixed(2);
             };
             $scope.calTotalAmount = function () {
                 $scope.total = 0;
                 angular.forEach($scope.services, function (listItem) {
                     if (listItem.totalAmount != undefined) {
-                        $scope.total = $scope.total + listItem.totalAmount;
+                        $scope.total = $scope.total + parseFloat(listItem.totalAmount);
                     }
                 });
                 return $scope.total;
@@ -88,7 +88,7 @@ angular.module('bahmni.common.conceptSet')
                 $scope.net = 0;
                 angular.forEach($scope.services, function (listItem) {
                     if (listItem.netPayable != undefined) {
-                        $scope.net = $scope.net + listItem.netPayable;
+                        $scope.net = $scope.net + parseFloat(listItem.netPayable);
                     }
                 });
                 return $scope.net;

@@ -24,8 +24,8 @@
                          </div>
                     </td>
                     <td>
-                        <a ng-click="openMoneyReceipt(patient.uuid)" target="_blank" class="title-link">
-                             Money Receipt
+                        <a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard/concept-set-group/observations"  class="title-link">
+                            Add Money Receipt
                         </a>
                     </td>
                 </tr>
@@ -70,6 +70,7 @@
                             <thead>
                                 <tr>
                                     <th>Item Name</th>
+                                    <th>Date</th>
                                     <th>Description</th>
                                     <th>Unit Cost</th>
                                     <th>Quantity</th>
@@ -83,6 +84,7 @@
 
                                 <tr ng-repeat="service in services">
                                     <td>{{service.item}} </td>
+                                    <td>{{service.moneyReceiptDate}} </td>
                                     <td>{{service.description}} </td>
                                     <td>{{service.unitCost}}</td>
                                     <td>{{service.quantity}} </td>
