@@ -33,6 +33,7 @@ angular.module('bahmni.registration')
                 console.log($scope.genderValue); */
                 var i;
                 $scope.UICString = "";
+                $scope.birthDistrictString = "";
                 for (i = 0; i < $scope.openMRSPatient.person.attributes.length; i++) {
                     if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "UIC") {
                         console.log("in edit page");
@@ -43,6 +44,7 @@ angular.module('bahmni.registration')
                 $scope.patient = openmrsPatientMapper.map(openmrsPatient);
 
                 $scope.patient.uic = $scope.UICString;
+
                 console.log($scope.patient);
 
                 setReadOnlyFields();
