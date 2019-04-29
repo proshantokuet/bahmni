@@ -140,10 +140,15 @@
                     <label>Birth Upazilla<span class="asterick">*</span></label>
                 </div>
                 <div class="field-value">
-                    <select ng-options="row for row in locationDUpazilla track by $index"
+                    <select ng-model="patient.birthUpazilla" ng-change="handleUpdate('birthUpazilla')"
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.upazillaName for blisterPackTemplate in locationDUpazilla">
+                      <option value="">Select Birth Upazilla</option>
+                    </select>
+
+                   <!-- <select ng-options="row for row in locationDUpazilla track by $index"
                             ng-change="handleUpdate('birthUpazilla')" ng-model="patient.birthUpazilla">
                         <option value="">Select Birth Upazilla</option>
-                    </select>
+                    </select>-->
                 </div>
             </article>
         </section>
