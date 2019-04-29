@@ -1,6 +1,6 @@
 <style>
     table td, table th {
-        padding: 5px 0px;
+        padding: 5px 0px 5px 8px;
         border:none;
     }
 
@@ -320,7 +320,8 @@
             {{ searchButtonText }}
 
                    </button>
-                    <a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard"  class="right submit-btn" >Cancel</a>
+
+                    <a style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard"  class="right submit-btn" >Cancel</a>
                 </div>
 
             </form>
@@ -353,7 +354,7 @@
                     <td>{{service.netPayable}} </td>
                 </tr>
 
-                <tr style="border: 1px solid #ddd;">
+                <tr style="border: 1px solid #ddd; background: #699;color: #fff;">
                     <td>Total </td>
                     <td> </td>
                     <td> </td>

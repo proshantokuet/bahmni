@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('bahmni.common.conceptSet')
-    .controller('ConceptSetGroupController', ['$scope', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
+    .controller('ConceptSetGroupController', ['$scope', '$location', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
         'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig', '$q',
         'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate',
-        function ($scope, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
+        function ($scope, $location, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
                   encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
                   conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
@@ -128,7 +128,8 @@ angular.module('bahmni.common.conceptSet')
                     $timeout(function () {
                         $scope.enable = "true";
                         $scope.searchButtonText = "Submit";
-                        return $window.open("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard", "_self");
+                        $location.path("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard");
+                        // return $window.open("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard", "_self");
                     }, 2000);
                 }));
 

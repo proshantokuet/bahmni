@@ -69,6 +69,7 @@
 <table id="table_id" class="display">
                             <thead>
                                 <tr>
+                                    <th>#Id</th>
                                     <th>Item Name</th>
                                     <th>Date</th>
                                     <th>Description</th>
@@ -83,6 +84,7 @@
                             <tbody>
 
                                 <tr ng-repeat="service in services">
+                                    <td>{{service.spid}} </td>
                                     <td>{{service.item}} </td>
                                     <td>{{service.moneyReceiptDate}} </td>
                                     <td>{{service.description}} </td>
