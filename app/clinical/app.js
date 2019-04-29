@@ -22,13 +22,18 @@ angular.module('consultation')
         function ($stateProvider, $httpProvider, $urlRouterProvider, $bahmniTranslateProvider, $compileProvider) {
             $urlRouterProvider.otherwise('/' + Bahmni.Clinical.Constants.defaultExtensionName + '/patient/search');
             var patientSearchBackLink = {
-                label: "",
+                label: "Patient",
                 state: "search.patientsearch",
                 accessKey: "p",
                 id: "patients-link",
-                icon: "fa-users"
+                /*  icon: "fa-users"    */
+                icon: "fa-stethoscope"
             };
-            var homeBackLink = {label: "", url: "../home/index.html", accessKey: "h", icon: "fa-home"};
+            var homeBackLink = {label: "Home", url: "../home/index.html", accessKey: "h", icon: "fa-home"};
+
+            var registerBackLink = {label: "Registration", url: "../registration/index.html#/patient/new", accessKey: "r", icon: "fa-user"};
+
+            var searchBackLink = {label: "Search", url: "../registration/index.html", accessKey: "s", icon: "fa-search"};
 
         // @if DEBUG='production'
             $compileProvider.debugInfoEnabled(false);
@@ -47,7 +52,7 @@ angular.module('consultation')
                     }
                 },
                 data: {
-                    backLinks: [homeBackLink]
+                    backLinks: [homeBackLink, searchBackLink, registerBackLink]
                 },
                 resolve: {
                     retrospectiveIntialization: function (retrospectiveEntryService) {
@@ -366,7 +371,7 @@ angular.module('consultation')
             .state('patient.dashboard.observation', {
                 url: '/dashboard/observation/:observationUuid',
                 data: {
-                    backLinks: [homeBackLink]
+                    backLinks: [homeBackLink, searchBackLink, registerBackLink]
                 },
                 resolve: {
                     observation: function (observationsService, $stateParams) {
