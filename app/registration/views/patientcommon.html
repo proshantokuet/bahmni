@@ -173,7 +173,7 @@
             <ng-include src="'views/dob.html'"></ng-include>
         </section>
 
-        <section class="form-field form-field-gender">
+       <!-- <section class="form-field form-field-gender">
             <article class="form-field right-form-field" ng-class="::{'right-form-field' : true}">
                 <div class="field-attribute">
                     <label>Tentative Age<span class="asterick">*</span></label>
@@ -184,7 +184,7 @@
                     </div>
                 </div>
             </article>
-        </section>
+        </section>-->
 
         <section class="age-wrapper">
             <ng-include src="'views/age.html'"></ng-include>
@@ -232,7 +232,7 @@
                  strict-autocomplete-from-level="::addressHierarchyConfigs.strictAutocompleteFromLevel"></section>
 
         <legend class="registraion_legend" ng-if="patientConfiguration.customAttributeRows().length > 0">
-            <span class="mylegend">সাধারণ তথ্য <!-- {{ ::'REGISTRATION_LABEL_OTHER_INFO' | translate}} --></span>
+            <span class="mylegend"> {{ ::'REGISTRATION_LABEL_OTHER_INFO' | translate}}</span>
         </legend>
 
         <section id="otherInfo"  class="form-field-inline clearfix"

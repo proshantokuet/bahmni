@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .service('patientServiceStrategy', ['$http', '$q', '$rootScope', function ($http, $q, $rootScope) {
+    .service('patientServiceStrategy', ['$http', '$bahmniCookieStore', '$q', '$rootScope', function ($http, $bahmniCookieStore, $q, $rootScope) {
         var openmrsUrl = Bahmni.Registration.Constants.openmrsUrl;
         var baseOpenMRSRESTURL = Bahmni.Registration.Constants.baseOpenMRSRESTURL;
 
@@ -37,10 +37,11 @@ angular.module('bahmni.registration')
         };
 
         var create = function (patient, jumpAccepted) {
-            var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient);
+            var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient, $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName));
             var randomIdentifier = createUUID();
             console.log(":generated random identifier: " + randomIdentifier);
             data.patient.identifiers[0].identifier = randomIdentifier;
+            console.log(data.patient);
             var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
             return $http.post(url, data, {
                 withCredentials: true,

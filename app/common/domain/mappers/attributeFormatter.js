@@ -40,8 +40,7 @@ Bahmni.Common.Domain.AttributeFormatter = (function () {
     };
 
     var setAttributeValue = function setAttributeValue (attributeType, attr, value) {
-        if (attributeType.name == "UIC" || attributeType.name == "birthRank"
-        ) {
+        if (attributeType.name == "UIC" || attributeType.name == "birthRank" || attributeType.name == "orgUnit" || attributeType.name == "ClinicCode" || attributeType.name == "ClinicName") {
             attr.value = "";
         } else if (value === "" || value === null || value === undefined || value.conceptUuid === null) {
             attr.voided = true;
