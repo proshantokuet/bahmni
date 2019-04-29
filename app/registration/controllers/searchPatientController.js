@@ -79,6 +79,10 @@ angular.module('bahmni.registration')
                 }).trim();
             };
 
+            $scope.openMoneyReceipt = function (patientUuid) {
+                $window.open("../clinical/index.html#/default/patient/" + patientUuid + "/dashboard/concept-set-group/observations");
+            };
+
             $scope.getProgramAttributeValues = function (result) {
                 var attributeValues = result && result.patientProgramAttributeValue && result.patientProgramAttributeValue[$scope.programAttributesSearchConfig.field];
                 var commaSeparatedAttributeValues = "";

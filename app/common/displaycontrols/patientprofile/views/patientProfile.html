@@ -102,7 +102,10 @@
 <script type="text/javascript">
 
 //var $jq = jQuery.noConflict();
-$(document).ready(function() {
-	$('#table_id').DataTable();
-} );
+setTimeout(function(){
+    $(document).ready(function() {
+	    $('#table_id').DataTable();
+    } );
+}, 3000);
+
 </script>

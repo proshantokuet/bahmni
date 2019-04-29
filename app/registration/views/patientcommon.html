@@ -87,17 +87,6 @@
             </article>
         </section>
 
-        <section class="age-wrapper">
-            <div ng-if="::!dobMandatory">
-                <ng-include src="'views/age.html'"></ng-include>
-                <ng-include src="'views/dob.html'"></ng-include>
-            </div>
-            <div ng-if="::dobMandatory">
-                <ng-include src="'views/dob.html'"></ng-include>
-                <ng-include src="'views/age.html'"></ng-include>
-            </div>
-        </section>
-
         <section class="form-field form-field-gender">
             <article class="form-field">
                 <div class="field-attribute">
@@ -133,8 +122,13 @@
                 </div>
 
                 <div class="field-value">
-                    <select >
-                        <option ng-repeat="row in locationDistricts track by $index" value="{{row}}">{{row}}</option>
+                   <!-- <select ng-options="row.districtName for row in locationDistricts track by $index"
+                            ng-change="getBirthUpazilla(patient.birthDistrict); handleUpdate('birthDistrict')" ng-model="patient.birthDistrict">
+                    </select>-->
+
+                    <select ng-model="patient.birthDistrict" ng-change="getBirthUpazilla(patient.birthDistrict); handleUpdate('birthDistrict')"
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.districtName for blisterPackTemplate in locationDistricts">
+                      <option value="">Select Birth District</option>
                     </select>
                 </div>
             </article>
@@ -145,10 +139,10 @@
                 <div class="field-attribute">
                     <label>Birth Upazilla<span class="asterick">*</span></label>
                 </div>
-
                 <div class="field-value">
-                    <select >
-                        <option ng-repeat="row in locationDistricts track by $index" value="{{row}}">{{row}}</option>
+                    <select ng-options="row for row in locationDUpazilla track by $index"
+                            ng-change="handleUpdate('birthUpazilla')" ng-model="patient.birthUpazilla">
+                        <option value="">Select Birth Upazilla</option>
                     </select>
                 </div>
             </article>
@@ -170,6 +164,27 @@
             </article>
         </section>
 
+        <section class="age-wrapper">
+            <ng-include src="'views/dob.html'"></ng-include>
+        </section>
+
+        <section class="form-field form-field-gender">
+            <article class="form-field right-form-field" ng-class="::{'right-form-field' : true}">
+                <div class="field-attribute">
+                    <label>Tentative Age<span class="asterick">*</span></label>
+                </div>
+                <div class="field-value">
+                    <div class="field-value">
+                        <input type=date ng-model="patient.tentativeAge">
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="age-wrapper">
+            <ng-include src="'views/age.html'"></ng-include>
+        </section>
+
         <section class="form-field form-field-gender">
             <article class="form-field right-form-field" ng-class="::{'right-form-field' : true}">
                 <div class="field-attribute">
@@ -178,7 +193,7 @@
 
                 <div class="field-value">
                     <div class="field-value">
-                        <input type=text ng-model="patient.uic" ng-value="uic" id="UIC">
+                        <input type=text ng-model="patient.uic" id="UIC" readonly>
                     </div>
                 </div>
             </article>
@@ -187,12 +202,12 @@
         <section class="form-field form-field-gender">
             <article class="form-field right-form-field" ng-class="::{'right-form-field' : true}">
                 <div class="field-attribute">
-                    <label>Tentative Age<span class="asterick">*</span></label>
+                    <label>System Generated Id</label>
                 </div>
 
                 <div class="field-value">
                     <div class="field-value">
-                        <input type=date ng-model="patient.tentativeAge">
+                        <input type=text ng-model="patient.generatedId">
                     </div>
                 </div>
             </article>
@@ -219,13 +234,13 @@
                  ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
             <article class="form-field" ng-repeat="attribute in ::attributeRow"
                      ng-class="::{'right-form-field' : $index%2 != 0}">
-                <div ng-if="isAditionalInfo(attribute.name)">
+                <!--<div ng-if="isAditionalInfo(attribute.name)">-->
                 <span>
                     <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
                                  is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                                  get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
                 </span>
-                </div>
+               <!-- </div>-->
             </article>
         </section>
     </div>

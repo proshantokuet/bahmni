@@ -21,6 +21,8 @@ angular.module('bahmni.registration')
 
             $scope.locationDistricts = [];
 
+            $scope.locationDUpazilla = [];
+
             $scope.uic = "____________";
 
             $scope.riskyHabits = [
@@ -298,7 +300,8 @@ angular.module('bahmni.registration')
                     // var output = getSlicedString(a, gender, position, 1);
                     var output = testReplaceAt(a, position, gender);
                     console.log(output);
-                    $('#UIC').val(output);
+                    // $('#UIC').val(output);
+                    $scope.patient.uic = output;
                 }
                 if (attribute == 'givenName') {
                     /* var e = document.getElementById("MaritalStatus");
@@ -313,7 +316,8 @@ angular.module('bahmni.registration')
                     var position = 6;
                     var output = testReplaceAt(a, position, firstName);
                     console.log(output);
-                    $('#UIC').val(output);
+                    // $('#UIC').val(output);
+                    $scope.patient.uic = output;
                 }
                 if (attribute == 'birthRank') {
                     /* var e = document.getElementById("MaritalStatus");
@@ -324,12 +328,14 @@ angular.module('bahmni.registration')
                     var position = 8;
                     var output = testReplaceAt(a, position, birthRank);
                     console.log(output);
-                    $('#UIC').val(output);
+                    // $('#UIC').val(output);
+                    $scope.patient.uic = output;
                 }
                 if (attribute == 'birthDistrict') {
                     /* var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text; */
-                    var birthDistrict = $scope.patient[attribute];
+                    var birthDistrict = $scope.patient.birthDistrict.districtName;
+                    console.log(birthDistrict);
                     if (birthDistrict.length > 2) {
                         birthDistrict = birthDistrict.slice(0, 2);
                         console.log(birthDistrict);
@@ -339,7 +345,8 @@ angular.module('bahmni.registration')
                     var position = 1;
                     var output = testReplaceAt(a, position, birthDistrict);
                     console.log(output);
-                    $('#UIC').val(output);
+                    // $('#UIC').val(output);
+                    $scope.patient.uic = output;
                 }
                 if (attribute == 'birthMothersFirstName') {
                     /* var e = document.getElementById("MaritalStatus");
@@ -354,7 +361,24 @@ angular.module('bahmni.registration')
                     var position = 10;
                     var output = testReplaceAt(a, position, birthDistrict);
                     console.log(output);
-                    $('#UIC').val(output);
+                    // $('#UIC').val(output);
+                    $scope.patient.uic = output;
+                }
+                if (attribute == 'birthUpazilla') {
+                    /* var e = document.getElementById("MaritalStatus");
+                    var maritalStatus = e.options[e.selectedIndex].text; */
+                    var birthDistrict = $scope.patient[attribute];
+                    if (birthDistrict.length > 3) {
+                        birthDistrict = birthDistrict.slice(0, 3);
+                        console.log(birthDistrict);
+                    }
+
+                    var a = $('#UIC').val();
+                    var position = 3;
+                    var output = testReplaceAt(a, position, birthDistrict);
+                    console.log(output);
+                    // $('#UIC').val(output);
+                    $scope.patient.uic = output;
                 }
             };
 
@@ -363,16 +387,41 @@ angular.module('bahmni.registration')
                 return newS;
             };
 
-            var testService = function () {
-                return locationService.getAllByTag("Login Location").then(function (response) {
+            var getBirthDistricts = function () {
+                return locationService.getAllByTag("District").then(function (response) {
+                    $scope.locations = response.data.results;
+                    var i = 0;
+                    for (i = 0; i < $scope.locations.length; i++) {
+                        $scope.locationDistricts.push({districtName: $scope.locations[i].name, uuid: $scope.locations[i].uuid});
+                        // console.log($scope.locations[i].uuid);
+                    }
+                    return response;
+                });
+            };
+
+            $scope.getBirthUpazilla = function (districtName) {
+                console.log(districtName);
+
+                return locationService.getByUuid(districtName.uuid).then(function (response) {
+                    console.log(response.childLocations);
+                    $scope.locationDUpazilla = [];
+                    var i = 0;
+                    for (i = 0; i < response.childLocations.length; i++) {
+                        $scope.locationDUpazilla.push(response.childLocations[i].display);
+                        // console.log($scope.locations[i].uuid);
+                    }
+                    return response;
+                });
+
+                /* return locationrService.getAllByTag("Login Location").then(function (response) {
                     $scope.locations = response.data.results;
                     var i = 0;
                     for (i = 0; i < $scope.locations.length; i++) {
                         $scope.locationDistricts.push($scope.locations[i].name);
+                        // console.log($scope.locations[i].uuid);
                     }
-                    console.log($scope.locationDistricts);
                     return response;
-                });
+                }); */
             };
 
             var getSlicedString = function (original, rep, pos, rem) {
@@ -723,7 +772,7 @@ angular.module('bahmni.registration')
                 if ($scope.patientLoaded) {
                     executeShowOrHideRules();
                 }
-                testService();
+                getBirthDistricts();
                 /* $timeout(function () {
                     var attributesToHide = [];
                     attributesToHide.push('id_Used_7.1%_Chlorohexidin');

@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('bahmni.common.conceptSet')
-    .controller('ConceptSetGroupController', ['$scope', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
+    .controller('ConceptSetGroupController', ['$scope', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
         'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig', '$q',
         'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate',
-        function ($scope, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
+        function ($scope, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
                   encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
                   conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
@@ -48,16 +48,16 @@ angular.module('bahmni.common.conceptSet')
                 console.log(index);
                 $scope.services[index].unitCost = item.unitCost;
             };
-            $scope.calculateTotalAmount = function (quantity, index) {
+            $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
                 var totalAmount = quantity * $scope.services[index].unitCost;
                 $scope.services[index].totalAmount = totalAmount;
-                $scope.services[index].netPayable = totalAmount;
+                if ($scope.services[index].discount != undefined) {
+                    $scope.services[index].netPayable = totalAmount - $scope.services[index].discount;
+                } else {
+                    $scope.services[index].netPayable = totalAmount;
+                }
             };
-            $scope.calculateTotalAmountFromUnitCost = function (quantity, index) {
-                var totalAmount = quantity * $scope.services[index].unitCost;
-                $scope.services[index].totalAmount = totalAmount;
-                $scope.services[index].netPayable = totalAmount;
-            };
+
             $scope.calculateNetAmount = function (discount, index) {
                 var totalAmount = $scope.services[index].totalAmount;
                 var disccountAmount = (discount * totalAmount) / 100;
@@ -65,12 +65,33 @@ angular.module('bahmni.common.conceptSet')
                 $scope.services[index].netPayable = totalAmount - discount;
             };
             $scope.calTotalAmount = function () {
-                $scope.to = 0;
+                $scope.total = 0;
                 angular.forEach($scope.services, function (listItem) {
-                    console.log(listItem.totalAmount);
-                    $scope.to = $scope.to + listItem.totalAmount;
+                    if (listItem.totalAmount != undefined) {
+                        $scope.total = $scope.total + listItem.totalAmount;
+                    }
                 });
-                return $scope.to;
+                return $scope.total;
+            };
+
+            $scope.calTotalDiscount = function () {
+                $scope.totalDiscount = 0;
+                angular.forEach($scope.services, function (listItem) {
+                    if (listItem.discount != undefined) {
+                        $scope.totalDiscount = $scope.totalDiscount + listItem.discount;
+                    }
+                });
+                return $scope.totalDiscount;
+            };
+
+            $scope.calTotalNetAmount = function () {
+                $scope.net = 0;
+                angular.forEach($scope.services, function (listItem) {
+                    if (listItem.netPayable != undefined) {
+                        $scope.net = $scope.net + listItem.netPayable;
+                    }
+                });
+                return $scope.net;
             };
 
             var saveMoneyReceipt = function (data) {
@@ -107,9 +128,50 @@ angular.module('bahmni.common.conceptSet')
                     $timeout(function () {
                         $scope.enable = "true";
                         $scope.searchButtonText = "Submit";
-                        return $window.open("#/default/patient/3d3de399-c4bf-4f5e-bc23-0f4c15a7485d/dashboard", "_self");
+                        return $window.open("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard", "_self");
                     }, 2000);
                 }));
+
+               /* var moneyReceiptObj = {};
+                moneyReceiptObj['mid'] = "";
+                moneyReceiptObj['patientName'] = data.givenName;
+                moneyReceiptObj['patientUuid'] = data.uuid;
+                moneyReceiptObj['uic'] = data.uic;
+                moneyReceiptObj['contact'] = "01923445667";
+                moneyReceiptObj['dob'] = "2019-02-23";
+                moneyReceiptObj['address'] = data.address;
+                moneyReceiptObj['clinicName'] = data.clinicName;
+                moneyReceiptObj['clinicCode'] = data.clinicCode;
+                moneyReceiptObj['sateliteClinicId'] = data.sateliteClinicId;
+                moneyReceiptObj['teamNo'] = data.teamNo;
+                moneyReceiptObj['moneyReceiptDate'] = data.moneyReceiptDate;
+                moneyReceiptObj['reference'] = data.reference;
+                moneyReceiptObj['referenceId'] = data.referenceId;
+                moneyReceiptObj['shift'] = "Day";
+                moneyReceiptObj['wealth'] = "Poor";
+                moneyReceiptObj['servicePoint'] = data.servicePoint;
+                moneyReceiptObj['gender'] = data.gender;
+                moneyReceiptObj['slipNo'] = data.slipNo;
+                moneyReceiptObj['clinicType'] = "BmoC";
+
+                var servicesObj = {};
+                servicesObj['item'] = data.item;
+                servicesObj['description'] = data.description;
+                servicesObj['unitCost'] = data.unitCost;
+                servicesObj['quantity'] = data.quantity;
+                servicesObj['totalAmount'] = data.totalAmount;
+                servicesObj['discount'] = data.discount;
+                servicesObj['netPayable'] = data.netPayable;
+                servicesObj['moneyReceiptDate'] = data.moneyReceiptDate;
+
+                jsonData["moneyReceipt"] = moneyReceiptObj;
+                jsonData["services"] = [];
+
+                var jsonArrayObject = {};
+                jsonArrayObject["spid"] = servicesObj;
+
+                jsonData["services"].push(jsonArrayObject);
+                console.log(jsonData); */
             };
             $scope.togglePref = function (conceptSet, conceptName) {
                 $rootScope.currentUser.toggleFavoriteObsTemplate(conceptName);

@@ -50,6 +50,26 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
             }
         };
 
+        var i = 0;
+        for (i = 0; i < openMRSPatient.patient.person.attributes.length; i++) {
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "UIC") {
+                console.log("UIC in createmapper");
+                console.log(patient.uic);
+                openMRSPatient.patient.person.attributes[i].value = patient.uic;
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "birthRank") {
+                console.log("birthRank in createmapper");
+                console.log(patient.birthRank);
+                openMRSPatient.patient.person.attributes[i].value = patient.birthRank;
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "birthDistrict") {
+                console.log("birthDistrict in createmapper");
+                console.log(patient.birthDistrict.districtName);
+                openMRSPatient.patient.person.attributes[i].value = patient.birthDistrict.districtName;
+            }
+        }
+        console.log(openMRSPatient);
+
         this.setImage(patient, openMRSPatient);
         openMRSPatient.relationships = patient.relationships;
         return openMRSPatient;

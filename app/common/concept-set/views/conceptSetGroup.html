@@ -253,7 +253,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                          <label>Unit Cost<span class="asterick">*</span></label>
-                                                        <input ng-model="service.unitCost" ng-change="calculateTotalAmountFromUnitCost(service.quantity,$index)" style="width: 5em;" type="number"  step="any" ng-required="true"/>
+                                                        <input ng-model="service.unitCost" style="width: 5em;" type="number"  step="any" ng-required="true" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -264,7 +264,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Quantity<span class="asterick">*</span></label>
-                                                        <input ng-model="service.quantity" ng-change="calculateTotalAmount(service.quantity,$index)" style="width: 3em;" type="number" step="any" ng-required="true"/>
+                                                        <input ng-model="service.quantity" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 3em;" type="number" min="0" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -275,7 +275,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                          <label>Total Amount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.totalAmount" style="width: 5em;" type="number" step="any" ng-required="true"/>
+                                                        <input ng-model="service.totalAmount" style="width: 5em;" type="number" step="any" ng-required="true" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -286,7 +286,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Discount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.discount"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" step="any" ng-required="true"/>
+                                                        <input ng-model="service.discount"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" min="0" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -297,7 +297,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Net Payable Amount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.netPayable" style="width: 5em;" type="number" step="any" ng-required="true"/>
+                                                        <input ng-model="service.netPayable" style="width: 5em;" type="number" step="any" ng-required="true" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -359,8 +359,8 @@
                     <td></td>
                     <td> </td>
                     <td>{{calTotalAmount()}} </td>
-                    <td> </td>
-                    <td>234</td>
+                    <td>{{calTotalDiscount()}}</td>
+                    <td>{{calTotalNetAmount()}}</td>
                 </tr>
                 </tbody>
             </table>

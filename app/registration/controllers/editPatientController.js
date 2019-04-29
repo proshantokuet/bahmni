@@ -26,7 +26,25 @@ angular.module('bahmni.registration')
 
             var successCallBack = function (openmrsPatient) {
                 $scope.openMRSPatient = openmrsPatient["patient"];
+
+                console.log($scope.openMRSPatient);
+
+                /* $scope.genderValue = $scope.openMRSPatient.person.gender;
+                console.log($scope.genderValue); */
+                var i;
+                $scope.UICString = "";
+                for (i = 0; i < $scope.openMRSPatient.person.attributes.length; i++) {
+                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "UIC") {
+                        console.log("in edit page");
+                        $scope.UICString = $scope.openMRSPatient.person.attributes[i].value;
+                    }
+                }
+
                 $scope.patient = openmrsPatientMapper.map(openmrsPatient);
+
+                $scope.patient.uic = $scope.UICString;
+                console.log($scope.patient);
+
                 setReadOnlyFields();
                 expandDataFilledSections();
                 $scope.patientLoaded = true;
