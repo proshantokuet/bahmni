@@ -49,6 +49,24 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
             };
         });
 
+        var i = 0;
+        for (i = 0; i < openMRSPatientProfile.patient.person.attributes.length; i++) {
+            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "birthDistrict") {
+                if (patient.birthDistrict.districtName) {
+                    openMRSPatientProfile.patient.person.attributes[i].value = patient.birthDistrict.districtName;
+                } else {
+                    openMRSPatientProfile.patient.person.attributes[i].voided = true;
+                }
+            }
+            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "birthUpazilla") {
+                if (patient.birthUpazilla.upazillaName) {
+                    openMRSPatientProfile.patient.person.attributes[i].value = patient.birthUpazilla.upazillaName;
+                } else {
+                    openMRSPatientProfile.patient.person.attributes[i].voided = true;
+                }
+            }
+        }
+
         this.setImage(patient, openMRSPatientProfile);
 
         if (patient.relationships) {
@@ -69,7 +87,8 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
         patientAttributeTypes.forEach(function (attributeType) {
             var attr = {
                 attributeType: {
-                    uuid: attributeType.uuid
+                    uuid: attributeType.uuid,
+                    name: attributeType.name
                 }
             };
             var savedAttribute = openMRSPatient.person.attributes.filter(function (attribute) {
