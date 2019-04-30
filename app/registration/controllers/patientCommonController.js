@@ -325,12 +325,14 @@ angular.module('bahmni.registration')
                     /* var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text; */
                     var birthRank = $scope.patient[attribute];
-                    if (birthRank.value <= 9) {
-                        $scope.patient.birthRank = "0" + input.value;
+                    if (parseInt(birthRank) <= 9) {
+                        $scope.patient.birthRank = "0" + parseInt(birthRank);
+                    } else {
+                        $scope.patient.birthRank = birthRank.slice(1, 3);
                     }
                     var a = $('#UIC').val();
                     var position = 8;
-                    var output = testReplaceAt(a, position, birthRank);
+                    var output = testReplaceAt(a, position, $scope.patient.birthRank.slice(0, 2));
                     console.log(output);
                     // $('#UIC').val(output);
                     $scope.patient.uic = output;
