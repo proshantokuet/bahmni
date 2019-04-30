@@ -325,7 +325,9 @@ angular.module('bahmni.registration')
                     /* var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text; */
                     var birthRank = $scope.patient[attribute];
-
+                    if (birthRank.value <= 9) {
+                        $scope.patient.birthRank = "0" + input.value;
+                    }
                     var a = $('#UIC').val();
                     var position = 8;
                     var output = testReplaceAt(a, position, birthRank);

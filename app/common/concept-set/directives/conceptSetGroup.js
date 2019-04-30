@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('bahmni.common.conceptSet')
-    .controller('ConceptSetGroupController', ['$scope', '$location', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
+    .controller('ConceptSetGroupController', ['$scope', '$state', '$location', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
         'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig', '$q',
         'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate',
-        function ($scope, $location, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
+        function ($scope, $state, $location, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
                   encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
                   conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
@@ -28,7 +28,7 @@ angular.module('bahmni.common.conceptSet')
                 console.log(obj);
                 return obj.price;
             };
-            $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}, {name: "EPI"}, {name: "Garments"}, {name: "Coporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "N/A"}];
+            $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}, {name: "EPI"}, {name: "Garments"}, {name: "Coporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "CSP"}, {name: "N/A"}];
             $scope.references = [{name: "Self"}, {name: "CSO"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
             $scope.services = [{"discount": 0}];
             $scope.patientInfo = {clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName, clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId, orgUnit: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).orgUnit};
@@ -114,18 +114,25 @@ angular.module('bahmni.common.conceptSet')
                 patientInfo['patientName'] = patient.givenName + " " + patient.familyName;
                 patientInfo['patientUuid'] = patient.uuid;
                 patientInfo['uic'] = patient.UIC.value;
-                patientInfo['contact'] = patient.MobileNo.value;
-                patientInfo['dob'] = "2019-02-23";
+                if (patient.MobileNo != undefined) {
+                    patientInfo['contact'] = patient.MobileNo.value;
+                }
                 patientInfo['gender'] = patient.gender;
                 patientInfo['dob'] = patient.birthdate;
-                patientInfo['wealth'] = patient.FinancialStatus.value.display;
+                if (patient.FinancialStatus != undefined) {
+                    patientInfo['wealth'] = patient.FinancialStatus.value.display;
+                }
                 jsonData["moneyReceipt"] = patientInfo;
                 jsonData["services"] = services;
 
                 return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
                     console.log("after premise");
                     console.log(results);
-                    return $window.open("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard", "_self");
+                    $state.go("patient.dashboard.show", {
+                        patientUuid: patient.uuid
+                    }, {reload: true}
+                    );
+                    // return $window.open("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY", "_self");
                 }));
 
                /* var moneyReceiptObj = {};

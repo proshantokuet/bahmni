@@ -95,7 +95,7 @@
 
                 <div class="field-value">
                     <div class="field-value">
-                        <input type=text ng-model="patient.birthMothersFirstName" ng-change="handleUpdate('birthMothersFirstName')">
+                        <input type=text ng-model="patient.birthMothersFirstName" ng-change="handleUpdate('birthMothersFirstName')" ng-required="true">
                     </div>
                 </div>
             </article>
@@ -109,7 +109,7 @@
 
                 <div class="field-value">
                     <div class="field-value">
-                        <input type=text ng-model="patient.birthRank" ng-change="handleUpdate('birthRank')">
+                        <input type=text ng-model="patient.birthRank" ng-change="handleUpdate('birthRank')" ng-required="true">
                     </div>
                 </div>
             </article>
@@ -127,7 +127,7 @@
                     </select>-->
 
                     <select ng-model="patient.birthDistrict" ng-change="getBirthUpazilla(patient.birthDistrict); handleUpdate('birthDistrict')"
-                            data-ng-options="blisterPackTemplate as blisterPackTemplate.districtName for blisterPackTemplate in locationDistricts">
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.districtName for blisterPackTemplate in locationDistricts" ng-required="true">
                       <option value="">Select Birth District</option>
                     </select>
                 </div>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="field-value">
                     <select ng-model="patient.birthUpazilla" ng-change="handleUpdate('birthUpazilla')"
-                            data-ng-options="blisterPackTemplate as blisterPackTemplate.upazillaName for blisterPackTemplate in locationDUpazilla">
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.upazillaName for blisterPackTemplate in locationDUpazilla" ng-required="true">
                       <option value="">Select Birth Upazilla</option>
                     </select>
 
@@ -198,7 +198,7 @@
 
                 <div class="field-value">
                     <div class="field-value">
-                        <input type=text ng-model="patient.uic" id="UIC" readonly>
+                        <input type=text ng-model="patient.uic" id="UIC" readonly required="required">
                     </div>
                 </div>
             </article>
