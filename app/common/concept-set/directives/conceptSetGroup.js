@@ -44,9 +44,11 @@ angular.module('bahmni.common.conceptSet')
                 }
             };
             $scope.onChanged = function (item, index) {
-                console.log(item);
-                console.log(index);
                 $scope.services[index].unitCost = item.unitCost;
+                $scope.services[index].quantity = "";
+                $scope.services[index].totalAmount = 0;
+                $scope.services[index].discount = 0;
+                $scope.services[index].netPayable = 0;
             };
             $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
                 var totalAmount = quantity * $scope.services[index].unitCost;

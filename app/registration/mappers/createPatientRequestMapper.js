@@ -53,27 +53,18 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
         var i = 0;
         for (i = 0; i < openMRSPatient.patient.person.attributes.length; i++) {
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "UIC") {
-                console.log("UIC in createmapper");
-                console.log(patient.uic);
                 openMRSPatient.patient.person.attributes[i].value = patient.uic;
             }
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "birthRank") {
-                console.log("birthRank in createmapper");
-                console.log(patient.birthRank);
                 openMRSPatient.patient.person.attributes[i].value = patient.birthRank;
             }
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "birthDistrict") {
-                console.log("birthDistrict in createmapper");
-                console.log(patient.birthDistrict.districtName);
                 openMRSPatient.patient.person.attributes[i].value = patient.birthDistrict.districtName;
             }
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "birthUpazilla") {
-                console.log("birthDistrict in createmapper");
-                console.log(patient.birthUpazilla.upazillaName);
                 openMRSPatient.patient.person.attributes[i].value = patient.birthUpazilla.upazillaName;
             }
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "orgUnit") {
-                console.log("orgUnit");
                 openMRSPatient.patient.person.attributes[i].value = cookieObj.orgUnit;
             }
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "ClinicCode") {

@@ -128,7 +128,7 @@
 
                     <select ng-model="patient.birthDistrict" ng-change="getBirthUpazilla(patient.birthDistrict); handleUpdate('birthDistrict')"
                             data-ng-options="blisterPackTemplate as blisterPackTemplate.districtName for blisterPackTemplate in locationDistricts" ng-required="true">
-                      <option value="">Select Birth District</option>
+
                     </select>
                 </div>
             </article>
@@ -169,10 +169,6 @@
             </article>
         </section>
 
-        <section class="age-wrapper">
-            <ng-include src="'views/dob.html'"></ng-include>
-        </section>
-
        <!-- <section class="form-field form-field-gender">
             <article class="form-field right-form-field" ng-class="::{'right-form-field' : true}">
                 <div class="field-attribute">
@@ -188,6 +184,10 @@
 
         <section class="age-wrapper">
             <ng-include src="'views/age.html'"></ng-include>
+        </section>
+
+         <section class="age-wrapper">
+            <ng-include src="'views/dob.html'"></ng-include>
         </section>
 
         <section class="form-field form-field-gender">

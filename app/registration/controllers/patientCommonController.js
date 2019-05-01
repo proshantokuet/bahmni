@@ -316,7 +316,7 @@ angular.module('bahmni.registration')
 
                     var a = $('#UIC').val();
                     var position = 6;
-                    var output = testReplaceAt(a, position, firstName);
+                    var output = testReplaceAt(a, position, firstName.toUpperCase());
                     console.log(output);
                     // $('#UIC').val(output);
                     $scope.patient.uic = output;
@@ -341,7 +341,6 @@ angular.module('bahmni.registration')
                     /* var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text; */
                     var birthDistrict = $scope.patient.birthDistrict.districtName;
-                    console.log(birthDistrict);
                     if (birthDistrict.length > 2) {
                         birthDistrict = birthDistrict.slice(0, 2);
                         console.log(birthDistrict);
@@ -349,7 +348,7 @@ angular.module('bahmni.registration')
 
                     var a = $('#UIC').val();
                     var position = 1;
-                    var output = testReplaceAt(a, position, birthDistrict);
+                    var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
                     console.log(output);
                     // $('#UIC').val(output);
                     $scope.patient.uic = output;
@@ -365,25 +364,28 @@ angular.module('bahmni.registration')
 
                     var a = $('#UIC').val();
                     var position = 10;
-                    var output = testReplaceAt(a, position, birthDistrict);
+                    var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
                     console.log(output);
                     // $('#UIC').val(output);
                     $scope.patient.uic = output;
                 }
                 if (attribute == 'birthUpazilla') {
-                    var birthDistrict = $scope.patient.birthUpazilla.upazillaCode;
-                    console.log(birthDistrict);
-                    if (birthDistrict.length >= 3) {
-                        birthDistrict = birthDistrict.slice(0, 3);
+                    if ($scope.patient.birthUpazilla != undefined) {
+                        var birthDistrict = $scope.patient.birthUpazilla.upazillaCode;
                         console.log(birthDistrict);
+                        if (birthDistrict != null) {
+                            if (birthDistrict.length >= 3) {
+                                birthDistrict = birthDistrict.slice(0, 3);
+                            }
+                            var a = $('#UIC').val();
+                            var position = 3;
+                            var output = testReplaceAt(a, position, birthDistrict);
+                            $scope.patient.uic = output;
+                        } else {
+                            alert("Upzilla code is not defined");
+                            $scope.patient.birthUpazilla = "";
+                        }
                     }
-
-                    var a = $('#UIC').val();
-                    var position = 3;
-                    var output = testReplaceAt(a, position, birthDistrict);
-                    console.log(output);
-                    // $('#UIC').val(output);
-                    $scope.patient.uic = output;
                 }
             };
 
@@ -406,19 +408,19 @@ angular.module('bahmni.registration')
 
             $scope.getBirthUpazilla = function (districtName) {
                 console.log(districtName);
-
-                return locationService.getByUuid(districtName.uuid).then(function (response) {
-                    console.log(response);
-                    $scope.locationDUpazilla = [];
-                    $scope.locationUpazillas = [];
-                    var i = 0;
-                    for (i = 0; i < response.childLocations.length; i++) {
-                        console.log(":upazilla: " + response.childLocations[i]);
-                        // $scope.locationDUpazilla.push(response.childLocations[i].display);
-                        $scope.getCode(response.childLocations[i].uuid);
-                    }
-                    return response;
-                });
+                if (districtName != undefined) {
+                    return locationService.getByUuid(districtName.uuid).then(function (response) {
+                        console.log(response);
+                        $scope.locationDUpazilla = [];
+                        $scope.locationUpazillas = [];
+                        var i = 0;
+                        for (i = 0; i < response.childLocations.length; i++) {
+                            console.log(":upazilla: " + response.childLocations[i]);
+                            $scope.getCode(response.childLocations[i].uuid);
+                        }
+                        return response;
+                    });
+                }
             };
 
             $scope.getCode = function (uuid) {
