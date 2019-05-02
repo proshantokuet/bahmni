@@ -29,23 +29,7 @@ angular.module('bahmni.common.patient')
 
         this.search = function (query, offset, identifier) {
             offset = offset || 0;
-
-            if (isNaN(query)) {
-                return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {
-                    method: "GET",
-                    params: {
-                        q: query,
-                        startIndex: offset,
-                        identifier: identifier,
-                        patientAttributes: ["motherNameEnglish"],
-                        patientSearchResultsConfig: ["motherNameEnglish"],
-                        addressFieldName: ["address2"],
-                        addressSearchResultsConfig: ["address2"],
-                        loginLocationUuid: sessionService.getLoginLocationUuid()
-                    },
-                    withCredentials: true
-                });
-            } else {
+            if (query.toString().length > 10 && !isNaN(query)) {
                 return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {
                     method: "GET",
                     params: {
@@ -57,6 +41,21 @@ angular.module('bahmni.common.patient')
                         addressFieldValue: "",
                         patientSearchResultsConfig: "phoneNumber",
                         programAttributeFieldValue: "",
+                        addressFieldName: ["address2"],
+                        addressSearchResultsConfig: ["address2"],
+                        loginLocationUuid: sessionService.getLoginLocationUuid()
+                    },
+                    withCredentials: true
+                });
+            } else {
+                return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {
+                    method: "GET",
+                    params: {
+                        q: query,
+                        startIndex: offset,
+                        identifier: identifier,
+                        patientAttributes: ["motherNameEnglish"],
+                        patientSearchResultsConfig: ["motherNameEnglish"],
                         addressFieldName: ["address2"],
                         addressSearchResultsConfig: ["address2"],
                         loginLocationUuid: sessionService.getLoginLocationUuid()

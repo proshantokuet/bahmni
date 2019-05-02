@@ -1,0 +1,2259 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for registration/controllers/patientCommonController.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">registration/controllers/patientCommonController.js</span></h1>
+    <h2>
+        Statements: <span class="metric">43.66% <small>(203 / 465)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">24.39% <small>(40 / 164)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">46.88% <small>(30 / 64)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">43.66% <small>(203 / 465)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">registration/controllers/</a> &#187; patientCommonController.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-yes">39</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('bahmni.registration')
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', '$timeout', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state',
+        function ($scope, $rootScope, $http, $timeout, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state) {
+            var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
+            var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
+            var personAttributes = [];
+            var caste;
+            $scope.showMiddleName = appService.getAppDescriptor().getConfigValue("showMiddleName");
+            $scope.showLastName = appService.getAppDescriptor().getConfigValue("showLastName");
+            $scope.isLastNameMandatory = $scope.showLastName &amp;&amp; appService.getAppDescriptor().getConfigValue("isLastNameMandatory");
+            $scope.showBirthTime = appService.getAppDescriptor().getConfigValue("showBirthTime") != null
+                ? appService.getAppDescriptor().getConfigValue("showBirthTime") : <span class="branch-1 cbranch-no" title="branch not covered" >true;</span>  // show birth time by default
+            $scope.genderCodes = Object.keys($rootScope.genderMap);
+            $scope.dobMandatory = appService.getAppDescriptor().getConfigValue("dobMandatory") || false;
+            $scope.readOnlyExtraIdentifiers = appService.getAppDescriptor().getConfigValue("readOnlyExtraIdentifiers");
+            $scope.showSaveConfirmDialogConfig = appService.getAppDescriptor().getConfigValue("showSaveConfirmDialog");
+            $scope.showSaveAndContinueButton = false;
+            var dateUtil = Bahmni.Common.Util.DateUtil;
+&nbsp;
+            $scope.riskyHabits = [
+                { engName: "Cigarette", benName: "বিড়ি/সিগারেট", id: "id_Cigarette" },
+                { engName: "Tobacco / White Leaf", benName: "তামাক/সাদা পাতা", id: "id_Tobacco" },
+                { engName: "Others (Tobacco)", benName: "অন্যান্য তামাক", id: "id_Others" },
+                { engName: "Drug Addiction", benName: "মাদকাসক্ত", id: "id_Drug" },
+                { engName: "Obesity", benName: "স্থুলকায়", id: "id_Obesity" },
+                { engName: "High Salt Intake", benName: "অতিরিক্ত লবন", id: "id_High" }
+            ];
+&nbsp;
+            $scope.diseaseStatus = [
+                { engName: "maleria", benName: "জ্বর (ম্যালারিয়া)" },
+                { engName: "Dengue", benName: "ডেঙ্গু" },
+                { engName: "Leprosy", benName: "কুষ্ঠ" },
+                { engName: "Tuberculosis", benName: "যক্ষ্মা" },
+                { engName: "Rabies", benName: "জলাতঙ্ক" },
+                { engName: "Avian Flu", benName: "এভিয়েন ইনফ্লুয়েঞ্জা" },
+                { engName: "Swine Flu", benName: "সোয়াইন ফ্লু" },
+                { engName: "Nipah", benName: "নিপাহ" },
+                { engName: "Acute Viral Hepatitis", benName: "যকৃতের ভাইরাস জনিত প্রদাহ" },
+                { engName: "Diarrhoea", benName: "ডায়ারিয়া" },
+                { engName: "Worms Infection", benName: "কৃমি সংক্রামণ" },
+                { engName: "Sexual Disease", benName: "যৌন রোগ" },
+                { engName: "Arsenicosis", benName: "আর্সেনিকোসিস" },
+                { engName: "Asthma", benName: "হাঁপানি বা এ্যাজমা" },
+                { engName: "Diabetes", benName: "ডায়াবেটিস" },
+                { engName: "High Blood Pressure", benName: "উচ্চ রক্তচাপ" },
+                { engName: "Stroke", benName: "স্ট্রোক" },
+                { engName: "Tumor or Cancer", benName: "টিউমার বা ক্যানসার" },
+                { engName: "Very_severe_disease", benName: "খুব মারাত্বক রোগ" },
+                { engName: "Pneumonia", benName: "নিউমোনিয়া" },
+                { engName: "Pneumonia, unspec.", benName: "নিউমোনিয়া নয় সর্দি, কাশী" },
+                { engName: "dieriaanddysentry", benName: "ডায়ারিয়া ও আমাশয়" },
+                { engName: "Fever", benName: "জ্বর" },
+                { engName: "maleria", benName: "জ্বর (ম্যালারিয়া)" },
+                { engName: "Hearing loss, unspec.", benName: "কানের সমস্যা" },
+                { engName: "Measles", benName: "হাম" },
+                { engName: "Bellybutton_infection", benName: "নাভিতে সংক্রামন" },
+                { engName: "Conjunctivitis, unspec.", benName: "চোখ উঠা" },
+                { engName: "Jaundice", benName: "জন্ডিস" },
+                { engName: "Malnutrition", benName: "অপুষ্টি" },
+                { engName: "Anemia", benName: "রক্ত স্বল্পতা" },
+                { engName: "Injury", benName: "আঘাত" },
+                { engName: "Others_member_disease", benName: "অন্যান্য" },
+                { engName: "Very_severe_disease", benName: "খুব মারাত্বক রোগ" },
+                { engName: "Probable_Limited_Infection", benName: "সম্ভাব্য সীমিত সংক্রামণ" },
+                { engName: "Jaundice", benName: "জন্ডিস" },
+                { engName: "Probable_Limited_Infection", benName: "পানি স্বল্পতাহীন ডায়রিয়া" },
+                { engName: "Bellybutton_infection", benName: "নাভিতে সংক্রামন" },
+                { engName: "Fever", benName: "জ্বর" },
+                { engName: "Pneumonia", benName: "নিউমোনিয়া" },
+                { engName: "Pneumonia, unspec.", benName: "নিউমোনিয়া নয় সর্দি, কাশী" },
+                { engName: "Injury", benName: "আঘাত" },
+                { engName: "Others_member_disease", benName: "অন্যান্য" }
+            ];
+&nbsp;
+            $scope.familyDiseaseHistory = [
+                { engName: "Leprosy", benName: "কুষ্ঠ" },
+                { engName: "Tuberculosis", benName: "যক্ষ্মা" },
+                { engName: "Sexual Disease", benName: "যৌন রোগ" },
+                { engName: "Asthma", benName: "হাঁপানি বা এ্যাজমা" },
+                { engName: "Diabetes", benName: "ডায়াবেটিস" },
+                { engName: "High Blood Pressure", benName: "উচ্চ রক্তচাপ" },
+                { engName: "Disability", benName: "প্রতিবন্ধিতা" },
+                { engName: "Others (Family Disease)", benName: "অন্যান্য" },
+                { engName: "None", benName: "নেই" }
+            ];
+&nbsp;
+            $scope.idTypes = [
+                { engName: "NID", benName: "জাতীয় পরিচয় পত্র" },
+                { engName: "BRID", benName: "জন্ম নিবন্ধন কার্ড" },
+                { engName: "EPI", benName: "ই পি আই কার্ড" },
+                { engName: "noIdentifier", benName: "আই ডি জানা নাই" }
+            ];
+&nbsp;
+            var dontSaveButtonClicked = false;
+&nbsp;
+            var isHref = false;
+&nbsp;
+            $scope.checkMemberType = <span class="fstat-no" title="function not covered" >function (checkBoxStatus) {</span>
+<span class="cstat-no" title="statement not covered" >                console.log(checkBoxStatus);</span>
+<span class="cstat-no" title="statement not covered" >                if (checkBoxStatus == "কমিউনিটি ক্লিনিকের আওতাধীন") {</span>
+<span class="cstat-no" title="statement not covered" >                    console.log(checkBoxStatus);</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showMemberType = true;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showMemberType = false;</span>
+                }
+            };
+&nbsp;
+            $scope.updateYesNoCheckboxChange = <span class="fstat-no" title="function not covered" >function (checkBoxStatus) {</span>
+<span class="cstat-no" title="statement not covered" >                if (checkBoxStatus == "হ্যাঁ") {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showDiseaseStatus = true;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showDiseaseStatus = false;</span>
+                }
+            };
+&nbsp;
+            $scope.updateNationalIdCheckboxChange = <span class="fstat-no" title="function not covered" >function (checkBoxStatus) {</span>
+<span class="cstat-no" title="statement not covered" >                if (checkBoxStatus == true) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.nationalIdCheckbox = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.noidCheckbox = false;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.nationalIdCheckbox = false;</span>
+                }
+            };
+&nbsp;
+            $scope.updateBRIDCheckboxChange = <span class="fstat-no" title="function not covered" >function (checkBoxStatus) {</span>
+<span class="cstat-no" title="statement not covered" >                if (checkBoxStatus == true) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.bridCheckbox = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.noidCheckbox = false;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.bridCheckbox = false;</span>
+                }
+            };
+&nbsp;
+            $scope.updateEPICheckboxChange = <span class="fstat-no" title="function not covered" >function (checkBoxStatus) {</span>
+<span class="cstat-no" title="statement not covered" >                if (checkBoxStatus == true) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.epiCheckbox = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.noidCheckbox = false;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.epiCheckbox = false;</span>
+                }
+            };
+&nbsp;
+            $scope.updateNoIDCheckboxChange = <span class="fstat-no" title="function not covered" >function (checkBoxStatus) {</span>
+<span class="cstat-no" title="statement not covered" >                if (checkBoxStatus == true) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.nationalIdCheckbox = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.bridCheckbox = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.epiCheckbox = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.noidCheckbox = true;</span>
+                } else {
+                }
+            };
+&nbsp;
+            $scope.updateRiskyHabitCheckboxChange = <span class="fstat-no" title="function not covered" >function (risky, isChecked) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.riskyHabit[risky] = isChecked;</span>
+            };
+&nbsp;
+            $scope.updateDiseaseStatusCheckboxChange = <span class="fstat-no" title="function not covered" >function (disease, isChecked) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.diseaseStatus[disease] = isChecked;</span>
+            };
+&nbsp;
+            $scope.updatefamilyDiseaseHistoryCheckboxChange = <span class="fstat-no" title="function not covered" >function (disease, isChecked) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.familyDiseaseHistory[disease] = isChecked;</span>
+            };
+&nbsp;
+            $scope.getGendersToDisplay = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                var array = [];</span>
+<span class="cstat-no" title="statement not covered" >                var i;</span>
+<span class="cstat-no" title="statement not covered" >                for (i = 0; i &lt; $scope.genderCodes.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                    if ($scope.genderCodes[i] != "H") {</span>
+<span class="cstat-no" title="statement not covered" >                        array.push($scope.genderCodes[i]);</span>
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                return array;</span>
+            };
+&nbsp;
+            $rootScope.onHomeNavigate = <span class="fstat-no" title="function not covered" >function (event) {</span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.showSaveConfirmDialogConfig &amp;&amp; $state.current.name != "patient.visit") {</span>
+<span class="cstat-no" title="statement not covered" >                    event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.targetUrl = event.currentTarget.getAttribute('href');</span>
+<span class="cstat-no" title="statement not covered" >                    isHref = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.confirmationPrompt(event);</span>
+                }
+            };
+&nbsp;
+            var stateChangeListener = $rootScope.$on("$stateChangeStart", <span class="fstat-no" title="function not covered" >function (event, toState, toParams) {</span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.showSaveConfirmDialogConfig &amp;&amp; (toState.url == "/search" || toState.url == "/patient/new")) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.targetUrl = toState.name;</span>
+<span class="cstat-no" title="statement not covered" >                    isHref = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.confirmationPrompt(event, toState, toParams);</span>
+                }
+            });
+&nbsp;
+            $scope.confirmationPrompt = <span class="fstat-no" title="function not covered" >function (event, toState) {</span>
+<span class="cstat-no" title="statement not covered" >                if (dontSaveButtonClicked === false) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (event) {</span>
+<span class="cstat-no" title="statement not covered" >                        event.preventDefault();</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    ngDialog.openConfirm({template: "../common/ui-helper/views/saveConfirmation.html", scope: $scope});</span>
+                }
+            };
+&nbsp;
+            $scope.continueWithoutSaving = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                ngDialog.close();</span>
+<span class="cstat-no" title="statement not covered" >                dontSaveButtonClicked = true;</span>
+<span class="cstat-no" title="statement not covered" >                if (isHref === true) {</span>
+<span class="cstat-no" title="statement not covered" >                    $window.open($scope.targetUrl, '_self');</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $state.go($scope.targetUrl);</span>
+                }
+            };
+&nbsp;
+            $scope.cancelTransition = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                ngDialog.close();</span>
+<span class="cstat-no" title="statement not covered" >                delete $scope.targetUrl;</span>
+            };
+&nbsp;
+            $scope.$on("$destroy", <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                stateChangeListener();</span>
+            });
+&nbsp;
+            $scope.getDeathConcepts = function () {
+                return $http({
+                    url: Bahmni.Common.Constants.globalPropertyUrl,
+                    method: 'GET',
+                    params: {
+                        property: 'concept.reasonForDeath'
+                    },
+                    withCredentials: true,
+                    transformResponse: [function (deathConcept) {
+                        <span class="missing-if-branch" title="else path not taken" >E</span>if (_.isEmpty(deathConcept)) {
+                            $scope.deathConceptExists = false;
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            $http.get(Bahmni.Common.Constants.conceptSearchByFullNameUrl, {</span>
+                                params: {
+                                    name: deathConcept,
+                                    v: "custom:(uuid,name,set,setMembers:(uuid,display,name:(uuid,name),retired))"
+                                },
+                                withCredentials: true
+                            }).then(<span class="fstat-no" title="function not covered" >function (results) {</span>
+<span class="cstat-no" title="statement not covered" >                                $scope.deathConceptExists = !!results.data.results.length;</span>
+<span class="cstat-no" title="statement not covered" >                                $scope.deathConcepts = results.data.results[0] ? results.data.results[0].setMembers : [];</span>
+<span class="cstat-no" title="statement not covered" >                                $scope.deathConcepts = filterRetireDeathConcepts($scope.deathConcepts);</span>
+                            });
+                        }
+                    }]
+                });
+            };
+            spinner.forPromise($scope.getDeathConcepts());
+            var filterRetireDeathConcepts = <span class="fstat-no" title="function not covered" >function (deathConcepts) {</span>
+<span class="cstat-no" title="statement not covered" >                return _.filter(deathConcepts, <span class="fstat-no" title="function not covered" >function (concept) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    return !concept.retired;</span>
+                });
+            };
+&nbsp;
+            $scope.isAutoComplete = <span class="fstat-no" title="function not covered" >function (fieldName) {</span>
+<span class="cstat-no" title="statement not covered" >                return !_.isEmpty(autoCompleteFields) ? autoCompleteFields.indexOf(fieldName) &gt; -1 : false;</span>
+            };
+&nbsp;
+            $scope.showCasteSameAsLastName = function () {
+                personAttributes = _.map($rootScope.patientConfiguration.attributeTypes, function (attribute) {
+                    return attribute.name.toLowerCase();
+                });
+                var personAttributeHasCaste = personAttributes.indexOf("caste") !== -1;
+                caste = personAttributeHasCaste ? $rootScope.patientConfiguration.attributeTypes[personAttributes.indexOf("caste")].name : undefined;
+                return showCasteSameAsLastNameCheckbox &amp;&amp; personAttributeHasCaste;
+            };
+&nbsp;
+            $scope.setCasteAsLastName = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.patient.sameAsLastName) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient[caste] = $scope.patient.familyName;</span>
+                }
+            };
+&nbsp;
+            var showSections = function (sectionsToShow, allSections) {
+                _.each(sectionsToShow, function (sectionName) {
+                    allSections[sectionName].canShow = true;
+                    allSections[sectionName].expand = true;
+                });
+            };
+&nbsp;
+            var hideSections = function (sectionsToHide, allSections) {
+                _.each(sectionsToHide, function (sectionName) {
+                    allSections[sectionName].canShow = false;
+                });
+            };
+&nbsp;
+            var executeRule = function (ruleFunction) {
+                var attributesShowOrHideMap = ruleFunction($scope.patient);
+                var patientAttributesSections = $rootScope.patientConfiguration.getPatientAttributesSections();
+                showSections(attributesShowOrHideMap.show, patientAttributesSections);
+                hideSections(attributesShowOrHideMap.hide, patientAttributesSections);
+            };
+&nbsp;
+            $scope.handleUpdate = function (attribute) {
+                var age = "";
+                var ruleFunction = Bahmni.Registration.AttributesConditions.rules &amp;&amp; Bahmni.Registration.AttributesConditions.rules[attribute];
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (ruleFunction) {
+                    executeRule(ruleFunction);
+                }
+                var attributesToHide = [];
+                console.log(attribute);
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (attribute == 'বহিরাগত') {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showPhoneNumber = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showMaritalStatus = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showMotherNameEnglish = true;</span>
+                }
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (attribute == 'gender') {
+<span class="cstat-no" title="statement not covered" >                    var e = document.getElementById("MaritalStatus");</span>
+<span class="cstat-no" title="statement not covered" >                    var maritalStatus = e.options[e.selectedIndex].text;</span>
+<span class="cstat-no" title="statement not covered" >                    var gender = $scope.patient[attribute];</span>
+<span class="cstat-no" title="statement not covered" >                    maritalStatusAndGenderCondition(gender, maritalStatus);</span>
+<span class="cstat-no" title="statement not covered" >                    age = dateToDay(document.getElementById("birthdate").value);</span>
+<span class="cstat-no" title="statement not covered" >                    marriedFemalelessThan55(gender, maritalStatus, age);</span>
+                }
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (attribute == 'birthdate') {
+<span class="cstat-no" title="statement not covered" >                    age = dateToDay($scope.patient[attribute]);</span>
+<span class="cstat-no" title="statement not covered" >                    createDiseaseStatus(age);</span>
+<span class="cstat-no" title="statement not covered" >                    above13YearCondition(age);</span>
+<span class="cstat-no" title="statement not covered" >                    aboveTenYearCondition(age);</span>
+<span class="cstat-no" title="statement not covered" >                    aboveFiveYearCondition(age);</span>
+<span class="cstat-no" title="statement not covered" >                    aboveThreeYearCondition(age);</span>
+<span class="cstat-no" title="statement not covered" >                    aboveTwoMonth(age);</span>
+<span class="cstat-no" title="statement not covered" >                    var e = document.getElementById("MaritalStatus");</span>
+<span class="cstat-no" title="statement not covered" >                    var maritalStatus = e.options[e.selectedIndex].text;</span>
+<span class="cstat-no" title="statement not covered" >                    var gender = document.getElementById("gender").value;</span>
+<span class="cstat-no" title="statement not covered" >                    marriedFemalelessThan55(gender, maritalStatus, age);</span>
+                }
+                if (attribute == 'age') {
+                    console.log("attribute age");
+                    age = dateToDay(calculateBirthDate($scope.patient[attribute]));
+                    console.log(age);
+                    createDiseaseStatus(age);
+                    above13YearCondition(age);
+                    aboveTenYearCondition(age);
+                    aboveFiveYearCondition(age);
+                    aboveThreeYearCondition(age);
+                    aboveTwoMonth(age);
+                    marriedFemalelessThan55(age);
+                    var e = document.getElementById("MaritalStatus");
+                    var maritalStatus = e.options[e.selectedIndex].text;
+<span class="cstat-no" title="statement not covered" >                    var gender = document.getElementById("gender").value;</span>
+<span class="cstat-no" title="statement not covered" >                    marriedFemalelessThan55(gender, maritalStatus, age);</span>
+                }
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (attribute == 'MaritalStatus') {
+<span class="cstat-no" title="statement not covered" >                    var gender = document.getElementById("gender").value;</span>
+<span class="cstat-no" title="statement not covered" >                    var maritalStatus = $scope.patient[attribute].value;</span>
+<span class="cstat-no" title="statement not covered" >                    maritalStatusAndGenderCondition(gender, maritalStatus);</span>
+<span class="cstat-no" title="statement not covered" >                    age = dateToDay(document.getElementById("birthdate").value);</span>
+<span class="cstat-no" title="statement not covered" >                    console.log("attribute MaritalStatus");</span>
+<span class="cstat-no" title="statement not covered" >                    console.log(age);</span>
+<span class="cstat-no" title="statement not covered" >                    marriedFemalelessThan55(gender, maritalStatus, age);</span>
+                }
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (attribute == "PregnancyStatus") {
+<span class="cstat-no" title="statement not covered" >                    var pregnancyStatus = $scope.patient[attribute];</span>
+<span class="cstat-no" title="statement not covered" >                    console.log(pregnancyStatus);</span>
+<span class="cstat-no" title="statement not covered" >                    showDeliveryDate(pregnancyStatus.value);</span>
+                }
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (attribute == "disable") {
+<span class="cstat-no" title="statement not covered" >                    var disable = $scope.patient[attribute];</span>
+<span class="cstat-no" title="statement not covered" >                    console.log(disable);</span>
+<span class="cstat-no" title="statement not covered" >                    showDisabilityType(disable.value);</span>
+                }
+                /* if (attribute == "হ্যাঁ") {
+                    $scope.patient.showDiseaseStatus = true;
+                } else {
+                    $scope.patient.showDiseaseStatus = false;
+                } */
+            };
+&nbsp;
+            var showDisabilityType = <span class="fstat-no" title="function not covered" >function (disable) {</span>
+<span class="cstat-no" title="statement not covered" >                if (disable == "হ্যাঁ") {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showDisability = true;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showDisability = false;</span>
+                }
+            };
+&nbsp;
+            var marriedFemalelessThan55 = function (gender, maritalStatus, age) {
+                var attributes = [];
+                attributes.push('id_familyplanning');
+                attributes.push('id_PregnancyStatus');
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (age &lt;= Bahmni.Common.Constants.lessThanFiftyFive &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >age &gt; Bahmni.Common.Constants.above13Year</span>
+                    &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >gender == Bahmni.Common.Constants.female </span>&amp;&amp; <span class="branch-3 cbranch-no" title="branch not covered" >maritalStatus == Bahmni.Common.Constants.married)</span> {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showPregnancyStatus = true;</span>
+<span class="cstat-no" title="statement not covered" >                    showAttributes(attributes);</span>
+                } else <span class="missing-if-branch" title="if path not taken" >I</span>if (gender == Bahmni.Common.Constants.male &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >maritalStatus == Bahmni.Common.Constants.married)</span> {
+<span class="cstat-no" title="statement not covered" >                    var attributes = [];</span>
+                    // $scope.patient.showFamilyplanning = true;
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_familyplanning');</span>
+<span class="cstat-no" title="statement not covered" >                    showAttributes(attributes);</span>
+<span class="cstat-no" title="statement not covered" >                    var attributes = [];</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_PregnancyStatus');</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showPregnancyStatus = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showLMP = false;</span>
+<span class="cstat-no" title="statement not covered" >                    hideAttributes(attributes);</span>
+                } else {
+                    $scope.patient.showPregnancyStatus = false;
+                    $scope.patient.showLMP = false;
+                    hideAttributes(attributes);
+                }
+            };
+            var maritalStatusAndGenderCondition = <span class="fstat-no" title="function not covered" >function (gender, maritalStatus) {</span>
+<span class="cstat-no" title="statement not covered" >                if (gender == Bahmni.Common.Constants.male &amp;&amp; maritalStatus == Bahmni.Common.Constants.married) {</span>
+<span class="cstat-no" title="statement not covered" >                    marriedMale();</span>
+                } else <span class="cstat-no" title="statement not covered" >if (gender == Bahmni.Common.Constants.female &amp;&amp; maritalStatus == Bahmni.Common.Constants.married) {</span>
+<span class="cstat-no" title="statement not covered" >                    marriedFemale();</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    var attributes = [];</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showFamilyplanning = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showWifeName = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showHusbandName = false;</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Husband Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Husband Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Wife Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Wife Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                    hideAttributes(attributes);</span>
+                }
+            };
+            var aboveTenYearCondition = function (age) {
+                var attributes = [];
+                attributes.push('id_phoneNumber');
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (age &gt; Bahmni.Common.Constants.aboveTenYear) {
+                    $scope.patient.showPhoneNumber = true;
+                    $scope.patient.showRiskyHabits = true;
+                    showAttributes(attributes);
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showPhoneNumber = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showLMP = false;</span>
+<span class="cstat-no" title="statement not covered" >                    hideRiskyHabits();</span>
+<span class="cstat-no" title="statement not covered" >                    hideAttributes(attributes);</span>
+                }
+            };
+            var aboveThreeYearCondition = function (age) {
+                var attributes = [];
+                attributes.push('id_education');
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (age &gt; Bahmni.Common.Constants.aboveThreeYear) {
+                    showAttributes(attributes);
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showWifeName = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showHusbandName = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showLMP = false;</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Husband Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Husband Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Wife Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Wife Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                    hideAttributes(attributes);</span>
+                }
+            };
+            var aboveTwoMonth = function (age) {
+                var attributes = [];
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (age &lt; Bahmni.Common.Constants.twoMonth) {
+<span class="cstat-no" title="statement not covered" >                    console.log("less than 2 month");</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showChlorohexidin = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showBirthWeight = true;</span>
+                } else {
+                    $scope.patient.showWifeName = false;
+                    $scope.patient.showHusbandName = false;
+                    $scope.patient.showPregnancyStatus = false;
+                    $scope.patient.showChlorohexidin = false;
+                    $scope.patient.showBirthWeight = false;
+                    attributes.push('id_Husband Name_English');
+                    attributes.push('id_Husband Name_Bangla');
+                    attributes.push('id_Wife Name_English');
+                    attributes.push('id_Wife Name_Bangla');
+                    hideAttributes(attributes);
+                }
+            };
+            var aboveFiveYearCondition = function (age) {
+                var attributes = [];
+                attributes.push('id_occupation');
+                <span class="missing-if-branch" title="if path not taken" >I</span>if ((age &gt; Bahmni.Common.Constants.aboveFiveYear) &amp;&amp; $scope.patient.showMemberType) {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showRiskyHabits = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showOccupation = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showEducation = true;</span>
+<span class="cstat-no" title="statement not covered" >                    showAttributes(attributes);</span>
+                } else {
+                    hideRiskyHabits();
+                    $scope.patient.showOccupation = false;
+                    $scope.patient.showEducation = false;
+                    $scope.patient.showWifeName = false;
+                    $scope.patient.showHusbandName = false;
+                    $scope.patient.showPregnancyStatus = false;
+                    $scope.patient.showRiskyHabits = false;
+                    attributes.push('id_Husband Name_English');
+                    attributes.push('id_Husband Name_Bangla');
+                    attributes.push('id_Wife Name_English');
+                    attributes.push('id_Wife Name_Bangla');
+                    hideAttributes(attributes);
+                }
+            };
+&nbsp;
+            var createDiseaseStatus = function (age) {
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (age &gt; Bahmni.Common.Constants.aboveFiveYear) {
+                    $scope.patient.diseaseStartIndex = 0;
+                    $scope.patient.diseaseEndIndex = 17;
+                    console.log("age group 1");
+                } else <span class="cstat-no" title="statement not covered" >if (age &lt; Bahmni.Common.Constants.aboveFiveYear &amp;&amp; age &gt; Bahmni.Common.Constants.twoMonth) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.diseaseStartIndex = 18;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.diseaseEndIndex = 32;</span>
+<span class="cstat-no" title="statement not covered" >                    console.log("age group 2");</span>
+                } else <span class="cstat-no" title="statement not covered" >if (age &lt; Bahmni.Common.Constants.twoMonth &amp;&amp; age &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.diseaseStartIndex = 33;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.diseaseEndIndex = $scope.diseaseStatus.length - 1;</span>
+<span class="cstat-no" title="statement not covered" >                    console.log("age group 3");</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.diseaseStartIndex = 0;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.diseaseEndIndex = 0;</span>
+                }
+            };
+&nbsp;
+            var showDeliveryDate = <span class="fstat-no" title="function not covered" >function (pregnancyStatus) {</span>
+                /* if ($scope.diseaseStatus.length &gt; 0 &amp;&amp; $scope.patient.showDiseaseStatus == false) {
+                    $scope.diseaseStatus.length = 0;
+                } */
+<span class="cstat-no" title="statement not covered" >                if (pregnancyStatus == 'প্রসবোত্তর') {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showDeliveryDate = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showLMP = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showFamilyplanning = true;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (pregnancyStatus == 'প্রসব পূর্ব') {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showDeliveryDate = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showFamilyplanning = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showLMP = true;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showDeliveryDate = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showLMP = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showFamilyplanning = true;</span>
+                }
+            };
+&nbsp;
+            var above13YearCondition = function (age) {
+                var attributes = [];
+                attributes.push('id_MaritalStatus');
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (age &gt; Bahmni.Common.Constants.above13Year) {
+                    console.log("risky");
+                    $scope.patient.showRiskyHabits = true;
+                    $scope.patient.showMaritalStatus = true;
+                    showAttributes(attributes);
+                } else {
+<span class="cstat-no" title="statement not covered" >                    hideRiskyHabits();</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showWifeName = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showHusbandName = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showMaritalStatus = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.showPregnancyStatus = false;</span>
+                    // $('#MaritalStatus option:contains("")').prop('selected', true);
+                    // $('#MaritalStatus').val("");
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_familyplanning');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_PregnancyStatus');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Husband Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Husband Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Wife Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                    attributes.push('id_Wife Name_Bangla');</span>
+                    /* $('#id_MaritalStatus').val('string:6a13c661-1a44-4d80-99a3-f427018ced70'); */
+                    /* var e = document.getElementById("MaritalStatus").selectedIndex = "0"; */
+                    // var maritalStatus = e.options[e.selectedIndex] = 0;
+<span class="cstat-no" title="statement not covered" >                    hideAttributes(attributes);</span>
+                }
+            };
+            var marriedFemale = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                var attributesToHide = [];</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.showHusbandName = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.showFamilyplanning = true;</span>
+<span class="cstat-no" title="statement not covered" >                attributesToHide.push('id_Husband Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                attributesToHide.push('id_Husband Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                showAttributes(attributesToHide);</span>
+<span class="cstat-no" title="statement not covered" >                var attributesToHide = [];</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.showWifeName = false;</span>
+<span class="cstat-no" title="statement not covered" >                attributesToHide.push('id_Wife Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                attributesToHide.push('id_Wife Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                hideAttributes(attributesToHide);</span>
+            };
+            var marriedMale = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                var attributes = [];</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.showWifeName = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.showFamilyplanning = true;</span>
+<span class="cstat-no" title="statement not covered" >                attributes.push('id_Wife Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                attributes.push('id_Wife Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                showAttributes(attributes);</span>
+<span class="cstat-no" title="statement not covered" >                var attributes = [];</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.showHusbandName = false;</span>
+<span class="cstat-no" title="statement not covered" >                attributes.push('id_Husband Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                attributes.push('id_Husband Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                hideAttributes(attributes);</span>
+            };
+&nbsp;
+            var calculateBirthDate = function (age) {
+                var birthDate = dateUtil.now();
+                birthDate = dateUtil.subtractYears(birthDate, age.years);
+                birthDate = dateUtil.subtractMonths(birthDate, age.months);
+                birthDate = dateUtil.subtractDays(birthDate, age.days);
+                return birthDate;
+            };
+            var dateToDay = function (dob) {
+                var dob = new Date(dob);
+                var today = new Date();
+                var timeDiff = Math.abs(today.getTime() - dob.getTime());
+                var age = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
+                return age;
+            };
+&nbsp;
+            var hideAttributes = function (attributesToHide) {
+                _.each(attributesToHide, function (attribute) {
+                    var x = document.getElementById(attribute);
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (x != null) {
+<span class="cstat-no" title="statement not covered" >                        x.style.display = "none";</span>
+                    }
+                });
+            };
+            var showAttributes = function (attributesToHide) {
+                _.each(attributesToHide, function (attribute) {
+                    var x = document.getElementById(attribute);
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (x != null) {
+<span class="cstat-no" title="statement not covered" >                        x.style.display = "block";</span>
+                    }
+                });
+            };
+&nbsp;
+            var hideRiskyHabits = function () {
+                $('#id_Cigarette').attr('checked', false);
+                $('#id_Tobacco').attr('checked', false);
+                $('#id_Others').attr('checked', false);
+                $('#id_Drug').attr('checked', false);
+                $('#id_Obesity').attr('checked', false);
+                $('#id_High').attr('checked', false);
+                $scope.patient.showRiskyHabits = false;
+            };
+&nbsp;
+            var hideDiseases = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.patient.showDiseaseStatus = false;</span>
+            };
+&nbsp;
+            var executeShowOrHideRules = function () {
+                _.each(Bahmni.Registration.AttributesConditions.rules, function (rule) {
+                    executeRule(rule);
+                });
+            };
+&nbsp;
+            $scope.$watch('patientLoaded', function () {
+                if ($scope.patientLoaded) {
+                    executeShowOrHideRules();
+                }
+                $timeout(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                    var attributesToHide = [];</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_Used_7.1%_Chlorohexidin');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_BirthWeight');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_phoneNumber');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_education');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_occupation');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_PregnancyStatus');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_LMP');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_DeliveryDate');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_familyplanning');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_RiskyHabits');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_MaritalStatus');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_Husband Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_Husband Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_Wife Name_English');</span>
+<span class="cstat-no" title="statement not covered" >                    attributesToHide.push('id_Wife Name_Bangla');</span>
+<span class="cstat-no" title="statement not covered" >                    hideAttributes(attributesToHide);</span>
+                }, 200);
+            });
+&nbsp;
+            $scope.getAutoCompleteList = <span class="fstat-no" title="function not covered" >function (attributeName, query, type) {</span>
+<span class="cstat-no" title="statement not covered" >                return patientAttributeService.search(attributeName, query, type);</span>
+            };
+&nbsp;
+            $scope.getDataResults = <span class="fstat-no" title="function not covered" >function (data) {</span>
+<span class="cstat-no" title="statement not covered" >                return data.results;</span>
+            };
+&nbsp;
+            $scope.$watch('patient.familyName', function () {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if ($scope.patient.sameAsLastName) {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient[caste] = $scope.patient.familyName;</span>
+                }
+            });
+&nbsp;
+            $scope.$watch('patient.caste', function () {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if ($scope.patient.sameAsLastName &amp;&amp; (<span class="branch-1 cbranch-no" title="branch not covered" >$scope.patient.familyName !== $scope.patient[caste])</span>) {
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.sameAsLastName = false;</span>
+                }
+            });
+&nbsp;
+            $scope.selectIsDead = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.patient.causeOfDeath || $scope.patient.deathDate) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.patient.dead = true;</span>
+                }
+            };
+&nbsp;
+            $scope.disableIsDead = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                return ($scope.patient.causeOfDeath || $scope.patient.deathDate) &amp;&amp; $scope.patient.dead;</span>
+            };
+&nbsp;
+            $scope.getRiskyHabitArray = <span class="fstat-no" title="function not covered" >function (data) {</span>
+<span class="cstat-no" title="statement not covered" >                return data.results;</span>
+            };
+&nbsp;
+            $scope.getShowValueString = <span class="fstat-no" title="function not covered" >function (attributeName) {</span>
+<span class="cstat-no" title="statement not covered" >                if (attributeName == "MaritalStatus") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showMaritalStatus;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "education") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showEducation;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "phoneNumber") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showPhoneNumber;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "PregnancyStatus") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showPregnancyStatus;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "occupation") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showOccupation;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "Husband Name_English") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showHusbandName;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "Husband Name_Bangla") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showHusbandName;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "Wife Name_English") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showWifeName;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "Wife Name_Bangla") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showWifeName;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "Used_7.1%_Chlorohexidin") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showChlorohexidin;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "BirthWeight") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showBirthWeight;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "LMP") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showLMP;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "delivery_date") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showDeliveryDate;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "familyplanning") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showFamilyplanning;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "Disability_Type") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showDisability;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (attributeName == "motherNameEnglish") {</span>
+<span class="cstat-no" title="statement not covered" >                    return $scope.patient.showMotherNameEnglish;</span>
+                } else <span class="cstat-no" title="statement not covered" >if ($scope.patient.showMemberType == false) {</span>
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    return true;</span>
+                }
+            };
+        }]);
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 02 2019 16:11:43 GMT+0600 (Bangladesh Standard Time)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

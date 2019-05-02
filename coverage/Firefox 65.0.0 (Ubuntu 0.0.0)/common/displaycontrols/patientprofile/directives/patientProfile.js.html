@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for common/displaycontrols/patientprofile/directives/patientProfile.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">common/displaycontrols/patientprofile/directives/patientProfile.js</span></h1>
+    <h2>
+        Statements: <span class="metric">79.01% <small>(64 / 81)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">57.14% <small>(16 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">86.96% <small>(20 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">79.01% <small>(64 / 81)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">common/displaycontrols/patientprofile/directives/</a> &#187; patientProfile.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+(function () {
+    var getAddress = function ($scope) {
+        var patient = $scope.patient;
+        var address = [];
+        if ($scope.config.addressFields != undefined &amp;&amp; $scope.config.addressFields.length != 0) {
+            $scope.config.addressFields.forEach(function (addressField) {
+                if (patient.address[addressField]) {
+                    address.push(patient.address[addressField]);
+                }
+            });
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (!_.includes($scope.config, "cityVillage")) {
+            address.push(patient.address["cityVillage"]);
+        }
+        return address.join(", ");
+    };
+    var getPatientAttributeTypes = function ($scope) {
+        var patient = $scope.patient;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if ($scope.config.hasOwnProperty("ageLimit") &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >patient.age &gt;= $scope.config.ageLimit)</span> {
+<span class="cstat-no" title="statement not covered" >            patient.ageText = patient.age.toString() + " &lt;span&gt; years &lt;/span&gt;";</span>
+        }
+        var patientAttributeTypes = [patient.genderText, patient.ageText];
+        if (patient.bloodGroupText) {
+            patientAttributeTypes.push(patient.bloodGroupText);
+        }
+        return patientAttributeTypes.join(", ");
+    };
+    var isAdmitted = function (admissionStatus) {
+        return _.get(admissionStatus, 'value') === "Admitted";
+    };
+    angular.module('bahmni.common.displaycontrol.patientprofile')
+        .directive('patientProfile', ['patientService', 'spinner', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
+            'configurations', '$q', 'visitService',
+            function (patientService, spinner, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService) {
+                var controller = function ($scope) {
+                    $scope.isProviderRelationship = function (relationship) {
+                        return _.includes($rootScope.relationshipTypeMap.provider, relationship.relationshipType.aIsToB);
+                    };
+                    $scope.openPatientDashboard = function (patientUuid) {
+                        var configName = $stateParams.configName || <span class="branch-1 cbranch-no" title="branch not covered" >Bahmni.Common.Constants.defaultExtensionName;</span>
+                        $window.open("../clinical/#/" + configName + "/patient/" + patientUuid + "/dashboard");
+                    };
+                    $scope.openEditPatient = <span class="fstat-no" title="function not covered" >function (patientUuid) {</span>
+<span class="cstat-no" title="statement not covered" >                        $window.open("../registration/#/patient/" + patientUuid);</span>
+                    };
+                    $scope.getDiseaseFields = <span class="fstat-no" title="function not covered" >function (patientAttribute) {</span>
+<span class="cstat-no" title="statement not covered" >                        var diseasesArray = ["RiskyHabit", "Disease_status", "family_diseases_details"];</span>
+<span class="cstat-no" title="statement not covered" >                        if (diseasesArray.includes(patientAttribute)) {</span>
+<span class="cstat-no" title="statement not covered" >                            return true;</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        return false;</span>
+                    };
+                    $scope.getBengaliName = <span class="fstat-no" title="function not covered" >function (patientAttributeValue) {</span>
+<span class="cstat-no" title="statement not covered" >                        var bengaliArrayList = "";</span>
+<span class="cstat-no" title="statement not covered" >                        var bengaliArray = [];</span>
+<span class="cstat-no" title="statement not covered" >                        var engArray = [];</span>
+<span class="cstat-no" title="statement not covered" >                        if (typeof patientAttributeValue !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >                            engArray = patientAttributeValue.split(',');</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        var obj = [</span>
+                            { engName: "Cigarette", benName: "বিড়ি/সিগারেট"},
+                            { engName: "Tobacco / White Leaf", benName: "তামাক/সাদা পাতা"},
+                            { engName: "Others (Tobacco)", benName: "অন্যান্য তামাক"},
+                            { engName: "Drug Addiction", benName: "মাদকাসক্ত" },
+                            { engName: "Obesity", benName: "স্থুলকায়"},
+                            { engName: "High Salt Intake", benName: "অতিরিক্ত লবন"},
+                            { engName: "Arsenicosis", benName: "আর্সেনিকোসিস" },
+                            { engName: "Leprosy", benName: "কুষ্ঠ" },
+                            { engName: "Fever", benName: "জ্বর" },
+                            { engName: "maleria", benName: "জ্বর (ম্যালারিয়া)" },
+                            { engName: "Avian Flu", benName: "এভিয়েন ইনফ্লুয়েঞ্জা" },
+                            { engName: "Dengue", benName: "ডেঙ্গু" },
+                            { engName: "Tuberculosis", benName: "যক্ষ্মা" },
+                            { engName: "Acute Viral Hepatitis", benName: "যকৃতের ভাইরাস জনিত প্রদাহ" },
+                            { engName: "Rabies", benName: "জলাতঙ্ক" },
+                            { engName: "Swine Flu", benName: "সোয়াইন ফ্লু" },
+                            { engName: "Nipah", benName: "নিপাহ" },
+                            { engName: "Sexual Disease", benName: "যৌন রোগ" },
+                            { engName: "Asthma", benName: "হাঁপানি বা এ্যাজমা" },
+                            { engName: "Diabetes", benName: "ডায়াবেটিস" },
+                            { engName: "High Blood Pressure", benName: "উচ্চ রক্তচাপ" },
+                            { engName: "Stroke", benName: "স্ট্রোক" },
+                            { engName: "Tumor or Cancer", benName: "টিউমার বা ক্যানসার" },
+                            { engName: "Probable_Limited_Infection", benName: "সম্ভাব্য সীমিত সংক্রামণ" },
+                            { engName: "Very_severe_disease", benName: "খুব মারাত্বক রোগ" },
+                            { engName: "Pneumonia, unspec.", benName: "নিউমোনিয়া নয় সর্দি, কাশী" },
+                            { engName: "Pneumonia", benName: "নিউমোনিয়া" },
+                            { engName: "Diarrhoea", benName: "ডায়ারিয়া" },
+                            { engName: "dieriaanddysentry", benName: "ডায়ারিয়া ও আমাশয়" },
+                            { engName: "Probable_Limited_Infection", benName: "পানি স্বল্পতাহীন ডায়রিয়া" },
+                            { engName: "Measles", benName: "হাম" },
+                            { engName: "Jaundice", benName: "জন্ডিস" },
+                            { engName: "Bellybutton_infection", benName: "নাভিতে সংক্রামন" },
+                            { engName: "Conjunctivitis, unspec.", benName: "চোখ উঠা" },
+                            { engName: "Hearing loss, unspec.", benName: "কানের সমস্যা" },
+                            { engName: "Worms Infection", benName: "কৃমি সংক্রামণ" },
+                            { engName: "Anemia", benName: "রক্ত স্বল্পতা" },
+                            { engName: "Malnutrition", benName: "অপুষ্টি" },
+                            { engName: "Injury", benName: "আঘাত" },
+                            { engName: "Others_member_disease", benName: "অন্যান্য" },
+                            { engName: "Leprosy", benName: "কুষ্ঠ" },
+                            { engName: "Tuberculosis", benName: "যক্ষ্মা" },
+                            { engName: "Sexual Disease", benName: "যৌন রোগ" },
+                            { engName: "Asthma", benName: "হাঁপানি বা এ্যাজমা" },
+                            { engName: "Diabetes", benName: "ডায়াবেটিস" },
+                            { engName: "High Blood Pressure", benName: "উচ্চ রক্তচাপ" },
+                            { engName: "Disability", benName: "প্রতিবন্ধিতা" },
+                            { engName: "Others (Family Disease)", benName: "অন্যান্য" },
+                            { engName: "None", benName: "নেই" }
+                        ];
+<span class="cstat-no" title="statement not covered" >                        for (var i = 0; i &lt; obj.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                            if (engArray.includes(obj[i].engName) &amp;&amp; !bengaliArray.includes(obj[i].benName)) {</span>
+<span class="cstat-no" title="statement not covered" >                                bengaliArray.push(obj[i].benName);</span>
+                            }
+                        }
+<span class="cstat-no" title="statement not covered" >                        bengaliArrayList = bengaliArray.join();</span>
+<span class="cstat-no" title="statement not covered" >                        return bengaliArrayList;</span>
+                    };
+                    var assignPatientDetails = function () {
+                        var patientMapper = new Bahmni.PatientMapper(configurations.patientConfig(), $rootScope, $translate);
+                        return patientService.getPatient($scope.patientUuid).then(function (response) {
+                            var openMrsPatient = response.data;
+                            $scope.patient = patientMapper.map(openMrsPatient);
+                        });
+                    };
+                    var assignRelationshipDetails = function () {
+                        return patientService.getRelationships($scope.patientUuid).then(function (response) {
+                            $scope.relationships = response.data.results;
+                        });
+                    };
+                    var assignAdmissionDetails = function () {
+                        var REP = "custom:(attributes:(value,attributeType:(display,name)))";
+                        var ADMISSION_STATUS_ATTRIBUTE = "Admission Status";
+                        return visitService.getVisit($scope.visitUuid, REP).then(function (response) {
+                            var attributes = response.data.attributes;
+                            var admissionStatus = _.find(attributes, {attributeType: {name: ADMISSION_STATUS_ATTRIBUTE}});
+                            $scope.hasBeenAdmitted = isAdmitted(admissionStatus);
+                        });
+                    };
+                    var setHasBeenAdmittedOnVisitUuidChange = function () {
+                        $scope.$watch('visitUuid', function (visitUuid) {
+                            if (!_.isEmpty(visitUuid)) {
+                                assignAdmissionDetails();
+                            }
+                        });
+                    };
+                    var setDirectiveAsReady = function () {
+                        $scope.isDirectiveReady = true;
+                    };
+                    var onDirectiveReady = function () {
+                        $scope.addressLine = getAddress($scope);
+                        $scope.patientAttributeTypes = $sce.trustAsHtml(getPatientAttributeTypes($scope));
+                        $scope.showBirthDate = $scope.config.showDOB !== false;
+                        $scope.showBirthDate = $scope.showBirthDate &amp;&amp; !!$scope.patient.birthdate;
+                    };
+                    var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails()]);
+                    initPromise.then(onDirectiveReady);
+                    initPromise.then(setHasBeenAdmittedOnVisitUuidChange);
+                    initPromise.then(setDirectiveAsReady);
+                    $scope.initialization = initPromise;
+                };
+&nbsp;
+                var link = function ($scope, element) {
+                    spinner.forPromise($scope.initialization, element);
+                };
+&nbsp;
+                return {
+                    restrict: 'E',
+                    controller: controller,
+                    link: link,
+                    scope: {
+                        patientUuid: "@",
+                        visitUuid: "@",
+                        config: "="
+                    },
+                    templateUrl: "../common/displaycontrols/patientprofile/views/patientProfile.html"
+                };
+            }]);
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 02 2019 16:11:43 GMT+0600 (Bangladesh Standard Time)</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

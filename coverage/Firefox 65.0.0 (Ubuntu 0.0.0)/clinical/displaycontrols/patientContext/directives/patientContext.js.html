@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for clinical/displaycontrols/patientContext/directives/patientContext.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">clinical/displaycontrols/patientContext/directives/patientContext.js</span></h1>
+    <h2>
+        Statements: <span class="metric">69.77% <small>(30 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">77.78% <small>(14 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">85.71% <small>(6 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">69.77% <small>(30 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">clinical/displaycontrols/patientContext/directives/</a> &#187; patientContext.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('bahmni.clinical')
+    .directive('patientContext', ['$state', '$translate', '$sce', 'patientService', 'spinner', 'appService', function ($state, $translate, $sce, patientService, spinner, appService) {
+        var controller = function ($scope, $rootScope) {
+            var patientContextConfig = appService.getAppDescriptor().getConfigValue('patientContext') || {};
+            $scope.initPromise = patientService.getPatientContext($scope.patient.uuid, $state.params.enrollment, patientContextConfig.personAttributes, patientContextConfig.programAttributes, patientContextConfig.additionalPatientIdentifiers);
+&nbsp;
+            $scope.initPromise.then(function (response) {
+                $scope.patientContext = response.data;
+                var programAttributes = $scope.patientContext.programAttributes;
+                var personAttributes = $scope.patientContext.personAttributes;
+&nbsp;
+                convertBooleanValuesToEnglish(personAttributes);
+                convertBooleanValuesToEnglish(programAttributes);
+&nbsp;
+                var preferredIdentifier = patientContextConfig.preferredIdentifier;
+                if (preferredIdentifier) {
+                    if (programAttributes[preferredIdentifier]) {
+                        $scope.patientContext.identifier = programAttributes[preferredIdentifier].value;
+                        delete programAttributes[preferredIdentifier];
+                    } else if (personAttributes[preferredIdentifier]) {
+                        $scope.patientContext.identifier = personAttributes[preferredIdentifier].value;
+                        delete personAttributes[preferredIdentifier];
+                    }
+                }
+&nbsp;
+                $scope.showNameAndImage = $scope.showNameAndImage !== undefined ? $scope.showNameAndImage : true;
+                if ($scope.showNameAndImage) {
+                    $scope.patientContext.image = Bahmni.Common.Constants.patientImageUrlByPatientUuid + $scope.patientContext.uuid;
+                }
+                $scope.patientContext.gender = $rootScope.genderMap[$scope.patientContext.gender];
+                $scope.edd = <span class="fstat-no" title="function not covered" >function (lmp) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (lmp == undefined) {</span>
+<span class="cstat-no" title="statement not covered" >                        return "";</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        var lmpDate = new Date(lmp);</span>
+<span class="cstat-no" title="statement not covered" >                        var today = new Date();</span>
+<span class="cstat-no" title="statement not covered" >                        var timeDiff = Math.abs(today.getTime() - lmpDate.getTime());</span>
+<span class="cstat-no" title="statement not covered" >                        var daydiff = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;</span>
+<span class="cstat-no" title="statement not covered" >                        if (daydiff &gt;= Bahmni.Common.Constants.eddNotShowingConditionInDay) {</span>
+<span class="cstat-no" title="statement not covered" >                            return "";</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        lmpDate.setDate(lmpDate.getDate() + Bahmni.Common.Constants.eddShowingConditionInDay);</span>
+<span class="cstat-no" title="statement not covered" >                        var month = ("0" + (lmpDate.getMonth() + 1)).slice(-2);</span>
+<span class="cstat-no" title="statement not covered" >                        var day = ("0" + lmpDate.getDay()).slice(-2);</span>
+<span class="cstat-no" title="statement not covered" >                        var edd = lmpDate.getUTCFullYear() + "-" + month + "-" + day;</span>
+<span class="cstat-no" title="statement not covered" >                        return "EDD: " + edd;</span>
+                    }
+                };
+            });
+        };
+&nbsp;
+        var link = function ($scope, element) {
+            spinner.forPromise($scope.initPromise, element);
+        };
+&nbsp;
+        var convertBooleanValuesToEnglish = function (attributes) {
+            var booleanMap = {'true': 'Yes', 'false': 'No'};
+            _.forEach(attributes, function (value) {
+                value.value = booleanMap[value.value] ? booleanMap[value.value] : value.value;
+            });
+        };
+&nbsp;
+        return {
+            restrict: 'E',
+            templateUrl: "displaycontrols/patientContext/views/patientContext.html",
+            scope: {
+                patient: "=",
+                showNameAndImage: "=?"
+            },
+            controller: controller,
+            link: link
+        };
+    }]);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 02 2019 16:11:43 GMT+0600 (Bangladesh Standard Time)</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

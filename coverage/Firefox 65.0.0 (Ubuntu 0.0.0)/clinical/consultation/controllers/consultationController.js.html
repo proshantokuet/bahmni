@@ -1,0 +1,2322 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for clinical/consultation/controllers/consultationController.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">clinical/consultation/controllers/consultationController.js</span></h1>
+    <h2>
+        Statements: <span class="metric">0.22% <small>(1 / 459)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 149)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 92)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">0.22% <small>(1 / 459)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">clinical/consultation/controllers/</a> &#187; consultationController.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('bahmni.clinical').controller('ConsultationController',
+    ['$scope', '$rootScope', '$state', '$location', '$translate', '$bahmniCookieStore', 'clinicalAppConfigService', 'diagnosisService', 'urlHelper', 'contextChangeHandler',
+        'spinner', 'encounterService', 'messagingService', 'sessionService', 'retrospectiveEntryService', 'patientContext', '$q', '$timeout',
+        'patientVisitHistoryService', '$stateParams', '$window', 'visitHistory', 'clinicalDashboardConfig', 'appService',
+        'ngDialog', '$filter', 'configurations', 'visitConfig', 'conditionsService', 'configurationService', 'auditLogService', 'patientService',
+<span class="fstat-no" title="function not covered" >        function ($scope, $rootScope, $state, $location, $translate, $bahmniCookieStore, clinicalAppConfigService, diagnosisService, urlHelper, contextChangeHandler,</span>
+                  spinner, encounterService, messagingService, sessionService, retrospectiveEntryService, patientContext, $q, $timeout,
+                  patientVisitHistoryService, $stateParams, $window, visitHistory, clinicalDashboardConfig, appService,
+                  ngDialog, $filter, configurations, visitConfig, conditionsService, configurationService, auditLogService, patientService) {
+<span class="cstat-no" title="statement not covered" >            var DateUtil = Bahmni.Common.Util.DateUtil;</span>
+<span class="cstat-no" title="statement not covered" >            var getPreviousActiveCondition = Bahmni.Common.Domain.Conditions.getPreviousActiveCondition;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.togglePrintList = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.patient = patientContext.patient;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showDashboardMenu = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.childRelationships = "";</span>
+<span class="cstat-no" title="statement not covered" >            $scope.cookieHealthId = new Set();</span>
+<span class="cstat-no" title="statement not covered" >            $scope.childUuids = [];</span>
+<span class="cstat-no" title="statement not covered" >            $scope.statusCode = true;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.stateChange = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return $state.current.name === 'patient.dashboard.show';</span>
+            };
+<span class="cstat-no" title="statement not covered" >            $scope.showComment = true;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showSaveAndContinueButton = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.visitHistory = visitHistory;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.consultationBoardLink = clinicalAppConfigService.getConsultationBoardLink();</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showControlPanel = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.clinicalDashboardConfig = clinicalDashboardConfig;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.lastvisited = null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.openConsultationInNewTab = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $window.open('#' + $scope.consultationBoardLink, '_blank');</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.toggleDashboardMenu = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.showDashboardMenu = !$scope.showDashboardMenu;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.showDashboard = <span class="fstat-no" title="function not covered" >function (dashboard) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!clinicalDashboardConfig.isCurrentTab(dashboard)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.$parent.$broadcast("event:switchDashboard", dashboard);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                $scope.showDashboardMenu = false;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var setPrintAction = <span class="fstat-no" title="function not covered" >function (event, tab) {</span></span>
+<span class="cstat-no" title="statement not covered" >                tab.print = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $rootScope.$broadcast(event, tab);</span>
+                };
+            };
+<span class="cstat-no" title="statement not covered" >            var setDashboardPrintAction = _.partial(setPrintAction, "event:printDashboard", _);</span>
+<span class="cstat-no" title="statement not covered" >            var setVisitTabPrintAction = <span class="fstat-no" title="function not covered" >function (tab) {</span></span>
+<span class="cstat-no" title="statement not covered" >                tab.print = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var url = $state.href('patient.dashboard.visitPrint', {</span>
+                        visitUuid: visitHistory.activeVisit.uuid,
+                        tab: tab.title,
+                        print: 'print'
+                    });
+<span class="cstat-no" title="statement not covered" >                    window.open(url, '_blank');</span>
+                };
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            _.each(visitConfig.tabs, setVisitTabPrintAction);</span>
+<span class="cstat-no" title="statement not covered" >            _.each(clinicalDashboardConfig.tabs, setDashboardPrintAction);</span>
+<span class="cstat-no" title="statement not covered" >            $scope.printList = _.concat(clinicalDashboardConfig.tabs, visitConfig.tabs);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            clinicalDashboardConfig.quickPrints = appService.getAppDescriptor().getConfigValue('quickPrints');</span>
+<span class="cstat-no" title="statement not covered" >            $scope.printDashboard = <span class="fstat-no" title="function not covered" >function (tab) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (tab) {</span>
+<span class="cstat-no" title="statement not covered" >                    tab.print();</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    clinicalDashboardConfig.currentTab.print();</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.allowConsultation = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return appService.getAppDescriptor().getConfigValue('allowConsultationWhenNoOpenVisit');</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.closeDashboard = <span class="fstat-no" title="function not covered" >function (dashboard) {</span></span>
+<span class="cstat-no" title="statement not covered" >                clinicalDashboardConfig.closeTab(dashboard);</span>
+<span class="cstat-no" title="statement not covered" >                $scope.$parent.$parent.$broadcast("event:switchDashboard", clinicalDashboardConfig.currentTab);</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.closeAllDialogs = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                ngDialog.closeAll();</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.availableBoards = [];</span>
+<span class="cstat-no" title="statement not covered" >            $scope.configName = $stateParams.configName;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.getTitle = <span class="fstat-no" title="function not covered" >function (board) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return $filter('titleTranslate')(board);</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.showBoard = <span class="fstat-no" title="function not covered" >function (boardIndex) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $rootScope.collapseControlPanel();</span>
+<span class="cstat-no" title="statement not covered" >                return buttonClickAction($scope.availableBoards[boardIndex]);</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.gotoPatientDashboard = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!isFormValid()) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.$parent.$parent.$broadcast("event:errorsOnForm");</span>
+<span class="cstat-no" title="statement not covered" >                    return $q.when({});</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (contextChangeHandler.execute()["allow"]) {</span>
+<span class="cstat-no" title="statement not covered" >                    var params = {</span>
+                        configName: $scope.configName,
+                        patientUuid: patientContext.patient.uuid,
+                        encounterUuid: undefined
+                    };
+<span class="cstat-no" title="statement not covered" >                    if ($scope.dashboardDirty) {</span>
+<span class="cstat-no" title="statement not covered" >                        params['dashboardCachebuster'] = Math.random();</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    $state.go("patient.dashboard.show", params);</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var isLongerName = <span class="fstat-no" title="function not covered" >function (value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return value ? value.length &gt; 18 : false;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.getShorterName = <span class="fstat-no" title="function not covered" >function (value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return isLongerName(value) ? value.substring(0, 15) + "..." : value;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.isInEditEncounterMode = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return $stateParams.encounterUuid !== undefined &amp;&amp; $stateParams.encounterUuid !== 'active';</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.enablePatientSearch = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return appService.getAppDescriptor().getConfigValue('allowPatientSwitchOnConsultation') === true;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var setCurrentBoardBasedOnPath = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                var currentPath = $location.url();</span>
+<span class="cstat-no" title="statement not covered" >                var board = _.find($scope.availableBoards, <span class="fstat-no" title="function not covered" >function (board) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (board.url === "treatment") {</span>
+<span class="cstat-no" title="statement not covered" >                        return _.includes(currentPath, board.extensionParams ? board.extensionParams.tabConfigName : board.url);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    return _.includes(currentPath, board.url);</span>
+                });
+<span class="cstat-no" title="statement not covered" >                if (board) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.currentBoard = board;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.currentBoard.isSelectedTab = true;</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var initialize = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                var appExtensions = clinicalAppConfigService.getAllConsultationBoards();</span>
+<span class="cstat-no" title="statement not covered" >                $scope.adtNavigationConfig = {forwardUrl: Bahmni.Clinical.Constants.adtForwardUrl, title: $translate.instant("CLINICAL_GO_TO_DASHBOARD_LABEL"), privilege: Bahmni.Clinical.Constants.adtPrivilege };</span>
+<span class="cstat-no" title="statement not covered" >                $scope.availableBoards = $scope.availableBoards.concat(appExtensions);</span>
+<span class="cstat-no" title="statement not covered" >                $scope.showSaveConfirmDialogConfig = appService.getAppDescriptor().getConfigValue('showSaveConfirmDialog');</span>
+<span class="cstat-no" title="statement not covered" >                var adtNavigationConfig = appService.getAppDescriptor().getConfigValue('adtNavigationConfig');</span>
+<span class="cstat-no" title="statement not covered" >                Object.assign($scope.adtNavigationConfig, adtNavigationConfig);</span>
+<span class="cstat-no" title="statement not covered" >                setCurrentBoardBasedOnPath();</span>
+<span class="cstat-no" title="statement not covered" >                var relationships = [];</span>
+<span class="cstat-no" title="statement not covered" >                var houswholdRelationship = {};</span>
+<span class="cstat-no" title="statement not covered" >                var motherRelationship = {};</span>
+<span class="cstat-no" title="statement not covered" >                patientService.getRelationships($scope.patient.uuid).then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $scope.relationships = response;</span>
+<span class="cstat-no" title="statement not covered" >                    _.each(response.data.results, <span class="fstat-no" title="function not covered" >function (relationship) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (relationship.relationshipType.uuid == "03ed3084-4c7a-11e5-9192-080027b662ec") {</span>
+<span class="cstat-no" title="statement not covered" >                            houswholdRelationship["relationshipType"] = { "uuid": "03ed3084-4c7a-11e5-9192-080027b662ec" };</span>
+<span class="cstat-no" title="statement not covered" >                            houswholdRelationship["personB"] = { "display": relationship.personB.display, "uuid": relationship.personB.uuid };</span>
+<span class="cstat-no" title="statement not covered" >                            relationships.push(houswholdRelationship);</span>
+                            /* motherRelationship["relationshipType"] = { "uuid": "03ed79c5-4c7a-11e5-9192-080027b662ec" };
+                            motherRelationship["personB"] = { "display": $scope.patient.name, "uuid": $scope.patient.uuid };
+                            relationships.push(motherRelationship); */
+<span class="cstat-no" title="statement not covered" >                            $scope.childRelationships = relationships;</span>
+                        }
+                    });
+                });
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.shouldDisplaySaveConfirmDialogForStateChange = <span class="fstat-no" title="function not covered" >function (toState, toParams, fromState, fromParams) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (toState.name.match(/patient.dashboard.show.*/)) {</span>
+<span class="cstat-no" title="statement not covered" >                    return fromParams.patientUuid != toParams.patientUuid;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var cleanUpListenerStateChangeStart = $scope.$on('$stateChangeStart', <span class="fstat-no" title="function not covered" >function (event, toState, toParams, fromState, fromParams) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.showSaveConfirmDialogConfig) {</span>
+<span class="cstat-no" title="statement not covered" >                    if ($rootScope.hasVisitedConsultation &amp;&amp; $scope.shouldDisplaySaveConfirmDialogForStateChange(toState, toParams, fromState, fromParams)) {</span>
+<span class="cstat-no" title="statement not covered" >                        if ($scope.showConfirmationPopUp) {</span>
+<span class="cstat-no" title="statement not covered" >                            event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >                            spinner.hide(toState.spinnerToken);</span>
+<span class="cstat-no" title="statement not covered" >                            ngDialog.close();</span>
+<span class="cstat-no" title="statement not covered" >                            $scope.toStateConfig = {toState: toState, toParams: toParams};</span>
+<span class="cstat-no" title="statement not covered" >                            $scope.displayConfirmationDialog();</span>
+                        }
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                setCurrentBoardBasedOnPath();</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.adtNavigationURL = <span class="fstat-no" title="function not covered" >function (visitUuid) {</span></span>
+<span class="cstat-no" title="statement not covered" >                return appService.getAppDescriptor().formatUrl($scope.adtNavigationConfig.forwardUrl, {'patientUuid': $scope.patient.uuid, 'visitUuid': visitUuid});</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var cleanUpListenerErrorsOnForm = $scope.$on("event:errorsOnForm", <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.showConfirmationPopUp = true;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.displayConfirmationDialog = <span class="fstat-no" title="function not covered" >function (event) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if ($rootScope.hasVisitedConsultation &amp;&amp; $scope.showSaveConfirmDialogConfig) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (event) {</span>
+<span class="cstat-no" title="statement not covered" >                        event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.targetUrl = event.currentTarget.getAttribute('href');</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    ngDialog.openConfirm({template: '../common/ui-helper/views/saveConfirmation.html', scope: $scope});</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var cleanUpListenerStateChangeSuccess = $scope.$on('$stateChangeSuccess', <span class="fstat-no" title="function not covered" >function (event, toState, toParams, fromState) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (toState.name.match(/patient.dashboard.show.+/)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $rootScope.hasVisitedConsultation = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.showConfirmationPopUp = true;</span>
+<span class="cstat-no" title="statement not covered" >                    if ($scope.showSaveConfirmDialogConfig) {</span>
+<span class="cstat-no" title="statement not covered" >                        $rootScope.$broadcast("event:pageUnload");</span>
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                if ((toState.name === fromState.name) &amp;&amp; (fromState.name === "patient.dashboard.show")) {</span>
+<span class="cstat-no" title="statement not covered" >                    $rootScope.hasVisitedConsultation = false;</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.$on("$destroy", <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                cleanUpListenerStateChangeSuccess();</span>
+<span class="cstat-no" title="statement not covered" >                cleanUpListenerErrorsOnForm();</span>
+<span class="cstat-no" title="statement not covered" >                cleanUpListenerStateChangeStart();</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.cancelTransition = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.showConfirmationPopUp = true;</span>
+<span class="cstat-no" title="statement not covered" >                ngDialog.close();</span>
+<span class="cstat-no" title="statement not covered" >                delete $scope.targetUrl;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.saveAndContinue = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.showConfirmationPopUp = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.save($scope.toStateConfig);</span>
+<span class="cstat-no" title="statement not covered" >                $window.onbeforeunload = null;</span>
+<span class="cstat-no" title="statement not covered" >                ngDialog.close();</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.continueWithoutSaving = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.showConfirmationPopUp = false;</span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.targetUrl) {</span>
+<span class="cstat-no" title="statement not covered" >                    $window.open($scope.targetUrl, "_self");</span>
+                }
+<span class="cstat-no" title="statement not covered" >                $window.onbeforeunload = null;</span>
+<span class="cstat-no" title="statement not covered" >                $state.go($scope.toStateConfig.toState, $scope.toStateConfig.toParams);</span>
+<span class="cstat-no" title="statement not covered" >                ngDialog.close();</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var getUrl = <span class="fstat-no" title="function not covered" >function (board) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var urlPrefix = urlHelper.getPatientUrl();</span>
+<span class="cstat-no" title="statement not covered" >                var url = "/" + $stateParams.configName + (board.url ? urlPrefix + "/" + board.url : urlPrefix);</span>
+<span class="cstat-no" title="statement not covered" >                var queryParams = [];</span>
+<span class="cstat-no" title="statement not covered" >                if ($state.params.encounterUuid) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryParams.push("encounterUuid=" + $state.params.encounterUuid);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if ($state.params.programUuid) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryParams.push("programUuid=" + $state.params.programUuid);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($state.params.enrollment) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryParams.push("enrollment=" + $state.params.enrollment);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($state.params.dateEnrolled) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryParams.push("dateEnrolled=" + $state.params.dateEnrolled);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if ($state.params.dateCompleted) {</span>
+<span class="cstat-no" title="statement not covered" >                    queryParams.push("dateCompleted=" + $state.params.dateCompleted);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var extensionParams = board.extensionParams;</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach(extensionParams, <span class="fstat-no" title="function not covered" >function (extensionParamValue, extensionParamKey) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    queryParams.push(extensionParamKey + "=" + extensionParamValue);</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (!_.isEmpty(queryParams)) {</span>
+<span class="cstat-no" title="statement not covered" >                    url = url + "?" + queryParams.join("&amp;");</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.lastConsultationTabUrl.url = url;</span>
+<span class="cstat-no" title="statement not covered" >                return $location.url(url);</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.openConsultation = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.showSaveConfirmDialogConfig) {</span>
+<span class="cstat-no" title="statement not covered" >                    $rootScope.$broadcast("event:pageUnload");</span>
+                }
+<span class="cstat-no" title="statement not covered" >                $scope.closeAllDialogs();</span>
+<span class="cstat-no" title="statement not covered" >                $scope.collapseControlPanel();</span>
+<span class="cstat-no" title="statement not covered" >                $rootScope.hasVisitedConsultation = true;</span>
+<span class="cstat-no" title="statement not covered" >                switchToConsultationTab();</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var switchToConsultationTab = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.lastConsultationTabUrl.url) {</span>
+<span class="cstat-no" title="statement not covered" >                    $location.url($scope.lastConsultationTabUrl.url);</span>
+                } else {
+                    // Default tab
+<span class="cstat-no" title="statement not covered" >                    getUrl($scope.availableBoards[0]);</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var contextChange = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return contextChangeHandler.execute();</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var buttonClickAction = <span class="fstat-no" title="function not covered" >function (board) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.currentBoard === board) {</span>
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (!isFormValid()) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.$parent.$broadcast("event:errorsOnForm");</span>
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                contextChangeHandler.reset();</span>
+<span class="cstat-no" title="statement not covered" >                _.map($scope.availableBoards, <span class="fstat-no" title="function not covered" >function (availableBoard) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    availableBoard.isSelectedTab = false;</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.currentBoard = board;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.currentBoard.isSelectedTab = true;</span>
+<span class="cstat-no" title="statement not covered" >                return getUrl(board);</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var preSavePromise = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                var deferred = $q.defer();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var observationFilter = new Bahmni.Common.Domain.ObservationFilter();</span>
+<span class="cstat-no" title="statement not covered" >                $scope.consultation.preSaveHandler.fire();</span>
+<span class="cstat-no" title="statement not covered" >                $scope.lastvisited = $scope.consultation.lastvisited;</span>
+<span class="cstat-no" title="statement not covered" >                var selectedObsTemplate = $scope.consultation.selectedObsTemplate;</span>
+<span class="cstat-no" title="statement not covered" >                var tempConsultation = angular.copy($scope.consultation);</span>
+<span class="cstat-no" title="statement not covered" >                tempConsultation.observations = observationFilter.filter(tempConsultation.observations);</span>
+<span class="cstat-no" title="statement not covered" >                tempConsultation.consultationNote = observationFilter.filter([tempConsultation.consultationNote])[0];</span>
+<span class="cstat-no" title="statement not covered" >                tempConsultation.labOrderNote = observationFilter.filter([tempConsultation.labOrderNote])[0];</span>
+<span class="cstat-no" title="statement not covered" >                addFormObservations(tempConsultation);</span>
+<span class="cstat-no" title="statement not covered" >                storeTemplatePreference(selectedObsTemplate);</span>
+<span class="cstat-no" title="statement not covered" >                var visitTypeForRetrospectiveEntries = clinicalAppConfigService.getVisitTypeForRetrospectiveEntries();</span>
+<span class="cstat-no" title="statement not covered" >                var defaultVisitType = clinicalAppConfigService.getDefaultVisitType();</span>
+<span class="cstat-no" title="statement not covered" >                var encounterData = new Bahmni.Clinical.EncounterTransactionMapper().map(tempConsultation, $scope.patient, sessionService.getLoginLocationUuid(), retrospectiveEntryService.getRetrospectiveEntry(),</span>
+                    visitTypeForRetrospectiveEntries, defaultVisitType, $scope.isInEditEncounterMode(), $state.params.enrollment);
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(encounterData);</span>
+<span class="cstat-no" title="statement not covered" >                return deferred.promise;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var saveConditions = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return conditionsService.save($scope.consultation.conditions, $scope.patient.uuid)</span>
+                    .then(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                        return conditionsService.getConditions($scope.patient.uuid);</span>
+                    }).then(<span class="fstat-no" title="function not covered" >function (savedConditions) {</span>
+<span class="cstat-no" title="statement not covered" >                        return savedConditions;</span>
+                    });
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var storeTemplatePreference = <span class="fstat-no" title="function not covered" >function (selectedObsTemplate) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var templates = [];</span>
+<span class="cstat-no" title="statement not covered" >                _.each(selectedObsTemplate, <span class="fstat-no" title="function not covered" >function (template) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var templateName = template.formName || template.conceptName;</span>
+<span class="cstat-no" title="statement not covered" >                    var isTemplateAlreadyPresent = _.find(templates, <span class="fstat-no" title="function not covered" >function (template) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        return template === templateName;</span>
+                    });
+<span class="cstat-no" title="statement not covered" >                    if (_.isUndefined(isTemplateAlreadyPresent)) {</span>
+<span class="cstat-no" title="statement not covered" >                        templates.push(templateName);</span>
+                    }
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var data = {</span>
+                    "patientUuid": $scope.patient.uuid,
+                    "providerUuid": $rootScope.currentProvider.uuid,
+                    "templates": templates
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (!_.isEmpty(templates)) {</span>
+<span class="cstat-no" title="statement not covered" >                    localStorage.setItem("templatePreference", JSON.stringify(data));</span>
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var discontinuedDrugOrderValidation = <span class="fstat-no" title="function not covered" >function (removableDrugs) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var discontinuedDrugOrderValidationMessage;</span>
+<span class="cstat-no" title="statement not covered" >                _.find(removableDrugs, <span class="fstat-no" title="function not covered" >function (drugOrder) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (!drugOrder.dateStopped) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (drugOrder._effectiveStartDate &lt; moment()) {</span>
+<span class="cstat-no" title="statement not covered" >                            discontinuedDrugOrderValidationMessage = "Please make sure that " + drugOrder.concept.name + " has a stop date between " + DateUtil.getDateWithoutTime(drugOrder._effectiveStartDate) + " and " + DateUtil.getDateWithoutTime(DateUtil.now());</span>
+<span class="cstat-no" title="statement not covered" >                            return true;</span>
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            discontinuedDrugOrderValidationMessage = drugOrder.concept.name + " should have stop date as today's date since it is a future drug order";</span>
+<span class="cstat-no" title="statement not covered" >                            return true;</span>
+                        }
+                    }
+                });
+<span class="cstat-no" title="statement not covered" >                return discontinuedDrugOrderValidationMessage;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var addFormObservations = <span class="fstat-no" title="function not covered" >function (tempConsultation) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (tempConsultation.observationForms) {</span>
+<span class="cstat-no" title="statement not covered" >                    _.remove(tempConsultation.observations, <span class="fstat-no" title="function not covered" >function (observation) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        return observation.formNamespace;</span>
+                    });
+<span class="cstat-no" title="statement not covered" >                    _.each(tempConsultation.observationForms, <span class="fstat-no" title="function not covered" >function (observationForm) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (observationForm.component) {</span>
+<span class="cstat-no" title="statement not covered" >                            var formObservations = observationForm.component.getValue();</span>
+<span class="cstat-no" title="statement not covered" >                            _.each(formObservations.observations, <span class="fstat-no" title="function not covered" >function (obs) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                tempConsultation.observations.push(obs);</span>
+                            });
+                        }
+                    });
+                }
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var isObservationFormValid = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                var valid = true;</span>
+<span class="cstat-no" title="statement not covered" >                _.each($scope.consultation.observationForms, <span class="fstat-no" title="function not covered" >function (observationForm) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (valid &amp;&amp; observationForm.component) {</span>
+<span class="cstat-no" title="statement not covered" >                        var value = observationForm.component.getValue();</span>
+<span class="cstat-no" title="statement not covered" >                        if (value.errors) {</span>
+<span class="cstat-no" title="statement not covered" >                            messagingService.showMessage('error', "{{'CLINICAL_FORM_ERRORS_MESSAGE_KEY' | translate }}");</span>
+<span class="cstat-no" title="statement not covered" >                            valid = false;</span>
+                        }
+                    }
+                });
+<span class="cstat-no" title="statement not covered" >                return valid;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var isFormValid = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                var contxChange = contextChange();</span>
+<span class="cstat-no" title="statement not covered" >                var shouldAllow = contxChange["allow"];</span>
+<span class="cstat-no" title="statement not covered" >                var discontinuedDrugOrderValidationMessage = discontinuedDrugOrderValidation($scope.consultation.discontinuedDrugs);</span>
+<span class="cstat-no" title="statement not covered" >                if (!shouldAllow) {</span>
+<span class="cstat-no" title="statement not covered" >                    var errorMessage = contxChange["errorMessage"] ? contxChange["errorMessage"] : "{{'CLINICAL_FORM_ERRORS_MESSAGE_KEY' | translate }}";</span>
+<span class="cstat-no" title="statement not covered" >                    messagingService.showMessage('error', errorMessage);</span>
+                } else <span class="cstat-no" title="statement not covered" >if (discontinuedDrugOrderValidationMessage) {</span>
+<span class="cstat-no" title="statement not covered" >                    var errorMessage = discontinuedDrugOrderValidationMessage;</span>
+<span class="cstat-no" title="statement not covered" >                    messagingService.showMessage('error', errorMessage);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return shouldAllow &amp;&amp; !discontinuedDrugOrderValidationMessage &amp;&amp; isObservationFormValid();</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var copyConsultationToScope = <span class="fstat-no" title="function not covered" >function (consultationWithDiagnosis) {</span></span>
+<span class="cstat-no" title="statement not covered" >                consultationWithDiagnosis.preSaveHandler = $scope.consultation.preSaveHandler;</span>
+<span class="cstat-no" title="statement not covered" >                consultationWithDiagnosis.postSaveHandler = $scope.consultation.postSaveHandler;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.$parent.consultation = consultationWithDiagnosis;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.$parent.consultation.postSaveHandler.fire();</span>
+<span class="cstat-no" title="statement not covered" >                $scope.dashboardDirty = true;</span>
+            };
+<span class="cstat-no" title="statement not covered" >            var childToBeCraeted = <span class="fstat-no" title="function not covered" >function (childs, birthDate) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var i = 0;</span>
+<span class="cstat-no" title="statement not covered" >                _.each(childs, <span class="fstat-no" title="function not covered" >function (child) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    createChild(child, birthDate, i);</span>
+<span class="cstat-no" title="statement not covered" >                    i++;</span>
+                });
+            };
+<span class="cstat-no" title="statement not covered" >            var updatePatient = <span class="fstat-no" title="function not covered" >function (patientInfo, attributes) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (attributes.length != 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        encounterService.updatePatient(patientInfo, $scope.patient.uuid);</span>
+                    }
+                }, 200);
+            };
+<span class="cstat-no" title="statement not covered" >            var createChild = <span class="fstat-no" title="function not covered" >function (groupMembers, birthDate, i) {</span></span>
+                // for 44
+<span class="cstat-no" title="statement not covered" >                var genderConceptId = "e4aae12c-ad9c-445d-a0d3-a8312ce9d3df";</span>
+<span class="cstat-no" title="statement not covered" >                var birthWeightConceptId = "9d4aa237-b866-43a1-a75b-9b9490d4a3b9";</span>
+<span class="cstat-no" title="statement not covered" >                var nameConceptId = "7a4ffef1-97d9-4c07-add7-9a6138559ff7";</span>
+&nbsp;
+                /* var genderConceptId = "581ed5fd-bfcd-4852-a8cf-373e54d9b815";
+                var nameConceptId = "627aefb4-8de5-4259-94d4-855acf0c3a63";
+                var birthWeightConceptId = "d56380f3-c513-47eb-9f02-44ef55c20f28"; */
+<span class="cstat-no" title="statement not covered" >                var name = "";</span>
+<span class="cstat-no" title="statement not covered" >                var gender = "";</span>
+<span class="cstat-no" title="statement not covered" >                var birhtWeight = "";</span>
+<span class="cstat-no" title="statement not covered" >                var sex = "";</span>
+<span class="cstat-no" title="statement not covered" >                var fn = "Girl";</span>
+<span class="cstat-no" title="statement not covered" >                _.each(groupMembers, <span class="fstat-no" title="function not covered" >function (groupMember) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    console.log(groupMember);</span>
+<span class="cstat-no" title="statement not covered" >                    var conceptUuid = groupMember.concept.uuid;</span>
+<span class="cstat-no" title="statement not covered" >                    if (conceptUuid == genderConceptId) {</span>
+<span class="cstat-no" title="statement not covered" >                        gender = groupMember.value.name.name;</span>
+                    } else <span class="cstat-no" title="statement not covered" >if (conceptUuid == nameConceptId) {</span>
+<span class="cstat-no" title="statement not covered" >                        name = groupMember.value;</span>
+                    } else <span class="cstat-no" title="statement not covered" >if (conceptUuid == birthWeightConceptId) {</span>
+<span class="cstat-no" title="statement not covered" >                        birhtWeight = groupMember.value;</span>
+                    } else {
+                    }
+                });
+                // console.log(groupMembers);
+                // var set = new Set();
+                // set = $bahmniCookieStore.get($scope.patient.uuid);
+                // console.log(set);
+                // console.log("Health:" + set.values().next(i).value);
+<span class="cstat-no" title="statement not covered" >                patientService.getHealthId().then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (gender == "পুরুষ") {</span>
+<span class="cstat-no" title="statement not covered" >                        sex = "M";</span>
+<span class="cstat-no" title="statement not covered" >                        fn = "Boy";</span>
+                    } else <span class="cstat-no" title="statement not covered" >if (gender == "মহিলা") {</span>
+<span class="cstat-no" title="statement not covered" >                        sex = "F";</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        sex = "O";</span>
+                    }
+                    // groupMembers.push(createGroupMember(response.data.identifiers));
+                    // $scope.cookieHealthId.add(response.data.identifiers);
+                    // $bahmniCookieStore.put($scope.patient.uuid, $scope.cookieHealthId);
+<span class="cstat-no" title="statement not covered" >                    $scope.statusCode = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        createChildPatient(name, fn, sex, birthDate, response.data.identifiers, birhtWeight);</span>
+                    }, 200);
+                }).catch(<span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.statusCode = false;</span>
+<span class="cstat-no" title="statement not covered" >                    console.log(error);</span>
+                });
+            };
+<span class="cstat-no" title="statement not covered" >            var createChildPatient = <span class="fstat-no" title="function not covered" >function (name, fn, gender, birthDate, healthId, birhtWeight) {</span></span>
+                // for 44
+<span class="cstat-no" title="statement not covered" >                var motherNameEnglishAttributeuuid = "93bbf6fc-e04c-4eb1-8ce3-952dbe46249a";</span>
+<span class="cstat-no" title="statement not covered" >                var BirthWeightAttributeuuid = "0f7263eb-ed90-4dd2-b6c8-12bc89cf0296";</span>
+                /* var motherNameEnglishAttributeuuid = "c41568ce-8194-4065-b6fa-91ff43098aee";
+                var BirthWeightAttributeuuid = "b756a8bc-23fe-420f-90dd-713614bba9d9"; */
+<span class="cstat-no" title="statement not covered" >                var openMRSPatient = {</span>
+                    patient: {
+                        person: {
+                            names: [
+                                {
+                                    givenName: name,
+                                    middleName: "",
+                                    familyName: fn
+                                }
+                            ],
+                            addresses: [$scope.patient.address],
+                            birthdate: birthDate,
+                            gender: gender,
+                            attributes: [{value: $scope.patient.name, attributeType: {uuid: motherNameEnglishAttributeuuid, name: "motherNameEnglish"} }, {value: birhtWeight.toString(), attributeType: {uuid: BirthWeightAttributeuuid, name: "BirthWeight"} }]
+                        },
+                        identifiers: [{"identifier": healthId, "identifierType": "81433852-3f10-11e4-adec-0800271c1b75", "preferred": true, "voided": false }]
+                    }
+                };
+<span class="cstat-no" title="statement not covered" >                openMRSPatient.relationships = $scope.childRelationships;</span>
+                // messagingService.showMessage('error', "okkkkkkk");
+<span class="cstat-no" title="statement not covered" >                encounterService.createPatient(openMRSPatient).then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $scope.statusCode = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.childUuids.push(response.data.patient.uuid);</span>
+                }).catch(<span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.statusCode = false;</span>
+<span class="cstat-no" title="statement not covered" >                    return error.status;</span>
+                });
+            };
+<span class="cstat-no" title="statement not covered" >            var createGroupMember = <span class="fstat-no" title="function not covered" >function (healthId) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var groupMember = {};</span>
+<span class="cstat-no" title="statement not covered" >                var concept = {};</span>
+<span class="cstat-no" title="statement not covered" >                concept.name = "healthId";</span>
+<span class="cstat-no" title="statement not covered" >                concept.uuid = "ef59006e-cfb7-414c-9890-6055106dba91";</span>
+<span class="cstat-no" title="statement not covered" >                concept.dataType = undefined;</span>
+                // concept.conceptClass = "Misc";
+<span class="cstat-no" title="statement not covered" >                groupMember.concept = concept;</span>
+<span class="cstat-no" title="statement not covered" >                groupMember.value = healthId;</span>
+<span class="cstat-no" title="statement not covered" >                groupMember.formNamespace = "Bahmni";</span>
+<span class="cstat-no" title="statement not covered" >                groupMember.formFieldPath = "ডেলিভারি সেবা.5/20-0";</span>
+<span class="cstat-no" title="statement not covered" >                groupMember.voided = false;</span>
+<span class="cstat-no" title="statement not covered" >                groupMember.inactive = false;</span>
+<span class="cstat-no" title="statement not covered" >                groupMember.interpretation = null;</span>
+<span class="cstat-no" title="statement not covered" >                groupMember.comment = undefined;</span>
+<span class="cstat-no" title="statement not covered" >                groupMember.groupMembers = [];</span>
+<span class="cstat-no" title="statement not covered" >                return groupMember;</span>
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var saveEncounter = <span class="fstat-no" title="function not covered" >function (encounterData, params, toStateConfig) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    console.log($scope.statusCode);</span>
+<span class="cstat-no" title="statement not covered" >                    if (!$scope.statusCode) {</span>
+                        // messagingService.showMessage('error', "okkkkkkk");
+<span class="cstat-no" title="statement not covered" >                        console.log("iid:");</span>
+<span class="cstat-no" title="statement not covered" >                        console.log($scope.childUuids);</span>
+<span class="cstat-no" title="statement not covered" >                        return false;</span>
+                    }
+                }, 200);
+<span class="cstat-no" title="statement not covered" >                return encounterService.create(encounterData)</span>
+                        .then(<span class="fstat-no" title="function not covered" >function (saveResponse) {</span>
+<span class="cstat-no" title="statement not covered" >                            var messageParams = {encounterUuid: saveResponse.data.encounterUuid, encounterType: saveResponse.data.encounterType};</span>
+<span class="cstat-no" title="statement not covered" >                            auditLogService.log($scope.patient.uuid, "EDIT_ENCOUNTER", messageParams, "MODULE_LABEL_CLINICAL_KEY");</span>
+<span class="cstat-no" title="statement not covered" >                            var consultationMapper = new Bahmni.ConsultationMapper(configurations.dosageFrequencyConfig(), configurations.dosageInstructionConfig(),</span>
+                                configurations.consultationNoteConcept(), configurations.labOrderNotesConcept(), $scope.followUpConditionConcept);
+<span class="cstat-no" title="statement not covered" >                            var consultation = consultationMapper.map(saveResponse.data);</span>
+<span class="cstat-no" title="statement not covered" >                            consultation.lastvisited = $scope.lastvisited;</span>
+<span class="cstat-no" title="statement not covered" >                            return consultation;</span>
+                        }).then(<span class="fstat-no" title="function not covered" >function (savedConsultation) {</span>
+<span class="cstat-no" title="statement not covered" >                            return spinner.forPromise(diagnosisService.populateDiagnosisInformation($scope.patient.uuid, savedConsultation)</span>
+                                                          .then(<span class="fstat-no" title="function not covered" >function (consultationWithDiagnosis) {</span>
+<span class="cstat-no" title="statement not covered" >                                                              return saveConditions().then(<span class="fstat-no" title="function not covered" >function (savedConditions) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                                                  consultationWithDiagnosis.conditions = savedConditions;</span>
+<span class="cstat-no" title="statement not covered" >                                                                  messagingService.showMessage('info', "{{'CLINICAL_SAVE_SUCCESS_MESSAGE_KEY' | translate}}");</span>
+                                                              }, <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                                                                  consultationWithDiagnosis.conditions = $scope.consultation.conditions;</span>
+                                                              }).then(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                                                                  copyConsultationToScope(consultationWithDiagnosis);</span>
+<span class="cstat-no" title="statement not covered" >                                                                  if ($scope.targetUrl) {</span>
+<span class="cstat-no" title="statement not covered" >                                                                      return $window.open($scope.targetUrl, "_self");</span>
+                                                                  }
+<span class="cstat-no" title="statement not covered" >                                                                  return $state.transitionTo(toStateConfig ? toStateConfig.toState : $state.current, toStateConfig ? toStateConfig.toParams : params, {</span>
+                                                                      inherit: false,
+                                                                      notify: true,
+                                                                      reload: true
+                                                                  });
+                                                              });
+                                                          }));
+                        }).catch(<span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >                            var message = Bahmni.Clinical.Error.translate(error) || "{{'CLINICAL_SAVE_FAILURE_MESSAGE_KEY' | translate}}";</span>
+<span class="cstat-no" title="statement not covered" >                            messagingService.showMessage('error', message);</span>
+                        });
+            };
+<span class="cstat-no" title="statement not covered" >            $scope.save = <span class="fstat-no" title="function not covered" >function (toStateConfig) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!isFormValid()) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.$parent.$parent.$broadcast("event:errorsOnForm");</span>
+<span class="cstat-no" title="statement not covered" >                    return $q.when({});</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return spinner.forPromise($q.all([preSavePromise(), encounterService.getEncounterType($state.params.programUuid, sessionService.getLoginLocationUuid())]).then(<span class="fstat-no" title="function not covered" >function (results) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var encounterData = results[0];</span>
+<span class="cstat-no" title="statement not covered" >                    encounterData.encounterTypeUuid = results[1].uuid;</span>
+<span class="cstat-no" title="statement not covered" >                    var params = angular.copy($state.params);</span>
+<span class="cstat-no" title="statement not covered" >                    params.cachebuster = Math.random();</span>
+<span class="cstat-no" title="statement not covered" >                    var attributes = [];</span>
+<span class="cstat-no" title="statement not covered" >                    var formName = "";</span>
+<span class="cstat-no" title="statement not covered" >                    var childs = [];</span>
+<span class="cstat-no" title="statement not covered" >                    var birthDate = "";</span>
+<span class="cstat-no" title="statement not covered" >                    _.each(encounterData.observations, <span class="fstat-no" title="function not covered" >function (observation) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        var formFieldPath = observation.formFieldPath;</span>
+<span class="cstat-no" title="statement not covered" >                        var splitFormName = formFieldPath.split(".");</span>
+<span class="cstat-no" title="statement not covered" >                        formName = splitFormName[0];</span>
+<span class="cstat-no" title="statement not covered" >                        if (formName == "গর্ভাবস্থার তথ্য") {</span>
+<span class="cstat-no" title="statement not covered" >                            var attribute = {};</span>
+<span class="cstat-no" title="statement not covered" >                            var conceptUuid = observation.concept.uuid;</span>
+<span class="cstat-no" title="statement not covered" >                            var attributeType = "";</span>
+                            // for 44
+<span class="cstat-no" title="statement not covered" >                            var pregnancyStatusConceptUuid = "e3162bc6-7c67-4620-af44-6d66d6ff664f";</span>
+<span class="cstat-no" title="statement not covered" >                            var pregnancyStatusAttributeUuid = "44a5a1e0-fa14-4119-a08b-b7ce38e751e1";</span>
+<span class="cstat-no" title="statement not covered" >                            var lmpConceptUuid = "c45a7e4b-3f10-11e4-adec-0800271c1b75";</span>
+<span class="cstat-no" title="statement not covered" >                            var lmpAttributeUuid = "f4732414-9db7-48ca-a806-7b806b59569c";</span>
+<span class="cstat-no" title="statement not covered" >                            var deliveryDateConceptUuid = "aaae5d8c-da92-49a2-914e-63d029b3501f";</span>
+<span class="cstat-no" title="statement not covered" >                            var deliveryDateTimeConceptUuid = "7150e240-d92d-4f72-9262-ef32d62952c5";</span>
+<span class="cstat-no" title="statement not covered" >                            var deliveryDateAttributeUuid = "f8a74ac8-dd11-45cd-a867-58a40b071e7e";</span>
+<span class="cstat-no" title="statement not covered" >                            var deliveryDetailConceptId = "e5d6de8f-2017-4046-be8d-4bf3124ec376";</span>
+<span class="cstat-no" title="statement not covered" >                            var birthDateConceptId = "e5d6de8f-2017-4046-be8d-4bf3124ec376";</span>
+&nbsp;
+                            /* var pregnancyStatusConceptUuid = "58fa4284-a100-450e-91b6-e302032f6bf6";
+                            var pregnancyStatusAttributeUuid = "40715084-f03a-4cff-836a-52736fbdc1ff";
+                            var lmpConceptUuid = "c45a7e4b-3f10-11e4-adec-0800271c1b75";
+                            var lmpAttributeUuid = "260a8a1a-42d1-4d10-805a-3c9750afbd7d";
+                            var deliveryDateConceptUuid = "7d5d7073-da00-4a07-8f34-ae299c2c9cb4";
+                            var deliveryDateTimeConceptUuid = "7150e240-d92d-4f72-9262-ef32d62952c5";
+                            var deliveryDateAttributeUuid = "443763d6-9c53-463b-9b82-518a05c73958";
+                            var deliveryDetailConceptId = "41299bce-f9b7-4ac1-99e8-061846546a5d";
+                            var birthDateConceptId = "7150e240-d92d-4f72-9262-ef32d62952c5"; */
+<span class="cstat-no" title="statement not covered" >                            var value = "";</span>
+<span class="cstat-no" title="statement not covered" >                            if (conceptUuid == deliveryDetailConceptId) {</span>
+<span class="cstat-no" title="statement not covered" >                                childs.push(observation.groupMembers);</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            if (conceptUuid == pregnancyStatusConceptUuid) {</span>
+<span class="cstat-no" title="statement not covered" >                                attributeType = pregnancyStatusAttributeUuid;</span>
+<span class="cstat-no" title="statement not covered" >                                value = observation.value.uuid;</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['value'] = value;</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['attributeType'] = attributeType;</span>
+<span class="cstat-no" title="statement not covered" >                                attributes.push(attribute);</span>
+                            } else <span class="cstat-no" title="statement not covered" >if (conceptUuid == lmpConceptUuid) {</span>
+<span class="cstat-no" title="statement not covered" >                                attributeType = lmpAttributeUuid;</span>
+<span class="cstat-no" title="statement not covered" >                                value = observation.value;</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['value'] = value;</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['attributeType'] = attributeType;</span>
+<span class="cstat-no" title="statement not covered" >                                attributes.push(attribute);</span>
+                            } else <span class="cstat-no" title="statement not covered" >if (conceptUuid == deliveryDateConceptUuid) {</span>
+<span class="cstat-no" title="statement not covered" >                                attributeType = deliveryDateAttributeUuid;</span>
+<span class="cstat-no" title="statement not covered" >                                value = observation.value;</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['value'] = value;</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['attributeType'] = attributeType;</span>
+<span class="cstat-no" title="statement not covered" >                                attributes.push(attribute);</span>
+                            } else <span class="cstat-no" title="statement not covered" >if (conceptUuid == deliveryDateTimeConceptUuid) {</span>
+<span class="cstat-no" title="statement not covered" >                                attributeType = deliveryDateAttributeUuid;</span>
+<span class="cstat-no" title="statement not covered" >                                var valueWithTime = observation.value;</span>
+<span class="cstat-no" title="statement not covered" >                                value = valueWithTime.substr(0, 10);</span>
+<span class="cstat-no" title="statement not covered" >                                birthDate = value;</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['value'] = "Postnatal";</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['attributeType'] = pregnancyStatusAttributeUuid;</span>
+<span class="cstat-no" title="statement not covered" >                                attributes.push(attribute);</span>
+<span class="cstat-no" title="statement not covered" >                                var attribute = {};</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['value'] = value;</span>
+<span class="cstat-no" title="statement not covered" >                                attribute['attributeType'] = attributeType;</span>
+<span class="cstat-no" title="statement not covered" >                                attributes.push(attribute);</span>
+                            }
+                        } else {
+&nbsp;
+                        }
+                    });
+<span class="cstat-no" title="statement not covered" >                    var patientInfo = {</span>
+                        person: {
+                            attributes: attributes
+                        }
+                    };
+<span class="cstat-no" title="statement not covered" >                    if (childs.length != 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        childToBeCraeted(childs, birthDate);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    updatePatient(patientInfo, attributes);</span>
+                        // .then(saveEncounter(encounterData, params, toStateConfig));
+                    // encounterData
+                    // console.log(encounterData);
+<span class="cstat-no" title="statement not covered" >                    $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        console.log($scope.childUuids);</span>
+<span class="cstat-no" title="statement not covered" >                        if (!$scope.statusCode) {</span>
+<span class="cstat-no" title="statement not covered" >                            console.log("iid:");</span>
+<span class="cstat-no" title="statement not covered" >                            console.log($scope.childUuids);</span>
+<span class="cstat-no" title="statement not covered" >                            return false;</span>
+                        }
+                    }, 2000);
+<span class="cstat-no" title="statement not covered" >                    return encounterService.create(encounterData)</span>
+                        .then(<span class="fstat-no" title="function not covered" >function (saveResponse) {</span>
+<span class="cstat-no" title="statement not covered" >                            var messageParams = {encounterUuid: saveResponse.data.encounterUuid, encounterType: saveResponse.data.encounterType};</span>
+<span class="cstat-no" title="statement not covered" >                            auditLogService.log($scope.patient.uuid, "EDIT_ENCOUNTER", messageParams, "MODULE_LABEL_CLINICAL_KEY");</span>
+<span class="cstat-no" title="statement not covered" >                            var consultationMapper = new Bahmni.ConsultationMapper(configurations.dosageFrequencyConfig(), configurations.dosageInstructionConfig(),</span>
+                                configurations.consultationNoteConcept(), configurations.labOrderNotesConcept(), $scope.followUpConditionConcept);
+<span class="cstat-no" title="statement not covered" >                            var consultation = consultationMapper.map(saveResponse.data);</span>
+<span class="cstat-no" title="statement not covered" >                            consultation.lastvisited = $scope.lastvisited;</span>
+<span class="cstat-no" title="statement not covered" >                            return consultation;</span>
+                        }).then(<span class="fstat-no" title="function not covered" >function (savedConsultation) {</span>
+<span class="cstat-no" title="statement not covered" >                            return spinner.forPromise(diagnosisService.populateDiagnosisInformation($scope.patient.uuid, savedConsultation)</span>
+                                                          .then(<span class="fstat-no" title="function not covered" >function (consultationWithDiagnosis) {</span>
+<span class="cstat-no" title="statement not covered" >                                                              return saveConditions().then(<span class="fstat-no" title="function not covered" >function (savedConditions) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                                                  consultationWithDiagnosis.conditions = savedConditions;</span>
+<span class="cstat-no" title="statement not covered" >                                                                  messagingService.showMessage('info', "{{'CLINICAL_SAVE_SUCCESS_MESSAGE_KEY' | translate}}");</span>
+                                                              }, <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                                                                  consultationWithDiagnosis.conditions = $scope.consultation.conditions;</span>
+                                                              }).then(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                                                                  copyConsultationToScope(consultationWithDiagnosis);</span>
+<span class="cstat-no" title="statement not covered" >                                                                  if ($scope.targetUrl) {</span>
+<span class="cstat-no" title="statement not covered" >                                                                      return $window.open($scope.targetUrl, "_self");</span>
+                                                                  }
+<span class="cstat-no" title="statement not covered" >                                                                  return $state.transitionTo(toStateConfig ? toStateConfig.toState : $state.current, toStateConfig ? toStateConfig.toParams : params, {</span>
+                                                                      inherit: false,
+                                                                      notify: true,
+                                                                      reload: true
+                                                                  });
+                                                              });
+                                                          }));
+                        }).catch(<span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >                            var message = Bahmni.Clinical.Error.translate(error) || "{{'CLINICAL_SAVE_FAILURE_MESSAGE_KEY' | translate}}";</span>
+<span class="cstat-no" title="statement not covered" >                            messagingService.showMessage('error', message);</span>
+                        });
+                }));
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            initialize();</span>
+        }]);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 02 2019 16:11:43 GMT+0600 (Bangladesh Standard Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<div class="relationships-container form">
+        <div class="history-relationship">
+            <div class="row" ng-repeat="relationship in patient.relationships track by $index" ng-hide="relationship.voided">
+               <!-- <div class="col col1">
+                    <span>{{getRelationshipTypeForDisplay(relationship)}}</span>
+                </div>-->
+                <div class="col col2">
+                    <span>{{getRelatedToPersonForDisplay(relationship)}}</span>
+                    <span ng-if="isPatientRelationship(relationship)"><!--<a ng-click="openPatientDashboardInNewTab(relationship)"><i class="fa fa-external-link"></i></a>--></span>
+                </div>
+                <!--<div class="col col3">
+                    <strong class="till-text">{{ ::'REGISTRATION_LABEL_TILL' | translate}}</strong>
+                    <span>{{relationship.endDate | bahmniDate}}</span>
+                </div>-->
+                <!--<div class="col col4">
+                    <button type="button" class="small-btn row-remover" ng-confirm-click="removeRelationship(relationship)" id="relationRemoveBtn">
+                        <span class="fa fa-remove"></span>
+                    </button>
+                </div>-->
+            </div>
+        </div>
+
+        <div class="new-relationship">
+            <div class="row" ng-repeat="newRelationship in patient.newlyAddedRelationships">
+                <div class="col col2 form-field">
+                    <div class="field-attribute showOn-small-screen" ng-if="hasRelationShip(patient.relationships)">
+                        <label>{{ 'REGISTRATION_ENTER_NAME_ID_LABEL'|translate }}
+                            <span class="asterick">*</span>
+                        </label>
+                    </div>
+                    <div class="field-value">
+                        <input type="text" ng-if="hasRelationShip(patient.relationships)" bahmni-autocomplete="" validation-message="Please select a patient from the autocomplete list" on-edit="onEdit(newRelationship)" ng-model="newRelationship.patientIdentifier" response-map="getPatientList" source="searchByPatientIdentifierOrName" ng-change="clearPatient(newRelationship)" on-select="patientSelected(newRelationship)" placeholder="খানা প্রধানের নাম বা ফোন নম্বর" ng-class="{'illegalValue': !newRelationship.personB.uuid||duplicateRelationship(newRelationship)}" is-invalid="isInvalidRelation(newRelationship)" class="ui-autocomplete-input illegalValue ng-invalid ng-invalid-selection ng-dirty ng-valid-parse ng-touched" autocomplete="off">
+                        <input type="hidden" ng-if="hasRelationShip(patient.relationships)" ng-model="newRelationship.personB"/>
+                    </div>
+                    <span class="asterick showOn-desktop" ng-if="hasRelationShip(patient.relationships)">*</span>
+                    <span class="no-person" ng-show="showPersonNotFound(newRelationship)">{{ ::'REGISTRATION_LABEL_SEARCHING' | translate}}</span>
+                    <span ng-show="!showPersonNotFound(newRelationship)">{{newRelationship.content}}</span>
+                    <span class="no-person" ng-show="duplicateRelationship(newRelationship)">{{ ::'REGISTRATION_LABEL_RELATIONSHIP_EXISTS' | translate}}</span>
+                </div>
+
+            </div>
+        </div>
+    
+</div>
