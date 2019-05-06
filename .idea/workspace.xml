@@ -2,770 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f0de659-4edb-4db8-ae9f-5a71538ed67d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/controllers/adminDashboardController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/controllers/auditLogController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/controllers/csvExportController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/controllers/csvUploadController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/controllers/orderSetController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/controllers/orderSetDashboardController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/controllers/orderTemplateController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/models/importedItem.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/models/orderSet.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/services/adminImportService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/services/adminOrderSetService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/admin/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/constants.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/controllers/adtController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/controllers/bedManagementController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/controllers/wardController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/controllers/wardLayoutController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/controllers/wardListController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/controllers/wardsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/directives/adtPatientSearch.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/directives/bedAssignmentDialog.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/directives/ward.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/directives/wardLayout.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/directives/wardList.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/models/wardDetails.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/patientInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/services/bedManagementService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/services/queryService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/services/wardService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/util/dispositionDisplayUtil.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/adt/util/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/appointmentConfigInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/appointmentInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/appointmentServiceInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/constants.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/admin/allAppointmentServicesController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/admin/appointmentServiceController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/admin/deleteAppointmentServiceController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/admin/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/appointmentsHeaderController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/allAppointmentsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/appointmentsCreateController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/appointmentsFilterController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/appointmentsManageController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/appointmentsSummaryController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/calendar/appointmentsCalendarViewController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/calendar/appointmentsDayCalendarController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/calendar/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/list/appointmentsListViewController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/controllers/manage/list/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/colorPicker.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/datePicker.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/dayCalendar.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/multiSelectAutocomplete.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/patientSearch.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/serviceAvailability.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/serviceTypes.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/timeValidator.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/weekPicker.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/directives/weekdaySelector.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/filters/appointmentsFilter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/filters/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/models/appointment.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/models/appointmentService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/models/appointmentServiceViewModel.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/models/appointmentViewModel.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/services/appointmentsService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/services/appointmentsServiceService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/services/calendarViewPopUp.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/services/checkinPopUp.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/appointments/services/specialityService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/base.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/bedInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/constants.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/controllers/adtController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/controllers/bedManagementController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/controllers/editTagsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/controllers/headerController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/controllers/roomController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/controllers/roomGridController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/controllers/roomListController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/controllers/wardController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/directives/adt.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/directives/adtPatientSearch.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/directives/backLinksCacheBuster.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/directives/editAdtObservations.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/directives/room.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/directives/roomGrid.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/directives/roomList.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/directives/ward.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/patientInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/services/bedManagementService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/services/bedTagMapService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/services/queryService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/bedmanagement/services/wardService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/bacteriologyTabInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/controllers/consultationContextController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/controllers/patientListHeaderController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/controllers/visitController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/controllers/visitHeaderController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/directives/visitPaginator.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/mappers/accessionNotesMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/mappers/encounterTransactionToObsMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/mappers/orderObservationsMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/mappers/ordersMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/mappers/patientFileObservationsMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/auditLogEventDetails.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/drugOrder.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/drugOrderViewModel.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/drugSchedule.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/order.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/resultGrouper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/tabConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/visitDrugOrders.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/models/visitTabConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/services/clinicalAppConfigService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/services/treatmentService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/services/visitActionsService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/services/visitTabConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/utils/c3Chart.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/utils/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/utils/obsGroupingHelper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/common/utils/sortedConceptSet.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/constants.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/consultationInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/addTreatmentController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/bacteriologyController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/clinicalController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/conceptSetPageController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/consultationController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/consultationSummaryController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/customDrugOrderHistoryController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/diagnosisController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/dispositionController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/drugOrderHistoryController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/investigationController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/latestPrescriptionPrintController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/orderController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/controllers/treatmentController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/directives/buttonsRadio.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/directives/diagnosisAutoComplete.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/directives/investigationsSelector.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/directives/newDrugOrders.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/directives/newOrderGroup.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/directives/orderSelector.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/filters/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/filters/observationValue.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/helpers/drugOrderHistoryHelper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/helpers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/helpers/reactHelper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/helpers/urlHelper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/mappers/consultationMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/mappers/dispostionActionMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/mappers/encounterTransactionMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/mappers/labConceptsMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/mappers/labResultsMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/mappers/specimenMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/models/Specimen.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/models/category.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/models/drugOrderOptions.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/models/drugSearchResult.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/models/labResult.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/models/selectable.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/models/visitHistoryEntry.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/services/Notifier.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/services/labTestsProvider.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/services/otherInvestigationsConceptsMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/services/otherTestsProvider.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/services/patientVisitHistoryService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/services/treatmentConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/services/visitFormService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/consultation/uiError.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/diseaseTemplateController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/editObservationFormController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/patientDashboardAllDiseaseTemplateController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/patientDashboardAllVisitsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/patientDashboardController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/patientDashboardLabOrdersController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/patientDashboardLabSummaryController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/patientDashboardProgramsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/patientDashboardRadiologyController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/patientDashboardTreatmentController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/controllers/patientDashboardVisitsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/directives/diseaseTemplate.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/directives/recentPatients.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/mappers/diseaseTemplateMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/mappers/recordsMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/models/clinicalDashboardConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/models/diseaseTemplate.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/models/observationTemplate.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/services/clinicalDashboardConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/services/diseaseTemplateService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/dashboard/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/allvisits/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/allvisits/directives/visitsTable.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/graph/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/graph/directives/observationGraph.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/graph/models/graphLine.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/graph/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/graph/models/observationGraph.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/graph/models/observationGraphConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/graph/models/observationGraphReference.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/investigationresults/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/investigationresults/directives/investigationChart.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/investigationresults/directives/investigationResults.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/investigationresults/directives/investigationTable.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/investigationresults/directives/investigationTableRow.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/investigationresults/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/investigationresults/models/tabularLabOrderResults.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/investigationresults/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/investigationresults/services/labOrderResultService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/observationData/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/observationData/directives/observationData.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/patientContext/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/patientContext/directives/patientContext.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/treatmentData/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/treatmentData/directives/treatmentChart.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/treatmentData/directives/treatmentData.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/treatmentData/directives/treatmentTable.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/treatmentData/directives/treatmentTableRow.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/treatmentData/util/drugOrderUtil.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/displaycontrols/treatmentData/util/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/ordersTabInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/patientInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/patientcontrolpanel/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/patientcontrolpanel/directives/patientControlPanel.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/visitHistoryInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/clinical/visitSummaryInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/directives/appExtensionList.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/models/appDescriptor.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/services/appService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/services/loadConfigService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/app-framework/services/mergeService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/attributeTypes/directives/attributeTypes.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/attributeTypes/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/auth/authentication.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/auth/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/auth/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/auth/user.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/auth/userService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/bacteriologyresults/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/bacteriologyresults/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/bacteriologyresults/services/bacteriologyResultsService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/bacteriologyresults/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/controller/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/controller/multiSelectObservationSearchController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/buttonSelect.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/concept.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/conceptSet.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/conceptSetGroup.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/duration.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/formControls.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/imageUpload.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/latestObs.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/obsConstraints.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/directives/stepper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/mappers/observationMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/booleanObservation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/conceptSetGroupPanelViewValidationHandler.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/conceptSetGroupValidationHandler.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/conceptSetObservation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/conceptSetSection.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/customRepresentationBuilder.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/multiSelectObservations.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/observationForm.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/observationNode.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/specimenTypeObservation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/models/tabularObservations.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/services/conceptService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/services/conceptSetServices.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/services/conceptSetUiConfigService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/concept-set/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/config/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/config/directives/showIfPrivilege.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/config/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/config/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/config/services/configurations.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/config/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/constants.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/debugUiRouter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/admissiondetails/directives/admissionDetails.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/admissiondetails/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/admissiondetails/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/admissiondetails/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/bacteriologyresults/directives/bacteriologyResultsControl.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/bacteriologyresults/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/bacteriologyresults/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/bacteriologyresults/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/chronicTreatmentChart/controllers/allChronicTreatmentChartController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/chronicTreatmentChart/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/chronicTreatmentChart/directives/chronicTreatmentChart.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/chronicTreatmentChart/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/chronicTreatmentChart/filters/decimalFilter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/chronicTreatmentChart/filters/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/chronicTreatmentChart/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/chronicTreatmentChart/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/conditionsList/directives/conditionsList.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/conditionsList/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/custom/directives/customDisplayControl.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/custom/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/custom/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/custom/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/controllers/patientDashboardDiagnosisController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/directives/dashboard.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/directives/dashboardSection.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/models/dashboard.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/models/dashboardSection.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/dashboard/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/diagnosis/directives/bahmniDiagnosis.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/diagnosis/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/diagnosis/filters/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/diagnosis/filters/primaryDiagnosisFirst.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/diagnosis/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/diagnosis/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/disposition/directives/disposition.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/disposition/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/disposition/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/disposition/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/documents/directives/bmDocuments.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/documents/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/documents/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/documents/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/drugOrderDetails/directives/drugOrderDetails.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/drugOrderDetails/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/drugOrderDetails/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/drugOrderDetails/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/drugOrdersSection/directives/drugOrdersSection.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/drugOrdersSection/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/drugOrdersSection/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/drugOrdersSection/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/forms/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/forms/controllers/patientDashboardAllFormsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/forms/directives/formsTable.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/forms/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/forms/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/forms/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/hint/directives/hint.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/hint/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/hint/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/hint/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/navigationlinks/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/navigationlinks/directives/navigationLinks.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/navigationlinks/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/navigationlinks/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/controllers/allObservationDetailsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/directives/bahmniObservation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/helpers/groupingFunctions.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/helpers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/services/formHierarchyBuildService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/observation/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/orders/controllers/allOrdersDetailsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/orders/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/orders/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/orders/directives/ordersControl.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/orders/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/orders/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pacsOrders/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pacsOrders/directives/pacsOrders.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pacsOrders/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pacsOrders/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/patientprofile/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/patientprofile/directives/patientProfile.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/patientprofile/filters/booleanFilter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/patientprofile/filters/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/patientprofile/filters/titleCase.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/patientprofile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/patientprofile/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pivottable/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pivottable/directives/pivotTable.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pivottable/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pivottable/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pivottable/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/pivottable/services/pivotTableService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/prescription/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/prescription/directives/prescription.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/prescription/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/prescription/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/programs/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/programs/directives/programs.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/programs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/programs/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/tabularview/controllers/allObsToObsFlowSheetDetailsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/tabularview/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/tabularview/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/tabularview/directives/obsToObsFlowSheet.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/tabularview/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/displaycontrols/tabularview/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/encounterConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/helpers/domainHelpers.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/helpers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/mappers/attributeFormatter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/mappers/attributeTypeMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/mappers/conceptMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/mappers/diagnosisMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/mappers/observationMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/mappers/observationValueMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/mappers/patientProgramMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/mappers/providerMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/models/condition.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/models/diagnosis.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/models/retrospectiveEntry.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/observationFilter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/bedService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/conditionsService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/configurationService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/diagnosisService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/dispositionService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/encounterService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/localeService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/locationService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/observationsService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/programService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/providerService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/retrospectiveEntryService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/visitDocumentService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/domain/services/visitService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/gallery/directives/galleryPane.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/gallery/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/gallery/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/gallery/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/i18n/bahmni-translate.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/i18n/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/i18n/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/i18n/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/i18n/services/mergeLocaleFilesService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/logging/exceptionHandler.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/logging/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/logging/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/logging/services/auditLogService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/logging/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/logging/services/loggingService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/models/age.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/models/auditLogEventDetails.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/models/documentImage.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/models/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/models/visitControl.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/models/visitSummary.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/directives/editObservation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/directives/showObservation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/mappers/observationMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/models/gridObservation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/models/imageObservation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/models/multiSelectObservation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/models/observation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/util/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/obs/util/observationUtil.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/orders/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/orders/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/orders/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/orders/services/orderObservationService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/orders/services/orderService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/orders/services/orderSetService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/orders/services/orderTypeService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/constants.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/controllers/patientsListController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/directives/resize.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/directives/scheduler.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient-search/models/search.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/directives/eventStopPropagation.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/directives/patientSummary.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/filters/age.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/filters/birthDateToAgeText.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/filters/dateToAge.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/filters/gender.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/filters/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/mappers/patientContextMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/mappers/patientMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/patient/services/patientService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/photo-capture/directives/capturePhoto.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/photo-capture/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/photo-capture/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/photo-capture/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/route-errorhandler/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/route-errorhandler/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/services/drugService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/services/formService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/services/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/controllers/messageController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/assignHeight.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/autoScroll.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/backLinks.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/bahmniAutocomplete.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/bmShow.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/compileHtml.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/conceptAutocomplete.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/confirmOnExit.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/dateConverter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/datetimepicker.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/fallbackSrc.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/fixedFirstColumn.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/focusMe.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/focusOn.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/focusOnInputErrors.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/gallery.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/monthyearpicker.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/ngConfirmClick.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/popOver.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/providerDirective.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/scrollToObsElement.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/singleClick.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/singleSubmit.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/splitButton.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/directives/toggle.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/filters/dateFilters.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/filters/formatDecimalValues.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/filters/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/filters/reverse.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/filters/thumbnail.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/printer.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/services/backlinkService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/services/confirmBoxService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/services/contextChangeHandler.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/services/messagingService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/services/stateChangeSpinner.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/ui-helper/spinner.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/concept-dropdown/directives/conceptDropdown.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/concept-dropdown/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/controllers/manageProgramController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/directive/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/directive/managePrograms.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/directive/programAttributes.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/directive/timeline.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/uicontrols/programmanagement/mappers/programHelper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/ageUtil.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/arrayUtil.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/dateTimeFormatter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/dateUtil.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/dynamicResourceLoader.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/httpErrorInterceptor.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/iosLabelFix.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/modernizr.tests.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/offlineStatusService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/stringFormat.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/common/util/validationUtil.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/coverage-final.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/constants.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/controllers/documentController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/directives/dateValidator.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/directives/fileUpload.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/document-upload/models/visit.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/home/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/home/controllers/changePasswordController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/home/controllers/dashboardController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/home/controllers/errorLogController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/home/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/home/controllers/loginController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/home/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/home/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/home/loginInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/orders/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/orders/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/orders/controllers/orderFulfillmentController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/orders/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/orders/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/orders/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/orders/orderFulfillmentConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/orders/patientInitialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/constants.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/backLinksCacheBuster.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/calendarViewCancelAppointmentController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/calendarViewController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/cancelSurgicalBlockController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/headerController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/listViewController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/moveSurgicalAppointmentController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/newSurgicalAppointmentController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/otCalendarController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/surgicalAppointmentActualTimeController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/surgicalBlockController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/controller/surgicalBlockViewCancelAppointmentController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/directives/listView.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/directives/multiSelectAutocomplete.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/directives/onScroll.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/directives/otCalendar.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/directives/otCalendarSurgicalAppointment.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/directives/otCalendarSurgicalBlock.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/directives/stringToNumber.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/filters/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/filters/surgicalBlockFilter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/helpers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/helpers/surgicalAppointmentHelper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/helpers/surgicalBlockHelper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/mappers/SurgicalBlockMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/services/queryService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/ot/services/surgicalAppointmentService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/prettify.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/prettify.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/common/auditLogEventDetails.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/common/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/constants.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/controllers/createPatientController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/controllers/editPatientController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/controllers/navigationController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/controllers/patientCommonController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/controllers/searchPatientController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/controllers/visitController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/defaults.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/directives/addressFields.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/directives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/directives/patientAction.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/directives/patientRelationship.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/directives/printOptions.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/directives/topDownAddressFields.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/mappers/createPatientRequestMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/mappers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/mappers/openmrsPatientMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/mappers/updatePatientRequestMapper.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/models/identifier.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/models/identifiers.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/models/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/models/patient.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/models/patientConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/models/preferences.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/models/registrationEncounterConfig.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/services/addressHierarchyService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/services/defaultPatientServiceStrategy.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/services/patientAttributeService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/services/patientService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/services/registrationCardPrinter.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/registration/watchers.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/app.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/controllers/dashboardHeaderController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/controllers/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/controllers/myReportsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/controllers/reportsController.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/init.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/initialization.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/services/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/reports/services/reportService.js.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/sort-arrow-sprite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/coverage/Firefox 64.0.0 (Ubuntu 0.0.0)/sorter.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/common/patient/services/patientService.js" afterPath="$PROJECT_DIR$/app/common/patient/services/patientService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/registration.css" afterPath="$PROJECT_DIR$/app/styles/registration.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/unit.xml" afterPath="$PROJECT_DIR$/output/unit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/clinical/clinical.min.dc3e9b6f.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/registration/registration.min.0674f8fc.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/clinical/clinical.min.46dad982.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/registration/registration.min.9c7612c1.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/clinical/consultation/controllers/consultationController.js" afterPath="$PROJECT_DIR$/app/clinical/consultation/controllers/consultationController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/clinical/dashboard/views/clinicalDashboardHeader.html" afterPath="$PROJECT_DIR$/app/clinical/dashboard/views/clinicalDashboardHeader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/common/ui-helper/header.html" afterPath="$PROJECT_DIR$/app/common/ui-helper/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/registration/directives/addressFields.js" afterPath="$PROJECT_DIR$/app/registration/directives/addressFields.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/clinical/dashboard/views/clinicalDashboardHeader.html" afterPath="$PROJECT_DIR$/dist/clinical/dashboard/views/clinicalDashboardHeader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/clinical/index.html" afterPath="$PROJECT_DIR$/dist/clinical/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/common/displaycontrols/patientprofile/views/patientProfile.html" afterPath="$PROJECT_DIR$/dist/common/displaycontrols/patientprofile/views/patientProfile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/common/ui-helper/header.html" afterPath="$PROJECT_DIR$/dist/common/ui-helper/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/registration/index.html" afterPath="$PROJECT_DIR$/dist/registration/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/registration/views/age.html" afterPath="$PROJECT_DIR$/dist/registration/views/age.html" />
     </list>
     <ignored path="ui.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -785,32 +36,90 @@
     <favorites_list name="ui" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="patientService.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/common/patient/services/patientService.js">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="patientDashboardController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/clinical/dashboard/controllers/patientDashboardController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1017">
-              <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="37" />
+            <state relative-caret-position="357">
+              <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="patientControlPanel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/clinical/patientcontrolpanel/directives/patientControlPanel.js">
+      <file leaf-file-name="consultationController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/clinical/consultation/controllers/consultationController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-842">
+            <state relative-caret-position="285">
+              <caret line="125" column="19" selection-start-line="125" selection-start-column="19" selection-end-line="125" selection-end-column="19" />
+              <folding>
+                <element signature="e#1747#1835#0" expanded="false" />
+                <element signature="e#34516#39106#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="conceptSet.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/clinical/consultation/views/conceptSet.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="651">
+              <caret line="31" column="16" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clinicalDashboardHeader.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/clinical/dashboard/views/clinicalDashboardHeader.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="61">
+              <caret line="23" column="103" selection-start-line="23" selection-start-column="103" selection-end-line="23" selection-end-column="103" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#div#1;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clinical.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/styles/clinical.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="6199" column="14" selection-start-line="6199" selection-start-column="8" selection-end-line="6199" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="consultation.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/clinical/consultation/views/consultation.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="n#div#0;n#article#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="visitHeaderController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/clinical/common/controllers/visitHeaderController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constants.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/common/constants.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/clinical/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="85" column="23" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="23" />
+            <state relative-caret-position="207">
+              <caret line="328" column="40" selection-start-line="328" selection-start-column="40" selection-end-line="328" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -825,6 +134,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/common/patient/services/patientService.js" />
+        <option value="$PROJECT_DIR$/app/common/ui-helper/header.html" />
+        <option value="$PROJECT_DIR$/app/registration/directives/addressFields.js" />
+        <option value="$PROJECT_DIR$/app/clinical/consultation/controllers/consultationController.js" />
+        <option value="$PROJECT_DIR$/app/clinical/dashboard/views/clinicalDashboardHeader.html" />
       </list>
     </option>
   </component>
@@ -839,9 +152,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="47" />
-    <option name="y" value="52" />
+    <option name="y" value="24" />
     <option name="width" value="1873" />
-    <option name="height" value="1028" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -868,8 +181,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -916,84 +227,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="patient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="patient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clinical" />
+              <option name="myItemId" value="styles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/workplace/src_sanmarks" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -1219,17 +468,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="47" y="52" width="1873" height="1028" extended-state="6" />
+    <frame x="47" y="24" width="1873" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18686599" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.114789106" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923076" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1237,7 +487,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1254,7 +503,24 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/registration/controllers/searchPatientController.js</url>
+          <line>250</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/clinical/displaycontrols/allvisits/directives/visitsTable.js</url>
+          <line>76</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -1276,11 +542,451 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/common/patient/services/patientService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1017">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="37" />
+        <state relative-caret-position="294">
+          <caret line="29" column="57" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="e#358#782#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/views/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/registration/registration.min.9c7612c1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="10" column="19000" selection-start-line="10" selection-start-column="19000" selection-end-line="10" selection-end-column="19000" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/defaults.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/controllers/createPatientController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="707">
+          <caret line="181" column="12" selection-start-line="181" selection-start-column="12" selection-end-line="181" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/views/patientAction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="27" column="74" selection-start-line="27" selection-start-column="74" selection-end-line="27" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/directives/patientAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="73" column="80" selection-start-line="73" selection-start-column="80" selection-end-line="73" selection-end-column="80" />
+          <folding>
+            <element signature="e#1940#2362#0" expanded="false" />
+            <element signature="e#2422#3034#0" expanded="false" />
+            <element signature="e#3085#3528#0" expanded="false" />
+            <element signature="e#5925#6761#0" expanded="false" />
+            <element signature="e#7320#7581#0" expanded="false" />
+            <element signature="e#7639#7722#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/directives/printOptions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/views/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/controllers/searchPatientController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="244" column="38" selection-start-line="244" selection-start-column="38" selection-end-line="244" selection-end-column="38" />
+          <folding>
+            <element signature="e#6533#6586#0" expanded="false" />
+            <element signature="e#6735#7953#0" expanded="false" />
+            <element signature="e#8017#8402#0" expanded="false" />
+            <element signature="e#8468#8712#0" expanded="false" />
+            <element signature="e#8768#9372#0" expanded="false" />
+            <element signature="e#9437#9780#0" expanded="false" />
+            <element signature="e#9846#10074#0" expanded="false" />
+            <element signature="e#10125#10731#0" expanded="false" />
+            <element signature="e#10787#12202#0" expanded="false" />
+            <element signature="e#12246#12686#0" expanded="false" />
+            <element signature="e#12745#13141#0" expanded="false" />
+            <element signature="e#13224#13438#0" expanded="false" />
+            <element signature="e#13479#13537#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="237" column="30" selection-start-line="237" selection-start-column="30" selection-end-line="237" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/initialization.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/services/defaultPatientServiceStrategy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="37" column="15" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/mappers/openmrsPatientMapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/mappers/createPatientRequestMapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2415">
+          <caret line="115" column="14" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/views/newpatient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="72" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
+          <folding>
+            <element signature="e#995#3729#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/registration/directives/addressFields.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
+          <folding>
+            <element signature="e#544#1467#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/common/ui-helper/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/views/patientRelationships.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="33" column="116" selection-start-line="33" selection-start-column="116" selection-end-line="33" selection-end-column="116" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/views/addressFields.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/directives/patientRelationship.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/views/topDownAddressFields.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/directives/topDownAddressFields.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/directives/addressFields.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="796">
+          <caret line="66" column="65" selection-start-line="66" selection-start-column="65" selection-end-line="66" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registration/views/patientcommon.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-168">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding>
+            <element signature="n#section#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#section#1;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#section#2;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#legend#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#section#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/consultation/controllers/conceptSetPageController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="236" column="0" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
+          <folding>
+            <element signature="e#93#12270#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/clinical/clinical.min.46dad982.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="16" column="26485" selection-start-line="16" selection-start-column="26485" selection-end-line="16" selection-end-column="26485" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/displaycontrols/observationData/directives/observationData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="156" column="54" selection-start-line="156" selection-start-column="54" selection-end-line="156" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/dashboard/mappers/recordsMapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/consultation/mappers/consultationMapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="42" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/common/concept-set/directives/conceptSetGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/displaycontrols/allvisits/directives/visitsTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="135" column="26" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="26" />
+          <folding>
+            <element signature="e#1016#2415#0" expanded="false" />
+            <element signature="e#2486#2595#0" expanded="false" />
+            <element signature="e#2736#2855#0" expanded="false" />
+            <element signature="e#2949#3597#0" expanded="false" />
+            <element signature="e#3663#4091#0" expanded="false" />
+            <element signature="e#4150#4681#0" expanded="false" />
+            <element signature="e#4753#4898#0" expanded="false" />
+            <element signature="e#4945#5055#0" expanded="false" />
+            <element signature="e#5097#5636#0" expanded="false" />
+            <element signature="e#5756#5865#0" expanded="false" />
+            <element signature="e#6021#6104#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/consultation/views/conceptSet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/dashboard/controllers/patientDashboardController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/common/controllers/visitHeaderController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="328" column="40" selection-start-line="328" selection-start-column="40" selection-end-line="328" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/consultation/views/consultation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#0;n#article#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/styles/clinical/_clinicalIndex.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/styles/clinical/_visit.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5292">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/styles/clinical/_consultation.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/styles/clinical.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="6199" column="14" selection-start-line="6199" selection-start-column="8" selection-end-line="6199" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/consultation/controllers/consultationController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="125" column="19" selection-start-line="125" selection-start-column="19" selection-end-line="125" selection-end-column="19" />
+          <folding>
+            <element signature="e#1747#1835#0" expanded="false" />
+            <element signature="e#34516#39106#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/clinical/dashboard/views/clinicalDashboardHeader.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="23" column="103" selection-start-line="23" selection-start-column="103" selection-end-line="23" selection-end-column="103" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

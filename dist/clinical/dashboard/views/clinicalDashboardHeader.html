@@ -39,9 +39,14 @@
             <button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel, 'hide-ipad': availableBoards }">
                 <i class="fa fa-bars fa-white fa-large"></i>
             </button>
+
             <button class="confirm save-consultation" ng-show="availableBoards" single-click="save()" accesskey="{{'SAVE_ACCESS_KEY' | translate}}" ng-class="{'hideSaveText':availableBoards.length > 6}">
                 <i class="fa fa-save"></i>
                 <span class="text" ng-bind-html="'CLINICAL_SAVE_TRANSLATION_KEY'| translate"></span>
+            </button>
+            <button class="cancel save-consultation" ng-show="availableBoards" ng-click="cancelVisitForm()" title="Cancel Visit">
+                <i class="fa fa-remove"></i>
+                Cancel
             </button>
         </div>
     </div>

@@ -45,14 +45,14 @@
                     <td>{{ 'PATIENT_PROFILE_RELATIONSHIPS_LABEL'|translate }}</td>
                 </tr>
                 <tr ng-repeat="relationship in relationships track by relationship.uuid">
-                    <td class="name relationshipType" ng-if="::relationship.personA.uuid === patient.uuid">{{::relationship.relationshipType.aIsToB}}</td>
+                    <td class="name relationshipType" ng-if="::relationship.personA.uuid === patient.uuid">Household-Head</td>
                     <td class="value" ng-if="::relationship.personA.uuid === patient.uuid">
                         {{::relationship.personB.display}}
                     </td>
-                    <td class="name" ng-if="::relationship.personB.uuid === patient.uuid">{{::relationship.relationshipType.bIsToA}}</td>
+                   <!-- <td class="name" ng-if="::relationship.personB.uuid === patient.uuid">{{::relationship.relationshipType.bIsToA}}</td>
                     <td ng-if="::relationship.personB.uuid === patient.uuid" class="value">
                         {{::relationship.personA.display}}
-                    </td>
+                    </td>-->
                 </tr>
                 </tbody>
             </table>

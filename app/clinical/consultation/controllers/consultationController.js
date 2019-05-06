@@ -118,6 +118,25 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 }
             };
 
+            $scope.cancelVisitForm = function () {
+                // if (!isFormValid()) {
+                //     $scope.$parent.$parent.$broadcast("event:errorsOnForm");
+                //     return $q.when({});
+                // }
+                // added this function to cancel visit form and to redirect patient dashboard
+                if (contextChangeHandler.execute()["allow"]) {
+                    var params = {
+                        configName: $scope.configName,
+                        patientUuid: patientContext.patient.uuid,
+                        encounterUuid: undefined
+                    };
+                    if ($scope.dashboardDirty) {
+                        params['dashboardCachebuster'] = Math.random();
+                    }
+                    $state.go("patient.dashboard.show", params);
+                }
+            };
+
             var isLongerName = function (value) {
                 return value ? value.length > 18 : false;
             };
