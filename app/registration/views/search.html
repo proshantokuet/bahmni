@@ -58,7 +58,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th ng-repeat = "type in ::extraIdentifierTypes track by $index"><strong>{{type.name}}</strong></th>
+               <!-- <th ng-repeat = "type in ::extraIdentifierTypes track by $index"><strong>{{type.name}}</strong></th>-->
                 <th><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></th>
                 <th ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><strong>{{::convertToTableHeader(field)}}</strong></th>
                 <th><strong>{{ ::'REGISTRATION_LABEL_GENDER' | translate}}</strong></th>
@@ -66,15 +66,15 @@
                 <th ng-repeat = "field in ::addressSearchResultsConfig.fields"><strong>{{::convertToTableHeader(getAddressColumnName(field))}}</strong></th>
                 <th><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>
                 <th ng-if="::programAttributesSearchConfig.show"><strong>{{::convertToTableHeader(programAttributesSearchConfig.label)}}</strong></th>
-                <th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>
+                <!--<th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>-->
                 <th><strong>Action</strong></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="result in results">
-                <td ng-repeat = "type in ::extraIdentifierTypes track by $index">
+                <!--<td ng-repeat = "type in ::extraIdentifierTypes track by $index">
                     {{::result.extraIdentifiers[type.name]}}
-                </td>
+                </td>-->
                 <td>{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</td>
                 <td ng-repeat = "field in ::personSearchResultsConfig.fields track by $index">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</td>
                 <td>{{::result.gender}}</td>
@@ -82,14 +82,13 @@
                 <td ng-repeat = "field in ::addressSearchResultsConfig.fields">{{::result.addressFieldValue[field] || ""}}</td>
                 <td>{{::result.dateCreated | bahmniDate}}</td>
                 <td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>
-                <td>
-                    <a tabindex="{{ :: 8 + $index + 1 }}" ng-if="::(searchActions.length > 0)" ng-click="forPatient(result).doExtensionAction(searchActions[0])">
-                        {{::result.identifier || 'Not Assigned'}}
-                    </a>
-                </td>
+
                 <td>
                     <a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">
                             Patient Profile
+                    </a>  |
+                     <a tabindex="{{ :: 8 + $index + 1 }}" ng-if="::(searchActions.length > 0)" ng-click="forPatient(result).doExtensionAction(searchActions[0])">
+                        Edit profile
                     </a>
                 </td>
             </tr>

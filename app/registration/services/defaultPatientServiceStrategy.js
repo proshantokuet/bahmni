@@ -38,14 +38,17 @@ angular.module('bahmni.registration')
 
         var create = function (patient, jumpAccepted) {
             var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient, $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName));
-            var randomIdentifier = createUUID();
-            console.log(":generated random identifier: " + randomIdentifier);
-            data.patient.identifiers[0].identifier = randomIdentifier;
-            console.log(data.patient);
             var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
-            return $http.post(url, data, {
-                withCredentials: true,
-                headers: {"Accept": "application/json", "Content-Type": "application/json", "Jump-Accepted": jumpAccepted}
+            return healthId().then(function (response) {
+                var memberHealthId = response.identifiers;
+                var clinicId = ($bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId).slice(0, 3);
+                var d = new Date();
+                var fullYear = (d.getFullYear()).toString().slice(2, 4);
+                data.patient.identifiers[0].identifier = clinicId + fullYear + memberHealthId[0];
+                return $http.post(url, data, {
+                    withCredentials: true,
+                    headers: {"Accept": "application/json", "Content-Type": "application/json", "Jump-Accepted": jumpAccepted}
+                });
             });
         };
 
@@ -101,6 +104,18 @@ angular.module('bahmni.registration')
                 headers: {"Accept": "text/plain", "Content-Type": "application/json"}
             };
             return $http.post(url, data, config);
+        };
+        var healthId = function () {
+            var url = openmrsUrl + "/module/idgen/exportIdentifiers.form?source=6&numberToGenerate=1";
+            var config = {
+                method: "GET",
+                withCredentials: false
+            };
+            var defer = $q.defer();
+            $http.get(url, config).success(function (result) {
+                defer.resolve(result);
+            });
+            return defer.promise;
         };
 
         return {

@@ -30,11 +30,11 @@ angular.module('bahmni.common.conceptSet')
             };
             $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}, {name: "EPI"}, {name: "Garments"}, {name: "Coporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "CSP"}, {name: "N/A"}];
             $scope.references = [{name: "Self"}, {name: "CSO"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
-            $scope.services = [{"discount": 0}];
+            $scope.services = [{"discount": 0, "quantity": 1 }];
             $scope.patientInfo = {clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName, clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId, orgUnit: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).orgUnit};
             $scope.addNewChoice = function () {
                 var newItemNo = $scope.services.length + 1;
-                $scope.services.push({"discount": 0});
+                $scope.services.push({"discount": 0, "quantity": 1 });
             };
             $scope.removeChoice = function () {
                 var lastItem = $scope.services.length - 1;
@@ -45,10 +45,10 @@ angular.module('bahmni.common.conceptSet')
             };
             $scope.onChanged = function (item, index) {
                 $scope.services[index].unitCost = item.unitCost;
-                $scope.services[index].quantity = "";
-                $scope.services[index].totalAmount = 0;
+                $scope.services[index].quantity = 1;
+                $scope.services[index].totalAmount = item.unitCost;
                 $scope.services[index].discount = 0;
-                $scope.services[index].netPayable = 0;
+                $scope.services[index].netPayable = item.unitCost;
             };
             $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
                 var totalAmount = quantity * $scope.services[index].unitCost;
@@ -63,8 +63,16 @@ angular.module('bahmni.common.conceptSet')
             $scope.calculateNetAmount = function (discount, index) {
                 var totalAmount = parseFloat($scope.services[index].totalAmount);
                 var disccountAmount = (discount * totalAmount) / 100;
+
                 var netpayAmount = totalAmount - disccountAmount;
-                $scope.services[index].netPayable = (totalAmount - discount).toFixed(2);
+                if (discount > totalAmount) {
+                    var discountLenth = (discount.toString()).length;
+                    var prevousDiscount = (discount.toString()).slice(0, discountLenth - 1);
+                    $scope.services[index].discount = parseInt(prevousDiscount);
+                    alert("Discount amount is greater than total amount");
+                } else {
+                    $scope.services[index].netPayable = (totalAmount - discount).toFixed(2);
+                }
             };
             $scope.calTotalAmount = function () {
                 $scope.total = 0;
@@ -105,78 +113,39 @@ angular.module('bahmni.common.conceptSet')
             $scope.searchButtonText = "Submit";
             $scope.test = "true";
             $scope.submitMoneyReceiptData = function (patientInfo, services, patient) {
-                $scope.enable = "false";
-                $scope.test = "true";
-                $scope.searchButtonText = "Submitting";
-                console.log("submit receipt");
-                console.log(services);
-                console.log(patient);
-                var jsonData = {};
-                patientInfo['mid'] = "";
-                patientInfo['patientName'] = patient.givenName + " " + patient.familyName;
-                patientInfo['patientUuid'] = patient.uuid;
-                patientInfo['uic'] = patient.UIC.value;
-                if (patient.MobileNo != undefined) {
-                    patientInfo['contact'] = patient.MobileNo.value;
+                if ($window.confirm("Do you really want to submit this money receipt?")) {
+                    $scope.Message = "You clicked YES.";
+                    $scope.enable = "false";
+                    $scope.test = "true";
+                    $scope.searchButtonText = "Submitting";
+                    console.log("submit receipt");
+                    console.log(services);
+                    console.log(patient);
+                    var jsonData = {};
+                    patientInfo['mid'] = "";
+                    patientInfo['patientName'] = patient.givenName + " " + patient.familyName;
+                    patientInfo['patientUuid'] = patient.uuid;
+                    patientInfo['uic'] = patient.UIC.value;
+                    if (patient.MobileNo != undefined) {
+                        patientInfo['contact'] = patient.MobileNo.value;
+                    }
+                    patientInfo['gender'] = patient.gender;
+                    patientInfo['dob'] = patient.birthdate;
+                    if (patient.FinancialStatus != undefined) {
+                        patientInfo['wealth'] = patient.FinancialStatus.value.display;
+                    }
+                    jsonData["moneyReceipt"] = patientInfo;
+                    jsonData["services"] = services;
+
+                    return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
+                        $state.go("patient.dashboard.show", {
+                            patientUuid: patient.uuid
+                        }, {reload: true}
+                        );
+                    }));
+                } else {
+                    $scope.Message = "You clicked NO.";
                 }
-                patientInfo['gender'] = patient.gender;
-                patientInfo['dob'] = patient.birthdate;
-                if (patient.FinancialStatus != undefined) {
-                    patientInfo['wealth'] = patient.FinancialStatus.value.display;
-                }
-                jsonData["moneyReceipt"] = patientInfo;
-                jsonData["services"] = services;
-
-                return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
-                    console.log("after premise");
-                    console.log(results);
-                    $state.go("patient.dashboard.show", {
-                        patientUuid: patient.uuid
-                    }, {reload: true}
-                    );
-                    // return $window.open("/bahmni/clinical/index.html#/default/patient/" + patient.uuid + "/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY", "_self");
-                }));
-
-               /* var moneyReceiptObj = {};
-                moneyReceiptObj['mid'] = "";
-                moneyReceiptObj['patientName'] = data.givenName;
-                moneyReceiptObj['patientUuid'] = data.uuid;
-                moneyReceiptObj['uic'] = data.uic;
-                moneyReceiptObj['contact'] = "01923445667";
-                moneyReceiptObj['dob'] = "2019-02-23";
-                moneyReceiptObj['address'] = data.address;
-                moneyReceiptObj['clinicName'] = data.clinicName;
-                moneyReceiptObj['clinicCode'] = data.clinicCode;
-                moneyReceiptObj['sateliteClinicId'] = data.sateliteClinicId;
-                moneyReceiptObj['teamNo'] = data.teamNo;
-                moneyReceiptObj['moneyReceiptDate'] = data.moneyReceiptDate;
-                moneyReceiptObj['reference'] = data.reference;
-                moneyReceiptObj['referenceId'] = data.referenceId;
-                moneyReceiptObj['shift'] = "Day";
-                moneyReceiptObj['wealth'] = "Poor";
-                moneyReceiptObj['servicePoint'] = data.servicePoint;
-                moneyReceiptObj['gender'] = data.gender;
-                moneyReceiptObj['slipNo'] = data.slipNo;
-                moneyReceiptObj['clinicType'] = "BmoC";
-
-                var servicesObj = {};
-                servicesObj['item'] = data.item;
-                servicesObj['description'] = data.description;
-                servicesObj['unitCost'] = data.unitCost;
-                servicesObj['quantity'] = data.quantity;
-                servicesObj['totalAmount'] = data.totalAmount;
-                servicesObj['discount'] = data.discount;
-                servicesObj['netPayable'] = data.netPayable;
-                servicesObj['moneyReceiptDate'] = data.moneyReceiptDate;
-
-                jsonData["moneyReceipt"] = moneyReceiptObj;
-                jsonData["services"] = [];
-
-                var jsonArrayObject = {};
-                jsonArrayObject["spid"] = servicesObj;
-
-                jsonData["services"].push(jsonArrayObject);
-                console.log(jsonData); */
             };
             $scope.togglePref = function (conceptSet, conceptName) {
                 $rootScope.currentUser.toggleFavoriteObsTemplate(conceptName);
@@ -370,3 +339,19 @@ angular.module('bahmni.common.conceptSet')
             templateUrl: '../common/concept-set/views/conceptSetGroup.html'
         };
     }]);
+
+/* angular.module('bahmni.common.conceptSet').directive('ngConfirmClick', [
+    function () {
+        return {
+            link: function ($scope, element, attr) {
+                var msg = attr.ngConfirmClick || "Are you sure?";
+                var clickAction = attr.confirmedClick;
+                element.bind('click', function (event) {
+                    if (window.confirm(msg)) {
+                        scope.$eval(clickAction);
+                    }
+                });
+            }
+        };
+    }
+]); */

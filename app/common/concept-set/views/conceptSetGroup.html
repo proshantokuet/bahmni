@@ -100,7 +100,7 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patientInfo.moneyReceiptDate" type="date"  ng-required="true"/>
+                                                        <input id="txtDate" ng-model="patientInfo.moneyReceiptDate" type="date"  ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -217,7 +217,7 @@
                     </div>
                 </div>
 
-                <div class="box-container box-container-default">
+                <div class="box-container box-container-default" id="serviceSection">
                     <div class="box-container box-container-patient-info patient-common-info-container">
                         <div class="form-field form-field-gender">
                             <section class="form-field form-field-gender">
@@ -228,7 +228,7 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <label>Item<span class="asterick">*</span></label>
+                                                        <label>Service<span class="asterick">*</span></label>
                                                         <select ng-model="service.item" ng-change="onChanged(service.item, $index)"
                                                                  ng-options="itm as itm.name for itm in serviceList" ng-required="true">
                                                         </select>
@@ -313,15 +313,14 @@
                     </div>
                 </div>
 
-                <div class="submit-btn-container clearfix">
-                   <button  style="margin: 10px 20px 0 0"  class="right submit-btn" type="submit" ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient)" ng-disabled="enable=='false'">
-
+                <div class="submit-btn-container clearfix" id="buttonPrint">
+                   <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient)" ng-disabled="enable=='false'">
                        <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
             {{ searchButtonText }}
 
                    </button>
 
-                    <a style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
+                    <a onclick="return confirm('Do you really want to cancel this money receipt?')"  style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
                 </div>
 
             </form>
@@ -355,17 +354,19 @@
                 </tr>
 
                 <tr style="border: 1px solid #ddd; background: #699;color: #fff;">
-                    <td>Total </td>
+                    <td> </td>
                     <td> </td>
                     <td> </td>
                     <td></td>
-                    <td> </td>
-                    <td>{{calTotalAmount()}} </td>
-                    <td>{{calTotalDiscount()}}</td>
-                    <td>{{calTotalNetAmount()}}</td>
+                    <td><b>Total</b> </td>
+                    <td><b>{{calTotalAmount()}}</b> </td>
+                    <td><b>{{calTotalDiscount()}}</b></td>
+                    <td><b>{{calTotalNetAmount()}}</b></td>
                 </tr>
                 </tbody>
             </table>
+
+            <button style="float: right;margin-top: 10px;" onclick="printMoneyReceipt()">Print</button>
         </div>
        <!-- {{patient}}
         {{services}}
@@ -449,3 +450,42 @@
     });
 });
 </script>-->
+<style>
+    @media print {
+
+  /*#consultation-content{
+        visibility:visible;
+  }*/
+  #serviceSection {
+    visibility: collapse;
+  }
+  #opd-tabs {
+      visibility: collapse;
+  }
+  #buttonPrint {
+      visibility: collapse;
+  }
+
+}
+</style>
+<script>
+ function printMoneyReceipt() {
+  window.print();
+}
+$(function(){
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+
+    $('#txtDate').attr('max', maxDate);
+});
+
+</script>

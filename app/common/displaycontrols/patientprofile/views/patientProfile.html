@@ -1,4 +1,4 @@
-<div>
+
     <div class="dashboard-patientInformation-section" id="patient_information" ng-if="::isDirectiveReady">
         <section bindonce="patient" class="block patientInformation dashboard-section" ng-class="::{'more': patientSummary.show}">
             <table class="patient dashboard-table">
@@ -65,12 +65,14 @@
             </table>
         </section>
     </div>
-</div>
+
+<div class="dashboard-patientInformation-section">
+    <h3 style="background: #ddd;padding: 18px;height: 17px; color: #000;">Service history</h3>
 <table id="table_id" class="display">
                             <thead>
                                 <tr>
-                                    <th>#Id</th>
-                                    <th>Item Name</th>
+
+                                    <th>Service Name</th>
                                     <th>Date</th>
                                     <th>Description</th>
                                     <th>Unit Cost</th>
@@ -84,7 +86,7 @@
                             <tbody>
 
                                 <tr ng-repeat="service in services">
-                                    <td>{{service.spid}} </td>
+
                                     <td>{{service.item}} </td>
                                     <td>{{service.moneyReceiptDate}} </td>
                                     <td>{{service.description}} </td>
@@ -101,7 +103,7 @@
                             </tbody>
                         </table>
 
-
+</div>
 
 <script type="text/javascript">
 
@@ -110,6 +112,6 @@ setTimeout(function(){
     $(document).ready(function() {
 	    $('#table_id').DataTable();
     } );
-}, 3000);
+}, 1000);
 
 </script>
