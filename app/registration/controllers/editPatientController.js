@@ -160,6 +160,8 @@ angular.module('bahmni.registration')
                     $scope.patient.showPregnancyStatus = true;
                 }
 
+                $rootScope.$broadcast('tiggermappingfunction', { patientAttribute: $scope.patient.memberType });
+
                 if ($scope.patient.showDiseaseStatus) {
                     $scope.patient.yesNoCheckbox = "হ্যাঁ";
                 }

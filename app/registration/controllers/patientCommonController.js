@@ -734,5 +734,10 @@ angular.module('bahmni.registration')
                     return true;
                 }
             };
+
+            $scope.$on('tiggermappingfunction', function (event, args) {
+                $scope.checkMemberType(args.patientAttribute);
+                $scope.handleUpdate(args.patientAttribute);
+            });
         }]);
 
