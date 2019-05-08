@@ -46,6 +46,9 @@ angular.module('bahmni.common.conceptSet')
             $scope.onChanged = function (item, index) {
                 $scope.services[index].unitCost = item.unitCost;
                 $scope.services[index].quantity = 1;
+                $scope.services[index].code = item.code;
+                $scope.services[index].category = item.category;
+                // $scope.services[index].provider = item.provider;
                 $scope.services[index].totalAmount = item.unitCost;
                 $scope.services[index].discount = 0;
                 $scope.services[index].netPayable = item.unitCost;
