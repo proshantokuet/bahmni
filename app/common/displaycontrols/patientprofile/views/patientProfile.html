@@ -110,7 +110,15 @@
 //var $jq = jQuery.noConflict();
 setTimeout(function(){
     $(document).ready(function() {
-	    $('#table_id').DataTable();
+	    $('#table_id').DataTable({
+           language: {
+           emptyTable: "no service available", //
+           loadingRecords: "Please wait .. ", // default Loading...
+           zeroRecords: "No matching records found"
+          }
+        }
+        );
+
     } );
 }, 1000);
 

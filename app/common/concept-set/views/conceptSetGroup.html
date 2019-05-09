@@ -229,7 +229,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Service<span class="asterick">*</span></label>
-                                                        <select ng-model="service.item" ng-change="onChanged(service.item, $index)"
+                                                        <select style="max-width: 100%;" class="js-example-basic-single" ng-model="service.item" ng-change="onChanged(service.item, $index)"
                                                                  ng-options="itm as itm.name for itm in serviceList" ng-required="true">
                                                         </select>
                                                     </div>
@@ -486,5 +486,7 @@ $(function(){
 
     $('#txtDate').attr('max', maxDate);
 });
-
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
 </script>
