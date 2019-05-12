@@ -181,7 +181,7 @@ angular.module('bahmni.registration')
 
             $scope.afterSave = function () {
                 messagingService.showMessage("info", "REGISTRATION_LABEL_SAVED");
-                $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY');
+                $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_self");
                 // $state.go("patient.edit", {
                 //     patientUuid: $scope.patient.uuid
                 // });

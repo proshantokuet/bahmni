@@ -234,6 +234,6 @@ angular.module('bahmni.registration')
             $scope.afterSave = function () {
                 auditLogService.log($scope.patient.uuid, Bahmni.Registration.StateNameEvenTypeMap['patient.edit'], undefined, "MODULE_LABEL_REGISTRATION_KEY");
                 messagingService.showMessage("info", "REGISTRATION_LABEL_SAVED");
-                $window.open('../clinical/index.html#/default/patient/' + uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY');
+                $window.open('../clinical/index.html#/default/patient/' + uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_self");
             };
         }]);
