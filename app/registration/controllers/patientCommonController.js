@@ -360,7 +360,6 @@ angular.module('bahmni.registration')
                 }
                 if (attribute == "disable") {
                     var disable = $scope.patient[attribute];
-                    console.log($scope.patient[attribute]);
                     console.log(disable);
                     showDisabilityType(disable.value);
                 }
@@ -376,6 +375,7 @@ angular.module('bahmni.registration')
                     $scope.patient.showDisability = true;
                 } else {
                     $scope.patient.showDisability = false;
+                    $scope.patient.Disability_Type = null;
                 }
             };
 

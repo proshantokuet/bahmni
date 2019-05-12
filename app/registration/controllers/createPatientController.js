@@ -90,15 +90,18 @@ angular.module('bahmni.registration')
             prepopulateFields();
 
             var addNewRelationships = function () {
-                var personB = $scope.patient.newlyAddedRelationships[0].personB;
-                var relationshipType = {};
-                var relationObject = {};
-                var relationArray = [];
-                relationshipType['uuid'] = "03ed3084-4c7a-11e5-9192-080027b662ec";
-                relationObject["relationshipType"] = relationshipType;
-                relationObject["personB"] = personB;
-                relationArray.push(relationObject);
-                $scope.patient.relationships = relationArray;
+                if ($scope.patient.memberType == 'বহিরাগত') $scope.patient.relationships = [];
+                else {
+                    var personB = $scope.patient.newlyAddedRelationships[0].personB;
+                    var relationshipType = {};
+                    var relationObject = {};
+                    var relationArray = [];
+                    relationshipType['uuid'] = "03ed3084-4c7a-11e5-9192-080027b662ec";
+                    relationObject["relationshipType"] = relationshipType;
+                    relationObject["personB"] = personB;
+                    relationArray.push(relationObject);
+                    $scope.patient.relationships = relationArray;
+                }
             };
 
             var getConfirmationViaNgDialog = function (config) {

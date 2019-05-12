@@ -127,6 +127,22 @@
                     var assignRelationshipDetails = function () {
                         return patientService.getRelationships($scope.patientUuid).then(function (response) {
                             $scope.relationships = response.data.results;
+                            for (var i = 0; i < $scope.relationships.length; i++) {
+                                if ($scope.relationships[i].personA != null)
+                                {
+                                    if ($scope.relationships[i].personA.gender == "H") {
+                                        $scope.householdDisplayName = $scope.relationships[i].personA.display;
+                                        break;
+                                    }
+                                }
+                                if ($scope.relationships[i].personB != null)
+                                {
+                                    if ($scope.relationships[i].personB.gender == "H") {
+                                        $scope.householdDisplayName = $scope.relationships[i].personB.display;
+                                        break;
+                                    }
+                                }
+                            }
                         });
                     };
                     var assignAdmissionDetails = function () {
