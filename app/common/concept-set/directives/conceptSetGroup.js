@@ -35,6 +35,17 @@ angular.module('bahmni.common.conceptSet')
             $scope.addNewChoice = function () {
                 var newItemNo = $scope.services.length + 1;
                 $scope.services.push({"discount": 0, "quantity": 1 });
+                var pos = $scope.serviceList.map(function (e) {
+                    console.log(e);
+                    return e.code;
+                }).indexOf("NH01");
+                console.log(pos);
+                $scope.serviceList.splice(pos, 1);
+                console.log($scope.serviceList);
+            };
+            $scope.removeThis = function (index) {
+                console.log(index);
+                $scope.services.splice(index, 1);
             };
             $scope.removeChoice = function () {
                 var lastItem = $scope.services.length - 1;
@@ -43,6 +54,7 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services.splice(lastItem);
                 }
             };
+
             $scope.onChanged = function (item, index) {
                 $scope.services[index].unitCost = item.unitCost;
                 $scope.services[index].quantity = 1;

@@ -27,8 +27,6 @@ angular.module('bahmni.registration')
             var successCallBack = function (openmrsPatient) {
                 $scope.openMRSPatient = openmrsPatient["patient"];
 
-                console.log($scope.openMRSPatient);
-
                 /* $scope.genderValue = $scope.openMRSPatient.person.gender;
                 console.log($scope.genderValue); */
                 var i;
@@ -44,9 +42,7 @@ angular.module('bahmni.registration')
                 $scope.patient = openmrsPatientMapper.map(openmrsPatient);
 
                 $scope.patient.uic = $scope.UICString;
-
                 console.log($scope.patient);
-
                 setReadOnlyFields();
                 expandDataFilledSections();
                 $scope.patientLoaded = true;

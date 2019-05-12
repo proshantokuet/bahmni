@@ -397,10 +397,11 @@ angular.module('bahmni.registration')
             var getBirthDistricts = function () {
                 return locationService.getAllByTag("District").then(function (response) {
                     $scope.locations = response.data.results;
+                    console.log(response.data.results);
                     var i = 0;
                     for (i = 0; i < $scope.locations.length; i++) {
                         $scope.locationDistricts.push({districtName: $scope.locations[i].name, uuid: $scope.locations[i].uuid});
-                        // console.log($scope.locations[i].uuid);
+                        console.log($scope.locations[i].uuid);
                     }
                     return response;
                 });
@@ -778,8 +779,10 @@ angular.module('bahmni.registration')
             $scope.$watch('patientLoaded', function () {
                 if ($scope.patientLoaded) {
                     executeShowOrHideRules();
+                    getBirthDistricts();
+                    console.log("In watch..");
                 }
-                getBirthDistricts();
+
                 /* $timeout(function () {
                     var attributesToHide = [];
                     attributesToHide.push('id_Used_7.1%_Chlorohexidin');
