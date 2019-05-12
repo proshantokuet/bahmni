@@ -157,13 +157,18 @@ angular.module('bahmni.registration')
             };
 
             $scope.updateDiseaseStatusCheckboxChange = function (disease, isChecked) {
-                console.log(disease);
-                console.log(isChecked);
                 $scope.patient.diseaseStatus[disease] = isChecked;
                 console.log($scope.patient.diseaseStatus[disease]);
             };
 
             $scope.updatefamilyDiseaseHistoryCheckboxChange = function (disease, isChecked) {
+                if (disease.engName == "None") {
+                    angular.forEach($scope.patient.familyDiseaseHistory, function (value, key) {
+                        if (key != "None") {
+                            $scope.patient.familyDiseaseHistory[key] = false;
+                        }
+                    });
+                }
                 $scope.patient.familyDiseaseHistory[disease] = isChecked;
             };
 
@@ -752,6 +757,11 @@ angular.module('bahmni.registration')
             $scope.$on('tiggermappingfunction', function (event, args) {
                 $scope.checkMemberType(args.patientAttribute);
                 $scope.handleUpdate(args.patientAttribute);
+                if ($scope.patient.disable != null) {
+                    if ($scope.patient.disable.value == "হ্যাঁ") {
+                        $scope.patient.showDisability = true;
+                    }
+                }
             });
         }]);
 
