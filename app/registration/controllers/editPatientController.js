@@ -159,7 +159,18 @@ angular.module('bahmni.registration')
                     $scope.patient.showPregnancyStatus = true;
                 }
 
-                $rootScope.$broadcast('tiggermappingfunction', { patientAttribute: $scope.patient.memberType });
+                // $rootScope.$broadcast('tiggermappingfunction', { patientAttribute: $scope.patient.memberType });
+                if ($scope.patient.memberType == "কমিউনিটি ক্লিনিকের আওতাধীন") {
+                    $scope.patient.showMemberType = true;
+                } else {
+                    $scope.patient.showMemberType = false;
+                }
+
+                if ($scope.patient.disable != null) {
+                    if ($scope.patient.disable.value == "হ্যাঁ") {
+                        $scope.patient.showDisability = true;
+                    }
+                }
 
                 if ($scope.patient.showDiseaseStatus) {
                     $scope.patient.yesNoCheckbox = "হ্যাঁ";
