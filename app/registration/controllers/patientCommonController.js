@@ -121,6 +121,7 @@ angular.module('bahmni.registration')
                     $scope.patient.noidCheckbox = false;
                 } else {
                     $scope.patient.nationalIdCheckbox = false;
+                    $scope.patient.nationalId = null;
                 }
             };
 
@@ -130,6 +131,7 @@ angular.module('bahmni.registration')
                     $scope.patient.noidCheckbox = false;
                 } else {
                     $scope.patient.bridCheckbox = false;
+                    $scope.patient.brid = null;
                 }
             };
 
@@ -139,6 +141,7 @@ angular.module('bahmni.registration')
                     $scope.patient.noidCheckbox = false;
                 } else {
                     $scope.patient.epiCheckbox = false;
+                    $scope.patient.epi = null;
                 }
             };
 
@@ -148,6 +151,9 @@ angular.module('bahmni.registration')
                     $scope.patient.bridCheckbox = false;
                     $scope.patient.epiCheckbox = false;
                     $scope.patient.noidCheckbox = true;
+                    $scope.patient.nationalId = null;
+                    $scope.patient.brid = null;
+                    $scope.patient.epi = null;
                 } else {
                 }
             };
@@ -354,6 +360,12 @@ angular.module('bahmni.registration')
                 if (attribute == 'MaritalStatus') {
                     var gender = document.getElementById("gender").value;
                     var maritalStatus = $scope.patient[attribute].value;
+                    $scope.patient.PregnancyStatus = null;
+                    $scope.patient.familyplanning = null;
+                    $scope.patient["Wife Name_English"] = null;
+                    $scope.patient["Wife Name_Bangla"] = null;
+                    $scope.patient["Husband Name_English"] = null;
+                    $scope.patient["Husband Name_Bangla"] = null;
                     maritalStatusAndGenderCondition(gender, maritalStatus);
                     age = dateToDay(document.getElementById("birthdate").value);
                     marriedFemalelessThan55(gender, maritalStatus, age);
@@ -401,10 +413,14 @@ angular.module('bahmni.registration')
                     attributes.push('id_PregnancyStatus');
                     $scope.patient.showPregnancyStatus = false;
                     $scope.patient.showLMP = false;
+                    $scope.patient.PregnancyStatus = null;
+                    $scope.patient.LMP = null;
                     hideAttributes(attributes);
                 } else {
                     $scope.patient.showPregnancyStatus = false;
                     $scope.patient.showLMP = false;
+                    $scope.patient.PregnancyStatus = null;
+                    $scope.patient.LMP = null;
                     hideAttributes(attributes);
                 }
             };
@@ -418,6 +434,7 @@ angular.module('bahmni.registration')
                     $scope.patient.showFamilyplanning = false;
                     $scope.patient.showWifeName = false;
                     $scope.patient.showHusbandName = false;
+                    $scope.patient.showDeliveryDate = false;
                     attributes.push('id_Husband Name_English');
                     attributes.push('id_Husband Name_Bangla');
                     attributes.push('id_Wife Name_English');
@@ -435,6 +452,8 @@ angular.module('bahmni.registration')
                 } else {
                     $scope.patient.showPhoneNumber = false;
                     $scope.patient.showLMP = false;
+                    $scope.patient.phoneNumber = null;
+                    $scope.patient.LMP = null;
                     hideRiskyHabits();
                     hideAttributes(attributes);
                 }
@@ -448,6 +467,11 @@ angular.module('bahmni.registration')
                     $scope.patient.showWifeName = false;
                     $scope.patient.showHusbandName = false;
                     $scope.patient.showLMP = false;
+                    $scope.patient.LMP = null;
+                    $scope.patient["Wife Name_English"] = null;
+                    $scope.patient["Wife Name_Bangla"] = null;
+                    $scope.patient["Husband Name_English"] = null;
+                    $scope.patient["Husband Name_Bangla"] = null;
                     attributes.push('id_Husband Name_English');
                     attributes.push('id_Husband Name_Bangla');
                     attributes.push('id_Wife Name_English');
@@ -467,6 +491,8 @@ angular.module('bahmni.registration')
                     $scope.patient.showPregnancyStatus = false;
                     $scope.patient.showChlorohexidin = false;
                     $scope.patient.showBirthWeight = false;
+                    $scope.patient.BirthWeight = null;
+                    $scope.patient["Used_7.1%_Chlorohexidin"] = null;
                     attributes.push('id_Husband Name_English');
                     attributes.push('id_Husband Name_Bangla');
                     attributes.push('id_Wife Name_English');
@@ -490,6 +516,13 @@ angular.module('bahmni.registration')
                     $scope.patient.showHusbandName = false;
                     $scope.patient.showPregnancyStatus = false;
                     $scope.patient.showRiskyHabits = false;
+                    $scope.patient.occupation = null;
+                    $scope.patient.education = null;
+                    $scope.patient["Wife Name_English"] = null;
+                    $scope.patient["Wife Name_Bangla"] = null;
+                    $scope.patient["Husband Name_English"] = null;
+                    $scope.patient["Husband Name_Bangla"] = null;
+                    $scope.patient.PregnancyStatus = null;
                     attributes.push('id_Husband Name_English');
                     attributes.push('id_Husband Name_Bangla');
                     attributes.push('id_Wife Name_English');
@@ -536,14 +569,19 @@ angular.module('bahmni.registration')
                 if (pregnancyStatus == 'প্রসবোত্তর') {
                     $scope.patient.showDeliveryDate = true;
                     $scope.patient.showLMP = false;
+                    $scope.patient.LMP = null;
                     $scope.patient.showFamilyplanning = true;
                 } else if (pregnancyStatus == 'প্রসব পূর্ব') {
                     $scope.patient.showDeliveryDate = false;
                     $scope.patient.showFamilyplanning = false;
+                    $scope.patient.DeliveryDate = null;
+                    $scope.patient.familyplanning = null;
                     $scope.patient.showLMP = true;
                 } else {
                     $scope.patient.showDeliveryDate = false;
                     $scope.patient.showLMP = false;
+                    $scope.patient.LMP = null;
+                    $scope.patient.DeliveryDate = null;
                     $scope.patient.showFamilyplanning = true;
                 }
             };
@@ -562,6 +600,12 @@ angular.module('bahmni.registration')
                     $scope.patient.showHusbandName = false;
                     $scope.patient.showMaritalStatus = false;
                     $scope.patient.showPregnancyStatus = false;
+                    $scope.patient.MaritalStatus = null;
+                    $scope.patient["Wife Name_English"] = null;
+                    $scope.patient["Wife Name_Bangla"] = null;
+                    $scope.patient["Husband Name_English"] = null;
+                    $scope.patient["Husband Name_Bangla"] = null;
+                    $scope.patient.PregnancyStatus = null;
                     // $('#MaritalStatus option:contains("")').prop('selected', true);
                     // $('#MaritalStatus').val("");
                     attributes.push('id_familyplanning');
@@ -739,7 +783,7 @@ angular.module('bahmni.registration')
                     return $scope.patient.showBirthWeight;
                 } else if (attributeName == "LMP") {
                     return $scope.patient.showLMP;
-                } else if (attributeName == "delivery_date") {
+                } else if (attributeName == "DeliveryDate") {
                     return $scope.patient.showDeliveryDate;
                 } else if (attributeName == "familyplanning") {
                     return $scope.patient.showFamilyplanning;
