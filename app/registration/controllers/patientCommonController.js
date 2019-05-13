@@ -102,8 +102,14 @@ angular.module('bahmni.registration')
                 if (checkBoxStatus == "কমিউনিটি ক্লিনিকের আওতাধীন") {
                     console.log(checkBoxStatus);
                     $scope.patient.showMemberType = true;
+                    $scope.patient.MaritalStatus = null;
+                    $scope.patient.motherNameEnglish = null;
+                    $scope.patient.phoneNumber = null;
                 } else {
                     $scope.patient.showMemberType = false;
+                    $scope.patient.MaritalStatus = null;
+                    $scope.patient.motherNameEnglish = null;
+                    $scope.patient.phoneNumber = null;
                 }
             };
 
