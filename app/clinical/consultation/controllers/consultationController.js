@@ -119,11 +119,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             };
 
             $scope.cancelVisitForm = function () {
-                // if (!isFormValid()) {
-                //     $scope.$parent.$parent.$broadcast("event:errorsOnForm");
-                //     return $q.when({});
-                // }
-                // added this function to cancel visit form and to redirect patient dashboard
                 if (contextChangeHandler.execute()["allow"]) {
                     var params = {
                         configName: $scope.configName,
@@ -133,6 +128,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     if ($scope.dashboardDirty) {
                         params['dashboardCachebuster'] = Math.random();
                     }
+                    $window.location.reload();
                     $state.go("patient.dashboard.show", params);
                 }
             };

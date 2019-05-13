@@ -49,8 +49,10 @@ angular.module('bahmni.registration')
                     s: "byIdOrName",
                     patientAttributes: ["phoneNumber"],
                     patientSearchResultsConfig: ["phoneNumber"],
-                    addressFieldName: ["address2"],
-                    addressSearchResultsConfig: ["address2"],
+                    // addressFieldName: ["address1", "address2"],
+                    addressFieldName: ["address1", "address2", "address3", "city_village", "county_district", "state_province"],
+                    // addressSearchResultsConfig: ["address1", "address2", "address3", "address4", "address5", "address6", "cityVillage", "countyDistrict", "stateProvince",],
+                    addressSearchResultsConfig: ["address1", "address2", "address3", "city_village", "county_district", "state_province"],
                     limit: limit,
                     loginLocationUuid: sessionService.getLoginLocationUuid()
                 },

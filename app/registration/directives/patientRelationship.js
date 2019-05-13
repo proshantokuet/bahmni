@@ -82,6 +82,10 @@ angular.module('bahmni.registration')
                 var json = JSON.parse(patient.customAttribute);
                 return json["phoneNumber"];
             };
+            // start change by zinia
+            var getPersonaddressB = function (patientData) {
+                return {'display': patientData.value, 'uuid': patientData.uuid, 'address': patientData.parent.address};
+            };
 
             var getPersonB = function (personName, personUuid) {
                 return {'display': personName, 'uuid': personUuid};
@@ -224,8 +228,16 @@ angular.module('bahmni.registration')
             $scope.patientSelected = function (relationship) {
                 return function (patientData) {
                     relationship.patientIdentifier = patientData.identifier;
-                    relationship.personB = getPersonB(patientData.value, patientData.uuid);
+                    relationship.personB = getPersonaddressB(patientData);
+                    $scope.patient.address = addAddress(JSON.parse(patientData.parent.addressFieldValue));
                 };
+            };
+            // address mapping according to Household
+            var addAddress = function (address) {
+                address['cityVillage'] = address['city_village'];
+                address['stateProvince'] = address['state_province'];
+                address['countyDistrict'] = address['county_district'];
+                return address;
             };
 
             $scope.getPatientList = function (response) {
@@ -247,7 +259,8 @@ angular.module('bahmni.registration')
                     return {
                         value: patient.identifier + " - " + getName(patient) + " - " + getPhoneNumber(patient),
                         uuid: patient.uuid,
-                        identifier: patient.identifier
+                        identifier: patient.identifier,
+                        parent: patient
                     };
                 });
             };

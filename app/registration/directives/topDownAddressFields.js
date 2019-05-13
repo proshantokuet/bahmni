@@ -76,6 +76,10 @@ angular.module('bahmni.registration')
         };
 
         $scope.isReadOnly = function (addressLevel) {
+            // to make it always disabled, to make it editable remove the next line
+            if ($scope.readonlystatus) {
+                return true;
+            }
             if (!$scope.address) {
                 return false;
             }
@@ -135,6 +139,8 @@ angular.module('bahmni.registration')
         };
 
         var init = function () {
+            // to make the address field readonly
+            $scope.readonlystatus = true;
             $scope.addressLevels.reverse();
             var isStrictEntry = false;
             _.each($scope.addressLevels, function (addressLevel) {
