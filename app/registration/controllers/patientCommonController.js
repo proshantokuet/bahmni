@@ -807,14 +807,14 @@ angular.module('bahmni.registration')
                 }
             };
 
-            $scope.$on('tiggermappingfunction', function (event, args) {
-                $scope.checkMemberType(args.patientAttribute);
-                $scope.handleUpdate(args.patientAttribute);
-                if ($scope.patient.disable != null) {
-                    if ($scope.patient.disable.value == "হ্যাঁ") {
-                        $scope.patient.showDisability = true;
-                    }
-                }
-            });
+            // $scope.$on('tiggermappingfunction', function (event, args) {
+            //     $scope.checkMemberType(args.patientAttribute);
+            //     $scope.handleUpdate(args.patientAttribute);
+            //     if ($scope.patient.disable != null) {
+            //         if ($scope.patient.disable.value == "হ্যাঁ") {
+            //             $scope.patient.showDisability = true;
+            //         }
+            //     }
+            // });
         }]);
 
