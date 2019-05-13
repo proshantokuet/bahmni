@@ -83,7 +83,7 @@
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <select ng-model="patientInfo.servicePoint" ng-options="servicePoint.name as servicePoint.name for servicePoint in servicePoints" required>
+                                                        <select ng-model="patientInfo.servicePoint" ng-options="servicePoint.name as servicePoint.name for servicePoint in servicePoints"  ng-required="true" autofocus>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -194,14 +194,14 @@
                                                 </div>
                                             </article>
                                         </td>
-                                        <td ng-show="patientInfo.reference=='External'">
+                                        <td ng-show="patientInfo.reference=='External' || patientInfo.reference =='CSP'">
                                             <article class="form-field">
                                                 <div class="field-attribute">
-                                                    <label>Reference Id</label>
+                                                    <label>{{patientInfo.reference}} Id</label>
                                                 </div>
                                             </article>
                                         </td>
-                                        <td ng-show="patientInfo.reference=='External'">
+                                        <td ng-show="patientInfo.reference=='External' || patientInfo.reference =='CSP'">
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
@@ -210,6 +210,45 @@
                                                 </div>
                                             </article>
                                         </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Session<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <select ng-model="patientInfo.session" ng-options=" session.name as session.name for session in sessions" ng-required="true">
+
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.session=='Others'">
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Otehr's Session Name<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.session=='Others'">
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patientInfo.other" type="text" ng-required="true"/>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+
                                     </tr>
                                 </table>
                             </section>
@@ -229,7 +268,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Service<span class="asterick">*</span></label>
-                                                        <select style="max-width: 100%;" class="js-example-basic-single" ng-model="service.item" ng-change="onChanged(service.item, $index)"
+                                                        <select  ng-model="service.item" ng-change="onChanged(service.item, $index)"
                                                                  ng-options="itm as itm.name for itm in serviceList" ng-required="true">
                                                         </select>
                                                     </div>
@@ -492,3 +531,5 @@ $(document).ready(function() {
     $('.js-example-basic-single').select2();
 });
 </script>
+<!--
+style="max-width: 100%;" class="js-example-basic-single"-->

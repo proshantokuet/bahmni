@@ -56,6 +56,11 @@
                             $scope.relationships = response.data.results;
                         });
                     };
+                    $scope.truncateDate = function (date) {
+                        if (date != undefined) {
+                            return date.slice(0, 10);
+                        }
+                    };
 
                     var moneyReceipt = function () {
                         return patientService.moneyReceipt($scope.patientUuid).then(function (response) {

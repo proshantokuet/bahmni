@@ -19,7 +19,11 @@ angular.module('bahmni.common.conceptSet')
                 return $rootScope.showLeftpanelToggle;
             };
 
-            $scope.itemNames = [{name: "MED", id: 23, price: 34}, {name: "MEDiceine MEDiceine MEDiceine", id: 34, price: 340}];
+            $scope.itemNames = [{name: "MED", id: 23, price: 34}, {
+                name: "MEDiceine MEDiceine MEDiceine",
+                id: 34,
+                price: 340
+            }];
             $scope.getItem = function (index) {
                 if (index == undefined) {
                     return "";
@@ -28,20 +32,18 @@ angular.module('bahmni.common.conceptSet')
                 console.log(obj);
                 return obj.price;
             };
-            $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}, {name: "EPI"}, {name: "Garments"}, {name: "Coporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "CSP"}, {name: "N/A"}];
-            $scope.references = [{name: "Self"}, {name: "CSO"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
-            $scope.services = [{"discount": 0, "quantity": 1 }];
-            $scope.patientInfo = {clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName, clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId, orgUnit: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).orgUnit};
+            $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}];
+            $scope.sessions = [{name: "EPI"}, {name: "Garments"}, {name: "Corporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "CSP"}, {name: "N/A"}];
+            $scope.references = [{name: "Self"}, {name: "CSP"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
+            $scope.services = [{"discount": 0, "quantity": 1}];
+            $scope.patientInfo = {
+                clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName,
+                clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId,
+                orgUnit: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).orgUnit
+            };
             $scope.addNewChoice = function () {
                 var newItemNo = $scope.services.length + 1;
-                $scope.services.push({"discount": 0, "quantity": 1 });
-                var pos = $scope.serviceList.map(function (e) {
-                    console.log(e);
-                    return e.code;
-                }).indexOf("NH01");
-                console.log(pos);
-                $scope.serviceList.splice(pos, 1);
-                console.log($scope.serviceList);
+                $scope.services.push({"discount": 0, "quantity": 1});
             };
             $scope.removeThis = function (index) {
                 console.log(index);
@@ -56,14 +58,36 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.onChanged = function (item, index) {
-                $scope.services[index].unitCost = item.unitCost;
-                $scope.services[index].quantity = 1;
-                $scope.services[index].code = item.code;
-                $scope.services[index].category = item.category;
-                // $scope.services[index].provider = item.provider;
-                $scope.services[index].totalAmount = item.unitCost;
-                $scope.services[index].discount = 0;
-                $scope.services[index].netPayable = item.unitCost;
+                var pos = $scope.services.map(function (e) {
+                    console.log(e);
+                    return e.code;
+                }).indexOf(item.code);
+                console.log(pos);
+                console.log($scope.services);
+                if ($scope.services.length == 1) {
+                    $scope.services[index].unitCost = item.unitCost;
+                    $scope.services[index].quantity = 1;
+                    $scope.services[index].code = item.code;
+                    $scope.services[index].category = item.category;
+                    // $scope.services[index].provider = item.provider;
+                    $scope.services[index].totalAmount = item.unitCost;
+                    $scope.services[index].discount = 0;
+                    $scope.services[index].netPayable = item.unitCost;
+                } else {
+                    if (pos == -1) {
+                        $scope.services[index].unitCost = item.unitCost;
+                        $scope.services[index].quantity = 1;
+                        $scope.services[index].code = item.code;
+                        $scope.services[index].category = item.category;
+                        // $scope.services[index].provider = item.provider;
+                        $scope.services[index].totalAmount = item.unitCost;
+                        $scope.services[index].discount = 0;
+                        $scope.services[index].netPayable = item.unitCost;
+                    } else {
+                        alert("You have selected  " + item.name + " please select another");
+                        $scope.services[index].item = undefined;
+                    }
+                }
             };
             $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
                 var totalAmount = quantity * $scope.services[index].unitCost;
@@ -356,17 +380,17 @@ angular.module('bahmni.common.conceptSet')
     }]);
 
 /* angular.module('bahmni.common.conceptSet').directive('ngConfirmClick', [
-    function () {
-        return {
-            link: function ($scope, element, attr) {
-                var msg = attr.ngConfirmClick || "Are you sure?";
-                var clickAction = attr.confirmedClick;
-                element.bind('click', function (event) {
-                    if (window.confirm(msg)) {
-                        scope.$eval(clickAction);
-                    }
-                });
-            }
-        };
-    }
-]); */
+ function () {
+ return {
+ link: function ($scope, element, attr) {
+ var msg = attr.ngConfirmClick || "Are you sure?";
+ var clickAction = attr.confirmedClick;
+ element.bind('click', function (event) {
+ if (window.confirm(msg)) {
+ scope.$eval(clickAction);
+ }
+ });
+ }
+ };
+ }
+ ]); */
