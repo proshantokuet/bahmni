@@ -158,9 +158,17 @@ angular.module('bahmni.registration')
 
             $scope.updateDiseaseStatusCheckboxChange = function (disease, isChecked) {
                 $scope.patient.diseaseStatus[disease] = isChecked;
+                console.log($scope.patient.diseaseStatus[disease]);
             };
 
             $scope.updatefamilyDiseaseHistoryCheckboxChange = function (disease, isChecked) {
+                if (disease.engName == "None") {
+                    angular.forEach($scope.patient.familyDiseaseHistory, function (value, key) {
+                        if (key != "None") {
+                            $scope.patient.familyDiseaseHistory[key] = false;
+                        }
+                    });
+                }
                 $scope.patient.familyDiseaseHistory[disease] = isChecked;
             };
 
@@ -348,8 +356,6 @@ angular.module('bahmni.registration')
                     var maritalStatus = $scope.patient[attribute].value;
                     maritalStatusAndGenderCondition(gender, maritalStatus);
                     age = dateToDay(document.getElementById("birthdate").value);
-                    console.log("attribute MaritalStatus");
-                    console.log(age);
                     marriedFemalelessThan55(gender, maritalStatus, age);
                 }
                 if (attribute == "PregnancyStatus") {
@@ -374,6 +380,7 @@ angular.module('bahmni.registration')
                     $scope.patient.showDisability = true;
                 } else {
                     $scope.patient.showDisability = false;
+                    $scope.patient.Disability_Type = null;
                 }
             };
 
@@ -495,18 +502,30 @@ angular.module('bahmni.registration')
                 if (age > Bahmni.Common.Constants.aboveFiveYear) {
                     $scope.patient.diseaseStartIndex = 0;
                     $scope.patient.diseaseEndIndex = 17;
+                    angular.forEach($scope.patient.diseaseStatus, function (value, key) {
+                        $scope.patient.diseaseStatus[key] = false;
+                    });
                     console.log("age group 1");
                 } else if (age < Bahmni.Common.Constants.aboveFiveYear && age > Bahmni.Common.Constants.twoMonth) {
                     $scope.patient.diseaseStartIndex = 18;
                     $scope.patient.diseaseEndIndex = 32;
+                    angular.forEach($scope.patient.diseaseStatus, function (value, key) {
+                        $scope.patient.diseaseStatus[key] = false;
+                    });
                     console.log("age group 2");
                 } else if (age < Bahmni.Common.Constants.twoMonth && age > 0) {
                     $scope.patient.diseaseStartIndex = 33;
                     $scope.patient.diseaseEndIndex = $scope.diseaseStatus.length - 1;
+                    angular.forEach($scope.patient.diseaseStatus, function (value, key) {
+                        $scope.patient.diseaseStatus[key] = false;
+                    });
                     console.log("age group 3");
                 } else {
                     $scope.patient.diseaseStartIndex = 0;
                     $scope.patient.diseaseEndIndex = 0;
+                    angular.forEach($scope.patient.diseaseStatus, function (value, key) {
+                        $scope.patient.diseaseStatus[key] = false;
+                    });
                 }
             };
 
@@ -734,5 +753,15 @@ angular.module('bahmni.registration')
                     return true;
                 }
             };
+
+            $scope.$on('tiggermappingfunction', function (event, args) {
+                $scope.checkMemberType(args.patientAttribute);
+                $scope.handleUpdate(args.patientAttribute);
+                if ($scope.patient.disable != null) {
+                    if ($scope.patient.disable.value == "হ্যাঁ") {
+                        $scope.patient.showDisability = true;
+                    }
+                }
+            });
         }]);
 

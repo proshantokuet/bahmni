@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('CreatePatientController', ['$scope', '$rootScope', '$state', 'patientService', 'patient', 'spinner', 'appService', 'messagingService', 'ngDialog', '$q',
-        function ($scope, $rootScope, $state, patientService, patient, spinner, appService, messagingService, ngDialog, $q) {
+    .controller('CreatePatientController', ['$scope', '$rootScope', '$state', 'patientService', 'patient', 'spinner', 'appService', 'messagingService', 'ngDialog', '$q', '$window',
+        function ($scope, $rootScope, $state, patientService, patient, spinner, appService, messagingService, ngDialog, $q, $window) {
             var dateUtil = Bahmni.Common.Util.DateUtil;
             $scope.actions = {};
             var errorMessage;
@@ -90,15 +90,18 @@ angular.module('bahmni.registration')
             prepopulateFields();
 
             var addNewRelationships = function () {
-                var personB = $scope.patient.newlyAddedRelationships[0].personB;
-                var relationshipType = {};
-                var relationObject = {};
-                var relationArray = [];
-                relationshipType['uuid'] = "03ed3084-4c7a-11e5-9192-080027b662ec";
-                relationObject["relationshipType"] = relationshipType;
-                relationObject["personB"] = personB;
-                relationArray.push(relationObject);
-                $scope.patient.relationships = relationArray;
+                if ($scope.patient.memberType == 'বহিরাগত') $scope.patient.relationships = [];
+                else {
+                    var personB = $scope.patient.newlyAddedRelationships[0].personB;
+                    var relationshipType = {};
+                    var relationObject = {};
+                    var relationArray = [];
+                    relationshipType['uuid'] = "03ed3084-4c7a-11e5-9192-080027b662ec";
+                    relationObject["relationshipType"] = relationshipType;
+                    relationObject["personB"] = personB;
+                    relationArray.push(relationObject);
+                    $scope.patient.relationships = relationArray;
+                }
             };
 
             var getConfirmationViaNgDialog = function (config) {
@@ -181,9 +184,10 @@ angular.module('bahmni.registration')
 
             $scope.afterSave = function () {
                 messagingService.showMessage("info", "REGISTRATION_LABEL_SAVED");
-                $state.go("patient.edit", {
-                    patientUuid: $scope.patient.uuid
-                });
+                $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_self");
+                // $state.go("patient.edit", {
+                //     patientUuid: $scope.patient.uuid
+                // });
             };
         }
     ]);

@@ -36,16 +36,43 @@ angular.module('bahmni.registration')
         };
 
         var create = function (patient, jumpAccepted) {
-            var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient);
-            var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
-            return healthId().then(function (response) {
-                var memberHealthId = response.identifiers;
-                data.patient.identifiers[0].identifier = memberHealthId;
+            if (patient.memberType == "বহিরাগত") {
+                var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient);
+                var randomIdentifier = createUUID();
+                console.log(randomIdentifier);
+                data.patient.identifiers[0].identifier = randomIdentifier;
+                var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
                 return $http.post(url, data, {
                     withCredentials: true,
                     headers: {"Accept": "application/json", "Content-Type": "application/json", "Jump-Accepted": jumpAccepted}
                 });
+            }
+            else {
+                console.log("member type catchmentarea");
+                var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient);
+                var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
+                return healthId().then(function (response) {
+                    var memberHealthId = response.identifiers;
+                    data.patient.identifiers[0].identifier = memberHealthId;
+                    return $http.post(url, data, {
+                        withCredentials: true,
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json",
+                            "Jump-Accepted": jumpAccepted
+                        }
+                    });
+                });
+            }
+        };
+        var createUUID = function () {
+            var dt = new Date().getTime();
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (dt + Math.random() * 16) % 16 | 0;
+                dt = Math.floor(dt / 16);
+                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
             });
+            return uuid;
         };
 
         var update = function (patient, openMRSPatient, attributeTypes) {

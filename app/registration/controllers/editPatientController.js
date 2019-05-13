@@ -11,7 +11,6 @@ angular.module('bahmni.registration')
             $scope.actions = {};
             $scope.addressHierarchyConfigs = appService.getAppDescriptor().getConfigValue("addressHierarchy");
             $scope.disablePhotoCapture = appService.getAppDescriptor().getConfigValue("disablePhotoCapture");
-
             $scope.today = dateUtil.getDateWithoutTime(dateUtil.now());
 
             var setReadOnlyFields = function () {
@@ -160,6 +159,8 @@ angular.module('bahmni.registration')
                     $scope.patient.showPregnancyStatus = true;
                 }
 
+                $rootScope.$broadcast('tiggermappingfunction', { patientAttribute: $scope.patient.memberType });
+
                 if ($scope.patient.showDiseaseStatus) {
                     $scope.patient.yesNoCheckbox = "হ্যাঁ";
                 }
@@ -233,5 +234,6 @@ angular.module('bahmni.registration')
             $scope.afterSave = function () {
                 auditLogService.log($scope.patient.uuid, Bahmni.Registration.StateNameEvenTypeMap['patient.edit'], undefined, "MODULE_LABEL_REGISTRATION_KEY");
                 messagingService.showMessage("info", "REGISTRATION_LABEL_SAVED");
+                $window.open('../clinical/index.html#/default/patient/' + uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_self");
             };
         }]);
