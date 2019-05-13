@@ -169,6 +169,9 @@ angular.module('bahmni.registration')
                         }
                     });
                 }
+                else {
+                    $scope.patient.familyDiseaseHistory["None"] = false;
+                }
                 $scope.patient.familyDiseaseHistory[disease] = isChecked;
             };
 
