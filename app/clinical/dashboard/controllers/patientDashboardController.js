@@ -14,6 +14,7 @@ angular.module('bahmni.clinical')
             $scope.enrollment = $stateParams.enrollment;
             $scope.isDashboardPrinting = false;
             var programConfig = appService.getAppDescriptor().getConfigValue("program") || {};
+            $scope.title = "Patient profile";
 
             $scope.stateChange = function () {
                 return $state.current.name === 'patient.dashboard.show';

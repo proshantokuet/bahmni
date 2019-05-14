@@ -1,3 +1,4 @@
+
 <style>
     table td, table th {
         padding: 5px 0px 5px 8px;
@@ -343,7 +344,7 @@
 
                                         </td>
                                         <td>
-                                            <button class="remove" ng-show="!$first"  ng-click="removeThis($index)">*</button>
+                                            <button class="remove" ng-show="!$first"  ng-click="removeThis($index)">X</button>
                                             <span><button class="remove" ng-show="$last" ng-click="addNewChoice()">+</button></span>
 
                                         </td>
@@ -401,7 +402,7 @@
                     <td><b>Total</b> </td>
                     <td><b>{{calTotalAmount()}}</b> </td>
                     <td><b>{{calTotalDiscount()}}</b></td>
-                    <td><b>{{calTotalNetAmount()}}</b></td>
+                    <td><b>{{calTotalNetAmount()}}</b> {{inwords(calTotalNetAmount())}}</td>
                 </tr>
                 </tbody>
             </table>

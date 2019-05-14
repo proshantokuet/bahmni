@@ -19,7 +19,7 @@
 
                 <article class="fl">
                     <label for="name"><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></label>
-                    <input tabindex="4" type="text" id="name" ng-model="searchParameters.name" placeholder="{{ ::'REGISTRATION_LABEL_ENTER_NAME' | translate}}" autofocus/>
+                    <input tabindex="4" type="text" id="name" ng-model="searchParameters.name" placeholder="{{ ::'REGISTRATION_LABEL_ENTER_NAME' | translate}}" ng-autofocus/>
                 </article>
                 <article class="fl" ng-if="::customAttributesSearchConfig.show">
                     <label for="name"><strong>{{::customAttributesSearchConfig.label}}</strong></label>
@@ -78,7 +78,7 @@
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</a> </td>
                 <td ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</a></td>
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.gender}}</a></td>
-                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.age}}</a></td>
+                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{ageFromBirthDate(result.birthDate)}}</a></td>
                 <td ng-repeat = "field in ::addressSearchResultsConfig.fields"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.addressFieldValue[field] || ""}}</a></td>
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.dateCreated | bahmniDate}}</a></td>
                 <td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>

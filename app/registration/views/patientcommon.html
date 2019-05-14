@@ -15,12 +15,12 @@
                          my-autocomplete source="getAutoCompleteList" response-map="getDataResults"
                          data-item-type="personName"
                          placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_FIRSTNAME' | translate}}"
-                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" autofocus ng-change="handleUpdate('givenName')">
+                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" ng-autofocus ng-change="handleUpdate('givenName')">
 
                   <input data-ng-switch-default
                          type="text" id="givenName" ng-model="patient.givenName" non-blank pattern-validate
                          placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_FIRSTNAME' | translate}}"
-                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" autofocus ng-change="handleUpdate('givenName')">
+                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" ng-autofocus ng-change="handleUpdate('givenName')">
               </span>
 
               <span data-ng-switch="::isAutoComplete('givenName')"
@@ -33,7 +33,7 @@
                          title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" focus-me="true">
 
                   <input data-ng-switch-default
-                         type="text" id="givenName" ng-model="patient.givenName" autofocus non-blank pattern-validate
+                         type="text" id="givenName" ng-model="patient.givenName" ng-autofocus non-blank pattern-validate
                          placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_FIRSTNAME' | translate}}"
                          title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" focus-me="true">
               </span>

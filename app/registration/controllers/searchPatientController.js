@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('SearchPatientController', ['$rootScope', '$scope', '$location', '$window', 'spinner', 'patientService', 'appService',
+    .controller('SearchPatientController', ['$rootScope', '$scope', '$location', '$window', 'spinner', 'patientService', 'age', 'appService',
         'messagingService', '$translate', '$filter',
-        function ($rootScope, $scope, $location, $window, spinner, patientService, appService, messagingService, $translate, $filter) {
+        function ($rootScope, $scope, $location, $window, spinner, patientService, age, appService, messagingService, $translate, $filter) {
             $scope.results = [];
             $scope.extraIdentifierTypes = _.filter($rootScope.patientConfiguration.identifierTypes, function (identifierType) {
                 return !identifierType.primary;
@@ -23,6 +23,12 @@ angular.module('bahmni.registration')
                     if (addressLevel.addressField === columnCamelCase) { columnName = addressLevel.name; }
                 });
                 return columnName;
+            };
+            $scope.ageFromBirthDate = function (dob) {
+                if (dob) {
+                    var ages = age.fromBirthDate(dob);
+                    return ages.years + " Y " + ages.months + " M " + ages.days + " D";
+                }
             };
 
             var hasSearchParameters = function () {
@@ -74,9 +80,13 @@ angular.module('bahmni.registration')
                 }
             };
             $scope.convertToTableHeader = function (camelCasedText) {
-                return camelCasedText.replace(/[A-Z]|^[a-z]/g, function (str) {
-                    return " " + str.toUpperCase() + "";
-                }).trim();
+                if (camelCasedText == "birthMothersFirstName") {
+                    return "Mother's Name";
+                } else {
+                    return camelCasedText.replace(/[A-Z]|^[a-z]/g, function (str) {
+                        return " " + str.toUpperCase() + "";
+                    }).trim();
+                }
             };
 
             $scope.openMoneyReceipt = function (patientUuid) {
