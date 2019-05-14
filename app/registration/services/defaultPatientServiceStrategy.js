@@ -43,8 +43,10 @@ angular.module('bahmni.registration')
                 var memberHealthId = response.identifiers;
                 var clinicId = ($bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId).slice(0, 3);
                 var d = new Date();
-                var fullYear = (d.getFullYear()).toString().slice(2, 4);
-                data.patient.identifiers[0].identifier = clinicId + fullYear + memberHealthId[0];
+                var fullYear = d.getFullYear();
+                var month = ("0" + (d.getMonth() + 1)).slice(-2);
+                var day = (d.getDate() < 10 ? '0' : '') + d.getDate();
+                data.patient.identifiers[0].identifier = fullYear + month + day + clinicId + memberHealthId[0];
                 return $http.post(url, data, {
                     withCredentials: true,
                     headers: {"Accept": "application/json", "Content-Type": "application/json", "Jump-Accepted": jumpAccepted}
