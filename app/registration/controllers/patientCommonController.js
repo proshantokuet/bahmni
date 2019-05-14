@@ -102,14 +102,13 @@ angular.module('bahmni.registration')
                 if (checkBoxStatus == "কমিউনিটি ক্লিনিকের আওতাধীন") {
                     console.log(checkBoxStatus);
                     $scope.patient.showMemberType = true;
-                    $scope.patient.MaritalStatus = null;
-                    $scope.patient.motherNameEnglish = null;
-                    $scope.patient.phoneNumber = null;
+                    console.log($scope.patient.age);
+                    if ($scope.patient.age != null || $scope.patient.age != undefined) {
+                        var age = dateToDay(calculateBirthDate($scope.patient.age));
+                        aboveFiveYearCondition(age);
+                    }
                 } else {
                     $scope.patient.showMemberType = false;
-                    $scope.patient.MaritalStatus = null;
-                    $scope.patient.motherNameEnglish = null;
-                    $scope.patient.phoneNumber = null;
                 }
             };
 
@@ -591,6 +590,7 @@ angular.module('bahmni.registration')
                     $scope.patient.showLMP = false;
                     $scope.patient.LMP = null;
                     $scope.patient.DeliveryDate = null;
+                    $scope.patient.familyplanning = null;
                     $scope.patient.showFamilyplanning = true;
                 }
             };
@@ -806,15 +806,5 @@ angular.module('bahmni.registration')
                     return true;
                 }
             };
-
-            // $scope.$on('tiggermappingfunction', function (event, args) {
-            //     $scope.checkMemberType(args.patientAttribute);
-            //     $scope.handleUpdate(args.patientAttribute);
-            //     if ($scope.patient.disable != null) {
-            //         if ($scope.patient.disable.value == "হ্যাঁ") {
-            //             $scope.patient.showDisability = true;
-            //         }
-            //     }
-            // });
         }]);
 
