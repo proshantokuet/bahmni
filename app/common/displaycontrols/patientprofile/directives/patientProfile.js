@@ -30,9 +30,9 @@
         return _.get(admissionStatus, 'value') === "Admitted";
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
-        .directive('patientProfile', ['patientService', 'spinner', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
+        .directive('patientProfile', ['patientService', 'spinner', 'ngDialog', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
             'configurations', '$q', 'visitService',
-            function (patientService, spinner, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService) {
+            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService) {
                 var controller = function ($scope) {
                     $scope.isProviderRelationship = function (relationship) {
                         return _.includes($rootScope.relationshipTypeMap.provider, relationship.relationshipType.aIsToB);
@@ -60,6 +60,19 @@
                         if (date != undefined) {
                             return date.slice(0, 10);
                         }
+                    };
+                    $scope.pmessage = "Hello ngDialog";
+                    $scope.confirmationPrompt = function (id) {
+                        console.log($scope.services);
+                        $scope.Dialog = ngDialog.open({
+                            templateUrl: 'dialog',
+                            className: 'ngdialog-theme-default',
+                            showClose: true,
+                            scope: $scope
+                        });
+                    };
+                    $scope.closeDialogs = function () {
+                        $scope.Dialog.close();
                     };
 
                     var moneyReceipt = function () {

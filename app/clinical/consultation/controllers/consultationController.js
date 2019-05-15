@@ -25,7 +25,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             $scope.showControlPanel = false;
             $scope.clinicalDashboardConfig = clinicalDashboardConfig;
             $scope.lastvisited = null;
-
             $scope.openConsultationInNewTab = function () {
                 $window.open('#' + $scope.consultationBoardLink, '_blank');
             };

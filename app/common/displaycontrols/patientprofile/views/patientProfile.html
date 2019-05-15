@@ -66,7 +66,56 @@
             </table>
         </section>
     </div>
+<script type="text/ng-template" id="dialog">
+    <div id="moneyReceiptBySlipNo">
+        <table id="moneyReceipt">
+                <thead>
+                <tr>
+                    <th>Service Code</th>
+                    <th>Service/Medicine/Other</th>
+                    <th>Description</th>
+                    <th>Unit Cost</th>
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                    <th>Discount</th>
+                    <th>Net Payable Amount</th>
 
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="service in servicesBySlip">
+                    <td>{{service.item.code}} </td>
+                    <td>{{service.item.name}} </td>
+                    <td>{{service.description}} </td>
+                    <td>{{service.unitCost}}</td>
+                    <td>{{service.quantity}} </td>
+                    <td>{{service.totalAmount}} </td>
+                    <td>{{service.discount}}</td>
+                    <td>{{service.netPayable}} </td>
+                </tr>
+
+                <tr style="border: 1px solid #ddd; background: #699;color: #fff;">
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td></td>
+                    <td><b>Total</b> </td>
+                    <td><b>{{calTotalAmount()}}</b> </td>
+                    <td><b>{{calTotalDiscount()}}</b></td>
+                    <td><b>{{calTotalNetAmount()}}</b> {{inwords(calTotalNetAmount())}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+            <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button  style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
+
+        </div>
+
+</div>
+
+
+  </script>
 <div class="dashboard-patientInformation-section">
     <h3 style="background: #ddd;padding: 18px;height: 17px; color: #000;">Service history</h3>
 <table id="table_id" class="display">
@@ -81,7 +130,7 @@
                                     <th>Total Amount</th>
                                     <th>Discount</th>
                                     <th>Net Payable Amount</th>
-                                    <th></th>
+                                    <th>Print</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,7 +146,7 @@
                                     <td>{{service.totalAmount}} </td>
                                     <td> {{service.discount}}</td>
                                     <td>{{service.netPayable}} </td>
-                                    <td>  </td>
+                                    <td> <button ng-click="confirmationPrompt(service.slipNo)">Simple Dialog</button> </td>
                                 </tr>
 
 
@@ -125,4 +174,16 @@ setTimeout(function(){
     } );
 }, 1000);
 
+</script>
+
+    <script>
+
+
+ function printMoneyReceiptBySlipNo() {
+   var divToPrint=document.getElementById("moneyReceiptBySlipNo");
+   newWin= window.open("");
+   newWin.document.write(divToPrint.outerHTML);
+   newWin.print();
+   newWin.close();
+}
 </script>

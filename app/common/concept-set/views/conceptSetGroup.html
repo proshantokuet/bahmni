@@ -225,7 +225,7 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <select ng-model="patientInfo.session" ng-options=" session.name as session.name for session in sessions" ng-required="true">
+                                                        <select ng-model="patientInfo.session" ng-options=" session.name as session.name for session in sessions" ng-required="patientInfo.servicePoint=='Satellite'">
 
                                                         </select>
 
@@ -244,7 +244,7 @@
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patientInfo.other" type="text" ng-required="true"/>
+                                                        <input ng-model="patientInfo.other" type="text" ng-required="patientInfo.session=='Others'"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -367,7 +367,8 @@
 
             </form>
             <br/>
-            <table id="table_id" class="display">
+            <div id="div">
+            <table id="moneyReceipt">
                 <thead>
                 <tr>
                     <th>Service Code</th>
@@ -406,8 +407,9 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+            <button  style="float: right;margin-top: 10px;" onclick="printMoneyReceipt()">Print</button>
 
-            <button style="float: right;margin-top: 10px;" onclick="printMoneyReceipt()">Print</button>
         </div>
        <!-- {{patient}}
         {{services}}
@@ -506,12 +508,21 @@
   #buttonPrint {
       visibility: collapse;
   }
+  .displays {
+      visibility: visible;
+  }
 
 }
 </style>
 <script>
+
+
  function printMoneyReceipt() {
-  window.print();
+   var divToPrint=document.getElementById("moneyReceipt");
+   newWin= window.open("");
+   newWin.document.write(divToPrint.outerHTML);
+   newWin.print();
+   newWin.close();
 }
 $(function(){
     var dtToday = new Date();
@@ -532,5 +543,6 @@ $(document).ready(function() {
     $('.js-example-basic-single').select2();
 });
 </script>
+
 <!--
 style="max-width: 100%;" class="js-example-basic-single"-->
