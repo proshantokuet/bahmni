@@ -41,6 +41,7 @@ angular.module('bahmni.registration')
                 $scope.EPICheckbox = false;
                 $scope.showRiskyHabitsValue = false;
                 $scope.showDiseaseStatusValue = false;
+                $scope.showMaritalStatus = false;
                 $scope.spouseValue = false;
                 $scope.diseaseStartIndexValue = 0;
                 $scope.diseaseEndIndexValue = 0;
@@ -86,6 +87,7 @@ angular.module('bahmni.registration')
                     }
                     if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "MaritalStatus") {
                         var s = $scope.openMRSPatient.person.attributes[i].value;
+                        $scope.showMaritalStatus = true;
                         /* console.log(s);
                         if ($scope.openMRSPatient.person.attributes[i].value == "বিবাহিত") {
                             console.log("বিবাহিত");
@@ -140,6 +142,7 @@ angular.module('bahmni.registration')
                 }
                 $scope.patient.showRiskyHabits = $scope.showRiskyHabitsValue;
                 $scope.patient.showDiseaseStatus = $scope.showDiseaseStatusValue;
+                $scope.patient.showMaritalStatus = $scope.showMaritalStatus;
                 $scope.patient.diseaseStartIndex = $scope.diseaseStartIndexValue;
                 $scope.patient.diseaseEndIndex = $scope.diseaseEndIndexValue;
                 console.log($scope.spouseValue);
