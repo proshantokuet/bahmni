@@ -33,7 +33,7 @@ angular.module('bahmni.common.conceptSet')
                 console.log(obj);
                 return obj.price;
             };
-            $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}];
+            $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}, {name: "CSP"}];
             $scope.sessions = [{name: "EPI"}, {name: "Garments"}, {name: "Corporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "CSP"}, {name: "N/A"}];
             $scope.references = [{name: "Self"}, {name: "CSP"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
             $scope.services = [{"discount": 0, "quantity": 1}];
@@ -72,6 +72,17 @@ angular.module('bahmni.common.conceptSet')
                 str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
                 return str;
             };
+            $scope.onChangedPateintInfo = function (servicePoint) {
+                if (servicePoint == "Clinic" || servicePoint == "CSP") {
+                    $scope.patientInfo['session'] = "";
+                    $scope.patientInfo['other'] = "";
+                    $scope.patientInfo['sateliteClinicId'] = "";
+                    $scope.patientInfo['teamNo'] = "";
+                } else if (servicePoint == "Satellite") {
+                    $scope.patientInfo['cspId'] = "";
+                }
+            };
+
             $scope.title = "Money Receipt";
             $scope.onChanged = function (item, index) {
                 var pos = $scope.services.map(function (e) {
@@ -104,6 +115,19 @@ angular.module('bahmni.common.conceptSet')
                         $scope.services[index].item = undefined;
                     }
                 }
+            };
+
+            $scope.dateTOString = function (date) {
+                console.log(date.getFullYear() + "-");
+                return date.slice(0, 10);
+            };
+
+            $scope.checkedBox = function (value, checkingValue) {
+                console.log(value + " : " + checkingValue);
+                if (value == checkingValue) {
+                    return true;
+                }
+                return false;
             };
             $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
                 var totalAmount = quantity * $scope.services[index].unitCost;
@@ -181,6 +205,7 @@ angular.module('bahmni.common.conceptSet')
                     patientInfo['patientName'] = patient.givenName + " " + patient.familyName;
                     patientInfo['patientUuid'] = patient.uuid;
                     patientInfo['uic'] = patient.UIC.value;
+
                     if (patient.MobileNo != undefined) {
                         patientInfo['contact'] = patient.MobileNo.value;
                     }
