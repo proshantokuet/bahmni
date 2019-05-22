@@ -25,7 +25,7 @@
                     <label for="name"><strong>{{::customAttributesSearchConfig.label}}</strong></label>
                     <input tabindex="5" type="text" id="customAttribute" ng-model="searchParameters.customAttribute" placeholder="{{::customAttributesSearchConfig.placeholder}}">
                 </article>
-                <article style="margin-left: 74px" class="fl" ng-if="::addressSearchConfig.show">
+                <article style="margin-left: 21px" class="fl" ng-if="::addressSearchConfig.show">
                     <label for="name"><strong>{{::addressSearchConfig.label}}</strong></label>
                     <input tabindex="6" type="text" id="addressFieldValue" ng-model="searchParameters.addressFieldValue" placeholder="{{::addressSearchConfig.placeholder}}">
                 </article>
@@ -78,7 +78,7 @@
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</a> </td>
                 <td ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</a></td>
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.gender}}</a></td>
-                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{ageFromBirthDate(result.birthDate)}}</a></td>
+                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.age}} <!--{{ageFromBirthDate(result.birthDate)}}--></a></td>
                 <td ng-repeat = "field in ::addressSearchResultsConfig.fields"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.addressFieldValue[field] || ""}}</a></td>
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.dateCreated | bahmniDate}}</a></td>
                 <td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>

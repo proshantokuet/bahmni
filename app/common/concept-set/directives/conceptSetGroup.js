@@ -33,8 +33,9 @@ angular.module('bahmni.common.conceptSet')
                 console.log(obj);
                 return obj.price;
             };
+            $scope.clinicType = "";
             $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}, {name: "CSP"}];
-            $scope.sessions = [{name: "EPI"}, {name: "Garments"}, {name: "Corporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "CSP"}, {name: "N/A"}];
+            $scope.sessions = [{name: "EPI"}, {name: "Garments"}, {name: "Corporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "N/A"}];
             $scope.references = [{name: "Self"}, {name: "CSP"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
             $scope.services = [{"discount": 0, "quantity": 1}];
             $scope.patientInfo = {
@@ -80,6 +81,48 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo['teamNo'] = "";
                 } else if (servicePoint == "Satellite") {
                     $scope.patientInfo['cspId'] = "";
+                }
+                $scope.clinicType = servicePoint;
+            };
+            $scope.htmlToPlaintext = function (text) {
+                return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+            };
+
+            $scope.address = function (address) {
+                var addresLine = "";
+                var stateProvince = "";
+                var countyDistrict = "";
+                var address3 = "";
+                var cityVillage = "";
+                var address2 = "";
+                var address1 = "";
+                if (!address.isEmpty) {
+                    if (address.stateProvince != undefined) {
+                        stateProvince = address.stateProvince;
+                        addresLine += stateProvince + ", ";
+                    }
+                    if (address.countyDistrict != undefined) {
+                        countyDistrict = address.countyDistrict;
+                        addresLine += countyDistrict + ",";
+                    }
+                    if (address.address3 != undefined) {
+                        address3 = address.address3;
+                        addresLine += address3 + ", ";
+                    }
+                    if (address.cityVillage != undefined) {
+                        cityVillage = address.cityVillage;
+                        addresLine += cityVillage + ", ";
+                    }
+                    if (address.address2 != undefined) {
+                        address2 = address.address2;
+                        addresLine += address2 + ", ";
+                    }
+
+                    if (address.address1 != undefined) {
+                        address1 = address.address1;
+                        addresLine += address1;
+                    }
+                    return addresLine;
                 }
             };
 
