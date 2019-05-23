@@ -120,11 +120,27 @@ angular.module('bahmni.registration')
             return defer.promise;
         };
 
+        var fakecall = function () {
+            var url = openmrsUrl + "/ws/rest/v1/dhis/fakecall";
+            var config = {
+                method: "GET",
+                withCredentials: true
+            };
+            var defer = $q.defer();
+            $http.get(url, config).success(function (result) {
+                console.log("okkkkkk");
+                console.log(result);
+                defer.resolve(result);
+            });
+            return defer.promise;
+        };
+
         return {
             search: search,
             get: getByUuid,
             create: create,
             update: update,
-            generateIdentifier: generateIdentifier
+            generateIdentifier: generateIdentifier,
+            dhis: fakecall
         };
     }]);

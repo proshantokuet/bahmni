@@ -180,6 +180,9 @@ angular.module('bahmni.registration')
 
             $scope.afterSave = function () {
                 messagingService.showMessage("info", "REGISTRATION_LABEL_SAVED");
+                patientService.fakecall().then(function (response) {
+                    console.log(response);
+                });
                 $state.go("search", {
                     // patientUuid: $scope.patient.uuid
                 });

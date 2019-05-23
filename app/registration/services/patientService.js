@@ -79,6 +79,10 @@ angular.module('bahmni.registration')
             return $http.post(url, data, config);
         };
 
+        var dhis = function () {
+            return patientServiceStrategy.dhis();
+        };
+
         return {
             search: search,
             searchByIdentifier: searchByIdentifier,
@@ -86,6 +90,7 @@ angular.module('bahmni.registration')
             update: update,
             get: get,
             updateImage: updateImage,
-            searchByNameOrIdentifier: searchByNameOrIdentifier
+            searchByNameOrIdentifier: searchByNameOrIdentifier,
+            fakecall: dhis
         };
     }]);
