@@ -472,9 +472,9 @@
     <td><img src="./../images/blank.png" width="40" height="1" /></td>
     <td><strong>Type:</strong></td>
     <td align="right">Static</td>
-    <td><input name="" type="checkbox" ng-checked="checkedBox('Static',clinicType)" /></td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('Static',patient.RegistrationPoint.value.display)" /></td>
     <td align="right">Satellite</td>
-    <td><input name="" type="checkbox" ng-checked="checkedBox('Satellite',clinicType)" /></td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('Satellite',patient.RegistrationPoint.value.display)" /></td>
     <td align="right">Slip No.</td>
     <td align="center" valign="middle" ng-bind="patientInfo.slipNo"></td>
 
@@ -503,13 +503,13 @@
     <td colspan="2" align="left" valign="top">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
       <tr>
-        <td align="left" valign="top" style="border-bottom: 1px solid #666; padding-left:8px;"><strong><h3>Clinic Name:</h3></strong></td>
-       <td style="border-bottom:1px solid #666;" ng-bind="patientInfo.clinicName"></td>
-        <td align="left" valign="top" style="border-bottom:1px solid #666;"><h3>Clinic ID</h3></td>
+        <td align="left"  style="border-bottom: 1px solid #666; padding-left:8px;"><strong>Clinic Name:</strong></td>
+        <td style="border-bottom:1px solid #666;" ng-bind="patientInfo.clinicName"></td>
+        <td align="left"  style="border-bottom:1px solid #666;"><strong>Clinic ID</strong></td>
         <td style="border-bottom:1px solid #666;">{{patient.ClinicCode.value}}</td>
-        <td align="left" valign="top" style="border-bottom:1px solid #666;"><h3>Satellite Clinic ID</h3></td>
+        <td align="left"  style="border-bottom:1px solid #666;"><strong>Satellite Clinic ID</strong></td>
         <td style="border-bottom:1px solid #666;" ng-bind="patientInfo.sateliteClinicId"></td>
-        <td align="left" valign="top" style="border-bottom:1px solid #666;"><h3>Team no.</h3></td>
+        <td align="left" style="border-bottom:1px solid #666;"><strong>Team no.</strong></td>
         <td style="border-bottom:1px solid #666;" ng-bind="patientInfo.teamNo"></td>
       </tr>
       <tr>
@@ -603,7 +603,7 @@
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.netPayable}} </td>
            </tr>
             <tr>
-            <td colspan="5" align="right" valign="top"  style="padding:20px 0 20px 8px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
+            <td colspan="5" align="right" valign="top"  style="padding:20px 10 20px 8px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
             <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalAmount()}}</td>
             <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
             <td align="left" valign="top"  style="padding:20px 0 20px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
@@ -611,7 +611,7 @@
           <tr>
               <td colspan="7" align="right" valign="top"  style="padding:20px 0px 20px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
 
-              <td align="right" valign="top"  style="padding:20px 0px 20px 8px;">In Words: {{inwords(calTotalNetAmount())}}</td>
+              <td align="right" valign="top"  style="padding:20px 10px 20px 8px;">In Words: {{inwords(calTotalNetAmount())}}</td>
           </tr>
 
     </table></td>

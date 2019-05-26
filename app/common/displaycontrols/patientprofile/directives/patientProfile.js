@@ -62,14 +62,110 @@
                         }
                     };
                     $scope.pmessage = "Hello ngDialog";
+                    $scope.servicesBySlip = [];
                     $scope.confirmationPrompt = function (id) {
-                        console.log($scope.services);
+                        $scope.servicesBySlip = $scope.services.filter(function (service) {
+                            return service.slipNo == id;
+                        });
+                        console.log($scope.servicesBySlip);
                         $scope.Dialog = ngDialog.open({
                             templateUrl: 'dialog',
-                            className: 'ngdialog-theme-default',
+                            className: 'ngdialog-theme-default custom-width-1000',
                             showClose: true,
                             scope: $scope
                         });
+                    };
+                    $scope.dateTOString = function (date) {
+                        return date.slice(0, 10);
+                    };
+                    var a = ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '];
+                    var b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+                    $scope.inwords = function (num) {
+                        if ((num = num.toString()).length > 9) return 'overflow';
+                        var n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+                        if (!n) return;
+                        var str = '';
+                        str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+                        str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+                        str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+                        str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+                        str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+                        return str;
+                    };
+
+                    $scope.address = function (address) {
+                        var addresLine = "";
+                        var stateProvince = "";
+                        var countyDistrict = "";
+                        var address3 = "";
+                        var cityVillage = "";
+                        var address2 = "";
+                        var address1 = "";
+                        if (!address.isEmpty) {
+                            if (address.stateProvince != undefined) {
+                                stateProvince = address.stateProvince;
+                                addresLine += stateProvince + ", ";
+                            }
+                            if (address.countyDistrict != undefined) {
+                                countyDistrict = address.countyDistrict;
+                                addresLine += countyDistrict + ",";
+                            }
+                            if (address.address3 != undefined) {
+                                address3 = address.address3;
+                                addresLine += address3 + ", ";
+                            }
+                            if (address.cityVillage != undefined) {
+                                cityVillage = address.cityVillage;
+                                addresLine += cityVillage + ", ";
+                            }
+                            if (address.address2 != undefined) {
+                                address2 = address.address2;
+                                addresLine += address2 + ", ";
+                            }
+
+                            if (address.address1 != undefined) {
+                                address1 = address.address1;
+                                addresLine += address1;
+                            }
+                            return addresLine;
+                        }
+                    };
+
+                    $scope.calTotalAmount = function () {
+                        $scope.total = 0;
+                        angular.forEach($scope.servicesBySlip, function (listItem) {
+                            if (listItem.totalAmount != undefined) {
+                                $scope.total = $scope.total + parseFloat(listItem.totalAmount);
+                            }
+                        });
+                        return $scope.total;
+                    };
+                    $scope.calTotalDiscount = function () {
+                        $scope.totalDiscount = 0;
+                        angular.forEach($scope.servicesBySlip, function (listItem) {
+                            if (listItem.discount != undefined) {
+                                $scope.totalDiscount = $scope.totalDiscount + listItem.discount;
+                            }
+                        });
+                        return $scope.totalDiscount;
+                    };
+
+                    $scope.calTotalNetAmount = function () {
+                        $scope.net = 0;
+                        angular.forEach($scope.servicesBySlip, function (listItem) {
+                            if (listItem.netPayable != undefined) {
+                                $scope.net = $scope.net + parseFloat(listItem.netPayable);
+                            }
+                        });
+                        return $scope.net;
+                    };
+
+                    $scope.checkedBox = function (value, checkingValue) {
+                        if (value == checkingValue) {
+                            return true;
+                        }
+                        return false;
                     };
                     $scope.closeDialogs = function () {
                         $scope.Dialog.close();

@@ -128,8 +128,6 @@ angular.module('bahmni.registration')
             };
             var defer = $q.defer();
             $http.get(url, config).success(function (result) {
-                console.log("okkkkkk");
-                console.log(result);
                 defer.resolve(result);
             });
             return defer.promise;

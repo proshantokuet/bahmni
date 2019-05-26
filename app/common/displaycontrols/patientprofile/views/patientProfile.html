@@ -74,45 +74,182 @@
     </div>
 <script type="text/ng-template" id="dialog">
     <div id="moneyReceiptBySlipNo">
-        <table id="moneyReceipt">
-                <thead>
-                <tr>
-                    <th>Service Code</th>
-                    <th>Service/Medicine/Other</th>
-                    <th>Description</th>
-                    <th>Unit Cost</th>
-                    <th>Quantity</th>
-                    <th>Total Amount</th>
-                    <th>Discount</th>
-                    <th>Net Payable Amount</th>
+        <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
+  <tr class="displayNone">
+    <td align="left" valign="top"><img src="./../images/logo.jpg" width="162" height="228" /></td>
+    <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="displayNone">
+    <td colspan="8"><img src="./../images/banner.jpg" width="696" height="146" /></td>
+    </tr>
+  <tr class="displayNone">
+    <td><img src="./../images/blank.png" width="40" height="1" /></td>
+    <td><strong>Type:</strong></td>
+    <td align="right">Static</td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('Static',patient.RegistrationPoint.value.display)" /></td>
+    <td align="right">Satellite</td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('Satellite',patient.RegistrationPoint.value.display)" /></td>
+    <td align="right">Slip No.</td>
+    <td align="center" valign="middle">{{servicesBySlip[0].slipNo}}</td>
 
-                </tr>
-                </thead>
-                <tbody>
+  </tr>
+  <tr class="displayNone">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="right">Date:</td>
+    <td align="center" valign="middle">{{dateTOString(servicesBySlip[0].moneyReceiptDate)}}</td>
+  </tr>
+    </table>
+</td>
+  </tr>
+  <tr class="displayNone">
+    <td align="left" valign="top">UIC</td>
+    <td>{{patient.UIC.value}}</td>
+  </tr>
+  <tr class="displayNone">
+    <td colspan="2" align="left" valign="top"><img src="./../images/blank.png" width="100%" height="20" /></td>
+  </tr>
+  <tr class="displayNone">
+    <td colspan="2" align="left" valign="top">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
+      <tr>
+        <td align="left"  style="border-bottom: 1px solid #666; padding-left:8px;"><strong>Clinic Name:</strong</strong></td>
+        <td  style="border-bottom:1px solid #666;">{{servicesBySlip[0].clinicName}}</td>
+        <td align="left" valign="top" style="border-bottom:1px solid #666;"><strong>Clinic ID</strong>></td>
+        <td style="border-bottom:1px solid #666;">{{patient.ClinicCode.value}}</td>
+        <td align="left" valign="top" style="border-bottom:1px solid #666;"><strong>Satellite Clinic ID</strong></td>
+        <td  style="border-bottom:1px solid #666;">{{servicesBySlip[0].sateliteClinicId}}</td>
+        <td align="left" valign="top" style="border-bottom:1px solid #666;"><strong>Team no.</strong></td>
+        <td  style="border-bottom:1px solid #666;"> {{servicesBySlip[0].teamNo}}</td>
+      </tr>
+      <tr>
+        <td colspan="8"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+           <td align="left" valign="top" style="padding:8px;">1. Name:</td>
+            <td valign="top" colspan="3" align="left" valign="bottom">{{patient.name}}</td>
+            <td align="left" valign="top" style="padding:8px;">2. Gender:</td>
+            <td align="left" valign="top" style="padding:8px;"><input name="input" type="checkbox" ng-checked="checkedBox('M',patient.gender)" /></td>
+            <td align="left" valign="top" style="padding:8px;">Male</td>
+            <td align="left" valign="top" style="padding:8px;"><input name="input2" type="checkbox" ng-checked="checkedBox('F',patient.gender)"/></td>
+            <td align="left" valign="top" style="padding:8px;">Female</td>
+            <td align="left" valign="top" style="padding:8px;"><input name="input3" type="checkbox" ng-checked="checkedBox('O',patient.gender)" /></td>
+            <td align="left" valign="top" style="padding:8px;">Other</td>
+          </tr>
+          <tr>
+           <td align="left" valign="top" style="padding:20px 0 20px 8px;">3. DoB</td>
+            <td style="padding:20px 0 20px 8px;">{{patient.birthdate | date:'yyyy-MM-dd'}}</td>
+            <td style="padding:20px 0 20px 8px;">4. Age:</td>
+            <td style="padding:20px 0 20px 8px;">{{htmlToPlaintext(patient.ageText)}}</td>
+            <td style="padding:20px 0 20px 8px;">5. Classification:</td>
+            <td style="padding:20px 0 20px 8px;">1. Able to pay</td>
+            <td style="padding:20px 0 20px 8px;"><span style="padding:8px;">
+              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
+            </span></td>
+            <td style="padding:20px 0 20px 8px;">2. Poor</td>
+            <td style="padding:20px 0 20px 8px;"><span style="padding:8px;">
+              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',patient.FinancialStatus.value.display)" />
+            </span></td>
+            <td style="padding:20px 0 20px 8px;">3.PoP</td>
+            <td style="padding:20px 0 20px 8px;"><span style="padding:8px;">
+              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',patient.FinancialStatus.value.display)" />
+            </span></td>
 
-                <tr ng-repeat="service in servicesBySlip">
-                    <td>{{service.item.code}} </td>
-                    <td>{{service.item.name}} </td>
-                    <td>{{service.description}} </td>
-                    <td>{{service.unitCost}}</td>
-                    <td>{{service.quantity}} </td>
-                    <td>{{service.totalAmount}} </td>
-                    <td>{{service.discount}}</td>
-                    <td>{{service.netPayable}} </td>
-                </tr>
+          </tr>
+         <tr>
+            <td align="left" valign="top" style="padding:20px 0 20px 8px;">6. Address:</td>
+            <td colspan="3" style="padding:20px 0 20px 8px;">{{address(patient.address)}}</td>
+            <td style="padding:20px 0 20px 8px;">7. Mobile No.</td>
+            <td colspan="6" style="padding:20px 0 20px 8px;"> {{patient.MobileNo.value}}</td>
+            </tr>
+          <tr>
+            <td align="left" valign="top" style="padding:20px 0 20px 8px;">8. Session:</td>
+            <td colspan="10" style="padding:20px 0 20px 8px;" > {{servicesBySlip[0].session}}</td>
+            </tr>
+          <tr>
+            <td align="left" valign="top">9. Reference:</td>
+            <td  valign="top" colspan="10">{{servicesBySlip[0].reference}}, {{servicesBySlip[0].reference}} ID: {{servicesBySlip[0].referenceId}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" align="left" valign="top">10. Birth District</td>
+            <td colspan="2" >{{patient.birthDistrict.value}}</td>
+            <td>11. Birth Upazila:</td>
+            <td colspan="6"{{patient.birthUpazilla.value}}</td>
+            </tr>
+          <tr>
+            <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">12. Birth Rank:</td>
+            <td colspan="2" style="padding:20px 0 20px 8px;">{{patient.birthRank.value}}</td>
+            <td colspan="2" style="padding:20px 0 20px 8px;">13. Birth Mother's First Name:</td>
+            <td colspan="5" style="padding:20px 0 20px 8px;">{{patient.birthMothersFirstName.value}}</td>
+            </tr>
 
-                <tr style="border: 1px solid #ddd; background: #699;color: #fff;">
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td></td>
-                    <td><b>Total</b> </td>
-                    <td><b>{{calTotalAmount()}}</b> </td>
-                    <td><b>{{calTotalDiscount()}}</b></td>
-                    <td><b>{{calTotalNetAmount()}}</b> {{inwords(calTotalNetAmount())}}</td>
-                </tr>
-                </tbody>
-            </table>
+        </table></td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr class="displayNone">
+    <td colspan="2" align="left" valign="top"  style="padding:20px 0 20px 8px;">14. Service and Payable Amount</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" valign="top">
+      <table width="100%" border="0"  style="border:1px solid #666;" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>SL</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Service Code (A)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Service/Medicine/ Other (B)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Quantity (C)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Unit cost (D)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Total Amount (E)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Discount (F)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666;"><strong>Net Payable Amount (G)</strong></td>
+          </tr>
+          <tr ng-repeat="service in servicesBySlip track by $index">
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{$index}} </td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.code}} </td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.item}} </td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.quantity}} </td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.unitCost}}</td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.totalAmount}} </td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.discount}}</td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.netPayable}} </td>
+           </tr>
+            <tr>
+            <td colspan="5" align="right" valign="top"  style="padding:20px 10px 20px 8px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
+            <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalAmount()}}</td>
+            <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
+            <td align="left" valign="top"  style="padding:20px 0 20px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
+          </tr>
+          <tr>
+              <td colspan="7" align="right" valign="top"  style="padding:20px 0px 20px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
+
+              <td align="right" valign="top"  style="padding:20px 10px 20px 8px;">In Words: {{inwords(calTotalNetAmount())}}</td>
+          </tr>
+
+    </table></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" valign="top"  style="padding:20px 0 20px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="displayNone">
+ 	<td align="center" valign="top"  style="padding:4px 0 20px 8px; border-top:1px solid #666;">Name of data collector</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="center" valign="top"  style="padding:4px 0 20px 8px; border-top:1px solid #666;">Designation</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="center" valign="top"  style="padding:4px 0 20px 8px; border-top:1px solid #666;">Signature</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+
         </div>
             <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button  style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
 
@@ -130,13 +267,13 @@
                                     <th>Date</th>
                                     <th>Slip No</th>
                                     <th>Service Name</th>
-                                    <th>Description</th>
+                                  <!--  <th>Description</th>-->
                                     <th>Unit Cost</th>
                                     <th>Quantity</th>
                                     <th>Total Amount</th>
                                     <th>Discount</th>
                                     <th>Net Payable Amount</th>
-                                    <th>Print</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -146,13 +283,13 @@
                                     <td>{{service.slipNo}} </td>
                                     <td>{{service.item}} </td>
 
-                                    <td>{{service.description}} </td>
+                                   <!-- <td>{{service.description}} </td>-->
                                     <td>{{service.unitCost}}</td>
                                     <td>{{service.quantity}} </td>
                                     <td>{{service.totalAmount}} </td>
                                     <td> {{service.discount}}</td>
                                     <td>{{service.netPayable}} </td>
-                                    <td><!-- <button ng-click="confirmationPrompt(service.slipNo)">Simple Dialog</button> --></td>
+                                    <td><button ng-click="confirmationPrompt(service.slipNo)">Print preview</button></td>
                                 </tr>
 
 
@@ -181,6 +318,15 @@ setTimeout(function(){
 }, 1000);
 
 </script>
+    <style>
+
+        .ngdialog.ngdialog-theme-default.custom-width-800 .ngdialog-content {
+    width: 800px;
+}
+.ngdialog.ngdialog-theme-default.custom-width-1000 .ngdialog-content {
+    width: 1000px;
+}
+    </style>
 
     <script>
 
