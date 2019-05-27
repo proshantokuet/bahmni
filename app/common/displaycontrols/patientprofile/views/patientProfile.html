@@ -65,16 +65,31 @@
                 </table></td>
                 <td><a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard/concept-set-group/observations"  class="title-link">
                             <img  src="./../images/add-Money-Receipt.png" alt="Add Money Receipt" />
-                        </a></td>
+                        </a>
+
+                    <a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard/concept-set-group/observations"  class="title-link">
+                            Add Money Receipt
+                        </a>
+                    <svg class="barcode"
+                      jsbarcode-format="CODE39"
+                      jsbarcode-value="{{patient.UIC.value}} "
+                      jsbarcode-textmargin="0"
+                      jsbarcode-displayValue="false"
+                      jsbarcode-width="1"
+                      jsbarcode-fontoptions="bold">
+                    </svg>
+
+                    <img id="qrious">
+                    <input id="qrvalue" type="hidden" value="{{patient.name}} {{patient.UIC.value}}"/>
+
+                </td>
               </tr>
             </table>
-
-
         </section>
     </div>
 <script type="text/ng-template" id="dialog">
     <div id="moneyReceiptBySlipNo">
-        <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
+  <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
   <tr class="displayNone">
     <td align="left" valign="top"><img src="./../images/logo.jpg" width="162" height="228" /></td>
     <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -116,9 +131,9 @@
     <td colspan="2" align="left" valign="top">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
       <tr>
-        <td align="left"  style="border-bottom: 1px solid #666; padding-left:8px;"><strong>Clinic Name:</strong</strong></td>
+        <td align="left"  style="border-bottom: 1px solid #666; padding-left:8px;"><strong>Clinic Name:</strong></td>
         <td  style="border-bottom:1px solid #666;">{{servicesBySlip[0].clinicName}}</td>
-        <td align="left" valign="top" style="border-bottom:1px solid #666;"><strong>Clinic ID</strong>></td>
+        <td align="left" valign="top" style="border-bottom:1px solid #666;"><strong>Clinic ID</strong></td>
         <td style="border-bottom:1px solid #666;">{{patient.ClinicCode.value}}</td>
         <td align="left" valign="top" style="border-bottom:1px solid #666;"><strong>Satellite Clinic ID</strong></td>
         <td  style="border-bottom:1px solid #666;">{{servicesBySlip[0].sateliteClinicId}}</td>
@@ -169,14 +184,14 @@
             <td colspan="10" style="padding:20px 0 20px 8px;" > {{servicesBySlip[0].session}}</td>
             </tr>
           <tr>
-            <td align="left" valign="top">9. Reference:</td>
-            <td  valign="top" colspan="10">{{servicesBySlip[0].reference}}, {{servicesBySlip[0].reference}} ID: {{servicesBySlip[0].referenceId}}</td>
+            <td align="left" valign="top" style="padding:20px 0 20px 8px;">9. Reference:</td>
+            <td  valign="top" colspan="10" style="padding:20px 0 20px 8px;">{{servicesBySlip[0].reference}}  {{referenceId(servicesBySlip[0].reference, servicesBySlip[0].referenceId)}}</td>
           </tr>
           <tr>
-            <td colspan="2" align="left" valign="top">10. Birth District</td>
-            <td colspan="2" >{{patient.birthDistrict.value}}</td>
-            <td>11. Birth Upazila:</td>
-            <td colspan="6"{{patient.birthUpazilla.value}}</td>
+            <td colspan="2" align="left" valign="top"  style="padding:20px 0 20px 8px;">10. Birth District</td>
+            <td colspan="2" style="padding:20px 0 20px 8px;">{{patient.birthDistrict.value}}</td>
+            <td  style="padding:20px 0 20px 8px;">11. Birth Upazila:</td>
+            <td colspan="6" style="padding:20px 0 20px 8px;">{{patient.birthUpazilla.value}}</td>
             </tr>
           <tr>
             <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">12. Birth Rank:</td>
@@ -216,15 +231,15 @@
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.netPayable}} </td>
            </tr>
             <tr>
-            <td colspan="5" align="right" valign="top"  style="padding:20px 10px 20px 8px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
-            <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalAmount()}}</td>
-            <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
-            <td align="left" valign="top"  style="padding:20px 0 20px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
+            <td colspan="5" align="right" valign="top"  style="padding:0px 10px 0px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
+            <td align="left" valign="top"  style="padding:0px 0 0px 0px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalAmount()}}</td>
+            <td align="left" valign="top"  style="padding:0px 0 0px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
+            <td align="left" valign="top"  style="padding:0px 0 0px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
           </tr>
           <tr>
               <td colspan="7" align="right" valign="top"  style="padding:20px 0px 20px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
 
-              <td align="right" valign="top"  style="padding:20px 10px 20px 8px;">In Words: {{inwords(calTotalNetAmount())}}</td>
+              <td align="right" valign="top"  style="padding:20px 10px 20px 8px;">In Words {{calTotalNetAmount()}}  {{inwords(calTotalNetAmount())}}</td>
           </tr>
 
     </table></td>
@@ -263,6 +278,17 @@
     <h3 style="background: #ddd;padding: 18px;height: 17px; color: #000;">Service history</h3>
 <table id="table_id" class="display">
                             <thead>
+                            <tr>
+							<td></td>
+							<td></td>
+							<td></td>
+                            <td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>Slip No:<input type="text" id="search-date" placeholder="search by slipNo"></td>
+							<td></td>
+						</tr>
                                 <tr>
                                     <th>Date</th>
                                     <th>Slip No</th>
@@ -304,15 +330,33 @@
 //var $jq = jQuery.noConflict();
 setTimeout(function(){
     $(document).ready(function() {
-	    $('#table_id').DataTable({
+         var qr = window.qr = new QRious({
+          element: document.getElementById('qrious'),
+          size: 150,
+          value: document.getElementById("qrvalue").value
+        });
+
+        JsBarcode(".barcode").init();
+	    var table = $('#table_id').DataTable({
            language: {
            emptyTable: "no service available", //
            loadingRecords: "Please wait .. ", // default Loading...
-           zeroRecords: "No matching records found"
+           zeroRecords: "No matching service found"
           },
+          bFilter: true,
+          bInfo: false,
           "order": [[ 0, "desc" ]]
         }
         );
+
+        $('#search-date').on('keyup', function(){
+        table
+        .column(1)
+        .search(this.value)
+        .draw();
+      });
+
+
 
     } );
 }, 1000);

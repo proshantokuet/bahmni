@@ -556,14 +556,14 @@
             <td colspan="10" style="padding:20px 0 20px 8px;" ng-bind="patientInfo.session"></td>
             </tr>
           <tr>
-            <td align="left" valign="top">9. Reference:</td>
-            <td colspan="10">{{patientInfo.reference}}, {{patientInfo.reference}} ID: {{patientInfo.referenceId}}</td>
+            <td align="left" valign="top" style="padding:20px 0 20px 8px;">9. Reference:</td>
+            <td colspan="10" style="padding:20px 0 20px 8px;">{{patientInfo.reference}}  {{referenceId(patientInfo.reference, patientInfo.referenceId)}}</td>
           </tr>
           <tr>
-            <td colspan="2" align="left" valign="top">10. Birth District</td>
-            <td colspan="2" >{{patient.birthDistrict.value}}</td>
-            <td>11. Birth Upazila:</td>
-            <td colspan="6">&nbsp;{{patient.birthUpazilla.value}}</td>
+            <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">10. Birth District</td>
+            <td colspan="2"style="padding:20px 0 20px 8px;">{{patient.birthDistrict.value}}</td>
+            <td style="padding:20px 0 20px 8px;">11. Birth Upazila:</td>
+            <td colspan="6"  style="padding:20px 0 20px 8px;">{{patient.birthUpazilla.value}}</td>
             </tr>
           <tr>
             <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">12. Birth Rank:</td>
@@ -611,7 +611,7 @@
           <tr>
               <td colspan="7" align="right" valign="top"  style="padding:20px 0px 20px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
 
-              <td align="right" valign="top"  style="padding:20px 10px 20px 8px;">In Words: {{inwords(calTotalNetAmount())}}</td>
+              <td align="right" valign="top"  style="padding:20px 10px 20px 8px;">In Words {{calTotalNetAmount()}} {{inwords(calTotalNetAmount())}}</td>
           </tr>
 
     </table></td>

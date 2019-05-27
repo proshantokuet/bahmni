@@ -43,6 +43,12 @@ angular.module('bahmni.common.conceptSet')
                 clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId,
                 orgUnit: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).orgUnit
             };
+            $scope.referenceId = function (reference, referenceId) {
+                if (reference == "CSP" || reference == "External") {
+                    return " ," + reference + " ID:" + referenceId;
+                }
+            };
+
             $scope.addNewChoice = function () {
                 var newItemNo = $scope.services.length + 1;
                 $scope.services.push({"discount": 0, "quantity": 1});
@@ -62,6 +68,7 @@ angular.module('bahmni.common.conceptSet')
             var b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
 
             $scope.inwords = function (num) {
+                num = Math.floor(num);
                 if ((num = num.toString()).length > 9) return 'overflow';
                 var n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
                 if (!n) return;

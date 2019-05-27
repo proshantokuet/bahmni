@@ -10039,7 +10039,7 @@ body {
 /******************************************************************************/
 /* line 314, home/_home.scss */
 .login {
-  height: 300px;
+  height: 450px;
   position: absolute;
   left: 10px;
   right: 10px;
@@ -10295,14 +10295,15 @@ body {
   display: block;
   text-align: center;
   padding-top: 10px;
+  margin-bottom: 20px;
 }
-/* line 529, home/_home.scss */
+/* line 530, home/_home.scss */
 .clint-logo-wrapper img {
   max-width: 200px;
   vertical-align: middle;
   max-height: 120px;
 }
-/* line 534, home/_home.scss */
+/* line 535, home/_home.scss */
 .clint-logo-wrapper span {
   vertical-align: middle;
   color: #888;
@@ -10311,54 +10312,54 @@ body {
 
 /*** Change Password Page Styles ***/
 /******************************************************************************/
-/* line 543, home/_home.scss */
+/* line 544, home/_home.scss */
 .login.change-password-wrap {
   width: auto;
   max-width: 765px;
 }
-/* line 546, home/_home.scss */
+/* line 547, home/_home.scss */
 .login.change-password-wrap .change-password {
   width: 450px;
 }
-/* line 548, home/_home.scss */
+/* line 549, home/_home.scss */
 .login.change-password-wrap .change-password .field-value-buttons {
   padding: 2px 0 2px 2px;
 }
-/* line 550, home/_home.scss */
+/* line 551, home/_home.scss */
 .login.change-password-wrap .change-password .field-value-buttons button {
   padding: 7px 13px !important;
 }
-/* line 552, home/_home.scss */
+/* line 553, home/_home.scss */
 .login.change-password-wrap .change-password .field-value-buttons button.confirm, .login.change-password-wrap .change-password .field-value-buttons .split-button .primaryOption button, .split-button .primaryOption .login.change-password-wrap .change-password .field-value-buttons button, .login.change-password-wrap .change-password .field-value-buttons .split-button button.toggle-button, .split-button .login.change-password-wrap .change-password .field-value-buttons button.toggle-button {
   margin-right: 0;
 }
 @media screen and (max-width: 830px) {
-  /* line 546, home/_home.scss */
+  /* line 547, home/_home.scss */
   .login.change-password-wrap .change-password {
     width: 385px;
   }
 }
 @media screen and (max-width: 720px) {
-  /* line 546, home/_home.scss */
+  /* line 547, home/_home.scss */
   .login.change-password-wrap .change-password {
     float: none !important;
     clear: both;
   }
 }
 @media screen and (max-width: 830px) {
-  /* line 543, home/_home.scss */
+  /* line 544, home/_home.scss */
   .login.change-password-wrap {
     max-width: 695px;
   }
 }
 @media screen and (max-width: 720px) {
-  /* line 543, home/_home.scss */
+  /* line 544, home/_home.scss */
   .login.change-password-wrap {
     max-width: 400px;
     height: auto;
   }
 }
-/* line 572, home/_home.scss */
+/* line 573, home/_home.scss */
 .login.change-password-wrap .info {
   width: 295px;
   border-radius: 10px;
@@ -10368,21 +10369,21 @@ body {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
 }
-/* line 580, home/_home.scss */
+/* line 581, home/_home.scss */
 .login.change-password-wrap .info h3 {
   margin: 0 0 15px;
 }
-/* line 583, home/_home.scss */
+/* line 584, home/_home.scss */
 .login.change-password-wrap .info ol {
   line-height: 1.5;
   padding-left: 15px;
 }
-/* line 586, home/_home.scss */
+/* line 587, home/_home.scss */
 .login.change-password-wrap .info ol li {
   padding-bottom: 4px;
 }
 @media screen and (max-width: 720px) {
-  /* line 572, home/_home.scss */
+  /* line 573, home/_home.scss */
   .login.change-password-wrap .info {
     float: none !important;
     clear: both;
@@ -10393,30 +10394,30 @@ body {
 
 /*** Dashboard Styles ***/
 /******************************************************************************/
-/* line 603, home/_home.scss */
+/* line 604, home/_home.scss */
 .dashboard {
   position: relative;
 }
-/* line 606, home/_home.scss */
+/* line 607, home/_home.scss */
 .dashboard header .btn-user-info {
   background: #00796d;
   padding: 17px 16px;
   border: none;
   border-radius: 0;
 }
-/* line 611, home/_home.scss */
+/* line 612, home/_home.scss */
 .dashboard header .btn-user-info:focus {
   outline: 0;
 }
-/* line 614, home/_home.scss */
+/* line 615, home/_home.scss */
 .dashboard header .btn-user-info i.mini {
   font-size: .9em;
 }
-/* line 617, home/_home.scss */
+/* line 618, home/_home.scss */
 .dashboard header .btn-user-info + ul {
   display: none;
 }
-/* line 619, home/_home.scss */
+/* line 620, home/_home.scss */
 .dashboard header .btn-user-info + ul.active {
   background: #00796d;
   display: block;
@@ -10424,7 +10425,7 @@ body {
   right: 0;
   top: 50px;
 }
-/* line 626, home/_home.scss */
+/* line 627, home/_home.scss */
 .dashboard header .btn-user-info + ul li {
   float: left;
   clear: both;
@@ -10434,80 +10435,80 @@ body {
   margin: 0;
   padding: 10px 10px 10px 5px;
 }
-/* line 634, home/_home.scss */
+/* line 635, home/_home.scss */
 .dashboard header .btn-user-info + ul li a.disabled {
   color: #ccc;
 }
-/* line 636, home/_home.scss */
+/* line 637, home/_home.scss */
 .dashboard header .btn-user-info + ul li a.disabled .fa-user {
   color: #ccc;
 }
-/* line 645, home/_home.scss */
+/* line 646, home/_home.scss */
 .dashboard .apps ul {
   margin: 50px auto;
   max-width: 520px;
 }
-/* line 649, home/_home.scss */
+/* line 650, home/_home.scss */
 .dashboard .apps ul li a {
   width: 130px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   padding: 10px 10px 20px;
 }
-/* line 653, home/_home.scss */
+/* line 654, home/_home.scss */
 .dashboard .apps ul li a i {
   margin-bottom: 5px;
 }
-/* line 656, home/_home.scss */
+/* line 657, home/_home.scss */
 .dashboard .apps ul li a.button {
   min-height: 115px !important;
 }
 @media screen and (max-width: 520px) {
-  /* line 665, home/_home.scss */
+  /* line 666, home/_home.scss */
   .dashboard .apps ul {
     max-width: 345px;
   }
 }
 @media screen and (min-width: 900px) {
-  /* line 672, home/_home.scss */
+  /* line 673, home/_home.scss */
   .dashboard .apps {
     width: 560px;
     margin: 80px auto;
   }
-  /* line 676, home/_home.scss */
+  /* line 677, home/_home.scss */
   .dashboard .apps ul {
     max-width: 600px;
   }
-  /* line 679, home/_home.scss */
+  /* line 680, home/_home.scss */
   .dashboard .apps ul li a {
     width: 140px;
   }
-  /* line 681, home/_home.scss */
+  /* line 682, home/_home.scss */
   .dashboard .apps ul li a.button {
     min-height: 115px !important;
   }
-  /* line 684, home/_home.scss */
+  /* line 685, home/_home.scss */
   .dashboard .apps ul li a i {
     margin-bottom: 5px;
   }
 }
 
-/* line 694, home/_home.scss */
+/* line 695, home/_home.scss */
 .change-location {
   padding: 7px 10px;
 }
-/* line 696, home/_home.scss */
+/* line 697, home/_home.scss */
 .change-location select, .change-location select:focus {
   background: #00796d;
   color: #FFFFFF;
   border: 1px solid #006056;
 }
 
-/* line 703, home/_home.scss */
+/* line 704, home/_home.scss */
 .orderSet-Create {
   margin-top: 0 !important;
 }
 
-/* line 707, home/_home.scss */
+/* line 708, home/_home.scss */
 .syncStatusInfo {
   text-align: center;
   font-size: 14px;
@@ -10517,33 +10518,33 @@ body {
   font-style: italic;
   color: #666;
 }
-/* line 715, home/_home.scss */
+/* line 716, home/_home.scss */
 .syncStatusInfo .message {
   font-style: normal;
 }
-/* line 718, home/_home.scss */
+/* line 719, home/_home.scss */
 .syncStatusInfo .pending {
   color: #FDA319;
 }
-/* line 721, home/_home.scss */
+/* line 722, home/_home.scss */
 .syncStatusInfo .fail {
   color: red;
 }
-/* line 724, home/_home.scss */
+/* line 725, home/_home.scss */
 .syncStatusInfo .success {
   color: #53B76D;
 }
-/* line 727, home/_home.scss */
+/* line 728, home/_home.scss */
 .syncStatusInfo .inProgress {
   color: black;
 }
-/* line 730, home/_home.scss */
+/* line 731, home/_home.scss */
 .syncStatusInfo p {
   padding-bottom: 10px;
   margin: 0;
 }
 
-/* line 737, home/_home.scss */
+/* line 738, home/_home.scss */
 button.button-Errorlog {
   color: #FFA000;
   background: #FFFDF0;
@@ -10551,28 +10552,28 @@ button.button-Errorlog {
   margin-bottom: 10px;
 }
 
-/* line 745, home/_home.scss */
+/* line 746, home/_home.scss */
 .login.login-otp .login-body .form-field .field-attribute label {
   width: 7em;
 }
-/* line 748, home/_home.scss */
+/* line 749, home/_home.scss */
 .login.login-otp .login-body .form-field .field-value input[type="password"], .login.login-otp .login-body .form-field .field-value .input-prepend [type="password"].add-on, .input-prepend .login.login-otp .login-body .form-field .field-value [type="password"].add-on {
   min-width: initial;
 }
-/* line 751, home/_home.scss */
+/* line 752, home/_home.scss */
 .login.login-otp .login-body .otp-button {
   padding: 6px 14px;
   margin: 2px 0 0 10px;
 }
-/* line 755, home/_home.scss */
+/* line 756, home/_home.scss */
 .login.login-otp .login-body .form-footer {
   padding-left: 9.3em;
 }
-/* line 758, home/_home.scss */
+/* line 759, home/_home.scss */
 .login.login-otp .login-body .form-footer button.confirm, .login.login-otp .login-body .form-footer .split-button .primaryOption button, .split-button .primaryOption .login.login-otp .login-body .form-footer button, .login.login-otp .login-body .form-footer .split-button button.toggle-button, .split-button .login.login-otp .login-body .form-footer button.toggle-button {
   width: 220px;
 }
-/* line 762, home/_home.scss */
+/* line 763, home/_home.scss */
 .login.login-otp .login-body .error.error_resend {
   color: green;
 }
