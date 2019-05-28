@@ -1,4 +1,3 @@
-
 <style>
     table td, table th {
         padding: 5px 0px 5px 8px;
@@ -404,20 +403,10 @@
                 </div>
 
             </form>
-            <br/>
-
-
-
-
 
         </div>
-
-
-
     </div>
 <!--{{patient}}-->
-<!--<div style="width: 920px; text-align: center; padding: 10px">-->
-
 
 <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
   <tr class="displayNone">
@@ -606,7 +595,7 @@
             <div class="multi-select-lab-tests">
                 <ul>
                     <li ng-repeat="conceptSet in allTemplates track by $index"
-                        ng-if="conceptSet.isAvailable(context)  && conceptSet.formValidation(context, conceptSet)"  ng-class="openActiveForm(conceptSet)">
+                        ng-if="conceptSet.isAvailable(context) && (conceptSet.isAdded || conceptSet.alwaysShow)"  ng-class="openActiveForm(conceptSet)">
                         <a ng-click="showLeftPanelConceptSet(conceptSet)">
                             <span class="concept-set-name" ng-class="{'concept-set-name-extra':conceptSet.isValid === false}">
                                 {{conceptSet.label}}
@@ -635,12 +624,7 @@
             </ul>
         </section>
     </div>
-
-
 </div>-->
-
-
-
 
 <style>
 .displayNone {
@@ -700,9 +684,7 @@ $(function(){
 
     $('#txtDate').attr('max', maxDate);
 });
-$(document).ready(function() {
+/*$(document).ready(function() {
     $('.js-example-basic-single').select2();
-});
+});*/
 </script>
-
-
