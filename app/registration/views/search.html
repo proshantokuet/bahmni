@@ -14,23 +14,23 @@
 
             </form>
         </article>-->
-       <article class="search-seperator-r" style="float:right;">
+       <article class="search-seperator-r" style="padding-left: 114px; width: 91%;">
             <form name="searchByNameForm" ng-submit="searchPatients()" class="simple-form-ui" >
 
-                <article class="fl">
+                <article class="fl" style="padding-right: 51px;">
                     <label for="name"><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></label>
                     <input tabindex="4" type="text" id="name" ng-model="searchParameters.name" placeholder="{{ ::'REGISTRATION_LABEL_ENTER_NAME' | translate}}" ng-autofocus/>
                 </article>
-                <article class="fl" ng-if="::customAttributesSearchConfig.show">
+                <article class="fl" ng-if="::customAttributesSearchConfig.show" style="padding-right: 51px;">
                     <label for="name"><strong>{{::customAttributesSearchConfig.label}}</strong></label>
-                    <input tabindex="5" type="text" id="customAttribute" ng-model="searchParameters.customAttribute" placeholder="{{::customAttributesSearchConfig.placeholder}}">
+                    <input style="width: 90%;" tabindex="5" type="text" id="customAttribute" ng-model="searchParameters.customAttribute" placeholder="{{::customAttributesSearchConfig.placeholder}}">
                 </article>
-                <article style="margin-left: 21px" class="fl" ng-if="::addressSearchConfig.show">
+                <article style="margin-left: 21px" class="fl" ng-if="::addressSearchConfig.show" style="padding-right: 51px;">
                     <label for="name"><strong>{{::addressSearchConfig.label}}</strong></label>
-                    <input tabindex="6" type="text" id="addressFieldValue" ng-model="searchParameters.addressFieldValue" placeholder="{{::addressSearchConfig.placeholder}}">
+                    <input style="width: 90%;" tabindex="6" type="text" id="addressFieldValue" ng-model="searchParameters.addressFieldValue" placeholder="{{::addressSearchConfig.placeholder}}">
                 </article>
 
-                <article class="fl" ng-show="::programAttributesSearchConfig.show">
+                <article class="fl" ng-show="::programAttributesSearchConfig.show" style="padding-right: 51px;">
                     <label for="name"><strong>{{ ::programAttributesSearchConfig.label | translate}}</strong></label>
                     <input tabindex="7" type="text" id="programAttribute" ng-model="searchParameters.programAttributeFieldValue" placeholder="{{ ::programAttributesSearchConfig.placeholder}}">
                 </article>

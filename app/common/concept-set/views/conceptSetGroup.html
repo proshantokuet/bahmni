@@ -45,9 +45,8 @@
 
 </style>
 
-<div class="concept-set-panel clearfix">
-    <div class="reg-body-wrapper">
-        <div class="simple-form-ui new-patient">
+<div class="reg-body-wrapper">
+        <div class="simple-form-ui new-patient" ng-show="money">
             <form name="myForm" class="form-horizontal well" single-submit="create()">
                 <div class="box-container box-container-default">
                     <div class="box-container box-container-patient-info patient-common-info-container">
@@ -416,47 +415,6 @@
 
 
     </div>
-    <!--<a class="left-panel-toggle" ng-click="toggleSideBar()">
-        <i ng-if="!showLeftpanelToggle()" class="fa fa-bars" aria-hidden="true"></i>
-        <i ng-if="showLeftpanelToggle()" class="fa fa-chevron-left" aria-hidden="true"></i>
-    </a>
-
-    <section class="concept-set-panel-left" ng-class="{'form-menu-toggeled': showLeftpanelToggle()}" >
-
-        <div class="concept-set-panel-wrap" assign-height key="contentHeight">
-            <div class="multi-select-lab-tests">
-                <ul>
-                    <li ng-repeat="conceptSet in allTemplates track by $index"
-                        ng-if="conceptSet.isAvailable(context)  && conceptSet.formValidation(context, conceptSet)"  ng-class="openActiveForm(conceptSet)">
-                        <a ng-click="showLeftPanelConceptSet(conceptSet)">
-                            <span class="concept-set-name" ng-class="{'concept-set-name-extra':conceptSet.isValid === false}">
-                                {{conceptSet.label}}
-                                <span ng-if="conceptSet.observations[0].observationDateTime"> ( {{conceptSet.observations[0].observationDateTime|bahmniDate}} )</span>
-                            </span>
-                        </a>
-                        <div class="button-wrap">
-                            <label class="fa fa-exclamation-triangle fa-red" ng-show="conceptSet.isValid === false" ng-click="conceptSet.klass =='active' && focusOnErrors()"></label>
-                            <label class="fr" ng-click="clonePanelConceptSet(conceptSet)" ng-if="isLastClonedSection(conceptSet) && conceptSet.canAddMore()"> <i class="fa fa-plus"></i></label>
-                        </div>
-                    </li>
-                    <li class="emptymsg">{{::'EMPTY_TEMPLATE_MESSAGE' | translate}}</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <div class="concept-set-panel-right-wrap">
-        <section class="concept-set-panel-right">
-            <ul>
-                <li ng-repeat="conceptSet in allTemplates" ng-if="leftPanelConceptSet==conceptSet">
-                    <section class="concept-set-group section-grid" >
-                        <ng-include src="'../common/concept-set/views/conceptSetGroupSection.html'"></ng-include>
-                    </section>
-                </li>
-                <li class="concept-set-panel-no-template"  ng-style="{'height': contentHeight.height + 'px'}"> </li>
-            </ul>
-        </section>
-    </div>-->
-</div>
 <!--{{patient}}-->
 <!--<div style="width: 920px; text-align: center; padding: 10px">-->
 
@@ -503,20 +461,20 @@
     <td colspan="2" align="left" valign="top">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
       <tr>
-        <td align="left"  style="border-bottom: 1px solid #666; padding-left:8px;"><strong>Clinic Name:</strong></td>
-        <td style="border-bottom:1px solid #666;" ng-bind="patientInfo.clinicName"></td>
-        <td align="left"  style="border-bottom:1px solid #666;"><strong>Clinic ID</strong></td>
-        <td style="border-bottom:1px solid #666;">{{patient.ClinicCode.value}}</td>
-        <td align="left"  style="border-bottom:1px solid #666;"><strong>Satellite Clinic ID</strong></td>
-        <td style="border-bottom:1px solid #666;" ng-bind="patientInfo.sateliteClinicId"></td>
+        <td align="left"  style="border-bottom: 1px solid #666; padding:10px 10px 10px 8px;"><strong>Clinic Name:</strong></td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;" ng-bind="patientInfo.clinicName"></td>
+        <td align="left"  style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Clinic ID</strong></td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{patient.ClinicCode.value}}</td>
+        <td align="left"  style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Satellite Clinic ID</strong></td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;" ng-bind="patientInfo.sateliteClinicId"></td>
         <td align="left" style="border-bottom:1px solid #666;"><strong>Team no.</strong></td>
-        <td style="border-bottom:1px solid #666;" ng-bind="patientInfo.teamNo"></td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;" ng-bind="patientInfo.teamNo"></td>
       </tr>
       <tr>
         <td colspan="8"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-           <td align="left" valign="top" style="padding:8px;">1. Name:</td>
-            <td colspan="3" align="left" valign="bottom">{{patient.name}}</td>
+           <td align="left" colspan="2" valign="top" style="padding:8px;">1. Name:</td>
+            <td valign="top" colspan="2" align="left" valign="bottom" style="padding:8px;">{{patient.name}}</td>
             <td align="left" valign="top" style="padding:8px;">2. Gender:</td>
             <td align="left" valign="top" style="padding:8px;"><input name="input" type="checkbox" ng-checked="checkedBox('M',patient.gender)" /></td>
             <td align="left" valign="top" style="padding:8px;">Male</td>
@@ -526,7 +484,7 @@
             <td align="left" valign="top" style="padding:8px;">Other</td>
           </tr>
           <tr>
-           <td align="left" valign="top" style="padding:20px 0 20px 8px;">3. DoB</td>
+          <td align="left" valign="top" style="padding:20px 0 20px 8px;">3. DoB</td>
             <td style="padding:20px 0 20px 8px;">{{patient.birthdate | date:'yyyy-MM-dd'}}</td>
             <td style="padding:20px 0 20px 8px;">4. Age:</td>
             <td style="padding:20px 0 20px 8px;">{{htmlToPlaintext(patient.ageText)}}</td>
@@ -546,32 +504,31 @@
 
           </tr>
          <tr>
-            <td align="left" valign="top" style="padding:20px 0 20px 8px;">6. Address:</td>
-            <td colspan="3" style="padding:20px 0 20px 8px;">{{address(patient.address)}}</td>
-            <td style="padding:20px 0 20px 8px;">7. Mobile No.</td>
-            <td colspan="6" style="padding:20px 0 20px 8px;"> {{patient.MobileNo.value}}</td>
+            <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">6. Address:</td>
+            <td colspan="6" align="left" valign="top" style="padding:20px 0 20px 8px;"> {{address(patient.address)}}</td>
+            <td align="left" valign="top" style="padding:20px 0 20px 8px;">7. Mobile No.</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;"> {{patient.MobileNo.value}}</td>
             </tr>
           <tr>
-            <td align="left" valign="top" style="padding:20px 0 20px 8px;">8. Session:</td>
-            <td colspan="10" style="padding:20px 0 20px 8px;" ng-bind="patientInfo.session"></td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">8. Session:</td>
+            <td align="left" valign="top" colspan="9" style="padding:20px 0 20px 8px;" ng-bind="patientInfo.session"></td>
             </tr>
           <tr>
-            <td align="left" valign="top" style="padding:20px 0 20px 8px;">9. Reference:</td>
-            <td colspan="10" style="padding:20px 0 20px 8px;">{{patientInfo.reference}}  {{referenceId(patientInfo.reference, patientInfo.referenceId)}}</td>
+            <td  align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">9. Reference:</td>
+            <td align="left" valign="top" colspan="9" style="padding:20px 0 20px 8px;">{{patientInfo.reference}}  {{referenceId(patientInfo.reference, patientInfo.referenceId)}}</td>
           </tr>
           <tr>
-            <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">10. Birth District</td>
-            <td colspan="2"style="padding:20px 0 20px 8px;">{{patient.birthDistrict.value}}</td>
-            <td style="padding:20px 0 20px 8px;">11. Birth Upazila:</td>
-            <td colspan="6"  style="padding:20px 0 20px 8px;">{{patient.birthUpazilla.value}}</td>
+             <td colspan="2" align="left" valign="top"  style="padding:20px 0 20px 8px;">10. Birth District</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">{{patient.birthDistrict.value}}</td>
+            <td align="left" valign="top" style="padding:20px 0 20px 8px;">11. Birth Upazila:</td>
+            <td align="left" valign="top" colspan="6" style="padding:20px 0 20px 8px;">{{patient.birthUpazilla.value}}</td>
             </tr>
           <tr>
-            <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">12. Birth Rank:</td>
-            <td colspan="2" style="padding:20px 0 20px 8px;">{{patient.birthRank.value}}</td>
-            <td colspan="2" style="padding:20px 0 20px 8px;">13. Birth Mother's First Name:</td>
-            <td colspan="5" style="padding:20px 0 20px 8px;">{{patient.birthMothersFirstName.value}}</td>
-            </tr>
-
+            <td align="left" valign="top" colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">12. Birth Rank:</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">{{patient.birthRank.value}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">13. Birth Mother's First Name:</td>
+            <td align="left" valign="top" colspan="5" style="padding:20px 0 20px 8px;">{{patient.birthMothersFirstName.value}}</td>
+          </tr>
         </table></td>
         </tr>
     </table></td>
@@ -596,30 +553,28 @@
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{$index}} </td>
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.item.code}} </td>
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.item.name}} </td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.quantity}} </td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.unitCost}}</td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.totalAmount}} </td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.discount}}</td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.netPayable}} </td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.quantity}} </td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.unitCost}}</td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.totalAmount}} </td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.discount}}</td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.netPayable}} </td>
            </tr>
             <tr>
-            <td colspan="5" align="right" valign="top"  style="padding:20px 10 20px 8px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
-            <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalAmount()}}</td>
-            <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
-            <td align="left" valign="top"  style="padding:20px 0 20px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
-          </tr>
+                <td colspan="5" align="right" valign="top"  style="padding:10px 10px 10px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
+                <td align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalAmount()}}</td>
+                <td align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
+                <td align="right" valign="top"  style="padding:10px 8px 10px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
+             </tr>
           <tr>
-              <td colspan="7" align="right" valign="top"  style="padding:20px 0px 20px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
-
-              <td align="right" valign="top"  style="padding:20px 10px 20px 8px;">In Words {{calTotalNetAmount()}} {{inwords(calTotalNetAmount())}}</td>
+             <td colspan="8"align="left" valign="top"  style="padding:20px 10px 20px 8px;">In Words :  {{inwords(calTotalNetAmount())}}</td>
           </tr>
 
     </table></td>
   </tr>
-  <tr>
+  <tr class="displayNone">
     <td colspan="2" align="left" valign="top"  style="padding:20px 0 20px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
   </tr>
-  <tr>
+  <tr class="displayNone">
     <td colspan="2" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="displayNone">
  	<td align="center" valign="top"  style="padding:4px 0 20px 8px; border-top:1px solid #666;">Name of data collector</td>
@@ -639,23 +594,53 @@
 
  <button  style="float: right;margin-top: 10px;" onclick="printMoneyReceipt()">Print</button>
 
-<!--
-<script>
-    $("#add_new").click(function () {
-    $("#addItemTable").each(function () {
-        var tds = '<tr>';
-        jQuery.each($('tr:last td', this), function () {
-            tds += '<td>' + $(this).html() + '</td>';
-        });
-        tds += '</tr>';
-        if ($('tbody', this).length > 0) {
-            $('tbody', this).append(tds);
-        } else {
-            $(this).append(tds);
-        }
-    });
-});
-</script>-->
+<!--<div class="concept-set-panel clearfix">
+    <a class="left-panel-toggle" ng-click="toggleSideBar()">
+        <i ng-if="!showLeftpanelToggle()" class="fa fa-bars" aria-hidden="true"></i>
+        <i ng-if="showLeftpanelToggle()" class="fa fa-chevron-left" aria-hidden="true"></i>
+    </a>
+
+    <section class="concept-set-panel-left" ng-class="{'form-menu-toggeled': showLeftpanelToggle()}" >
+
+        <div class="concept-set-panel-wrap" assign-height key="contentHeight">
+            <div class="multi-select-lab-tests">
+                <ul>
+                    <li ng-repeat="conceptSet in allTemplates track by $index"
+                        ng-if="conceptSet.isAvailable(context)  && conceptSet.formValidation(context, conceptSet)"  ng-class="openActiveForm(conceptSet)">
+                        <a ng-click="showLeftPanelConceptSet(conceptSet)">
+                            <span class="concept-set-name" ng-class="{'concept-set-name-extra':conceptSet.isValid === false}">
+                                {{conceptSet.label}}
+                                <span ng-if="conceptSet.observations[0].observationDateTime"> ( {{conceptSet.observations[0].observationDateTime|bahmniDate}} )</span>
+                            </span>
+                        </a>
+                        <div class="button-wrap">
+                            <label class="fa fa-exclamation-triangle fa-red" ng-show="conceptSet.isValid === false" ng-click="conceptSet.klass =='active' && focusOnErrors()"></label>
+                            <label class="fr" ng-click="clonePanelConceptSet(conceptSet)" ng-if="isLastClonedSection(conceptSet) && conceptSet.canAddMore()"> <i class="fa fa-plus"></i></label>
+                        </div>
+                    </li>
+                    <li class="emptymsg">{{::'EMPTY_TEMPLATE_MESSAGE' | translate}}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="concept-set-panel-right-wrap">
+        <section class="concept-set-panel-right">
+            <ul>
+                <li ng-repeat="conceptSet in allTemplates" ng-if="leftPanelConceptSet==conceptSet">
+                    <section class="concept-set-group section-grid" >
+                        <ng-include src="'../common/concept-set/views/conceptSetGroupSection.html'"></ng-include>
+                    </section>
+                </li>
+                <li class="concept-set-panel-no-template"  ng-style="{'height': contentHeight.height + 'px'}"> </li>
+            </ul>
+        </section>
+    </div>
+
+
+</div>-->
+
+
+
 
 <style>
 .displayNone {
@@ -720,5 +705,4 @@ $(document).ready(function() {
 });
 </script>
 
-<!--
-style="max-width: 100%;" class="js-example-basic-single"-->
+

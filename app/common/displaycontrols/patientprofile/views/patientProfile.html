@@ -8,7 +8,7 @@
 
             <table class="patient dashboard-table">
               <tr class="patient-info">
-                <td colspan="2">
+                <td colspan="3">
                     <span class="patient-img">
                             <img  class="patient-image" ng-src="{{::patient.image}}" fallback-src="../images/blank-user.gif">
                         </span>
@@ -23,7 +23,7 @@
                                  <span ng-bind-html="::patient.birthtime | date:'hh:mm a'"></span>
                              </span>
                              <span class="patient-address">
-                                 {{::addressLine}}
+                                {{address(patient.address)}}
                              </span>
                              <i class="ipd-indication fa fa-bed" ng-if="::hasBeenAdmitted"></i>
                          </div>
@@ -63,26 +63,28 @@
                     </td>
                 </tr>
                 </table></td>
-                <td><a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard/concept-set-group/observations"  class="title-link">
+                <td style="text-align: center;"><a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard/concept-set-group/observations?createMoneyReceipt"  class="title-link">
                             <img  src="./../images/add-Money-Receipt.png" alt="Add Money Receipt" />
+
+                    <p style="text-align: center;">Add Money Receipt</p>
+
                         </a>
 
-                    <a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard/concept-set-group/observations"  class="title-link">
-                            Add Money Receipt
-                        </a>
-                    <svg class="barcode"
+
+
+
+                   <!-- <img id="qrious">
+                    <input id="qrvalue" type="hidden" value="{{patient.name}} {{patient.UIC.value}}"/>
+-->
+                </td>
+                  <td><svg class="barcode"
                       jsbarcode-format="CODE39"
-                      jsbarcode-value="{{patient.UIC.value}} "
+                      jsbarcode-value="{{patient.identifier}}"
                       jsbarcode-textmargin="0"
                       jsbarcode-displayValue="false"
                       jsbarcode-width="1"
                       jsbarcode-fontoptions="bold">
-                    </svg>
-
-                    <img id="qrious">
-                    <input id="qrvalue" type="hidden" value="{{patient.name}} {{patient.UIC.value}}"/>
-
-                </td>
+                    </svg></td>
               </tr>
             </table>
         </section>
@@ -131,20 +133,20 @@
     <td colspan="2" align="left" valign="top">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
       <tr>
-        <td align="left"  style="border-bottom: 1px solid #666; padding-left:8px;"><strong>Clinic Name:</strong></td>
-        <td  style="border-bottom:1px solid #666;">{{servicesBySlip[0].clinicName}}</td>
-        <td align="left" valign="top" style="border-bottom:1px solid #666;"><strong>Clinic ID</strong></td>
-        <td style="border-bottom:1px solid #666;">{{patient.ClinicCode.value}}</td>
-        <td align="left" valign="top" style="border-bottom:1px solid #666;"><strong>Satellite Clinic ID</strong></td>
-        <td  style="border-bottom:1px solid #666;">{{servicesBySlip[0].sateliteClinicId}}</td>
-        <td align="left" valign="top" style="border-bottom:1px solid #666;"><strong>Team no.</strong></td>
-        <td  style="border-bottom:1px solid #666;"> {{servicesBySlip[0].teamNo}}</td>
+        <td align="left"  style="border-bottom: 1px solid #666; padding:10px 10px 10px 8px;"><strong>Clinic Name:</strong></td>
+        <td  style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{servicesBySlip[0].clinicName}}</td>
+        <td align="left" valign="top" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Clinic ID</strong></td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{patient.ClinicCode.value}}</td>
+        <td align="left" valign="top" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Satellite Clinic ID</strong></td>
+        <td  style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{servicesBySlip[0].sateliteClinicId}}</td>
+        <td align="left" valign="top" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Team no.</strong></td>
+        <td  style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"> {{servicesBySlip[0].teamNo}}</td>
       </tr>
       <tr>
         <td colspan="8"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-           <td align="left" valign="top" style="padding:8px;">1. Name:</td>
-            <td valign="top" colspan="3" align="left" valign="bottom">{{patient.name}}</td>
+           <td align="left" colspan="2" valign="top" style="padding:8px;">1. Name:</td>
+            <td valign="top" colspan="2" align="left" valign="bottom" style="padding:8px;">{{patient.name}}</td>
             <td align="left" valign="top" style="padding:8px;">2. Gender:</td>
             <td align="left" valign="top" style="padding:8px;"><input name="input" type="checkbox" ng-checked="checkedBox('M',patient.gender)" /></td>
             <td align="left" valign="top" style="padding:8px;">Male</td>
@@ -154,7 +156,7 @@
             <td align="left" valign="top" style="padding:8px;">Other</td>
           </tr>
           <tr>
-           <td align="left" valign="top" style="padding:20px 0 20px 8px;">3. DoB</td>
+            <td align="left" valign="top" style="padding:20px 0 20px 8px;">3. DoB</td>
             <td style="padding:20px 0 20px 8px;">{{patient.birthdate | date:'yyyy-MM-dd'}}</td>
             <td style="padding:20px 0 20px 8px;">4. Age:</td>
             <td style="padding:20px 0 20px 8px;">{{htmlToPlaintext(patient.ageText)}}</td>
@@ -174,32 +176,31 @@
 
           </tr>
          <tr>
-            <td align="left" valign="top" style="padding:20px 0 20px 8px;">6. Address:</td>
-            <td colspan="3" style="padding:20px 0 20px 8px;">{{address(patient.address)}}</td>
-            <td style="padding:20px 0 20px 8px;">7. Mobile No.</td>
-            <td colspan="6" style="padding:20px 0 20px 8px;"> {{patient.MobileNo.value}}</td>
+            <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">6. Address:</td>
+            <td colspan="6" align="left" valign="top" style="padding:20px 0 20px 8px;"> {{address(patient.address)}}</td>
+            <td align="left" valign="top" style="padding:20px 0 20px 8px;">7. Mobile No.</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;"> {{patient.MobileNo.value}}</td>
             </tr>
           <tr>
-            <td align="left" valign="top" style="padding:20px 0 20px 8px;">8. Session:</td>
-            <td colspan="10" style="padding:20px 0 20px 8px;" > {{servicesBySlip[0].session}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">8. Session:</td>
+            <td align="left" valign="top" colspan="9" style="padding:20px 0 20px 8px;"> {{servicesBySlip[0].session}}</td>
             </tr>
           <tr>
-            <td align="left" valign="top" style="padding:20px 0 20px 8px;">9. Reference:</td>
-            <td  valign="top" colspan="10" style="padding:20px 0 20px 8px;">{{servicesBySlip[0].reference}}  {{referenceId(servicesBySlip[0].reference, servicesBySlip[0].referenceId)}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">9. Reference:</td>
+            <td align="left" valign="top" colspan="9" style="padding:20px 0 20px 8px;">{{servicesBySlip[0].reference}}  {{referenceId(servicesBySlip[0].reference, servicesBySlip[0].referenceId)}}</td>
           </tr>
           <tr>
             <td colspan="2" align="left" valign="top"  style="padding:20px 0 20px 8px;">10. Birth District</td>
-            <td colspan="2" style="padding:20px 0 20px 8px;">{{patient.birthDistrict.value}}</td>
-            <td  style="padding:20px 0 20px 8px;">11. Birth Upazila:</td>
-            <td colspan="6" style="padding:20px 0 20px 8px;">{{patient.birthUpazilla.value}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">{{patient.birthDistrict.value}}</td>
+            <td align="left" valign="top" style="padding:20px 0 20px 8px;">11. Birth Upazila:</td>
+            <td align="left" valign="top" colspan="6" style="padding:20px 0 20px 8px;">{{patient.birthUpazilla.value}}</td>
             </tr>
           <tr>
-            <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">12. Birth Rank:</td>
-            <td colspan="2" style="padding:20px 0 20px 8px;">{{patient.birthRank.value}}</td>
-            <td colspan="2" style="padding:20px 0 20px 8px;">13. Birth Mother's First Name:</td>
-            <td colspan="5" style="padding:20px 0 20px 8px;">{{patient.birthMothersFirstName.value}}</td>
-            </tr>
-
+            <td align="left" valign="top" colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">12. Birth Rank:</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">{{patient.birthRank.value}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:20px 0 20px 8px;">13. Birth Mother's First Name:</td>
+            <td align="left" valign="top" colspan="5" style="padding:20px 0 20px 8px;">{{patient.birthMothersFirstName.value}}</td>
+          </tr>
         </table></td>
         </tr>
     </table></td>
@@ -224,22 +225,20 @@
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{$index}} </td>
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.code}} </td>
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.item}} </td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.quantity}} </td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.unitCost}}</td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.totalAmount}} </td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.discount}}</td>
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.netPayable}} </td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.quantity}} </td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.unitCost}}</td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.totalAmount}} </td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.discount}}</td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.netPayable}} </td>
            </tr>
             <tr>
-            <td colspan="5" align="right" valign="top"  style="padding:0px 10px 0px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
-            <td align="left" valign="top"  style="padding:0px 0 0px 0px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalAmount()}}</td>
-            <td align="left" valign="top"  style="padding:0px 0 0px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
-            <td align="left" valign="top"  style="padding:0px 0 0px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
+            <td colspan="5" align="right" valign="top"  style="padding:10px 10px 10px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
+            <td align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalAmount()}}</td>
+            <td align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
+            <td align="right" valign="top"  style="padding:10px 8px 10px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
           </tr>
           <tr>
-              <td colspan="7" align="right" valign="top"  style="padding:20px 0px 20px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
-
-              <td align="right" valign="top"  style="padding:20px 10px 20px 8px;">In Words {{calTotalNetAmount()}}  {{inwords(calTotalNetAmount())}}</td>
+            <td colspan="8"align="left" valign="top"  style="padding:20px 10px 20px 8px;">In Words :  {{inwords(calTotalNetAmount())}}</td>
           </tr>
 
     </table></td>
@@ -274,24 +273,29 @@
 
 
   </script>
+
 <div class="dashboard-patientInformation-section">
     <h3 style="background: #ddd;padding: 18px;height: 17px; color: #000;">Service history</h3>
-<table id="table_id" class="display">
+<table style="padding-top: 10px;" id="table_id" class="display">
                             <thead>
-                            <tr>
-							<td></td>
-							<td></td>
-							<td></td>
-                            <td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td>Slip No:<input type="text" id="search-date" placeholder="search by slipNo"></td>
-							<td></td>
-						</tr>
+
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th colspan="2" align="left" valign="top">Slip No:<input style="margin-left: 8px;" type="text" id="search-date" placeholder="search by slipNo"></th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+
+
                                 <tr>
                                     <th>Date</th>
                                     <th>Slip No</th>
+                                    <th>Code</th>
                                     <th>Service Name</th>
                                   <!--  <th>Description</th>-->
                                     <th>Unit Cost</th>
@@ -308,7 +312,7 @@
                                     <td>{{truncateDate(service.moneyReceiptDate)}} </td>
                                     <td>{{service.slipNo}} </td>
                                     <td>{{service.item}} </td>
-
+                                     <td>{{service.code}} </td>
                                    <!-- <td>{{service.description}} </td>-->
                                     <td>{{service.unitCost}}</td>
                                     <td>{{service.quantity}} </td>
@@ -330,11 +334,11 @@
 //var $jq = jQuery.noConflict();
 setTimeout(function(){
     $(document).ready(function() {
-         var qr = window.qr = new QRious({
+        /* var qr = window.qr = new QRious({
           element: document.getElementById('qrious'),
           size: 150,
           value: document.getElementById("qrvalue").value
-        });
+        });*/
 
         JsBarcode(".barcode").init();
 	    var table = $('#table_id').DataTable({
