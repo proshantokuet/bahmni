@@ -752,6 +752,8 @@ angular.module('bahmni.registration')
                     return $scope.patient.showMotherNameEnglish;
                 } else if ($scope.patient.showMemberType == false) {
                     return false;
+                } else if (attributeName == "Weight_For_Age") {
+                    return false;
                 } else {
                     return true;
                 }
