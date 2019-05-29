@@ -41,6 +41,7 @@ angular.module('bahmni.registration')
                 $scope.EPICheckbox = false;
                 $scope.showRiskyHabitsValue = false;
                 $scope.showDiseaseStatusValue = false;
+                $scope.showMaritalStatus = false;
                 $scope.spouseValue = false;
                 $scope.diseaseStartIndexValue = 0;
                 $scope.diseaseEndIndexValue = 0;
@@ -86,6 +87,7 @@ angular.module('bahmni.registration')
                     }
                     if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "MaritalStatus") {
                         var s = $scope.openMRSPatient.person.attributes[i].value;
+                        $scope.showMaritalStatus = true;
                         /* console.log(s);
                         if ($scope.openMRSPatient.person.attributes[i].value == "বিবাহিত") {
                             console.log("বিবাহিত");
@@ -140,6 +142,7 @@ angular.module('bahmni.registration')
                 }
                 $scope.patient.showRiskyHabits = $scope.showRiskyHabitsValue;
                 $scope.patient.showDiseaseStatus = $scope.showDiseaseStatusValue;
+                $scope.patient.showMaritalStatus = $scope.showMaritalStatus;
                 $scope.patient.diseaseStartIndex = $scope.diseaseStartIndexValue;
                 $scope.patient.diseaseEndIndex = $scope.diseaseEndIndexValue;
                 console.log($scope.spouseValue);
@@ -155,15 +158,39 @@ angular.module('bahmni.registration')
                 }
 
                 if ($scope.patient.showMaritalStatus) {
-                    $scope.patient.showFamilyplanning = true;
-                    $scope.patient.showPregnancyStatus = true;
+                    if ($scope.patient.MaritalStatus != null) {
+                        if ($scope.patient["MaritalStatus"].value == Bahmni.Common.Constants.married) {
+                            $scope.patient.showFamilyplanning = true;
+                            if ($scope.genderValue == 'F') {
+                                $scope.patient.showPregnancyStatus = true;
+                                if ($scope.patient.PregnancyStatus != null) {
+                                    if ($scope.patient.PregnancyStatus.value == 'প্রসবোত্তর') {
+                                        $scope.patient.showDeliveryDate = true;
+                                        $scope.patient.showLMP = false;
+                                    }
+                                    if ($scope.patient.PregnancyStatus.value == 'প্রসব পূর্ব') {
+                                        $scope.patient.showDeliveryDate = false;
+                                        $scope.patient.showFamilyplanning = false;
+                                        $scope.patient.showLMP = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
-                // $rootScope.$broadcast('tiggermappingfunction', { patientAttribute: $scope.patient.memberType });
                 if ($scope.patient.memberType == "কমিউনিটি ক্লিনিকের আওতাধীন") {
                     $scope.patient.showMemberType = true;
+                    var patientAge = dateToDay(calculateBirthDate($scope.patient.age));
+                    if (patientAge > Bahmni.Common.Constants.aboveFiveYear) {
+                        $scope.patient.showOccupation = true;
+                        $scope.patient.showEducation = true;
+                    }
+                    if (patientAge > Bahmni.Common.Constants.aboveTenYear) $scope.patient.showPhoneNumber = true;
                 } else {
                     $scope.patient.showMemberType = false;
+                    var patientAge = dateToDay(calculateBirthDate($scope.patient.age));
+                    if (patientAge > Bahmni.Common.Constants.aboveTenYear) $scope.patient.showPhoneNumber = true;
                 }
 
                 if ($scope.patient.disable != null) {
@@ -236,6 +263,22 @@ angular.module('bahmni.registration')
                     relationArray.push(relationObject);
                 }
                 $scope.patient.relationships = _.concat(relationArray, $scope.patient.deletedRelationships);
+            };
+
+            var dateToDay = function (dob) {
+                var dob = new Date(dob);
+                var today = new Date();
+                var timeDiff = Math.abs(today.getTime() - dob.getTime());
+                var age = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
+                return age;
+            };
+
+            var calculateBirthDate = function (age) {
+                var birthDate = dateUtil.now();
+                birthDate = dateUtil.subtractYears(birthDate, age.years);
+                birthDate = dateUtil.subtractMonths(birthDate, age.months);
+                birthDate = dateUtil.subtractDays(birthDate, age.days);
+                return birthDate;
             };
 
             $scope.isReadOnly = function (field) {
