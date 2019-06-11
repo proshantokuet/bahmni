@@ -146,6 +146,29 @@ angular.module('authentication')
                 userService.getProviderForUser(data.results[0].uuid).then(function (providers) {
                     if (!_.isEmpty(providers.results) && hasAnyActiveProvider(providers.results)) {
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
+                        console.log("Current user Information");
+                        console.log(data.results[0]);
+                        for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
+                            if ($rootScope.currentUser.privileges[i].name == "View MIDWIFE Forms") {
+                                $rootScope.currentUser.favouriteObsTemplates[0] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা_মিডওয়াইফ";
+                                $rootScope.currentUser.favouriteObsTemplates[1] = "গর্ভাবস্থার তথ্য_মিডওয়াইফ";
+                                $rootScope.currentUser.favouriteObsTemplates[2] = "প্রসব পূর্ব সেবা_মিডওয়াইফ";
+                                $rootScope.currentUser.favouriteObsTemplates[3] = "প্রসব পরবর্তী সেবা_মিডওয়াইফ";
+                            }
+                            if ($rootScope.currentUser.privileges[i].name == "View SACMO Forms") {
+                                $rootScope.currentUser.favouriteObsTemplates[0] = "গ্রোথ মনিটরিং_এসএসিএমও";
+                                $rootScope.currentUser.favouriteObsTemplates[1] = "SAM চিহ্নিত বাচ্চার অবস্থা";
+                            }
+                            if ($rootScope.currentUser.privileges[i].name == "View CHCP Forms") {
+                                $rootScope.currentUser.favouriteObsTemplates[0] = "সাধারন রোগীর সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[1] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[2] = "শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[3] = "পরিবার পরিকল্পনা সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[4] = "গর্ভাবস্থার তথ্য";
+                                $rootScope.currentUser.favouriteObsTemplates[5] = "প্রসব পূর্ব সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[6] = "প্রসব পরবর্তী সেবা";
+                            }
+                        }
                         $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;
                         $rootScope.$broadcast('event:user-credentialsLoaded', data.results[0]);
                         deferrable.resolve(data.results[0]);

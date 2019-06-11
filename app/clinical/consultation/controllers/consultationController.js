@@ -420,15 +420,25 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             };
 
             var addFormObservations = function (tempConsultation) {
+                console.log("Printing Observation Forms");
+                console.log(tempConsultation.observationForms);
+                console.log("Before Removing Printing Observation");
+                console.log(tempConsultation.observations);
                 if (tempConsultation.observationForms) {
                     _.remove(tempConsultation.observations, function (observation) {
                         return observation.formNamespace;
                     });
+                    console.log("Before Removing Printing Observation");
+                    console.log(tempConsultation.observations);
                     _.each(tempConsultation.observationForms, function (observationForm) {
                         if (observationForm.component) {
                             var formObservations = observationForm.component.getValue();
+                            console.log("Printing formobservations");
+                            console.log(formObservations);
                             _.each(formObservations.observations, function (obs) {
                                 tempConsultation.observations.push(obs);
+                                console.log("Printing observations in loop");
+                                console.log(tempConsultation.observations);
                             });
                         }
                     });
@@ -640,6 +650,8 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 }
                 return spinner.forPromise($q.all([preSavePromise(), encounterService.getEncounterType($state.params.programUuid, sessionService.getLoginLocationUuid())]).then(function (results) {
                     var encounterData = results[0];
+                    console.log("Printing Encounter Data");
+                    console.log(encounterData);
                     encounterData.encounterTypeUuid = results[1].uuid;
                     var params = angular.copy($state.params);
                     params.cachebuster = Math.random();
@@ -710,7 +722,56 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                                 attribute['attributeType'] = attributeType;
                                 attributes.push(attribute);
                             }
-                        } else {
+                        }
+                        if (formName == "গ্রোথ মনিটরিং_এসএসিএমও") {
+                            console.log("Printing observation value");
+                            console.log(observation);
+                            // For server 10
+                            // var weightConditionConceptUuid = '8a7a91a0-fc32-4009-a0f3-b2b05009c7ad';
+                            // var weightforAgeAttributeUuid = 'cefe26a7-01a5-4d1d-b333-f1d8e89d33fe';
+                            // For server 44
+                            var weightConditionConceptUuid = '015dae02-f049-42d2-8767-22c99d55b251';
+                            var weightforAgeAttributeUuid = 'a97bf4e4-b76e-4e0a-9d13-2ef9ead5df15';
+                            var attribute = {};
+                            var conceptUuid = observation.concept.uuid;
+                            var attributeType = "";
+                            if (conceptUuid == weightConditionConceptUuid) {
+                                attributeType = weightforAgeAttributeUuid;
+                                if (observation.value.displayString) {
+                                    value = observation.value.displayString;
+                                    attribute['value'] = value;
+                                    attribute['attributeType'] = attributeType;
+                                    attributes.push(attribute);
+                                    console.log("printing Growth monitor attribute value while saving");
+                                    console.log(attribute);
+                                }
+                            }
+                        }
+                        if (formName == "SAM চিহ্নিত বাচ্চার অবস্থা") {
+                            console.log("Printing observation value in SAM indentified");
+                            console.log(observation);
+                            // for server 44
+                            var statusOfSamChildConceptUuid = '368429a0-1a89-4b5b-b639-d1970e88b131';
+                            var weightforAgeAttributeUuid = 'a97bf4e4-b76e-4e0a-9d13-2ef9ead5df15';
+                            var attribute = {};
+                            var conceptUuid = observation.concept.uuid;
+                            var attributeType = "";
+                            if (conceptUuid == statusOfSamChildConceptUuid) {
+                                attributeType = weightforAgeAttributeUuid;
+                                if (observation.value.displayString) {
+                                    if (observation.value.displayString == "আরোগ্য নয়") {
+                                        value = "তীব্র";
+                                    }
+                                    else value = "hideSamStatus";
+                                    attribute['value'] = value;
+                                    attribute['attributeType'] = attributeType;
+                                    attributes.push(attribute);
+                                    console.log("printing sam identified  attributevalue while saving");
+                                    console.log(attribute);
+                                }
+                            }
+                        }
+                        else {
 
                         }
                     });
@@ -741,6 +802,8 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                             var consultationMapper = new Bahmni.ConsultationMapper(configurations.dosageFrequencyConfig(), configurations.dosageInstructionConfig(),
                                 configurations.consultationNoteConcept(), configurations.labOrderNotesConcept(), $scope.followUpConditionConcept);
                             var consultation = consultationMapper.map(saveResponse.data);
+                            console.log("Printing After Save Consultation Data");
+                            console.log(consultation);
                             consultation.lastvisited = $scope.lastvisited;
                             return consultation;
                         }).then(function (savedConsultation) {

@@ -10,7 +10,12 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         self.label = formName;
         self.conceptName = formName;
         self.collapseInnerSections = {value: false};
-        self.alwaysShow = true;
+        // for shwing role based form
+        self.alwaysShow = user.isFavouriteObsTemplate(self.conceptName);
+
+        // for showing patient based form
+        // self.alwaysShow = true;
+
         self.observations = [];
         _.each(observations, function (observation) {
             var observationFormField = observation.formFieldPath ? (observation.formFieldPath.split("/")[0]).split('.') : null;
@@ -50,13 +55,20 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         return true;
     };
     self.formValidation = function (context, conceptSet) {
-        // console.log(context);
         var dob = new Date(context.patient.birthdate);
         var today = new Date();
         var timeDiff = Math.abs(today.getTime() - dob.getTime());
         var age = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
         var gender = context.patient.gender;
+        if (context.patient.Weight_For_Age) {
+            var weightForAge = context.patient.Weight_For_Age.value;
+        }
         var formName = conceptSet.formName;
+        var findSpecialIndex = formName.indexOf("_");
+        if (findSpecialIndex != -1) {
+            var splitFormName = formName.split("_");
+            formName = splitFormName[0];
+        }
         var deliveryDayDifference = "";
         if (typeof context.patient.delivery_date !== "undefined") {
             var deliveryDate = new Date(context.patient.delivery_date.value);
@@ -78,7 +90,7 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         /* console.log(deliveryDayDifference);
         console.log(age);
         console.log(conceptSet); */
-        console.log(context.patient);
+        // console.log(context.patient);
         // console.log(conceptSet);
         var pregnancyStatus = "";
 
@@ -105,7 +117,17 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (pregnancyStatus != antenatal && gender == Bahmni.Common.Constants.female && maritalStatus == married && age <= Bahmni.Common.Constants.fiftyYearInDay && formName == Bahmni.Common.Constants.familyPlaningFormName) {
             return true;
-        } else {
+        } else if (age >= Bahmni.Common.Constants.TwoMonthInDay && age <= Bahmni.Common.Constants.twoMonthToFiveYearInDay && formName == Bahmni.Common.Constants.samIdentifiedFormName) {
+            if (weightForAge == "তীব্র") {
+                return true;
+            }
+            else if (weightForAge == "hideSamStatus") {
+                return false;
+            }
+        } else if (age >= Bahmni.Common.Constants.TwoMonthInDay && age <= Bahmni.Common.Constants.twoMonthToFiveYearInDay && formName == Bahmni.Common.Constants.growthMonitoringFormName) {
+            return true;
+        }
+        else {
             return false;
         }
     };
@@ -145,7 +167,7 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
     };
 
     self.isDefault = function () {
-        return true;
+        return false;
     };
 
     Object.defineProperty(self, "isAdded", {

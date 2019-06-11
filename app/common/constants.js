@@ -276,6 +276,8 @@ Bahmni.Common = Bahmni.Common || {};
         moreThanFiveYearInDay: 1827,
         pregnantStatusFormName: 'গর্ভাবস্থার তথ্য',
         familyPlaningFormName: 'পরিবার পরিকল্পনা সেবা',
+        samIdentifiedFormName: 'SAM চিহ্নিত বাচ্চার অবস্থা',
+        growthMonitoringFormName: 'গ্রোথ মনিটরিং',
         fiftyYearInDay: 18262,
         postnatalFormDeliveryDayCondition: 61,
         pregnantStatusFormDeliveryDayCondition: 44,
