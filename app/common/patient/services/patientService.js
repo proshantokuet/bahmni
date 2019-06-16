@@ -33,6 +33,13 @@ angular.module('bahmni.common.patient')
                 withCredentials: true
             });
         };
+
+        this.getDataCollectors = function (clinicCode) {
+            return $http.get(Bahmni.Common.Constants.dataColelctorUrl + "/" + clinicCode, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
         this.saveMoneyReceipt = function (data) {
             var url = Bahmni.Common.Constants.serviceSaveUrl;
             return $http.post(url, data, {

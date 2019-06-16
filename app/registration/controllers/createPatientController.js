@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('CreatePatientController', ['$scope', '$rootScope', '$state', 'patientService', 'patient', 'spinner', 'appService', 'messagingService', 'ngDialog', '$q',
-        function ($scope, $rootScope, $state, patientService, patient, spinner, appService, messagingService, ngDialog, $q) {
+    .controller('CreatePatientController', ['$scope', '$rootScope', '$window', '$state', 'patientService', 'patient', 'spinner', 'appService', 'messagingService', 'ngDialog', '$q',
+        function ($scope, $rootScope, $window, $state, patientService, patient, spinner, appService, messagingService, ngDialog, $q) {
             var dateUtil = Bahmni.Common.Util.DateUtil;
             $scope.actions = {};
             var errorMessage;
@@ -183,9 +183,10 @@ angular.module('bahmni.registration')
                 patientService.fakecall().then(function (response) {
                     console.log($scope.patient);
                 });
-                $state.go("search", {
-                    // patientUuid: $scope.patient.uuid
-                });
+                $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_self");
+                /* $state.go("search", {
+                 // patientUuid: $scope.patient.uuid
+                 }); */
             };
         }
     ]);

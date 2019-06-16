@@ -61,6 +61,10 @@
         });
         $('#RegistrationDate').val(new Date().toDateInputValue());
     });​*/
+  function myFunction﻿() {
+  var x = document.getElementById("RegistrationDate").value.split('-');
+  document.getElementById("RegistrationDate").innerHTML = x[1]+'.'+x[2]+'.'+x[0];
+  }
   setTimeout(function(){
   $(document).ready( function() {
       Date.prototype.toDateInputValue = (function() {

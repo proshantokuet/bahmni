@@ -38,7 +38,7 @@ angular.module('bahmni.common.conceptSet')
                 return obj.price;
             };
             $scope.clinicType = "";
-            $scope.servicePoints = [{name: "Clinic"}, {name: "Satellite"}, {name: "CSP"}];
+            $scope.servicePoints = [{name: "Static"}, {name: "Satellite"}, {name: "CSP"}];
             $scope.sessions = [{name: "EPI"}, {name: "Garments"}, {name: "Corporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "N/A"}];
             $scope.references = [{name: "Self"}, {name: "CSP"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
             $scope.services = [{"discount": 0, "quantity": 1}];
@@ -58,12 +58,10 @@ angular.module('bahmni.common.conceptSet')
                 $scope.services.push({"discount": 0, "quantity": 1});
             };
             $scope.removeThis = function (index) {
-                console.log(index);
                 $scope.services.splice(index, 1);
             };
             $scope.removeChoice = function () {
                 var lastItem = $scope.services.length - 1;
-                console.log($scope.services.length);
                 if ($scope.services.length != 1) {
                     $scope.services.splice(lastItem);
                 }
@@ -137,45 +135,64 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.title = "Money Receipt";
             $scope.onChanged = function (item, index) {
-                var pos = $scope.services.map(function (e) {
-                    console.log(e);
-                    return e.code;
-                }).indexOf(item.code);
-                console.log(pos);
-                console.log($scope.services);
-                if ($scope.services.length == 1) {
+                var thisCode = item.code;
+                var service = $scope.services.filter(function (service) {
+                    return service.item.code == thisCode;
+                });
+                if (service.length == 1) {
                     $scope.services[index].unitCost = item.unitCost;
                     $scope.services[index].quantity = 1;
-                    $scope.services[index].code = item.code;
+                    $scope.services[index].code = item;
                     $scope.services[index].category = item.category;
                     // $scope.services[index].provider = item.provider;
                     $scope.services[index].totalAmount = item.unitCost;
                     $scope.services[index].discount = 0;
                     $scope.services[index].netPayable = item.unitCost;
                 } else {
-                    if (pos == -1) {
-                        $scope.services[index].unitCost = item.unitCost;
-                        $scope.services[index].quantity = 1;
-                        $scope.services[index].code = item.code;
-                        $scope.services[index].category = item.category;
-                        // $scope.services[index].provider = item.provider;
-                        $scope.services[index].totalAmount = item.unitCost;
-                        $scope.services[index].discount = 0;
-                        $scope.services[index].netPayable = item.unitCost;
-                    } else {
-                        alert("You have selected  " + item.name + " please select another");
-                        $scope.services[index].item = undefined;
-                    }
+                    $scope.services[index].item = undefined;
+                    $scope.services[index].code = undefined;
+                    $scope.services[index].unitCost = "";
+                    $scope.services[index].quantity = 1;
+                    $scope.services[index].category = "";
+                    $scope.services[index].totalAmount = "";
+                    $scope.services[index].discount = 0;
+                    $scope.services[index].netPayable = "";
+                    alert("You have selected  " + item.name + " please select another");
+                }
+            };
+            $scope.onChangedForCode = function (item, index) {
+                var thisCode = item.code;
+                var service = $scope.services.filter(function (service) {
+                    return service.code.code == thisCode;
+                });
+
+                if (service.length == 1) {
+                    $scope.services[index].unitCost = item.unitCost;
+                    $scope.services[index].quantity = 1;
+                    $scope.services[index].item = item;
+                    $scope.services[index].category = item.category;
+                    // $scope.services[index].provider = item.provider;
+                    $scope.services[index].totalAmount = item.unitCost;
+                    $scope.services[index].discount = 0;
+                    $scope.services[index].netPayable = item.unitCost;
+                } else {
+                    $scope.services[index].item = undefined;
+                    $scope.services[index].code = undefined;
+                    $scope.services[index].unitCost = "";
+                    $scope.services[index].quantity = 1;
+                    $scope.services[index].category = "";
+                    $scope.services[index].totalAmount = "";
+                    $scope.services[index].discount = 0;
+                    $scope.services[index].netPayable = "";
+                    alert("You have selected  " + item.name + " please select another");
                 }
             };
 
             $scope.dateTOString = function (date) {
-                console.log(date.getFullYear() + "-");
                 return date.slice(0, 10);
             };
 
             $scope.checkedBox = function (value, checkingValue) {
-                console.log(value + " : " + checkingValue);
                 if (value == checkingValue) {
                     return true;
                 }
@@ -257,7 +274,18 @@ angular.module('bahmni.common.conceptSet')
                     patientInfo['patientName'] = patient.givenName + " " + patient.familyName;
                     patientInfo['patientUuid'] = patient.uuid;
                     patientInfo['uic'] = patient.UIC.value;
-
+                    var dtToday = new Date(patientInfo.moneyReceiptDate.toLocaleString());
+                    var month = dtToday.getMonth() + 1;
+                    var day = dtToday.getDate();
+                    var year = dtToday.getFullYear();
+                    if (month < 10) {
+                        month = '0' + month.toString();
+                    }
+                    if (day < 10) {
+                        day = '0' + day.toString();
+                    }
+                    var moneyReceiptDate = year + '-' + month + '-' + day;
+                    patientInfo['moneyReceiptDate'] = new Date(moneyReceiptDate);
                     if (patient.MobileNo != undefined) {
                         patientInfo['contact'] = patient.MobileNo.value;
                     }
@@ -271,8 +299,7 @@ angular.module('bahmni.common.conceptSet')
 
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
                         $state.go("patient.dashboard.show", {
-                            patientUuid: patient.uuid
-                        }, {reload: true}
+                            patientUuid: patient.uuid}, {reload: true}
                         );
                     }));
                 } else {
@@ -445,7 +472,13 @@ angular.module('bahmni.common.conceptSet')
                     $scope.serviceList = response.data;
                 });
             };
-            var initPromise = $q.all([services()]);
+
+            var dataCollectors = function (clinicCode) {
+                return patientService.getDataCollectors(clinicCode).then(function (response) {
+                    $scope.dataCollectorList = response.data;
+                });
+            };
+            var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)]);
             $scope.initialization = initPromise;
 
             init();

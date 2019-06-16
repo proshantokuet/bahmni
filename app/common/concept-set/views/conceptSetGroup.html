@@ -285,8 +285,27 @@
                                                 </div>
                                             </article>
                                         </td>
-                                    </tr>
 
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Data Collector<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                         <select ng-model="patientInfo.dataCollector" ng-options="dataCollector.username as dataCollector.userRole for dataCollector in dataCollectorList" ng-required="true">
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
 
                                 </table>
                             </section>
@@ -300,6 +319,18 @@
                             <section class="form-field form-field-gender">
                                 <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
                                     <tr data-ng-repeat="service in services track by $index">
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <label>Code<span class="asterick">*</span></label>
+                                                        <select  ng-model="service.code" ng-change="onChangedForCode(service.code, $index)"
+                                                                 ng-options="itm as itm.code for itm in serviceList" ng-required="true">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
 
                                         <td>
                                             <article class="form-field">
@@ -319,7 +350,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                          <label>Description</label>
-                                                        <input ng-model="service.description" style="width: 15em;" type="text" />
+                                                        <input ng-model="service.description" style="width: 10em;" type="text" />
                                                     </div>
                                                 </div>
                                             </article>
@@ -341,7 +372,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Quantity<span class="asterick">*</span></label>
-                                                        <input ng-model="service.quantity" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 3em;" type="number" min="1" ng-required="true"/>
+                                                        <input ng-model="service.quantity" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 4em;" type="number" min="1" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -352,7 +383,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                          <label>Total Amount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.totalAmount" style="width: 5em;" type="text"  ng-required="true" readonly/>
+                                                        <input ng-model="service.totalAmount" style="width: 6em;" type="text"  ng-required="true" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -374,7 +405,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Net Payable Amount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.netPayable" style="width: 5em;" type="text"  ng-required="true" readonly/>
+                                                        <input ng-model="service.netPayable" style="width: 9em;" type="text"  ng-required="true" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -392,21 +423,13 @@
                     </div>
                 </div>
 
-                <div class="submit-btn-container clearfix" id="buttonPrint">
-                   <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient)" ng-disabled="enable=='false'">
-                       <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
-            {{ searchButtonText }}
-
-                   </button>
-
-                    <a onclick="return confirm('Do you really want to cancel this money receipt?')"  style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
-                </div>
 
             </form>
 
         </div>
     </div>
-<!--{{patient}}-->
+{{services}}
+{{patientInfo}}
 
 <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
   <tr class="displayNone">
@@ -581,7 +604,17 @@
   </tr>
 </table>
 
- <button  style="float: right;margin-top: 10px;" onclick="printMoneyReceipt()">Print</button>
+<div class="submit-btn-container clearfix" id="buttonPrint">
+    <button  style="float: right;margin-top: 10px;margin-right: 5px;" onclick="printMoneyReceipt()">Print</button>
+    <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient)" ng-disabled="enable=='false'">
+                       <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+            {{ searchButtonText }}
+
+    </button>
+
+    <a onclick="return confirm('Do you really want to cancel this money receipt?')"  style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
+</div>
+
 
 <!--<div class="concept-set-panel clearfix">
     <a class="left-panel-toggle" ng-click="toggleSideBar()">
