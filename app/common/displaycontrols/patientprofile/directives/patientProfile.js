@@ -179,6 +179,27 @@
                     $scope.closeDialogs = function () {
                         $scope.Dialog.close();
                     };
+                    $scope.oldSlip = "";
+
+                    $scope.test = function (slipNo, index) {
+                        console.log(slipNo + " : " + $scope.oldSlip);
+                        var service = $scope.services.filter(function (service) {
+                            return service.slipNo == slipNo;
+                        });
+                        if ($scope.oldSlip == "") {
+                            $scope.oldSlip = slipNo;
+                        }
+                        if (slipNo != $scope.oldSlip) {
+                            $scope.oldSlip = slipNo;
+                        }
+                        if (slipNo == $scope.oldSlip && service.length == 1) {
+                            return true;
+                        } else if (slipNo != $scope.oldSlip) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    };
 
                     var moneyReceipt = function () {
                         return patientService.moneyReceipt($scope.patientUuid).then(function (response) {
