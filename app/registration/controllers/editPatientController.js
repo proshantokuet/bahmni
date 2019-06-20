@@ -26,7 +26,6 @@ angular.module('bahmni.registration')
 
             var successCallBack = function (openmrsPatient) {
                 $scope.openMRSPatient = openmrsPatient["patient"];
-
                 /* $scope.genderValue = $scope.openMRSPatient.person.gender;
                 console.log($scope.genderValue); */
                 var i;
@@ -38,9 +37,16 @@ angular.module('bahmni.registration')
                         $scope.UICString = $scope.openMRSPatient.person.attributes[i].value;
                     }
                 }
-
                 $scope.patient = openmrsPatientMapper.map(openmrsPatient);
-
+                if ($scope.patient.birthdate) {
+                    var date = $scope.patient.birthdate,
+                        yr = date.getFullYear(),
+                        month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
+                        day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
+                        newDate = day + '/' + month + '/' + yr;
+                    $scope.patient.birthdate = newDate;
+                }
+                $rootScope.zillaBinding = {birthDistrictName: $scope.patient.birthDistrict, birthupazillaName: $scope.patient.birthUpazilla };
                 $scope.patient.uic = $scope.UICString;
                 console.log($scope.patient);
                 setReadOnlyFields();
@@ -72,6 +78,12 @@ angular.module('bahmni.registration')
             })();
 
             $scope.update = function () {
+                if ($scope.patient.birthdate) {
+                    var splitedDate = $scope.patient.birthdate.split('/');
+                    var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
+                    $scope.patient.birthdate = finalizedSplitedDate;
+                }
                 addNewRelationships();
                 var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
                 if (errorMessages.length > 0) {

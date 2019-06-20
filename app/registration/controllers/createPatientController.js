@@ -128,6 +128,12 @@ angular.module('bahmni.registration')
             };
 
             var createPatient = function (jumpAccepted) {
+                if ($scope.patient.birthdate) {
+                    var splitedDate = $scope.patient.birthdate.split('/');
+                    var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
+                    $scope.patient.birthdate = finalizedSplitedDate;
+                }
                 return patientService.create($scope.patient, jumpAccepted).then(function (response) {
                     copyPatientProfileDataToScope(response);
                 }, function (response) {
