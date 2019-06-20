@@ -249,7 +249,14 @@ angular.module('bahmni.common.conceptSet')
                         $scope.net = $scope.net + parseFloat(listItem.netPayable);
                     }
                 });
-                return $scope.net;
+                var decimalPart = ($scope.net - Math.floor($scope.net));
+                var netAmount = "";
+                if (decimalPart > 0.5) {
+                    netAmount = Math.ceil($scope.net);
+                } else {
+                    netAmount = Math.floor($scope.net);
+                }
+                return netAmount;
             };
 
             var saveMoneyReceipt = function (data) {
@@ -274,18 +281,10 @@ angular.module('bahmni.common.conceptSet')
                     patientInfo['patientName'] = patient.givenName + " " + patient.familyName;
                     patientInfo['patientUuid'] = patient.uuid;
                     patientInfo['uic'] = patient.UIC.value;
-                    var dtToday = new Date(patientInfo.moneyReceiptDate.toLocaleString());
-                    var month = dtToday.getMonth() + 1;
-                    var day = dtToday.getDate();
-                    var year = dtToday.getFullYear();
-                    if (month < 10) {
-                        month = '0' + month.toString();
-                    }
-                    if (day < 10) {
-                        day = '0' + day.toString();
-                    }
-                    var moneyReceiptDate = year + '-' + month + '-' + day;
-                    patientInfo['moneyReceiptDate'] = new Date(moneyReceiptDate);
+                    var splitedDate = patientInfo.moneyReceiptDate.split('/');
+                    var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
+                    patientInfo['moneyReceiptDate'] = finalizedSplitedDate;
                     if (patient.MobileNo != undefined) {
                         patientInfo['contact'] = patient.MobileNo.value;
                     }

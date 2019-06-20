@@ -380,7 +380,7 @@ angular.module('bahmni.registration')
                             }
                             var a = $('#UIC').val();
                             var position = 3;
-                            var output = testReplaceAt(a, position, birthDistrict);
+                            var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
                             $scope.patient.uic = output;
                         } else {
                             alert("Upzilla code is not defined");

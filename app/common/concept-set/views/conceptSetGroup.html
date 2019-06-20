@@ -126,7 +126,7 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input id="txtDate" ng-model="patientInfo.moneyReceiptDate" type="date"  ng-required="true"/>
+                                                        <input id="txtDate" ng-model="patientInfo.moneyReceiptDate" type="text"  ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -298,7 +298,7 @@
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                         <select ng-model="patientInfo.dataCollector" ng-options="dataCollector.username as dataCollector.userRole for dataCollector in dataCollectorList" ng-required="true">
+                                                         <select ng-model="patientInfo.dataCollector" ng-options="dataCollector as dataCollector.userRole for dataCollector in dataCollectorList" ng-required="true">
 
                                                         </select>
                                                     </div>
@@ -436,15 +436,17 @@
     <td align="left" valign="top"><img src="./../images/logo.jpg" width="162" height="228" /></td>
     <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="displayNone">
-    <td colspan="8"><img src="./../images/banner.jpg" width="696" height="146" /></td>
+    <td colspan="10"><img src="./../images/banner.jpg" width="696" height="146" /></td>
     </tr>
   <tr class="displayNone">
     <td><img src="./../images/blank.png" width="40" height="1" /></td>
     <td><strong>Type:</strong></td>
     <td align="right">Static</td>
-    <td><input name="" type="checkbox" ng-checked="checkedBox('Static',patient.RegistrationPoint.value.display)" /></td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('Static',patientInfo.servicePoint)" /></td>
     <td align="right">Satellite</td>
-    <td><input name="" type="checkbox" ng-checked="checkedBox('Satellite',patient.RegistrationPoint.value.display)" /></td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('Satellite',patientInfo.servicePoint)" /></td>
+    <td align="right">CSP</td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('CSP',patientInfo.servicePoint)" /></td>
     <td align="right">Slip No.</td>
     <td align="center" valign="middle" ng-bind="patientInfo.slipNo"></td>
 
@@ -457,14 +459,15 @@
     <td align="right">&nbsp;</td>
     <td>&nbsp;</td>
     <td align="right">Date:</td>
-    <td align="center" valign="middle" ng-bind="patientInfo.moneyReceiptDate | date:'yyyy-MM-dd'"></td>
+    <td align="center" valign="middle" ng-bind="patientInfo.moneyReceiptDate | date:'dd/MM/yyyy'"></td>
   </tr>
     </table>
 </td>
   </tr>
   <tr class="displayNone">
-    <td align="left" valign="top">UIC</td>
+    <td align="left" valign="top" >UIC</td>
     <td>{{patient.UIC.value}}</td>
+
   </tr>
   <tr class="displayNone">
     <td colspan="2" align="left" valign="top"><img src="./../images/blank.png" width="100%" height="20" /></td>
@@ -493,15 +496,15 @@
             <td align="left" valign="top" style="padding:8px;"><input name="input2" type="checkbox" ng-checked="checkedBox('F',patient.gender)"/></td>
             <td align="left" valign="top" style="padding:8px;">Female</td>
             <td align="left" valign="top" style="padding:8px;"><input name="input3" type="checkbox" ng-checked="checkedBox('O',patient.gender)" /></td>
-            <td align="left" valign="top" style="padding:8px;">Other</td>
+            <td align="left" valign="top" style="padding:8px;">Others</td>
           </tr>
           <tr>
           <td align="left" valign="top" style="padding:20px 0 20px 8px;">3. DoB</td>
-            <td style="padding:20px 0 20px 8px;">{{patient.birthdate | date:'yyyy-MM-dd'}}</td>
+            <td style="padding:20px 0 20px 8px;">{{patient.birthdate | date:'dd/MM/yyyy'}}</td>
             <td style="padding:20px 0 20px 8px;">4. Age:</td>
             <td style="padding:20px 0 20px 8px;">{{htmlToPlaintext(patient.ageText)}}</td>
             <td style="padding:20px 0 20px 8px;">5. Classification:</td>
-            <td style="padding:20px 0 20px 8px;">1. Able to pay</td>
+            <td style="padding:20px 0 20px 8px;">1. Able to Pay</td>
             <td style="padding:20px 0 20px 8px;"><span style="padding:8px;">
               <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
             </span></td>
@@ -550,11 +553,11 @@
   </tr>
   <tr>
     <td colspan="2" align="left" valign="top">
-      <table width="100%" border="0"  style="border:1px solid #666;" cellspacing="0" cellpadding="0">
-          <tr>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
+         <tr>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>SL</strong></td>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Service Code (A)</strong></td>
-            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Service/Medicine/ Other (B)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Service/Medicine/ Others (B)</strong></td>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Quantity (C)</strong></td>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Unit cost (D)</strong></td>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Total Amount (E)</strong></td>
@@ -562,7 +565,7 @@
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666;"><strong>Net Payable Amount (G)</strong></td>
           </tr>
           <tr ng-repeat="service in services track by $index">
-               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{$index}} </td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{$index+1}} </td>
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.item.code}} </td>
                <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.item.name}} </td>
                <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.quantity}} </td>
@@ -589,7 +592,18 @@
   <tr class="displayNone">
     <td colspan="2" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="displayNone">
- 	<td align="center" valign="top"  style="padding:4px 0 20px 8px; border-top:1px solid #666;">Name of data collector</td>
+ 	<td align="center" valign="top"  style="padding:4px 0 20px 8px;">{{patientInfo.dataCollector.username}}</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="center" valign="top"  style="padding:4px 0 20px 8px;">{{patientInfo.dataCollector.designation}} </td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="center" valign="top"  style="padding:4px 0 20px 8px;"></td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
+    </tr>
+    <tr class="displayNone">
+    <td align="center" valign="top"  style="padding:4px 0 20px 8px; border-top:1px solid #666;">Name of data collector</td>
     <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
     <td align="left" valign="top"  style="padding:4px 0 20px 8px;">&nbsp;</td>
     <td align="center" valign="top"  style="padding:4px 0 20px 8px; border-top:1px solid #666;">Designation</td>
@@ -696,13 +710,17 @@ display:none
 
 
  function printMoneyReceipt() {
+
    var divToPrint=document.getElementById("moneyReceipt");
    newWin= window.open("");
    newWin.document.write(divToPrint.outerHTML);
    newWin.print();
    newWin.close();
+
 }
 $(function(){
+
+     $( "#txtDate" ).datepicker({ dateFormat: 'dd/mm/yy', changeYear: true,maxDate: new Date }).val();
     var dtToday = new Date();
 
     var month = dtToday.getMonth() + 1;

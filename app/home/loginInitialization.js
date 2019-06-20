@@ -5,7 +5,7 @@ angular.module('bahmni.home')
         function ($rootScope, $q, locationService, spinner, messagingService) {
             var init = function () {
                 var deferrable = $q.defer();
-                locationService.getAllByTag("Login Location").then(
+                locationService.getAllByTag("test").then(
                     function (response) {
                         deferrable.resolve({locations: response.data.results});
                     },

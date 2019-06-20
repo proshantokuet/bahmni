@@ -76,7 +76,11 @@
                         });
                     };
                     $scope.dateTOString = function (date) {
-                        return date.slice(0, 10);
+                        return new Date(date);
+                    };
+
+                    $scope.openEditPatient = function (patientUuid) {
+                        $window.open("../registration/#/patient/" + patientUuid, "_self");
                     };
 
                     $scope.htmlToPlaintext = function (text) {
@@ -167,7 +171,14 @@
                                 $scope.net = $scope.net + parseFloat(listItem.netPayable);
                             }
                         });
-                        return $scope.net;
+                        var decimalPart = ($scope.net - Math.floor($scope.net));
+                        var netAmount = "";
+                        if (decimalPart > 0.5) {
+                            netAmount = Math.ceil($scope.net);
+                        } else {
+                            netAmount = Math.floor($scope.net);
+                        }
+                        return netAmount;
                     };
 
                     $scope.checkedBox = function (value, checkingValue) {
