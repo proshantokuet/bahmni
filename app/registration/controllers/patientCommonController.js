@@ -340,7 +340,7 @@ angular.module('bahmni.registration')
                 if (attribute == 'birthDistrict') {
                     /* var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text; */
-                    var birthDistrict = $scope.patient.birthDistrict.districtName;
+                    var birthDistrict = $scope.patient.birthDistrict.districtCode;
                     if (birthDistrict.length > 2) {
                         birthDistrict = birthDistrict.slice(0, 2);
                         console.log(birthDistrict);
@@ -355,23 +355,24 @@ angular.module('bahmni.registration')
                 }
                 if (attribute == 'birthMothersFirstName') {
                     /* var e = document.getElementById("MaritalStatus");
-                    var maritalStatus = e.options[e.selectedIndex].text; */
+                     var maritalStatus = e.options[e.selectedIndex].text; */
                     var birthDistrict = $scope.patient[attribute];
-                    if (birthDistrict.length > 2) {
-                        birthDistrict = birthDistrict.slice(0, 2);
-                        console.log(birthDistrict);
+                    if (birthDistrict) {
+                        if (birthDistrict.length > 2) {
+                            birthDistrict = birthDistrict.slice(0, 2);
+                            console.log(birthDistrict);
+                            var a = $('#UIC').val();
+                            var position = 10;
+                            var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
+                            console.log(output);
+                            // $('#UIC').val(output);
+                            $scope.patient.uic = output;
+                        }
                     }
-
-                    var a = $('#UIC').val();
-                    var position = 10;
-                    var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
-                    console.log(output);
-                    // $('#UIC').val(output);
-                    $scope.patient.uic = output;
                 }
                 if (attribute == 'birthUpazilla') {
                     if ($scope.patient.birthUpazilla != undefined) {
-                        var birthDistrict = $scope.patient.birthUpazilla.upazillaCode;
+                        var birthDistrict = $scope.patient.birthUpazilla.upazillaName;
                         console.log(birthDistrict);
                         if (birthDistrict != null) {
                             if (birthDistrict.length >= 3) {
@@ -395,13 +396,22 @@ angular.module('bahmni.registration')
             };
 
             var getBirthDistricts = function () {
+                var districtInformation = $rootScope.zillaBinding;
                 return locationService.getAllByTag("District").then(function (response) {
                     $scope.locations = response.data.results;
                     console.log(response.data.results);
                     var i = 0;
                     for (i = 0; i < $scope.locations.length; i++) {
-                        $scope.locationDistricts.push({districtName: $scope.locations[i].name, uuid: $scope.locations[i].uuid});
+                        $scope.locationDistricts.push({districtName: $scope.locations[i].name, uuid: $scope.locations[i].uuid, districtCode: $scope.locations[i].address2});
                         console.log($scope.locations[i].uuid);
+                    }
+                    if (districtInformation) {
+                        for (i = 0; i < $scope.locationDistricts.length; i++) {
+                            if ($scope.locationDistricts[i].districtName == districtInformation.birthDistrictName) {
+                                $scope.patient.birthDistrict = $scope.locationDistricts[i];
+                                $scope.getBirthUpazilla($scope.locationDistricts[i]);
+                            }
+                        }
                     }
                     return response;
                 });
@@ -425,9 +435,18 @@ angular.module('bahmni.registration')
             };
 
             $scope.getCode = function (uuid) {
+                var districtInformation = $rootScope.zillaBinding;
                 return locationService.getByUuid(uuid).then(function (response) {
                     console.log(response);
                     $scope.locationDUpazilla.push({upazillaName: response.display, upazillaCode: response.address2});
+                    if (districtInformation) {
+                        for (var i = 0; i < $scope.locationDUpazilla.length; i++) {
+                            if ($scope.locationDUpazilla[i].upazillaName == districtInformation.birthupazillaName) {
+                                $scope.patient.birthUpazilla = $scope.locationDUpazilla[i];
+                            }
+                        }
+                        $rootScope.zillaBinding = null;
+                    }
                     return response;
                 });
             };
