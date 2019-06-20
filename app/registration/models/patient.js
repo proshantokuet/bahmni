@@ -6,6 +6,9 @@ angular.module('bahmni.registration')
             var calculateAge = function () {
                 if (this.birthdate) {
                     this.age = age.fromBirthDate(this.birthdate);
+                    var splitedDate = this.birthdate.split('/');
+                    var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                    this.age = age.fromBirthDate(finalizedSplitedDate);
                 } else {
                     this.age = age.create(null, null, null);
                 }
@@ -13,6 +16,12 @@ angular.module('bahmni.registration')
 
             var calculateBirthDate = function () {
                 this.birthdate = age.calculateBirthDate(this.age);
+                var date = age.calculateBirthDate(this.age),
+                    yr = date.getFullYear(),
+                    month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
+                    day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
+                    newDate = day + '/' + month + '/' + yr;
+                this.birthdate = newDate;
             };
 
             var fullNameLocal = function () {
