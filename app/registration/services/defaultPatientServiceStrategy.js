@@ -108,7 +108,7 @@ angular.module('bahmni.registration')
             return $http.post(url, data, config);
         };
         var healthId = function () {
-            var url = openmrsUrl + "/ws/rest/v1/generate/uniqueid/ch002";
+            var url = openmrsUrl + "/ws/rest/v1/generate/uniqueid/" + ($bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId);
             var config = {
                 method: "GET",
                 withCredentials: false

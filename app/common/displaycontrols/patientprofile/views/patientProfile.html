@@ -66,7 +66,7 @@
                     </td>
                 </tr>
                 </table></td>
-                <td style="text-align: center;"><a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard/concept-set-group/observations?createMoneyReceipt"  class="title-link">
+                <td style="text-align: center;"><a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard/concept-set-group/observations?createMoneyReceipt=M"  class="title-link">
                             <img  src="./../images/add-Money-Receipt.png" alt="Add Money Receipt" />
 
                     <p style="text-align: center;">Add Money Receipt</p>
@@ -93,6 +93,8 @@
         </section>
     </div>
 <script type="text/ng-template" id="dialog">
+    <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button  style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
+
     <div id="moneyReceiptBySlipNo">
   <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
   <tr class="displayNone">
@@ -105,11 +107,11 @@
     <td><img src="./../images/blank.png" width="40" height="1" /></td>
     <td><strong>Type:</strong></td>
     <td align="right">Static</td>
-    <td><input name="" type="checkbox" ng-checked="checkedBox('Static',servicesBySlip[0].servicePoint)" /></td>
+    <td><input name="" type="checkbox" disabled ng-checked="checkedBox('Static',servicesBySlip[0].servicePoint)" /></td>
     <td align="right">Satellite</td>
-    <td><input name="" type="checkbox" ng-checked="checkedBox('Satellite',servicesBySlip[0].servicePoint)" /></td>
+    <td><input name="" type="checkbox" disabled ng-checked="checkedBox('Satellite',servicesBySlip[0].servicePoint)" /></td>
       <td align="right">CSP</td>
-    <td><input name="" type="checkbox" ng-checked="checkedBox('CSP',servicesBySlip[0].servicePoint)" /></td>
+    <td><input name="" type="checkbox" disabled ng-checked="checkedBox('CSP',servicesBySlip[0].servicePoint)" /></td>
      <td align="right">Slip No.</td>
     <td align="center" valign="middle">{{servicesBySlip[0].slipNo}}</td>
 
@@ -153,11 +155,11 @@
            <td align="left" colspan="2" valign="top" style="padding:8px;">1. Name:</td>
             <td valign="top" colspan="2" align="left" valign="bottom" style="padding:8px;">{{patient.name}}</td>
             <td align="left" valign="top" style="padding:8px;">2. Gender:</td>
-            <td align="left" valign="top" style="padding:8px;"><input name="input" type="checkbox" ng-checked="checkedBox('M',patient.gender)" /></td>
+            <td align="left" valign="top" style="padding:8px;"><input name="input" disabled type="checkbox" ng-checked="checkedBox('M',patient.gender)" /></td>
             <td align="left" valign="top" style="padding:8px;">Male</td>
-            <td align="left" valign="top" style="padding:8px;"><input name="input2" type="checkbox" ng-checked="checkedBox('F',patient.gender)"/></td>
+            <td align="left" valign="top" style="padding:8px;"><input name="input2" disabled type="checkbox" ng-checked="checkedBox('F',patient.gender)"/></td>
             <td align="left" valign="top" style="padding:8px;">Female</td>
-            <td align="left" valign="top" style="padding:8px;"><input name="input3" type="checkbox" ng-checked="checkedBox('O',patient.gender)" /></td>
+            <td align="left" valign="top" style="padding:8px;"><input name="input3" disabled type="checkbox" ng-checked="checkedBox('O',patient.gender)" /></td>
             <td align="left" valign="top" style="padding:8px;">Others</td>
           </tr>
           <tr>
@@ -168,15 +170,15 @@
             <td style="padding:20px 0 20px 8px;">5. Classification:</td>
             <td style="padding:20px 0 20px 8px;">1.  Able to Pay</td>
             <td style="padding:20px 0 20px 8px;"><span style="padding:8px;">
-              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
+              <input name="input4" type="checkbox" disabled ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
             </span></td>
             <td style="padding:20px 0 20px 8px;">2. Poor</td>
             <td style="padding:20px 0 20px 8px;"><span style="padding:8px;">
-              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',patient.FinancialStatus.value.display)" />
+              <input name="input5" type="checkbox" disabled ng-checked="checkedBox('Poor',patient.FinancialStatus.value.display)" />
             </span></td>
             <td style="padding:20px 0 20px 8px;">3.PoP</td>
             <td style="padding:20px 0 20px 8px;"><span style="padding:8px;">
-              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',patient.FinancialStatus.value.display)" />
+              <input name="input6" type="checkbox" disabled ng-checked="checkedBox('PoP',patient.FinancialStatus.value.display)" />
             </span></td>
 
           </tr>
@@ -279,13 +281,9 @@
 </td>
   </tr>
 </table>
+    </div>
 
-        </div>
-            <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button  style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
 
-        </div>
-
-</div>
 
 
   </script>
