@@ -29,6 +29,11 @@ angular.module('bahmni.common.conceptSet')
             $scope.money = "";
             if (param1.createMoneyReceipt != undefined) {
                 $scope.money = true;
+                $scope.observationTab = false;
+            }
+            else {
+                $scope.observationTab = true;
+                $scope.money = false;
             }
             $scope.getItem = function (index) {
                 if (index == undefined) {
