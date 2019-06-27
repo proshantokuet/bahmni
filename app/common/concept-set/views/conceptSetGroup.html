@@ -327,11 +327,11 @@
                                                         <input type="text" ng-model="service.code" placeholder="Select code"
                                                                typeahead-on-select="onChangedForCode(service.code, $index)"
                                                                uib-typeahead="itm as itm.code for itm in serviceList | orderBy:'code' | filter:{code:$viewValue}"
-                                                               typeahead-min-length="0">
+                                                               typeahead-min-length="0" typeahead-no-results="noCodeFound">
                                                     </div>
                                                 </div>
-
                                             </article>
+                                            <span style="opacity: 0.5" ng-show="noCodeFound">No results found</span>
                                         </td>
                                         <td>
                                             <article class="form-field">
@@ -344,12 +344,12 @@
                                                         <input type="text" ng-model="service.item" placeholder="Select service"
                                                                typeahead-on-select="onChanged(service.item, $index)"
                                                                uib-typeahead="itm as itm.name for itm in serviceList | orderBy:'name' | filter:{name:$viewValue}"
-                                                               typeahead-min-length="0">
+                                                               typeahead-min-length="0" typeahead-no-results="noResults">
                                                     </div>
                                                 </div>
                                             </article>
+                                            <span style="opacity: 0.5" ng-show="noResults">No results found</span>
                                         </td>
-
                                         <td>
                                             <article class="form-field" >
                                                 <div class="field-value">
