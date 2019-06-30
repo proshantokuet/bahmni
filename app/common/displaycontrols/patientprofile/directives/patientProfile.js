@@ -85,7 +85,11 @@
                     };
 
                     $scope.htmlToPlaintext = function (text) {
-                        return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+                        debugger;
+                        var yearsSplit = text.replace('Years', 'Y');
+                        var monthSplit = yearsSplit.replace('months', 'M');
+                        var daySplit = monthSplit.replace('days', 'D');
+                        return text ? String(daySplit).replace(/<[^>]+>/gm, '') : '';
                     };
                     var a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
                     var b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
