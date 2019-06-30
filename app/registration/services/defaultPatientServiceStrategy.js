@@ -40,13 +40,13 @@ angular.module('bahmni.registration')
             var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient, $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName));
             var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
             return healthId().then(function (response) {
-                var memberHealthId = response.identifiers;
+                var memberHealthId = response.sequenceId;
                 var clinicId = ($bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId).slice(0, 3);
                 var d = new Date();
                 var fullYear = d.getFullYear();
                 var month = ("0" + (d.getMonth() + 1)).slice(-2);
                 var day = (d.getDate() < 10 ? '0' : '') + d.getDate();
-                data.patient.identifiers[0].identifier = fullYear + month + day + clinicId + memberHealthId[0];
+                data.patient.identifiers[0].identifier = fullYear + month + day + clinicId + memberHealthId;
                 return $http.post(url, data, {
                     withCredentials: true,
                     headers: {"Accept": "application/json", "Content-Type": "application/json", "Jump-Accepted": jumpAccepted}
@@ -108,7 +108,7 @@ angular.module('bahmni.registration')
             return $http.post(url, data, config);
         };
         var healthId = function () {
-            var url = openmrsUrl + "/module/idgen/exportIdentifiers.form?source=6&numberToGenerate=1";
+            var url = openmrsUrl + "/ws/rest/v1/generate/uniqueid/" + ($bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId);
             var config = {
                 method: "GET",
                 withCredentials: false

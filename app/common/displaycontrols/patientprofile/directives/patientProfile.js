@@ -67,11 +67,12 @@
                         $scope.servicesBySlip = $scope.services.filter(function (service) {
                             return service.slipNo == id;
                         });
-                        console.log($scope.servicesBySlip);
                         $scope.Dialog = ngDialog.open({
                             templateUrl: 'dialog',
                             className: 'ngdialog-theme-default custom-width-1000',
-                            showClose: true,
+                            showClose: false,
+                            closeByDocument: true,
+                            overlay: false,
                             scope: $scope
                         });
                     };

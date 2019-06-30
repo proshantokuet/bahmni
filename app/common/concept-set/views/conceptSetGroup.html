@@ -324,10 +324,12 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Code<span class="asterick">*</span></label>
+
                                                         <input type="text" ng-model="service.code" placeholder="Select code"
                                                                typeahead-on-select="onChangedForCode(service.code, $index)"
                                                                uib-typeahead="itm as itm.code for itm in serviceList | orderBy:'code' | filter:{code:$viewValue}"
                                                                typeahead-min-length="0" typeahead-no-results="noCodeFound">
+
                                                     </div>
                                                 </div>
                                             </article>
@@ -338,6 +340,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Service<span class="asterick">*</span></label>
+
                                                         <!--<select  ng-model="service.item" ng-change="onChanged(service.item, $index)"-->
                                                         <!--ng-options="itm as itm.name for itm in serviceList | orderBy:'name'" ng-required="true">-->
                                                         <!--</select>-->
@@ -345,6 +348,7 @@
                                                                typeahead-on-select="onChanged(service.item, $index)"
                                                                uib-typeahead="itm as itm.name for itm in serviceList | orderBy:'name' | filter:{name:$viewValue}"
                                                                typeahead-min-length="0" typeahead-no-results="noResults">
+
                                                     </div>
                                                 </div>
                                             </article>
