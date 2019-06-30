@@ -85,7 +85,6 @@
                     };
 
                     $scope.htmlToPlaintext = function (text) {
-                        debugger;
                         var yearsSplit = text.replace('Years', 'Y');
                         var monthSplit = yearsSplit.replace('months', 'M');
                         var daySplit = monthSplit.replace('days', 'D');
