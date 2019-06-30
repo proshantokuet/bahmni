@@ -104,9 +104,9 @@ angular.module('bahmni.common.conceptSet')
                 }
             };
             $scope.htmlToPlaintext = function (text) {
-                var yearsSplit = text.replace('Years','Y');
-                var monthSplit = yearsSplit.replace('months','M');
-                var daySplit = monthSplit.replace('days','D');
+                var yearsSplit = text.replace('Years', 'Y');
+                var monthSplit = yearsSplit.replace('months', 'M');
+                var daySplit = monthSplit.replace('days', 'D');
                 return text ? String(daySplit).replace(/<[^>]+>/gm, '') : '';
             };
             $scope.address = function (address) {
