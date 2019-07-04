@@ -48,6 +48,12 @@ angular.module('bahmni.registration')
                 }
                 $rootScope.zillaBinding = {birthDistrictName: $scope.patient.birthDistrict, birthupazillaName: $scope.patient.birthUpazilla };
                 $scope.patient.uic = $scope.UICString;
+                if ($scope.patient.FinancialStatus) {
+                    if ($scope.patient.FinancialStatus.value == "PoP") {
+                        $scope.patient.showGovCardType = true;
+                        $scope.patient.showCardNo = true;
+                    }
+                }
                 console.log($scope.patient);
                 setReadOnlyFields();
                 expandDataFilledSections();

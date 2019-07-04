@@ -5,6 +5,9 @@ angular.module('bahmni.registration')
         'messagingService', '$translate', '$filter',
         function ($rootScope, $scope, $location, $window, spinner, patientService, age, appService, messagingService, $translate, $filter) {
             $scope.results = [];
+            $scope.propertyName = 'givenName';
+            $scope.column = 'givenName';
+            $scope.reverse = false;
             $scope.extraIdentifierTypes = _.filter($rootScope.patientConfiguration.identifierTypes, function (identifierType) {
                 return !identifierType.primary;
             });
@@ -30,7 +33,22 @@ angular.module('bahmni.registration')
                     return ages.years + " Y " + ages.months + " M " + ages.days + " D";
                 }
             };
-
+            $scope.sortBy = function (propertyName) {
+                $scope.column = propertyName;
+                $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+                $scope.propertyName = propertyName;
+            };
+            $scope.sortClass = function (col) {
+                if ($scope.column == col) {
+                    if ($scope.reverse) {
+                        return 'arrow-down';
+                    } else {
+                        return 'arrow-up';
+                    }
+                } else {
+                    return '';
+                }
+            };
             var hasSearchParameters = function () {
                 return $scope.searchParameters.name.trim().length > 0 ||
                     $scope.searchParameters.addressFieldValue.trim().length > 0 ||
@@ -243,7 +261,7 @@ angular.module('bahmni.registration')
             initialize();
 
             $scope.disableSearchButton = function () {
-                return !$scope.searchParameters.name && !$scope.searchParameters.addressFieldValue && !$scope.searchParameters.customAttribute && !$scope.searchParameters.programAttributeFieldValue;
+                return !$scope.searchParameters.name && !$scope.searchParameters.addressFieldValue && !$scope.searchParameters.customAttribute && !$scope.searchParameters.programAttributeFieldValue && !$scope.searchParameters.registrationNumber;
             };
 
             $scope.$watch(function () {
@@ -319,12 +337,16 @@ angular.module('bahmni.registration')
             };
 
             $scope.searchPatients = function () {
+                debugger;
                 if (!isUserPrivilegedForSearch()) {
                     showInsufficientPrivMessage();
                     return;
                 }
                 var queryParams = {};
                 $scope.results = [];
+                if ($scope.searchParameters.registrationNumber) {
+                    $scope.searchById();
+                }
                 if ($scope.searchParameters.name) {
                     queryParams.name = $scope.searchParameters.name;
                 }

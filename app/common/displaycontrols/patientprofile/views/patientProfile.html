@@ -66,7 +66,7 @@
                     </td>
                 </tr>
                 </table></td>
-                <td style="text-align: center;"><a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard/concept-set-group/observations?createMoneyReceipt=M"  class="title-link">
+                <td style="text-align: center;"><a href="" ng-click="editMoneyReceipt()" class="title-link">
                             <img  src="./../images/add-Money-Receipt.png" alt="Add Money Receipt" />
 
                     <p style="text-align: center;">Add Money Receipt</p>
@@ -319,7 +319,7 @@
                                     <th>Total Amount</th>
                                     <th>Discount</th>
                                     <th>Net Payable Amount</th>
-                                    <th>Action</th>
+                                    <th style="text-align: center" colspan="2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -335,9 +335,10 @@
                                     <td>{{service.totalAmount}} </td>
                                     <td> {{service.discount}}</td>
                                     <td>{{service.netPayable}} </td>
-                                    <td><button ng-click="confirmationPrompt(service.slipNo)">Print preview</button></td>
+                                    <td><button ng-click="confirmationPrompt(service.slipNo)">Print preview</button>
+                                    <button ng-click="editMoneyReceipt(service.slipNo)">Edit</button>
+                                    </td>
                                 </tr>
-
                             </tbody>
                         </table>
 

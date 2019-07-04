@@ -97,6 +97,7 @@
     tr:hover{
       background: $lightestGray;
     }
+
   }
   .slno_col{
     width:40px;
@@ -131,3 +132,17 @@
     }
   }
 }
+table th:hover{
+cursor: pointer;  cursor:hand;
+}
+
+
+.arrow-down:after{
+ content: '\25b2';
+}
+
+.arrow-up:after{
+ content: '\25bc';
+}
+
+
