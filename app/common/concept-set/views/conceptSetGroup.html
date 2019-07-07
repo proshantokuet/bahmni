@@ -629,14 +629,18 @@
 
 <div class="submit-btn-container clearfix" id="buttonPrint" ng-show="money">
     <button  style="float: right;margin-top: 10px;margin-right: 5px;" onclick="printMoneyReceipt()">Print</button>
-    <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient)" ng-disabled="enable=='false'">
+    <button style="margin: 10px 20px 0 0" class="right submit-btn" ng-disabled="myForm.$invalid" ng-show="patientInfo.isComplete == 0 || patientInfo.isComplete == undefined"
+            ng-click="submitMoneyReceiptData(patientInfo,services,patient,0)" ng-disabled="enable=='false'">
+        Save as Draft
+    </button>
+    <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient,1)" ng-disabled="enable=='false'">
                        <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
             {{ searchButtonText }}
 
     </button>
 
     <a onclick="return confirm('Do you really want to cancel this money receipt?')"  style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
-</div>
+</div>s
 
 
 <div class="concept-set-panel clearfix" ng-show="observationTab">

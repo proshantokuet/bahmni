@@ -303,8 +303,9 @@ angular.module('bahmni.registration')
                         mapProgramAttributesSearchResults(data);
                         if (data.pageOfResults.length === 1) {
                             var patient = data.pageOfResults[0];
-                            var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
-                            $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
+                            // var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
+                            // $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
+                            $window.open('../clinical/index.html#/default/patient/'+patient.uuid+'/dashboard', "_self");
                         } else if (data.pageOfResults.length > 1) {
                             $scope.results = data.pageOfResults;
                             $scope.noResultsMessage = null;

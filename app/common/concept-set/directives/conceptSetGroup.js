@@ -296,7 +296,7 @@ angular.module('bahmni.common.conceptSet')
             };
             $scope.searchButtonText = "Submit";
             $scope.test = "true";
-            $scope.submitMoneyReceiptData = function (patientInfo, services, patient) {
+            $scope.submitMoneyReceiptData = function (patientInfo, services, patient, savingStatus) {
                 if ($window.confirm("Do you really want to submit this money receipt?")) {
                     $scope.Message = "You clicked YES.";
                     $scope.enable = "false";
@@ -335,6 +335,7 @@ angular.module('bahmni.common.conceptSet')
                     if (patient.FinancialStatus != undefined) {
                         patientInfo['wealth'] = patient.FinancialStatus.value.display;
                     }
+                    patientInfo['isComplete'] = savingStatus;
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
 
