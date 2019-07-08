@@ -188,7 +188,7 @@
             <td colspan="2" align="left" valign="top" style="padding:10px 0 5px 8px;">6. Address:</td>
             <td colspan="6" align="left" valign="top" style="padding:10px 0 5px 8px;"> {{address(patient.address)}}</td>
             <td align="left" valign="top" style="padding:10px 0 5px 8px;">7. Mobile No.</td>
-            <td align="left" valign="top" colspan="2" style="padding:1px 0 5px 8px;"> {{patient.MobileNo.value}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;"> {{patient.MobileNo.value}}</td>
             </tr>
           <tr>
             <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">8. Session:</td>
@@ -291,7 +291,10 @@
   </script>
 
 <div class="dashboard-patientInformation-section">
-    <h3 style="background: #ddd;padding: 18px;height: 17px; color: #000;">Service history</h3>
+    <div>
+         <h3 style="background: #ddd;height:37px;padding-top: 6px;color: #000">Service history</h3>
+    </div>
+
 <table style="padding-top: 10px;" id="table_id" class="display">
                             <thead>
 
@@ -335,7 +338,7 @@
                                     <td>{{service.totalAmount}} </td>
                                     <td> {{service.discount}}</td>
                                     <td>{{service.netPayable}} </td>
-                                    <td><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.slipNo)"><i class='fa fa-print'></i>Print preview</button>
+                                    <td ng-hide="services[$index-1].slipNo == service.slipNo"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.slipNo)"><i class='fa fa-print'></i>Print preview</button>
                                     <button ng-if="service.isComplete==0 "style="padding:5px 9px 8px" ng-click="editMoneyReceipt(service.slipNo)"> <i class='fa fa-edit'></i>Edit</button>
                                     </td>
                                 </tr>
