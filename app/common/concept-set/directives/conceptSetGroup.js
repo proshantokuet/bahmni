@@ -97,11 +97,11 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo['cspId'] = "";
                 }
                 $scope.clinicType = servicePoint;
-                if (servicePoint == "Satellite") {
-                    $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
-                        return dataCollector.designation == "CSP" || dataCollector.designation == "SE";
-                    });
-                }
+                /* if (servicePoint == "Satellite") {
+                 $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
+                 return dataCollector.designation == "CSP" || dataCollector.designation == "SE";
+                 });
+                 } */
             };
             $scope.htmlToPlaintext = function (text) {
                 var yearsSplit = text.replace('Years', 'Y');
