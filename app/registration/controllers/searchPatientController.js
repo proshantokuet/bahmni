@@ -305,7 +305,7 @@ angular.module('bahmni.registration')
                             var patient = data.pageOfResults[0];
                             // var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
                             // $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
-                            $window.open('../clinical/index.html#/default/patient/'+patient.uuid+'/dashboard', "_self");
+                            $window.open('../clinical/index.html#/default/patient/' + patient.uuid + '/dashboard', "_self");
                         } else if (data.pageOfResults.length > 1) {
                             $scope.results = data.pageOfResults;
                             $scope.noResultsMessage = null;
@@ -338,7 +338,6 @@ angular.module('bahmni.registration')
             };
 
             $scope.searchPatients = function () {
-                debugger;
                 if (!isUserPrivilegedForSearch()) {
                     showInsufficientPrivMessage();
                     return;
