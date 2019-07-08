@@ -104,7 +104,7 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patientInfo.slipNo" type="text" ng-required="true" autofocus/>
+                                                        <input ng-model="patientInfo.slipNo" type="text" ng-required="true" autofocus ng-readonly="makeSlipNoReadOnly"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -569,7 +569,7 @@
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Service Code (A)</strong></td>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Service/Medicine/ Others (B)</strong></td>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Quantity (C)</strong></td>
-            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Unit cost (D)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Unit Cost (D)</strong></td>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Total Amount (E)</strong></td>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Discount (F)</strong></td>
             <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666;"><strong>Net Payable Amount (G)</strong></td>
@@ -630,14 +630,18 @@
 
 <div class="submit-btn-container clearfix" id="buttonPrint" ng-show="money">
     <button  style="float: right;margin-top: 10px;margin-right: 5px;" onclick="printMoneyReceipt()">Print</button>
-    <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient)" ng-disabled="enable=='false'">
+    <button style="margin: 10px 20px 0 0" class="right submit-btn" ng-disabled="myForm.$invalid" ng-show="patientInfo.isComplete == 0 || patientInfo.isComplete == undefined"
+            ng-click="submitMoneyReceiptData(patientInfo,services,patient,0)" ng-disabled="enable=='false'">
+        Save as Draft
+    </button>
+    <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient,1)" ng-disabled="enable=='false'">
                        <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
             {{ searchButtonText }}
 
     </button>
 
     <a onclick="return confirm('Do you really want to cancel this money receipt?')"  style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
-</div>
+</div>s
 
 
 <div class="concept-set-panel clearfix" ng-show="observationTab">

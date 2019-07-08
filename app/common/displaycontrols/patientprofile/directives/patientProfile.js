@@ -31,8 +31,8 @@
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
         .directive('patientProfile', ['patientService', 'spinner', 'ngDialog', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
-            'configurations', '$q', 'visitService',
-            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService) {
+            'configurations', '$q', 'visitService', '$state',
+            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state) {
                 var controller = function ($scope) {
                     $scope.isProviderRelationship = function (relationship) {
                         return _.includes($rootScope.relationshipTypeMap.provider, relationship.relationshipType.aIsToB);
@@ -220,6 +220,24 @@
                         return patientService.moneyReceipt($scope.patientUuid).then(function (response) {
                             $scope.services = response.data;
                         });
+                    };
+                    $scope.editMoneyReceipt = function (id) {
+                        if (id == undefined) {
+                            $state.go('patient.dashboard.show.observations', {
+                                conceptSetGroupName: 'observations',
+                                previousUrl: 'moneyreceipt'
+                            });
+                        }
+                        else {
+                            var filteringServicesBySlip = $scope.services.filter(function (service) {
+                                return service.slipNo == id;
+                            });
+                            $state.go('patient.dashboard.show.observations', {
+                                conceptSetGroupName: 'observations',
+                                previousUrl: 'moneyreceipt',
+                                moneyReceiptObject: filteringServicesBySlip
+                            });
+                        }
                     };
                     var assignAdmissionDetails = function () {
                         var REP = "custom:(attributes:(value,attributeType:(display,name)))";

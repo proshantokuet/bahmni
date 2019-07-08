@@ -388,6 +388,21 @@ angular.module('bahmni.registration')
                         }
                     }
                 }
+                if (attribute == 'FinancialStatus') {
+                    var financialAttributeInfo = $scope.patient[attribute];
+                    if (financialAttributeInfo.value == "PoP") {
+                        $scope.patient.showGovCardType = true;
+                    }
+                    else {
+                        $scope.patient.showGovCardType = false;
+                        $scope.patient.showCardNo = false;
+                        $scope.patient.Gov_Card_Type = null;
+                        $scope.patient.Card_No = null;
+                    }
+                }
+                if (attribute == 'Gov_Card_Type') {
+                    $scope.patient.showCardNo = true;
+                }
             };
 
             var testReplaceAt = function (original, index, replacement) {
@@ -520,6 +535,7 @@ angular.module('bahmni.registration')
                     $scope.patient.showDiseaseStatus = false;
                 } *!/
             }; */
+
             var marriedFemalelessThan55 = function (gender, maritalStatus, age) {
                 var attributes = [];
                 console.log("married femaleless than 55");
@@ -894,8 +910,12 @@ angular.module('bahmni.registration')
                     return $scope.patient.showDeliveryDate;
                 } else if (attributeName == "familyplanning") {
                     return $scope.patient.showFamilyplanning;
+                } else if (attributeName == "Gov_Card_Type") {
+                    return $scope.patient.showGovCardType;
+                } else if (attributeName == "Card_No") {
+                    return $scope.patient.showCardNo;
                 } else {
-                    return false;
+                    return true;
                 }
             };
         }]);

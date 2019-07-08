@@ -53,7 +53,10 @@ angular.module('bahmni.registration')
                 uic: "____________",
                 birthMothersFirstName: "",
                 birthDistrict: { districtName: "ABC", uuid: ""},
-                birthUpazilla: ""
+                birthUpazilla: "",
+                showEducation: true,
+                showGovCardType: false,
+                showCardNo: false
             };
             return _.assign(patient, identifierDetails);
         };
