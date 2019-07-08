@@ -1,27 +1,34 @@
 <section class="reg-search-wrapper">
     <section class="reg-search">
-        <!--<article class="search-seperator-l" ng-if="::patientIdentifierSearchConfig.show">
-            <form name="searchByIdForm" ng-submit="searchById()" class="simple-form-ui clearfix" >
+
+       <article class="search-seperator-r" style="padding-left: 1px; width: 91%;">
+           <!--<article class="search-seperator-l" ng-if="::patientIdentifierSearchConfig.show">-->
+            <!--<form name="searchByIdForm" ng-submit="searchById()" class="simple-form-ui clearfix" >-->
+                    <!--<label for="registrationNumber"><strong>{{ ::'REGISTRATION_LABEL_PATIENT_ID' | translate}}</strong></label>-->
+                    <!--<div class="search-patient-id fl">-->
+                        <!--<input tabindex="2" class="fl" type="text" id="registrationNumber"-->
+                        <!--ng-model="searchParameters.registrationNumber" focus-me="true"-->
+                               <!--placeholder="{{ ::'REGISTRATION_LABEL_ENTER_ID' | translate}}">-->
+                        <!--<div class="reg-srch-btn fl">-->
+                            <!--<button tabindex="3" type="submit" ng-disabled="!searchParameters.registrationNumber" >{{ ::'REGISTRATION_LABEL_SEARCH' | translate}}</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+            <!--</form>-->
+        <!--</article>-->
+            <form name="searchByNameForm" ng-submit="searchPatients()" class="simple-form-ui" >
+                <article class="fl" style="padding-right: 51px;">
                     <label for="registrationNumber"><strong>{{ ::'REGISTRATION_LABEL_PATIENT_ID' | translate}}</strong></label>
-                    <div class="search-patient-id fl">
-                        <input tabindex="2" class="fl" type="text" id="registrationNumber"
+                    <input tabindex="2" class="fl" type="text" id="registrationNumber"
                         ng-model="searchParameters.registrationNumber" focus-me="true"
                                placeholder="{{ ::'REGISTRATION_LABEL_ENTER_ID' | translate}}">
-                        <div class="reg-srch-btn fl">
-                            <button tabindex="3" type="submit" ng-disabled="!searchParameters.registrationNumber" >{{ ::'REGISTRATION_LABEL_SEARCH' | translate}}</button>
-                        </div>
-                    </div>
-
-            </form>
-        </article>-->
-       <article class="search-seperator-r" style="padding-left: 114px; width: 91%;">
-            <form name="searchByNameForm" ng-submit="searchPatients()" class="simple-form-ui" >
+                </article>
 
                 <article class="fl" style="padding-right: 51px;">
                     <label for="name"><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></label>
                     <input tabindex="4" type="text" id="name" ng-model="searchParameters.name" placeholder="{{ ::'REGISTRATION_LABEL_ENTER_NAME' | translate}}" ng-autofocus/>
                 </article>
-                <article class="fl" ng-if="::customAttributesSearchConfig.show" style="padding-right: 51px;">
+                <article class="fl" ng-if="::customAttributesSearchConfig.show" style="padding-right: 48px;">
                     <label for="name"><strong>{{::customAttributesSearchConfig.label}}</strong></label>
                     <input style="width: 90%;" tabindex="5" type="text" id="customAttribute" ng-model="searchParameters.customAttribute" placeholder="{{::customAttributesSearchConfig.placeholder}}">
                 </article>
@@ -36,7 +43,7 @@
                 </article>
 
                 <article class="fl">
-                    <div class="reg-srch-btn">
+                    <div class="reg-srch-btn fl">
                         <button tabindex="8" type="submit" ng-disabled="disableSearchButton()">{{ ::'REGISTRATION_LABEL_SEARCH' | translate}}</button>
                     </div>
                 </article>
@@ -59,19 +66,21 @@
             <thead>
             <tr>
                <!-- <th ng-repeat = "type in ::extraIdentifierTypes track by $index"><strong>{{type.name}}</strong></th>-->
-                <th><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></th>
-                <th ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><strong>{{::convertToTableHeader(field)}}</strong></th>
-                <th><strong>{{ ::'REGISTRATION_LABEL_GENDER' | translate}}</strong></th>
-                <th><strong>{{ ::'REGISTRATION_LABEL_AGE' | translate}}</strong></th>
-                <th ng-repeat = "field in ::addressSearchResultsConfig.fields"><strong>{{::convertToTableHeader(getAddressColumnName(field))}}</strong></th>
-                <th><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>
+                <th ng-click="sortBy('givenName')" ng-class='sortClass("givenName")'><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></th>
+                <th ng-click="sortBy(field)" ng-class='sortClass(field)' ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><strong>{{::convertToTableHeader(field)}}</strong></th>
+                <th ng-click="sortBy('gender')" ng-class='sortClass("gender")'><strong>{{ ::'REGISTRATION_LABEL_GENDER' | translate}}</strong></th>
+                <th ng-click="sortBy('age')" ng-class='sortClass("age")'><strong>{{ ::'REGISTRATION_LABEL_AGE' | translate}}</strong></th>
+                <th ng-click="sortBy(field)" ng-class='sortClass(field)' ng-class='sortClass("sno")' ng-repeat = "field in ::addressSearchResultsConfig.fields"><strong>{{::convertToTableHeader(getAddressColumnName(field))}}</strong></th>
+                <th ng-click="sortBy('dateCreated')" ng-class='sortClass("dateCreated")'><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>
                 <th ng-if="::programAttributesSearchConfig.show"><strong>{{::convertToTableHeader(programAttributesSearchConfig.label)}}</strong></th>
                 <!--<th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>-->
                 <th><strong>Action</strong></th>
+                <span class="glyphicon glyphicon-triangle-bottom"></span>
+<span class="glyphicon glyphicon-triangle-top"></span>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="result in results">
+            <tr ng-repeat="result in results | orderBy:propertyName:reverse">
                 <!--<td ng-repeat = "type in ::extraIdentifierTypes track by $index">
                     {{::result.extraIdentifiers[type.name]}}
                 </td>-->

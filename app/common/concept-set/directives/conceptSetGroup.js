@@ -3,14 +3,22 @@
 angular.module('bahmni.common.conceptSet')
     .controller('ConceptSetGroupController', ['$scope', '$state', '$location', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
         'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig', '$q',
-        'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate',
+        'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate', 'ageFormatterService',
         function ($scope, $state, $location, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
                   encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
-                  conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate) {
+                  conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             var init = function () {
                 $scope.validationHandler = new Bahmni.ConceptSet.ConceptSetGroupPanelViewValidationHandler($scope.allTemplates);
                 contextChangeHandler.add($scope.validationHandler.validate);
+                $scope.makeSlipNoReadOnly = false;
+                if ($scope.moneyReceiptObject) {
+                    var orgUnit = $scope.patientInfo.orgUnit;
+                    $scope.patientInfo = $scope.moneyReceiptObject[0];
+                    $scope.patientInfo.orgUnit = orgUnit;
+                    $scope.patientInfo.moneyReceiptDate = ageFormatterService.dateFormat($scope.patientInfo.moneyReceiptDate);
+                    $scope.makeSlipNoReadOnly = true;
+                }
             };
             $scope.toggleSideBar = function () {
                 $rootScope.showLeftpanelToggle = !$rootScope.showLeftpanelToggle;
@@ -27,6 +35,14 @@ angular.module('bahmni.common.conceptSet')
             }];
             var param1 = $location.search();
             $scope.money = "";
+            if ($stateParams.previousUrl != null || $stateParams.previousUrl != undefined) {
+                if ($stateParams.previousUrl == "moneyreceipt") {
+                    param1.createMoneyReceipt = "M";
+                    if ($stateParams.moneyReceiptObject) {
+                        $scope.moneyReceiptObject = $stateParams.moneyReceiptObject;
+                    }
+                }
+            }
             if (param1.createMoneyReceipt != undefined) {
                 $scope.money = true;
                 $scope.observationTab = false;
@@ -280,7 +296,7 @@ angular.module('bahmni.common.conceptSet')
             };
             $scope.searchButtonText = "Submit";
             $scope.test = "true";
-            $scope.submitMoneyReceiptData = function (patientInfo, services, patient) {
+            $scope.submitMoneyReceiptData = function (patientInfo, services, patient, savingStatus) {
                 if ($window.confirm("Do you really want to submit this money receipt?")) {
                     $scope.Message = "You clicked YES.";
                     $scope.enable = "false";
@@ -290,7 +306,20 @@ angular.module('bahmni.common.conceptSet')
                     console.log(services);
                     console.log(patient);
                     var jsonData = {};
-                    patientInfo['mid'] = "";
+                    if ($stateParams.moneyReceiptObject) {
+                        delete patientInfo.category;
+                        delete patientInfo.code;
+                        delete patientInfo.designation;
+                        delete patientInfo.discount;
+                        delete patientInfo.item;
+                        delete patientInfo.netPayable;
+                        delete patientInfo.quantity;
+                        delete patientInfo.spid;
+                        delete patientInfo.totalAmount;
+                        delete patientInfo.unitCost;
+                        patientInfo['mid'] = $scope.patientInfo.mid;
+                    }
+                    else patientInfo['mid'] = "";
                     patientInfo['patientName'] = patient.givenName + " " + patient.familyName;
                     patientInfo['patientUuid'] = patient.uuid;
                     patientInfo['uic'] = patient.UIC.value;
@@ -306,6 +335,7 @@ angular.module('bahmni.common.conceptSet')
                     if (patient.FinancialStatus != undefined) {
                         patientInfo['wealth'] = patient.FinancialStatus.value.display;
                     }
+                    patientInfo['isComplete'] = savingStatus;
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
 
@@ -481,13 +511,41 @@ angular.module('bahmni.common.conceptSet')
             };
             var services = function () {
                 return patientService.getServices().then(function (response) {
+                    var index = 0;
                     $scope.serviceList = response.data;
+                    if ($scope.moneyReceiptObject) {
+                        for (var j = 0; j < $scope.serviceList.length; j++) {
+                            for (var i = 0; i < $scope.moneyReceiptObject.length; i++) {
+                                if ($scope.serviceList[j].code == $scope.moneyReceiptObject[i].code) {
+                                    $scope.services[index] = {"discount": 0, "quantity": 1};
+                                    $scope.services[index].code = $scope.serviceList[j];
+                                    $scope.services[index].item = $scope.serviceList[j];
+                                    $scope.services[index].description = $scope.moneyReceiptObject[i].description;
+                                    $scope.services[index].unitCost = $scope.moneyReceiptObject[i].unitCost;
+                                    $scope.services[index].quantity = $scope.moneyReceiptObject[i].quantity;
+                                    $scope.services[index].totalAmount = $scope.moneyReceiptObject[i].totalAmount;
+                                    $scope.services[index].discount = $scope.moneyReceiptObject[i].discount;
+                                    $scope.services[index].netPayable = $scope.moneyReceiptObject[i].netPayable;
+                                    $scope.services[index].spid = $scope.moneyReceiptObject[i].spid;
+                                    index++;
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 });
             };
 
             var dataCollectors = function (clinicCode) {
                 return patientService.getDataCollectors(clinicCode).then(function (response) {
                     $scope.dataCollectorList = response.data;
+                    if ($scope.moneyReceiptObject) {
+                        angular.forEach($scope.dataCollectorList, function (value, key) {
+                            if (value.username == $scope.patientInfo.dataCollector) {
+                                $scope.patientInfo.dataCollector = value;
+                            }
+                        });
+                    }
                 });
             };
             var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)]);

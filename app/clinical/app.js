@@ -166,10 +166,12 @@ angular.module('consultation')
                 }
             })
             .state('patient.dashboard.show.observations', {
-                url: '/concept-set-group/:conceptSetGroupName',
+                url: '/concept-set-group/:conceptSetGroupName/:previousUrl',
                 params: {
                     cachebuster: null,
-                    lastOpenedTemplate: null
+                    lastOpenedTemplate: null,
+                    previousUrl: null,
+                    moneyReceiptObject: null
                 },
                 views: {
                     'consultation-content': {
