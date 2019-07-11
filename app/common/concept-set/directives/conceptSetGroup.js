@@ -104,7 +104,7 @@ angular.module('bahmni.common.conceptSet')
                 return str;
             };
             $scope.onChangedPateintInfo = function (servicePoint) {
-                if (servicePoint == "Clinic" || servicePoint == "CSP") {
+                if (servicePoint == "Static" || servicePoint == "CSP") {
                     $scope.patientInfo['session'] = "";
                     $scope.patientInfo['other'] = "";
                     $scope.patientInfo['sateliteClinicId'] = "";
