@@ -46,7 +46,7 @@ angular.module('bahmni.registration')
                 var fullYear = d.getFullYear();
                 var month = ("0" + (d.getMonth() + 1)).slice(-2);
                 var day = (d.getDate() < 10 ? '0' : '') + d.getDate();
-                data.patient.identifiers[0].identifier = fullYear + month + day + clinicId + memberHealthId;
+                data.patient.identifiers[0].identifier = memberHealthId;
                 return $http.post(url, data, {
                     withCredentials: true,
                     headers: {"Accept": "application/json", "Content-Type": "application/json", "Jump-Accepted": jumpAccepted}

@@ -107,6 +107,8 @@ angular.module('authentication')
                     userService.getUser(username).then(function (data) {
                         userService.getTeamMember(data.results[0].person.uuid).then(function (data) {
                             var locationInfo = data.locations[0];
+                            console.log("Location:");
+                            console.log(locationInfo);
                             if (locationInfo != undefined) {
                                 userService.getClinicInformation(username).then(function (data) {
                                     $bahmniCookieStore.put(Bahmni.Common.Constants.clinicCookieName, data, {path: '/', expires: 7});
@@ -147,6 +149,8 @@ angular.module('authentication')
                 userService.getProviderForUser(data.results[0].uuid).then(function (providers) {
                     if (!_.isEmpty(providers.results) && hasAnyActiveProvider(providers.results)) {
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
+                        console.log("Cookie");
+                        console.log($bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName));
                         $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;
                         $rootScope.$broadcast('event:user-credentialsLoaded', data.results[0]);
                         deferrable.resolve(data.results[0]);

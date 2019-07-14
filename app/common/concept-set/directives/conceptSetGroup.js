@@ -280,7 +280,7 @@ angular.module('bahmni.common.conceptSet')
                 });
                 var decimalPart = ($scope.net - Math.floor($scope.net));
                 var netAmount = "";
-                if (decimalPart > 0.5) {
+                if (decimalPart >= 0.5) {
                     netAmount = Math.ceil($scope.net);
                 } else {
                     netAmount = Math.floor($scope.net);
