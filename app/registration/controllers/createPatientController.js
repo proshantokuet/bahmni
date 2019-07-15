@@ -122,17 +122,26 @@ angular.module('bahmni.registration')
                 $scope.patient.uuid = patientProfileData.patient.uuid;
                 $scope.patient.name = patientProfileData.patient.person.names[0].display;
                 $scope.patient.isNew = true;
-                $scope.patient.registrationDate = dateUtil.now();
+                $scope.patient.RegistrationDate = dateUtil.now();
                 $scope.patient.newlyAddedRelationships = [{}];
                 $scope.actions.followUpAction(patientProfileData);
+            };
+            var convertToDateObject = function (dateString) {
+                var splitedDate = dateString.split('/');
+                var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
+                return finalizedSplitedDate;
             };
 
             var createPatient = function (jumpAccepted) {
                 if ($scope.patient.birthdate) {
-                    var splitedDate = $scope.patient.birthdate.split('/');
+                    $scope.patient.birthdate = convertToDateObject($scope.patient.birthdate);
+                }
+                if ($scope.patient.RegistrationDate) {
+                    var splitedDate = $scope.patient.RegistrationDate.split('/');
                     var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
-                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
-                    $scope.patient.birthdate = finalizedSplitedDate;
+                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate());
+                    $scope.patient.RegistrationDate = finalizedSplitedDate;
                 }
                 return patientService.create($scope.patient, jumpAccepted).then(function (response) {
                     copyPatientProfileDataToScope(response);

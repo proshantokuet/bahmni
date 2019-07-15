@@ -65,8 +65,8 @@ angular.module('bahmni.common.conceptSet')
             $scope.services = [{"discount": 0, "quantity": 1}];
             $scope.patientInfo = {
                 clinicName: $scope.patient.ClinicName.value,
-                clinicCode:  $scope.patient.ClinicCode.value,
-                orgUnit:  $scope.patient.orgUnit.value
+                clinicCode: $scope.patient.ClinicCode.value,
+                orgUnit: $scope.patient.orgUnit.value
             };
             $scope.referenceId = function (reference, referenceId) {
                 if (reference == "CSP" || reference == "External") {
