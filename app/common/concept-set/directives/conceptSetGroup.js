@@ -64,9 +64,9 @@ angular.module('bahmni.common.conceptSet')
             $scope.references = [{name: "Self"}, {name: "CSP"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
             $scope.services = [{"discount": 0, "quantity": 1}];
             $scope.patientInfo = {
-                clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName,
-                clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId,
-                orgUnit: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).orgUnit
+                clinicName: $scope.patient.ClinicName.value,
+                clinicCode:  $scope.patient.ClinicCode.value,
+                orgUnit:  $scope.patient.orgUnit.value
             };
             $scope.referenceId = function (reference, referenceId) {
                 if (reference == "CSP" || reference == "External") {

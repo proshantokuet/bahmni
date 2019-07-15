@@ -101,6 +101,8 @@ angular.module('authentication')
 
         this.loginUser = function (username, password, location, otp) {
             var deferrable = $q.defer();
+            $bahmniCookieStore.remove(Bahmni.Common.Constants.locationCookieName);
+            $bahmniCookieStore.remove(Bahmni.Common.Constants.locationCookieName);
             createSession(username, password, otp).then(function (data) {
                 if (data.authenticated) {
                     $bahmniCookieStore.put(Bahmni.Common.Constants.currentUser, username, {path: '/', expires: 7});
@@ -112,7 +114,7 @@ angular.module('authentication')
                             if (locationInfo != undefined) {
                                 userService.getClinicInformation(username).then(function (data) {
                                     $bahmniCookieStore.put(Bahmni.Common.Constants.clinicCookieName, data, {path: '/', expires: 7});
-                                    $bahmniCookieStore.remove(Bahmni.Common.Constants.locationCookieName);
+
                                     $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {name: locationInfo.display, uuid: locationInfo.uuid}, {path: '/', expires: 7});
                                     // $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {name: "Ganiyari", uuid: "c1e42932-3f10-11e4-adec-0800271c1b75"}, {path: '/', expires: 7});
                                 });
