@@ -9,6 +9,7 @@ angular.module('bahmni.common.conceptSet')
                   conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             var init = function () {
+                debugger;
                 $scope.validationHandler = new Bahmni.ConceptSet.ConceptSetGroupPanelViewValidationHandler($scope.allTemplates);
                 contextChangeHandler.add($scope.validationHandler.validate);
                 $scope.makeSlipNoReadOnly = false;
@@ -486,6 +487,11 @@ angular.module('bahmni.common.conceptSet')
                     section.isOpen = false;
                     section.isLoaded = false;
                 }
+            };
+            
+            $scope.savingObservation = function () {
+                 debugger;
+                 $rootScope.$emit("CallSaveParentMethod", {});
             };
 
             $scope.showLeftPanelConceptSet = function (selectedConceptSet) {

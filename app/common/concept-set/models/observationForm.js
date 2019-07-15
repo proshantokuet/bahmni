@@ -49,6 +49,14 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
     self.isAvailable = function (context) {
         return true;
     };
+    self.formValidation = function (context, conceptSet) {
+        if (formName == "সাধারন রোগীর সেবা") {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
 
     self.show = function () {
         self.isOpen = true;

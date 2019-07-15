@@ -239,6 +239,13 @@
                             });
                         }
                     };
+                    $scope.serviceProviderTabOPen = function () {
+                        $state.go('patient.dashboard.show.observations', {
+                            conceptSetGroupName: 'observations',
+                            previousUrl: null,
+                            moneyReceiptObject: null
+                        })
+                    };
                     var assignAdmissionDetails = function () {
                         var REP = "custom:(attributes:(value,attributeType:(display,name)))";
                         var ADMISSION_STATUS_ATTRIBUTE = "Admission Status";
