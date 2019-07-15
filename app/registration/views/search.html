@@ -76,7 +76,7 @@
                 <th ng-click="sortBy('gender')" ng-class='sortClass("gender")'><strong>{{ ::'REGISTRATION_LABEL_GENDER' | translate}}</strong></th>
                 <th ng-click="sortBy('age')" ng-class='sortClass("age")'><strong>{{ ::'REGISTRATION_LABEL_AGE' | translate}}</strong></th>
                 <th ng-click="sortBy(field)" ng-class='sortClass(field)' ng-class='sortClass("sno")' ng-repeat = "field in ::addressSearchResultsConfig.fields"><strong>{{::convertToTableHeader(getAddressColumnName(field))}}</strong></th>
-                <th ng-click="sortBy('dateCreated')" ng-class='sortClass("dateCreated")'><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>
+                <!--<th ng-click="sortBy('dateCreated')" ng-class='sortClass("dateCreated")'><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>-->
                 <th ng-if="::programAttributesSearchConfig.show"><strong>{{::convertToTableHeader(programAttributesSearchConfig.label)}}</strong></th>
                 <!--<th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>-->
                 <th><strong>Action</strong></th>
@@ -94,7 +94,7 @@
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.gender}}</a></td>
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.age}} <!--{{ageFromBirthDate(result.birthDate)}}--></a></td>
                 <td ng-repeat = "field in ::addressSearchResultsConfig.fields"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.addressFieldValue[field] || ""}}</a></td>
-                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.dateCreated | bahmniDate}}</a></td>
+                <!--<td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.dateCreated | bahmniDate}}</a></td>-->
                 <td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>
 
                 <td>

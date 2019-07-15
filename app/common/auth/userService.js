@@ -87,7 +87,9 @@ angular.module('authentication')
             getTeamMemberFromServer(uuid).success(function (data) {
                 deferrable.resolve(data);
             }).error(function () {
-                deferrable.reject('Unable to get user data');
+                var erorData = {"Message": "No Data Found", "HttpStatusCode": 400, "locations": []};
+                deferrable.resolve(erorData);
+                // deferrable.reject('Unable to get user data');
             });
 
             return deferrable.promise;

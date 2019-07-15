@@ -291,28 +291,30 @@ angular.module('bahmni.registration')
                     personSearchResultsConfig: $scope.personSearchResultsConfig.fields
                 });
 
-                var searchPromise = patientService.search(undefined, patientIdentifier, $scope.addressSearchConfig.field,
-                    undefined, undefined, undefined, $scope.customAttributesSearchConfig.fields,
-                    $scope.programAttributesSearchConfig.field, $scope.searchParameters.programAttributeFieldValue,
-                    $scope.addressSearchResultsConfig.fields, $scope.personSearchResultsConfig.fields,
-                    $scope.isExtraIdentifierConfigured())
+                var searchPromise = patientService.searchByIdentifier(patientIdentifier)
                     .then(function (data) {
-                        mapExtraIdentifiers(data);
-                        mapCustomAttributesSearchResults(data);
-                        mapAddressAttributesSearchResults(data);
-                        mapProgramAttributesSearchResults(data);
-                        if (data.pageOfResults.length === 1) {
-                            var patient = data.pageOfResults[0];
-                            // var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
-                            // $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
-                            $window.open('../clinical/index.html#/default/patient/' + patient.uuid + '/dashboard', "_self");
-                        } else if (data.pageOfResults.length > 1) {
-                            $scope.results = data.pageOfResults;
-                            $scope.noResultsMessage = null;
-                        } else {
+                        if (data.data.pageOfResults.length > 0) {
+                            if (data.data.pageOfResults.length === 1) {
+                                var patient = data.data.pageOfResults[0];
+                                // var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
+                                // $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
+                                $window.open('../clinical/index.html#/default/patient/' + patient.uuid + '/dashboard', "_self");
+                            } else if (data.data.pageOfResults.length > 1) {
+                                $scope.results = data.data.pageOfResults;
+                                $scope.noResultsMessage = null;
+                            } else {
+                                $scope.patientIdentifier = {'patientIdentifier': patientIdentifier};
+                                $scope.noResultsMessage = 'REGISTRATION_LABEL_COULD_NOT_FIND_PATIENT';
+                            }
+                        }
+                        else {
                             $scope.patientIdentifier = {'patientIdentifier': patientIdentifier};
                             $scope.noResultsMessage = 'REGISTRATION_LABEL_COULD_NOT_FIND_PATIENT';
                         }
+                        // mapExtraIdentifiers(data);
+                        // mapCustomAttributesSearchResults(data);
+                        // mapAddressAttributesSearchResults(data);
+                        // mapProgramAttributesSearchResults(data);
                     });
                 spinner.forPromise(searchPromise);
             };
