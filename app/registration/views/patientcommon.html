@@ -273,34 +273,13 @@
         });
         $('#RegistrationDate').val(new Date().toDateInputValue());
     });​*/
-  function myFunction﻿() {
-  var x = document.getElementById("RegistrationDate").value.split('-');
-  document.getElementById("RegistrationDate").innerHTML = x[1]+'.'+x[2]+'.'+x[0];
-  }
+//  function myFunction﻿() {
+//  var x = document.getElementById("RegistrationDate").value.split('-');
+//  document.getElementById("RegistrationDate").innerHTML = x[1]+'.'+x[2]+'.'+x[0];
+//  }
   setTimeout(function(){
   $(document).ready( function() {
-
-      Date.prototype.toDateInputValue = (function() {
-        var local = new Date(this);
-        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-        return local.toJSON().slice(0,10);
-        });
-        $('#RegistrationDate').val(new Date().toDateInputValue());
-
-        var dtToday = new Date();
-
-        var month = dtToday.getMonth() + 1;
-        var day = dtToday.getDate();
-        var year = dtToday.getFullYear();
-        if(month < 10)
-            month = '0' + month.toString();
-        if(day < 10)
-            day = '0' + day.toString();
-
-        var maxDate = year + '-' + month + '-' + day;
-
-        $('#RegistrationDate').attr('max', maxDate);
-
+      $( "#registrationDate" ).datepicker({ dateFormat: 'dd/mm/yy', changeYear: true,yearRange: "1940:"+new Date,maxDate: new Date }).val();
     })
   }, 500);
 

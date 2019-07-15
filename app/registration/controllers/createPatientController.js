@@ -126,13 +126,22 @@ angular.module('bahmni.registration')
                 $scope.patient.newlyAddedRelationships = [{}];
                 $scope.actions.followUpAction(patientProfileData);
             };
+            var convertToDateObject = function (dateString) {
+                var splitedDate = dateString.split('/');
+                var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
+                return finalizedSplitedDate;
+            };
 
             var createPatient = function (jumpAccepted) {
                 if ($scope.patient.birthdate) {
-                    var splitedDate = $scope.patient.birthdate.split('/');
+                    $scope.patient.birthdate = convertToDateObject($scope.patient.birthdate);
+                }
+                if ($scope.patient.registrationDate) {
+                    var splitedDate = $scope.patient.registrationDate.split('/');
                     var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
-                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
-                    $scope.patient.birthdate = finalizedSplitedDate;
+                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate());
+                    $scope.patient.registrationDate = finalizedSplitedDate;
                 }
                 return patientService.create($scope.patient, jumpAccepted).then(function (response) {
                     copyPatientProfileDataToScope(response);
