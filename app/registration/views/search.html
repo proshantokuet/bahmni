@@ -1,7 +1,12 @@
+<style>
+    .reg-search-wrapper .reg-search .search-seperator-r button {
+    margin: 0px 1px 2px 23px;
+}
+</style>
 <section class="reg-search-wrapper">
     <section class="reg-search">
 
-       <article class="search-seperator-r" style="padding-left: 1px; width: 91%;">
+       <article class="search-seperator-r" style="padding-left: 7px; width: 100%;">
            <!--<article class="search-seperator-l" ng-if="::patientIdentifierSearchConfig.show">-->
             <!--<form name="searchByIdForm" ng-submit="searchById()" class="simple-form-ui clearfix" >-->
                     <!--<label for="registrationNumber"><strong>{{ ::'REGISTRATION_LABEL_PATIENT_ID' | translate}}</strong></label>-->
@@ -17,7 +22,7 @@
             <!--</form>-->
         <!--</article>-->
             <form name="searchByNameForm" ng-submit="searchPatients()" class="simple-form-ui" >
-                <article class="fl" style="padding-right: 51px;">
+                <article class="fl" style="padding-right: 38px;">
                     <label for="registrationNumber"><strong>{{ ::'REGISTRATION_LABEL_PATIENT_ID' | translate}}</strong></label>
                     <input tabindex="2" class="fl" type="text" id="registrationNumber"
                         ng-model="searchParameters.registrationNumber" focus-me="true"
@@ -28,7 +33,7 @@
                     <label for="name"><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></label>
                     <input tabindex="4" type="text" id="name" ng-model="searchParameters.name" placeholder="{{ ::'REGISTRATION_LABEL_ENTER_NAME' | translate}}" ng-autofocus/>
                 </article>
-                <article class="fl" ng-if="::customAttributesSearchConfig.show" style="padding-right: 48px;">
+                <article class="fl" ng-if="::customAttributesSearchConfig.show" style="padding-right: 34px;">
                     <label for="name"><strong>{{::customAttributesSearchConfig.label}}</strong></label>
                     <input style="width: 90%;" tabindex="5" type="text" id="customAttribute" ng-model="searchParameters.customAttribute" placeholder="{{::customAttributesSearchConfig.placeholder}}">
                 </article>
@@ -60,7 +65,7 @@
             </div>
         </div>
     </div>
-
+    <div style="clear: both"></div>
     <div ng-if="resultsPresent()" infinite-scroll="nextPage()" infinite-scroll-immediate-check="false" infinite-scroll-disabled="noMoreResultsPresent" class="registraition-search-results-container">
         <table class="table">
             <thead>
@@ -71,7 +76,7 @@
                 <th ng-click="sortBy('gender')" ng-class='sortClass("gender")'><strong>{{ ::'REGISTRATION_LABEL_GENDER' | translate}}</strong></th>
                 <th ng-click="sortBy('age')" ng-class='sortClass("age")'><strong>{{ ::'REGISTRATION_LABEL_AGE' | translate}}</strong></th>
                 <th ng-click="sortBy(field)" ng-class='sortClass(field)' ng-class='sortClass("sno")' ng-repeat = "field in ::addressSearchResultsConfig.fields"><strong>{{::convertToTableHeader(getAddressColumnName(field))}}</strong></th>
-                <th ng-click="sortBy('dateCreated')" ng-class='sortClass("dateCreated")'><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>
+                <!--<th ng-click="sortBy('dateCreated')" ng-class='sortClass("dateCreated")'><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>-->
                 <th ng-if="::programAttributesSearchConfig.show"><strong>{{::convertToTableHeader(programAttributesSearchConfig.label)}}</strong></th>
                 <!--<th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>-->
                 <th><strong>Action</strong></th>
@@ -89,7 +94,7 @@
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.gender}}</a></td>
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.age}} <!--{{ageFromBirthDate(result.birthDate)}}--></a></td>
                 <td ng-repeat = "field in ::addressSearchResultsConfig.fields"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.addressFieldValue[field] || ""}}</a></td>
-                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.dateCreated | bahmniDate}}</a></td>
+                <!--<td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.dateCreated | bahmniDate}}</a></td>-->
                 <td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>
 
                 <td>

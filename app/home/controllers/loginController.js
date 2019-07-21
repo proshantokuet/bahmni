@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.home')
-    .controller('LoginController', ['$rootScope', '$scope', '$window', '$location', 'sessionService', 'initialData', 'spinner', '$q', '$stateParams', '$bahmniCookieStore', 'localeService', '$translate', 'userService', 'auditLogService',
-        function ($rootScope, $scope, $window, $location, sessionService, initialData, spinner, $q, $stateParams, $bahmniCookieStore, localeService, $translate, userService, auditLogService) {
+    .controller('LoginController', ['$rootScope', '$scope', '$window', '$timeout', '$location', 'sessionService', 'initialData', 'spinner', '$q', '$stateParams', '$bahmniCookieStore', 'localeService', '$translate', 'userService', 'auditLogService',
+        function ($rootScope, $scope, $window, $timeout, $location, sessionService, initialData, spinner, $q, $stateParams, $bahmniCookieStore, localeService, $translate, userService, auditLogService) {
             var redirectUrl = $location.search()['from'];
             var landingPagePath = "/dashboard";
             var loginPagePath = "/login";
@@ -139,20 +139,26 @@ angular.module('bahmni.home')
                             deferrable.resolve(data);
                             return;
                         }
-                        sessionService.loadCredentials().then(function () {
-                            onSuccessfulAuthentication();
-                            $rootScope.currentUser.addDefaultLocale($scope.selectedLocale);
-                            userService.savePreferences().then(
-                                function () { deferrable.resolve(); },
-                                function (error) { deferrable.reject(error); }
+                        $timeout(function () {
+                            sessionService.loadCredentials().then(function () {
+                                onSuccessfulAuthentication();
+                                $rootScope.currentUser.addDefaultLocale($scope.selectedLocale);
+                                userService.savePreferences().then(
+                                    function () {
+                                        deferrable.resolve();
+                                    },
+                                    function (error) {
+                                        deferrable.reject(error);
+                                    }
+                                );
+                                logAuditForLoginAttempts("USER_LOGIN_SUCCESS");
+                            }, function (error) {
+                                $scope.errorMessageTranslateKey = error;
+                                deferrable.reject(error);
+                                logAuditForLoginAttempts("USER_LOGIN_FAILED", true);
+                            }
                             );
-                            logAuditForLoginAttempts("USER_LOGIN_SUCCESS");
-                        }, function (error) {
-                            $scope.errorMessageTranslateKey = error;
-                            deferrable.reject(error);
-                            logAuditForLoginAttempts("USER_LOGIN_FAILED", true);
-                        }
-                        );
+                        }, 500);
                     },
                     function (error) {
                         $scope.errorMessageTranslateKey = error;

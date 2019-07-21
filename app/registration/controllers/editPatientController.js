@@ -23,6 +23,14 @@ angular.module('bahmni.registration')
                     }
                 });
             };
+            var dateFormat = function (dateObject) {
+                var date = new Date(dateObject),
+                    yr = date.getFullYear(),
+                    month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
+                    day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
+                    newDate = day + '/' + month + '/' + yr;
+                return newDate;
+            };
 
             var successCallBack = function (openmrsPatient) {
                 $scope.openMRSPatient = openmrsPatient["patient"];
@@ -39,12 +47,10 @@ angular.module('bahmni.registration')
                 }
                 $scope.patient = openmrsPatientMapper.map(openmrsPatient);
                 if ($scope.patient.birthdate) {
-                    var date = $scope.patient.birthdate,
-                        yr = date.getFullYear(),
-                        month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
-                        day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
-                        newDate = day + '/' + month + '/' + yr;
-                    $scope.patient.birthdate = newDate;
+                    $scope.patient.birthdate = dateFormat($scope.patient.birthdate);
+                }
+                if ($scope.patient.RegistrationDate) {
+                    $scope.patient.RegistrationDate = dateFormat($scope.patient.RegistrationDate);
                 }
                 $rootScope.zillaBinding = {birthDistrictName: $scope.patient.birthDistrict, birthupazillaName: $scope.patient.birthUpazilla };
                 $scope.patient.uic = $scope.UICString;
@@ -82,13 +88,21 @@ angular.module('bahmni.registration')
 
                 spinner.forPromise($q.all([getPatientPromise, isDigitized]));
             })();
-
+            var convertToDateObject = function (dateString) {
+                var splitedDate = dateString.split('/');
+                var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
+                return finalizedSplitedDate;
+            };
             $scope.update = function () {
                 if ($scope.patient.birthdate) {
-                    var splitedDate = $scope.patient.birthdate.split('/');
+                    $scope.patient.birthdate = convertToDateObject($scope.patient.birthdate);
+                }
+                if ($scope.patient.RegistrationDate) {
+                    var splitedDate = $scope.patient.RegistrationDate.split('/');
                     var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
-                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
-                    $scope.patient.birthdate = finalizedSplitedDate;
+                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate());
+                    $scope.patient.RegistrationDate = finalizedSplitedDate;
                 }
                 addNewRelationships();
                 var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
