@@ -144,7 +144,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             };
 
             var initialize = function () {
-                debugger;
                 var appExtensions = clinicalAppConfigService.getAllConsultationBoards();
                 $scope.adtNavigationConfig = {forwardUrl: Bahmni.Clinical.Constants.adtForwardUrl, title: $translate.instant("CLINICAL_GO_TO_DASHBOARD_LABEL"), privilege: Bahmni.Clinical.Constants.adtPrivilege };
                 $scope.availableBoards = $scope.availableBoards.concat(appExtensions);
@@ -436,12 +435,10 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 $scope.dashboardDirty = true;
             };
             $rootScope.$on("CallSaveParentMethod", function () {
-                debugger;
                 $scope.save();
             });
 
             $scope.save = function (toStateConfig) {
-                debugger;
                 if (!isFormValid()) {
                     $scope.$parent.$parent.$broadcast("event:errorsOnForm");
                     return $q.when({});

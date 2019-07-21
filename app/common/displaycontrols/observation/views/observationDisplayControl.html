@@ -3,13 +3,13 @@
         ng-class="::{'section-title': !isFulfilmentDisplayControl, 'form-field': isFulfilmentDisplayControl}">{{::title |
         translate}}</h2>
 
-    <h2 ng-if="::isClickable()"
+    <h2  ng-hide="true"
          ng-dialog="../common/displaycontrols/observation/views/allObservationDetails.html"
         ng-dialog-controller="AllObservationDetailsController"
         ng-dialog-data="{{dialogData}}"
         ng-dialog-class="ngdialog-theme-default ng-dialog-all-details-page"
         class="section-title has-link">
-        <span class="title-link"> {{::section | titleTranslate}} </span>
+        <span class="title-link"> {{::section | titleTranslate}} </span>dsds
         <i class="fa fa-external-link"></i>
     </h2>
     <div class="concept-set-container-view">
@@ -22,8 +22,8 @@
                         <span class="obs-date">
                             {{::obsGroup.date | bahmniDateTime}}
                         </span>
+                        <span style="padding-left: 10px">{{::obsGroup.formName}}</span>
                     </span>
-
                     <ul ng-if="::print" class="print-observations visible-print">
                         <li ng-repeat="observation in ::obsGroup.value">
                             <ul>

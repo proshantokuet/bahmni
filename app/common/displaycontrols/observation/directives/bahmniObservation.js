@@ -5,10 +5,28 @@ angular.module('bahmni.common.displaycontrol.observation')
         function (observationsService, appService, $q, spinner, $rootScope, formHierarchyService, $translate) {
             var controller = function ($scope) {
                 $scope.print = $rootScope.isBeingPrinted || false;
-
                 $scope.showGroupDateTime = $scope.config.showGroupDateTime !== false;
-
+                $rootScope.vitalsArrayList = [];
+                $scope.comparingVitalsList = [];
                 var mapObservation = function (observations) {
+                    for (var ob = 0; ob < observations.length; ob++) {
+                        if (observations[ob].conceptNameToDisplay == "Vitals") {
+                            $scope.comparingVitalsList.push(observations[ob]);
+                            if ($rootScope.vitalsArrayList.length > 0) {
+                                for (var i = 0; i < $rootScope.vitalsArrayList.length; i++) {
+                                    for (var j = 0; j < $scope.comparingVitalsList.length; j++) {
+                                        if ($scope.comparingVitalsList[j].encounterDateTime > $rootScope.vitalsArrayList[i].encounterDateTime) {
+                                            $rootScope.vitalsArrayList[i] = $scope.comparingVitalsList[j];
+                                        }
+                                    }
+                                }
+                            }
+                            else {
+                                $rootScope.vitalsArrayList.push(observations[ob]);
+                            }
+                            $rootScope.$broadcast('vitalsbroadcast');
+                        }
+                    }
                     var conceptsConfig = appService.getAppDescriptor().getConfigValue("conceptSetUI") || {};
                     observations = new Bahmni.Common.Obs.ObservationMapper().map(observations, conceptsConfig);
 
@@ -24,6 +42,41 @@ angular.module('bahmni.common.displaycontrol.observation')
                         $scope.bahmniObservations = new Bahmni.Common.DisplayControl.Observation.GroupingFunctions().persistOrderOfConceptNames(observations);
                     } else {
                         $scope.bahmniObservations = new Bahmni.Common.DisplayControl.Observation.GroupingFunctions().groupByEncounterDate(observations);
+                        for (var i = 0; i < $scope.bahmniObservations.length; i++) {
+                            var string = "";
+                            for (var j = 0; j < $scope.bahmniObservations[i].value.length; j++) {
+                                if (j == $scope.bahmniObservations[i].value.length - 1) {
+                                    if ($scope.bahmniObservations[i].value[j].formFieldPath) {
+                                        var splitData = $scope.bahmniObservations[i].value[j].formFieldPath.split(".");
+                                        string = string + splitData[0];
+                                    }
+                                    else {
+                                        string = string + "Vitals";
+                                    }
+                                }
+                                else {
+                                    if ($scope.bahmniObservations[i].value[j].formFieldPath) {
+                                        var splitData = $scope.bahmniObservations[i].value[j].formFieldPath.split(".");
+                                        string = string + splitData[0] + " ,";
+                                    }
+                                    else {
+                                        string = string + "Vitals" + ",";
+                                    }
+                                }
+                            }
+                            var findingUniqueString = string.split(",");
+                            if (findingUniqueString.length > 1) {
+                                if (findingUniqueString[0] == findingUniqueString[1]) {
+                                    $scope.bahmniObservations[i].formName = findingUniqueString[0];
+                                }
+                                else {
+                                    $scope.bahmniObservations[i].formName = string;
+                                }
+                            }
+                            else {
+                                $scope.bahmniObservations[i].formName = string;
+                            }
+                        }
                     }
 
                     if (_.isEmpty($scope.bahmniObservations)) {
@@ -35,7 +88,15 @@ angular.module('bahmni.common.displaycontrol.observation')
                                 bahmniObs.isOpen = true;
                             });
                         } else {
-                            $scope.bahmniObservations[0].isOpen = true;
+                            _.forEach($scope.bahmniObservations, function (bahmniObs) {
+                                var parseDate = parseInt(bahmniObs.key);
+                                var convertTodate = new Date(parseDate);
+                                if ($rootScope.dateOpened) {
+                                    if (convertTodate.getDate() == $rootScope.dateOpened.getDate()) {
+                                        $scope.bahmniObservations[0].isOpen = true;
+                                    }
+                                }
+                            });
                         }
                     }
 

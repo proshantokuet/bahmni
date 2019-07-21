@@ -244,7 +244,7 @@
                             conceptSetGroupName: 'observations',
                             previousUrl: null,
                             moneyReceiptObject: null
-                        })
+                        });
                     };
                     var assignAdmissionDetails = function () {
                         var REP = "custom:(attributes:(value,attributeType:(display,name)))";

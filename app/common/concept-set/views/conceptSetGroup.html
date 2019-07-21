@@ -74,7 +74,7 @@
 </style>
 
 <div class="reg-body-wrapper">
-    <div class="simple-form-ui new-patient" ng-show="money">
+    <div class="simple-form-ui new-patient" ng-if="money">
         <form name="myForm" class="form-horizontal well" single-submit="create()">
             <div class="box-container box-container-default">
                 <div class="box-container box-container-patient-info patient-common-info-container">
@@ -815,13 +815,13 @@
 </div>
 
 
-<div class="concept-set-panel clearfix" ng-show="observationTab">
+<div class="concept-set-panel clearfix" ng-if="observationTab">
     <section class="concept-set-panel-right">
         <div style="text-align: center;background-color: #52797a;padding: 1px;color:white"><h4>Service List</h4></div>
         <table style="width:100%;">
             <tr>
                 <td ng-repeat="conceptSet in allTemplates track by $index"
-                    ng-if="conceptSet.isAvailable(context) && !conceptSet.formValidation(context, conceptSet) && (conceptSet.isAdded || conceptSet.alwaysShow)"
+                    ng-if="conceptSet.isAvailable(context) && (conceptSet.isAdded || conceptSet.alwaysShow)"
                     ng-class="openActiveForm(conceptSet)">
                     <button ng-style="conceptSet.klass =='active' && {'background':'#51797a','color':'white'}"
                             ng-click="showLeftPanelConceptSet(conceptSet)">
@@ -847,12 +847,10 @@
             <div class="multi-select-lab-tests">
                 <ul>
                     <!--ng-if="conceptSet.isAvailable(context)  && (conceptSet.isAdded || conceptSet.alwaysShow)"-->
-                    <li ng-repeat="conceptSet in allTemplates track by $index"
-                        ng-if="conceptSet.isAvailable(context)  && conceptSet.formValidation(context, conceptSet) && (conceptSet.isAdded || conceptSet.alwaysShow)">
-                        <h4><span class="concept-set-name" ng-class="{'concept-set-name-extra':conceptSet.isValid === false}">{{conceptSet.label}}</h4>
-                                <span ng-if="conceptSet.observations[0].observationDateTime"> ( {{conceptSet.observations[0].observationDateTime|bahmniDate}} )</span>
-                                <ul>
-                                    <li>1. Date : 11/07/2019</li><br>
+                    <li>
+                        <h4><span class="concept-set-name">Vitals</h4>
+                                <ul style="padding-left: 5px">
+                                    <li>1. Date : {{vitalsObject.observationDateTime | date : "MMM d, y h:mm:ss a"}}</li><br>
                                     <li>2. Height : 5 feet 9 inch</li><br>
                                     <li>3. Weight : 70kg</li><br>
                                     <li>4. Blood Group : B+</li><br>
@@ -865,7 +863,13 @@
                                     <li>11. Pregnency Related Information:</li><br>
                             </ul>
                             </span>
-                       <button style="margin:auto;display: block" ng-click="showLeftPanelConceptSet(conceptSet)" type="button" class="btn btn-success">Edit</button>
+                        <button style="margin:auto;display: block" type="button" class="btn btn-info"
+                                ng-dialog="dashboard/views/dashboardSections/allVisits.html"
+                                ng-dialog-class="ngdialog-theme-default ng-dialog-all-details-page"
+                                ng-dialog-controller="PatientDashboardAllVisitsController" ng-dialog-data="{{dialogData}}">
+                            Add Child
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
                         <div class="button-wrap">
                             <label class="fa fa-exclamation-triangle fa-red" ng-show="conceptSet.isValid === false"
                                    ng-click="conceptSet.klass =='active' && focusOnErrors()"></label>
@@ -899,38 +903,42 @@
 
 <section class="concept-set-panel-right" style="width: 78%;float:right;">
     <div>
-        <h4 style="text-align: center;padding: 10px;background-color: #dedede;">EPI History</h4>
+        <h4 style="text-align: left;padding: 10px;background-color: #dedede;">Visit</h4>
     </div>
-    <table id="customers" style="width:100%;border: 1px solid black;">
-        <tr>
-            <th>Date</th>
-            <th>Age</th>
-            <th>Applicable Method</th>
-            <th>Choden Method</th>
-            <th>Details</th>
-        </tr>
-        <tr>
-            <td>8/03/2019</td>
-            <td>25 Years</td>
-            <td>Pill,Condition,IUD</td>
-            <td>Pill</td>
-            <td>See More</td>
-        </tr>
-        <tr>
-            <td>8/03/2019</td>
-            <td>25 Years</td>
-            <td>Pill,Condition,IUD</td>
-            <td>Pill</td>
-            <td>See More</td>
-        </tr>
-        <tr>
-            <td>8/03/2019</td>
-            <td>25 Years</td>
-            <td>Pill,Condition,IUD</td>
-            <td>Pill</td>
-            <td>See More</td>
-        </tr>
-    </table>
+    <p ng-show ="emptyVisitsData">No Visits Available</p>
+    <table class="visits dashboard-table" id="visitDisplayTable" ng-if="visits.length > 0">
+            <tbody>
+            <tr>
+                <th>Date</th>
+                <th>Visit Type</th>
+
+            </tr>
+            <tr id="eachVisit" ng-repeat="visit in ::visits | limitTo: params.maximumNoOfVisits">
+                <td class="name" width="50%">
+                    <a class="visit" ng-click="toogleObservationDetailsViewer('specific',visit)"><span>{{::visit.startDatetime | bahmniDate}}</span>
+                        <span ng-if="::!visit.isActive()">- {{::visit.stopDatetime | bahmniDate }}</span>
+                        <i class="fa fa-star current-visit-icon" id="currentVisitIcon" ng-if="::visit.isActive()"
+                           title="Current Visit"></i>
+                    </a>
+                </td>
+                <td class="value" id="visitType">{{::visit.getVisitType()}}</td>
+                 <!--<td><a ng-if="!viewingSpecific" style="cursor: pointer" ng-click="toogleObservationDetailsViewer('specific',visit)">See this</a></td>-->
+                 <!--<td><a ng-if="viewingSpecific" style="cursor: pointer" ng-click="toogleObservationDetailsViewer('general',visits)">See all</a></td>-->
+            </tr>
+            </tbody>
+        </table>
+    <a ng-if="viewingSpecific" class="visit" ng-click="toogleObservationDetailsViewer('general',visits)" style="text-align: right">See all</a>
+    <div>
+        <div ng-if="!emptyVisitsData" id="observation-section" ng-repeat="visit in visitDetails" >
+            <section class="block observation dashboard-section" id="observationSection">
+                <ul bm-gallery access-impression="true"  >
+                    <bahmni-observation patient="::patient" visit-uuid="{{visit.uuid}}"
+                                        config="visit.detailsConfig"
+                                        class="section-title"></bahmni-observation>
+                </ul>
+            </section>
+        </div>
+    </div>
 </section>
 <style>
     .displayNone {
