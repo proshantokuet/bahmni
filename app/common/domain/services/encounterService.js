@@ -173,5 +173,11 @@ angular.module('bahmni.common.domain')
                     withCredentials: true
                 });
             };
+            this.updatePatient = function (patient, uuid) {
+                var patientUrl = Bahmni.Common.Constants.PatientUrl + "/" + uuid;
+                return $http.post(patientUrl, patient, {
+                    withCredentials: true
+                });
+            };
         }]);
 

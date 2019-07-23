@@ -84,6 +84,7 @@ Bahmni.Common = Bahmni.Common || {};
         emrEncounterUrl: EMRAPI + "/encounter",
         encounterUrl: RESTWS_V1 + "/encounter",
         locationUrl: RESTWS_V1 + "/location",
+        PatientUrl: RESTWS_V1 + "/patient",
         bahmniVisitLocationUrl: BAHMNI_CORE + "/visitLocation",
         bahmniOrderUrl: BAHMNI_CORE + "/orders",
         bahmniDrugOrderUrl: BAHMNI_CORE + "/drugOrders",

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bahmni.common.uicontrols.programmanagment')
-    .controller('ManageProgramController', ['$scope', 'retrospectiveEntryService', '$window', 'programService',
+    .controller('ManageProgramController', ['$scope', 'encounterService', 'retrospectiveEntryService', '$window', 'programService',
         'spinner', 'messagingService', '$stateParams', '$q', 'confirmBox',
-        function ($scope, retrospectiveEntryService, $window, programService,
+        function ($scope, encounterService, retrospectiveEntryService, $window, programService,
                   spinner, messagingService, $stateParams, $q, confirmBox) {
             var DateUtil = Bahmni.Common.Util.DateUtil;
             $scope.programSelected = {};
@@ -51,7 +51,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 var retrospectiveDate = retrospectiveEntryService.getRetrospectiveDate();
                 return DateUtil.parseLongDateToServerFormat(retrospectiveDate);
             };
-
             var init = function () {
                 spinner.forPromise(programService.getAllPrograms().then(function (programs) {
                     $scope.allPrograms = programs;
@@ -125,6 +124,43 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             };
 
             $scope.enrollPatient = function () {
+                var attributes = [];
+                if ($scope.patientProgramAttributes.Pregnancy_Status) {
+                    angular.forEach($scope.programAttributeTypes, function (value, key) {
+                        if (value.fullySpecifiedName == "Pregnancy_Status") {
+                            angular.forEach(value.answers, function (innervalue, innerkey) {
+                                if (innervalue.conceptId == $scope.patientProgramAttributes.Pregnancy_Status) {
+                                    // for server
+                                    // var pregnancyUuid = '15bef73f-d0cf-49ab-8f15-e729d6f16a82';
+                                    // for local
+                                    var pregnancyUuid = '15bef73f-d0cf-49ab-8f15-e729d6f16a82';
+                                    var value = innervalue.description;
+                                    var attribute = {};
+                                    attribute['value'] = value;
+                                    attribute['attributeType'] = pregnancyUuid;
+                                    attributes.push(attribute);
+                                }
+                            });
+                        }
+                    });
+                }
+                if ($scope.patientProgramAttributes.LMP_Date) {
+                    // for server
+                    // var lMPUuid = '16295469-0df3-41a1-becd-3aa09b5a25d8';
+                    // for local
+                    var lMPUuid = '16295469-0df3-41a1-becd-3aa09b5a25d8';
+                    var value = $scope.patientProgramAttributes.LMP_Date;
+                    var attribute = {};
+                    attribute['value'] = value;
+                    attribute['attributeType'] = lMPUuid;
+                    attributes.push(attribute);
+                }
+                var patientInfo = {
+                    person: {
+                        attributes: attributes
+                    }
+                };
+                updatePatient(patientInfo, $scope.patient.uuid);
                 if (!isProgramSelected()) {
                     messagingService.showMessage("error", "PROGRAM_MANAGEMENT_SELECT_PROGRAM_MESSAGE_KEY");
                     return $q.when({});
@@ -146,6 +182,9 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 }
                 return patientProgram.selectedState
                     && (patientProgram.selectedState.uuid != activePatientProgramState.state.uuid);
+            };
+            var updatePatient = function (patientInfo) {
+                encounterService.updatePatient(patientInfo, $scope.patient.uuid);
             };
 
             var isOutcomeSelected = function (patientProgram) {
