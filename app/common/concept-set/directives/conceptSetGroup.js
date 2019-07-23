@@ -144,7 +144,7 @@ angular.module('bahmni.common.conceptSet')
                 return str;
             };
             $scope.onChangedPateintInfo = function (servicePoint) {
-                if (servicePoint == "Clinic" || servicePoint == "CSP") {
+                if (servicePoint == "Static" || servicePoint == "CSP") {
                     $scope.patientInfo['session'] = "";
                     $scope.patientInfo['other'] = "";
                     $scope.patientInfo['sateliteClinicId'] = "";
@@ -153,11 +153,11 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo['cspId'] = "";
                 }
                 $scope.clinicType = servicePoint;
-                if (servicePoint == "Satellite") {
-                    $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
-                        return dataCollector.designation == "CSP" || dataCollector.designation == "SE";
-                    });
-                }
+                /* if (servicePoint == "Satellite") {
+                 $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
+                 return dataCollector.designation == "CSP" || dataCollector.designation == "SE";
+                 });
+                 } */
             };
             $scope.htmlToPlaintext = function (text) {
                 var yearsSplit = text.replace('Years', 'Y');
@@ -320,7 +320,7 @@ angular.module('bahmni.common.conceptSet')
                 });
                 var decimalPart = ($scope.net - Math.floor($scope.net));
                 var netAmount = "";
-                if (decimalPart > 0.5) {
+                if (decimalPart >= 0.5) {
                     netAmount = Math.ceil($scope.net);
                 } else {
                     netAmount = Math.floor($scope.net);

@@ -8942,23 +8942,23 @@ category: Components - Alerts
 .registraition-search-results-container table tr:hover {
   background: #eee;
 }
-/* line 101, registration/_registrationSearch.scss */
+/* line 102, registration/_registrationSearch.scss */
 .registraition-search-results-container .slno_col {
   width: 40px;
 }
-/* line 104, registration/_registrationSearch.scss */
+/* line 105, registration/_registrationSearch.scss */
 .registraition-search-results-container .edit-col {
   width: 160px;
   padding: 2px 2px 2px 2px;
 }
 @media screen and (min-width: 1024px) {
-  /* line 107, registration/_registrationSearch.scss */
+  /* line 108, registration/_registrationSearch.scss */
   .registraition-search-results-container .edit-col .split-button ul li button {
     padding: 5px 20px;
     margin: 0;
   }
 }
-/* line 113, registration/_registrationSearch.scss */
+/* line 114, registration/_registrationSearch.scss */
 .registraition-search-results-container .edit-col a {
   background: url("edit.png") top left no-repeat;
   width: 30px;
@@ -8967,7 +8967,7 @@ category: Components - Alerts
   margin-right: 2px;
   cursor: pointer;
 }
-/* line 121, registration/_registrationSearch.scss */
+/* line 122, registration/_registrationSearch.scss */
 .registraition-search-results-container .edit-col.visible-small-screen {
   position: absolute;
   top: auto;
@@ -8975,10 +8975,26 @@ category: Components - Alerts
   width: 104px;
   border-bottom: 0;
 }
-/* line 127, registration/_registrationSearch.scss */
+/* line 128, registration/_registrationSearch.scss */
 .registraition-search-results-container .edit-col.visible-small-screen .split-button ul li button {
   margin-right: 0;
   width: 98%;
+}
+
+/* line 135, registration/_registrationSearch.scss */
+table th:hover {
+  cursor: pointer;
+  cursor: hand;
+}
+
+/* line 140, registration/_registrationSearch.scss */
+.arrow-down:after {
+  content: '\25b2';
+}
+
+/* line 144, registration/_registrationSearch.scss */
+.arrow-up:after {
+  content: '\25bc';
 }
 
 /* line 1, registration/_patientPhoto.scss */
