@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .controller('TreatmentController', ['$scope', 'clinicalAppConfigService', 'treatmentConfig', '$stateParams',
-        function ($scope, clinicalAppConfigService, treatmentConfig, $stateParams) {
+    .controller('TreatmentController', ['$scope', '$rootScope', 'clinicalAppConfigService', 'treatmentConfig', '$stateParams',
+        function ($scope, $rootScope, clinicalAppConfigService, treatmentConfig, $stateParams) {
             var init = function () {
                 var drugOrderHistoryConfig = treatmentConfig.drugOrderHistoryConfig || {};
                 $scope.drugOrderHistoryView = drugOrderHistoryConfig.view || 'default';
@@ -17,6 +17,9 @@ angular.module('bahmni.clinical')
                 };
 
                 $scope.$watch('consultation.newlyAddedTabTreatments', initializeTreatments);
+                $scope.savingObservation = function () {
+                    $rootScope.$emit("CallSaveParentMethod", {});
+                };
 
                 $scope.enrollment = $stateParams.enrollment;
                 $scope.treatmentConfig = treatmentConfig;

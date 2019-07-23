@@ -92,7 +92,7 @@ angular.module('bahmni.common.displaycontrol.observation')
                                 var parseDate = parseInt(bahmniObs.key);
                                 var convertTodate = new Date(parseDate);
                                 if ($rootScope.dateOpened) {
-                                    if (convertTodate.getDate() == $rootScope.dateOpened.getDate()) {
+                                    if (convertTodate.getDate() == $rootScope.dateOpened.getDate() && convertTodate.getMonth() == $rootScope.dateOpened.getMonth()) {
                                         $scope.bahmniObservations[0].isOpen = true;
                                     }
                                 }

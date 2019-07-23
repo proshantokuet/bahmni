@@ -14,38 +14,38 @@
             <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;"accesskey="r" href="../registration/index.html#/patient/new" ng-click="onHomeNavigate($event)">
                 <i class="fa fa-user" style="line-height:1; font-size: 15px; margin-right:5px; font-weight: 700;"></i>Create New Patient</a>
 
-           <!-- <bm-back-links></bm-back-links>-->
+            <!--<bm-back-links></bm-back-links>-->
 
             <!--<recent-patients ng-if="enablePatientSearch()"></recent-patients>-->
-            <!--<a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(consultation.uuid)}}"
-               title="{{adtNavigationConfig.title}}">
-                <i class="fa fa-bed fa-white"></i>
-            </a>-->
+            <!--<a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(consultation.uuid)}}"-->
+               <!--title="{{adtNavigationConfig.title}}">-->
+                <!--<i class="fa fa-bed fa-white"></i>-->
+            <!--</a>-->
 
 
 
-            <!--<a class="back-btn-link" id="dashboard-link" accesskey="d" ng-click="gotoPatientDashboard()" title="Back to {{patient.name}} Dashboard">
-                <img class="patient-image" ng-src="{{::patient.image}}" fallback-src="../images/blank-user.gif">
-              <span class="patient-info">
-                <span class="patient-name" >{{patient.name}} </span>
-                <span class="patient-id">{{patient.identifier}}</span>
-              </span>
-            </a>
+            <!--<a class="back-btn-link" id="dashboard-link" accesskey="d" ng-click="gotoPatientDashboard()" title="Back to {{patient.name}} Dashboard">-->
+                <!--<img class="patient-image" ng-src="{{::patient.image}}" fallback-src="../images/blank-user.gif">-->
+              <!--<span class="patient-info">-->
+                <!--<span class="patient-name" >{{patient.name}} </span>-->
+                <!--<span class="patient-id">{{patient.identifier}}</span>-->
+              <!--</span>-->
+            <!--</a>-->
 
 
             <ul class="header-tabs consultation-tabs">
                 <li class="tab-item" ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
-                    <a ng-click="showBoard($index)">{{ board | titleTranslate }}</a>
+                    <a ng-if="board.label=='Medications'|| board.label=='Orders' || board.label=='Observations'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Provide Service</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
                 </li>
             </ul>
 
             <button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel, 'hide-ipad': availableBoards }">
                 <i class="fa fa-bars fa-white fa-large"></i>
             </button>
-            <button class="confirm save-consultation" ng-show="availableBoards" single-click="save()" accesskey="{{'SAVE_ACCESS_KEY' | translate}}" ng-class="{'hideSaveText':availableBoards.length > 6}">
-                <i class="fa fa-save"></i>
-                <span class="text" ng-bind-html="'CLINICAL_SAVE_TRANSLATION_KEY'| translate"></span>
-            </button>-->
+            <!--<button class="confirm save-consultation" ng-show="availableBoards" single-click="save()" accesskey="{{'SAVE_ACCESS_KEY' | translate}}" ng-class="{'hideSaveText':availableBoards.length > 6}">-->
+                <!--<i class="fa fa-save"></i>-->
+                <!--<span class="text" ng-bind-html="'CLINICAL_SAVE_TRANSLATION_KEY'| translate"></span>-->
+            <!--</button>-->
         </div>
     </div>
 </div>
@@ -64,6 +64,32 @@
 
             <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html#/patient/new" ng-click="onHomeNavigate($event)">
                 <i class="fa fa-user" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i> Create New Patient</a>
+
+            <button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel, 'hide-ipad': availableBoards }">
+                <i class="fa fa-bars fa-white fa-large"></i>
+            </button>
+
+            <!--<div class="fr">-->
+                <!--<button class="btn-user-info fr">-->
+                    <!--<i class="fa fa-user-md fa-white small"></i>-->
+                    <!--<i class="fa fa-caret-down fa-white mini"></i>-->
+                <!--</button>-->
+                <!--<ul>-->
+                    <!--<li>-->
+                        <!--<a><i class="fa fa-user fa-white small"></i><span>{{:: currentUser.username}}</span></a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<i class="fa fa-map-marker fa-white small"></i><span>{{:: currentUser.currentLocation | translate}}</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a log-out><i class="fa fa-power-off fa-white small"></i><span-->
+                                <!--class="nav-link">Logout</span></a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel}">-->
+                    <!--<i class="fa fa-bars fa-white fa-large"></i>-->
+                <!--</button>-->
 
            <!-- <bm-back-links></bm-back-links>-->
             <!--<recent-patients></recent-patients>-->

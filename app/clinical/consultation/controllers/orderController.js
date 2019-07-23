@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .controller('OrderController', ['$scope', 'allOrderables', 'ngDialog', 'retrospectiveEntryService', 'appService', '$translate',
-        function ($scope, allOrderables, ngDialog, retrospectiveEntryService, appService, $translate) {
+    .controller('OrderController', ['$scope', '$rootScope', 'allOrderables', 'ngDialog', 'retrospectiveEntryService', 'appService', '$translate',
+        function ($scope, $rootScope, allOrderables, ngDialog, retrospectiveEntryService, appService, $translate) {
             $scope.consultation.orders = $scope.consultation.orders || [];
             $scope.consultation.childOrders = $scope.consultation.childOrders || [];
             $scope.allOrdersTemplates = allOrderables;
@@ -111,6 +111,9 @@ angular.module('bahmni.clinical')
                     initTestConceptToParentsMapping();
                     showFirstLeftCategoryByDefault();
                 }
+            };
+            $scope.savingObservation = function () {
+                $rootScope.$emit("CallSaveParentMethod", {});
             };
 
             $scope.updateSelectedOrdersForActiveTab = function () {

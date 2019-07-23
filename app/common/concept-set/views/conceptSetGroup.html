@@ -848,19 +848,17 @@
                 <ul>
                     <!--ng-if="conceptSet.isAvailable(context)  && (conceptSet.isAdded || conceptSet.alwaysShow)"-->
                     <li>
-                        <h4><span class="concept-set-name">Vitals</h4>
-                                <ul style="padding-left: 5px">
-                                    <li>1. Date : {{vitalsObject.observationDateTime | date : "MMM d, y h:mm:ss a"}}</li><br>
-                                    <li>2. Height : 5 feet 9 inch</li><br>
-                                    <li>3. Weight : 70kg</li><br>
-                                    <li>4. Blood Group : B+</li><br>
-                                    <li>5. Blood Pressure : 80(Normal)</li><br>
-                                    <li>6. Known Allergies : No</li><br>
-                                    <li>7. Previous Surgeries : No</li><br>
-                                    <li>8. Chronic Conditions/illness : Fever</li><br>
-                                    <li>9. Current Regular Medications : No</li><br>
-                                    <li>10.LMP Cycles:No</li><br>
-                                    <li>11. Pregnency Related Information:</li><br>
+                        <h4><span class="concept-set-name"><u>Vitals Information</u></h4>
+                                <ul>
+                                    <li style="padding-left: 5px; font-size: initial" ng-repeat="vital in vitalsObject.groupMembers track by $index">
+                                        <br><span>{{$index+1}}. {{vital.conceptNameToDisplay}}</span> : <span ng-if="vital.groupMembers < 1">{{vital.valueAsString}}</span>
+                                        <span>
+                                            <ul style="padding-left: 15px" ng-repeat="groupmembers in vital.groupMembers">
+                                                <span>{{groupmembers.conceptNameToDisplay}}</span> : <span>{{groupmembers.valueAsString}}</span>
+                                            </ul>
+                                        </span>
+                                    </li>
+                                    <br>
                             </ul>
                             </span>
                         <button style="margin:auto;display: block" type="button" class="btn btn-info"
@@ -897,14 +895,13 @@
     </div>
 
 </div>
-<section>
-   <button style="margin:3px 18px 3px 722px;display: block;width: 9%"  type="button" class="btn btn-success" ng-click="savingObservation()">Submit</button>
-</section>
+<div class="concept-set-panel clearfix" ng-if="observationTab">
+<div style="width:370px; height: 8px; margin:0 auto;">
+   <button class="confirm save-consultation" style="padding: 5px 19px 6px;"  type="button" class="btn btn-success" ng-click="savingObservation()">Save</button>
+</div>
 
-<section class="concept-set-panel-right" style="width: 78%;float:right;">
-    <div>
-        <h4 style="text-align: left;padding: 10px;background-color: #dedede;">Visit</h4>
-    </div>
+<section class="concept-set-panel-right">
+        <h4 style="color: white;padding: 10px;background-color: #52797a;">Visit History</h4>
     <p ng-show ="emptyVisitsData">No Visits Available</p>
     <table class="visits dashboard-table" id="visitDisplayTable" ng-if="visits.length > 0">
             <tbody>
@@ -940,6 +937,7 @@
         </div>
     </div>
 </section>
+</div>
 <style>
     .displayNone {
         display: none

@@ -238,6 +238,9 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             var getUrl = function (board) {
                 var urlPrefix = urlHelper.getPatientUrl();
                 var url = "/" + $stateParams.configName + (board.url ? urlPrefix + "/" + board.url : urlPrefix);
+                if (board.label == "Observations") {
+                    var url = "/" + $stateParams.configName + (board.url ? urlPrefix + "/" + board.url + "/" : urlPrefix);
+                }
                 var queryParams = [];
                 if ($state.params.encounterUuid) {
                     queryParams.push("encounterUuid=" + $state.params.encounterUuid);
