@@ -849,7 +849,7 @@
                 <ul>
                     <!--ng-if="conceptSet.isAvailable(context)  && (conceptSet.isAdded || conceptSet.alwaysShow)"-->
                     <li>
-                        <h4><span class="concept-set-name"><u>Vitals Information</u></h4>
+                        <h4><span class="concept-set-name"><u>Vitals Information :</u></h4>
                                 <ul>
                                     <li style="padding-left: 5px; font-size: initial" ng-repeat="vital in vitalsObject.groupMembers track by $index">
                                         <br><span>{{$index+1}}. {{vital.conceptNameToDisplay}}</span> : <span ng-if="vital.groupMembers < 1">{{vital.valueAsString}}</span>
@@ -862,6 +862,17 @@
                                     <br>
                             </ul>
                             </span>
+                        <!-- for Editing VItals Information -->
+                        <!--<button style="margin:auto;display: block" type="button" class="fl"-->
+                               <!--ng-dialog="dashboard/views/dashboardSections/editObservationForm.html"-->
+                              <!--ng-dialog-class="ngdialog-theme-default ng-dialog-all-details-page ng-dialog-edit"-->
+                              <!--ng-dialog-data="{{vitalsModalData}}"-->
+                              <!--ng-dialog-scope="this"-->
+                              <!--ng-dialog-controller="EditObservationFormController"-->
+                              <!--ng-dialog-pre-close-callback="directivePreCloseCallback">-->
+                            <!--Edit-->
+                            <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
+                        <!--</button>-->
                         <button style="margin:auto;display: block" type="button" class="btn btn-info"
                                 ng-dialog="dashboard/views/dashboardSections/allVisits.html"
                                 ng-dialog-class="ngdialog-theme-default ng-dialog-all-details-page"
@@ -904,17 +915,22 @@
 <section class="concept-set-panel-right">
         <h4 style="color: white;padding: 10px;background-color: #52797a;">Visit History</h4>
     <p ng-show ="emptyVisitsData">No Visits Available</p>
+     <div class="input-group col-md-2 col-sm-3" style="float: right">
+        <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Search Date" id="search" name="search"><div class="input-group-addon"><span class="fa fa-search"></span></div>
+    </div>
+
     <table class="visits dashboard-table" id="visitDisplayTable" ng-if="visits.length > 0">
             <tbody>
             <tr>
                 <th>Date</th>
                 <th>Visit Type</th>
+                <th></th>
 
             </tr>
-            <tr id="eachVisit" ng-repeat="visit in ::visits | limitTo: params.maximumNoOfVisits">
-                <td class="name" width="50%">
-                    <a class="visit" ng-click="toogleObservationDetailsViewer('specific',visit)"><span>{{::visit.startDatetime | bahmniDate}}</span>
-                        <span ng-if="::!visit.isActive()">- {{::visit.stopDatetime | bahmniDate }}</span>
+            <tr id="eachVisit" ng-repeat="visit in visits | filter : searchKeyword">
+                <td class="name" width="50%"><span ng-hide="true">{{visit.startDatetime}}</span>
+                    <a class="visit" ng-click="toogleObservationDetailsViewer('specific',visit)"><span>{{::visit.startDatetime | date : 'dd/MM/yyyy'}}</span>
+                        <span ng-if="::!visit.isActive()">- {{::visit.stopDatetime | date : 'dd/MM/yyyy' }}</span>
                         <i class="fa fa-star current-visit-icon" id="currentVisitIcon" ng-if="::visit.isActive()"
                            title="Current Visit"></i>
                     </a>
@@ -977,6 +993,16 @@
     }
 </style>
 <script>
+    setTimeout(function () {
+        $(document).ready(function () {
+            $("#search").datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeYear: true,
+                yearRange: "1940:" + new Date,
+                maxDate: new Date
+            }).val();
+        })
+    }, 500);
     function printMoneyReceipt() {
         var divToPrint = document.getElementById("moneyReceipt");
         mywindow = window.open("");
@@ -997,20 +1023,23 @@
         }
     }
     $(function () {
+        setTimeout(function () {
+            $(document).ready(function () {
+                $("#txtDate").datepicker({dateFormat: 'dd/mm/yy', changeYear: true, maxDate: new Date}).val();
+                var dtToday = new Date();
 
-        $("#txtDate").datepicker({dateFormat: 'dd/mm/yy', changeYear: true, maxDate: new Date}).val();
-        var dtToday = new Date();
+                var month = dtToday.getMonth() + 1;
+                var day = dtToday.getDate();
+                var year = dtToday.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
 
-        var month = dtToday.getMonth() + 1;
-        var day = dtToday.getDate();
-        var year = dtToday.getFullYear();
-        if (month < 10)
-            month = '0' + month.toString();
-        if (day < 10)
-            day = '0' + day.toString();
+                var maxDate = year + '-' + month + '-' + day;
 
-        var maxDate = year + '-' + month + '-' + day;
-
-        $('#txtDate').attr('max', maxDate);
+                $('#txtDate').attr('max', maxDate);
+            })
+        }, 500);
     });
 </script>

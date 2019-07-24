@@ -33,6 +33,14 @@ angular.module('bahmni.common.conceptSet')
                     });
                 }
             };
+            // for Editing VItals Information see fromsTable.html
+            // $scope.getEditObsData = function (observation) {
+            //     return {
+            //         observation: observation,
+            //         conceptSetName: observation.concept.shortName,
+            //         conceptDisplayName: observation.conceptNameToDisplay
+            //     };
+            // };
 
             $scope.seeObservationDetails = function (listOfVisit) {
                 $scope.visitDetails = $filter('orderBy')(listOfVisit, 'startDatetime', true);
@@ -459,6 +467,8 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.$on('vitalsbroadcast', function (event, args) {
                 $scope.vitalsObject = $rootScope.vitalsArrayList[0];
+                // for editing vitals form
+                // $scope.vitalsModalData = $scope.getEditObsData($scope.vitalsObject);
                 $scope.vitalsObject.observationDateTime = new Date($scope.vitalsObject.observationDateTime);
             });
 

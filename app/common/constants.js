@@ -262,7 +262,22 @@ Bahmni.Common = Bahmni.Common || {};
         localeLangs: "/bahmni_config/openmrs/apps/home/locale_languages.json",
         privilegeRequiredErrorMessage: "PRIVILEGE_REQUIRED",
         patientFormsUrl: BAHMNI_CORE + "/patient/{patientUuid}/forms",
-        defaultPossibleRelativeSearchLimit: 10
+        defaultPossibleRelativeSearchLimit: 10,
+        zeroToFiveYearsInDay: 1825,
+        zeroToFiveYearsFormName: 'CHILD EPI',
+        male: 'M',
+        female: 'F',
+        moreThanFiveYearFormName: 'EPI VACCINATION',
+        moreThanTwelveYears: 4380,
+        moreThanTwelveYearFormName: 'Family Planning History',
+        antenatalFormName: 'ANC',
+        postnatalFormDeliveryDayCondition: 42,
+        postnatalFormName: 'PNC',
+        lessThanFortyTwoDays: 42,
+        lessThanFortyTwoDaysFormName: "New Born Baby's Test",
+        lessThanFiveYearsChildrenFormName: 'IMCI',
+        generalMoreThanTwelveYearsFormName: 'RTI',
+        generalDiseasesFormName: 'LCC'
     };
 })();
 
