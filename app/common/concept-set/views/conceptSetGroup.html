@@ -915,9 +915,10 @@
 <section class="concept-set-panel-right">
         <h4 style="color: white;padding: 10px;background-color: #52797a;">Visit History</h4>
     <p ng-show ="emptyVisitsData">No Visits Available</p>
-     <div class="input-group col-md-2 col-sm-3" style="float: right">
-        <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Search Date" id="search" name="search"><div class="input-group-addon"><span class="fa fa-search"></span></div>
-    </div>
+    <!--search functionality-->
+     <!--<div class="input-group col-md-2 col-sm-3" style="float: right">-->
+        <!--<input type="text" class="form-control" ng-model="searchKeyword" placeholder="Search Date" id="search" name="search"><div class="input-group-addon"><span class="fa fa-search"></span></div>-->
+    <!--</div>-->
 
     <table class="visits dashboard-table" id="visitDisplayTable" ng-if="visits.length > 0">
             <tbody>
@@ -927,8 +928,8 @@
                 <th></th>
 
             </tr>
-            <tr id="eachVisit" ng-repeat="visit in visits | filter : searchKeyword">
-                <td class="name" width="50%"><span ng-hide="true">{{visit.startDatetime}}</span>
+            <tr id="eachVisit" ng-repeat="visit in ::visits">
+                <td class="name" width="50%">
                     <a class="visit" ng-click="toogleObservationDetailsViewer('specific',visit)"><span>{{::visit.startDatetime | date : 'dd/MM/yyyy'}}</span>
                         <span ng-if="::!visit.isActive()">- {{::visit.stopDatetime | date : 'dd/MM/yyyy' }}</span>
                         <i class="fa fa-star current-visit-icon" id="currentVisitIcon" ng-if="::visit.isActive()"
@@ -993,16 +994,16 @@
     }
 </style>
 <script>
-    setTimeout(function () {
-        $(document).ready(function () {
-            $("#search").datepicker({
-                dateFormat: 'yy-mm-dd',
-                changeYear: true,
-                yearRange: "1940:" + new Date,
-                maxDate: new Date
-            }).val();
-        })
-    }, 500);
+//    setTimeout(function () {
+//        $(document).ready(function () {
+//            $("#search").datepicker({
+//                dateFormat: 'yy-mm-dd',
+//                changeYear: true,
+//                yearRange: "1940:" + new Date,
+//                maxDate: new Date
+//            }).val();
+//        })
+//    }, 500);
     function printMoneyReceipt() {
         var divToPrint = document.getElementById("moneyReceipt");
         mywindow = window.open("");

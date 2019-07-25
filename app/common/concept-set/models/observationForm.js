@@ -51,41 +51,43 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
     };
 
     self.formValidation = function (context, conceptSet) {
-        var dob = new Date(context.patient.birthdate);
         var today = new Date();
+
+        // for age calculation
+        var dob = new Date(context.patient.birthdate);
         var timeDiff = Math.abs(today.getTime() - dob.getTime());
         var age = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
+
         var gender = context.patient.gender;
 
+        // for LMP date calculation
+        var lmpDate = new Date(context.patient.LMP);
+        var timeDiffForLmp = Math.abs(today.getTime() - lmpDate.getTime());
+        var LmpDayDifference = Math.ceil(timeDiffForLmp / (1000 * 3600 * 24)) - 1;
+
+        // for form name extraction
         var formName = conceptSet.formName;
         var findSpecialIndex = formName.indexOf("_");
         if (findSpecialIndex != -1) {
             var splitFormName = formName.split("_");
             formName = splitFormName[0];
         }
+
+        // for delivery day calculation
         var deliveryDayDifference = "";
         if (typeof context.patient.delivery_date !== "undefined") {
             var deliveryDate = new Date(context.patient.delivery_date.value);
             var deliveryDateDifference = Math.abs(today.getTime() - deliveryDate.getTime());
             deliveryDayDifference = Math.ceil(deliveryDateDifference / (1000 * 3600 * 24)) - 1;
         }
+
+        // Checking marital status
         var maritalStatus = "";
         if (typeof context.patient.MaritalStatus !== "undefined") {
             maritalStatus = context.patient.MaritalStatus.value.uuid;
         }
-        // for 44
-        var married = 'ab15e564-3109-4993-9631-5f185933f0fd';
-        var antenatal = '4ff3c186-047d-42f3-aa6f-d79c969834ec';
-        var postnatal = '898bd550-eb0f-4cc1-92c4-1e0c73453484';
 
-        /* var married = 'ea6ad667-d1d8-409d-abbb-0ddbcb46bee1';
-        var antenatal = '4ff3c186-047d-42f3-aa6f-d79c969834ec';
-        var postnatal = '898bd550-eb0f-4cc1-92c4-1e0c73453484'; */
-        /* console.log(deliveryDayDifference);
-        console.log(age);
-        console.log(conceptSet); */
-        // console.log(context.patient);
-        // console.log(conceptSet);
+        // checking pregnancy status
         var pregnancyStatus = "";
 
         if (typeof context.patient.PregnancyStatus !== "undefined") {
@@ -111,13 +113,6 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (pregnancyStatus != antenatal && gender == Bahmni.Common.Constants.female && maritalStatus == married && age <= Bahmni.Common.Constants.fiftyYearInDay && formName == Bahmni.Common.Constants.familyPlaningFormName) {
             return true;
-        } else if (age >= Bahmni.Common.Constants.TwoMonthInDay && age <= Bahmni.Common.Constants.twoMonthToFiveYearInDay && formName == Bahmni.Common.Constants.samIdentifiedFormName) {
-            if (weightForAge == "তীব্র") {
-                return true;
-            }
-            else if (weightForAge == "hideSamStatus") {
-                return false;
-            }
         } else if (age >= Bahmni.Common.Constants.TwoMonthInDay && age <= Bahmni.Common.Constants.twoMonthToFiveYearInDay && formName == Bahmni.Common.Constants.growthMonitoringFormName) {
             return true;
         }
