@@ -27,8 +27,10 @@ angular.module('bahmni.common.patient')
                 withCredentials: true
             });
         };
-        this.getServices = function () {
-            return $http.get(Bahmni.Common.Constants.serviceUrl + "/" + $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id, {
+        this.getServices = function (patient) {
+            var days = Math.round((new Date() - new Date(patient.birthdate)) / (1000 * 60 * 60 * 24));
+            console.log(days);
+            return $http.get(Bahmni.Common.Constants.serviceUrl + "/" + $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id + "/" + days + "/" + patient.gender, {
                 method: "GET",
                 withCredentials: true
             });
