@@ -114,10 +114,13 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo['cspId'] = "";
                 }
                 $scope.clinicType = servicePoint;
+                $scope.collectors = $scope.dataCollectorList;
                 if (servicePoint == "Satellite") {
                     $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
                         return dataCollector.designation == "Paramedic(Satellite)" || dataCollector.designation == "Paramedic(Static)";
                     });
+                } else {
+                    $scope.dataCollectorList = $scope.dataCollectors;
                 }
             };
             $scope.htmlToPlaintext = function (text) {
@@ -541,6 +544,7 @@ angular.module('bahmni.common.conceptSet')
             var dataCollectors = function (clinicCode) {
                 return patientService.getDataCollectors(clinicCode).then(function (response) {
                     $scope.dataCollectorList = response.data;
+                    $scope.dataCollectors = response.data;
                     angular.forEach($scope.dataCollectorList, function (value, key) {
                         if (value.designation == 'Counselor') {
                             $scope.patientInfo.dataCollector = value;
