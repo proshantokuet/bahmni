@@ -291,7 +291,11 @@ angular.module('bahmni.registration')
                     personSearchResultsConfig: $scope.personSearchResultsConfig.fields
                 });
 
-                var searchPromise = patientService.searchByIdentifier(patientIdentifier)
+                var searchPromise = patientService.searchByIdentifier(undefined, patientIdentifier, $scope.addressSearchConfig.field,
+                    undefined, undefined, undefined, $scope.customAttributesSearchConfig.fields,
+                    $scope.programAttributesSearchConfig.field, $scope.searchParameters.programAttributeFieldValue,
+                    $scope.addressSearchResultsConfig.fields, $scope.personSearchResultsConfig.fields,
+                    $scope.isExtraIdentifierConfigured())
                     .then(function (data) {
                         if (data.data.pageOfResults.length > 0) {
                             if (data.data.pageOfResults.length === 1) {
@@ -311,10 +315,10 @@ angular.module('bahmni.registration')
                             $scope.patientIdentifier = {'patientIdentifier': patientIdentifier};
                             $scope.noResultsMessage = 'REGISTRATION_LABEL_COULD_NOT_FIND_PATIENT';
                         }
-                        // mapExtraIdentifiers(data);
-                        // mapCustomAttributesSearchResults(data);
-                        // mapAddressAttributesSearchResults(data);
-                        // mapProgramAttributesSearchResults(data);
+                        mapExtraIdentifiers(data.data);
+                        mapCustomAttributesSearchResults(data.data);
+                        mapAddressAttributesSearchResults(data.data);
+                        mapProgramAttributesSearchResults(data.data);
                     });
                 spinner.forPromise(searchPromise);
             };

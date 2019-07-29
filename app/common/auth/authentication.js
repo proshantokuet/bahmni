@@ -108,32 +108,19 @@ angular.module('authentication')
                 if (data.authenticated) {
                     $bahmniCookieStore.put(Bahmni.Common.Constants.currentUser, username, {path: '/', expires: 7});
                     userService.getUser(username).then(function (data) {
-                        userService.getTeamMember(data.results[0].person.uuid).then(function (data) {
-                            if (data.locations.length > 0) {
-                                var locationInfo = data.locations[0];
-                                console.log("Location:");
-                                console.log(locationInfo);
-                                if (locationInfo != undefined) {
-                                    userService.getClinicInformation(username).then(function (data) {
-                                        if (!data) {
-                                            self.destroy();
-                                            deferrable.reject("YOU_HAVE_NOT_BEEN_SETUP_PROVIDER");
-                                        }
-                                        else {
-                                            $bahmniCookieStore.put(Bahmni.Common.Constants.clinicCookieName, data, {
-                                                path: '/',
-                                                expires: 7
-                                            });
-                                            $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {
-                                                name: locationInfo.display,
-                                                uuid: locationInfo.uuid
-                                            }, {path: '/', expires: 7});
-                                            // $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {name: "Ganiyari", uuid: "c1e42932-3f10-11e4-adec-0800271c1b75"}, {path: '/', expires: 7});
-                                        }
-                                    });
-                                }
-                            }
-                            else {
+                        userService.getClinicInformation(username).then(function (data) {
+                            var clinicInformation = data;
+                            console.log(data);
+                            if (clinicInformation.status == "success") {
+                                $bahmniCookieStore.put(Bahmni.Common.Constants.clinicCookieName, clinicInformation, {
+                                    path: '/',
+                                    expires: 7
+                                });
+                                $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {
+                                    name: clinicInformation.locationName,
+                                    uuid: clinicInformation.locationUuid
+                                }, {path: '/', expires: 7});
+                            } else {
                                 self.destroy();
                                 deferrable.reject("YOU_HAVE_NOT_BEEN_SETUP_PROVIDER");
                             }

@@ -81,6 +81,7 @@ angular.module('bahmni.common.conceptSet')
                 id: 34,
                 price: 340
             }];
+            console.log($scope.patient);
             var param1 = $location.search();
             $scope.money = "";
             if ($stateParams.previousUrl != null || $stateParams.previousUrl != undefined) {
@@ -161,11 +162,14 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo['cspId'] = "";
                 }
                 $scope.clinicType = servicePoint;
-                /* if (servicePoint == "Satellite") {
-                 $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
-                 return dataCollector.designation == "CSP" || dataCollector.designation == "SE";
-                 });
-                 } */
+                $scope.collectors = $scope.dataCollectorList;
+                if (servicePoint == "Satellite") {
+                    $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
+                        return dataCollector.designation == "Paramedic(Satellite)" || dataCollector.designation == "Paramedic(Static)";
+                    });
+                } else {
+                    $scope.dataCollectorList = $scope.dataCollectors;
+                }
             };
             $scope.htmlToPlaintext = function (text) {
                 var yearsSplit = text.replace('Years', 'Y');
@@ -567,8 +571,9 @@ angular.module('bahmni.common.conceptSet')
             $scope.isFormTemplate = function (data) {
                 return data.formUuid;
             };
+
             var services = function () {
-                return patientService.getServices().then(function (response) {
+                return patientService.getServices($scope.patient).then(function (response) {
                     var index = 0;
                     $scope.serviceList = response.data;
                     if ($scope.moneyReceiptObject) {
@@ -597,13 +602,12 @@ angular.module('bahmni.common.conceptSet')
             var dataCollectors = function (clinicCode) {
                 return patientService.getDataCollectors(clinicCode).then(function (response) {
                     $scope.dataCollectorList = response.data;
-                    if ($scope.moneyReceiptObject) {
-                        angular.forEach($scope.dataCollectorList, function (value, key) {
-                            if (value.username == $scope.patientInfo.dataCollector) {
-                                $scope.patientInfo.dataCollector = value;
-                            }
-                        });
-                    }
+                    $scope.dataCollectors = response.data;
+                    angular.forEach($scope.dataCollectorList, function (value, key) {
+                        if (value.designation == 'Counselor') {
+                            $scope.patientInfo.dataCollector = value;
+                        }
+                    });
                 });
             };
             var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)]);
