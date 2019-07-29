@@ -201,7 +201,7 @@
         padding: 20px 0 0 10px;
         border-radius: 5px;
         ul li a {
-          padding: 20px 20px !important;
+          padding: 8px 20px !important;
           &.noteditable {
             cursor: default;
             background: #F2FAFF;
@@ -224,7 +224,7 @@
         text-overflow: ellipsis;
         width: 260px;
         white-space: nowrap;
-        height: 14px;
+        height: 33px;
         @media (max-width: 1024px) {
           width: 185px;
           margin-bottom: 5px;
