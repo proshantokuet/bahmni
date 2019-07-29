@@ -170,7 +170,9 @@ angular.module('bahmni.common.conceptSet')
             $scope.onChanged = function (item, index) {
                 var thisCode = item.code;
                 var service = $scope.services.filter(function (service) {
-                    return service.item.code == thisCode;
+                    if (service.item) {
+                        return service.item.code == thisCode;
+                    }
                 });
                 if (service.length == 1) {
                     $scope.services[index].unitCost = item.unitCost;
@@ -196,9 +198,10 @@ angular.module('bahmni.common.conceptSet')
             $scope.onChangedForCode = function (item, index) {
                 var thisCode = item.code;
                 var service = $scope.services.filter(function (service) {
-                    return service.code.code == thisCode;
+                    if (service.code) {
+                        return service.code.code == thisCode;
+                    }
                 });
-
                 if (service.length == 1) {
                     $scope.services[index].unitCost = item.unitCost;
                     $scope.services[index].quantity = 1;
