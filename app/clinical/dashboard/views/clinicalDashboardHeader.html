@@ -65,6 +65,10 @@
             <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html#/patient/new" ng-click="onHomeNavigate($event)">
                 <i class="fa fa-user" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i> Create New Patient</a>
 
+                  <button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel, 'hide-ipad': availableBoards }">
+                <i class="fa fa-bars fa-white fa-large"></i>
+            </button>
+
            <!-- <bm-back-links></bm-back-links>-->
             <!--<recent-patients></recent-patients>-->
             <!--<a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(visitHistory.activeVisit.uuid)}}"
