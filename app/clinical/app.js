@@ -11,7 +11,7 @@ angular.module('consultation', ['ui.router', 'ui.bootstrap', 'bahmni.clinical', 
     'bahmni.common.displaycontrol.patientprofile', 'bahmni.common.displaycontrol.diagnosis', 'bahmni.common.displaycontrol.conditionsList', 'RecursionHelper', 'ngSanitize',
     'bahmni.common.orders', 'bahmni.common.displaycontrol.orders', 'bahmni.common.displaycontrol.prescription',
     'bahmni.common.displaycontrol.navigationlinks', 'bahmni.common.displaycontrol.programs',
-    'bahmni.common.displaycontrol.pacsOrders', 'bahmni.common.uicontrols', 'bahmni.common.uicontrols.programmanagment', 'pascalprecht.translate',
+    'bahmni.common.displaycontrol.pacsOrders', 'bahmni.common.uicontrols', 'bahmni.common.uicontrols.programmanagment', 'bahmni.common.uicontrols.referralmanagement', 'pascalprecht.translate',
     'ngCookies', 'monospaced.elastic', 'bahmni.common.bacteriologyresults', 'bahmni.common.displaycontrol.bacteriologyresults',
     'bahmni.common.displaycontrol.obsVsObsFlowSheet', 'bahmni.common.displaycontrol.chronicTreatmentChart',
     'bahmni.common.displaycontrol.forms', 'bahmni.common.displaycontrol.drugOrderDetails',
@@ -454,6 +454,19 @@ angular.module('consultation')
                         return visitHistoryInitialization($stateParams.patientUuid);
                     }
                 }
+            })
+            .state('patient.patientReferral', {
+                url: '/referral',
+                views: {
+                     'header': {
+                        templateUrl: '../common/ui-helper/header.html',
+                        controller: 'PatientListHeaderController'
+                    },
+                    'content': {
+                        templateUrl: '../common/uicontrols/referralManagement/views/referralManage.html',
+                        controller: 'ManageReferralController'
+                    }
+                }
             });
 
             $httpProvider.defaults.headers.common['Disable-WWW-Authenticate'] = true;
@@ -465,6 +478,7 @@ angular.module('consultation')
                 FastClick.attach(document.body);
                 stateChangeSpinner.activate();
                 var cleanUpStateChangeSuccess = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
+                    debugger;
                     auditLogService.log(toParams.patientUuid, Bahmni.Clinical.StateNameEvenTypeMap[toState.name], undefined, "MODULE_LABEL_CLINICAL_KEY");
                     $window.scrollTo(0, 0);
                 });
