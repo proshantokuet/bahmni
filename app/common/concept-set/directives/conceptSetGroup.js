@@ -352,7 +352,7 @@ angular.module('bahmni.common.conceptSet')
             $scope.searchButtonText = "Submit";
             $scope.test = "true";
             $scope.submitMoneyReceiptData = function (patientInfo, services, patient, savingStatus) {
-                if ($window.confirm("Do you really want to submit this money receipt?")) {
+                if ($window.confirm("Do you really want to proceed?")) {
                     $scope.Message = "You clicked YES.";
                     $scope.enable = "false";
                     $scope.test = "true";
