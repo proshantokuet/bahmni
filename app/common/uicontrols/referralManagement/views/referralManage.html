@@ -1,0 +1,193 @@
+<patient-context patient="patient"></patient-context>
+
+<!--Inward Referral End-->
+<div class="concept-set-container">
+    <div class="concept-set-container">
+        <section class="block dashboard-section">
+            <div class="select-program-container form">
+                    <a href="javascript:void(0)"  class="section-title" toggle="showInWardSection">
+                        <i class="fa fa-minus-square" ng-show="showInWardSection"></i>
+                        <i class="fa fa-plus-square" ng-show="!showInWardSection"></i>
+                        Inward Referral
+                    </a>
+                </div>
+            <div class="row" style="padding: 25px 15px;" ng-show="showInWardSection">
+                <h4 style="color: white;padding: 10px;background-color: #52797a; text-align: center">Inward Referral</h4>
+                <form class="form-horizontal">
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="referralno">1.Referral No:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="number" ng-model="inwardReferral.referralNo" class="form-control" id="referralno" name="referralno">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="inwarddate">2.Date:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" ng-model="inwardReferral.referralDate" class="form-control" id="inwarddate" name="inwarddate">
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="Referred">3.Referred By:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" class="form-control" ng-model="inwardReferral.referredBy" id="Referred" name="Referred">
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="satid">4.Satelite/CSP/Partners's ID</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" ng-model="inwardReferral.identifier" class="form-control" id="satid" name="satid">
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="Notes">5.Notes</label>
+                        <div class="col-md-6 col-sm-6">
+                            <textarea class="form-control" ng-model="inwardReferral.notes" rows="6" id="Notes"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-10">
+                            <button type="submit" ng-click="saveInwardReferral()" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!--Inward Referral End-->
+
+<!--Outward Referral Start-->
+
+<div class="concept-set-container">
+    <div class="concept-set-container">
+        <section class="block dashboard-section">
+            <div class="select-program-container form">
+                    <a href="javascript:void(0)"  class="section-title" toggle="showOutWardSection">
+                        <i class="fa fa-minus-square" ng-show="showOutWardSection"></i>
+                        <i class="fa fa-plus-square" ng-show="!showOutWardSection"></i>
+                        Outward Referral
+                    </a>
+                </div>
+            <div class="row" style="padding: 25px 15px;" ng-show="showOutWardSection">
+                <h4 style="color: white;padding: 10px;background-color: #52797a; text-align: center">Outward Referral</h4>
+                <form class="form-horizontal">
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="referredto">Referred To:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" class="form-control" ng-model="outwardReferral.referredTO" id="referredto" name="referredto" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="pvdiagnosis">Provisional Diagnosis:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" class="form-control" ng-model="outwardReferral.provisonalDiagnosis" id="pvdiagnosis" name="pvdiagnosis" required>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="chiefcomplaints">Chief Complaints:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" class="form-control" id="chiefcomplaints" ng-model="outwardReferral.cheiefComplaints" name="chiefcomplaints" required>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="referralreason">Reason for Referral</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" class="form-control" id="referralreason" ng-model="outwardReferral.referralReason" name="satid" required>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                    </div>
+
+                </form>
+            </div>
+                <form class="form-horizontal">
+                    <div class="form-group col-sm-12" ng-show="showOutWardSection">
+                        <label class="col-sm-3" for="Notes">Client Information:</label>
+                    </div>
+                <div class="row" style="padding: 25px 40px;" ng-show="showOutWardSection">
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="Allergy">Allergy:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" class="form-control" ng-model="outwardReferral.clientInformation.allergy" id="Allergy" name="Allergy" required>
+                        </div>
+                        <label class="col-sm-2 text-right" for="Airway">Airway:</label>
+                        <div class="col-md-3 col-sm-3">
+                             <input type="text" class="form-control" ng-model="outwardReferral.clientInformation.airway" id="Airway" name="Airway">
+                        </div>
+                    </div>
+                     <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="Medication">Medication:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" class="form-control" id="Medication" ng-model="outwardReferral.clientInformation.medication" name="Medication">
+                        </div>
+                        <label class="col-sm-2 text-right" for="breathing">Breathing:</label>
+                        <div class="col-md-3 col-sm-3">
+                            <input type="text" class="form-control" ng-model="outwardReferral.clientInformation.breathing" id="breathing" name="breathing">
+                        </div>
+                    </div>
+                     <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="medicalHistory">Past Medical History:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" class="form-control" id="medicalHistory" ng-model="outwardReferral.clientInformation.pastMedicalHistory" name="medicalHistory">
+                        </div>
+                        <label class="col-sm-2 text-right" for="circulation">Circulation:</label>
+                        <div class="col-md-3 col-sm-3">
+                             <input type="text" class="form-control" ng-model="outwardReferral.clientInformation.circulation" id="circulation" name="circulation">
+                        </div>
+                    </div>
+                     <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="lastMeal">Last Meal:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" class="form-control" ng-model="outwardReferral.clientInformation.lastMeal" id="lastMeal" name="lastMeal">
+                        </div>
+                        <label class="col-sm-2 text-right">Conscious:</label>
+                        <div class="col-md-3 col-sm-3">
+                            <select ng-model="outwardReferral.clientInformation.Conscious" class="form-control">
+                                <option value="male">value 1</option>
+                                <option value="female">value 2</option>
+                            </select>
+                        </div>
+                    </div>
+                     <div class="form-group col-sm-12">
+                        <label class="col-sm-3" for="events">Events:</label>
+                        <div class="col-md-3 col-sm-4">
+                            <input type="text" ng-model="outwardReferral.clientInformation.events" class="form-control" id="Events" name="Events">
+                        </div>
+                        <label class="col-sm-2 text-right" for="exposure">Exposure:</label>
+                        <div class="col-md-3 col-sm-3">
+                            <input type="text" class="form-control" ng-model="outwardReferral.clientInformation.exposure" id="exposure" name="exposure">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 text-center">
+                            <button type="submit" ng-click="saveOutwardReferral()" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>Submit</button>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+        </section>
+    </div>
+</div>
+
+<!--Outward Referral End-->
+
+<script>
+            $(document).ready(function () {
+            $("#inwarddate").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeYear: true,
+                yearRange: "1940:" + new Date,
+                maxDate: new Date
+            }).val();
+        })
+</script>

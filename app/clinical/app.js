@@ -456,18 +456,31 @@ angular.module('consultation')
                 }
             })
             .state('patient.patientReferral', {
-                url: '/referral',
+                abstract: true,
                 views: {
-                     'header': {
-                        templateUrl: '../common/ui-helper/header.html',
-                        controller: 'PatientListHeaderController'
-                    },
                     'content': {
-                        templateUrl: '../common/uicontrols/referralManagement/views/referralManage.html',
-                        controller: 'ManageReferralController'
+                        template: '<div ui-view="patientReferral-header"></div> <div ui-view="patientReferral-content"></div>'
+                    }
+                },
+                resolve: {
+                    retrospectiveIntialization: function (retrospectiveEntryService) {
+                        return retrospectiveEntryService.initializeRetrospectiveEntry();
                     }
                 }
-            });
+            })
+                .state('patient.patientReferral.show', {
+                    url: '/referral',
+                    views: {
+                        'patientReferral-header': {
+                            templateUrl: '../common/ui-helper/header.html',
+                            controller: 'PatientListHeaderController'
+                        },
+                        'patientReferral-content': {
+                            templateUrl: '../common/uicontrols/referralManagement/views/referralManage.html',
+                            controller: 'ManageReferralController'
+                        }
+                    }
+                });
 
             $httpProvider.defaults.headers.common['Disable-WWW-Authenticate'] = true;
 
@@ -478,7 +491,6 @@ angular.module('consultation')
                 FastClick.attach(document.body);
                 stateChangeSpinner.activate();
                 var cleanUpStateChangeSuccess = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
-                    debugger;
                     auditLogService.log(toParams.patientUuid, Bahmni.Clinical.StateNameEvenTypeMap[toState.name], undefined, "MODULE_LABEL_CLINICAL_KEY");
                     $window.scrollTo(0, 0);
                 });

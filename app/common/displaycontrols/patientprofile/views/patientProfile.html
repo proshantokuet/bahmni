@@ -22,10 +22,19 @@
                                  <span>{{ 'TIME_OF_BIRTH_LABEL'|translate }}</span>
                                  <span ng-bind-html="::patient.birthtime | date:'hh:mm a'"></span>
                              </span>
-                            <span style="padding-left:25px"><a ng-click="openEditPatient(patient.uuid)" target="_self" class="title-link">
-                            Edit Patient
+                            <span style="padding-left:25px"><a ng-click="openEditPatient(patient.uuid)" target="_self"
+                                                               class="title-link">
+                                <strong>Edit Patient</strong>
                         </a></span>
-                            <span style="padding-left:25px"><button type="button" ng-click="serviceProviderTabOPen()" style="background-color: #A1D030" class="btn btn-secondary">Provide Service</button></span>
+                            <span style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
+                                                               class="title-link">
+                           <strong> Provide Service</strong>
+                        </a></span>
+                            <span style="padding-left:25px"><a ui-sref="patient.patientReferral.show" target="_self"
+                                                               class="title-link">
+                                <strong>Refer Patient</strong>
+                        </a></span>
+                            <!--<span style="padding-left:25px"><button type="button" ng-click="serviceProviderTabOPen()"  class="btn btn-success">Provide Service</button></span>-->
                              <span class="patient-address">
                                 {{address(patient.address)}}
                              </span>

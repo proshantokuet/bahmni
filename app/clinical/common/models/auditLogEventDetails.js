@@ -14,5 +14,5 @@ Bahmni.Clinical.StateNameEvenTypeMap = {
     "patient.dashboard.visitPrint": "VIEWED_VISIT_PRINT",
     "patient.dashboard.observation": "VIEWED_DASHBOARD_OBSERVATION",
     "patient.patientProgram.show": "VIEWED_PATIENTPROGRAM",
-    "patient.patientReferral": "VIEWED_PATIENTREFERRAL"
+    "patient.patientReferral.show": "VIEWED_PATIENTREFERRAL"
 };
