@@ -156,12 +156,12 @@ angular.module('authentication')
                 userService.getProviderForUser(data.results[0].uuid).then(function (providers) {
                     if (!_.isEmpty(providers.results) && hasAnyActiveProvider(providers.results)) {
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
-                        $rootScope.currentUser.favouriteObsTemplates[0] = "সাধারন রোগীর সেবা";
-                        $rootScope.currentUser.favouriteObsTemplates[1] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা";
-                        $rootScope.currentUser.favouriteObsTemplates[2] = "শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা";
-                        $rootScope.currentUser.favouriteObsTemplates[3] = "পরিবার পরিকল্পনা সেবা";
-                        $rootScope.currentUser.favouriteObsTemplates[4] = "গর্ভাবস্থার তথ্য";
-                        $rootScope.currentUser.favouriteObsTemplates[5] = "প্রসব পূর্ব সেবা";
+                        $rootScope.currentUser.favouriteObsTemplates[0] = "Antenatal Form";
+                        $rootScope.currentUser.favouriteObsTemplates[1] = "General Diseases";
+                        $rootScope.currentUser.favouriteObsTemplates[2] = "Pregnancy Status";
+                        $rootScope.currentUser.favouriteObsTemplates[3] = "Child (0 from 02 month)";
+                        $rootScope.currentUser.favouriteObsTemplates[4] = "Child(02 month from 05 year)";
+                        $rootScope.currentUser.favouriteObsTemplates[5] = "Family Planning";
                         $rootScope.currentUser.favouriteObsTemplates[6] = "PNC";
                         console.log("Cookie");
                         console.log($bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName));

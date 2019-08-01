@@ -327,5 +327,6 @@
     "INVESTIGATIONS_PANELS_HEADER_LABEL": "Panels",
     "INVESTIGATIONS_SELECTIONS_HEADER_LABEL": "Selection",
     "CLINICAL_GO_TO_DASHBOARD_LABEL": "Go to IPD dashboard",
-    "NO_FORM_FOUND_FOR_PATIENT": "No Form found for this patient"
+    "NO_FORM_FOUND_FOR_PATIENT": "No Form found for this patient",
+    "SUCCESSFULLY_SAVED_REFERRAL_FORM": "Saved Successfully"
 }

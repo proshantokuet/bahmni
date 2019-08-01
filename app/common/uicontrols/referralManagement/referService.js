@@ -21,7 +21,7 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
 
         var outwordReferralcreate = function (inwordReferralObject) {
             var data = inwordReferralObject;
-            var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
+            var url = baseOpenMRSRESTURL + "/bahmnicore/saveOutwardReferral";
             return $http.post(url, data, {
                 withCredentials: true,
                 headers: {

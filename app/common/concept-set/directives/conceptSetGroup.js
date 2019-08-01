@@ -10,7 +10,6 @@ angular.module('bahmni.common.conceptSet')
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             $scope.viewingSpecific = false;
             var init = function () {
-                $scope.test = $scope.allTemplates;
                 $scope.validationHandler = new Bahmni.ConceptSet.ConceptSetGroupPanelViewValidationHandler($scope.allTemplates);
                 contextChangeHandler.add($scope.validationHandler.validate);
                 $scope.makeSlipNoReadOnly = false;
@@ -21,17 +20,6 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo.moneyReceiptDate = ageFormatterService.dateFormat($scope.patientInfo.moneyReceiptDate);
                     $scope.makeSlipNoReadOnly = true;
                 }
-                else {
-                    patientVisitHistoryService.getVisitHistory($scope.patient.uuid).then(function (results) {
-                        if (results.visits.length > 0) {
-                            $scope.visits = results.visits;
-                            $scope.seeObservationDetails($scope.visits);
-                        }
-                        else {
-                            $scope.emptyVisitsData = true;
-                        }
-                    });
-                }
             };
             // for Editing VItals Information see fromsTable.html
             // $scope.getEditObsData = function (observation) {
@@ -41,6 +29,17 @@ angular.module('bahmni.common.conceptSet')
             //         conceptDisplayName: observation.conceptNameToDisplay
             //     };
             // };
+            $scope.getPatientVisitHistoryServices = function () {
+                patientVisitHistoryService.getVisitHistory($scope.patient.uuid).then(function (results) {
+                    if (results.visits.length > 0) {
+                        $scope.visits = results.visits;
+                        $scope.seeObservationDetails($scope.visits);
+                    }
+                    else {
+                        $scope.emptyVisitsData = true;
+                    }
+                });
+            };
 
             $scope.seeObservationDetails = function (listOfVisit) {
                 $scope.visitDetails = $filter('orderBy')(listOfVisit, 'startDatetime', true);
@@ -613,7 +612,12 @@ angular.module('bahmni.common.conceptSet')
                     });
                 });
             };
-            var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)]);
+            if ($scope.money == true) {
+                var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)]);
+            }
+            if ($scope.observationTab == true) {
+                var initPromise = $q.all($scope.getPatientVisitHistoryServices());
+            }
             $scope.initialization = initPromise;
             $scope.dialogData = {
                 "noOfVisits": $scope.noOfVisits,

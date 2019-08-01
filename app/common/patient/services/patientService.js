@@ -83,4 +83,15 @@ angular.module('bahmni.common.patient')
                 withCredentials: true
             });
         };
+
+        this.savePatientChildInformation = function (data) {
+            var url = Bahmni.Common.Constants.childInformationSaveUrl;
+            return $http.post(url, data, {
+                withCredentials: true,
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        };
     }]);
