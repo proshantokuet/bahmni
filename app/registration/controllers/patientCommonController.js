@@ -324,7 +324,7 @@ angular.module('bahmni.registration')
                     }
 
                     var a = $('#UIC').val();
-                    var position = 6;
+                    var position = 5;
                     var output = testReplaceAt(a, position, firstName.toUpperCase());
                     console.log(output);
                     // $('#UIC').val(output);
@@ -340,7 +340,7 @@ angular.module('bahmni.registration')
                         $scope.patient.birthRank = birthRank.slice(1, 3);
                     }
                     var a = $('#UIC').val();
-                    var position = 8;
+                    var position = 7;
                     var output = testReplaceAt(a, position, $scope.patient.birthRank.slice(0, 2));
                     console.log(output);
                     // $('#UIC').val(output);
@@ -367,11 +367,11 @@ angular.module('bahmni.registration')
                      var maritalStatus = e.options[e.selectedIndex].text; */
                     var birthDistrict = $scope.patient[attribute];
                     if (birthDistrict) {
-                        if (birthDistrict.length > 2) {
+                        if (birthDistrict.length >= 2) {
                             birthDistrict = birthDistrict.slice(0, 2);
                             console.log(birthDistrict);
                             var a = $('#UIC').val();
-                            var position = 10;
+                            var position = 9;
                             var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
                             console.log(output);
                             // $('#UIC').val(output);
@@ -389,9 +389,8 @@ angular.module('bahmni.registration')
                             }
                             var a = $('#UIC').val();
                             var position = 3;
-                            var output = testReplaceAt(a, position, birthDistrict.toUpperCase() + '@');
-                            var finalOutput = output.replace('@', '');
-                            $scope.patient.uic = finalOutput;
+                            var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
+                            $scope.patient.uic = output;
                         } else {
                             alert("Upzilla code is not defined");
                             $scope.patient.birthUpazilla = "";
