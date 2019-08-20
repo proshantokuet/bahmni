@@ -342,6 +342,22 @@ angular.module('bahmni.common.conceptSet')
                 return netAmount;
             };
 
+            $scope.getAllChildInformation = function () {
+                spinner.forPromise(patientService.getPatientChildInformation($scope.patient.uuid).then(function (response) {
+                    $scope.listOfChildInformation = response.data;
+                    angular.forEach($scope.listOfChildInformation, function (value, key) {
+                        value.outcomeDate = new Date(value.outcomeDate);
+                    });
+                }));
+            };
+
+            $scope.$on('ChildInfoClosingDialog', function (event, args) {
+                var flag = args.closingFlag;
+                if (flag) {
+                    $scope.getAllChildInformation();
+                }
+            });
+
             var saveMoneyReceipt = function (data) {
                 return patientService.saveMoneyReceipt(data).then(function (response) {
                     console.log("save return");
@@ -616,7 +632,7 @@ angular.module('bahmni.common.conceptSet')
                 var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)]);
             }
             if ($scope.observationTab == true) {
-                var initPromise = $q.all($scope.getPatientVisitHistoryServices());
+                var initPromise = $q.all($scope.getPatientVisitHistoryServices(), $scope.getAllChildInformation());
             }
             $scope.initialization = initPromise;
             $scope.dialogData = {

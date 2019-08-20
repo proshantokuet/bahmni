@@ -886,13 +886,45 @@
    <button class="confirm save-consultation" style="padding: 5px 19px 6px;"  type="button" class="btn btn-success" ng-click="savingObservation()">Save</button>
 </div>
 
-<section class="concept-set-panel-right">
+    <section class="concept-set-panel-right">
+        <table class="table-bordered table-hover" ng-if="listOfChildInformation.length > 0">
+            <p ng-if="listOfChildInformation.length > 0" style="padding: 10px;"><strong>Children's Information:</strong></p>
+            <colgroup style="background-color: #ccc;"></colgroup>
+            <colgroup></colgroup>
+            <colgroup span="4"></colgroup>
+            <tr>
+                <th rowspan="2">Outcome No</th>
+                <th rowspan="2">Result</th>
+                <th rowspan="2">Outcome Date</th>
+                <th rowspan="2">Complications</th>
+                <th rowspan="2">Type of Delivery</th>
+                <th style="text-align: center" colspan="4">Live Birth Baby</th>
+            </tr>
+            <tr>
+                <th>sex</th>
+                <th>weight</th>
+                <th>vaccine</th>
+                <th>Last Health Status</th>
+            </tr>
+            <tr ng-repeat="child in listOfChildInformation">
+                <td>{{child.outcomeNo}}</td>
+                <td>{{child.result}}</td>
+                <td>{{child.outcomeDate | date}}</td>
+                <td>{{child.complications}}</td>
+                <td>{{child.typeOfDelivery}}</td>
+                <td>{{child.sex}}</td>
+                <td>{{child.birthWeight}}</td>
+                <td>{{child.vaccine}}</td>
+                <td>{{child.healthStatus}}</td>
+            </tr>
+        </table>
+
         <h4 style="color: white;padding: 10px;background-color: #52797a;">Visit History</h4>
-    <p ng-show ="emptyVisitsData">No Visits Available</p>
-    <!--search functionality-->
-     <!--<div class="input-group col-md-2 col-sm-3" style="float: right">-->
+        <p ng-show="emptyVisitsData">No Visits Available</p>
+        <!--search functionality-->
+        <!--<div class="input-group col-md-2 col-sm-3" style="float: right">-->
         <!--<input type="text" class="form-control" ng-model="searchKeyword" placeholder="Search Date" id="search" name="search"><div class="input-group-addon"><span class="fa fa-search"></span></div>-->
-    <!--</div>-->
+        <!--</div>-->
 
     <table class="visits dashboard-table" id="visitDisplayTable" ng-if="visits.length > 0">
             <tbody>

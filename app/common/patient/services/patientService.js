@@ -49,6 +49,12 @@ angular.module('bahmni.common.patient')
                 headers: {"Accept": "application/json", "Content-Type": "application/json"}
             });
         };
+        this.getPatientChildInformation = function (id) {
+            return $http.get(Bahmni.Common.Constants.childInformationGetUrl + "/" + id, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
         this.findPatients = function (params) {
             return $http.get(Bahmni.Common.Constants.sqlUrl, {
                 method: "GET",
