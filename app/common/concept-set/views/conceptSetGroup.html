@@ -477,93 +477,75 @@
                 <tr class="displayNone">
                     <td colspan="10"><img src="./../images/banner.jpg" width="696" height="146"/></td>
                 </tr>
-                <tr class="displayNone">
-                    <td><img src="./../images/blank.png" width="40" height="1"/></td>
-                    <td><strong>Type:</strong></td>
-                    <td align="right">Static</td>
-                    <td><input name="" type="checkbox" ng-checked="checkedBox('Static',patientInfo.servicePoint)"/></td>
-                    <td align="right">Satellite</td>
-                    <td><input name="" type="checkbox" ng-checked="checkedBox('Satellite',patientInfo.servicePoint)"/>
-                    </td>
-                    <td align="right">CSP</td>
-                    <td><input name="" type="checkbox" ng-checked="checkedBox('CSP',patientInfo.servicePoint)"/></td>
-                    <td align="right">Slip No.</td>
-                    <td align="center" valign="middle" ng-bind="patientInfo.slipNo"></td>
+  <tr class="displayNone">
+    <td><img src="./../images/blank.png" width="40" height="1" /></td>
+    <td><strong>Type:</strong></td>
+    <td align="right">Static</td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('Static',patientInfo.servicePoint)" /></td>
+    <td align="right">Satellite</td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('Satellite',patientInfo.servicePoint)" /></td>
+    <td align="right">CSP</td>
+    <td><input name="" type="checkbox" ng-checked="checkedBox('CSP',patientInfo.servicePoint)" /></td>
+    <td align="right">Slip No.</td>
+    <td align="center" valign="middle" ng-bind="patientInfo.slipNo"></td>
 
-                </tr>
-                <tr class="displayNone">
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td align="right">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td align="right">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td align="right">Date:</td>
-                    <td align="center" valign="middle" ng-bind="patientInfo.moneyReceiptDate | date:'dd/MM/yyyy'"></td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr class="displayNone">
-        <td align="left" valign="top">UIC</td>
-        <td>{{patient.UIC.value}}</td>
+  </tr>
+  <tr class="displayNone">
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="right">Date:</td>
+    <td align="center" valign="middle" ng-bind="patientInfo.moneyReceiptDate | date:'dd/MM/yyyy'"></td>
+  </tr>
+    </table>
+</td>
+  </tr>
+  <tr class="displayNone">
+    <td align="left" valign="top" >UIC</td>
+    <td>{{patient.UIC.value}}</td>
 
-    </tr>
-    <tr class="displayNone">
-        <td colspan="2" align="left" valign="top"><img src="./../images/blank.png" width="100%" height="20"/></td>
-    </tr>
-    <tr class="displayNone">
-        <td colspan="2" align="left" valign="top">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
-                <tr>
-                    <td align="left" style="border-bottom: 1px solid #666; padding:10px 10px 10px 8px;"><strong>Clinic
-                        Name:</strong></td>
-                    <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"
-                        ng-bind="patientInfo.clinicName"></td>
-                    <td align="left" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Clinic
-                        ID</strong></td>
-                    <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{patient.ClinicCode.value}}
-                    </td>
-                    <td align="left" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Satellite
-                        Clinic ID</strong></td>
-                    <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"
-                        ng-bind="patientInfo.sateliteClinicId"></td>
-                    <td align="left" style="border-bottom:1px solid #666;"><strong>Team no.</strong></td>
-                    <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"
-                        ng-bind="patientInfo.teamNo"></td>
-                </tr>
-                <tr>
-                    <td colspan="8">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td align="left" colspan="2" valign="top" style="padding:8px;">1. Name:</td>
-                                <td valign="top" colspan="2" align="left" valign="bottom" style="padding:8px;">
-                                    {{patient.name}}
-                                </td>
-                                <td align="left" valign="top" style="padding:8px;">2. Gender:</td>
-                                <td align="left" valign="top" style="padding:8px;"><input name="input" type="checkbox"
-                                                                                          ng-checked="checkedBox('M',patient.gender)"/>
-                                </td>
-                                <td align="left" valign="top" style="padding:8px;">Male</td>
-                                <td align="left" valign="top" style="padding:8px;"><input name="input2" type="checkbox"
-                                                                                          ng-checked="checkedBox('F',patient.gender)"/>
-                                </td>
-                                <td align="left" valign="top" style="padding:8px;">Female</td>
-                                <td align="left" valign="top" style="padding:8px;"><input name="input3" type="checkbox"
-                                                                                          ng-checked="checkedBox('O',patient.gender)"/>
-                                </td>
-                                <td align="left" valign="top" style="padding:8px;">Others</td>
-                            </tr>
-                            <tr>
-                                <td align="left" valign="top" style="padding:10px 0 5px 8px;">3. DoB</td>
-                                <td style="padding:10px 0 5px 8px;">{{patient.birthdate | date:'dd/MM/yyyy'}}</td>
-                                <td style="padding:10px 0 5px 8px;">4. Age:</td>
-                                <td style="padding:10px 0 5px 8px;">{{htmlToPlaintext(patient.ageText)}}</td>
-                                <td style="padding:10px 0 5px 8px;">5. Classification:</td>
-                                <td style="padding:10px 0 5px 8px;">1. Able to Pay</td>
-                                <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input4" type="checkbox"
-                     ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
+  </tr>
+  <tr class="displayNone">
+    <td colspan="2" align="left" valign="top"><img src="./../images/blank.png" width="100%" height="20" /></td>
+  </tr>
+  <tr class="displayNone">
+    <td colspan="2" align="left" valign="top">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
+      <tr>
+        <td align="left"  style="border-bottom: 1px solid #666; padding:10px 10px 10px 8px;"><strong>Clinic Name:</strong></td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;" ng-bind="patientInfo.clinicName"></td>
+        <td align="left"  style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Clinic ID</strong></td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{patientInfo.clinicCode}}</td>
+        <td align="left"  style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Satellite Clinic ID</strong></td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;" ng-bind="patientInfo.sateliteClinicId"></td>
+        <td align="left" style="border-bottom:1px solid #666;"><strong>Team no.</strong></td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;" ng-bind="patientInfo.teamNo"></td>
+      </tr>
+      <tr>
+        <td colspan="8"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+           <td align="left" colspan="2" valign="top" style="padding:8px;">1. Name:</td>
+            <td valign="top" colspan="2" align="left" valign="bottom" style="padding:8px;">{{patient.name}}</td>
+            <td align="left" valign="top" style="padding:8px;">2. Gender:</td>
+            <td align="left" valign="top" style="padding:8px;"><input name="input" type="checkbox" ng-checked="checkedBox('M',patient.gender)" /></td>
+            <td align="left" valign="top" style="padding:8px;">Male</td>
+            <td align="left" valign="top" style="padding:8px;"><input name="input2" type="checkbox" ng-checked="checkedBox('F',patient.gender)"/></td>
+            <td align="left" valign="top" style="padding:8px;">Female</td>
+            <td align="left" valign="top" style="padding:8px;"><input name="input3" type="checkbox" ng-checked="checkedBox('O',patient.gender)" /></td>
+            <td align="left" valign="top" style="padding:8px;">Others</td>
+          </tr>
+          <tr>
+          <td align="left" valign="top" style="padding:10px 0 5px 8px;">3. DoB</td>
+            <td style="padding:10px 0 5px 8px;">{{patient.birthdate | date:'dd/MM/yyyy'}}</td>
+            <td style="padding:10px 0 5px 8px;">4. Age:</td>
+            <td style="padding:10px 0 5px 8px;">{{htmlToPlaintext(patient.ageText)}}</td>
+            <td style="padding:10px 0 5px 8px;">5. Classification:</td>
+            <td style="padding:10px 0 5px 8px;">1. Able to Pay</td>
+            <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
+              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
             </span></td>
                                 <td style="padding:10px 0 5px 8px;">2. Poor</td>
                                 <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">

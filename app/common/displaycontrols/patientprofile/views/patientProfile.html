@@ -121,8 +121,7 @@
     <td align="right">Satellite</td>
     <td><input name="" type="checkbox" disabled ng-checked="checkedBox('Satellite',servicesBySlip[0].servicePoint)" /></td>
       <td align="right">CSP</td>
-    <td><input name="" type="checkbox" disabled ng-checked="checkedBox('CSP',servicesBySlip[0].servicePoint)" /></td>
-     <td align="right">Slip No.</td>
+    <td><input name="" type="checkbox" disabled ng-checked="checkedBox('CSP',servicesBySlip[0].servicePoint)" /></td><td align="right">Slip No.</td>
     <td align="center" valign="middle">{{servicesBySlip[0].slipNo}}</td>
 
   </tr>
@@ -153,7 +152,7 @@
         <td align="left"  style="border-bottom: 1px solid #666; padding:10px 10px 10px 8px;"><strong>Clinic Name:</strong></td>
         <td  style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{servicesBySlip[0].clinicName}}</td>
         <td align="left" valign="top" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Clinic ID</strong></td>
-        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{patient.ClinicCode.value}}</td>
+        <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{servicesBySlip[0].clinicCode}}</td>
         <td align="left" valign="top" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Satellite Clinic ID</strong></td>
         <td  style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{servicesBySlip[0].sateliteClinicId}}</td>
         <td align="left" valign="top" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Team no.</strong></td>

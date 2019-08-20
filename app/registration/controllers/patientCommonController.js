@@ -381,16 +381,17 @@ angular.module('bahmni.registration')
                 }
                 if (attribute == 'birthUpazilla') {
                     if ($scope.patient.birthUpazilla != undefined) {
-                        var birthDistrict = $scope.patient.birthUpazilla.upazillaName;
+                        var birthDistrict = $scope.patient.birthUpazilla.upazillaCode;
                         console.log(birthDistrict);
                         if (birthDistrict != null) {
-                            if (birthDistrict.length >= 3) {
-                                birthDistrict = birthDistrict.slice(0, 3);
+                            if (birthDistrict.length > 2) {
+                                birthDistrict = birthDistrict.slice(0, 2);
                             }
                             var a = $('#UIC').val();
                             var position = 3;
-                            var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
-                            $scope.patient.uic = output;
+                            var output = testReplaceAt(a, position, birthDistrict.toUpperCase() + '@');
+                            var finalOutput = output.replace('@', '');
+                            $scope.patient.uic = finalOutput;
                         } else {
                             alert("Upzilla code is not defined");
                             $scope.patient.birthUpazilla = "";
