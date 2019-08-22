@@ -913,16 +913,22 @@
             <tr>
                 <th>Date</th>
                 <th>Visit Type</th>
-                <th></th>
 
             </tr>
-            <tr id="eachVisit" ng-repeat="visit in ::visits">
+            <tr id="eachVisit" ng-repeat="visit in visits track by $index">
                 <td class="name" width="50%">
-                    <a class="visit" ng-click="toogleObservationDetailsViewer('specific',visit)"><span>{{::visit.startDatetime | date : 'dd/MM/yyyy'}}</span>
-                        <span ng-if="::!visit.isActive()">- {{::visit.stopDatetime | date : 'dd/MM/yyyy' }}</span>
+                    <a class="visit" ng-click="toogleObservationDetailsViewer('specific',visit,$index)"><i ng-if="!visit.showExpanVisitDetails" class="fa fa-plus-square-o" aria-hidden="true"></i> <i ng-if="visit.showExpanVisitDetails" class="fa fa-minus-square-o" aria-hidden="true"></i><span>{{::visit.startDatetime | date}}</span>
+                        <span ng-if="::!visit.isActive()">- {{::visit.stopDatetime | date }}</span>
                         <i class="fa fa-star current-visit-icon" id="currentVisitIcon" ng-if="::visit.isActive()"
                            title="Current Visit"></i>
                     </a>
+                    <div ng-if="visit.showExpanVisitDetails">
+                    <ul bm-gallery access-impression="true">
+                        <bahmni-observation patient="::patient" visit-uuid="{{visit.uuid}}"
+                                            config="visit.detailsConfig"
+                                            class="section-title"></bahmni-observation>
+                    </ul>
+                    </div>
                 </td>
                 <td class="value" id="visitType">{{::visit.getVisitType()}}</td>
                  <!--<td><a ng-if="!viewingSpecific" style="cursor: pointer" ng-click="toogleObservationDetailsViewer('specific',visit)">See this</a></td>-->
@@ -930,18 +936,18 @@
             </tr>
             </tbody>
         </table>
-    <a ng-if="viewingSpecific" class="visit" ng-click="toogleObservationDetailsViewer('general',visits)" style="text-align: right">See all</a>
-    <div>
-        <div ng-if="!emptyVisitsData" id="observation-section" ng-repeat="visit in visitDetails" >
-            <section class="block observation dashboard-section" id="observationSection">
-                <ul bm-gallery access-impression="true"  >
-                    <bahmni-observation patient="::patient" visit-uuid="{{visit.uuid}}"
-                                        config="visit.detailsConfig"
-                                        class="section-title"></bahmni-observation>
-                </ul>
-            </section>
-        </div>
-    </div>
+    <a ng-if="viewingSpecific" class="visit" ng-click="toogleObservationDetailsViewer('general',visits)" style="text-align: right">Show all</a>
+    <!--<div>-->
+        <!--<div ng-if="!emptyVisitsData" id="observation-section" ng-repeat="visit in visitDetails" >-->
+            <!--<section class="block observation dashboard-section" id="observationSection">-->
+                <!--<ul bm-gallery access-impression="true"  >-->
+                    <!--<bahmni-observation patient="::patient" visit-uuid="{{visit.uuid}}"-->
+                                        <!--config="visit.detailsConfig"-->
+                                        <!--class="section-title"></bahmni-observation>-->
+                <!--</ul>-->
+            <!--</section>-->
+        <!--</div>-->
+    <!--</div>-->
 </section>
 </div>
 <style>

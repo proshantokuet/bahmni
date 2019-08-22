@@ -55,16 +55,25 @@ angular.module('bahmni.common.conceptSet')
                 $scope.emptyVisitsData = false;
             };
 
-            $scope.toogleObservationDetailsViewer = function (viewPrefernce, visit) {
-                if (viewPrefernce == "specific") {
-                    $scope.visitDetails = [];
-                    $scope.visitDetails.push(visit);
-                    $scope.viewingSpecific = true;
-                }
-                if (viewPrefernce == "general") {
-                    $scope.visitDetails = visit;
-                    $scope.viewingSpecific = false;
-                }
+            $scope.toogleObservationDetailsViewer = function (viewPrefernce, visit, index) {
+                debugger;
+                if(!visit.showExpanVisitDetails) visit.showExpanVisitDetails = true;
+                else visit.showExpanVisitDetails = false;
+
+                // if (viewPrefernce == "specific") {
+                //     $scope.visits = [];
+                //     $scope.visits.push(visit);
+                //     $scope.visitDetails = [];
+                //     // $scope.visitDetails.push(visit);
+                //     $scope.viewingSpecific = true;
+                //     $scope.showVisitDetails = false;
+                // }
+                // if (viewPrefernce == "general") {
+                //     $scope.getPatientVisitHistoryServices();
+                //     $scope.visitDetails = visit;
+                //     $scope.viewingSpecific = false;
+                //     $scope.showVisitDetails = true;
+                // }
             };
 
             $scope.toggleSideBar = function () {

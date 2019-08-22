@@ -44,11 +44,7 @@
                     <a ng-if="board.label=='Medications'|| board.label=='Orders' || board.label=='Observations'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Provide Service</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
                 </li>
             </ul>
-
-            <!--<button class="confirm save-consultation" ng-show="availableBoards" single-click="save()" accesskey="{{'SAVE_ACCESS_KEY' | translate}}" ng-class="{'hideSaveText':availableBoards.length > 6}">-->
-                <!--<i class="fa fa-save"></i>-->
-                <!--<span class="text" ng-bind-html="'CLINICAL_SAVE_TRANSLATION_KEY'| translate"></span>-->
-            <!--</button>-->
+            <button class="confirm save-consultation cancel" ng-if="visitHistory.activeVisit" ng-click="test()">Close Visit</button>
         </div>
     </div>
 </div>

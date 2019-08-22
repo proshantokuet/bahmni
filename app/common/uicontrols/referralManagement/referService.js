@@ -7,9 +7,9 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
         var hostUrl = Bahmni.Common.Constants.hostURL;
         var RESTWS_V1 = hostUrl + "/openmrs/ws/rest/v1";
 
-        var inwordReferralcreate = function (inwordReferralObject) {
-            var data = inwordReferralObject;
-            var url = RESTWS_V1 + "/bahmnicore/saveInwordReferral";
+        var inwardReferralcreate = function (inwardReferralObject) {
+            var data = inwardReferralObject;
+            var url = RESTWS_V1 + "/inward-referral/add-or-update";
             return $http.post(url, data, {
                 withCredentials: true,
                 headers: {
@@ -19,8 +19,15 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
             });
         };
 
-        var outwordReferralcreate = function (inwordReferralObject) {
-            var data = inwordReferralObject;
+        var getInwardReferralInformationByReferralNo = function (id) {
+            return $http.get(RESTWS_V1 + "/inward-referral/get-by-referral-no" + "/" + id, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
+
+        var outwordReferralcreate = function (outWardReferralObject) {
+            var data = outWardReferralObject;
             var url = baseOpenMRSRESTURL + "/bahmnicore/saveOutwardReferral";
             return $http.post(url, data, {
                 withCredentials: true,
@@ -32,7 +39,8 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
         };
 
         return {
-            inwordReferralcreate: inwordReferralcreate,
-            outwordReferralcreate: outwordReferralcreate
+            inwardReferralcreate: inwardReferralcreate,
+            outwordReferralcreate: outwordReferralcreate,
+            getInwardReferralInformationByReferralNo: getInwardReferralInformationByReferralNo
         };
     }]);

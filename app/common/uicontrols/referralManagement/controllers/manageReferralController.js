@@ -9,18 +9,28 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
             $scope.inwardReferral = {};
             $scope.outwardReferral = {};
             $scope.outwardReferral.clientInformation = {};
+            getInwardDetails();
 
             $scope.saveInwardReferral = function () {
+                debugger;
                 $scope.inwardReferral.patientUuid = $stateParams.patientUuid;
                 var splitedDate = $scope.inwardReferral.referralDate.split('/');
                 var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
                 finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
                 $scope.inwardReferral['referralDate'] = finalizedSplitedDate;
-                spinner.forPromise(referManagementService.inwordReferralcreate($scope.inwardReferral).then(function (result) {
+                spinner.forPromise(referManagementService.inwardReferralcreate($scope.inwardReferral).then(function (result) {
                     messagingService.showMessage("info", "SUCCESSFULLY_SAVED_REFERRAL_FORM");
                     $scope.inwardReferral = {};
                 }));
             };
+
+            function getInwardDetails() {
+                debugger;
+                spinner.forPromise(referManagementService.getInwardReferralInformationByReferralNo("0987654").then(function (result) {
+                    $scope.test = result;
+                }));
+
+            }
 
             $scope.saveOutwardReferral = function () {
                 $scope.outwardReferral.patientUuid = $stateParams.patientUuid;
