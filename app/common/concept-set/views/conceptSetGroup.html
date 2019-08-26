@@ -4,6 +4,12 @@
         border: none;
     }
 
+    .unique-name {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
     table tr {
         border: 0;
         border: none;
@@ -14,8 +20,6 @@
         float: left;
         text-align: right;
         margin: .7em .8em 0 0;
-    }
-
     }
 
     .click-to-edit {
@@ -775,7 +779,7 @@
 <div class="concept-set-panel clearfix" ng-if="observationTab">
     <section class="concept-set-panel-right">
         <div style="text-align: center;background-color: #52797a;padding: 1px;color:white"><h4>Service List</h4></div>
-        <table style="width:100%;">
+        <table class="unique-name" style="width:100%;">
             <tr>
                 <td ng-repeat="conceptSet in allTemplates track by $index"
                     ng-if="conceptSet.isAvailable(context) && (conceptSet.isAdded || conceptSet.alwaysShow)"
@@ -937,17 +941,18 @@
             </tbody>
         </table>
     <a ng-if="viewingSpecific" class="visit" ng-click="toogleObservationDetailsViewer('general',visits)" style="text-align: right">Show all</a>
-    <!--<div>-->
-        <!--<div ng-if="!emptyVisitsData" id="observation-section" ng-repeat="visit in visitDetails" >-->
-            <!--<section class="block observation dashboard-section" id="observationSection">-->
-                <!--<ul bm-gallery access-impression="true"  >-->
-                    <!--<bahmni-observation patient="::patient" visit-uuid="{{visit.uuid}}"-->
-                                        <!--config="visit.detailsConfig"-->
-                                        <!--class="section-title"></bahmni-observation>-->
-                <!--</ul>-->
-            <!--</section>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div>
+        <p ng-if="!emptyVisitsData" style="padding: 10px;background-color: #dddddd;"><strong>Visit Details:</strong></p>
+        <div ng-if="!emptyVisitsData" id="observation-section" ng-repeat="visit in visitDetails" >
+            <section class="block observation dashboard-section" id="observationSection">
+                <ul bm-gallery access-impression="true"  >
+                    <bahmni-observation patient="::patient" visit-uuid="{{visit.uuid}}"
+                                        config="visit.detailsConfig"
+                                        class="section-title"></bahmni-observation>
+                </ul>
+            </section>
+        </div>
+    </div>
 </section>
 </div>
 <style>

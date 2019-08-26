@@ -485,14 +485,20 @@ angular.module('consultation')
             $httpProvider.defaults.headers.common['Disable-WWW-Authenticate'] = true;
 
             $bahmniTranslateProvider.init({app: 'clinical', shouldMerge: true});
-        }]).run(['stateChangeSpinner', '$rootScope', 'auditLogService', '$window',
-            function (stateChangeSpinner, $rootScope, auditLogService, $window) {
+        }]).run(['stateChangeSpinner', '$rootScope', 'auditLogService', '$window', '$bahmniCookieStore', 'locationService',
+            function (stateChangeSpinner, $rootScope, auditLogService, $window, $bahmniCookieStore, locationService) {
                 moment.locale($window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en");
                 FastClick.attach(document.body);
                 stateChangeSpinner.activate();
                 var cleanUpStateChangeSuccess = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
                     auditLogService.log(toParams.patientUuid, Bahmni.Clinical.StateNameEvenTypeMap[toState.name], undefined, "MODULE_LABEL_CLINICAL_KEY");
                     $window.scrollTo(0, 0);
+                });
+                var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
+                locationService.getVisitLocation(loginLocationUuid).then(function (response) {
+                    if (response.data) {
+                        $rootScope.visitLocation = response.data.uuid;
+                    }
                 });
                 var cleanUpNgDialogOpened = $rootScope.$on('ngDialog.opened', function () {
                     $('html').addClass('ngdialog-open');

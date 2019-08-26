@@ -86,6 +86,8 @@
     "VISIT_TITLE_PATIENT_FILES_KEY": "Patient Files",
     "VISIT_TITLE_RADIOLOGY_KEY": "Radiology",
     "VISIT_TITLE_OBSERVATIONS_KEY": "Observations",
+    "VISIT_VISIT_CANNOT_BE_CLOSED":"Admitted patient's visit cannot be closed. Discharge the patient and try again",
+    "VISIT_CONFIRM_CLOSE_VISIT":"Are you sure you want to close this visit?",
     "ADD_MORE_KEY": "Add More",
     "ADD_SECTION_KEY": "Add Section",
     "ADD_FORM_KEY": "Add Form",

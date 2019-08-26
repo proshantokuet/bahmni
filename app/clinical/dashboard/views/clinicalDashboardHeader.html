@@ -39,12 +39,14 @@
             <!--</a>-->
 
 
-            <ul class="header-tabs consultation-tabs">
+            <ul class="header-tabs consultation-tabs" ng-if="!moneyreceiptPage">
                 <li class="tab-item" ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
-                    <a ng-if="board.label=='Medications'|| board.label=='Orders' || board.label=='Observations'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Provide Service</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
+                    <a ng-if="board.label=='Medications'|| board.label=='Orders' || board.label=='Observations'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
                 </li>
             </ul>
-            <button class="confirm save-consultation cancel" ng-if="visitHistory.activeVisit" ng-click="test()">Close Visit</button>
+            <div ng-if="!moneyreceiptPage">
+                <button class="confirm save-consultation cancel" ng-if="visitHistory.activeVisit" ng-click="closeVisitIfDischarged()">Close Visit</button>
+            </div>
         </div>
     </div>
 </div>

@@ -56,8 +56,7 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.toogleObservationDetailsViewer = function (viewPrefernce, visit, index) {
-                debugger;
-                if(!visit.showExpanVisitDetails) visit.showExpanVisitDetails = true;
+                if (!visit.showExpanVisitDetails) visit.showExpanVisitDetails = true;
                 else visit.showExpanVisitDetails = false;
 
                 // if (viewPrefernce == "specific") {

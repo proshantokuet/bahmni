@@ -26,7 +26,7 @@
                                                                class="title-link">
                                 <strong>Edit Patient</strong>
                         </a></span>
-                            <span style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
+                            <span ng-if="activeVisit" style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
                                                                class="title-link">
                            <strong> Provide Service</strong>
                         </a></span>
@@ -34,16 +34,21 @@
                                                                class="title-link">
                                 <strong>Refer Patient</strong>
                         </a></span>
+                                <span ng-if="!activeVisit" style="padding-left:25px">
+                             <select ng-model="selectedVisit.visitObj"
+                                     ng-options="visit as visit.display for visit in visitType"
+                                     ng-required="true">
+                                 <option ng-option value="">Select Visit Type</option>
+                             </select>
+                            </span>
+                            <button style="padding: 1px 10px 1px;" ng-if="selectedVisit.visitObj" type="button" class="btn btn-success" ng-click="startSelectedVisit()">Start Visit</button>
                             <!--<span style="padding-left:25px"><button type="button" ng-click="serviceProviderTabOPen()"  class="btn btn-success">Provide Service</button></span>-->
-                             <span class="patient-address">
+                            <span class="patient-address">
                                 {{address(patient.address)}}
                              </span>
-                             <i class="ipd-indication fa fa-bed" ng-if="::hasBeenAdmitted"></i>
-                         </div>
+                            <i class="ipd-indication fa fa-bed" ng-if="::hasBeenAdmitted"></i>
+                        </div>
                 </td>
-
-
-
 
 
               </tr>
