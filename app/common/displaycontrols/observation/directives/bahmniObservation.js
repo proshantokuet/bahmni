@@ -57,7 +57,7 @@ angular.module('bahmni.common.displaycontrol.observation')
                                 else {
                                     if ($scope.bahmniObservations[i].value[j].formFieldPath) {
                                         var splitData = $scope.bahmniObservations[i].value[j].formFieldPath.split(".");
-                                        string = string + splitData[0] + " ,";
+                                        string = string + splitData[0] + ",";
                                     }
                                     else {
                                         string = string + "Vitals" + ",";
@@ -66,12 +66,14 @@ angular.module('bahmni.common.displaycontrol.observation')
                             }
                             var findingUniqueString = string.split(",");
                             if (findingUniqueString.length > 1) {
-                                if (findingUniqueString[0] == findingUniqueString[1]) {
-                                    $scope.bahmniObservations[i].formName = findingUniqueString[0];
-                                }
-                                else {
-                                    $scope.bahmniObservations[i].formName = string;
-                                }
+                                var checkingDuplicity = Array.from(new Set(findingUniqueString)).toString();
+                                $scope.bahmniObservations[i].formName = checkingDuplicity;
+                                // if (findingUniqueString[0] == findingUniqueString[1]) {
+                                //     $scope.bahmniObservations[i].formName = findingUniqueString[0];
+                                // }
+                                // else {
+                                //     $scope.bahmniObservations[i].formName = string;
+                                // }
                             }
                             else {
                                 $scope.bahmniObservations[i].formName = string;

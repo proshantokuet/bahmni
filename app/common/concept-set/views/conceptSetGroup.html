@@ -782,7 +782,7 @@
         <table class="unique-name" style="width:100%;">
             <tr>
                 <td ng-repeat="conceptSet in allTemplates track by $index"
-                    ng-if="conceptSet.isAvailable(context) && (conceptSet.isAdded || conceptSet.alwaysShow)"
+                    ng-if="conceptSet.isAvailable(context) && conceptSet.formValidation(context,conceptSet)"
                     ng-class="openActiveForm(conceptSet)">
                     <button ng-style="conceptSet.klass =='active' && {'background':'#51797a','color':'white'}"
                             ng-click="showLeftPanelConceptSet(conceptSet)">

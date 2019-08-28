@@ -124,6 +124,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             };
 
             $scope.enrollPatient = function () {
+                debugger;
                 var attributes = [];
                 if ($scope.patientProgramAttributes.Pregnancy_Status) {
                     angular.forEach($scope.programAttributeTypes, function (value, key) {
@@ -155,6 +156,18 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                     attribute['attributeType'] = lMPUuid;
                     attributes.push(attribute);
                 }
+                if ($scope.patientProgramAttributes.Delivery_Date) {
+                    // for server
+                    // var lMPUuid = '16295469-0df3-41a1-becd-3aa09b5a25d8';
+                    // for local
+                    var deliveryUuid = '97540759-0a66-4691-b8dc-0ed7aa343c47';
+                    var value = $scope.patientProgramAttributes.Delivery_Date;
+                    var attribute = {};
+                    attribute['value'] = value;
+                    attribute['attributeType'] = deliveryUuid;
+                    attributes.push(attribute);
+                }
+
                 var patientInfo = {
                     person: {
                         attributes: attributes

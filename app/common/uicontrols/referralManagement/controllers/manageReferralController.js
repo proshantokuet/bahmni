@@ -23,13 +23,8 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
                 }));
             };
 
-            function getInwardDetails () {
-                spinner.forPromise(referManagementService.getInwardReferralInformationByReferralNo("0987654").then(function (result) {
-                    $scope.test = result;
-                }));
-            }
-
             $scope.saveOutwardReferral = function () {
+                debugger;
                 $scope.outwardReferral.patientUuid = $stateParams.patientUuid;
                 spinner.forPromise(referManagementService.outwordReferralcreate($scope.outwardReferral).then(function (result) {
                     messagingService.showMessage("info", "SUCCESSFULLY_SAVED_REFERRAL_FORM");

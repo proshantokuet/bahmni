@@ -51,8 +51,8 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
     };
 
     self.formValidation = function (context, conceptSet) {
+        debugger;
         var today = new Date();
-
         // for age calculation
         var dob = new Date(context.patient.birthdate);
         var timeDiff = Math.abs(today.getTime() - dob.getTime());
@@ -61,9 +61,11 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         var gender = context.patient.gender;
 
         // for LMP date calculation
-        var lmpDate = new Date(context.patient.LMP);
-        var timeDiffForLmp = Math.abs(today.getTime() - lmpDate.getTime());
-        var LmpDayDifference = Math.ceil(timeDiffForLmp / (1000 * 3600 * 24)) - 1;
+        if (context.patient.LMP) {
+            var lmpDate = new Date(context.patient.LMP);
+            var timeDiffForLmp = Math.abs(today.getTime() - lmpDate.getTime());
+            var LmpDayDifference = Math.ceil(timeDiffForLmp / (1000 * 3600 * 24)) - 1;
+        }
 
         // for form name extraction
         var formName = conceptSet.formName;
@@ -75,8 +77,8 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
 
         // for delivery day calculation
         var deliveryDayDifference = "";
-        if (typeof context.patient.delivery_date !== "undefined") {
-            var deliveryDate = new Date(context.patient.delivery_date.value);
+        if (typeof context.patient.DeliveryDate !== "undefined") {
+            var deliveryDate = new Date(context.patient.DeliveryDate.value);
             var deliveryDateDifference = Math.abs(today.getTime() - deliveryDate.getTime());
             deliveryDayDifference = Math.ceil(deliveryDateDifference / (1000 * 3600 * 24)) - 1;
         }
@@ -90,12 +92,12 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         // checking pregnancy status
         var pregnancyStatus = "";
 
-        if (typeof context.patient.PregnancyStatus !== "undefined") {
-            pregnancyStatus = context.patient.PregnancyStatus.value.uuid;
+        if (typeof context.patient.Pregnancy_Status !== "undefined") {
+            pregnancyStatus = context.patient.Pregnancy_Status.value;
         }
-        if (formName == 'PNC') return true;
-        if (formName == 'Family Planning') return true;
-        if (formName == 'Pregnancy Status') return true;
+        // if (formName == 'PNC') return true;
+        // if (formName == 'Family Planning') return true;
+        // if (formName == 'Pregnancy Status') return true;
         if (age <= Bahmni.Common.Constants.zeroToFiveYearsInDay && formName == Bahmni.Common.Constants.zeroToFiveYearsFormName) {
             return true;
         } else if (age > Bahmni.Common.Constants.zeroToFiveYearsInDay && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.moreThanFiveYearFormName) {
@@ -108,7 +110,16 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (age > Bahmni.Common.Constants.moreThanTwelveYears && formName == Bahmni.Common.Constants.generalMoreThanTwelveYearsFormName) {
             return true;
+        } else if (formName == 'VITALS') {
+            return true;
         }
+          else if (pregnancyStatus == "প্রসব পূর্ব" && (formName == Bahmni.Common.Constants.antenatalFormName)) {
+            return true;
+        } else if (deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition && pregnancyStatus == "প্রসবোত্তর" && formName == Bahmni.Common.Constants.postnatalFormName) {
+            return true;
+        }
+        //     return true;
+        // }
         // } else if (pregnancyStatus == antenatal && (formName == Bahmni.Common.Constants.antenatalFormName)) {
         //     return true;
         // } else if (deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition && pregnancyStatus == postnatal && formName == Bahmni.Common.Constants.postnatalFormName) {

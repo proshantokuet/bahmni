@@ -28,7 +28,7 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
 
         var outwordReferralcreate = function (outWardReferralObject) {
             var data = outWardReferralObject;
-            var url = baseOpenMRSRESTURL + "/bahmnicore/saveOutwardReferral";
+            var url = RESTWS_V1 + "/outward-referral/add-or-update";
             return $http.post(url, data, {
                 withCredentials: true,
                 headers: {
@@ -38,9 +38,17 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
             });
         };
 
+        var getOutwardReferralInformationByPatientUuid = function (id) {
+            return $http.get(RESTWS_V1 + "/outward-referral/get-by-patient-uuid" + "/" + id, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
+
         return {
             inwardReferralcreate: inwardReferralcreate,
             outwordReferralcreate: outwordReferralcreate,
-            getInwardReferralInformationByReferralNo: getInwardReferralInformationByReferralNo
+            getInwardReferralInformationByReferralNo: getInwardReferralInformationByReferralNo,
+            getOutwardReferralInformationByPatientUuid: getOutwardReferralInformationByPatientUuid
         };
     }]);
