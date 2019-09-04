@@ -163,6 +163,7 @@ angular.module('authentication')
                         $rootScope.currentUser.favouriteObsTemplates[4] = "EPI";
                         $rootScope.currentUser.favouriteObsTemplates[5] = "FAMILY PLANNING";
                         $rootScope.currentUser.favouriteObsTemplates[6] = "IMCI";
+                        $rootScope.currentUser.favouriteObsTemplates[7] = "LCC";
                         // $rootScope.currentUser.favouriteObsTemplates[0] = "VITALS";
                         // $rootScope.currentUser.favouriteObsTemplates[1] = "Antenatal Form";
                         // $rootScope.currentUser.favouriteObsTemplates[2] = "PNC";

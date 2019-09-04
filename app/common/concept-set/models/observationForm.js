@@ -112,6 +112,8 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (formName == 'VITALS') {
             return true;
+        } else if (formName == 'LCC') {
+            return true;
         }
           else if (pregnancyStatus == "প্রসব পূর্ব" && (formName == Bahmni.Common.Constants.antenatalFormName)) {
             return true;
