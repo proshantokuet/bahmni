@@ -286,13 +286,13 @@ angular.module('bahmni.common.conceptSet')
                     }
                 });
                 var decimalPart = ($scope.net - Math.floor($scope.net));
-                var netAmount = "";
+                $scope.netAmount = "";
                 if (decimalPart >= 0.5) {
-                    netAmount = Math.ceil($scope.net);
+                    $scope.netAmount = Math.ceil($scope.net);
                 } else {
-                    netAmount = Math.floor($scope.net);
+                    $scope.netAmount = Math.floor($scope.net);
                 }
-                return netAmount;
+                return $scope.netAmount;
             };
 
             var saveMoneyReceipt = function (data) {
@@ -343,6 +343,11 @@ angular.module('bahmni.common.conceptSet')
                         patientInfo['wealth'] = patient.FinancialStatus.value.display;
                     }
                     patientInfo['isComplete'] = savingStatus;
+                    patientInfo['totalAmount'] = $scope.netAmount;
+                    patientInfo['totalDiscount'] = $scope.totalDiscount;
+                    if (patient.RegistrationDate) {
+                        patientInfo['patientRegisteredDate'] = new Date(patient.RegistrationDate.value);
+                    }
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
 
