@@ -163,7 +163,8 @@
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patientInfo.sateliteClinicId" type="text"/>
+                                                        <select ng-model="patientInfo.sateliteClinicId" ng-options="sat as sat.code for sat in sateliteClinicCodes">
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </article>

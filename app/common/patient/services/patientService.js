@@ -42,6 +42,14 @@ angular.module('bahmni.common.patient')
                 withCredentials: true
             });
         };
+
+        this.getSateliteClinicCode = function (clinicCode) {
+            return $http.get(Bahmni.Common.Constants.satClinicIdUrl + "/" + clinicCode, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
+
         this.saveMoneyReceipt = function (data) {
             var url = Bahmni.Common.Constants.serviceSaveUrl;
             return $http.post(url, data, {

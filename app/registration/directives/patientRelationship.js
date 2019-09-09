@@ -11,8 +11,8 @@ angular.module('bahmni.registration')
             }
         };
     })
-    .controller('PatientRelationshipController', ['$window', '$scope', '$rootScope', 'spinner', 'patientService', 'providerService', 'appService', '$q',
-        function ($window, $scope, $rootScope, spinner, patientService, providerService, appService, $q) {
+    .controller('PatientRelationshipController', ['$window', '$scope', '$rootScope', 'spinner', 'patientService', 'providerService', 'appService', '$q', 'messagingService',
+        function ($window, $scope, $rootScope, spinner, patientService, providerService, appService, $q, messagingService) {
             $scope.addPlaceholderRelationship = function () {
                 $scope.patient.newlyAddedRelationships.push({});
             };
@@ -204,8 +204,14 @@ angular.module('bahmni.registration')
 
             $scope.patientSelected = function (relationship) {
                 return function (patientData) {
-                    relationship.patientIdentifier = patientData.identifier;
-                    relationship.personB = getPersonB(patientData.value, patientData.uuid);
+                    if (patientData.uuid == $scope.patient.uuid) {
+                        messagingService.showMessage("error", "Can not select same Patient as sibling");
+                        relationship.patientIdentifier = null;
+                    }
+                    else {
+                        relationship.patientIdentifier = patientData.identifier;
+                        relationship.personB = getPersonB(patientData.value, patientData.uuid);
+                    }
                 };
             };
 
