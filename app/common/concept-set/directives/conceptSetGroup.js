@@ -557,7 +557,7 @@ angular.module('bahmni.common.conceptSet')
                             $scope.patientInfo.dataCollector = value;
                         }
                         else if ($scope.patientInfo.dataCollector) {
-                            if ($scope.patientInfo.dataCollector== value.username) {
+                            if ($scope.patientInfo.dataCollector == value.username) {
                                 $scope.patientInfo.dataCollector = value;
                             }
                         }
@@ -568,7 +568,7 @@ angular.module('bahmni.common.conceptSet')
             var sateliteClinicId = function () {
                 var clinicCode = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id;
                 return patientService.getSateliteClinicCode(clinicCode).then(function (response) {
-                   $scope.sateliteClinicCodes = response.data;
+                    $scope.sateliteClinicCodes = response.data;
                     angular.forEach($scope.sateliteClinicCodes, function (value, key) {
                         if ($scope.patientInfo.sateliteClinicId) {
                             if ($scope.patientInfo.sateliteClinicId == value.code) {
