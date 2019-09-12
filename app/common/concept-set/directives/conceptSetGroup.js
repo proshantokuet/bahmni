@@ -342,6 +342,10 @@ angular.module('bahmni.common.conceptSet')
                     if (patient.FinancialStatus != undefined) {
                         patientInfo['wealth'] = patient.FinancialStatus.value.display;
                     }
+                    if (patientInfo.sateliteClinicId) {
+                        patientInfo.orgUnit = patientInfo.sateliteClinicId.dhisId;
+                        patientInfo.sateliteClinicId = patientInfo.sateliteClinicId.code;
+                    }
                     patientInfo['isComplete'] = savingStatus;
                     patientInfo['totalAmount'] = $scope.netAmount;
                     patientInfo['totalDiscount'] = $scope.totalDiscount;
@@ -557,10 +561,30 @@ angular.module('bahmni.common.conceptSet')
                         if (value.designation == 'Counselor') {
                             $scope.patientInfo.dataCollector = value;
                         }
+                        else if ($scope.patientInfo.dataCollector) {
+                            if ($scope.patientInfo.dataCollector == value.username) {
+                                $scope.patientInfo.dataCollector = value;
+                            }
+                        }
                     });
                 });
             };
-            var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)]);
+
+            var sateliteClinicId = function () {
+                var clinicCode = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id;
+                return patientService.getSateliteClinicCode(clinicCode).then(function (response) {
+                    $scope.sateliteClinicCodes = response.data;
+                    angular.forEach($scope.sateliteClinicCodes, function (value, key) {
+                        if ($scope.patientInfo.sateliteClinicId) {
+                            if ($scope.patientInfo.sateliteClinicId == value.code) {
+                                $scope.patientInfo.sateliteClinicId = value;
+                            }
+                        }
+                    });
+                });
+            };
+
+            var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)], sateliteClinicId());
             $scope.initialization = initPromise;
 
             init();
