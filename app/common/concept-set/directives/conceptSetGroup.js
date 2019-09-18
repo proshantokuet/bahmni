@@ -347,14 +347,13 @@ angular.module('bahmni.common.conceptSet')
                         patientInfo.sateliteClinicId = patientInfo.sateliteClinicId.code;
                     }
                     patientInfo['isComplete'] = savingStatus;
-                    patientInfo['totalAmount'] = $scope.netAmount;
-                    patientInfo['totalDiscount'] = $scope.totalDiscount;
+                    patientInfo['totalAmount'] = $scope.netAmount.toString();
+                    patientInfo['totalDiscount'] = $scope.totalDiscount.toString();
                     if (patient.RegistrationDate) {
                         patientInfo['patientRegisteredDate'] = new Date(patient.RegistrationDate.value);
                     }
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
-
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
                         $state.go("patient.dashboard.show", {
                             patientUuid: patient.uuid}, {reload: true}
