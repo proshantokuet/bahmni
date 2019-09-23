@@ -124,7 +124,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             };
 
             $scope.enrollPatient = function () {
-                debugger;
                 var attributes = [];
                 if ($scope.patientProgramAttributes.Pregnancy_Status) {
                     angular.forEach($scope.programAttributeTypes, function (value, key) {

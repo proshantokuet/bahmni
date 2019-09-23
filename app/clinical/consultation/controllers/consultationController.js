@@ -109,7 +109,8 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     visitService.endVisit($scope.visitHistory.activeVisit.uuid).then(function () {
                         var messageParams = {visitUuid: $scope.visitHistory.activeVisit.uuid, visitType: visitType};
                         auditLogService.log($scope.patient.uuid, 'CLOSE_VISIT', messageParams, 'MODULE_LABEL_REGISTRATION_KEY');
-                        $state.go($state.current, {}, {reload: true});
+                        // $state.go($state.current, {}, {reload: true});
+                        $scope.gotoPatientDashboard();
                         // $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard',"_self");
                     });
                 }
@@ -134,7 +135,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     if ($scope.dashboardDirty) {
                         params['dashboardCachebuster'] = Math.random();
                     }
-                    $state.go("patient.dashboard.show", params);
+                    $state.go("patient.dashboard.show", params, {reload: true});
                 }
             };
 

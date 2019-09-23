@@ -9,7 +9,6 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
             $scope.inwardReferral = {};
             $scope.outwardReferral = {};
             $scope.outwardReferral.clientInformation = {};
-            getInwardDetails();
 
             $scope.saveInwardReferral = function () {
                 $scope.inwardReferral.patientUuid = $stateParams.patientUuid;
@@ -24,7 +23,6 @@ angular.module('bahmni.common.uicontrols.referralmanagement')
             };
 
             $scope.saveOutwardReferral = function () {
-                debugger;
                 $scope.outwardReferral.patientUuid = $stateParams.patientUuid;
                 spinner.forPromise(referManagementService.outwordReferralcreate($scope.outwardReferral).then(function (result) {
                     messagingService.showMessage("info", "SUCCESSFULLY_SAVED_REFERRAL_FORM");

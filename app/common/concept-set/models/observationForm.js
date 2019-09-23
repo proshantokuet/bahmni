@@ -51,7 +51,6 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
     };
 
     self.formValidation = function (context, conceptSet) {
-        debugger;
         var today = new Date();
         // for age calculation
         var dob = new Date(context.patient.birthdate);
@@ -114,8 +113,7 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (formName == 'LCC') {
             return true;
-        }
-          else if (pregnancyStatus == "প্রসব পূর্ব" && (formName == Bahmni.Common.Constants.antenatalFormName)) {
+        } else if (pregnancyStatus == "প্রসব পূর্ব" && (formName == Bahmni.Common.Constants.antenatalFormName)) {
             return true;
         } else if (deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition && pregnancyStatus == "প্রসবোত্তর" && formName == Bahmni.Common.Constants.postnatalFormName) {
             return true;
