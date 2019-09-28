@@ -117,7 +117,7 @@ angular.module('bahmni.common.conceptSet')
                 $scope.collectors = $scope.dataCollectorList;
                 if (servicePoint == "Satellite") {
                     $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
-                        return dataCollector.designation == "Paramedic(Satellite)" || dataCollector.designation == "Paramedic(Static)";
+                        return dataCollector.designation == "Paramedic";
                     });
                 } else {
                     $scope.dataCollectorList = $scope.dataCollectors;

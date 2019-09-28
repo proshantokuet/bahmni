@@ -31,8 +31,8 @@
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
         .directive('patientProfile', ['patientService', 'spinner', 'ngDialog', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
-            'configurations', '$q', 'visitService', '$state',
-            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state) {
+            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore',
+            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore) {
                 var controller = function ($scope) {
                     $scope.isProviderRelationship = function (relationship) {
                         return _.includes($rootScope.relationshipTypeMap.provider, relationship.relationshipType.aIsToB);
@@ -219,6 +219,15 @@
                     var moneyReceipt = function () {
                         return patientService.moneyReceipt($scope.patientUuid).then(function (response) {
                             $scope.services = response.data;
+                            var clinicCode = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId;
+                            angular.forEach($scope.services, function (service) {
+                                if (service.clinicCode != clinicCode) {
+                                    service.validMoneyReceiptHolder = false;
+                                }
+                                else {
+                                    service.validMoneyReceiptHolder = true;
+                                }
+                            });
                         });
                     };
                     $scope.editMoneyReceipt = function (id) {

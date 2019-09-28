@@ -338,7 +338,7 @@
                                     <td> {{service.discount}}</td>
                                     <td>{{service.netPayable}} </td>
                                     <td ng-hide="services[$index-1].slipNo == service.slipNo"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.slipNo)"><i class='fa fa-print'></i>Print preview</button>
-                                    <button ng-if="service.isComplete==0 "style="padding:5px 9px 8px" ng-click="editMoneyReceipt(service.slipNo)"> <i class='fa fa-edit'></i>Edit</button>
+                                    <button ng-if="service.isComplete==0 && service.validMoneyReceiptHolder"style="padding:5px 9px 8px" ng-click="editMoneyReceipt(service.slipNo)"> <i class='fa fa-edit'></i>Edit</button>
                                     </td>
                                 </tr>
                             </tbody>
