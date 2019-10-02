@@ -4,7 +4,7 @@
     </div>
     <div class="field-value">
         <input id="birthdate" type="text" ng-model="patient.birthdate"  max="{{::today}}"
-               ng-change="patient.calculateAge()" ng-blur="handleUpdate('birthdate')" ng-required="true">
+               ng-change="patient.calculateAge()" ng-blur="handleUpdate('birthdate')" ng-required="true" readonly>
     </div>
     <!--<div class="showOn-desktop-registration">
         <div class="field-value">

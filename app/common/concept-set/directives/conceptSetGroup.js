@@ -308,10 +308,18 @@ angular.module('bahmni.common.conceptSet')
                     $scope.Message = "You clicked YES.";
                     $scope.enable = "false";
                     $scope.test = "true";
+                    $scope.passedServiceTest = true;
+
+                    angular.forEach(services, function (service) {
+                        if (!service.code || !service.item) {
+                            $scope.passedServiceTest = false;
+                        }
+                    });
+                    if (!$scope.passedServiceTest) {
+                        messagingService.showMessage("error", "Service code and Item can not be empty");
+                        return;
+                    }
                     $scope.searchButtonText = "Submitting";
-                    console.log("submit receipt");
-                    console.log(services);
-                    console.log(patient);
                     var jsonData = {};
                     if ($stateParams.moneyReceiptObject) {
                         delete patientInfo.category;
@@ -366,6 +374,18 @@ angular.module('bahmni.common.conceptSet')
             $scope.togglePref = function (conceptSet, conceptName) {
                 $rootScope.currentUser.toggleFavoriteObsTemplate(conceptName);
                 spinner.forPromise(userService.savePreferences());
+            };
+
+            $scope.checkValidDate = function (date) {
+                var registrationDate = new Date($scope.patient.RegistrationDate.value);
+                var splitedDate = date.split('/');
+                var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                var comparedValueForMoneyReceipt = finalizedSplitedDate.getTime();
+                var comparedValueForRegistrationDate = registrationDate.getTime();
+                if (comparedValueForMoneyReceipt < comparedValueForRegistrationDate) {
+                    $scope.patientInfo.moneyReceiptDate = null;
+                    messagingService.showMessage("error", "Service date can not be registered before patient registration date");
+                }
             };
 
             $scope.getNormalized = function (conceptName) {
