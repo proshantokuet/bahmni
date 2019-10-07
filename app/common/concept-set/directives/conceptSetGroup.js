@@ -384,7 +384,7 @@ angular.module('bahmni.common.conceptSet')
                 var comparedValueForRegistrationDate = registrationDate.getTime();
                 if (comparedValueForMoneyReceipt < comparedValueForRegistrationDate) {
                     $scope.patientInfo.moneyReceiptDate = null;
-                    messagingService.showMessage("error", "Service date can not be registered before patient registration date");
+                    messagingService.showMessage("error", "Money receipt date cannot be entered  before patient registration date");
                 }
             };
 
