@@ -115,13 +115,7 @@ angular.module('bahmni.common.conceptSet')
                 }
                 $scope.clinicType = servicePoint;
                 $scope.collectors = $scope.dataCollectorList;
-                if (servicePoint == "Satellite") {
-                    $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
-                        return dataCollector.designation == "Paramedic";
-                    });
-                } else {
-                    $scope.dataCollectorList = $scope.dataCollectors;
-                }
+                $scope.dataCollectorList = $scope.dataCollectors;
             };
             $scope.htmlToPlaintext = function (text) {
                 var yearsSplit = text.replace('Years', 'Y');
@@ -548,7 +542,9 @@ angular.module('bahmni.common.conceptSet')
             var services = function () {
                 return patientService.getServices($scope.patient).then(function (response) {
                     var index = 0;
-                    $scope.serviceList = response.data;
+                    $scope.serviceList = response.data.filter(function (item) {
+                        return item.voided == false;
+                    });
                     if ($scope.moneyReceiptObject) {
                         for (var j = 0; j < $scope.serviceList.length; j++) {
                             for (var i = 0; i < $scope.moneyReceiptObject.length; i++) {
