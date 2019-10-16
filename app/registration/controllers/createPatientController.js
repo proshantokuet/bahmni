@@ -176,6 +176,10 @@ angular.module('bahmni.registration')
                 return deferred.promise;
             };
 
+            var forwaredPromise = function () {
+                return patientService.findUniquePatientByUicMobile($scope.patient.uic, $scope.patient.MobileNo);
+            };
+
             $scope.create = function () {
                 addNewRelationships();
                 var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
@@ -185,10 +189,29 @@ angular.module('bahmni.registration')
                     });
                     return $q.when({});
                 }
-                return spinner.forPromise(createPromise()).then(function (response) {
-                    if (errorMessage) {
-                        messagingService.showMessage("error", errorMessage);
-                        errorMessage = undefined;
+                return forwaredPromise().then(function (response) {
+                    if (response) {
+                        ngDialog.openConfirm({
+                            scope: $scope,
+                            template: '../registration/views/confirmationDialog.html'
+                        }).then(function (confirm) {
+                            return spinner.forPromise(createPromise()).then(function (response) {
+                                if (errorMessage) {
+                                    messagingService.showMessage("error", errorMessage);
+                                    errorMessage = undefined;
+                                }
+                            });
+                        }, function (reject) {
+                            return $q.reject();
+                        });
+                    }
+                    else {
+                        return spinner.forPromise(createPromise()).then(function (response) {
+                            if (errorMessage) {
+                                messagingService.showMessage("error", errorMessage);
+                                errorMessage = undefined;
+                            }
+                        });
                     }
                 });
             };
