@@ -271,6 +271,7 @@ Bahmni.Common = Bahmni.Common || {};
         zeroToTwoMonthFormName: 'শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা',
         twoMonthToFiveYearFormName: 'শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা',
         antenatalFormName: 'প্রসব পূর্ব সেবা',
+        antenatalFormNameMidwife: 'প্রসবপূর্ব সেবা',
         postnatalFormName: 'প্রসব পরবর্তী সেবা',
         generalDiseaseFormName: 'সাধারন রোগীর সেবা',
         moreThanFiveYearInDay: 1827,

@@ -150,14 +150,13 @@ angular.module('authentication')
                         console.log(data.results[0]);
                         for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
                             if ($rootScope.currentUser.privileges[i].name == "View MIDWIFE Forms") {
-                                $rootScope.currentUser.favouriteObsTemplates[0] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা_মিডওয়াইফ";
-                                $rootScope.currentUser.favouriteObsTemplates[1] = "গর্ভাবস্থার তথ্য_মিডওয়াইফ";
-                                $rootScope.currentUser.favouriteObsTemplates[2] = "প্রসব পূর্ব সেবা_মিডওয়াইফ";
-                                $rootScope.currentUser.favouriteObsTemplates[3] = "প্রসব পরবর্তী সেবা_মিডওয়াইফ";
+                                //  $rootScope.currentUser.favouriteObsTemplates[0] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা_মিডওয়াইফ";
+                                $rootScope.currentUser.favouriteObsTemplates[0] = "গর্ভাবস্থার তথ্য";
+                                $rootScope.currentUser.favouriteObsTemplates[1] = "প্রসবপূর্ব সেবা_মিডওয়াইফ";
+                                $rootScope.currentUser.favouriteObsTemplates[2] = "প্রসব পরবর্তী সেবা_মিডওয়াইফ";
                             }
                             if ($rootScope.currentUser.privileges[i].name == "View SACMO Forms") {
-                                $rootScope.currentUser.favouriteObsTemplates[0] = "গ্রোথ মনিটরিং_এসএসিএমও";
-                                $rootScope.currentUser.favouriteObsTemplates[1] = "SAM চিহ্নিত বাচ্চার অবস্থা";
+                                $rootScope.currentUser.favouriteObsTemplates[0] = "গ্রোথ মনিটরিং";
                             }
                             if ($rootScope.currentUser.privileges[i].name == "View CHCP Forms") {
                                 $rootScope.currentUser.favouriteObsTemplates[0] = "সাধারন রোগীর সেবা";

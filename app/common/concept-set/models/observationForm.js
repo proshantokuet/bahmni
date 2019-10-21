@@ -103,7 +103,10 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (pregnancyStatus == antenatal && (formName == Bahmni.Common.Constants.antenatalFormName)) {
             return true;
-        } else if (deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition && pregnancyStatus == postnatal && formName == Bahmni.Common.Constants.postnatalFormName) {
+        } else if (pregnancyStatus == antenatal && (formName == Bahmni.Common.Constants.antenatalFormNameMidwife)) {
+            return true;
+        }
+        else if (deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition && pregnancyStatus == postnatal && formName == Bahmni.Common.Constants.postnatalFormName) {
             return true;
         } else if (formName == Bahmni.Common.Constants.generalDiseaseFormName && age >= Bahmni.Common.Constants.moreThanFiveYearInDay) {
             return true;
