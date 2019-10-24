@@ -14,30 +14,58 @@
 
             </form>
         </article>
-        <article class="search-seperator-r">
+        <!--<article class="search-seperator-r">-->
+            <!--<form name="searchByNameForm" ng-submit="searchPatients()" class="simple-form-ui" >-->
+
+                <!--<article class="fl">-->
+                    <!--<label for="name"><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></label>-->
+                    <!--<input tabindex="4" type="text" id="name" ng-blur="patientSearch()" ng-model="searchParameters.name" placeholder="{{ ::'REGISTRATION_LABEL_ENTER_NAME' | translate}}">-->
+                <!--</article>-->
+                <!--<article class="fl" ng-if="::customAttributesSearchConfig.show">-->
+                    <!--<label for="name"><strong>{{::customAttributesSearchConfig.label}}</strong></label>-->
+                    <!--<input tabindex="5" type="text" id="customAttribute" ng-model="searchParameters.customAttribute" placeholder="{{::customAttributesSearchConfig.placeholder}}">-->
+                <!--</article>-->
+                <!--<article class="fl" ng-if="::addressSearchConfig.show">-->
+                    <!--<label for="name"><strong>{{::addressSearchConfig.label}}</strong></label>-->
+                    <!--<input tabindex="6" type="text" id="addressFieldValue" ng-model="searchParameters.addressFieldValue" placeholder="{{::addressSearchConfig.placeholder}}">-->
+                <!--</article>-->
+
+                <!--<article class="fl" ng-show="::programAttributesSearchConfig.show">-->
+                    <!--<label for="name"><strong>{{ ::programAttributesSearchConfig.label | translate}}</strong></label>-->
+                    <!--<input tabindex="7" type="text" id="programAttribute" ng-model="searchParameters.programAttributeFieldValue" placeholder="{{ ::programAttributesSearchConfig.placeholder}}">-->
+                <!--</article>-->
+
+                <!--<article class="fl">-->
+                    <!--<div class="reg-srch-btn">-->
+                        <!--<button tabindex="8" type="submit" ng-disabled="disableSearchButton()">{{ ::'REGISTRATION_LABEL_SEARCH' | translate}}</button>-->
+                    <!--</div>-->
+                <!--</article>-->
+            <!--</form>-->
+
+        <!--</article>-->
+            <article class="search-seperator-r">
             <form name="searchByNameForm" ng-submit="searchPatients()" class="simple-form-ui" >
 
                 <article class="fl">
                     <label for="name"><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></label>
-                    <input tabindex="4" type="text" id="name" ng-model="searchParameters.name" placeholder="{{ ::'REGISTRATION_LABEL_ENTER_NAME' | translate}}">
+                    <input tabindex="4" type="text" id="name"  ng-model="searchwithCatchment.name" placeholder="{{ ::'REGISTRATION_LABEL_ENTER_NAME' | translate}}">
                 </article>
-                <article class="fl" ng-if="::customAttributesSearchConfig.show">
-                    <label for="name"><strong>{{::customAttributesSearchConfig.label}}</strong></label>
-                    <input tabindex="5" type="text" id="customAttribute" ng-model="searchParameters.customAttribute" placeholder="{{::customAttributesSearchConfig.placeholder}}">
-                </article>
-                <article class="fl" ng-if="::addressSearchConfig.show">
-                    <label for="name"><strong>{{::addressSearchConfig.label}}</strong></label>
-                    <input tabindex="6" type="text" id="addressFieldValue" ng-model="searchParameters.addressFieldValue" placeholder="{{::addressSearchConfig.placeholder}}">
-                </article>
-
-                <article class="fl" ng-show="::programAttributesSearchConfig.show">
-                    <label for="name"><strong>{{ ::programAttributesSearchConfig.label | translate}}</strong></label>
-                    <input tabindex="7" type="text" id="programAttribute" ng-model="searchParameters.programAttributeFieldValue" placeholder="{{ ::programAttributesSearchConfig.placeholder}}">
-                </article>
-
                 <article class="fl">
-                    <div class="reg-srch-btn">
-                        <button tabindex="8" type="submit" ng-disabled="disableSearchButton()">{{ ::'REGISTRATION_LABEL_SEARCH' | translate}}</button>
+                    <label for="name"><strong>Phone Number</strong></label>
+                    <input tabindex="5" type="text" id="phoneno" ng-model="searchwithCatchment.mobileNo" placeholder="Phone Number">
+                </article>
+                <article class="fl" ng-hide="searchwithCatchment.isCatchmentArea">
+                    <label for="name"><strong>ওয়ার্ড</strong></label>
+                    <input tabindex="6" type="text"  id="address" ng-model="searchwithCatchment.district" placeholder="ওয়ার্ড">
+                </article>
+                <article class="fl">
+                    <div class="checkbox"  style="padding-top: 20px;">
+                        <label><input tabindex="7" type="checkbox" id="catchmentArea" ng-model="searchwithCatchment.isCatchmentArea" ng-change="isChangeCatchmentCheckbox()"><strong>কমিউনিটি ক্লিনিকের আওতাধীন</strong></label>
+                    </div>
+                </article>
+                <article class="fl">
+                    <div class="reg-srch-btn reg-search-padding">
+                        <button tabindex="9" type="submit" ng-disabled="disableSearchButton()">{{ ::'REGISTRATION_LABEL_SEARCH' | translate}}</button>
                     </div>
                 </article>
             </form>
@@ -57,35 +85,59 @@
         <table class="table">
             <thead>
             <tr>
-                <th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>
-                <th ng-repeat = "type in ::extraIdentifierTypes track by $index"><strong>{{type.name}}</strong></th>
-                <th><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></th>
-                <th ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><strong>{{::convertToTableHeader(field)}}</strong></th>
-                <th><strong>{{ ::'REGISTRATION_LABEL_GENDER' | translate}}</strong></th>
-                <th><strong>{{ ::'REGISTRATION_LABEL_AGE' | translate}}</strong></th>
-                <th ng-repeat = "field in ::addressSearchResultsConfig.fields"><strong>{{::convertToTableHeader(getAddressColumnName(field))}}</strong></th>
-                <th><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>
-                <th ng-if="::programAttributesSearchConfig.show"><strong>{{::convertToTableHeader(programAttributesSearchConfig.label)}}</strong></th>
+                <!--<th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>-->
+                <!--<th ng-repeat = "type in ::extraIdentifierTypes track by $index"><strong>{{type.name}}</strong></th>-->
+                <!--<th><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></th>-->
+                <!--<th ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><strong>{{::convertToTableHeader(field)}}</strong></th>-->
+                <!--<th><strong>{{ ::'REGISTRATION_LABEL_GENDER' | translate}}</strong></th>-->
+                <!--<th><strong>{{ ::'REGISTRATION_LABEL_AGE' | translate}}</strong></th>-->
+                <!--<th ng-repeat = "field in ::addressSearchResultsConfig.fields"><strong>{{::convertToTableHeader(getAddressColumnName(field))}}</strong></th>-->
+                <!--<th><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>-->
+                <!--<th ng-if="::programAttributesSearchConfig.show"><strong>{{::convertToTableHeader(programAttributesSearchConfig.label)}}</strong></th>-->
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Father Name </th>
+                <th>লিঙ্গ</th>
+                <th>বয়স</th>
+                <th>ওয়ার্ড</th>
+                <th>Registration Date</th>
+                <th><strong>Action</strong></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="result in results" ng-if="validPatient(result)" >
-                <td>
-                    <a tabindex="{{ :: 8 + $index + 1 }}" ng-if="::(searchActions.length > 0)" ng-click="forPatient(result).doExtensionAction(searchActions[0])">
-                        {{::result.identifier || 'Not Assigned'}}
-                    </a>
-                </td>
-                <td ng-repeat = "type in ::extraIdentifierTypes track by $index">
-                    {{::result.extraIdentifiers[type.name]}}
-                </td>
+            <tr ng-repeat="result in results"  >
+                <!--<td>-->
+                    <!--<a tabindex="{{ :: 8 + $index + 1 }}" ng-if="::(searchActions.length > 0)" ng-click="forPatient(result).doExtensionAction(searchActions[0])">-->
+                        <!--{{::result.identifier || 'Not Assigned'}}-->
+                    <!--</a>-->
+                <!--</td>-->
+                <!--<td ng-repeat = "type in ::extraIdentifierTypes track by $index">-->
+                    <!--{{::result.extraIdentifiers[type.name]}}-->
+                <!--</td>-->
 
-                <td>{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</td>
-                <td ng-repeat = "field in ::personSearchResultsConfig.fields track by $index">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</td>
+                <!--<td>{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</td>-->
+                <!--<td ng-repeat = "field in ::personSearchResultsConfig.fields track by $index">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</td>-->
+                <!--<td>{{::result.gender}}</td>-->
+                <!--<td>{{::result.age}}</td>-->
+                <!--<td ng-repeat = "field in ::addressSearchResultsConfig.fields">{{::result.addressFieldValue[field] || ""}}</td>-->
+                <!--<td>{{::result.dateCreated | bahmniDate}}</td>-->
+                <!--<td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>-->
+
+                <td><a href="../clinical/index.html#/default/patient/{{result.patientUuid}}/dashboard"
+                       class="title-link">{{::result.healthId}}</td>
+                <td>{{::result.firstName}} {{::result.lastName}}</td>
+                <td>{{::result.phoneNo}}</td>
+                <td>{{::result.fatherName}}</td>
                 <td>{{::result.gender}}</td>
                 <td>{{::result.age}}</td>
-                <td ng-repeat = "field in ::addressSearchResultsConfig.fields">{{::result.addressFieldValue[field] || ""}}</td>
-                <td>{{::result.dateCreated | bahmniDate}}</td>
-                <td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>
+                <td>{{::result.district}}</td>
+                <td>{{::result.registeredDate | date}}</td>
+                <td><a ng-if="::(searchActions.length > 0)"
+                       ng-click="forPatient(result).doExtensionAction(searchActions[0])">
+                    Edit profile
+                </a>
+                </td>
             </tr>
             </tbody>
         </table>

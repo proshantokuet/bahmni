@@ -105,6 +105,26 @@ angular.module('bahmni.registration')
             return $http.post(url, data, config);
         };
 
+        var patientSearchWithCatchment = function (name, mobileNo, district, limit) {
+            var url = openmrsUrl + "/ws/" + "rest/v1/patient-search/get-all-patient-info";
+            var config = {
+                method: "GET",
+                params: {
+                    firstName: name,
+                    mobileNo: mobileNo,
+                    district: district,
+                    limit: limit
+                },
+                withCredentials: true
+            };
+
+            var defer = $q.defer();
+            $http.get(url, config).success(function (result) {
+                defer.resolve(result);
+            });
+            return defer.promise;
+        };
+
         return {
             search: search,
             searchByIdentifier: searchByIdentifier,
@@ -113,6 +133,7 @@ angular.module('bahmni.registration')
             get: get,
             updateImage: updateImage,
             searchByNameOrIdentifier: searchByNameOrIdentifier,
-            searchByNameOrMobile: searchByNameOrMobile
+            searchByNameOrMobile: searchByNameOrMobile,
+            patientSearchWithCatchment: patientSearchWithCatchment
         };
     }]);
