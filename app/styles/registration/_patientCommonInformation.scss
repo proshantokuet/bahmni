@@ -315,4 +315,19 @@ section.form-field-inline{
   padding: 15px 0 10px;
 }
 
+.cancelReg {
+    border-radius: 3px;
+    background: linear-gradient(to bottom, #FFF, #DDD);
+    background-color: #DDD;
+    border: #DDD 1px solid;
+    padding: 6px 20px 7px;
+    display: inline-block;
+    line-height: 1.2em;
+    color: #363463;
+    cursor: pointer;
+    min-width: 0;
+    max-width: 300px;
+    text-decoration: none;
+}
+
 

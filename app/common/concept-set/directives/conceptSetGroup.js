@@ -170,13 +170,7 @@ angular.module('bahmni.common.conceptSet')
                 }
                 $scope.clinicType = servicePoint;
                 $scope.collectors = $scope.dataCollectorList;
-                if (servicePoint == "Satellite") {
-                    $scope.dataCollectorList = $scope.dataCollectorList.filter(function (dataCollector) {
-                        return dataCollector.designation == "Paramedic(Satellite)" || dataCollector.designation == "Paramedic(Static)";
-                    });
-                } else {
-                    $scope.dataCollectorList = $scope.dataCollectors;
-                }
+                $scope.dataCollectorList = $scope.dataCollectors;
             };
             $scope.htmlToPlaintext = function (text) {
                 var yearsSplit = text.replace('Years', 'Y');
@@ -341,13 +335,13 @@ angular.module('bahmni.common.conceptSet')
                     }
                 });
                 var decimalPart = ($scope.net - Math.floor($scope.net));
-                var netAmount = "";
+                $scope.netAmount = "";
                 if (decimalPart >= 0.5) {
-                    netAmount = Math.ceil($scope.net);
+                    $scope.netAmount = Math.ceil($scope.net);
                 } else {
-                    netAmount = Math.floor($scope.net);
+                    $scope.netAmount = Math.floor($scope.net);
                 }
-                return netAmount;
+                return $scope.netAmount;
             };
 
             $scope.getAllChildInformation = function () {
@@ -379,10 +373,18 @@ angular.module('bahmni.common.conceptSet')
                     $scope.Message = "You clicked YES.";
                     $scope.enable = "false";
                     $scope.test = "true";
+                    $scope.passedServiceTest = true;
+
+                    angular.forEach(services, function (service) {
+                        if (!service.code || !service.item) {
+                            $scope.passedServiceTest = false;
+                        }
+                    });
+                    if (!$scope.passedServiceTest) {
+                        messagingService.showMessage("error", "Service code and Item can not be empty");
+                        return;
+                    }
                     $scope.searchButtonText = "Submitting";
-                    console.log("submit receipt");
-                    console.log(services);
-                    console.log(patient);
                     var jsonData = {};
                     if ($stateParams.moneyReceiptObject) {
                         delete patientInfo.category;
@@ -413,10 +415,18 @@ angular.module('bahmni.common.conceptSet')
                     if (patient.FinancialStatus != undefined) {
                         patientInfo['wealth'] = patient.FinancialStatus.value.display;
                     }
+                    if (patientInfo.sateliteClinicId) {
+                        patientInfo.orgUnit = patientInfo.sateliteClinicId.dhisId;
+                        patientInfo.sateliteClinicId = patientInfo.sateliteClinicId.code;
+                    }
                     patientInfo['isComplete'] = savingStatus;
+                    patientInfo['totalAmount'] = $scope.netAmount.toString();
+                    patientInfo['totalDiscount'] = $scope.totalDiscount.toString();
+                    if (patient.RegistrationDate) {
+                        patientInfo['patientRegisteredDate'] = new Date(patient.RegistrationDate.value);
+                    }
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
-
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
                         $state.go("patient.dashboard.show", {
                             patientUuid: patient.uuid}, {reload: true}
@@ -429,6 +439,18 @@ angular.module('bahmni.common.conceptSet')
             $scope.togglePref = function (conceptSet, conceptName) {
                 $rootScope.currentUser.toggleFavoriteObsTemplate(conceptName);
                 spinner.forPromise(userService.savePreferences());
+            };
+
+            $scope.checkValidDate = function (date) {
+                var registrationDate = new Date($scope.patient.RegistrationDate.value);
+                var splitedDate = date.split('/');
+                var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                var comparedValueForMoneyReceipt = finalizedSplitedDate.getTime();
+                var comparedValueForRegistrationDate = registrationDate.getTime();
+                if (comparedValueForMoneyReceipt < comparedValueForRegistrationDate) {
+                    $scope.patientInfo.moneyReceiptDate = null;
+                    messagingService.showMessage("error", "Money receipt date cannot be entered  before patient registration date");
+                }
             };
 
             $scope.getNormalized = function (conceptName) {
@@ -601,7 +623,9 @@ angular.module('bahmni.common.conceptSet')
             var services = function () {
                 return patientService.getServices($scope.patient).then(function (response) {
                     var index = 0;
-                    $scope.serviceList = response.data;
+                    $scope.serviceList = response.data.filter(function (item) {
+                        return item.voided == false;
+                    });
                     if ($scope.moneyReceiptObject) {
                         for (var j = 0; j < $scope.serviceList.length; j++) {
                             for (var i = 0; i < $scope.moneyReceiptObject.length; i++) {
@@ -633,15 +657,36 @@ angular.module('bahmni.common.conceptSet')
                         if (value.designation == 'Counselor') {
                             $scope.patientInfo.dataCollector = value;
                         }
+                        else if ($scope.patientInfo.dataCollector) {
+                            if ($scope.patientInfo.dataCollector == value.username) {
+                                $scope.patientInfo.dataCollector = value;
+                            }
+                        }
                     });
                 });
             };
+
+            var sateliteClinicId = function () {
+                var clinicCode = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id;
+                return patientService.getSateliteClinicCode(clinicCode).then(function (response) {
+                    $scope.sateliteClinicCodes = response.data;
+                    angular.forEach($scope.sateliteClinicCodes, function (value, key) {
+                        if ($scope.patientInfo.sateliteClinicId) {
+                            if ($scope.patientInfo.sateliteClinicId == value.code) {
+                                $scope.patientInfo.sateliteClinicId = value;
+                            }
+                        }
+                    });
+                });
+            };
+
             if ($scope.money == true) {
-                var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)]);
+                var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode), sateliteClinicId()]);
             }
             if ($scope.observationTab == true) {
                 var initPromise = $q.all($scope.getPatientVisitHistoryServices(), $scope.getAllChildInformation());
             }
+
             $scope.initialization = initPromise;
             $scope.dialogData = {
                 "noOfVisits": $scope.noOfVisits,

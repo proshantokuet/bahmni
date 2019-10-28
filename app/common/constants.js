@@ -74,6 +74,7 @@ Bahmni.Common = Bahmni.Common || {};
         moneyReceiptURL: RESTWS_V1 + "/service-provision/get-all-by-patient-uuid",
         serviceUrl: RESTWS_V1 + "/service-management/get-all",
         dataColelctorUrl: RESTWS_V1 + "/clinic-user/get-by-code",
+        satClinicIdUrl: RESTWS_V1 + "/clinic/spot/get-all-spotlist-by-id",
         serviceSaveUrl: RESTWS_V1 + "/money-receipt/add-or-update",
         childInformationSaveUrl: RESTWS_V1 + "/child-info/add-or-update",
         childInformationGetUrl: RESTWS_V1 + "/child-info/get-all-child-by-patient-uuid",

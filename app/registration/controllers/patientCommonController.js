@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', '$timeout', 'patientAttributeService', 'locationService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state',
-        function ($scope, $rootScope, $http, $timeout, patientAttributeService, locationService, appService, spinner, $location, ngDialog, $window, $state) {
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', '$timeout', 'patientAttributeService', 'locationService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state', '$stateParams',
+        function ($scope, $rootScope, $http, $timeout, patientAttributeService, locationService, appService, spinner, $location, ngDialog, $window, $state, $stateParams) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
             var personAttributes = [];
@@ -16,7 +16,9 @@ angular.module('bahmni.registration')
                     newDate = day + '/' + month + '/' + yr;
                 return newDate;
             };
-            $scope.patient.RegistrationDate = dateFormat();
+            if (!$stateParams.patientUuid) {
+                $scope.patient.RegistrationDate = dateFormat();
+            }
             $scope.showLastName = appService.getAppDescriptor().getConfigValue("showLastName");
             $scope.isLastNameMandatory = $scope.showLastName && appService.getAppDescriptor().getConfigValue("isLastNameMandatory");
             $scope.showBirthTime = appService.getAppDescriptor().getConfigValue("showBirthTime") != null
@@ -324,7 +326,7 @@ angular.module('bahmni.registration')
                     }
 
                     var a = $('#UIC').val();
-                    var position = 6;
+                    var position = 5;
                     var output = testReplaceAt(a, position, firstName.toUpperCase());
                     console.log(output);
                     // $('#UIC').val(output);
@@ -340,7 +342,7 @@ angular.module('bahmni.registration')
                         $scope.patient.birthRank = birthRank.slice(1, 3);
                     }
                     var a = $('#UIC').val();
-                    var position = 8;
+                    var position = 7;
                     var output = testReplaceAt(a, position, $scope.patient.birthRank.slice(0, 2));
                     console.log(output);
                     // $('#UIC').val(output);
@@ -367,11 +369,11 @@ angular.module('bahmni.registration')
                      var maritalStatus = e.options[e.selectedIndex].text; */
                     var birthDistrict = $scope.patient[attribute];
                     if (birthDistrict) {
-                        if (birthDistrict.length > 2) {
+                        if (birthDistrict.length >= 2) {
                             birthDistrict = birthDistrict.slice(0, 2);
                             console.log(birthDistrict);
                             var a = $('#UIC').val();
-                            var position = 10;
+                            var position = 9;
                             var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
                             console.log(output);
                             // $('#UIC').val(output);
@@ -389,9 +391,8 @@ angular.module('bahmni.registration')
                             }
                             var a = $('#UIC').val();
                             var position = 3;
-                            var output = testReplaceAt(a, position, birthDistrict.toUpperCase() + '@');
-                            var finalOutput = output.replace('@', '');
-                            $scope.patient.uic = finalOutput;
+                            var output = testReplaceAt(a, position, birthDistrict.toUpperCase());
+                            $scope.patient.uic = output;
                         } else {
                             alert("Upzilla code is not defined");
                             $scope.patient.birthUpazilla = "";
@@ -424,11 +425,9 @@ angular.module('bahmni.registration')
                 var districtInformation = $rootScope.zillaBinding;
                 return locationService.getAllByTag("District").then(function (response) {
                     $scope.locations = response.data.results;
-                    console.log(response.data.results);
                     var i = 0;
                     for (i = 0; i < $scope.locations.length; i++) {
                         $scope.locationDistricts.push({districtName: $scope.locations[i].name, uuid: $scope.locations[i].uuid, districtCode: $scope.locations[i].address2});
-                        console.log($scope.locations[i].uuid);
                     }
                     if (districtInformation) {
                         for (i = 0; i < $scope.locationDistricts.length; i++) {
@@ -446,7 +445,6 @@ angular.module('bahmni.registration')
                 console.log(districtName);
                 if (districtName != undefined) {
                     return locationService.getByUuid(districtName.uuid).then(function (response) {
-                        console.log(response);
                         $scope.locationDUpazilla = [];
                         $scope.locationUpazillas = [];
                         var i = 0;
@@ -462,7 +460,6 @@ angular.module('bahmni.registration')
             $scope.getCode = function (uuid) {
                 var districtInformation = $rootScope.zillaBinding;
                 return locationService.getByUuid(uuid).then(function (response) {
-                    console.log(response);
                     $scope.locationDUpazilla.push({upazillaName: response.display, upazillaCode: response.address2});
                     if (districtInformation) {
                         for (var i = 0; i < $scope.locationDUpazilla.length; i++) {

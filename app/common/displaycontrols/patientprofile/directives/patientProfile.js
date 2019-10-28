@@ -31,8 +31,8 @@
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
         .directive('patientProfile', ['patientService', 'spinner', 'ngDialog', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
-            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'patientVisitHistoryService',
-            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, patientVisitHistoryService) {
+            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService', 'patientVisitHistoryService',
+            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService, patientVisitHistoryService) {
                 var controller = function ($scope) {
                     var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
                     var visitLocationUuid = $rootScope.visitLocation;
@@ -250,6 +250,15 @@
                     var moneyReceipt = function () {
                         return patientService.moneyReceipt($scope.patientUuid).then(function (response) {
                             $scope.services = response.data;
+                            var clinicCode = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId;
+                            angular.forEach($scope.services, function (service) {
+                                if (service.clinicCode != clinicCode) {
+                                    service.validMoneyReceiptHolder = false;
+                                }
+                                else {
+                                    service.validMoneyReceiptHolder = true;
+                                }
+                            });
                         });
                     };
                     $scope.editMoneyReceipt = function (id) {
@@ -263,11 +272,17 @@
                             var filteringServicesBySlip = $scope.services.filter(function (service) {
                                 return service.slipNo == id;
                             });
-                            $state.go('patient.dashboard.show.observations', {
-                                conceptSetGroupName: 'observations',
-                                previousUrl: 'moneyreceipt',
-                                moneyReceiptObject: filteringServicesBySlip
-                            }, {reload: true});
+                            $scope.restrictInactiveServicePreview(filteringServicesBySlip);
+                            // if ($scope.inactiveServiceAvailable) {
+                            //     messagingService.showMessage('error', "Inactive Service exist, Money receipt can not be submitted");
+                            // }
+                            // else {
+                            //     $state.go('patient.dashboard.show.observations', {
+                            //         conceptSetGroupName: 'observations',
+                            //         previousUrl: 'moneyreceipt',
+                            //         moneyReceiptObject: filteringServicesBySlip
+                            //     });
+                            // }
                         }
                     };
                     $scope.serviceProviderTabOPen = function () {
@@ -277,13 +292,35 @@
                             moneyReceiptObject: null
                         }, {reload: true});
                     };
-                    // $scope.serviceProviderTabOPen = function () {
-                    //     $state.go('patient.dashboard.show.observations', {
-                    //         conceptSetGroupName: 'observations',
-                    //         previousUrl: null,
-                    //         moneyReceiptObject: null
-                    //     },{reload: true});
-                    // };
+
+                    $scope.restrictInactiveServicePreview = function (moneyReceiptObject) {
+                        var status = false;
+                        patientService.getServices($scope.patient).then(function (response) {
+                            $scope.serviceListAll = response.data;
+                            $scope.serviceList = response.data.filter(function (item) {
+                                return item.voided == false;
+                            });
+                            if (moneyReceiptObject) {
+                                for (var j = 0; j < $scope.serviceListAll.length; j++) {
+                                    for (var i = 0; i < moneyReceiptObject.length; i++) {
+                                        if ($scope.serviceListAll[j].code == moneyReceiptObject[i].code && $scope.serviceListAll[j].voided == true) {
+                                            status = true;
+                                            messagingService.showMessage('error', "Service in this money receipt does not exist any more!");
+                                            status = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (!status) {
+                                    $state.go('patient.dashboard.show.observations', {
+                                        conceptSetGroupName: 'observations',
+                                        previousUrl: 'moneyreceipt',
+                                        moneyReceiptObject: moneyReceiptObject
+                                    });
+                                }
+                            }
+                        });
+                    };
 
                     var assignAdmissionDetails = function () {
                         var REP = "custom:(attributes:(value,attributeType:(display,name)))";

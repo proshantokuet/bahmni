@@ -52,435 +52,410 @@
 </style>
 
 <div class="reg-body-wrapper">
-    <div class="simple-form-ui new-patient" ng-if="money">
-        <form name="myForm" class="form-horizontal well" single-submit="create()">
-            <div class="box-container box-container-default">
-                <div class="box-container box-container-patient-info patient-common-info-container">
-                    <div class="form-field form-field-gender">
-                        <section class="form-field form-field-gender">
-                            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
-                                <tr>
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Clinic Name </label>
-                                            </div>
-
-                                        </article>
-                                    </td>
-                                    <td>
-                                        <article class="form-field">
-
-
-                                            <div class="field-value">
-                                                <div class="field-value">
-                                                    <input ng-model="patientInfo.orgUnit" type="hidden"/>
-                                                    <input ng-model="patientInfo.clinicName" type="text" readonly/>
+        <div class="simple-form-ui new-patient" ng-show="money">
+            <form name="myForm" class="form-horizontal well" single-submit="create()">
+                <div class="box-container box-container-default">
+                    <div class="box-container box-container-patient-info patient-common-info-container">
+                        <div class="form-field form-field-gender">
+                            <section class="form-field form-field-gender">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Clinic Name </label>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
 
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Clinic Id</label>
-                                            </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
 
 
-                                        </article>
-                                    </td>
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
                                                 <div class="field-value">
-                                                    <input ng-model="patientInfo.clinicCode" type="text" readonly/>
+                                                    <div class="field-value">
+                                                        <input ng-model="patientInfo.orgUnit" type="hidden"  />
+                                                        <input ng-model="patientInfo.clinicName" type="text" readonly />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Slip No<span class="asterick">*</span></label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Clinic Id</label>
+                                                </div>
+
+
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <input ng-model="patientInfo.slipNo" type="text" ng-required="true"
-                                                           autofocus ng-readonly="makeSlipNoReadOnly"/>
+                                                    <div class="field-value">
+                                                        <input ng-model="patientInfo.clinicCode" type="text" readonly/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
-
-                                </tr>
-
-
-                                <tr>
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Date<span class="asterick">*</span></label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Slip No<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <input id="txtDate" ng-model="patientInfo.moneyReceiptDate"
-                                                           type="text" ng-required="true"/>
+                                                    <div class="field-value">
+                                                        <input ng-model="patientInfo.slipNo" type="text" ng-required="true" autofocus ng-readonly="makeSlipNoReadOnly"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
 
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Service Point<span class="asterick">*</span></label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Date<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <select ng-model="patientInfo.servicePoint"
-                                                            ng-options="servicePoint.name as servicePoint.name for servicePoint in servicePoints"
-                                                            ng-change="onChangedPateintInfo(patientInfo.servicePoint)"
-                                                            ng-required="true">
-                                                    </select>
+                                                    <div class="field-value">
+                                                        <input id="txtDate" ng-model="patientInfo.moneyReceiptDate" type="text"  ng-required="true" autocomplete="off" ng-change="checkValidDate(patientInfo.moneyReceiptDate)" readonly/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
 
-                                    <td ng-show="patientInfo.servicePoint=='Satellite'">
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Satellite Clinic Id</label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td ng-show="patientInfo.servicePoint=='Satellite'">
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                         <td>
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Service Point<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
                                                 <div class="field-value">
-                                                    <input ng-model="patientInfo.sateliteClinicId" type="text"/>
+                                                    <div class="field-value">
+                                                        <select ng-model="patientInfo.servicePoint" ng-options="servicePoint.name as servicePoint.name for servicePoint in servicePoints" ng-change="onChangedPateintInfo(patientInfo.servicePoint)" ng-required="true">
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td ng-show="patientInfo.servicePoint=='CSP'">
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>CSP ID <span class="asterick">*</span></label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td ng-show="patientInfo.servicePoint=='CSP'">
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                            </article>
+                                        </td>
+
+
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Satellite Clinic Id</label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
+                                            <article class="form-field" >
                                                 <div class="field-value">
-                                                    <input ng-model="patientInfo.cspId" type="text"
-                                                           ng-required="patientInfo.servicePoint=='CSP'"/>
+                                                    <div class="field-value">
+                                                        <select ng-model="patientInfo.sateliteClinicId" ng-options="sat as sat.code for sat in sateliteClinicCodes">
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-                                    <td ng-show="patientInfo.servicePoint=='Satellite'">
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Team No</span></label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td ng-show="patientInfo.servicePoint=='Satellite'">
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                            </article>
+                                        </td>
+                                         <td ng-show="patientInfo.servicePoint=='CSP'">
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>CSP ID <span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.servicePoint=='CSP'">
+                                            <article class="form-field" >
                                                 <div class="field-value">
-                                                    <input ng-model="patientInfo.teamNo" type="text"/>
+                                                    <div class="field-value">
+                                                        <input ng-model="patientInfo.cspId" type="text" ng-required="patientInfo.servicePoint=='CSP'"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
+
+                                    </tr>
 
 
-                                    <td ng-show="patientInfo.servicePoint=='Satellite'">
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Session<span class="asterick">*</span></label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td ng-show="patientInfo.servicePoint=='Satellite'">
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                    <tr>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Team No</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <select ng-model="patientInfo.session"
-                                                            ng-options=" session.name as session.name for session in sessions"
-                                                            ng-required="patientInfo.servicePoint=='Satellite'">
-
-                                                    </select>
-
+                                                    <div class="field-value">
+                                                        <input ng-model="patientInfo.teamNo" type="text"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
-                                    <td ng-show="patientInfo.session=='Others'">
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Other's Session Name<span class="asterick">*</span></label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td ng-show="patientInfo.session=='Others'">
-                                        <article class="form-field">
-                                            <div class="field-value">
+
+
+
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Session<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.servicePoint=='Satellite'">
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <input ng-model="patientInfo.other" type="text"
-                                                           ng-required="patientInfo.session=='Others'"/>
+                                                    <div class="field-value">
+                                                        <select ng-model="patientInfo.session" ng-options=" session.name as session.name for session in sessions" ng-required="patientInfo.servicePoint=='Satellite'">
+
+                                                        </select>
+
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
-
-                                </tr>
-
-                                <tr>
-
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Reference<span class="asterick">*</span></label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                        <td ng-show="patientInfo.session=='Others'">
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Other's Session Name<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.session=='Others'">
+                                            <article class="form-field" >
                                                 <div class="field-value">
-                                                    <select ng-model="patientInfo.reference"
-                                                            ng-options=" reference.name as reference.name for reference in references"
-                                                            ng-required="true">
-
-                                                    </select>
+                                                    <div class="field-value">
+                                                        <input ng-model="patientInfo.other" type="text" ng-required="patientInfo.session=='Others'"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td ng-show="patientInfo.reference=='External' || patientInfo.reference =='CSP'">
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>{{patientInfo.reference}} Id</label>
-                                            </div>
-                                        </article>
-                                    </td>
-                                    <td ng-show="patientInfo.reference=='External' || patientInfo.reference =='CSP'">
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                            </article>
+                                        </td>
+
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Reference<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
                                                 <div class="field-value">
-                                                    <input ng-model="patientInfo.referenceId" type="text"/>
+                                                    <div class="field-value">
+                                                         <select ng-model="patientInfo.reference" ng-options=" reference.name as reference.name for reference in references" ng-required="true">
+
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
-
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-attribute">
-                                                <label>Data Collector<span class="asterick">*</span></label>
-                                            </div>
-                                        </article>
-                                    </td>
-
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.reference=='External' || patientInfo.reference =='CSP'">
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>{{patientInfo.reference}} Id</label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td ng-show="patientInfo.reference=='External' || patientInfo.reference =='CSP'">
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <select ng-model="patientInfo.dataCollector"
-                                                            ng-options="dataCollector as dataCollector.userRole for dataCollector in dataCollectorList"
-                                                            ng-required="true">
-
-                                                    </select>
+                                                    <div class="field-value">
+                                                        <input ng-model="patientInfo.referenceId" type="text"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
-                                </tr>
+                                            </article>
+                                        </td>
 
-                            </table>
-                        </section>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-attribute">
+                                                    <label>Data Collector<span class="asterick">*</span></label>
+                                                </div>
+                                            </article>
+                                        </td>
+
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                         <select ng-model="patientInfo.dataCollector" ng-options="dataCollector as dataCollector.userRole for dataCollector in dataCollectorList" ng-required="true">
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </section>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="box-container box-container-default" id="serviceSection">
-                <div class="box-container box-container-patient-info patient-common-info-container">
-                    <div class="form-field form-field-gender">
-                        <section class="form-field form-field-gender">
-                            <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0"
-                                   align="left;">
-                                <tr data-ng-repeat="service in services track by $index">
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                <div class="box-container box-container-default" id="serviceSection">
+                    <div class="box-container box-container-patient-info patient-common-info-container">
+                        <div class="form-field form-field-gender">
+                            <section class="form-field form-field-gender">
+                                <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
+                                    <tr data-ng-repeat="service in services track by $index">
+                                        <td>
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <label>Code<span class="asterick">*</span></label>
+                                                    <div class="field-value">
+                                                        <label>Code<span class="asterick">*</span></label>
 
-                                                    <input type="text" ng-model="service.code" placeholder="Select code"
-                                                           typeahead-on-select="onChangedForCode(service.code, $index)"
-                                                           uib-typeahead="itm as itm.code for itm in serviceList | orderBy:'code' | filter:{code:$viewValue}"
-                                                           typeahead-min-length="0" typeahead-no-results="noCodeFound">
+                                                        <input type="text" ng-model="service.code" placeholder="Select code"
+                                                               typeahead-on-select="onChangedForCode(service.code, $index)"
+                                                               uib-typeahead="itm as itm.code for itm in serviceList | orderBy:'code' | filter:{code:$viewValue}"
+                                                               typeahead-min-length="0" typeahead-editable="false" typeahead-no-results="noCodeFound">
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                        <span style="opacity: 0.5" ng-show="noCodeFound">No results found</span>
-                                    </td>
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                            </article>
+                                            <span style="opacity: 0.5" ng-show="noCodeFound">No results found</span>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <label>Service<span class="asterick">*</span></label>
+                                                    <div class="field-value">
+                                                        <label>Service<span class="asterick">*</span></label>
 
-                                                    <!--<select  ng-model="service.item" ng-change="onChanged(service.item, $index)"-->
-                                                    <!--ng-options="itm as itm.name for itm in serviceList | orderBy:'name'" ng-required="true">-->
-                                                    <!--</select>-->
-                                                    <input type="text" ng-model="service.item"
-                                                           placeholder="Select service"
-                                                           typeahead-on-select="onChanged(service.item, $index)"
-                                                           uib-typeahead="itm as itm.name for itm in serviceList | orderBy:'name' | filter:{name:$viewValue}"
-                                                           typeahead-min-length="0" typeahead-no-results="noResults">
+                                                        <!--<select  ng-model="service.item" ng-change="onChanged(service.item, $index)"-->
+                                                        <!--ng-options="itm as itm.name for itm in serviceList | orderBy:'name'" ng-required="true">-->
+                                                        <!--</select>-->
+                                                        <input type="text" ng-model="service.item" placeholder="Select service"
+                                                               typeahead-on-select="onChanged(service.item, $index)"
+                                                               uib-typeahead="itm as itm.name for itm in serviceList | orderBy:'name' | filter:{name:$viewValue}"
+                                                               typeahead-min-length="0" typeahead-editable="false" typeahead-no-results="noResults">
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                        <span style="opacity: 0.5" ng-show="noResults">No results found</span>
-                                    </td>
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                            </article>
+                                            <span style="opacity: 0.5" ng-show="noResults">No results found</span>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
                                                 <div class="field-value">
-                                                    <label>Description</label>
-                                                    <input ng-model="service.description" style="width: 10em;"
-                                                           type="text"/>
+                                                    <div class="field-value">
+                                                         <label>Description</label>
+                                                        <input ng-model="service.description" style="width: 10em;" type="text" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                        <td>
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <label>Unit Cost<span class="asterick">*</span></label>
-                                                    <input ng-model="service.unitCost" style="width: 5em;" type="number"
-                                                           step="any" ng-required="true" readonly/>
+                                                    <div class="field-value">
+                                                         <label>Unit Cost<span class="asterick">*</span></label>
+                                                        <input ng-model="service.unitCost" style="width: 5em;" type="number"  step="any" ng-required="true" readonly/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                        <td>
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <label>Quantity<span class="asterick">*</span></label>
-                                                    <input ng-model="service.quantity"
-                                                           ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)"
-                                                           style="width: 4em;" type="number" min="1"
-                                                           ng-required="true"/>
+                                                    <div class="field-value">
+                                                        <label>Quantity<span class="asterick">*</span></label>
+                                                        <input ng-model="service.quantity" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 4em;" type="number" min="1" ng-required="true"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                        <td>
+                                            <article class="form-field" >
                                                 <div class="field-value">
-                                                    <label>Total Amount<span class="asterick">*</span></label>
-                                                    <input ng-model="service.totalAmount" style="width: 6em;"
-                                                           type="text" ng-required="true" readonly/>
+                                                    <div class="field-value">
+                                                         <label>Total Amount<span class="asterick">*</span></label>
+                                                        <input ng-model="service.totalAmount" style="width: 6em;" type="text"  ng-required="true" readonly/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                        <td>
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <label>Discount<span class="asterick">*</span></label>
-                                                    <input ng-model="service.discount"
-                                                           ng-change="calculateNetAmount(service.discount,$index)"
-                                                           style="width: 5em;" type="number" min="0"
-                                                           ng-required="true"/>
+                                                    <div class="field-value">
+                                                        <label>Discount<span class="asterick">*</span></label>
+                                                        <input ng-model="service.discount"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" min="0" ng-required="true"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                    </td>
+                                            </article>
+                                        </td>
 
-                                    <td>
-                                        <article class="form-field">
-                                            <div class="field-value">
+                                        <td>
+                                            <article class="form-field">
                                                 <div class="field-value">
-                                                    <label>Net Payable Amount<span class="asterick">*</span></label>
-                                                    <input ng-model="service.netPayable" style="width: 9em;" type="text"
-                                                           ng-required="true" readonly/>
+                                                    <div class="field-value">
+                                                        <label>Net Payable Amount<span class="asterick">*</span></label>
+                                                        <input ng-model="service.netPayable" style="width: 9em;" type="text"  ng-required="true" readonly/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </article>
+                                            </article>
 
-                                    </td>
-                                    <td>
-                                        <button class="remove" ng-show="!$first" ng-click="removeThis($index)">X
-                                        </button>
-                                        <span><button class="remove" ng-show="$last"
-                                                      ng-click="addNewChoice()">+</button></span>
+                                        </td>
+                                        <td>
+                                            <button class="remove" ng-show="!$first"  ng-click="removeThis($index)">X</button>
+                                            <span><button class="remove" ng-show="$last" ng-click="addNewChoice()">+</button></span>
 
-                                    </td>
-                                </tr>
-                            </table>
-                        </section>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-        </form>
+            </form>
 
+        </div>
     </div>
-</div>
 <!--{{services}}
 {{patientInfo}}-->
 <!--{{patient}}-->
 
 <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt" ng-show="money">
-    <tr class="displayNone">
-        <td align="left" valign="top"><img src="./../images/logo.jpg" width="162" height="228"/></td>
-        <td align="left" valign="top">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr class="displayNone">
-                    <td colspan="10"><img src="./../images/banner.jpg" width="696" height="146"/></td>
-                </tr>
+  <tr class="displayNone">
+    <td align="left" valign="top"><img src="./../images/logo.jpg" width="162" height="228" /></td>
+    <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="displayNone">
+    <td colspan="10"><img src="./../images/banner.jpg" width="696" height="146" /></td>
+    </tr>
   <tr class="displayNone">
     <td><img src="./../images/blank.png" width="40" height="1" /></td>
     <td><strong>Type:</strong></td>
@@ -507,11 +482,23 @@
     </table>
 </td>
   </tr>
-  <tr class="displayNone">
-    <td align="left" valign="top" >UIC</td>
-    <td>{{patient.UIC.value}}</td>
-
-  </tr>
+    <tr class="displayNone">
+        <td colspan="2" align="left" valign="top">
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td align="left" style="padding:10px 10px 10px 8px;">UIC</td>
+                    <td style="padding:10px 10px 10px 8px;">
+                        {{patient.UIC.value}}
+                    </td>
+                    <td align="left" valign="top" style="padding:10px 10px 10px 8px;">
+                        Health ID
+                    </td>
+                    <td style="padding:10px 10px 10px 8px;">{{patient.identifier}}</td>
+                </tr>
+                <tr>
+            </table>
+        </td>
+    </tr>
   <tr class="displayNone">
     <td colspan="2" align="left" valign="top"><img src="./../images/blank.png" width="100%" height="20" /></td>
   </tr>
@@ -551,228 +538,129 @@
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
               <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
             </span></td>
-                                <td style="padding:10px 0 5px 8px;">2. Poor</td>
-                                <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input5" type="checkbox"
-                     ng-checked="checkedBox('Poor',patient.FinancialStatus.value.display)"/>
+            <td style="padding:10px 0 5px 8px;">2. Poor</td>
+            <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
+              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',patient.FinancialStatus.value.display)" />
             </span></td>
-                                <td style="padding:10px 0 5px 8px;">3.PoP</td>
-                                <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input6" type="checkbox"
-                     ng-checked="checkedBox('PoP',patient.FinancialStatus.value.display)"/>
+            <td style="padding:10px 0 5px 8px;">3.PoP</td>
+            <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
+              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',patient.FinancialStatus.value.display)" />
             </span></td>
 
-                            </tr>
-                            <tr>
-                                <td colspan="2" align="left" valign="top" style="padding:10px 0 5px 8px;">6. Address:
-                                </td>
-                                <td colspan="6" align="left" valign="top" style="padding:10px 0 5px 8px;">
-                                    {{address(patient.address)}}
-                                </td>
-                                <td align="left" valign="top" style="padding:10px 0 5px 8px;">7. Mobile No.</td>
-                                <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">
-                                    {{patient.MobileNo.value}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">8. Session:
-                                </td>
-                                <td align="left" valign="top" colspan="9" style="padding:10px 0 5px 8px;"
-                                    ng-bind="patientInfo.session"></td>
-                            </tr>
-                            <tr>
-                                <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">9.
-                                    Reference:
-                                </td>
-                                <td align="left" valign="top" colspan="9" style="padding:10px 0 5px 8px;">
-                                    {{patientInfo.reference}} {{referenceId(patientInfo.reference,
-                                    patientInfo.referenceId)}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" align="left" valign="top" style="padding:10px 0 5px 8px;">10. Birth
-                                    District
-                                </td>
-                                <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">
-                                    {{patient.birthDistrict.value}}
-                                </td>
-                                <td align="left" valign="top" style="padding:10px 0 5px 8px;">11. Birth Upazila:</td>
-                                <td align="left" valign="top" colspan="6" style="padding:10px 0 5px 8px;">
-                                    {{patient.birthUpazilla.value}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="left" valign="top" colspan="2" align="left" valign="top"
-                                    style="padding:10px 0 20px 8px;">12. Birth Rank:
-                                </td>
-                                <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">
-                                    {{patient.birthRank.value}}
-                                </td>
-                                <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">13. Birth
-                                    Mother's First Name:
-                                </td>
-                                <td align="left" valign="top" colspan="5" style="padding:10px 0 5px 8px;">
-                                    {{patient.birthMothersFirstName.value}}
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr class="displayNone">
-        <td colspan="2" align="left" valign="top" style="padding:20px 0 20px 8px;">14. Service and Payable Amount</td>
-    </tr>
-    <tr>
-        <td colspan="2" align="left" valign="top">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
-                <tr>
-                    <td align="center" valign="top" bgcolor="#CCCCCC"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        <strong>SL</strong></td>
-                    <td align="center" valign="top" bgcolor="#CCCCCC"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        <strong>Service Code (A)</strong></td>
-                    <td align="center" valign="top" bgcolor="#CCCCCC"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        <strong>Service/Medicine/ Others (B)</strong></td>
-                    <td align="center" valign="top" bgcolor="#CCCCCC"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        <strong>Quantity (C)</strong></td>
-                    <td align="center" valign="top" bgcolor="#CCCCCC"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        <strong>Unit Cost (D)</strong></td>
-                    <td align="center" valign="top" bgcolor="#CCCCCC"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        <strong>Total Amount (E)</strong></td>
-                    <td align="center" valign="top" bgcolor="#CCCCCC"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        <strong>Discount (F)</strong></td>
-                    <td align="center" valign="top" bgcolor="#CCCCCC"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666;"><strong>Net Payable Amount
-                        (G)</strong></td>
-                </tr>
-                <tr ng-repeat="service in services track by $index">
-                    <td align="left" valign="top"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        {{$index+1}}
-                    </td>
-                    <td align="left" valign="top"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        {{service.item.code}}
-                    </td>
-                    <td align="left" valign="top"
-                        style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        {{service.item.name}}
-                    </td>
-                    <td align="right" valign="top"
-                        style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        {{service.quantity}}
-                    </td>
-                    <td align="right" valign="top"
-                        style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        {{service.unitCost}}
-                    </td>
-                    <td align="right" valign="top"
-                        style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        {{service.totalAmount}}
-                    </td>
-                    <td align="right" valign="top"
-                        style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        {{service.discount}}
-                    </td>
-                    <td align="right" valign="top"
-                        style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">
-                        {{service.netPayable}}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="5" align="right" valign="top"
-                        style="padding:10px 10px 10px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;">
-                        <strong>Total Taka</strong></td>
-                    <td align="right" valign="top"
-                        style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">
-                        &nbsp; {{calTotalAmount()}}
-                    </td>
-                    <td align="right" valign="top"
-                        style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">
-                        &nbsp; {{calTotalDiscount()}}
-                    </td>
-                    <td align="right" valign="top" style="padding:10px 8px 10px 8px;border-bottom: 1px solid #666;">
-                        {{calTotalNetAmount()}}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="8" align="left" valign="top" style="padding:20px 10px 8px 8px;">In Words :
-                        {{inwords(calTotalNetAmount())}}
-                    </td>
-                </tr>
+          </tr>
+         <tr>
+            <td colspan="2" align="left" valign="top" style="padding:10px 0 5px 8px;">6. Address:</td>
+            <td colspan="6" align="left" valign="top" style="padding:10px 0 5px 8px;"> {{address(patient.address)}}</td>
+            <td align="left" valign="top" style="padding:10px 0 5px 8px;">7. Mobile No.</td>
+            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;"> {{patient.MobileNo.value}}</td>
+            </tr>
+          <tr>
+            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">8. Session:</td>
+            <td align="left" valign="top" colspan="9" style="padding:10px 0 5px 8px;" ng-bind="patientInfo.session"></td>
+            </tr>
+          <tr>
+            <td  align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">9. Reference:</td>
+            <td align="left" valign="top" colspan="9" style="padding:10px 0 5px 8px;">{{patientInfo.reference}}  {{referenceId(patientInfo.reference, patientInfo.referenceId)}}</td>
+          </tr>
+          <tr>
+             <td colspan="2" align="left" valign="top"  style="padding:10px 0 5px 8px;">10. Birth District</td>
+            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">{{patient.birthDistrict.value}}</td>
+            <td align="left" valign="top" style="padding:10px 0 5px 8px;">11. Birth Upazila:</td>
+            <td align="left" valign="top" colspan="6" style="padding:10px 0 5px 8px;">{{patient.birthUpazilla.value}}</td>
+            </tr>
+          <tr>
+            <td align="left" valign="top" colspan="2" align="left" valign="top" style="padding:10px 0 20px 8px;">12. Birth Rank:</td>
+            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">{{patient.birthRank.value}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">13. Birth Mother's First Name:</td>
+            <td align="left" valign="top" colspan="5" style="padding:10px 0 5px 8px;">{{patient.birthMothersFirstName.value}}</td>
+          </tr>
+        </table></td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr class="displayNone">
+    <td colspan="2" align="left" valign="top"  style="padding:20px 0 20px 8px;">14. Service and Payable Amount</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" valign="top">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666;">
+         <tr>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>SL</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Service Code (A)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Service/Medicine/ Others (B)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Quantity (C)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Unit Cost (D)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Total Amount (E)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;"><strong>Discount (F)</strong></td>
+            <td align="center" valign="top" bgcolor="#CCCCCC"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666;"><strong>Net Payable Amount (G)</strong></td>
+          </tr>
+          <tr ng-repeat="service in services track by $index">
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{$index+1}} </td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.item.code}} </td>
+               <td align="left" valign="top"  style="padding:20px 0 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.item.name}} </td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.quantity}} </td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.unitCost}}</td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.totalAmount}} </td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.discount}}</td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.netPayable}} </td>
+           </tr>
+            <tr>
+                <td colspan="5" align="right" valign="top"  style="padding:10px 10px 10px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Total Taka</strong></td>
+                <td align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalAmount()}}</td>
+                <td align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
+                <td align="right" valign="top"  style="padding:10px 8px 10px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
+             </tr>
+          <tr>
+             <td colspan="8"align="left" valign="top"  style="padding:20px 10px 8px 8px;">In Words :  {{inwords(calTotalNetAmount())}}</td>
+          </tr>
 
-            </table>
-        </td>
+    </table></td>
+  </tr>
+  <tr class="displayNone">
+    <td colspan="2" align="left" valign="top"  style="padding:5px 0 1px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
+  </tr>
+  <tr class="displayNone">
+    <td colspan="2" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="displayNone">
+ 	<td align="center" valign="top"  style="padding:4px 0 5px 8px;">{{patientInfo.dataCollector.username}}</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="center" valign="top"  style="padding:4px 0 5px 8px;">{{patientInfo.dataCollector.designation}} </td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="center" valign="top"  style="padding:4px 0 5px 8px;"></td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
     </tr>
     <tr class="displayNone">
-        <td colspan="2" align="left" valign="top" style="padding:5px 0 1px 8px;"><img src="image/blank.png" width="1"
-                                                                                      height="20"/></td>
-    </tr>
-    <tr class="displayNone">
-        <td colspan="2" align="left" valign="top">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr class="displayNone">
-                    <td align="center" valign="top" style="padding:4px 0 5px 8px;">
-                        {{patientInfo.dataCollector.username}}
-                    </td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="center" valign="top" style="padding:4px 0 5px 8px;">
-                        {{patientInfo.dataCollector.designation}}
-                    </td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="center" valign="top" style="padding:4px 0 5px 8px;"></td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                </tr>
-                <tr class="displayNone">
-                    <td align="center" valign="top" style="padding:4px 0 5px 8px; border-top:1px solid #666;">Name of
-                        data collector
-                    </td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="center" valign="top" style="padding:4px 0 5px 8px; border-top:1px solid #666;">
-                        Designation
-                    </td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="center" valign="top" style="padding:4px 0 5px 8px; border-top:1px solid #666;">
-                        Signature
-                    </td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                    <td align="left" valign="top" style="padding:4px 0 5px 8px;">&nbsp;</td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+    <td align="center" valign="top"  style="padding:4px 0 5px 8px; border-top:1px solid #666;">Name of data collector</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="center" valign="top"  style="padding:4px 0 5px 8px; border-top:1px solid #666;">Designation</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="center" valign="top"  style="padding:4px 0 5px 8px; border-top:1px solid #666;">Signature</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+    <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
+  </tr>
+</table>
+</td>
+  </tr>
 </table>
 
 <div class="submit-btn-container clearfix" id="buttonPrint" ng-show="money">
-    <button style="float: right;margin-top: 10px;margin-right: 5px;" onclick="printMoneyReceipt()">Print</button>
-    <button style="margin: 10px 20px 0 0" class="right submit-btn" ng-disabled="myForm.$invalid"
-            ng-show="patientInfo.isComplete == 0 || patientInfo.isComplete == undefined"
+    <button  style="float: right;margin-top: 10px;margin-right: 5px;" onclick="printMoneyReceipt()">Print</button>
+    <button style="margin: 10px 20px 0 0" class="right submit-btn" ng-disabled="myForm.$invalid" ng-show="patientInfo.isComplete == 0 || patientInfo.isComplete == undefined"
             ng-click="submitMoneyReceiptData(patientInfo,services,patient,0)" ng-disabled="enable=='false'">
         Save as Draft
     </button>
-    <button style="margin: 10px 20px 0 0" class="right submit-btn" ng-disabled="myForm.$invalid"
-            ng-click="submitMoneyReceiptData(patientInfo,services,patient,1)" ng-disabled="enable=='false'">
-        <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
-        {{ searchButtonText }}
+    <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid" ng-click="submitMoneyReceiptData(patientInfo,services,patient,1)" ng-disabled="enable=='false'">
+                       <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+            {{ searchButtonText }}
 
     </button>
 
-    <a onclick="return confirm('Do you really want to cancel this money receipt?')" style="margin: 18px;"
-       href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"
-       class="right submit-btn">Cancel</a>
+    <a onclick="return confirm('Do you really want to cancel this money receipt?')"  style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
 </div>
 
 

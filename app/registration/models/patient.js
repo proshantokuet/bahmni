@@ -50,7 +50,7 @@ angular.module('bahmni.registration')
                 deletedRelationships: [],
                 calculateBirthDate: calculateBirthDate,
                 birthRank: "",
-                uic: "____________",
+                uic: "___________",
                 birthMothersFirstName: "",
                 birthDistrict: { districtName: "ABC", uuid: ""},
                 birthUpazilla: "",
