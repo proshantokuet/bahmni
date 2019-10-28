@@ -65,7 +65,7 @@
     </div>
     <div class="left" data-ng-switch-when="org.openmrs.util.AttributableDate">
         <input id="{{::attribute.name}}" type="text" ng-model="targetModel[attribute.name]"
-               ng-disabled="::isReadOnly(attribute.name)" ng-required="{{::attribute.required}}" ng-blur="::handleUpdate(attribute.name)"/>
+               ng-disabled="::isReadOnly(attribute.name)" ng-required="{{::attribute.required}}" ng-blur="::handleUpdate(attribute.name)" readonly/>
     </div>
     <div class="left" data-ng-switch-when="org.openmrs.customdatatype.datatype.RegexValidatedTextDatatype">
         <input id="{{::attribute.name}}" type="text" pattern="{{::attribute.pattern}}" ng-model="targetModel[attribute.name]"

@@ -31,8 +31,8 @@
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
         .directive('patientProfile', ['patientService', 'spinner', 'ngDialog', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
-            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore',
-            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore) {
+            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService',
+            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService) {
                 var controller = function ($scope) {
                     $scope.isProviderRelationship = function (relationship) {
                         return _.includes($rootScope.relationshipTypeMap.provider, relationship.relationshipType.aIsToB);
@@ -241,13 +241,49 @@
                             var filteringServicesBySlip = $scope.services.filter(function (service) {
                                 return service.slipNo == id;
                             });
-                            $state.go('patient.dashboard.show.observations', {
-                                conceptSetGroupName: 'observations',
-                                previousUrl: 'moneyreceipt',
-                                moneyReceiptObject: filteringServicesBySlip
-                            });
+                            $scope.restrictInactiveServicePreview(filteringServicesBySlip);
+                            // if ($scope.inactiveServiceAvailable) {
+                            //     messagingService.showMessage('error', "Inactive Service exist, Money receipt can not be submitted");
+                            // }
+                            // else {
+                            //     $state.go('patient.dashboard.show.observations', {
+                            //         conceptSetGroupName: 'observations',
+                            //         previousUrl: 'moneyreceipt',
+                            //         moneyReceiptObject: filteringServicesBySlip
+                            //     });
+                            // }
                         }
                     };
+
+                    $scope.restrictInactiveServicePreview = function (moneyReceiptObject) {
+                        var status = false;
+                        patientService.getServices($scope.patient).then(function (response) {
+                            $scope.serviceListAll = response.data;
+                            $scope.serviceList = response.data.filter(function (item) {
+                                return item.voided == false;
+                            });
+                            if (moneyReceiptObject) {
+                                for (var j = 0; j < $scope.serviceListAll.length; j++) {
+                                    for (var i = 0; i < moneyReceiptObject.length; i++) {
+                                        if ($scope.serviceListAll[j].code == moneyReceiptObject[i].code && $scope.serviceListAll[j].voided == true) {
+                                            status = true;
+                                            messagingService.showMessage('error', "Service in this money receipt does not exist any more!");
+                                            status = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (!status) {
+                                    $state.go('patient.dashboard.show.observations', {
+                                        conceptSetGroupName: 'observations',
+                                        previousUrl: 'moneyreceipt',
+                                        moneyReceiptObject: moneyReceiptObject
+                                    });
+                                }
+                            }
+                        });
+                    };
+
                     var assignAdmissionDetails = function () {
                         var REP = "custom:(attributes:(value,attributeType:(display,name)))";
                         var ADMISSION_STATUS_ATTRIBUTE = "Admission Status";
