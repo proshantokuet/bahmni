@@ -668,7 +668,7 @@
     <section class="concept-set-panel-right">
         <div style="text-align: center;background-color: #52797a;padding: 1px;color:white"><h4>Service List</h4></div>
         <div class="btn-group" ng-repeat="conceptSet in allTemplates track by $index"
-             ng-if="conceptSet.isAvailable(context)"
+             ng-if="conceptSet.isAvailable(context) && conceptSet.formValidation(context, conceptSet) && (conceptSet.isAdded || conceptSet.alwaysShow)"
              ng-class="openActiveForm(conceptSet)">
             <button ng-style="conceptSet.klass =='active' && {'background':'#51797a','color':'white'}"
                     ng-click="showLeftPanelConceptSet(conceptSet)">
@@ -709,9 +709,9 @@
                 <ul>
                     <!--ng-if="conceptSet.isAvailable(context)  && (conceptSet.isAdded || conceptSet.alwaysShow)"-->
                     <li>
-                        <h4><span class="concept-set-name"><u>Latest Vitals Information :</u></h4>
+                        <span class="concept-set-name"><u><h4>Latest Vitals Information of</h4> {{vitalsObject.observationDateTime | date}} :</u>
                                 <ul>
-                                    <li style="padding-left: 5px; font-size: initial" ng-repeat="vital in vitalsObject.groupMembers track by $index">
+                                    <li style="padding-left: 5px; font-size: initial" ng-repeat="vital in vitalsObject track by $index">
                                         <br><span>{{$index+1}}. {{vital.conceptNameToDisplay}}</span> : <span ng-if="vital.groupMembers < 1">{{vital.valueAsString}}</span>
                                         <span>
                                             <ul style="padding-left: 15px" ng-repeat="groupmembers in vital.groupMembers">

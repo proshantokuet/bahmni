@@ -56,8 +56,14 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.toogleObservationDetailsViewer = function (viewPrefernce, visit, index) {
-                if (!visit.showExpanVisitDetails) visit.showExpanVisitDetails = true;
-                else visit.showExpanVisitDetails = false;
+                if (!visit.showExpanVisitDetails) {
+                    visit.showExpanVisitDetails = true;
+                    $rootScope.tooglingVisitStart = true;
+                }
+                else {
+                    visit.showExpanVisitDetails = false;
+                    $rootScope.tooglingVisitStart = false;
+                }
 
                 // if (viewPrefernce == "specific") {
                 //     $scope.visits = [];
@@ -187,7 +193,7 @@ angular.module('bahmni.common.conceptSet')
                 var address2 = "";
                 var address1 = "";
                 if (!address.isEmpty) {
-                    /* if (address.stateProvince != undefined) {
+                    /* if (address.stateProvince != undelined) {
                      stateProvince = address.stateProvince;
                      addresLine += stateProvince + ", ";
                      } */
@@ -517,13 +523,22 @@ angular.module('bahmni.common.conceptSet')
                 $.scrollTo('#concept-set-' + (index + 1), 200, {offset: {top: -400}});
             };
 
-            $scope.$on('vitalsbroadcast', function (event, args) {
-                $scope.vitalsObject = $rootScope.vitalsArrayList[0];
+            $scope.$on('vitalsbroadcast', function (event, data) {
+                // $scope.vitalsObject = {};
+                // debugger;
+                // angular.forEach(data, function (value, key) {
+                //     $scope.vitalsObject[value.conceptNameToDisplay] = value.valueAsString;
+                //     if (value.groupMembers.length > 0) {
+                //         angular.forEach(value.groupMembers, function (member, key) {
+                //             $scope.vitalsObject[member.conceptNameToDisplay] = member.valueAsString;
+                //         });
+                //     }
+                // });
+                $scope.vitalsObject = data;
                 // for editing vitals form
                 // $scope.vitalsModalData = $scope.getEditObsData($scope.vitalsObject);
-                $scope.vitalsObject.observationDateTime = new Date($scope.vitalsObject.observationDateTime);
+                $scope.vitalsObject.observationDateTime = new Date($scope.vitalsObject[0].observationDateTime);
             });
-
             $scope.clonePanelConceptSet = function (conceptSet) {
                 var index = _.findIndex($scope.allTemplates, conceptSet);
                 messagingService.showMessage("info", $translate.instant("CLINICAL_TEMPLATE_ADDED_SUCCESS_KEY", {label: $scope.allTemplates[index].label}));

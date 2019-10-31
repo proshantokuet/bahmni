@@ -10,23 +10,48 @@ angular.module('bahmni.common.displaycontrol.observation')
                 $scope.comparingVitalsList = [];
                 var mapObservation = function (observations) {
                     for (var ob = 0; ob < observations.length; ob++) {
-                        if (observations[ob].conceptNameToDisplay == "Vitals") {
-                            $scope.comparingVitalsList.push(observations[ob]);
-                            if ($rootScope.vitalsArrayList.length > 0) {
-                                for (var i = 0; i < $rootScope.vitalsArrayList.length; i++) {
-                                    for (var j = 0; j < $scope.comparingVitalsList.length; j++) {
-                                        if ($scope.comparingVitalsList[j].encounterDateTime > $rootScope.vitalsArrayList[i].encounterDateTime) {
-                                            $rootScope.vitalsArrayList[i] = $scope.comparingVitalsList[j];
-                                        }
-                                    }
-                                }
+                        var formName = observations[ob].formFieldPath;
+                        if (formName) {
+                            var findSpecialIndex = formName.indexOf(".");
+                            if (findSpecialIndex != -1) {
+                                var splitFormName = formName.split(".");
+                                formName = splitFormName[0];
                             }
-                            else {
-                                $rootScope.vitalsArrayList.push(observations[ob]);
-                            }
-                            $rootScope.$broadcast('vitalsbroadcast');
+                        }
+                        if (formName == "VITALS") {
+                            $rootScope.vitalsArrayList.push(observations[ob]);
+                            // if ($rootScope.vitalsArrayList.length > 0) {
+                            //     for (var i = 0; i < $rootScope.vitalsArrayList.length; i++) {
+                            //         for (var j = 0; j < $scope.comparingVitalsList.length; j++) {
+                            //             if ($scope.comparingVitalsList[j].encounterDateTime > $rootScope.vitalsArrayList[i].encounterDateTime) {
+                            //                 $rootScope.vitalsArrayList[i] = $scope.comparingVitalsList[j];
+                            //             }
+                            //         }
+                            //     }
+                            // }
+                            // else {
+                            //     $rootScope.vitalsArrayList.push(observations[ob]);
+                            // }
+                            // $rootScope.$broadcast('vitalsbroadcast');
+                            // $scope.test = $rootScope.vitalsArrayList;
                         }
                     }
+
+                    if (angular.isUndefined($rootScope.tooglingVisitStart)) {
+                        if ($rootScope.vitalsArrayList.length > 0) {
+                            var mostRecentDate = new Date(Math.max.apply(null, $rootScope.vitalsArrayList.map(e => {
+                                return new Date(e.visitStartDateTime);
+                            })));
+
+                            var vitalsList = $rootScope.vitalsArrayList.filter(function (item) {
+                                if (new Date(item.visitStartDateTime).getTime() == mostRecentDate.getTime()) {
+                                    return item;
+                                }
+                            });
+                            $rootScope.$broadcast('vitalsbroadcast', vitalsList);
+                        }
+                    }
+
                     var conceptsConfig = appService.getAppDescriptor().getConfigValue("conceptSetUI") || {};
                     observations = new Bahmni.Common.Obs.ObservationMapper().map(observations, conceptsConfig);
 
@@ -109,6 +134,7 @@ angular.module('bahmni.common.displaycontrol.observation')
                     if (formObservations.length > 0) {
                         formHierarchyService.build($scope.bahmniObservations);
                     }
+                    $rootScope.tooglingVisitStart = undefined;
                 };
 
                 var fetchObservations = function () {
