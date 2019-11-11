@@ -39,7 +39,8 @@ angular.module('bahmni.common.displaycontrol.observation')
 
                     if (angular.isUndefined($rootScope.tooglingVisitStart)) {
                         if ($rootScope.vitalsArrayList.length > 0) {
-                            var mostRecentDate = new Date(Math.max.apply(null, $rootScope.vitalsArrayList.map(e => {
+
+                            var mostRecentDate = new Date(Math.max.apply(null, $rootScope.vitalsArrayList.map(function (e) {
                                 return new Date(e.visitStartDateTime);
                             })));
 
