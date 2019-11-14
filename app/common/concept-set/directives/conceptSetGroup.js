@@ -449,6 +449,7 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.checkValidDate = function (date) {
                 var registrationDate = new Date($scope.patient.RegistrationDate.value);
+                registrationDate.setHours(0,0,0,0);
                 var splitedDate = date.split('/');
                 var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
                 var comparedValueForMoneyReceipt = finalizedSplitedDate.getTime();

@@ -72,6 +72,22 @@ angular.module('bahmni.clinical')
                     });
                 }
             };
+            $scope.obj = {
+                    "type": "order",
+                    "displayOrder": 3,
+                    "config": {
+                        "translationKey": "DASHBOARD_TITLE_LAB_ORDERS_NEW_FOR_PRINT",
+                        "name": "ordersControl",
+                        "orderType": "Lab Order",
+                        "conceptNames": [
+                            "Systolic",
+                            "Diastolic",
+                            "Posture",
+                            "Temperature"
+                        ],
+                        "showDetailsButton": true
+                    }
+            };
 
             var getTab = function () {
                 if (tab) {

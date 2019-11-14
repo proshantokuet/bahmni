@@ -34,6 +34,7 @@
             'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService', 'patientVisitHistoryService',
             function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService, patientVisitHistoryService) {
                 var controller = function ($scope) {
+                    $scope.currentUser = $rootScope.currentUser.roles;
                     var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
                     var visitLocationUuid = $rootScope.visitLocation;
                     $scope.isProviderRelationship = function (relationship) {
@@ -65,7 +66,10 @@
                     };
 
                     var getVisitType = visitService.getVisitType().then(function (result) {
-                        $scope.visitType = result.data.results;
+                        var types = result.data.results;
+                        $scope.visitType = types.filter(function (item) {
+                            return item.display !== 'Special OPD' && item.display !== 'PHARMACY VISIT' &&  item.display !== 'EMERGENCY';
+                        });
                         $scope.selectedVisit = {};
                     });
 
@@ -87,7 +91,8 @@
                             };
                             spinner.forPromise(visitService.createVisit(visitDetails).then(function (response) {
                                 $scope.createVisitCallbackInfo = response.data;
-                                if ($scope.createVisitCallbackInfo) $scope.serviceProviderTabOPen();
+                                $state.reload();
+                                // if ($scope.createVisitCallbackInfo) $scope.serviceProviderTabOPen();
                             }));
                         }
                     };

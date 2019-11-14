@@ -11,6 +11,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                   ngDialog, $filter, configurations, visitConfig, conditionsService, configurationService, auditLogService, visitService) {
             var DateUtil = Bahmni.Common.Util.DateUtil;
             var getPreviousActiveCondition = Bahmni.Common.Domain.Conditions.getPreviousActiveCondition;
+            $scope.currentUser = $rootScope.currentUser.roles;
             $scope.togglePrintList = false;
             $scope.patient = patientContext.patient;
             $scope.showDashboardMenu = false;
@@ -95,7 +96,10 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     var visitSummary = response.data;
                     if (visitSummary.admissionDetails && !visitSummary.dischargeDetails) {
                         messagingService.showMessage("error", 'VISIT_VISIT_CANNOT_BE_CLOSED');
-                        var messageParams = {visitUuid: $scope.visitHistory.activeVisit.uuid, visitType: visitSummary.visitType};
+                        var messageParams = {
+                            visitUuid: $scope.visitHistory.activeVisit.uuid,
+                            visitType: visitSummary.visitType
+                        };
                         auditLogService.log(patientUuid, 'CLOSE_VISIT_FAILED', messageParams, 'MODULE_LABEL_REGISTRATION_KEY');
                     } else {
                         closeVisit(visitSummary.visitType);
@@ -104,16 +108,19 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             };
 
             var closeVisit = function (visitType) {
-                var confirmed = $window.confirm($translate.instant("VISIT_CONFIRM_CLOSE_VISIT"));
-                if (confirmed) {
+                ngDialog.openConfirm({
+                    scope: $scope,
+                    template: '../clinical/consultation/views/confirmationDialog.html'
+                }).then(function (confirm) {
                     visitService.endVisit($scope.visitHistory.activeVisit.uuid).then(function () {
                         var messageParams = {visitUuid: $scope.visitHistory.activeVisit.uuid, visitType: visitType};
                         auditLogService.log($scope.patient.uuid, 'CLOSE_VISIT', messageParams, 'MODULE_LABEL_REGISTRATION_KEY');
                         // $state.go($state.current, {}, {reload: true});
-                        $scope.gotoPatientDashboard();
+                        $scope.cancelServiceProviding();
                         // $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard',"_self");
                     });
-                }
+                }, function (reject) {
+                });
             };
 
             $scope.showBoard = function (boardIndex) {
@@ -137,6 +144,15 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     }
                     $state.go("patient.dashboard.show", params, {reload: true});
                 }
+            };
+
+            $scope.cancelServiceProviding = function () {
+                var params = {
+                    configName: $scope.configName,
+                    patientUuid: patientContext.patient.uuid,
+                    encounterUuid: undefined
+                };
+                $state.go("patient.dashboard.show", params, {reload: true});
             };
 
             var isLongerName = function (value) {
@@ -472,6 +488,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             });
 
             $scope.save = function (toStateConfig) {
+                debugger;
                 if (!isFormValid()) {
                     $scope.$parent.$parent.$broadcast("event:errorsOnForm");
                     return $q.when({});
@@ -481,7 +498,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     encounterData.encounterTypeUuid = results[1].uuid;
                     var params = angular.copy($state.params);
                     params.cachebuster = Math.random();
-                    if (encounterData.observations.length > 0) {
                         return encounterService.create(encounterData)
                             .then(function (saveResponse) {
                                 var messageParams = {
@@ -518,7 +534,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                                 var message = Bahmni.Clinical.Error.translate(error) || "{{'CLINICAL_SAVE_FAILURE_MESSAGE_KEY' | translate}}";
                                 messagingService.showMessage('error', message);
                             });
-                    }
                 }));
             };
 

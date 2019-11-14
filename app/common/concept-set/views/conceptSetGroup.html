@@ -668,7 +668,7 @@
     <section class="concept-set-panel-right">
         <div style="text-align: center;background-color: #52797a;padding: 1px;color:white"><h4>Service List</h4></div>
         <div class="btn-group" ng-repeat="conceptSet in allTemplates track by $index"
-             ng-if="conceptSet.isAvailable(context) && conceptSet.formValidation(context, conceptSet) && (conceptSet.isAdded || conceptSet.alwaysShow)"
+             ng-if="conceptSet.isAvailable(context)"
              ng-class="openActiveForm(conceptSet)">
             <button ng-style="conceptSet.klass =='active' && {'background':'#51797a','color':'white'}"
                     ng-click="showLeftPanelConceptSet(conceptSet)">
@@ -768,9 +768,9 @@
 
 </div>
 <div class="concept-set-panel clearfix" ng-if="observationTab">
-<div style="width:370px; height: 8px; margin:0 auto;">
-   <button class="confirm save-consultation" style="padding: 5px 19px 6px;"  type="button" class="btn btn-success" ng-click="savingObservation()">Save</button>
-</div>
+<!--<div style="width:370px; height: 8px; margin:0 auto;">-->
+   <!--<button class="confirm save-consultation" style="padding: 5px 19px 6px;"  type="button" class="btn btn-success" ng-click="savingObservation()">Save</button>-->
+<!--</div>-->
 
     <section class="concept-set-panel-right">
         <table class="table-bordered table-hover" ng-if="listOfChildInformation.length > 0">

@@ -164,21 +164,16 @@ angular.module('authentication')
                         $rootScope.currentUser.favouriteObsTemplates[5] = "FAMILY PLANNING";
                         $rootScope.currentUser.favouriteObsTemplates[6] = "IMCI";
                         $rootScope.currentUser.favouriteObsTemplates[7] = "LCC";
-                        // $rootScope.currentUser.favouriteObsTemplates[0] = "VITALS";
-                        // $rootScope.currentUser.favouriteObsTemplates[1] = "Antenatal Form";
-                        // $rootScope.currentUser.favouriteObsTemplates[2] = "PNC";
-                        // $rootScope.currentUser.favouriteObsTemplates[3] = "Child (0 from 02 month)";
-                        // $rootScope.currentUser.favouriteObsTemplates[4] = "Child(02 month from 05 year)";
-                        // $rootScope.currentUser.favouriteObsTemplates[5] = "Family Planning";
-                        // $rootScope.currentUser.favouriteObsTemplates[6] = "Pregnancy Status";
-                        // $rootScope.currentUser.favouriteObsTemplates[7] = "SAM চিহ্নিত বাচ্চার অবস্থা";
-                        // $rootScope.currentUser.favouriteObsTemplates[8] = "Pregnancy Status";
-                        // $rootScope.currentUser.favouriteObsTemplates[9] = "General Diseases";
-                        // $rootScope.currentUser.favouriteObsTemplates[10] = "শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা_মিডওয়াইফ";
-                        // $rootScope.currentUser.favouriteObsTemplates[11] = "শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা";
-                        // $rootScope.currentUser.favouriteObsTemplates[12] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা";
-                        console.log("Cookie");
-                        console.log($bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName));
+                        for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
+                            if ($rootScope.currentUser.privileges[i].name == "Has CRO Roles") {
+                                $rootScope.currentUser.roles = "CRO";
+                                break;
+                            }
+                            if ($rootScope.currentUser.privileges[i].name == "Has Doctor Roles") {
+                                $rootScope.currentUser.roles = "Doctor";
+                                break;
+                            }
+                        }
                         $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;
                         $rootScope.$broadcast('event:user-credentialsLoaded', data.results[0]);
                         deferrable.resolve(data.results[0]);
