@@ -8,10 +8,10 @@
             <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="h" href="../home/index.html" ng-click="onHomeNavigate($event)">
                 <i class="fa fa-home" style="line-height:1; font-size: 15px; margin-right:5px; font-weight: 700;"></i>Home</a>
 
-            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html" ng-click="onHomeNavigate($event)">
+            <a class="back-btn" ng-if="currentUser == 'CRO' || currentUser == 'Paramedic'" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html" ng-click="onHomeNavigate($event)">
                 <i class="fa fa-search" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i>Search</a>
 
-            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;"accesskey="r" href="../registration/index.html#/patient/new" ng-click="onHomeNavigate($event)">
+            <a class="back-btn" ng-if="currentUser == 'CRO' || currentUser == 'Paramedic'" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;"accesskey="r" href="../registration/index.html#/patient/new" ng-click="onHomeNavigate($event)">
                 <i class="fa fa-user" style="line-height:1; font-size: 15px; margin-right:5px; font-weight: 700;"></i>Create New Patient</a>
 
 
@@ -42,7 +42,7 @@
 
 
             <ul class="header-tabs consultation-tabs" ng-if="!moneyreceiptPage">
-                <li class="tab-item" ng-if="currentUser == 'Doctor'" ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
+                <li class="tab-item" ng-if="currentUser == 'Doctor' || currentUser == 'Paramedic' " ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
                     <a ng-if="board.label=='Medications'|| board.label=='Orders' || board.label=='Observations'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
                 </li>
             </ul>
@@ -70,10 +70,10 @@
             <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="h" href="../home/index.html" ng-click="onHomeNavigate($event)">
                 <i class="fa fa-home" style="line-height:1; font-size: 15px; margin-right:5px; font-weight: 700;"></i>Home</a>
 
-            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html" ng-click="onHomeNavigate($event)">
+            <a class="back-btn" ng-if="currentUser == 'CRO' || currentUser == 'Paramedic'" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html" ng-click="onHomeNavigate($event)">
                 <i class="fa fa-search" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i>Search</a>
 
-            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html#/patient/new" ng-click="onHomeNavigate($event)">
+            <a class="back-btn" ng-if="currentUser == 'CRO' || currentUser == 'Paramedic'" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html#/patient/new" ng-click="onHomeNavigate($event)">
                 <i class="fa fa-user" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i> Create New Patient</a>
 
 
@@ -151,7 +151,7 @@
                 </li>
             </ul>
 
-            <div ng-if="!moneyreceiptPage && currentUser == 'CRO'">
+            <div ng-if="!moneyreceiptPage && currentUser == 'CRO' || currentUser == 'Paramedic'">
                 <button class="confirm save-consultation cancel" ng-if="visitHistory.activeVisit" ng-click="closeVisitIfDischarged()">Close Visit</button>
             </div>
             <!--<div class="dashboard-header-right-wrapper">-->

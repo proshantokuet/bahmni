@@ -22,11 +22,11 @@
                                  <span>{{ 'TIME_OF_BIRTH_LABEL'|translate }}</span>
                                  <span ng-bind-html="::patient.birthtime | date:'hh:mm a'"></span>
                              </span>
-                            <span ng-if="currentUser == 'CRO'" style="padding-left:25px"><a ng-click="openEditPatient(patient.uuid)" target="_self"
+                            <span ng-if="currentUser == 'CRO' || currentUser == 'Paramedic'" style="padding-left:25px"><a ng-click="openEditPatient(patient.uuid)" target="_self"
                                                                class="title-link">
                                 <strong>Edit Patient</strong>
                         </a></span>
-                            <span ng-if="activeVisit && currentUser == 'Doctor'" style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
+                            <span ng-if="activeVisit && currentUser == 'Doctor' || activeVisit && currentUser == 'Paramedic'" style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
                                                                class="title-link">
                            <strong> Provide Service</strong>
                         </a></span>
@@ -34,14 +34,14 @@
                                                                class="title-link">
                                 <strong>Refer Patient</strong>
                         </a></span>
-                                <span ng-if="!activeVisit && currentUser == 'CRO'" style="padding-left:25px">
+                                <span ng-if="!activeVisit && currentUser == 'CRO' || !activeVisit && currentUser == 'Paramedic'" style="padding-left:25px">
                              <select ng-model="selectedVisit.visitObj"
                                      ng-options="visit as visit.display for visit in visitType"
                                      ng-required="true">
                                  <option ng-option value="">Select Visit Type</option>
                              </select>
                             </span>
-                            <button style="padding: 1px 10px 1px;" ng-if="selectedVisit.visitObj && currentUser == 'CRO'" type="button" class="btn btn-success" ng-click="startSelectedVisit()">Start Visit</button>
+                            <button style="padding: 1px 10px 1px;" ng-if="selectedVisit.visitObj" type="button" class="btn btn-success" ng-click="startSelectedVisit()">Start Visit</button>
                             <!--<span style="padding-left:25px"><button type="button" ng-click="serviceProviderTabOPen()"  class="btn btn-success">Provide Service</button></span>-->
                             <span class="patient-address">
                                 {{address(patient.address)}}
@@ -81,7 +81,7 @@
                     </td>
                 </tr>
                 </table></td>
-                <td ng-if="currentUser == 'CRO'" style="text-align: center;"><a href="" ng-click="editMoneyReceipt()" class="title-link">
+                <td ng-if="currentUser == 'CRO' || currentUser == 'Paramedic'" style="text-align: center;"><a href="" ng-click="editMoneyReceipt()" class="title-link">
                             <img  src="./../images/add-Money-Receipt.png" alt="Add Money Receipt" />
 
                     <p style="text-align: center;">Add Money Receipt</p>

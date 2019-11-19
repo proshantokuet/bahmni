@@ -164,6 +164,8 @@ angular.module('authentication')
                         $rootScope.currentUser.favouriteObsTemplates[5] = "FAMILY PLANNING";
                         $rootScope.currentUser.favouriteObsTemplates[6] = "IMCI";
                         $rootScope.currentUser.favouriteObsTemplates[7] = "LCC";
+                        $rootScope.currentUser.favouriteObsTemplates[8] = "RTI";
+                        $rootScope.currentUser.favouriteObsTemplates[9] = "WOMEN VACCINATIONS";
                         for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
                             if ($rootScope.currentUser.privileges[i].name == "Has CRO Roles") {
                                 $rootScope.currentUser.roles = "CRO";
@@ -171,6 +173,10 @@ angular.module('authentication')
                             }
                             if ($rootScope.currentUser.privileges[i].name == "Has Doctor Roles") {
                                 $rootScope.currentUser.roles = "Doctor";
+                                break;
+                            }
+                            if ($rootScope.currentUser.privileges[i].name == "Has Paramedic Roles") {
+                                $rootScope.currentUser.roles = "Paramedic";
                                 break;
                             }
                         }
