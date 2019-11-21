@@ -65,6 +65,13 @@ angular.module('bahmni.common.patient')
             });
         };
 
+        this.checkExistingMoneyReceipt = function (slipNo, date, clinicCode) {
+            return $http.get(Bahmni.Common.Constants.checkExistingMoneyReceipt + "/" + slipNo + "/" + date + "/" + clinicCode, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
+
         this.search = function (query, offset, identifier) {
             offset = offset || 0;
             return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {

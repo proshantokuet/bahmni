@@ -8,6 +8,7 @@ angular.module('bahmni.common.conceptSet')
                   encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
                   conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
+            $scope.timeObject = {};
             var init = function () {
                 $scope.validationHandler = new Bahmni.ConceptSet.ConceptSetGroupPanelViewValidationHandler($scope.allTemplates);
                 contextChangeHandler.add($scope.validationHandler.validate);
@@ -15,6 +16,9 @@ angular.module('bahmni.common.conceptSet')
                 if ($scope.moneyReceiptObject) {
                     var orgUnit = $scope.patientInfo.orgUnit;
                     $scope.patientInfo = $scope.moneyReceiptObject[0];
+                    var date = new Date($scope.patientInfo.moneyReceiptDate);
+                    $scope.timeObject.hourValue = date.getHours();
+                    $scope.timeObject.minuteValue = date.getMinutes();
                     $scope.patientInfo.orgUnit = orgUnit;
                     $scope.patientInfo.moneyReceiptDate = ageFormatterService.dateFormat($scope.patientInfo.moneyReceiptDate);
                     $scope.makeSlipNoReadOnly = true;
@@ -297,7 +301,27 @@ angular.module('bahmni.common.conceptSet')
             };
             $scope.searchButtonText = "Submit";
             $scope.test = "true";
+
             $scope.submitMoneyReceiptData = function (patientInfo, services, patient, savingStatus) {
+                if (!patientInfo.mid) {
+                    $scope.checkExistingMoneyAvailable(patientInfo.slipNo, patientInfo.moneyReceiptDate).then(function (result) {
+                        if (result.data == true) {
+                            messagingService.showMessage("error", "Money Receipt with this slip no is already exist");
+                        }
+                        else if (result.data == false) {
+                            $scope.forwardingMoneyReceiptSavingProcess(patientInfo, services, patient, savingStatus);
+                        }
+                        else {
+                            messagingService.showMessage("error", "Something bad happened,Please try again later");
+                        }
+                    });
+                }
+                else {
+                    $scope.forwardingMoneyReceiptSavingProcess(patientInfo, services, patient, savingStatus);
+                }
+            };
+
+            $scope.forwardingMoneyReceiptSavingProcess = function (patientInfo, services, patient, savingStatus) {
                 if ($window.confirm("Do you really want to proceed?")) {
                     $scope.Message = "You clicked YES.";
                     $scope.enable = "false";
@@ -333,9 +357,10 @@ angular.module('bahmni.common.conceptSet')
                     patientInfo['patientUuid'] = patient.uuid;
                     patientInfo['uic'] = patient.UIC.value;
                     var splitedDate = patientInfo.moneyReceiptDate.split('/');
-                    var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
-                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
+                    var finalizedSplitedDate = splitedDate[2] + "-" + splitedDate[1] + "-" + splitedDate[0];
+                    //finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
                     patientInfo['moneyReceiptDate'] = finalizedSplitedDate;
+                    $scope.changingMinuteHourValue($scope.timeObject.hourValue, $scope.timeObject.minuteValue);
                     if (patient.MobileNo != undefined) {
                         patientInfo['contact'] = patient.MobileNo.value;
                     }
@@ -358,13 +383,15 @@ angular.module('bahmni.common.conceptSet')
                     jsonData["services"] = services;
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
                         $state.go("patient.dashboard.show", {
-                            patientUuid: patient.uuid}, {reload: true}
+                                patientUuid: patient.uuid
+                            }, {reload: true}
                         );
                     }));
                 } else {
                     $scope.Message = "You clicked NO.";
                 }
             };
+
             $scope.togglePref = function (conceptSet, conceptName) {
                 $rootScope.currentUser.toggleFavoriteObsTemplate(conceptName);
                 spinner.forPromise(userService.savePreferences());
@@ -380,6 +407,26 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo.moneyReceiptDate = null;
                     messagingService.showMessage("error", "Money receipt date cannot be entered  before patient registration date");
                 }
+            };
+
+            $scope.changingMinuteHourValue = function (hour, minute) {
+                if (hour && minute) {
+                    if ($scope.patientInfo.moneyReceiptDate) {
+                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " "+hour+":";
+                    }
+                    if ($scope.patientInfo.moneyReceiptDate) {
+                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate +minute;
+                    }
+                }
+                else {
+                    $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " "+"00:00";
+                }
+            };
+
+            $scope.checkExistingMoneyAvailable = function (slipNo, date) {
+                var moneyReceiptDate = ageFormatterService.convertToDateObject(date);
+                var date = moneyReceiptDate.getFullYear().toString();
+                return patientService.checkExistingMoneyReceipt(slipNo, date, $scope.patientInfo.clinicCode);
             };
 
             $scope.getNormalized = function (conceptName) {
