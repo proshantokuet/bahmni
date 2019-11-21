@@ -358,7 +358,7 @@ angular.module('bahmni.common.conceptSet')
                     patientInfo['uic'] = patient.UIC.value;
                     var splitedDate = patientInfo.moneyReceiptDate.split('/');
                     var finalizedSplitedDate = splitedDate[2] + "-" + splitedDate[1] + "-" + splitedDate[0];
-                    //finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
+                    // finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
                     patientInfo['moneyReceiptDate'] = finalizedSplitedDate;
                     $scope.changingMinuteHourValue($scope.timeObject.hourValue, $scope.timeObject.minuteValue);
                     if (patient.MobileNo != undefined) {
@@ -382,10 +382,10 @@ angular.module('bahmni.common.conceptSet')
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
-                        $state.go("patient.dashboard.show", {
-                                patientUuid: patient.uuid
-                            }, {reload: true}
-                        );
+                    $state.go("patient.dashboard.show", {
+                            patientUuid: patient.uuid
+                        }, {reload: true}
+                    );
                     }));
                 } else {
                     $scope.Message = "You clicked NO.";
@@ -412,14 +412,14 @@ angular.module('bahmni.common.conceptSet')
             $scope.changingMinuteHourValue = function (hour, minute) {
                 if (hour && minute) {
                     if ($scope.patientInfo.moneyReceiptDate) {
-                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " "+hour+":";
+                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " "+ hour +":";
                     }
                     if ($scope.patientInfo.moneyReceiptDate) {
-                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate +minute;
+                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + minute;
                     }
                 }
                 else {
-                    $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " "+"00:00";
+                    $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + "00:00";
                 }
             };
 

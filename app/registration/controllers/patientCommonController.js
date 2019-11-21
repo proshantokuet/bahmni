@@ -341,7 +341,7 @@ angular.module('bahmni.registration')
                     } else {
                         $scope.patient.birthRank = birthRank.slice(1, 3);
                     }
-                    if($scope.patient.birthRank == "00") {
+                    if ($scope.patient.birthRank == "00") {
                         $scope.patient.birthRank = null;
                     }
                     else {
@@ -350,7 +350,6 @@ angular.module('bahmni.registration')
                         var output = testReplaceAt(a, position, $scope.patient.birthRank.slice(0, 2));
                         $scope.patient.uic = output;
                     }
-
                 }
                 if (attribute == 'birthDistrict') {
                     /* var e = document.getElementById("MaritalStatus");
