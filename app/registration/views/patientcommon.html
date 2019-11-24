@@ -95,7 +95,7 @@
 
                 <div class="field-value">
                     <div class="field-value">
-                        <input type=text ng-model="patient.birthMothersFirstName" pattern="[a-zA-Z]{0,}" title="Should Contain Characters" ng-change="handleUpdate('birthMothersFirstName')" ng-required="true">
+                        <input type=text ng-model="patient.birthMothersFirstName" pattern="^[^-\s][a-zA-Z_\s-]+$"  title="No whitespace in the begining and should Contain Characters" ng-change="handleUpdate('birthMothersFirstName')" ng-required="true">
                     </div>
                 </div>
             </article>
