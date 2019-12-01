@@ -110,6 +110,17 @@ angular.module('bahmni.registration')
             return patientServiceStrategy.dhis();
         };
 
+        var searchPatientFromGLobalServer = function (searchUrl) {
+            var config = {
+                method: "GET",
+                withCredentials: true,
+                params: {
+                    patientInformation: searchUrl
+                }
+            };
+            return patientServiceStrategy.globalpatientSearching(config);
+        };
+
         return {
             search: search,
             searchByIdentifier: searchByIdentifier,
@@ -119,6 +130,7 @@ angular.module('bahmni.registration')
             updateImage: updateImage,
             searchByNameOrIdentifier: searchByNameOrIdentifier,
             fakecall: dhis,
-            findUniquePatientByUicMobile: findUniquePatientByUicMobile
+            findUniquePatientByUicMobile: findUniquePatientByUicMobile,
+            searchPatientFromGLobalServer: searchPatientFromGLobalServer
         };
     }]);
