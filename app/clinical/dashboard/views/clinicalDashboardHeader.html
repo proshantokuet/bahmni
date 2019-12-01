@@ -43,7 +43,7 @@
 
             <ul class="header-tabs consultation-tabs" ng-if="!moneyreceiptPage">
                 <li class="tab-item" ng-if="currentUser == 'Doctor' || currentUser == 'Paramedic' " ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
-                    <a ng-if="board.label=='Medications'|| board.label=='Orders' || board.label=='Observations'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
+                    <a ng-if="board.label=='Medications'|| board.label=='Orders' || board.label=='Observations' || board.label=='Diagnosis' || board.label == 'Consultation'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
                 </li>
             </ul>
 
