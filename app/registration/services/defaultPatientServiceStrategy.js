@@ -146,6 +146,19 @@ angular.module('bahmni.registration')
             return defer.promise;
         };
 
+        var saveInLocalServer = function (config) {
+            var defer = $q.defer();
+            var url = baseOpenMRSRESTURL + "/save-Patient/patient/toLocalServer";
+            var onResults = function (result) {
+                defer.resolve(result);
+            };
+            $http.get(url, config).success(onResults)
+                .error(function (error) {
+                    defer.reject(error);
+                });
+            return defer.promise;
+        };
+
         return {
             search: search,
             get: getByUuid,
@@ -153,6 +166,7 @@ angular.module('bahmni.registration')
             update: update,
             generateIdentifier: generateIdentifier,
             dhis: fakecall,
-            globalpatientSearching: globalpatientSearching
+            globalpatientSearching: globalpatientSearching,
+            saveInLocalServer: saveInLocalServer
         };
     }]);

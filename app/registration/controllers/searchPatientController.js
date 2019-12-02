@@ -172,8 +172,11 @@ angular.module('bahmni.registration')
                 return urlString;
             };
 
-            $scope.savetoLocalServer = function (patientObject) {
-              alert("I am called" + patientObject) ;
+            $scope.savetoLocalServer = function (uuid) {
+                debugger;
+              spinner.forPromise(patientService.savePatientInLocalServer(uuid).then(function (result) {
+                  var test = result;
+              }))
             };
 
             $scope.openMoneyReceipt = function (patientUuid) {

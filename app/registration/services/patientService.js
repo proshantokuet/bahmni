@@ -121,6 +121,17 @@ angular.module('bahmni.registration')
             return patientServiceStrategy.globalpatientSearching(config);
         };
 
+        var savePatientInLocalServer = function (patientUuid) {
+            var config = {
+                method: "GET",
+                withCredentials: true,
+                params: {
+                    patientUuid: patientUuid
+                }
+            };
+            return patientServiceStrategy.saveInLocalServer(config);
+        };
+
         return {
             search: search,
             searchByIdentifier: searchByIdentifier,
@@ -131,6 +142,7 @@ angular.module('bahmni.registration')
             searchByNameOrIdentifier: searchByNameOrIdentifier,
             fakecall: dhis,
             findUniquePatientByUicMobile: findUniquePatientByUicMobile,
-            searchPatientFromGLobalServer: searchPatientFromGLobalServer
+            searchPatientFromGLobalServer: searchPatientFromGLobalServer,
+            savePatientInLocalServer: savePatientInLocalServer
         };
     }]);
