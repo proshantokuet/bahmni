@@ -132,6 +132,8 @@
                                                         <input style="width: 88px;" title="Minute" id="minute" onKeyPress="if(this.value.length==2) return false;" min="0" max="59" name="minute" type="number" ng-model="timeObject.minuteValue"  placeholder="Minute" />
                                                         </div>
                                                     </div>
+                                                    <span class="asterick" ng-show="myForm.minute.$dirty && myForm.minute.$invalid">Invalid Time format</span>
+                                                    <span class="asterick" ng-show="myForm.hour.$dirty && myForm.hour.$invalid">Invalid Time format</span>
                                                 </div>
                                             </article>
                                         </td>
