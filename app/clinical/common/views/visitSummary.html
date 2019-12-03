@@ -24,25 +24,25 @@
                     <!--&gt;</patient-profile>-->
                 <!--</section>-->
             <!--</div>-->
-            <!--<div ng-switch-when="observation">-->
-                <!--<div ng-if="::section.config" id="observation-section">-->
-                    <!--<section class="block observation dashboard-section" id="observationSection">-->
-                        <!--<ul bm-gallery access-impression="true">-->
-                            <!--<bahmni-observation patient="::patient" visit-uuid="{{::visitUuid}}"-->
-                                                <!--config="::section.config"-->
-                                                <!--section-title="::section | titleTranslate"-->
-                                                <!--class="section-title"></bahmni-observation>-->
-                        <!--</ul>-->
-                    <!--</section>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div ng-switch-when="diagnosis">-->
-                <!--<section ng-if="::section.config" class="block dashboard-section">-->
-                    <!--<bahmni-diagnosis patient-uuid="::section.config.patientUuid"-->
-                                      <!--config="::section.config" visit-uuid="::visitUuid" show-latest-diagnosis=-->
-                                              <!--"true"></bahmni-diagnosis>-->
-                <!--</section>-->
-            <!--</div>-->
+            <div ng-switch-when="observation">
+                <div ng-if="::section.config" id="observation-section">
+                    <section class="block observation dashboard-section" id="observationSection">
+                        <ul bm-gallery access-impression="true">
+                            <bahmni-observation patient="::patient" visit-uuid="{{::visitUuid}}"
+                                                config="::section.config"
+                                                section-title="::section | titleTranslate"
+                                                class="section-title"></bahmni-observation>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <div ng-switch-when="diagnosis">
+                <section ng-if="::section.config" class="block dashboard-section">
+                    <bahmni-diagnosis patient-uuid="::section.config.patientUuid"
+                                      config="::section.config" visit-uuid="::visitUuid" show-latest-diagnosis=
+                                              "true"></bahmni-diagnosis>
+                </section>
+            </div>
             <!--<div ng-switch-when="pivotTable">-->
                 <!--<div ng-if="::section.config">-->
                     <!--<section pivot-table visit-uuid="::visitUuid" config="::section.config"-->
