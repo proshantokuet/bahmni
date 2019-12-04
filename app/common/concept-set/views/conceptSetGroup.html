@@ -134,6 +134,10 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <input id="txtDate" ng-model="patientInfo.moneyReceiptDate" type="text"  ng-required="true" autocomplete="off" ng-change="checkValidDate(patientInfo.moneyReceiptDate)" readonly/>
+                                                        <div class="field-value" ng-if="patientInfo.moneyReceiptDate">
+                                                        <input style="width: 75px;" title="Hour" id="hour" onKeyPress="if(this.value.length==2) return false;" min="0" max="23" name="hour" type="number" ng-model="timeObject.hourValue" placeholder="Hour" /> :
+                                                        <input style="width: 88px;" title="Minute" id="minute" onKeyPress="if(this.value.length==2) return false;" min="0" max="59" name="minute" type="number" ng-model="timeObject.minuteValue"  placeholder="Minute" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </article>

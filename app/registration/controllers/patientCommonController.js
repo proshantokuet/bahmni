@@ -341,12 +341,15 @@ angular.module('bahmni.registration')
                     } else {
                         $scope.patient.birthRank = birthRank.slice(1, 3);
                     }
-                    var a = $('#UIC').val();
-                    var position = 7;
-                    var output = testReplaceAt(a, position, $scope.patient.birthRank.slice(0, 2));
-                    console.log(output);
-                    // $('#UIC').val(output);
-                    $scope.patient.uic = output;
+                    if ($scope.patient.birthRank == "00") {
+                        $scope.patient.birthRank = null;
+                    }
+                    else {
+                        var a = $('#UIC').val();
+                        var position = 7;
+                        var output = testReplaceAt(a, position, $scope.patient.birthRank.slice(0, 2));
+                        $scope.patient.uic = output;
+                    }
                 }
                 if (attribute == 'birthDistrict') {
                     /* var e = document.getElementById("MaritalStatus");
