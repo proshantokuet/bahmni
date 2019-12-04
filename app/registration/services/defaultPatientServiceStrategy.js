@@ -135,7 +135,7 @@ angular.module('bahmni.registration')
 
         var globalpatientSearching = function (config) {
             var defer = $q.defer();
-            var url = baseOpenMRSRESTURL + "/searchPatient/patient/fromGlobalServer";
+            var url = baseOpenMRSRESTURL + "/save-Patient/search/fromGlobalServer";
             var onResults = function (result) {
                 defer.resolve(result);
             };

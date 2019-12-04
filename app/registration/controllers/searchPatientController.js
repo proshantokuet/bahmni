@@ -173,9 +173,10 @@ angular.module('bahmni.registration')
             };
 
             $scope.savetoLocalServer = function (uuid) {
-                debugger;
               spinner.forPromise(patientService.savePatientInLocalServer(uuid).then(function (result) {
-                  var test = result;
+                  if(result.patient) {
+                    $window.open('../clinical/index.html#/default/patient/' + result.patient.uuid + '/dashboard', "_self");
+                  }
               }))
             };
 
