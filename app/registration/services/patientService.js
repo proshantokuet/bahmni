@@ -126,7 +126,8 @@ angular.module('bahmni.registration')
                 method: "GET",
                 withCredentials: true,
                 params: {
-                    patientUuid: patientUuid
+                    patientUuid: patientUuid,
+                    loginLocationUuid: sessionService.getLoginLocationUuid()
                 }
             };
             return patientServiceStrategy.saveInLocalServer(config);
