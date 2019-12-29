@@ -31,8 +31,8 @@
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
         .directive('patientProfile', ['patientService', 'spinner', 'ngDialog', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
-            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService',
-            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService) {
+            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService', 'age',
+            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService, age) {
                 var controller = function ($scope) {
                     $scope.isProviderRelationship = function (relationship) {
                         return _.includes($rootScope.relationshipTypeMap.provider, relationship.relationshipType.aIsToB);
@@ -78,6 +78,16 @@
                     };
                     $scope.dateTOString = function (date) {
                         return new Date(date);
+                    };
+
+                    $scope.ageFromBirthDate = function (dob, mod) {
+                        debugger;
+                        if (dob) {
+                            var dateOfBirth = new Date(dob);
+                            var moneyreceiptDate = new Date(mod);
+                            var ages = age.fromMoneyReceiptDate(dateOfBirth,moneyreceiptDate);
+                            return ages.years + " Y " + ages.months + " M " + ages.days + " D";
+                        }
                     };
 
                     $scope.openEditPatient = function (patientUuid) {
@@ -218,6 +228,7 @@
 
                     var moneyReceipt = function () {
                         return patientService.moneyReceipt($scope.patientUuid).then(function (response) {
+                            debugger;
                             $scope.services = response.data;
                             var clinicCode = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId;
                             angular.forEach($scope.services, function (service) {
