@@ -3,10 +3,10 @@
 angular.module('bahmni.common.conceptSet')
     .controller('ConceptSetGroupController', ['$scope', '$state', '$location', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
         'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig', '$q',
-        'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate', 'ageFormatterService',
+        'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate', 'ageFormatterService', 'age',
         function ($scope, $state, $location, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
                   encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
-                  conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService) {
+                  conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService, age) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             $scope.timeObject = {};
             var init = function () {
@@ -14,6 +14,7 @@ angular.module('bahmni.common.conceptSet')
                 contextChangeHandler.add($scope.validationHandler.validate);
                 $scope.makeSlipNoReadOnly = false;
                 if ($scope.moneyReceiptObject) {
+                    debugger;
                     var orgUnit = $scope.patientInfo.orgUnit;
                     $scope.patientInfo = $scope.moneyReceiptObject[0];
                     var date = new Date($scope.patientInfo.moneyReceiptDate);
@@ -126,6 +127,14 @@ angular.module('bahmni.common.conceptSet')
                 var monthSplit = yearsSplit.replace('months', 'M');
                 var daySplit = monthSplit.replace('days', 'D');
                 return text ? String(daySplit).replace(/<[^>]+>/gm, '') : '';
+            };
+            $scope.ageFromBirthDate = function (dob, mod) {
+                if (dob) {
+                    var dateOfBirth = new Date(dob);
+                    var moneyreceiptDate = ageFormatterService.convertToDateObject(mod);
+                    var ages = age.fromMoneyReceiptDate(dateOfBirth, moneyreceiptDate);
+                    return ages.years + " Y " + ages.months + " M " + ages.days + " D";
+                }
             };
             $scope.address = function (address) {
                 var addresLine = "";

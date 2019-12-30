@@ -14,7 +14,7 @@ angular.module('bahmni.common.conceptSet')
         var convertToDateObject = function (dateString) {
             var splitedDate = dateString.split('/');
             var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
-            finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
+            finalizedSplitedDate.setDate(finalizedSplitedDate.getDate());
             return finalizedSplitedDate;
         };
         return {

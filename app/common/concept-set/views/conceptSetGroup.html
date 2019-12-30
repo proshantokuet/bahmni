@@ -487,7 +487,7 @@
                 <tr>
                     <td align="left" style="padding:10px 10px 10px 8px;">UIC</td>
                     <td style="padding:10px 10px 10px 8px;">
-                        {{patient.UIC.value}}
+                        {{patientInfo.uic}}
                     </td>
                     <td align="left" valign="top" style="padding:10px 10px 10px 8px;">
                         Health ID
@@ -531,19 +531,19 @@
           <td align="left" valign="top" style="padding:10px 0 5px 8px;">3. DoB</td>
             <td style="padding:10px 0 5px 8px;">{{patient.birthdate | date:'dd/MM/yyyy'}}</td>
             <td style="padding:10px 0 5px 8px;">4. Age:</td>
-            <td style="padding:10px 0 5px 8px;">{{htmlToPlaintext(patient.ageText)}}</td>
+            <td style="padding:10px 0 5px 8px;">{{ageFromBirthDate(patientInfo.dob, patientInfo.moneyReceiptDate)}}</td>
             <td style="padding:10px 0 5px 8px;">5. Classification:</td>
             <td style="padding:10px 0 5px 8px;">1. Able to Pay</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
+              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patientInfo.wealth)"/>
             </span></td>
             <td style="padding:10px 0 5px 8px;">2. Poor</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',patient.FinancialStatus.value.display)" />
+              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',patientInfo.wealth)" />
             </span></td>
             <td style="padding:10px 0 5px 8px;">3.PoP</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',patient.FinancialStatus.value.display)" />
+              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',patientInfo.wealth)" />
             </span></td>
 
           </tr>
@@ -551,7 +551,7 @@
             <td colspan="2" align="left" valign="top" style="padding:10px 0 5px 8px;">6. Address:</td>
             <td colspan="6" align="left" valign="top" style="padding:10px 0 5px 8px;"> {{address(patient.address)}}</td>
             <td align="left" valign="top" style="padding:10px 0 5px 8px;">7. Mobile No.</td>
-            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;"> {{patient.MobileNo.value}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;"> {{patientInfo.contact}}</td>
             </tr>
           <tr>
             <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">8. Session:</td>
