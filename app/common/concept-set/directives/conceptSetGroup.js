@@ -58,6 +58,27 @@ angular.module('bahmni.common.conceptSet')
                 }
                 $scope.emptyVisitsData = false;
             };
+            // Observation data binding in forms
+            // $scope.getPatientObservation = function () {
+            //     patientVisitHistoryService.getVisitHistory($scope.patient.uuid).then(function (results) {
+            //         if (results.visits.length > 0) {
+            //             var visitsList = results.visits;
+            //             var visitDetails = $filter('orderBy')(visitsList, 'startDatetime', false);
+            //             var sortedVisit = visitDetails[0];
+            //             if (sortedVisit.encounters.length > 0) {
+            //                 var encounterUuid = sortedVisit.encounters[0].uuid;
+            //                 encounterService.findByEncounterUuid(encounterUuid).then(function (result) {
+            //                     var encounterResponse = result;
+            //                     angular.forEach($scope.allTemplates, function (template) {
+            //                         if (template.conceptName == 'Vitals') {
+            //                             template.observations = encounterResponse.data.observations;
+            //                         }
+            //                     });
+            //                 });
+            //             }
+            //         }
+            //     });
+            // };
 
             $scope.toogleObservationDetailsViewer = function (viewPrefernce, visit, index) {
                 if (!visit.showExpanVisitDetails) {
