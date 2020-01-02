@@ -391,8 +391,8 @@ angular.module('bahmni.common.conceptSet')
                     jsonData["services"] = services;
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
                         $state.go("patient.dashboard.show", {
-                                patientUuid: patient.uuid
-                            }, {reload: true}
+                            patientUuid: patient.uuid
+                        }, {reload: true}
                         );
                     }));
                 } else {
