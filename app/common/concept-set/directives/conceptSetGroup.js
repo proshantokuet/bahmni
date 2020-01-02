@@ -390,10 +390,10 @@ angular.module('bahmni.common.conceptSet')
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
-                    $state.go("patient.dashboard.show", {
-                            patientUuid: patient.uuid
-                        }, {reload: true}
-                    );
+                        $state.go("patient.dashboard.show", {
+                                patientUuid: patient.uuid
+                            }, {reload: true}
+                        );
                     }));
                 } else {
                     $scope.Message = "You clicked NO.";
@@ -407,7 +407,7 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.checkValidDate = function (date) {
                 var registrationDate = new Date($scope.patient.RegistrationDate.value);
-                registrationDate.setHours(0,0,0,0);
+                registrationDate.setHours(0, 0, 0, 0);
                 var splitedDate = date.split('/');
                 var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
                 var comparedValueForMoneyReceipt = finalizedSplitedDate.getTime();
@@ -421,7 +421,7 @@ angular.module('bahmni.common.conceptSet')
             $scope.changingMinuteHourValue = function (hour, minute) {
                 if (hour && minute) {
                     if ($scope.patientInfo.moneyReceiptDate) {
-                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " "+ hour +":";
+                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + hour + ":";
                     }
                     if ($scope.patientInfo.moneyReceiptDate) {
                         $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + minute;
