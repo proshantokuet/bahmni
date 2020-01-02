@@ -84,7 +84,7 @@
                         if (dob) {
                             var dateOfBirth = new Date(dob);
                             var moneyreceiptDate = new Date(mod);
-                            var ages = age.fromMoneyReceiptDate(dateOfBirth,moneyreceiptDate);
+                            var ages = age.fromMoneyReceiptDate(dateOfBirth, moneyreceiptDate);
                             return ages.years + " Y " + ages.months + " M " + ages.days + " D";
                         }
                     };
