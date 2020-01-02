@@ -10,6 +10,12 @@ angular.module('bahmni.common.models')
             return create(period.years, period.months, period.days);
         };
 
+        var fromMoneyReceiptDate = function (birthDate,moneyReeiptDate) {
+            var today = dateUtil.now();
+            var period = dateUtil.diffInYearsMonthsDays(birthDate, moneyReeiptDate);
+            return create(period.years, period.months, period.days);
+        };
+
         var create = function (years, months, days) {
             var isEmpty = function () {
                 return !(this.years || this.months || this.days);
@@ -33,6 +39,7 @@ angular.module('bahmni.common.models')
 
         return {
             fromBirthDate: fromBirthDate,
+            fromMoneyReceiptDate: fromMoneyReceiptDate,
             create: create,
             calculateBirthDate: calculateBirthDate
         };
