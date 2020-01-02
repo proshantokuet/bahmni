@@ -14,7 +14,6 @@ angular.module('bahmni.common.conceptSet')
                 contextChangeHandler.add($scope.validationHandler.validate);
                 $scope.makeSlipNoReadOnly = false;
                 if ($scope.moneyReceiptObject) {
-                    debugger;
                     var orgUnit = $scope.patientInfo.orgUnit;
                     $scope.patientInfo = $scope.moneyReceiptObject[0];
                     var date = new Date($scope.patientInfo.moneyReceiptDate);

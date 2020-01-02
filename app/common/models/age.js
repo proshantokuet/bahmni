@@ -11,7 +11,6 @@ angular.module('bahmni.common.models')
         };
 
         var fromMoneyReceiptDate = function (birthDate,moneyReeiptDate) {
-            debugger;
             var today = dateUtil.now();
             var period = dateUtil.diffInYearsMonthsDays(birthDate, moneyReeiptDate);
             return create(period.years, period.months, period.days);
