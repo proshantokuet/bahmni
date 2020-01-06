@@ -173,5 +173,16 @@ angular.module('bahmni.common.domain')
                     withCredentials: true
                 });
             };
+
+            this.saveExternalPatientEncounter = function (patient_uuid, encounterUuid, actionStatus) {
+                return $http.get(Bahmni.Common.Constants.externalPatientEncounterUrl, {
+                    params: {
+                        patient_uuid: patientUuid,
+                        encounterUuid: encounterUuid,
+                        actionStatus: actionStatus
+                    },
+                    withCredentials: true
+                });
+            };
         }]);
 

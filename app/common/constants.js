@@ -211,6 +211,7 @@ Bahmni.Common = Bahmni.Common || {};
         conceptSetRepresentationForOrderFulfillmentConfig: representation,
         entityMappingUrl: RESTWS_V1 + "/entitymapping",
         encounterTypeUrl: RESTWS_V1 + "/encountertype",
+        externalPatientEncounterUrl: RESTWS_V1 + "/save-Patient/insert/externalPatientEncounter",
         defaultExtensionName: "default",
         orderSetMemberAttributeTypeUrl: RESTWS_V1 + "/ordersetmemberattributetype",
         orderSetUrl: RESTWS_V1 + "/bahmniorderset",

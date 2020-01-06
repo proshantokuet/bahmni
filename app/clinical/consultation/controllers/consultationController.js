@@ -453,7 +453,10 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                                 configurations.consultationNoteConcept(), configurations.labOrderNotesConcept(), $scope.followUpConditionConcept);
                             var consultation = consultationMapper.map(saveResponse.data);
                             consultation.lastvisited = $scope.lastvisited;
-                            return consultation;
+                            encounterService.saveExternalPatientEncounter($scope.patient.uuid, consultation.encounterUuid, "1").then(function (result) {
+                                debugger;
+                                return consultation;
+                            });
                         }).then(function (savedConsultation) {
                             return spinner.forPromise(diagnosisService.populateDiagnosisInformation($scope.patient.uuid, savedConsultation)
                                                           .then(function (consultationWithDiagnosis) {
