@@ -177,7 +177,7 @@ angular.module('bahmni.common.domain')
             this.saveExternalPatientEncounter = function (patient_uuid, encounterUuid, actionStatus) {
                 return $http.get(Bahmni.Common.Constants.externalPatientEncounterUrl, {
                     params: {
-                        patient_uuid: patientUuid,
+                        patient_uuid: patient_uuid,
                         encounterUuid: encounterUuid,
                         actionStatus: actionStatus
                     },
