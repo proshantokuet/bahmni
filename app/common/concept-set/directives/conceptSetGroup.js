@@ -234,6 +234,10 @@ angular.module('bahmni.common.conceptSet')
                 return date.slice(0, 10);
             };
 
+            $scope.dateStringToDateObj = function (date) {
+                return new Date(date);
+            };
+
             $scope.checkedBox = function (value, checkingValue) {
                 if (value == checkingValue) {
                     return true;

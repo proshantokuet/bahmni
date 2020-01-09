@@ -177,7 +177,7 @@
           <tr>
 
             <td align="left" valign="top" style="padding:10px 0 5px 8px;">3. DoB</td>
-            <td style="padding:10px 0 5px 8px;">{{patient.birthdate | date:'dd/MM/yyyy'}}</td>
+            <td style="padding:10px 0 5px 8px;">{{dateTOString(servicesBySlip[0].dob) | date:'dd/MM/yyyy'}}</td>
             <td style="padding:10px 0 5px 8px;">4. Age:</td>
             <td style="padding:10px 0 5px 8px;">{{ageFromBirthDate(servicesBySlip[0].dob, servicesBySlip[0].moneyReceiptDate)}}</td>
             <td style="padding:10px 0 5px 8px;">5. Classification:</td>
