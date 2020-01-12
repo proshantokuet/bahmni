@@ -311,6 +311,13 @@ angular.module('bahmni.common.conceptSet')
                     console.log(response);
                 });
             };
+
+            $scope.dateStringConverter = function (date) {
+                var dateObject = new Date(date);
+                var dateString = dateObject.getFullYear() + "-" + (dateObject.getMonth()+1) + "-" + dateObject.getDate();
+                return dateString;
+            };
+
             $scope.searchButtonText = "Submit";
             $scope.test = "true";
 
@@ -370,14 +377,13 @@ angular.module('bahmni.common.conceptSet')
                     patientInfo['uic'] = patient.UIC.value;
                     var splitedDate = patientInfo.moneyReceiptDate.split('/');
                     var finalizedSplitedDate = splitedDate[2] + "-" + splitedDate[1] + "-" + splitedDate[0];
-                    // finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
                     patientInfo['moneyReceiptDate'] = finalizedSplitedDate;
                     $scope.changingMinuteHourValue($scope.timeObject.hourValue, $scope.timeObject.minuteValue);
                     if (patient.MobileNo != undefined) {
                         patientInfo['contact'] = patient.MobileNo.value;
                     }
                     patientInfo['gender'] = patient.gender;
-                    patientInfo['dob'] = patient.birthdate;
+                    patientInfo['dob'] =  $scope.dateStringConverter(patient.birthdate);
                     if (patient.FinancialStatus != undefined) {
                         patientInfo['wealth'] = patient.FinancialStatus.value.display;
                     }
@@ -389,7 +395,7 @@ angular.module('bahmni.common.conceptSet')
                     patientInfo['totalAmount'] = $scope.netAmount.toString();
                     patientInfo['totalDiscount'] = $scope.totalDiscount.toString();
                     if (patient.RegistrationDate) {
-                        patientInfo['patientRegisteredDate'] = new Date(patient.RegistrationDate.value);
+                        patientInfo['patientRegisteredDate'] = $scope.dateStringConverter(patient.RegistrationDate.value);
                     }
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
