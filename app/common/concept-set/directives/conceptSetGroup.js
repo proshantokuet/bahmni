@@ -314,7 +314,7 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.dateStringConverter = function (date) {
                 var dateObject = new Date(date);
-                var dateString = dateObject.getFullYear() + "-" + (dateObject.getMonth()+1) + "-" + dateObject.getDate();
+                var dateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 1) + "-" + dateObject.getDate();
                 return dateString;
             };
 
@@ -383,7 +383,7 @@ angular.module('bahmni.common.conceptSet')
                         patientInfo['contact'] = patient.MobileNo.value;
                     }
                     patientInfo['gender'] = patient.gender;
-                    patientInfo['dob'] =  $scope.dateStringConverter(patient.birthdate);
+                    patientInfo['dob'] = $scope.dateStringConverter(patient.birthdate);
                     if (patient.FinancialStatus != undefined) {
                         patientInfo['wealth'] = patient.FinancialStatus.value.display;
                     }
