@@ -109,6 +109,7 @@ Bahmni.Common = Bahmni.Common || {};
         visitSummaryUrl: BAHMNI_CORE + "/visit/summary",
         encounterModifierUrl: BAHMNI_CORE + "/bahmniencountermodifier",
         openmrsUrl: hostUrl + "/openmrs",
+        openelisUrl: hostUrl + "/openelis",
         loggingUrl: hostUrl + "/log/",
         idgenConfigurationURL: RESTWS_V1 + "/idgen/identifiertype",
         bahmniRESTBaseURL: BAHMNI_CORE + "",

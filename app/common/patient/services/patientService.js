@@ -115,4 +115,16 @@ angular.module('bahmni.common.patient')
                 }
             });
         };
+
+        this.changePaymentStatusInOpenElis = function (patientId,labOrdersName) {
+            return $http.get(Bahmni.Common.Constants.openelisUrl + "/ws/rest/payment", {
+                params: {
+                    loginName: "admin",
+                    password: "adminADMIN!",
+                    patient_id: patientId,
+                    panels: labOrdersName,
+                },
+                withCredentials: true
+            });
+        };
     }]);

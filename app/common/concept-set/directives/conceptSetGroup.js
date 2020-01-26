@@ -392,10 +392,27 @@ angular.module('bahmni.common.conceptSet')
             });
 
             var saveMoneyReceipt = function (data) {
-                return patientService.saveMoneyReceipt(data).then(function (response) {
-                    console.log("save return");
-                    console.log(response);
-                });
+                spinner.forPromise(patientService.saveMoneyReceipt(data).then(function (response) {
+                    var labString = "";
+                    angular.forEach($scope.services, function (data) {
+                        if (data.code.category == 'Lab Services') {
+                            labString = labString + data.code.code + ",";
+                        }
+                    });
+                    labString = labString.replace(/,\s*$/, "");
+                    if (labString != null && labString != "") {
+                        patientService.changePaymentStatusInOpenElis($scope.patient.identifier, labString).then(function (result) {
+                            if (result.data.response) {
+                                messagingService.showMessage("info", "Orders successfully sent to Lab");
+                            }
+                            else messagingService.showMessage("error", "Something went wrong, please try again later");
+                        });
+                    }
+                    $state.go("patient.dashboard.show", {
+                            patientUuid: $scope.patient.uuid
+                        }, {reload: true}
+                    );
+                }));
             };
             $scope.searchButtonText = "Submit";
             $scope.test = "true";
@@ -456,7 +473,6 @@ angular.module('bahmni.common.conceptSet')
                     patientInfo['uic'] = patient.UIC.value;
                     var splitedDate = patientInfo.moneyReceiptDate.split('/');
                     var finalizedSplitedDate = splitedDate[2] + "-" + splitedDate[1] + "-" + splitedDate[0];
-                    // finalizedSplitedDate.setDate(finalizedSplitedDate.getDate() + 1);
                     patientInfo['moneyReceiptDate'] = finalizedSplitedDate;
                     $scope.changingMinuteHourValue($scope.timeObject.hourValue, $scope.timeObject.minuteValue);
                     if (patient.MobileNo != undefined) {
@@ -479,12 +495,7 @@ angular.module('bahmni.common.conceptSet')
                     }
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
-                    return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
-                    $state.go("patient.dashboard.show", {
-                            patientUuid: patient.uuid
-                        }, {reload: true}
-                    );
-                    }));
+                    saveMoneyReceipt(jsonData);
                 } else {
                     $scope.Message = "You clicked NO.";
                 }
