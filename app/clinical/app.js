@@ -22,16 +22,13 @@ angular.module('consultation')
         function ($stateProvider, $httpProvider, $urlRouterProvider, $bahmniTranslateProvider, $compileProvider) {
             $urlRouterProvider.otherwise('/' + Bahmni.Clinical.Constants.defaultExtensionName + '/patient/search');
             var patientSearchBackLink = {
-                label: "Patient",
+                label: "",
                 state: "search.patientsearch",
                 accessKey: "p",
                 id: "patients-link",
-                /*  icon: "fa-users"    */
-                icon: "fa-stethoscope"
+                icon: "fa-users"
             };
-            var homeBackLink = {label: "Home", url: "../home/index.html", accessKey: "h", icon: "fa-home"};
-
-            var registerBackLink = {label: "Registration", url: "../registration/index.html", accessKey: "r", icon: "fa-user"};
+            var homeBackLink = {label: "", url: "../home/index.html", accessKey: "h", icon: "fa-home"};
 
         // @if DEBUG='production'
             $compileProvider.debugInfoEnabled(false);
@@ -50,7 +47,7 @@ angular.module('consultation')
                     }
                 },
                 data: {
-                    backLinks: [homeBackLink, registerBackLink]
+                    backLinks: [homeBackLink]
                 },
                 resolve: {
                     retrospectiveIntialization: function (retrospectiveEntryService) {
@@ -369,7 +366,7 @@ angular.module('consultation')
             .state('patient.dashboard.observation', {
                 url: '/dashboard/observation/:observationUuid',
                 data: {
-                    backLinks: [homeBackLink, registerBackLink]
+                    backLinks: [homeBackLink]
                 },
                 resolve: {
                     observation: function (observationsService, $stateParams) {

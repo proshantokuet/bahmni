@@ -4,6 +4,7 @@ angular.module('bahmni.registration')
     .service('patientServiceStrategy', ['$http', '$q', '$rootScope', function ($http, $q, $rootScope) {
         var openmrsUrl = Bahmni.Registration.Constants.openmrsUrl;
         var baseOpenMRSRESTURL = Bahmni.Registration.Constants.baseOpenMRSRESTURL;
+
         var search = function (config) {
             var defer = $q.defer();
             var patientSearchUrl = Bahmni.Common.Constants.bahmniSearchUrl + "/patient";
@@ -38,13 +39,9 @@ angular.module('bahmni.registration')
         var create = function (patient, jumpAccepted) {
             var data = new Bahmni.Registration.CreatePatientRequestMapper(moment()).mapFromPatient($rootScope.patientConfiguration.attributeTypes, patient);
             var url = baseOpenMRSRESTURL + "/bahmnicore/patientprofile";
-            return healthId().then(function (response) {
-                var memberHealthId = response.identifiers;
-                data.patient.identifiers[0].identifier = memberHealthId;
-                return $http.post(url, data, {
-                    withCredentials: true,
-                    headers: {"Accept": "application/json", "Content-Type": "application/json", "Jump-Accepted": jumpAccepted}
-                });
+            return $http.post(url, data, {
+                withCredentials: true,
+                headers: {"Accept": "application/json", "Content-Type": "application/json", "Jump-Accepted": jumpAccepted}
             });
         };
 
@@ -72,19 +69,6 @@ angular.module('bahmni.registration')
                 headers: {"Accept": "text/plain", "Content-Type": "application/json"}
             };
             return $http.post(url, data, config);
-        };
-
-        var healthId = function () {
-            var url = openmrsUrl + "/ws/rest/v1/healthid/reserved/singleid";
-            var config = {
-                method: "GET",
-                withCredentials: false
-            };
-            var defer = $q.defer();
-            $http.get(url, config).success(function (result) {
-                defer.resolve(result);
-            });
-            return defer.promise;
         };
 
         return {

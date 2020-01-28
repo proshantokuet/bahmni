@@ -30,10 +30,7 @@ angular.module('bahmni.common.conceptSet')
                                 formDetails.version = formVersion;
                                 loadedFormDetails[formUuid] = formDetails;
                                 var formParams = { formName: formName, formVersion: formVersion, locale: locale };
-                                var formTranslations = {};
-                                loadedFormTranslations[formUuid] = formTranslations;
-                                $scope.form.component = renderWithControls(formDetails, formObservations, formUuid, collapse, $scope.patient, validateForm, locale, formTranslations);
-                               /* spinner.forPromise(formService.getFormTranslations(formDetails.translationsUrl, formParams)
+                                spinner.forPromise(formService.getFormTranslations(formDetails.translationsUrl, formParams)
                                     .then(function (response) {
                                         var formTranslations = !_.isEmpty(response.data) ? response.data[0] : {};
                                         loadedFormTranslations[formUuid] = formTranslations;
@@ -45,7 +42,7 @@ angular.module('bahmni.common.conceptSet')
                                         $scope.form.component = renderWithControls(formDetails, formObservations,
                                             formUuid, collapse, $scope.patient, validateForm, locale, formTranslations);
                                     })
-                                ); */
+                                );
                             }
                             unMountReactContainer($scope.form.formUuid);
                         })

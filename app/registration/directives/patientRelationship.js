@@ -213,18 +213,7 @@ angular.module('bahmni.registration')
                 if (angular.isUndefined(response)) {
                     return;
                 }
-                /* start by proshanto  */
-                var households = [];
-                var length = response.data.pageOfResults.length;
-                var i;
-                for (i = 0; i < length; i++) {
-                    var patient = response.data.pageOfResults[i];
-                    if (patient.gender == 'H') {
-                        households.push(patient);
-                    }
-                }
-                /* end by proshanto */
-                return households.map(function (patient) {
+                return response.data.pageOfResults.map(function (patient) {
                     return {
                         value: getName(patient) + " - " + patient.identifier,
                         uuid: patient.uuid,
@@ -288,14 +277,7 @@ angular.module('bahmni.registration')
                 $scope.relationshipTypes = $rootScope.relationshipTypes;
                 $scope.patient.relationships = $scope.patient.relationships || [];
             };
-            $scope.hasRelationShip = function (relationship) {
-                var length = relationship.length;
-                // console.log(relationship);
-                if (length > 0) {
-                    return false;
-                }
-                return true;
-            };
+
             init();
         }
     ]);

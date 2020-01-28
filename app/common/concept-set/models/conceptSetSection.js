@@ -115,7 +115,7 @@ Bahmni.ConceptSet.ConceptSetSection = function (extensions, user, config, observ
     });
 
     self.isDefault = function () {
-        return true;
+        return self.options.default;
     };
 
     Object.defineProperty(self, "isAdded", {

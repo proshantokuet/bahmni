@@ -6,6 +6,7 @@ angular.module('bahmni.registration')
         function ($window, $scope, $rootScope, $state, $bahmniCookieStore, patientService, encounterService, $stateParams, spinner, $timeout, $q, appService, openmrsPatientMapper, contextChangeHandler, messagingService, sessionService, visitService, $location, $translate, auditLogService, formService) {
             var vm = this;
             var patientUuid = $stateParams.patientUuid;
+            $scope.patientAtributes = {};
             var extensions = appService.getAppDescriptor().getExtensions("org.bahmni.registration.conceptSetGroup.observations", "config");
             var formExtensions = appService.getAppDescriptor().getExtensions("org.bahmni.registration.conceptSetGroup.observations", "forms");
             var locationUuid = sessionService.getLoginLocationUuid();
@@ -80,17 +81,18 @@ angular.module('bahmni.registration')
                     drugOrders: [],
                     extensions: {}
                 };
+                // $scope.mappingAttributeBeforeUpdatePatient();
+                $scope.encounter.providers = [];
+                $scope.encounter.providers.push({"uuid": $scope.patientAtributes.doctorId});
 
                 $bahmniCookieStore.put(Bahmni.Common.Constants.grantProviderAccessDataCookieName, selectedProvider, {
                     path: '/',
                     expires: 1
                 });
-
                 $scope.encounter.observations = $scope.observations;
                 $scope.encounter.observations = new Bahmni.Common.Domain.ObservationFilter().filter($scope.encounter.observations);
 
                 addFormObservations($scope.encounter.observations);
-
                 var createPromise = encounterService.create($scope.encounter);
                 spinner.forPromise(createPromise);
                 return createPromise.then(function (response) {
@@ -185,6 +187,11 @@ angular.module('bahmni.registration')
                 var allowContextChange = contxChange["allow"];
                 var errorMessage;
                 if (!isObservationFormValid()) {
+                    deferred.reject("Some fields are not valid");
+                    return deferred.promise;
+                }
+                if (!$scope.patientAtributes.doctorId && !$scope.patientAtributes.tokenNo) {
+                    messagingService.showMessage('error', "Please enter data in the mandatory Field");
                     deferred.reject("Some fields are not valid");
                     return deferred.promise;
                 }
@@ -298,8 +305,74 @@ angular.module('bahmni.registration')
                 return forms;
             };
 
+            $scope.randomTokenGenerator = function () {
+                var today = new Date();
+                var expiresValue = new Date(today);
+                expiresValue.setDate(today.getDate() + 1);
+                expiresValue.setHours(0, 1, 0, 0);
+                var tokenNumber = $bahmniCookieStore.get('tokenNumberGenerateForPatient');
+                if (!tokenNumber) {
+                    var serialNumber = 1;
+                    $scope.patientAtributes.tokenNo = (serialNumber < 10 ? '0' + serialNumber : serialNumber);
+                    $bahmniCookieStore.put('tokenNumberGenerateForPatient', serialNumber, {
+                        path: '/',
+                        expires: expiresValue
+                    });
+                }
+                else {
+                    var serialNumber = tokenNumber + 1;
+                    $scope.patientAtributes.tokenNo = (serialNumber < 10 ? '0' + serialNumber : serialNumber);
+                    $bahmniCookieStore.put('tokenNumberGenerateForPatient', serialNumber, {
+                        path: '/',
+                        expires: expiresValue
+                    });
+                }
+            };
+
+            var updatePatient = function (patientInfo) {
+                patientService.updatePatient(patientInfo, $scope.patient.uuid);
+            };
+
+            $scope.mappingAttributeBeforeUpdatePatient = function () {
+                var attributes = [];
+                if ($scope.patientAtributes.doctorId) {
+                    // for server
+                    // var doctorId = '35438529-469f-42ce-912f-9cd4adb5ff86';
+                    // for local
+                    var doctorAttributeId = '35438529-469f-42ce-912f-9cd4adb5ff86';
+                    var value = $scope.patientAtributes.doctorId;
+                    var attribute = {};
+                    attribute['value'] = value;
+                    attribute['attributeType'] = doctorAttributeId;
+                    attributes.push(attribute);
+                }
+                if ($scope.patientAtributes.tokenNo) {
+                    // for server
+                    // var token = '9511f26d-7c39-433e-9b15-c4f6933e01a7';
+                    // for local
+                    var tokenAttributeId = '9511f26d-7c39-433e-9b15-c4f6933e01a7';
+                    var value = $scope.patientAtributes.tokenNo.toString();
+                    var attribute = {};
+                    attribute['value'] = value;
+                    attribute['attributeType'] = tokenAttributeId;
+                    attributes.push(attribute);
+                }
+                var patientInfo = {
+                    person: {
+                        attributes: attributes
+                    }
+                };
+                updatePatient(patientInfo, $scope.patient.uuid);
+            };
+
             $scope.isFormTemplate = function (data) {
                 return data.formUuid;
+            };
+            var loadProviders = function () {
+                visitService.loadProviders().then(function (data) {
+                    var providerList = data.data.results;
+                    $scope.filteredProviderList = providerList.filter(provider => provider.display != null && provider.display != "");
+                });
             };
 
             var addFormObservations = function (observations) {
@@ -318,7 +391,7 @@ angular.module('bahmni.registration')
                 }
             };
 
-            spinner.forPromise($q.all([getPatient(), getActiveEncounter(), searchActiveVisitsPromise()])
+            spinner.forPromise($q.all([getPatient(), getActiveEncounter(), searchActiveVisitsPromise(), loadProviders()])
                 .then(function () {
                     getAllForms().then(function () {
                         getConceptSet();

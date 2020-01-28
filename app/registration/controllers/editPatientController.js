@@ -26,42 +26,7 @@ angular.module('bahmni.registration')
 
             var successCallBack = function (openmrsPatient) {
                 $scope.openMRSPatient = openmrsPatient["patient"];
-
-                var i;
-                $scope.riskyHabbitArray = "";
-                $scope.diseaseStatusString = "";
-                $scope.familyDiseaseHistoryString = "";
-                for (i = 0; i < $scope.openMRSPatient.person.attributes.length; i++) {
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "RiskyHabit") {
-                        $scope.riskyHabbitArray = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "Disease_status") {
-                        $scope.diseaseStatusString = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                    if ($scope.openMRSPatient.person.attributes[i].attributeType.display == "family_diseases_details") {
-                        $scope.familyDiseaseHistoryString = $scope.openMRSPatient.person.attributes[i].value;
-                    }
-                }
-
                 $scope.patient = openmrsPatientMapper.map(openmrsPatient);
-
-                var riskyArray = $scope.riskyHabbitArray.split(',');
-                for (i = 0; i < riskyArray.length; i++) {
-                    var a = riskyArray[i];
-                    $scope.patient.riskyHabit[a] = true;
-                }
-                var diseaseStatusArray = $scope.diseaseStatusString.split(',');
-                for (i = 0; i < diseaseStatusArray.length; i++) {
-                    var a = diseaseStatusArray[i];
-                    $scope.patient.diseaseStatus[a] = true;
-                }
-                var familyDiseaseHistoryArray = $scope.familyDiseaseHistoryString.split(',');
-                for (i = 0; i < familyDiseaseHistoryArray.length; i++) {
-                    var a = familyDiseaseHistoryArray[i];
-                    $scope.patient.familyDiseaseHistory[a] = true;
-                }
-                console.log($scope.patient);
-
                 setReadOnlyFields();
                 expandDataFilledSections();
                 $scope.patientLoaded = true;
@@ -78,6 +43,7 @@ angular.module('bahmni.registration')
 
             (function () {
                 var getPatientPromise = patientService.get(uuid).then(successCallBack);
+
                 var isDigitized = encounterService.getDigitized(uuid);
                 isDigitized.then(function (data) {
                     var encountersWithObservations = data.data.results.filter(function (encounter) {
@@ -109,18 +75,15 @@ angular.module('bahmni.registration')
             };
 
             var addNewRelationships = function () {
-                var relationshipType = {};
-                var relationObject = {};
-                var relationArray = [];
-                if ($scope.patient.newlyAddedRelationships[0].personB != undefined) {
-                    var personB = $scope.patient.newlyAddedRelationships[0].personB;
-                    console.log(personB);
-                    relationshipType['uuid'] = "03ed3084-4c7a-11e5-9192-080027b662ec";
-                    relationObject["relationshipType"] = relationshipType;
-                    relationObject["personB"] = personB;
-                    relationArray.push(relationObject);
-                }
-                $scope.patient.relationships = _.concat(relationArray, $scope.patient.deletedRelationships);
+                var newRelationships = _.filter($scope.patient.newlyAddedRelationships, function (relationship) {
+                    return relationship.relationshipType && relationship.relationshipType.uuid;
+                });
+                newRelationships = _.each(newRelationships, function (relationship) {
+                    delete relationship.patientIdentifier;
+                    delete relationship.content;
+                    delete relationship.providerName;
+                });
+                $scope.patient.relationships = _.concat(newRelationships, $scope.patient.deletedRelationships);
             };
 
             $scope.isReadOnly = function (field) {

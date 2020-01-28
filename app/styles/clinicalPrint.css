@@ -16203,11 +16203,20 @@ p.caution {
 }
 
 /* line 17, common/_bahmniGlobal.scss */
+.asterick-custom {
+  color: red;
+  display: inline-block;
+  padding-left: 5px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+/* line 25, common/_bahmniGlobal.scss */
 .strike-text {
   text-decoration: line-through;
 }
 
-/* line 21, common/_bahmniGlobal.scss */
+/* line 29, common/_bahmniGlobal.scss */
 input[file-upload], form .input-prepend [file-upload].add-on, .form .input-prepend [file-upload].add-on {
   position: absolute;
   z-index: -999;
@@ -16215,56 +16224,56 @@ input[file-upload], form .input-prepend [file-upload].add-on, .form .input-prepe
   width: 1px;
 }
 
-/* line 30, common/_bahmniGlobal.scss */
+/* line 38, common/_bahmniGlobal.scss */
 .form-horizontal fieldset label {
   float: left;
   width: 200px;
   margin-left: 20px;
 }
 @media screen and (max-width: 1024px) {
-  /* line 30, common/_bahmniGlobal.scss */
+  /* line 38, common/_bahmniGlobal.scss */
   .form-horizontal fieldset label {
     width: 170px;
   }
 }
 @media screen and (max-width: 850px) {
-  /* line 30, common/_bahmniGlobal.scss */
+  /* line 38, common/_bahmniGlobal.scss */
   .form-horizontal fieldset label {
     width: 156px;
   }
 }
-/* line 42, common/_bahmniGlobal.scss */
+/* line 50, common/_bahmniGlobal.scss */
 .form-horizontal fieldset.hasLegend label {
   margin-left: 10px;
 }
-/* line 45, common/_bahmniGlobal.scss */
+/* line 53, common/_bahmniGlobal.scss */
 .form-horizontal fieldset.hasLegend .offset-label {
   padding-left: 0px;
 }
 
-/* line 52, common/_bahmniGlobal.scss */
+/* line 60, common/_bahmniGlobal.scss */
 .is-abnormal {
   color: red !important;
 }
 
-/* line 55, common/_bahmniGlobal.scss */
+/* line 63, common/_bahmniGlobal.scss */
 .is-abnormal-bold {
   font-family: OpenSansBold, Arial, sans-serif !important;
   color: red !important;
 }
 
-/* line 60, common/_bahmniGlobal.scss */
+/* line 68, common/_bahmniGlobal.scss */
 .visible-print {
   display: none;
 }
 
-/* line 64, common/_bahmniGlobal.scss */
+/* line 72, common/_bahmniGlobal.scss */
 .referred {
   display: none;
   float: left;
 }
 
-/* line 69, common/_bahmniGlobal.scss */
+/* line 77, common/_bahmniGlobal.scss */
 .referred-out .referred {
   display: inline-block;
   font-size: 12px;
@@ -16275,7 +16284,7 @@ input[file-upload], form .input-prepend [file-upload].add-on, .form .input-prepe
   margin-right: 7px;
 }
 
-/* line 81, common/_bahmniGlobal.scss */
+/* line 89, common/_bahmniGlobal.scss */
 .row-remover {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -16284,91 +16293,91 @@ input[file-upload], form .input-prepend [file-upload].add-on, .form .input-prepe
   margin-top: 7px;
   margin-right: 6px;
 }
-/* line 88, common/_bahmniGlobal.scss */
+/* line 96, common/_bahmniGlobal.scss */
 .row-remover span {
   font-size: 20px;
   color: #660000;
   padding: 0;
 }
 
-/* line 95, common/_bahmniGlobal.scss */
+/* line 103, common/_bahmniGlobal.scss */
 .opd-wrapper .has-toggle {
   cursor: pointer;
   margin-bottom: 0;
 }
 
-/* line 96, common/_bahmniGlobal.scss */
+/* line 104, common/_bahmniGlobal.scss */
 .section-toggle {
   background: none;
   border: none;
   padding: 0;
 }
-/* line 101, common/_bahmniGlobal.scss */
+/* line 109, common/_bahmniGlobal.scss */
 .section-toggle:hover {
   background: none;
   border: none;
 }
-/* line 105, common/_bahmniGlobal.scss */
+/* line 113, common/_bahmniGlobal.scss */
 .section-toggle i {
   padding: 0;
   font-size: 26px;
   color: green;
 }
 
-/* line 111, common/_bahmniGlobal.scss */
+/* line 119, common/_bahmniGlobal.scss */
 .notes p.left {
   width: 80%;
   float: left;
   text-align: left;
 }
 
-/* line 117, common/_bahmniGlobal.scss */
+/* line 125, common/_bahmniGlobal.scss */
 .diagnosis-notes-title {
   margin-right: 5px;
 }
 
-/* line 122, common/_bahmniGlobal.scss */
+/* line 130, common/_bahmniGlobal.scss */
 .view .order {
   color: #666;
   margin: 0 5px;
 }
 
-/* line 127, common/_bahmniGlobal.scss */
+/* line 135, common/_bahmniGlobal.scss */
 .quick-links {
   float: right;
 }
 
-/* line 130, common/_bahmniGlobal.scss */
+/* line 138, common/_bahmniGlobal.scss */
 button.save-consultation {
   float: right;
   margin: 8px 10px 0;
   padding: 10px 15px 9px;
 }
 
-/* line 137, common/_bahmniGlobal.scss */
+/* line 145, common/_bahmniGlobal.scss */
 button.save-consultation.hideSaveText .fa-save {
   display: none;
 }
-/* line 140, common/_bahmniGlobal.scss */
+/* line 148, common/_bahmniGlobal.scss */
 button.save-consultation.hideSaveText .text {
   display: block;
 }
 @media screen and (max-width: 1024px) {
-  /* line 136, common/_bahmniGlobal.scss */
+  /* line 144, common/_bahmniGlobal.scss */
   button.save-consultation.hideSaveText {
     padding: 19px 10px 13px;
   }
-  /* line 145, common/_bahmniGlobal.scss */
+  /* line 153, common/_bahmniGlobal.scss */
   button.save-consultation.hideSaveText .text {
     display: none;
   }
-  /* line 148, common/_bahmniGlobal.scss */
+  /* line 156, common/_bahmniGlobal.scss */
   button.save-consultation.hideSaveText .fa-save {
     display: block;
   }
 }
 
-/* line 155, common/_bahmniGlobal.scss */
+/* line 163, common/_bahmniGlobal.scss */
 a.quick-links, a.btn--success {
   border-radius: 3px;
   background: linear-gradient(to bottom, #A1D030, #88af28);
@@ -16504,81 +16513,81 @@ a.quick-links.arrow.disabled .arrow-border-button, a.btn--success.arrow.disabled
   border-left: 18px solid #ccc;
 }
 
-/* line 162, common/_bahmniGlobal.scss */
+/* line 170, common/_bahmniGlobal.scss */
 td .status {
   color: orange;
   float: right;
 }
 
-/* line 168, common/_bahmniGlobal.scss */
+/* line 176, common/_bahmniGlobal.scss */
 .abnormal-vitals {
   width: auto !important;
   margin: 4px !important;
 }
 
-/* line 173, common/_bahmniGlobal.scss */
+/* line 181, common/_bahmniGlobal.scss */
 pre.chief-notes {
   background: none;
   float: left;
 }
 
-/* line 178, common/_bahmniGlobal.scss */
+/* line 186, common/_bahmniGlobal.scss */
 .accept-btn.active {
   color: #457FAC;
   padding-top: 7px;
 }
-/* line 181, common/_bahmniGlobal.scss */
+/* line 189, common/_bahmniGlobal.scss */
 .accept-btn.active span:before {
   font-family: FontAwesome;
   content: "\f00c";
   margin-right: 5px;
 }
 
-/* line 188, common/_bahmniGlobal.scss */
+/* line 196, common/_bahmniGlobal.scss */
 .current-visit-icon {
   color: #E8A000;
 }
 
-/* line 192, common/_bahmniGlobal.scss */
+/* line 200, common/_bahmniGlobal.scss */
 .has-notes {
   color: orange;
 }
-/* line 194, common/_bahmniGlobal.scss */
+/* line 202, common/_bahmniGlobal.scss */
 .has-notes i {
   color: orange !important;
 }
 
 /*home*/
-/* line 199, common/_bahmniGlobal.scss */
+/* line 207, common/_bahmniGlobal.scss */
 .bahmni-home {
   margin-bottom: 5px !important;
 }
-/* line 201, common/_bahmniGlobal.scss */
+/* line 209, common/_bahmniGlobal.scss */
 .bahmni-home .fa-home {
   color: #eee;
   margin-right: 5px;
   font-size: 18px;
 }
 
-/* line 208, common/_bahmniGlobal.scss */
+/* line 216, common/_bahmniGlobal.scss */
 .highlight {
   border-left: 5px solid orange;
 }
 
-/* line 211, common/_bahmniGlobal.scss */
+/* line 219, common/_bahmniGlobal.scss */
 u, .add-drug-btninput[value]:first-letter {
   text-decoration: none;
   border-bottom: 1px solid;
   font-family: OpenSansBold, Arial, sans-serif;
 }
 
-/* line 217, common/_bahmniGlobal.scss */
+/* line 225, common/_bahmniGlobal.scss */
 .drug-dispensed {
   color: #457FAC;
   font-family: "OpenSansBold";
 }
 
-/* line 222, common/_bahmniGlobal.scss */
+/* line 230, common/_bahmniGlobal.scss */
 .box {
   padding: 10px;
   border: 1px solid #ccc;
@@ -16597,64 +16606,64 @@ u, .add-drug-btninput[value]:first-letter {
   clear: both;
 }
 
-/* line 231, common/_bahmniGlobal.scss */
+/* line 239, common/_bahmniGlobal.scss */
 .overflowAuto {
   overflow: auto;
 }
 
-/* line 234, common/_bahmniGlobal.scss */
+/* line 242, common/_bahmniGlobal.scss */
 .is-abnormal .select2-chosen {
   color: red !important;
 }
 
-/* line 238, common/_bahmniGlobal.scss */
+/* line 246, common/_bahmniGlobal.scss */
 .placeholder-text {
   background: #fff;
   padding: 5px;
   color: #444 !important;
 }
-/* line 242, common/_bahmniGlobal.scss */
+/* line 250, common/_bahmniGlobal.scss */
 .placeholder-text p {
   margin-bottom: 0;
   color: #444 !important;
 }
 
-/* line 248, common/_bahmniGlobal.scss */
+/* line 256, common/_bahmniGlobal.scss */
 .fa-pencil, .fa-eye {
   cursor: pointer;
 }
-/* line 250, common/_bahmniGlobal.scss */
+/* line 258, common/_bahmniGlobal.scss */
 .fa-pencil:hover, .fa-eye:hover {
   color: #5C8A93;
 }
 @media screen and (max-width: 1024px) {
-  /* line 248, common/_bahmniGlobal.scss */
+  /* line 256, common/_bahmniGlobal.scss */
   .fa-pencil, .fa-eye {
     font-size: 20px;
   }
 }
 
-/* line 258, common/_bahmniGlobal.scss */
+/* line 266, common/_bahmniGlobal.scss */
 .cursor-pointer {
   cursor: pointer;
 }
 
-/* line 262, common/_bahmniGlobal.scss */
+/* line 270, common/_bahmniGlobal.scss */
 .clear-both {
   clear: both;
 }
 
-/* line 265, common/_bahmniGlobal.scss */
+/* line 273, common/_bahmniGlobal.scss */
 .select2-drop {
   z-index: 99999 !important;
 }
 
-/* line 270, common/_bahmniGlobal.scss */
+/* line 278, common/_bahmniGlobal.scss */
 .ng-dialog-all-details-page .select2-container .select2-choice {
   height: 26px !important;
 }
 
-/* line 275, common/_bahmniGlobal.scss */
+/* line 283, common/_bahmniGlobal.scss */
 .mylegend {
   background: #eee;
   line-height: 16px;
@@ -16663,28 +16672,28 @@ u, .add-drug-btninput[value]:first-letter {
   border-radius: 3px;
   border: 1px solid #ccc;
 }
-/* line 282, common/_bahmniGlobal.scss */
+/* line 290, common/_bahmniGlobal.scss */
 .mylegend span {
   display: inline-block;
   padding: 2px 10px;
   font-weight: bold;
 }
 
-/* line 289, common/_bahmniGlobal.scss */
+/* line 297, common/_bahmniGlobal.scss */
 .registraion_legend {
   margin: 15px 0 15px 25px;
   width: auto;
   position: relative;
 }
 @media (max-width: 768px) {
-  /* line 289, common/_bahmniGlobal.scss */
+  /* line 297, common/_bahmniGlobal.scss */
   .registraion_legend {
     margin: 20px 0;
     float: left;
     width: 100%;
   }
 }
-/* line 298, common/_bahmniGlobal.scss */
+/* line 306, common/_bahmniGlobal.scss */
 .registraion_legend:before {
   content: "";
   border-top: 1px #ccc solid;
@@ -16692,7 +16701,7 @@ u, .add-drug-btninput[value]:first-letter {
   top: 14px;
   width: 96%;
 }
-/* line 305, common/_bahmniGlobal.scss */
+/* line 313, common/_bahmniGlobal.scss */
 .registraion_legend span.mylegend {
   display: inline-block;
   width: auto;
@@ -16701,57 +16710,57 @@ u, .add-drug-btninput[value]:first-letter {
   margin-left: 25px;
   position: relative;
 }
-/* line 313, common/_bahmniGlobal.scss */
+/* line 321, common/_bahmniGlobal.scss */
 .registraion_legend.first-registraion_legend {
   margin-left: 0;
   margin-right: 0;
 }
-/* line 316, common/_bahmniGlobal.scss */
+/* line 324, common/_bahmniGlobal.scss */
 .registraion_legend.first-registraion_legend:before {
   width: 100%;
 }
-/* line 321, common/_bahmniGlobal.scss */
+/* line 329, common/_bahmniGlobal.scss */
 .registraion_legend.removeLegend:before {
   display: none;
 }
-/* line 324, common/_bahmniGlobal.scss */
+/* line 332, common/_bahmniGlobal.scss */
 .registraion_legend.removeLegend span.mylegend {
   display: none;
 }
 
-/* line 332, common/_bahmniGlobal.scss */
+/* line 340, common/_bahmniGlobal.scss */
 .toggle-container.active .fa-caret-right {
   display: none;
 }
-/* line 335, common/_bahmniGlobal.scss */
+/* line 343, common/_bahmniGlobal.scss */
 .toggle-container.active .fa-caret-down {
   display: inline;
 }
-/* line 339, common/_bahmniGlobal.scss */
+/* line 347, common/_bahmniGlobal.scss */
 .toggle-container .fa-caret-down {
   display: none;
 }
 
-/* line 345, common/_bahmniGlobal.scss */
+/* line 353, common/_bahmniGlobal.scss */
 .patient-image {
   background-color: #ffffff;
 }
 
-/* line 349, common/_bahmniGlobal.scss */
+/* line 357, common/_bahmniGlobal.scss */
 .video, .video-dialog {
   width: 280px;
   height: 190px;
   display: table;
   margin: 0 auto;
 }
-/* line 354, common/_bahmniGlobal.scss */
+/* line 362, common/_bahmniGlobal.scss */
 .video.disable, .video-dialog.disable {
   opacity: .1;
   pointer-events: none;
   border: 3px solid black;
 }
 
-/* line 361, common/_bahmniGlobal.scss */
+/* line 369, common/_bahmniGlobal.scss */
 .dashboard-section-loader {
   position: absolute;
   bottom: 0;
@@ -16762,19 +16771,19 @@ u, .add-drug-btninput[value]:first-letter {
 }
 
 @media screen and (max-width: 700px) {
-  /* line 370, common/_bahmniGlobal.scss */
+  /* line 378, common/_bahmniGlobal.scss */
   .print {
     display: none;
   }
 }
 
-/* line 375, common/_bahmniGlobal.scss */
+/* line 383, common/_bahmniGlobal.scss */
 .spinnable {
   position: relative;
   min-height: 2em;
 }
 
-/* line 379, common/_bahmniGlobal.scss */
+/* line 387, common/_bahmniGlobal.scss */
 .ngdialog.ngdialog-theme-default .ngdialog-close {
   z-index: 999;
 }

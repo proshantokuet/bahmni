@@ -13,10 +13,10 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
         });
         identifiers = _.map(identifiers, function (identifier) {
             return {
-                identifier: identifier,
+                identifier: identifier.identifier,
                 identifierSourceUuid: identifier.selectedIdentifierSource ? identifier.selectedIdentifierSource.uuid : undefined,
                 identifierPrefix: identifier.selectedIdentifierSource ? identifier.selectedIdentifierSource.prefix : undefined,
-                identifierType: identifier.identifierType,
+                identifierType: identifier.identifierType.uuid,
                 preferred: identifier.preferred,
                 voided: identifier.voided
             };
@@ -45,35 +45,10 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
                     causeOfDeath: patient.causeOfDeath ? patient.causeOfDeath.uuid : '',
                     uuid: patient.uuid
                 },
-                identifiers: [{"identifier": "", "identifierType": "Patient_Identifier", "preferred": true, "voided": false }],
+                identifiers: identifiers,
                 uuid: patient.uuid
             }
         };
-
-        var i = 0;
-        for (i = 0; i < openMRSPatient.patient.person.attributes.length; i++) {
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "RiskyHabit") {
-                if (this.getStringFromJsonArray(patient.riskyHabit)) {
-                    openMRSPatient.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.riskyHabit);
-                } else {
-                    openMRSPatient.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "Disease_status") {
-                if (this.getStringFromJsonArray(patient.diseaseStatus)) {
-                    openMRSPatient.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.diseaseStatus);
-                } else {
-                    openMRSPatient.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "family_diseases_details") {
-                if (this.getStringFromJsonArray(patient.familyDiseaseHistory)) {
-                    openMRSPatient.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.familyDiseaseHistory);
-                } else {
-                    openMRSPatient.patient.person.attributes[i].voided = true;
-                }
-            }
-        }
 
         this.setImage(patient, openMRSPatient);
         openMRSPatient.relationships = patient.relationships;
@@ -94,18 +69,6 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
             mnt = moment(this.currentDate).subtract('days', age.days).subtract('months', age.months).subtract('years', age.years);
         }
         return mnt.format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
-    };
-
-    CreatePatientRequestMapper.prototype.getStringFromJsonArray = function (jsonArray) {
-        var jsonArrayList = "";
-        var keys = [];
-        for (var k in jsonArray) {
-            if (jsonArray[k] == true) {
-                keys.push(k);
-            }
-        }
-        jsonArrayList = keys.join();
-        return jsonArrayList;
     };
 
     return CreatePatientRequestMapper;

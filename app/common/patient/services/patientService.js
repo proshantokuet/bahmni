@@ -35,10 +35,6 @@ angular.module('bahmni.common.patient')
                     q: query,
                     startIndex: offset,
                     identifier: identifier,
-                    patientAttributes: ["motherNameEnglish"],
-                    patientSearchResultsConfig: ["motherNameEnglish"],
-                    addressFieldName: ["address2"],
-                    addressSearchResultsConfig: ["address2"],
                     loginLocationUuid: sessionService.getLoginLocationUuid()
                 },
                 withCredentials: true
@@ -56,13 +52,5 @@ angular.module('bahmni.common.patient')
                 },
                 withCredentials: true
             });
-        };
-        this.getHealthId = function () {
-            var url = Bahmni.Common.Constants.openmrsUrl + "/ws/rest/v1/healthid/reserved/singleid";
-            var config = {
-                method: "GET",
-                withCredentials: false
-            };
-            return $http.get(url, config);
         };
     }]);

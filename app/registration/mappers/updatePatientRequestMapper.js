@@ -49,31 +49,6 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
             };
         });
 
-        var i = 0;
-        for (i = 0; i < openMRSPatientProfile.patient.person.attributes.length; i++) {
-            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "RiskyHabit") {
-                if (this.getStringFromJsonArray(patient.riskyHabit)) {
-                    openMRSPatientProfile.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.riskyHabit);
-                } else {
-                    openMRSPatientProfile.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "Disease_status") {
-                if (this.getStringFromJsonArray(patient.diseaseStatus)) {
-                    openMRSPatientProfile.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.diseaseStatus);
-                } else {
-                    openMRSPatientProfile.patient.person.attributes[i].voided = true;
-                }
-            }
-            if (openMRSPatientProfile.patient.person.attributes[i].attributeType.name == "family_diseases_details") {
-                if (this.getStringFromJsonArray(patient.familyDiseaseHistory)) {
-                    openMRSPatientProfile.patient.person.attributes[i].value = this.getStringFromJsonArray(patient.familyDiseaseHistory);
-                } else {
-                    openMRSPatientProfile.patient.person.attributes[i].voided = true;
-                }
-            }
-        }
-
         this.setImage(patient, openMRSPatientProfile);
 
         if (patient.relationships) {
@@ -94,8 +69,7 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
         patientAttributeTypes.forEach(function (attributeType) {
             var attr = {
                 attributeType: {
-                    uuid: attributeType.uuid,
-                    name: attributeType.name
+                    uuid: attributeType.uuid
                 }
             };
             var savedAttribute = openMRSPatient.person.attributes.filter(function (attribute) {
@@ -114,9 +88,7 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
     };
 
     var setAttributeValue = function (attributeType, attr, value) {
-        if (attributeType.name == "RiskyHabit" || attributeType.name == "Disease_status" || attributeType.name == "family_diseases_details") {
-            attr.value = "";
-        } else if (value === "" || value === null || value === undefined || value.conceptUuid === null) {
+        if (value === "" || value === null || value === undefined || value.conceptUuid === null) {
             attr.voided = true;
         } else if (attributeType.format === "org.openmrs.Concept") {
             attr.hydratedObject = value.conceptUuid;
@@ -136,18 +108,6 @@ Bahmni.Registration.UpdatePatientRequestMapper = (function () {
             mnt = moment(this.currentDate).subtract('days', age.days).subtract('months', age.months).subtract('years', age.years);
         }
         return mnt.format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
-    };
-
-    UpdatePatientRequestMapper.prototype.getStringFromJsonArray = function (jsonArray) {
-        var jsonArrayList = "";
-        var keys = [];
-        for (var k in jsonArray) {
-            if (jsonArray[k] == true) {
-                keys.push(k);
-            }
-        }
-        jsonArrayList = keys.join();
-        return jsonArrayList;
     };
 
     return UpdatePatientRequestMapper;

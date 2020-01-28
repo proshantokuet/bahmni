@@ -42,7 +42,6 @@ Bahmni.Common.PatientSearch.Search = function (searchTypes) {
 
     self.updatePatientList = function (patientList) {
         self.activePatients = patientList.map(mapPatient);
-
         self.searchResults = self.activePatients;
     };
 

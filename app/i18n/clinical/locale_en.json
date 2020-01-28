@@ -1,5 +1,6 @@
 {
-    "CONSULTATION_TAB_KEY": "<u>V</u>isit",
+    "CONSULTATION_TAB_KEY": "<u>C</u>onsultation",
+    "CONSULTATION_CANCEL_KEY": "Close Visit",
     "CONSULTATION_SHORTCUT_KEY": "c",
     "NO_ACTIVE_PASSIVE_PROGRAMS_MESSAGE": "No active/inactive programs for this patient.",
     "NO_TREATMENTS_MESSAGE": "No treatments for this patient.",
@@ -86,6 +87,8 @@
     "VISIT_TITLE_PATIENT_FILES_KEY": "Patient Files",
     "VISIT_TITLE_RADIOLOGY_KEY": "Radiology",
     "VISIT_TITLE_OBSERVATIONS_KEY": "Observations",
+    "VISIT_VISIT_CANNOT_BE_CLOSED":"Admitted patient's visit cannot be closed. Discharge the patient and try again",
+    "VISIT_CLOSE_VISIT":"Are you sure you want to close this visit?",
     "ADD_MORE_KEY": "Add More",
     "ADD_SECTION_KEY": "Add Section",
     "ADD_FORM_KEY": "Add Form",
@@ -326,5 +329,6 @@
     "EDIT_LABEL": "Edit",
     "INVESTIGATIONS_PANELS_HEADER_LABEL": "Panels",
     "INVESTIGATIONS_SELECTIONS_HEADER_LABEL": "Selection",
-    "CLINICAL_GO_TO_DASHBOARD_LABEL": "Go to IPD dashboard"
+    "CLINICAL_GO_TO_DASHBOARD_LABEL": "Go to IPD dashboard",
+    "NO_FORM_FOUND_FOR_PATIENT": "No Form found for this patient"
 }

@@ -36,6 +36,8 @@ angular.module('bahmni.clinical')
                             spinner.forPromise(formService.getFormList($scope.consultation.encounterUuid)
                                 .then(function (response) {
                                     $scope.consultation.observationForms = getObservationForms(response.data);
+                                    console.log("Printing Consultation Observation");
+                                    console.log($scope.consultation.observationForms);
                                     concatObservationForms();
                                 })
                             );
@@ -50,6 +52,8 @@ angular.module('bahmni.clinical')
                 $scope.allTemplates = getSelectedObsTemplate(allConceptSections);
                 $scope.uniqueTemplates = _.uniqBy($scope.allTemplates, 'label');
                 $scope.allTemplates = $scope.allTemplates.concat($scope.consultation.observationForms);
+                console.log("Printing All Templates");
+                console.log($scope.allTemplates);
                 if ($scope.consultation.selectedObsTemplate.length == 0) {
                     initializeDefaultTemplates();
                     if ($scope.consultation.observations && $scope.consultation.observations.length > 0) {
@@ -136,8 +140,8 @@ angular.module('bahmni.clinical')
                 spinner.forPromise(conceptSetService.getObsTemplatesForProgram($state.params.programUuid).success(function (data) {
                     if (data.results.length > 0 && data.results[0].mappings.length > 0) {
                         _.map(allConceptSections, function (conceptSection) {
-                            conceptSection.isAdded = true;
-                            conceptSection.alwaysShow = true;
+                            conceptSection.isAdded = false;
+                            conceptSection.alwaysShow = false;
                         });
 
                         _.map(data.results[0].mappings, function (template) {

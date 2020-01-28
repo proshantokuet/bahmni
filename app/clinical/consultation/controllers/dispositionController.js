@@ -26,6 +26,10 @@ angular.module('bahmni.clinical')
         var getDispositionActionsPromise = function () {
             return dispositionService.getDispositionActions().then(function (response) {
                 allDispositions = new Bahmni.Clinical.DispostionActionMapper().map(response.data.results[0].answers);
+                console.log(allDispositions[0].name);
+                allDispositions[1].name = "Refer Patient";
+                // allDispositions[1].code = "Refer";
+                console.log(allDispositions);
                 $scope.dispositionActions = filterDispositionActions(allDispositions, $scope.$parent.visitSummary);
                 $scope.dispositionCode = consultation.disposition && (!consultation.disposition.voided) ? consultation.disposition.code : null;
                 $scope.dispositionNote = getDispositionNotes();
@@ -42,7 +46,7 @@ angular.module('bahmni.clinical')
         };
 
         var filterDispositionActions = function (dispositions, visitSummary) {
-            var defaultDispositions = ["Undo Discharge", "Admit Patient", "Transfer Patient", "Discharge Patient"];
+            var defaultDispositions = ["Undo Discharge", "Admit Patient", "Transfer Patient", "Discharge Patient", "Refer Patient"];
             var finalDispositionActions = _.filter(dispositions, function (disposition) {
                 return defaultDispositions.indexOf(disposition.name) < 0;
             });
@@ -56,6 +60,7 @@ angular.module('bahmni.clinical')
             }
             else {
                 finalDispositionActions = getDispositionActions(finalDispositionActions, dispositions, { name: defaultDispositions[1]});
+                finalDispositionActions = getDispositionActions(finalDispositionActions, dispositions, { name: defaultDispositions[4]});
             }
             return finalDispositionActions;
         };

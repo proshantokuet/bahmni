@@ -37,6 +37,7 @@ angular.module('bahmni.common.patientSearch')
             }
         };
         var getPatientCount = function (searchType) {
+            debugger;
             if (searchType.handler) {
                 var params = { q: searchType.handler, v: "full",
                     location_uuid: $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid,
@@ -46,10 +47,17 @@ angular.module('bahmni.common.patientSearch')
                 }
                 patientService.findPatients(params).then(function (response) {
                     searchType.patientCount = response.data.length;
+
                     if ($scope.search.isSelectedSearch(searchType)) {
                         $scope.search.updatePatientList(response.data);
                     }
                 });
+            }
+        };
+
+        $scope.filteringAttributes = function (item) {
+            if (item.attributeType.display == "Token") {
+                return item;
             }
         };
 
@@ -120,41 +128,6 @@ angular.module('bahmni.common.patientSearch')
             }
         };
 
-        $scope.validPatient = function (patient) {
-            if (patient.gender == 'H') {
-                return false;
-            }
-            return true;
-        };
-        $scope.patientAge = function (patient) {
-            var dob = new Date(patient.birthDate);
-            var today = new Date();
-            var timeDiff = Math.abs(today.getTime() - dob.getTime());
-            var ageAsDay = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
-            var year = Math.floor(ageAsDay / 365);
-            var day = ageAsDay % 365;
-            var month = Math.floor(day / 30);
-            var remainDay = day % 30;
-            var days = Math.floor(remainDay / 30);
-            var age = year + " years " + month + " months " + remainDay + " days";
-            return age;
-        };
-        $scope.motherName = function (patient) {
-            var motherName = "";
-            var attrubutes = JSON.parse(patient.customAttribute);
-            if (attrubutes != null) {
-                motherName = attrubutes.motherNameEnglish;
-            }
-            return motherName;
-        };
-        $scope.address = function (patient) {
-            var ward = "";
-            var address = JSON.parse(patient.addressFieldValue);
-            if (address != null) {
-                ward = address.address2;
-            }
-            return ward;
-        };
         $scope.forwardPatient = function (patient, heading) {
             var options = $.extend({}, $stateParams);
             $rootScope.patientAdmitLocationStatus = patient.Status;

@@ -41,66 +41,6 @@
                         var configName = $stateParams.configName || Bahmni.Common.Constants.defaultExtensionName;
                         $window.open("../clinical/#/" + configName + "/patient/" + patientUuid + "/dashboard");
                     };
-                    $scope.openEditPatient = function (patientUuid) {
-                        $window.open("../registration/#/patient/" + patientUuid);
-                    };
-                    $scope.getDiseaseFields = function (patientAttribute) {
-                        var diseasesArray = ["RiskyHabit", "Disease_status", "family_diseases_details"];
-                        if (diseasesArray.includes(patientAttribute)) {
-                            return true;
-                        }
-                        return false;
-                    };
-                    $scope.getBengaliName = function (patientAttributeValue) {
-                        var bengaliArrayList = "";
-                        var bengaliArray = [];
-                        var engArray = [];
-                        if (typeof patientAttributeValue !== 'undefined') {
-                            engArray = patientAttributeValue.split(',');
-                        }
-                        var obj = [
-                            {engName: "Cigarette", benName: "বিড়ি/সিগারেট"},
-                            {engName: "Tobacco / White Leaf", benName: "তামাক/সাদা পাতা"},
-                            {engName: "Others (Tobacco)", benName: "অন্যান্য তামাক"},
-                            {engName: "Drug Addiction", benName: "মাদকাসক্ত"},
-                            {engName: "Obesity", benName: "স্থুলকায়"},
-                            {engName: "High Salt Intake", benName: "অতিরিক্ত লবন"},
-                            { engName: "High Blood Pressure", benName: "উচ্চ রক্তচাপ" },
-                            { engName: "Diabetes", benName: "ডায়াবেটিস" },
-                            { engName: "Very severe disease", benName: "খুব মারাত্মক রোগ" },
-                            { engName: "Pneumonia", benName: "নিউমোনিয়া" },
-                            { engName: "Pneumonia unspec", benName: "কাশি/সর্দি" },
-                            { engName: "dieria and dysentry", benName: "ডায়ারিয়া ও আমাশয়" },
-                            { engName: "Fever", benName: "জ্বর" },
-                            { engName: "Measles", benName: "হাম" },
-                            { engName: "Bellybutton Infection", benName: "নাভিতে সংক্রামন" },
-                            { engName: "Conjunctivitis unspec", benName: "চোখ উঠা" },
-                            { engName: "Injury", benName: "আঘাত" },
-                            { engName: "Hearing loss unspec", benName: "কানের সমস্যা" },
-                            { engName: "maleria", benName: "জ্বর (ম্যালারিয়া)" },
-                            { engName: "Tuberculosis", benName: "যক্ষ্মা" },
-                            { engName: "Jaundice", benName: "জন্ডিস" },
-                            { engName: "Probable Limited Infection", benName: "সম্ভাব্য সীমিত সংক্রমণ" },
-                            { engName: "Diarrhoea No Dehydration", benName: "পানি স্বল্পতাহীন ডায়রিয়া" },
-                            { engName: "Malnutrition", benName: "অপুষ্টি" },
-                            { engName: "Anemia", benName: "রক্ত স্বল্পতা" },
-                            { engName: "Others member disease", benName: "অন্যান্য অসুখ" },
-                            { engName: "High Blood Pressure", benName: "উচ্চ রক্তচাপ" },
-                            { engName: "Diabetes", benName: "ডায়াবেটিস" },
-                            { engName: "Tuberculosis", benName: "যক্ষ্মা" },
-                            { engName: "Disability", benName: "প্রতিবন্ধিতা" },
-                            { engName: "Psychological Disease", benName: "মানসিক অসুখ" },
-                            { engName: "Respiratory Disease", benName: "হৃদরোগ" },
-                            { engName: "Others (Family Disease)", benName: "অন্যান্য" }
-                        ];
-                        for (var i = 0; i < obj.length; i++) {
-                            if (engArray.includes(obj[i].engName) && !bengaliArray.includes(obj[i].benName)) {
-                                bengaliArray.push(obj[i].benName);
-                            }
-                        }
-                        bengaliArrayList = bengaliArray.join();
-                        return bengaliArrayList;
-                    };
                     var assignPatientDetails = function () {
                         var patientMapper = new Bahmni.PatientMapper(configurations.patientConfig(), $rootScope, $translate);
                         return patientService.getPatient($scope.patientUuid).then(function (response) {

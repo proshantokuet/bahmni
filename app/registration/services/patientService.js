@@ -79,6 +79,13 @@ angular.module('bahmni.registration')
             return $http.post(url, data, config);
         };
 
+        var updatePatient = function (patient, uuid) {
+            var patientUrl = Bahmni.Common.Constants.updatePatientUrl + "/" + uuid;
+            return $http.post(patientUrl, patient, {
+                withCredentials: true
+            });
+        };
+
         return {
             search: search,
             searchByIdentifier: searchByIdentifier,
@@ -86,6 +93,7 @@ angular.module('bahmni.registration')
             update: update,
             get: get,
             updateImage: updateImage,
-            searchByNameOrIdentifier: searchByNameOrIdentifier
+            searchByNameOrIdentifier: searchByNameOrIdentifier,
+            updatePatient: updatePatient
         };
     }]);
