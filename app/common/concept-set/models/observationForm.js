@@ -55,6 +55,7 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         return true;
     };
     self.formValidation = function (context, conceptSet) {
+        debugger;
         var dob = new Date(context.patient.birthdate);
         var today = new Date();
         var timeDiff = Math.abs(today.getTime() - dob.getTime());
@@ -120,14 +121,19 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (pregnancyStatus != antenatal && gender == Bahmni.Common.Constants.female && maritalStatus == married && age <= Bahmni.Common.Constants.fiftyYearInDay && formName == Bahmni.Common.Constants.familyPlaningFormName) {
             return true;
-        } else if (age >= Bahmni.Common.Constants.TwoMonthInDay && age <= Bahmni.Common.Constants.twoMonthToFiveYearInDay && formName == Bahmni.Common.Constants.samIdentifiedFormName) {
-            if (weightForAge == "তীব্র") {
-                return true;
-            }
-            else if (weightForAge == "hideSamStatus") {
-                return false;
-            }
-        } else if (age >= Bahmni.Common.Constants.TwoMonthInDay && age <= Bahmni.Common.Constants.twoMonthToFiveYearInDay && formName == Bahmni.Common.Constants.growthMonitoringFormName) {
+        }
+        // else if (age >= Bahmni.Common.Constants.TwoMonthInDay && age <= Bahmni.Common.Constants.twoMonthToFiveYearInDay && formName == Bahmni.Common.Constants.samIdentifiedFormName) {
+        //     if (weightForAge == "তীব্র") {
+        //         return true;
+        //     }
+        //     else if (weightForAge == "hideSamStatus") {
+        //         return false;
+        //     }
+        // }
+        else if (age >= Bahmni.Common.Constants.TwoMonthInDay && age <= Bahmni.Common.Constants.twoMonthToFiveYearInDay && formName == Bahmni.Common.Constants.growthMonitoringFormName) {
+            return true;
+        }
+        else if (pregnancyStatus == postnatal && formName == Bahmni.Common.Constants.deliveryFormName) {
             return true;
         }
         else {

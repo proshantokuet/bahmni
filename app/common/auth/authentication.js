@@ -159,13 +159,14 @@ angular.module('authentication')
                                 $rootScope.currentUser.favouriteObsTemplates[0] = "গ্রোথ মনিটরিং";
                             }
                             if ($rootScope.currentUser.privileges[i].name == "View CHCP Forms") {
-                                $rootScope.currentUser.favouriteObsTemplates[0] = "সাধারন রোগীর সেবা";
-                                $rootScope.currentUser.favouriteObsTemplates[1] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা";
-                                $rootScope.currentUser.favouriteObsTemplates[2] = "শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা";
-                                $rootScope.currentUser.favouriteObsTemplates[3] = "পরিবার পরিকল্পনা সেবা";
-                                $rootScope.currentUser.favouriteObsTemplates[4] = "গর্ভাবস্থার তথ্য";
-                                $rootScope.currentUser.favouriteObsTemplates[5] = "প্রসব পূর্ব সেবা";
-                                $rootScope.currentUser.favouriteObsTemplates[6] = "প্রসব পরবর্তী সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[0] = "গর্ভাবস্থার তথ্য";
+                                $rootScope.currentUser.favouriteObsTemplates[1] = "ডেলিভারি সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[2] = "পরিবার পরিকল্পনা সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[3] = "প্রসব পূর্ব সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[4] = "প্রসব পরবর্তী সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[5] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[6] = "শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[7] = "সাধারন রোগীর সেবা";
                             }
                         }
                         $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;
