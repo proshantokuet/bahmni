@@ -298,12 +298,12 @@ angular.module('bahmni.registration')
                     $scope.isExtraIdentifierConfigured())
                     .then(function (data) {
                         if (data.data.pageOfResults.length > 0) {
-                            if (data.data.pageOfResults.length === 1) {
-                                var patient = data.data.pageOfResults[0];
-                                // var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
-                                // $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
-                                $window.open('../clinical/index.html#/default/patient/' + patient.uuid + '/dashboard', "_self");
-                            } else if (data.data.pageOfResults.length > 1) {
+                            // if (data.data.pageOfResults.length === 1) {
+                            //     var patient = data.data.pageOfResults[0];
+                            //     // var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
+                            //     // $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
+                            //     $window.open('../clinical/index.html#/default/patient/' + patient.uuid + '/dashboard', "_self");
+                         if (data.data.pageOfResults.length > 0) {
                                 $scope.results = data.data.pageOfResults;
                                 $scope.noResultsMessage = null;
                             } else {
