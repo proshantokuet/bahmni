@@ -63,9 +63,11 @@
                     };
                     $scope.pmessage = "Hello ngDialog";
                     $scope.servicesBySlip = [];
-                    $scope.confirmationPrompt = function (id) {
+                    $scope.confirmationPrompt = function (id, moneyRceiptDate) {
                         $scope.servicesBySlip = $scope.services.filter(function (service) {
-                            return service.slipNo == id;
+                            var moneyReceiptDateOfIterator = new Date(service.moneyReceiptDate);
+                            var selectedMoneyReceiptDate = new Date(moneyRceiptDate);
+                            return service.slipNo == id && moneyReceiptDateOfIterator.getYear() ==  selectedMoneyReceiptDate.getYear();
                         });
                         $scope.Dialog = ngDialog.open({
                             templateUrl: 'dialog',
@@ -239,7 +241,7 @@
                             });
                         });
                     };
-                    $scope.editMoneyReceipt = function (id) {
+                    $scope.editMoneyReceipt = function (id, moneyRceiptDate) {
                         if (id == undefined) {
                             $state.go('patient.dashboard.show.observations', {
                                 conceptSetGroupName: 'observations',
@@ -248,7 +250,9 @@
                         }
                         else {
                             var filteringServicesBySlip = $scope.services.filter(function (service) {
-                                return service.slipNo == id;
+                                var moneyReceiptDateOfIterator = new Date(service.moneyReceiptDate);
+                                var selectedMoneyReceiptDate = new Date(moneyRceiptDate);
+                                return service.slipNo == id && moneyReceiptDateOfIterator.getYear() ==  selectedMoneyReceiptDate.getYear();
                             });
                             $scope.restrictInactiveServicePreview(filteringServicesBySlip);
                             // if ($scope.inactiveServiceAvailable) {

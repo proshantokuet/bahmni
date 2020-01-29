@@ -440,6 +440,9 @@ angular.module('bahmni.common.conceptSet')
                 else if(hour && !minute) {
                     $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + hour + ":" + "00";
                 }
+                else if(!hour && minute) {
+                    $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + "00" + ":" + minute;
+                }
                 else {
                     $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + "00:00";
                 }
