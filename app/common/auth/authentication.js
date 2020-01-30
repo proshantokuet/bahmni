@@ -156,16 +156,20 @@ angular.module('authentication')
                 userService.getProviderForUser(data.results[0].uuid).then(function (providers) {
                     if (!_.isEmpty(providers.results) && hasAnyActiveProvider(providers.results)) {
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
-                        $rootScope.currentUser.favouriteObsTemplates[0] = "VITALS";
-                        $rootScope.currentUser.favouriteObsTemplates[1] = "NEW BORN CHILD CARE";
-                        $rootScope.currentUser.favouriteObsTemplates[2] = "PNC";
-                        $rootScope.currentUser.favouriteObsTemplates[3] = "ANC";
-                        $rootScope.currentUser.favouriteObsTemplates[4] = "EPI";
-                        $rootScope.currentUser.favouriteObsTemplates[5] = "FAMILY PLANNING";
-                        $rootScope.currentUser.favouriteObsTemplates[6] = "IMCI";
-                        $rootScope.currentUser.favouriteObsTemplates[7] = "LCC";
-                        $rootScope.currentUser.favouriteObsTemplates[8] = "RTI";
-                        $rootScope.currentUser.favouriteObsTemplates[9] = "WOMEN VACCINATIONS";
+                        // $rootScope.currentUser.favouriteObsTemplates[0] = "VITALS";
+                        // $rootScope.currentUser.favouriteObsTemplates[1] = "NEW BORN CHILD CARE";
+                        // $rootScope.currentUser.favouriteObsTemplates[2] = "PNC";
+                        // $rootScope.currentUser.favouriteObsTemplates[3] = "ANC";
+                        // $rootScope.currentUser.favouriteObsTemplates[4] = "EPI";
+                        // $rootScope.currentUser.favouriteObsTemplates[5] = "FAMILY PLANNING";
+                        // $rootScope.currentUser.favouriteObsTemplates[6] = "IMCI";
+                        // $rootScope.currentUser.favouriteObsTemplates[7] = "LCC";
+                        // $rootScope.currentUser.favouriteObsTemplates[8] = "RTI";
+                        // $rootScope.currentUser.favouriteObsTemplates[9] = "WOMEN VACCINATIONS";
+                         $rootScope.currentUser.favouriteObsTemplates[0] = "Client History";
+                         $rootScope.currentUser.favouriteObsTemplates[1] = "General Examination";
+                         $rootScope.currentUser.favouriteObsTemplates[2] = "Obstetric Information";
+                         $rootScope.currentUser.favouriteObsTemplates[3] = "ANC";
                         for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
                             if ($rootScope.currentUser.privileges[i].name == "Has CRO Roles") {
                                 $rootScope.currentUser.roles = "CRO";
