@@ -112,6 +112,7 @@ angular.module('authentication')
                             if (locationInfo != undefined) {
                                 $bahmniCookieStore.remove(Bahmni.Common.Constants.locationCookieName);
                                 $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {name: locationInfo.display, uuid: locationInfo.uuid}, {path: '/', expires: 7});
+                                $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;
                                 // $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {name: "Ganiyari", uuid: "c1e42932-3f10-11e4-adec-0800271c1b75"}, {path: '/', expires: 7});
                             }
                         });
@@ -146,8 +147,8 @@ angular.module('authentication')
                 userService.getProviderForUser(data.results[0].uuid).then(function (providers) {
                     if (!_.isEmpty(providers.results) && hasAnyActiveProvider(providers.results)) {
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
-                        console.log("Current user Information");
-                        console.log(data.results[0]);
+                        // console.log("Current user Information");
+                        // console.log(data.results[0]);
                         for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
                             if ($rootScope.currentUser.privileges[i].name == "View MIDWIFE Forms") {
                                 //  $rootScope.currentUser.favouriteObsTemplates[0] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা_মিডওয়াইফ";
@@ -169,7 +170,7 @@ angular.module('authentication')
                                 $rootScope.currentUser.favouriteObsTemplates[7] = "সাধারন রোগীর সেবা";
                             }
                         }
-                        $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;
+
                         $rootScope.$broadcast('event:user-credentialsLoaded', data.results[0]);
                         deferrable.resolve(data.results[0]);
                     } else {
