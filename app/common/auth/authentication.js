@@ -156,20 +156,25 @@ angular.module('authentication')
                 userService.getProviderForUser(data.results[0].uuid).then(function (providers) {
                     if (!_.isEmpty(providers.results) && hasAnyActiveProvider(providers.results)) {
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
-                        // $rootScope.currentUser.favouriteObsTemplates[0] = "VITALS";
-                        // $rootScope.currentUser.favouriteObsTemplates[1] = "NEW BORN CHILD CARE";
-                        // $rootScope.currentUser.favouriteObsTemplates[2] = "PNC";
-                        // $rootScope.currentUser.favouriteObsTemplates[3] = "ANC";
-                        // $rootScope.currentUser.favouriteObsTemplates[4] = "EPI";
-                        // $rootScope.currentUser.favouriteObsTemplates[5] = "FAMILY PLANNING";
-                        // $rootScope.currentUser.favouriteObsTemplates[6] = "IMCI";
-                        // $rootScope.currentUser.favouriteObsTemplates[7] = "LCC";
-                        // $rootScope.currentUser.favouriteObsTemplates[8] = "RTI";
-                        // $rootScope.currentUser.favouriteObsTemplates[9] = "WOMEN VACCINATIONS";
                          $rootScope.currentUser.favouriteObsTemplates[0] = "Client History";
                          $rootScope.currentUser.favouriteObsTemplates[1] = "General Examination";
                          $rootScope.currentUser.favouriteObsTemplates[2] = "Obstetric Information";
                          $rootScope.currentUser.favouriteObsTemplates[3] = "ANC";
+                         $rootScope.currentUser.favouriteObsTemplates[4] = "PNC";
+                         $rootScope.currentUser.favouriteObsTemplates[5] = "NEW BORN Baby's CARE";
+                         $rootScope.currentUser.favouriteObsTemplates[6] = "LCC";
+                         $rootScope.currentUser.favouriteObsTemplates[7] = "Vaccination Child 0 to 5 Years";
+                         $rootScope.currentUser.favouriteObsTemplates[8] = "Women Vaccination 15 to 49 Years old";
+                         $rootScope.currentUser.favouriteObsTemplates[9] = "General Vaccination";
+                         $rootScope.currentUser.favouriteObsTemplates[10] = "FAMILY PLANNING";
+                         $rootScope.currentUser.favouriteObsTemplates[11] = "STI and RTI";
+                         $rootScope.currentUser.favouriteObsTemplates[12] = "Adolescent";
+                         $rootScope.currentUser.favouriteObsTemplates[13] = "First Aid";
+                         $rootScope.currentUser.favouriteObsTemplates[14] = "Cervical Cancer";
+                         $rootScope.currentUser.favouriteObsTemplates[15] = "Delivery";
+                         $rootScope.currentUser.favouriteObsTemplates[16] = "PAC";
+                         $rootScope.currentUser.favouriteObsTemplates[17] = "IMCI Below 2 Months";
+                         $rootScope.currentUser.favouriteObsTemplates[18] = "IMCI 2 month to 5 years old";
                         for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
                             if ($rootScope.currentUser.privileges[i].name == "Has CRO Roles") {
                                 $rootScope.currentUser.roles = "CRO";
