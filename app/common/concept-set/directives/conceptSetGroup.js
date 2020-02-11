@@ -417,14 +417,17 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.checkValidDate = function (date) {
                 var registrationDate = new Date($scope.patient.RegistrationDate.value);
+                var dateOfBirth = new Date($scope.patient.birthdate);
+                dateOfBirth.setHours(0, 0, 0, 0);
                 registrationDate.setHours(0, 0, 0, 0);
                 var splitedDate = date.split('/');
                 var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
                 var comparedValueForMoneyReceipt = finalizedSplitedDate.getTime();
                 var comparedValueForRegistrationDate = registrationDate.getTime();
-                if (comparedValueForMoneyReceipt < comparedValueForRegistrationDate) {
+                var comparedValueForDobDate = dateOfBirth.getTime();
+                if (comparedValueForMoneyReceipt < comparedValueForRegistrationDate || comparedValueForMoneyReceipt < comparedValueForDobDate) {
                     $scope.patientInfo.moneyReceiptDate = null;
-                    messagingService.showMessage("error", "Money receipt date cannot be entered  before patient registration date");
+                    messagingService.showMessage("error", "Money receipt date cannot be entered  before patient registration date or birth date");
                 }
             };
 
