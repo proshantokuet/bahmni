@@ -13,7 +13,7 @@ angular.module('bahmni.common.conceptSet')
                 // console.log($scope.allTemplates);
 
                 var orderTemplates = [
-                    "সাধারন রোগীর সেবা",
+                    "সাধারণ রোগীর সেবা",
                     "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা",
                     "শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা",
                     "গর্ভাবস্থার তথ্য",

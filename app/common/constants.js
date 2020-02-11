@@ -273,7 +273,7 @@ Bahmni.Common = Bahmni.Common || {};
         antenatalFormName: 'প্রসব পূর্ব সেবা',
         antenatalFormNameMidwife: 'প্রসবপূর্ব সেবা',
         postnatalFormName: 'প্রসব পরবর্তী সেবা',
-        generalDiseaseFormName: 'সাধারন রোগীর সেবা',
+        generalDiseaseFormName: 'সাধারণ রোগীর সেবা',
         moreThanFiveYearInDay: 1827,
         pregnantStatusFormName: 'গর্ভাবস্থার তথ্য',
         familyPlaningFormName: 'পরিবার পরিকল্পনা সেবা',

@@ -167,7 +167,7 @@ angular.module('authentication')
                                 $rootScope.currentUser.favouriteObsTemplates[4] = "প্রসব পরবর্তী সেবা";
                                 $rootScope.currentUser.favouriteObsTemplates[5] = "শিশু (০ থেকে ২ মাস) স্বাস্থ্য সেবা";
                                 $rootScope.currentUser.favouriteObsTemplates[6] = "শিশু (২ মাস থেকে ৫ বছর) স্বাস্থ্য সেবা";
-                                $rootScope.currentUser.favouriteObsTemplates[7] = "সাধারন রোগীর সেবা";
+                                $rootScope.currentUser.favouriteObsTemplates[7] = "সাধারণ রোগীর সেবা";
                             }
                         }
 
