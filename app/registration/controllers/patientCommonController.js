@@ -792,7 +792,7 @@ angular.module('bahmni.registration')
                     return $scope.patient.showBirthWeight;
                 } else if (attributeName == "LMP") {
                     return $scope.patient.showLMP;
-                } else if (attributeName == "DeliveryDate") {
+                } else if (attributeName == "delivery_date") {
                     return $scope.patient.showDeliveryDate;
                 } else if (attributeName == "familyplanning") {
                     return $scope.patient.showFamilyplanning;
