@@ -31,8 +31,8 @@
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
         .directive('patientProfile', ['patientService', 'spinner', 'ngDialog', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
-            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService',
-            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService) {
+            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService', 'age',
+            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService, age) {
                 var controller = function ($scope) {
                     $scope.currentUser = $rootScope.currentUser.roles;
                     var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
@@ -104,9 +104,11 @@
 
                     $scope.pmessage = "Hello ngDialog";
                     $scope.servicesBySlip = [];
-                    $scope.confirmationPrompt = function (id) {
+                    $scope.confirmationPrompt = function (id, moneyRceiptDate) {
                         $scope.servicesBySlip = $scope.services.filter(function (service) {
-                            return service.slipNo == id;
+                            var moneyReceiptDateOfIterator = new Date(service.moneyReceiptDate);
+                            var selectedMoneyReceiptDate = new Date(moneyRceiptDate);
+                            return service.slipNo == id && moneyReceiptDateOfIterator.getYear() ==  selectedMoneyReceiptDate.getYear();
                         });
                         $scope.Dialog = ngDialog.open({
                             templateUrl: 'dialog',
@@ -119,6 +121,15 @@
                     };
                     $scope.dateTOString = function (date) {
                         return new Date(date);
+                    };
+
+                    $scope.ageFromBirthDate = function (dob, mod) {
+                        if (dob) {
+                            var dateOfBirth = new Date(dob);
+                            var moneyreceiptDate = new Date(mod);
+                            var ages = age.fromMoneyReceiptDate(dateOfBirth, moneyreceiptDate);
+                            return ages.years + " Y " + ages.months + " M " + ages.days + " D";
+                        }
                     };
 
                     $scope.openEditPatient = function (patientUuid) {
@@ -271,7 +282,7 @@
                             });
                         });
                     };
-                    $scope.editMoneyReceipt = function (id) {
+                    $scope.editMoneyReceipt = function (id, moneyRceiptDate) {
                         if (id == undefined) {
                             $state.go('patient.dashboard.show.observations', {
                                 conceptSetGroupName: 'observations',
@@ -280,7 +291,9 @@
                         }
                         else {
                             var filteringServicesBySlip = $scope.services.filter(function (service) {
-                                return service.slipNo == id;
+                                var moneyReceiptDateOfIterator = new Date(service.moneyReceiptDate);
+                                var selectedMoneyReceiptDate = new Date(moneyRceiptDate);
+                                return service.slipNo == id && moneyReceiptDateOfIterator.getYear() ==  selectedMoneyReceiptDate.getYear();
                             });
                             $scope.restrictInactiveServicePreview(filteringServicesBySlip);
                             // if ($scope.inactiveServiceAvailable) {

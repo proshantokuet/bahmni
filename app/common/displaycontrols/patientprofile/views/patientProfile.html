@@ -142,7 +142,7 @@
     <td align="right">&nbsp;</td>
     <td>&nbsp;</td>
     <td align="right">Date:</td>
-    <td align="center" valign="middle">{{dateTOString(servicesBySlip[0].moneyReceiptDate) | date:'dd/MM/yyyy'}}</td>
+    <td align="center" valign="middle">{{dateTOString(servicesBySlip[0].moneyReceiptDate) | date:'dd/MM/yyyy HH:mm'}}</td>
   </tr>
     </table>
 </td>
@@ -153,7 +153,7 @@
               <tr>
                   <td align="left" style="padding:10px 10px 10px 8px;">UIC</td>
                   <td style="padding:10px 10px 10px 8px;">
-                      {{patient.UIC.value}}
+                      {{servicesBySlip[0].uic}}
                   </td>
                   <td align="left" valign="top" style="padding:10px 10px 10px 8px;">
                       Health ID
@@ -196,21 +196,21 @@
           <tr>
 
             <td align="left" valign="top" style="padding:10px 0 5px 8px;">3. DoB</td>
-            <td style="padding:10px 0 5px 8px;">{{patient.birthdate | date:'dd/MM/yyyy'}}</td>
+            <td style="padding:10px 0 5px 8px;">{{dateTOString(servicesBySlip[0].dob) | date:'dd/MM/yyyy'}}</td>
             <td style="padding:10px 0 5px 8px;">4. Age:</td>
-            <td style="padding:10px 0 5px 8px;">{{htmlToPlaintext(patient.ageText)}}</td>
+            <td style="padding:10px 0 5px 8px;">{{ageFromBirthDate(servicesBySlip[0].dob, servicesBySlip[0].moneyReceiptDate)}}</td>
             <td style="padding:10px 0 5px 8px;">5. Classification:</td>
             <td style="padding:10px 0 5px 8px;">1.  Able to Pay</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
+              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',servicesBySlip[0].wealth)"/>
             </span></td>
             <td style="padding:10px 0 5px 8px;">2. Poor</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',patient.FinancialStatus.value.display)" />
+              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',servicesBySlip[0].wealth)" />
             </span></td>
             <td style="padding:10px 0 5px 8px;">3.PoP</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',patient.FinancialStatus.value.display)" />
+              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',servicesBySlip[0].wealth)" />
 
             </span></td>
 
@@ -219,7 +219,7 @@
             <td colspan="2" align="left" valign="top" style="padding:10px 0 5px 8px;">6. Address:</td>
             <td colspan="6" align="left" valign="top" style="padding:10px 0 5px 8px;"> {{address(patient.address)}}</td>
             <td align="left" valign="top" style="padding:10px 0 5px 8px;">7. Mobile No.</td>
-            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;"> {{patient.MobileNo.value}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;"> {{servicesBySlip[0].contact}}</td>
             </tr>
           <tr>
             <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">8. Session:</td>
@@ -369,8 +369,8 @@
                                     <td>{{service.totalAmount}} </td>
                                     <td> {{service.discount}}</td>
                                     <td>{{service.netPayable}} </td>
-                                    <td ng-hide="services[$index-1].slipNo == service.slipNo"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.slipNo)"><i class='fa fa-print'></i>Print preview</button>
-                                    <button ng-if="service.isComplete==0 && service.validMoneyReceiptHolder"style="padding:5px 9px 8px" ng-click="editMoneyReceipt(service.slipNo)"> <i class='fa fa-edit'></i>Edit</button>
+                                    <td ng-hide="services[$index-1].slipNo == service.slipNo && services[$index-1].moneyReceiptDate == service.moneyReceiptDate"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.slipNo, service.moneyReceiptDate)"><i class='fa fa-print'></i>Print preview</button>
+                                    <button ng-if="service.isComplete==0 && service.validMoneyReceiptHolder"style="padding:5px 9px 8px" ng-click="editMoneyReceipt(service.slipNo, service.moneyReceiptDate)"> <i class='fa fa-edit'></i>Edit</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -412,7 +412,7 @@ setTimeout(function(){
 
 
     } );
-}, 1000);
+}, 2000);
 
 </script>
     <style>

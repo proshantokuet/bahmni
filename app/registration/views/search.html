@@ -97,7 +97,7 @@
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</a> </td>
                 <td ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</a></td>
                 <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.gender}}</a></td>
-                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.age}} <!--{{ageFromBirthDate(result.birthDate)}}--></a></td>
+                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{ageFromBirthDate(result.birthDate)}}</a></td>
                 <td ng-repeat = "field in ::addressSearchResultsConfig.fields"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.addressFieldValue[field] || ""}}</a></td>
                 <!--<td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.dateCreated | bahmniDate}}</a></td>-->
                 <td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>

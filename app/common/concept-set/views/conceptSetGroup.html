@@ -125,7 +125,7 @@
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-attribute">
-                                                    <label>Date<span class="asterick">*</span></label>
+                                                    <label>Service Date<span class="asterick">*</span></label>
                                                 </div>
                                             </article>
                                         </td>
@@ -135,10 +135,12 @@
                                                     <div class="field-value">
                                                         <input id="txtDate" ng-model="patientInfo.moneyReceiptDate" type="text"  ng-required="true" autocomplete="off" ng-change="checkValidDate(patientInfo.moneyReceiptDate)" readonly/>
                                                         <div class="field-value" ng-if="patientInfo.moneyReceiptDate">
-                                                        <input style="width: 75px;" title="Hour" id="hour" onKeyPress="if(this.value.length==2) return false;" min="0" max="23" name="hour" type="number" ng-model="timeObject.hourValue" placeholder="Hour" /> :
+                                                        <input style="width: 75px;" title="Hour" id="hour" onKeyPress="if(this.value.length==2) return false;"  min="0" max="23" name="hour" type="number" ng-model="timeObject.hourValue" placeholder="Hour" /> :
                                                         <input style="width: 88px;" title="Minute" id="minute" onKeyPress="if(this.value.length==2) return false;" min="0" max="59" name="minute" type="number" ng-model="timeObject.minuteValue"  placeholder="Minute" />
                                                         </div>
                                                     </div>
+                                                    <span class="asterick" ng-show="myForm.minute.$dirty && myForm.minute.$invalid">Invalid Time format</span>
+                                                    <span class="asterick" ng-show="myForm.hour.$dirty && myForm.hour.$invalid">Invalid Time format</span>
                                                 </div>
                                             </article>
                                         </td>
@@ -393,7 +395,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Quantity<span class="asterick">*</span></label>
-                                                        <input ng-model="service.quantity" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 4em;" type="number" min="1" ng-required="true"/>
+                                                        <input ng-model="service.quantity" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 4em;" type="number" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -481,7 +483,7 @@
     <td align="right">&nbsp;</td>
     <td>&nbsp;</td>
     <td align="right">Date:</td>
-    <td align="center" valign="middle" ng-bind="patientInfo.moneyReceiptDate | date:'dd/MM/yyyy'"></td>
+    <td align="center" valign="middle">{{patientInfo.moneyReceiptDate}} {{timeObject.hourValue}}:{{timeObject.minuteValue}}</td>
   </tr>
     </table>
 </td>
@@ -492,7 +494,7 @@
                 <tr>
                     <td align="left" style="padding:10px 10px 10px 8px;">UIC</td>
                     <td style="padding:10px 10px 10px 8px;">
-                        {{patient.UIC.value}}
+                        {{patientInfo.uic}}
                     </td>
                     <td align="left" valign="top" style="padding:10px 10px 10px 8px;">
                         Health ID
@@ -534,21 +536,21 @@
           </tr>
           <tr>
           <td align="left" valign="top" style="padding:10px 0 5px 8px;">3. DoB</td>
-            <td style="padding:10px 0 5px 8px;">{{patient.birthdate | date:'dd/MM/yyyy'}}</td>
+            <td style="padding:10px 0 5px 8px;">{{dateStringToDateObj(patientInfo.dob) | date:'dd/MM/yyyy'}}</td>
             <td style="padding:10px 0 5px 8px;">4. Age:</td>
-            <td style="padding:10px 0 5px 8px;">{{htmlToPlaintext(patient.ageText)}}</td>
+            <td style="padding:10px 0 5px 8px;">{{ageFromBirthDate(patientInfo.dob, patientInfo.moneyReceiptDate)}}</td>
             <td style="padding:10px 0 5px 8px;">5. Classification:</td>
             <td style="padding:10px 0 5px 8px;">1. Able to Pay</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patient.FinancialStatus.value.display)"/>
+              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',patientInfo.wealth)"/>
             </span></td>
             <td style="padding:10px 0 5px 8px;">2. Poor</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',patient.FinancialStatus.value.display)" />
+              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',patientInfo.wealth)" />
             </span></td>
             <td style="padding:10px 0 5px 8px;">3.PoP</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',patient.FinancialStatus.value.display)" />
+              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',patientInfo.wealth)" />
             </span></td>
 
           </tr>
@@ -556,7 +558,7 @@
             <td colspan="2" align="left" valign="top" style="padding:10px 0 5px 8px;">6. Address:</td>
             <td colspan="6" align="left" valign="top" style="padding:10px 0 5px 8px;"> {{address(patient.address)}}</td>
             <td align="left" valign="top" style="padding:10px 0 5px 8px;">7. Mobile No.</td>
-            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;"> {{patient.MobileNo.value}}</td>
+            <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;"> {{patientInfo.contact}}</td>
             </tr>
           <tr>
             <td align="left" valign="top" colspan="2" style="padding:10px 0 5px 8px;">8. Session:</td>

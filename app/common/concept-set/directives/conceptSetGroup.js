@@ -3,10 +3,10 @@
 angular.module('bahmni.common.conceptSet')
     .controller('ConceptSetGroupController', ['$scope', '$filter', '$state', '$location', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
         'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig', '$q',
-        'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate', 'ageFormatterService', 'patientVisitHistoryService',
+        'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate', 'ageFormatterService', 'patientVisitHistoryService', 'age',
         function ($scope, $filter, $state, $location, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
                   encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
-                  conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService, patientVisitHistoryService) {
+                  conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService, patientVisitHistoryService, age) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             $scope.viewingSpecific = false;
             $scope.timeObject = {};
@@ -209,6 +209,14 @@ angular.module('bahmni.common.conceptSet')
                 var daySplit = monthSplit.replace('days', 'D');
                 return text ? String(daySplit).replace(/<[^>]+>/gm, '') : '';
             };
+            $scope.ageFromBirthDate = function (dob, mod) {
+                if (dob) {
+                    var dateOfBirth = new Date(dob);
+                    var moneyreceiptDate = ageFormatterService.convertToDateObject(mod);
+                    var ages = age.fromMoneyReceiptDate(dateOfBirth, moneyreceiptDate);
+                    return ages.years + " Y " + ages.months + " M " + ages.days + " D";
+                }
+            };
             $scope.address = function (address) {
                 var addresLine = "";
                 var stateProvince = "";
@@ -306,6 +314,10 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.dateTOString = function (date) {
                 return date.slice(0, 10);
+            };
+
+            $scope.dateStringToDateObj = function (date) {
+                return new Date(date);
             };
 
             $scope.checkedBox = function (value, checkingValue) {
@@ -414,6 +426,13 @@ angular.module('bahmni.common.conceptSet')
                     );
                 }));
             };
+
+            $scope.dateStringConverter = function (date) {
+                var dateObject = new Date(date);
+                var dateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 1) + "-" + dateObject.getDate();
+                return dateString;
+            };
+
             $scope.searchButtonText = "Submit";
             $scope.test = "true";
 
@@ -479,7 +498,7 @@ angular.module('bahmni.common.conceptSet')
                         patientInfo['contact'] = patient.MobileNo.value;
                     }
                     patientInfo['gender'] = patient.gender;
-                    patientInfo['dob'] = patient.birthdate;
+                    patientInfo['dob'] = $scope.dateStringConverter(patient.birthdate);
                     if (patient.FinancialStatus != undefined) {
                         patientInfo['wealth'] = patient.FinancialStatus.value.display;
                     }
@@ -491,7 +510,7 @@ angular.module('bahmni.common.conceptSet')
                     patientInfo['totalAmount'] = $scope.netAmount.toString();
                     patientInfo['totalDiscount'] = $scope.totalDiscount.toString();
                     if (patient.RegistrationDate) {
-                        patientInfo['patientRegisteredDate'] = new Date(patient.RegistrationDate.value);
+                        patientInfo['patientRegisteredDate'] = $scope.dateStringConverter(patient.RegistrationDate.value);
                     }
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
@@ -508,25 +527,34 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.checkValidDate = function (date) {
                 var registrationDate = new Date($scope.patient.RegistrationDate.value);
-                registrationDate.setHours(0,0,0,0);
+                var dateOfBirth = new Date($scope.patient.birthdate);
+                dateOfBirth.setHours(0, 0, 0, 0);
+                registrationDate.setHours(0, 0, 0, 0);
                 var splitedDate = date.split('/');
                 var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
                 var comparedValueForMoneyReceipt = finalizedSplitedDate.getTime();
                 var comparedValueForRegistrationDate = registrationDate.getTime();
-                if (comparedValueForMoneyReceipt < comparedValueForRegistrationDate) {
+                var comparedValueForDobDate = dateOfBirth.getTime();
+                if (comparedValueForMoneyReceipt < comparedValueForRegistrationDate || comparedValueForMoneyReceipt < comparedValueForDobDate) {
                     $scope.patientInfo.moneyReceiptDate = null;
-                    messagingService.showMessage("error", "Money receipt date cannot be entered  before patient registration date");
+                    messagingService.showMessage("error", "Money receipt date cannot be entered  before patient registration date or birth date");
                 }
             };
 
             $scope.changingMinuteHourValue = function (hour, minute) {
                 if (hour && minute) {
                     if ($scope.patientInfo.moneyReceiptDate) {
-                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " "+ hour +":";
+                        $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + hour + ":";
                     }
                     if ($scope.patientInfo.moneyReceiptDate) {
                         $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + minute;
                     }
+                }
+                else if(hour && !minute) {
+                    $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + hour + ":" + "00";
+                }
+                else if(!hour && minute) {
+                    $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + "00" + ":" + minute;
                 }
                 else {
                     $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + "00:00";
@@ -779,7 +807,7 @@ angular.module('bahmni.common.conceptSet')
                 var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode), sateliteClinicId()]);
             }
             if ($scope.observationTab == true) {
-                var initPromise = $q.all($scope.getPatientVisitHistoryServices(), $scope.getAllChildInformation());
+                var initPromise = $q.all($scope.getPatientVisitHistoryServices());
             }
 
             $scope.initialization = initPromise;
