@@ -269,20 +269,40 @@ Bahmni.Common = Bahmni.Common || {};
         patientFormsUrl: BAHMNI_CORE + "/patient/{patientUuid}/forms",
         defaultPossibleRelativeSearchLimit: 10,
         zeroToFiveYearsInDay: 1825,
+        lessThanTwoMonths: 60,
         zeroToFiveYearsFormName: 'EPI',
         male: 'M',
         female: 'F',
-        moreThanFiveYearFormName: 'WOMEN VACCINATIONS',
-        moreThanTwelveYears: 4380,
+        womenVaccinationFormName: 'Women Vaccination 15 to 49 Years old',
+        moreThanElevenYears: 4015,
         moreThanTwelveYearFormName: 'FAMILY PLANNING',
         antenatalFormName: 'ANC',
         postnatalFormDeliveryDayCondition: 42,
         postnatalFormName: 'PNC',
         lessThanFortyTwoDays: 42,
-        lessThanFortyTwoDaysFormName: "NEW BORN CHILD CARE",
-        lessThanFiveYearsChildrenFormName: 'IMCI',
-        generalMoreThanTwelveYearsFormName: 'RTI',
-        generalDiseasesFormName: 'LCC'
+        lessThanFortyTwoDaysFormName: "NEW BORN Baby's CARE",
+        lessThanFiveYearsChildrenFormName: 'IMCI 2 month to 5 years old',
+        lessTwoMonthsFormName: 'IMCI Below 2 Months',
+        stiRtiFormName: 'STI and RTI',
+        generalDiseasesFormName: 'LCC',
+        clientHistoryFormName: 'Client History',
+        obstetricFormName: 'Obstetric Information',
+        generalFormName: 'General Examination',
+        childVaccinationFormName: 'Vaccination Child 0 to 5 Years',
+        generalVaccinationFormName: 'General Vaccination',
+        adolescentFormName: 'Adolescent',
+        firstAidFormName: 'First Aid',
+        cervicalCancerFormName:'Cervical Cancer',
+        deliveryFormName: 'Delivery',
+        pacsFormName: 'PAC',
+        FourtyNineYearsInDay:17885,
+        moreThanFifteenYears: 5475,
+        zeroToNineteenYearsInDay: 6935
+
+
+
+
+
     };
 })();
 

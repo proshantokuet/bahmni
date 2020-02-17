@@ -671,8 +671,7 @@
 <div class="concept-set-panel clearfix" ng-if="observationTab">
     <section class="concept-set-panel-right">
         <div style="text-align: center;background-color: #52797a;padding: 1px;color:white"><h4>Service List</h4></div>
-        <div class="btn-group" ng-repeat="conceptSet in allTemplates track by $index"
-             ng-if="conceptSet.isAvailable(context)"
+        <div class="btn-group" ng-repeat="conceptSet in allTemplates track by $index"  ng-if="conceptSet.isAvailable(context) && conceptSet.formValidation(context, conceptSet)"
              ng-class="openActiveForm(conceptSet)">
             <button ng-style="conceptSet.klass =='active' && {'background':'#51797a','color':'white'}"
                     ng-click="showLeftPanelConceptSet(conceptSet)">
@@ -737,13 +736,13 @@
                             <!--Edit-->
                             <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
                         <!--</button>-->
-                        <button style="margin:auto;display: block" type="button" class="btn btn-info"
-                                ng-dialog="dashboard/views/dashboardSections/allVisits.html"
-                                ng-dialog-class="ngdialog-theme-default ng-dialog-all-details-page"
-                                ng-dialog-controller="PatientDashboardAllVisitsController" ng-dialog-data="{{dialogData}}">
-                            Add Child
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
+                        <!--<button style="margin:auto;display: block" type="button" class="btn btn-info"-->
+                                <!--ng-dialog="dashboard/views/dashboardSections/allVisits.html"-->
+                                <!--ng-dialog-class="ngdialog-theme-default ng-dialog-all-details-page"-->
+                                <!--ng-dialog-controller="PatientDashboardAllVisitsController" ng-dialog-data="{{dialogData}}">-->
+                            <!--Add Child-->
+                            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
+                        <!--</button>-->
                         <div class="button-wrap">
                             <label class="fa fa-exclamation-triangle fa-red" ng-show="conceptSet.isValid === false"
                                    ng-click="conceptSet.klass =='active' && focusOnErrors()"></label>

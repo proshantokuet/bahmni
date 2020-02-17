@@ -76,8 +76,8 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
 
         // for delivery day calculation
         var deliveryDayDifference = "";
-        if (typeof context.patient.DeliveryDate !== "undefined") {
-            var deliveryDate = new Date(context.patient.DeliveryDate.value);
+        if (typeof context.patient.Delivery_Date !== "undefined") {
+            var deliveryDate = new Date(context.patient.Delivery_Date.value);
             var deliveryDateDifference = Math.abs(today.getTime() - deliveryDate.getTime());
             deliveryDayDifference = Math.ceil(deliveryDateDifference / (1000 * 3600 * 24)) - 1;
         }
@@ -91,33 +91,56 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         // checking pregnancy status
         var pregnancyStatus = "";
 
-        if (typeof context.patient.Pregnancy_Status !== "undefined") {
-            pregnancyStatus = context.patient.Pregnancy_Status.value;
+        if (typeof context.patient.PregnancyStatus !== "undefined") {
+            pregnancyStatus = context.patient.PregnancyStatus.value;
         }
-        // if (formName == 'PNC') return true;
-        // if (formName == 'Family Planning') return true;
-        // if (formName == 'Pregnancy Status') return true;
-        if (age <= Bahmni.Common.Constants.zeroToFiveYearsInDay && formName == Bahmni.Common.Constants.zeroToFiveYearsFormName) {
+
+        var married = 'ecc59681-a133-4f9a-998d-e45429dbdfd7';
+
+        if (age <= Bahmni.Common.Constants.lessThanTwoMonths && formName == Bahmni.Common.Constants.lessTwoMonthsFormName) {
             return true;
-        } else if (age > Bahmni.Common.Constants.zeroToFiveYearsInDay && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.moreThanFiveYearFormName) {
+        } else if (age > Bahmni.Common.Constants.lessThanTwoMonths && age <= Bahmni.Common.Constants.zeroToFiveYearsInDay && formName == Bahmni.Common.Constants.lessThanFiveYearsChildrenFormName) {
             return true;
-        } else if (age > Bahmni.Common.Constants.moreThanTwelveYears && formName == Bahmni.Common.Constants.moreThanTwelveYearFormName) {
+        } else if (age > Bahmni.Common.Constants.moreThanElevenYears && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.obstetricFormName    && maritalStatus == married) {
             return true;
-        } else if (age < Bahmni.Common.Constants.lessThanFortyTwoDays && formName == Bahmni.Common.Constants.lessThanFortyTwoDaysFormName) {
+        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay  && gender == Bahmni.Common.Constants.female && pregnancyStatus == "Antenatal Period" && formName == Bahmni.Common.Constants.antenatalFormName) {
             return true;
-        } else if (age < Bahmni.Common.Constants.zeroToFiveYearsInDay && formName == Bahmni.Common.Constants.lessThanFiveYearsChildrenFormName) {
+        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay  && gender == Bahmni.Common.Constants.female && pregnancyStatus == "Postnatal" && deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition &&  formName == Bahmni.Common.Constants.postnatalFormName) {
             return true;
-        } else if (age > Bahmni.Common.Constants.moreThanTwelveYears && formName == Bahmni.Common.Constants.generalMoreThanTwelveYearsFormName) {
+        } else if (age <= Bahmni.Common.Constants.lessThanFortyTwoDays && formName == Bahmni.Common.Constants.lessThanFortyTwoDaysFormName) {
             return true;
-        } else if (formName == 'VITALS') {
+        } else if (age <= Bahmni.Common.Constants.zeroToFiveYearsInDay && formName == Bahmni.Common.Constants.childVaccinationFormName) {
+            return true;
+        } else if (age >= Bahmni.Common.Constants.moreThanFifteenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.womenVaccinationFormName) {
+            return true;
+        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay && formName == Bahmni.Common.Constants.moreThanTwelveYearFormName) {
+            return true;
+        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay && formName == Bahmni.Common.Constants.stiRtiFormName) {
+            return true;
+        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.zeroToNineteenYearsInDay && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.adolescentFormName) {
+            return true;
+        } else if (age > Bahmni.Common.Constants.moreThanElevenYears && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.cervicalCancerFormName) {
+            return true;
+        } else if (age > Bahmni.Common.Constants.moreThanElevenYears && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.deliveryFormName) {
+            return true;
+        } else if (age > Bahmni.Common.Constants.moreThanElevenYears && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.pacsFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.clientHistoryFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.generalFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.generalVaccinationFormName) {
             return true;
         } else if (formName == 'LCC') {
             return true;
-        } else if (pregnancyStatus == "প্রসব পূর্ব" && (formName == Bahmni.Common.Constants.antenatalFormName)) {
-            return true;
-        } else if (deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition && pregnancyStatus == "প্রসবোত্তর" && formName == Bahmni.Common.Constants.postnatalFormName) {
+        }else if (formName == 'First Aid') {
             return true;
         }
+            // else if (pregnancyStatus == "প্রসব পূর্ব" && (formName == Bahmni.Common.Constants.antenatalFormName)) {
+        //     return true;
+        // } else if (deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition && pregnancyStatus == "প্রসবোত্তর" && formName == Bahmni.Common.Constants.postnatalFormName) {
+        //     return true;
+        // }
         //     return true;
         // }
         // } else if (pregnancyStatus == antenatal && (formName == Bahmni.Common.Constants.antenatalFormName)) {

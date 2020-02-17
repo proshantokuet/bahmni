@@ -131,9 +131,9 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                             angular.forEach(value.answers, function (innervalue, innerkey) {
                                 if (innervalue.conceptId == $scope.patientProgramAttributes.Pregnancy_Status) {
                                     // for server
-                                    // var pregnancyUuid = '15bef73f-d0cf-49ab-8f15-e729d6f16a82';
+                                    var pregnancyUuid = '3880f6de-2995-419f-91aa-0a376ed83cfc';
                                     // for local
-                                    var pregnancyUuid = '15bef73f-d0cf-49ab-8f15-e729d6f16a82';
+                                    //var pregnancyUuid = 'e90c1f70-aa87-4a6a-ae05-05256c877ee5';
                                     var value = innervalue.description;
                                     var attribute = {};
                                     attribute['value'] = value;
@@ -146,9 +146,9 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 }
                 if ($scope.patientProgramAttributes.LMP_Date) {
                     // for server
-                    // var lMPUuid = '16295469-0df3-41a1-becd-3aa09b5a25d8';
+                    var lMPUuid = 'c792d201-9a7c-47dd-8971-249384d85c19';
                     // for local
-                    var lMPUuid = '16295469-0df3-41a1-becd-3aa09b5a25d8';
+                   // var lMPUuid = '6c6db42f-ba1c-4031-a9f3-ac7a1c876682';
                     var value = $scope.patientProgramAttributes.LMP_Date;
                     var attribute = {};
                     attribute['value'] = value;
@@ -157,9 +157,9 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 }
                 if ($scope.patientProgramAttributes.Delivery_Date) {
                     // for server
-                    // var lMPUuid = '16295469-0df3-41a1-becd-3aa09b5a25d8';
+                    var deliveryUuid = '0df1c324-5ff7-4a28-9897-19dc2687b0f0';
                     // for local
-                    var deliveryUuid = '97540759-0a66-4691-b8dc-0ed7aa343c47';
+                    //var deliveryUuid = '82cf6fa8-f35a-4f46-81c7-5ead8617f2f6';
                     var value = $scope.patientProgramAttributes.Delivery_Date;
                     var attribute = {};
                     attribute['value'] = value;
