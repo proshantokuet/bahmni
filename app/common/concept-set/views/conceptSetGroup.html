@@ -104,8 +104,9 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patientInfo.slipNo" type="text" ng-required="true" autofocus ng-readonly="makeSlipNoReadOnly"/>
+                                                        <input ng-model="patientInfo.slipNo" name ="slipno" type="text" ng-pattern="/^[\d -]+$/" ng-required="true" autofocus ng-readonly="makeSlipNoReadOnly"/>
                                                     </div>
+                                                    <span class="asterick" ng-show="myForm.slipno.$error.pattern">Should not contain characters(Ex. 99-99)</span>
                                                 </div>
                                             </article>
                                         </td>
