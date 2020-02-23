@@ -1,7 +1,7 @@
 <section class="program-dashboard">
     <div>
         <div ng-if="hasPatientAnyActivePrograms()">
-            <div class="typeOfPrograms">{{::'PROGRAM_MANAGEMENT_ACTIVE_TREATMENT_KEY' | translate}}</div>
+            <div class="typeOfPrograms">Active Programs</div>
 
             <div ng-repeat="program in activePrograms" ng-if="::hasPatientAnyActivePrograms()">
                 <div class="program-basic-details">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div ng-if="hasPatientAnyPastPrograms()">
-            <div class="typeOfPrograms">{{::'PROGRAM_MANAGEMENT_INACTIVE_TREATMENT_KEY' | translate}}</div>
+            <div class="typeOfPrograms">Past Programs</div>
 
             <div ng-repeat="program in pastPrograms" ng-if="::hasPatientAnyPastPrograms()">
                 <div class="program-basic-details">

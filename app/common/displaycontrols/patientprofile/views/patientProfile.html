@@ -34,9 +34,9 @@
                                                                class="title-link">
                                 <strong>Refer Patient</strong>
                         </a></span>
-                            <span style="padding-left:25px"><a ui-sref="patient.patientProgram.show" target="_self"
+                            <span ng-if="activeVisit && currentUser == 'Doctor' || activeVisit && currentUser == 'Paramedic'" style="padding-left:25px"><a ui-sref="patient.patientProgram.show" target="_self"
                                                                class="title-link">
-                                <strong>Enroll Patient</strong>
+                                <strong>Program Enrollment</strong>
                         </a></span>
                                 <span ng-if="!activeVisit && currentUser == 'CRO' || !activeVisit && currentUser == 'Paramedic'" style="padding-left:25px">
                              <select ng-model="selectedVisit.visitObj"

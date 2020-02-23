@@ -54,10 +54,12 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             var init = function () {
                 spinner.forPromise(programService.getAllPrograms().then(function (programs) {
                     $scope.allPrograms = programs;
-                    $scope.allPrograms.showProgramSection = true;
+                    $scope.programSelected = $scope.allPrograms[0];
+                   // $scope.allPrograms.showProgramSection = true;
                 }), id);
                 spinner.forPromise(programService.getProgramAttributeTypes().then(function (programAttributeTypes) {
                     $scope.programAttributeTypes = programAttributeTypes;
+
                 }), id);
                 $scope.programSelected = null;
                 $scope.patientProgramAttributes = {};
@@ -68,7 +70,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
 
             var successCallback = function () {
                 messagingService.showMessage("info", "CLINICAL_SAVE_SUCCESS_MESSAGE_KEY");
-                $scope.programSelected = null;
+                $scope.programSelected = $scope.allPrograms[0];
                 $scope.workflowStateSelected = null;
                 $scope.patientProgramAttributes = {};
                 $scope.programEnrollmentDate = null;
@@ -123,26 +125,38 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 return !_.isEmpty($scope.endedPrograms);
             };
 
+            $scope.handleUpdate = function (attribute) {
+                if(attribute == "LMP_Date") {
+                    var date = new Date($scope.patientProgramAttributes.LMP_Date);
+                    date.setDate(date.getDate()+281);
+                    $scope.patientProgramAttributes.Delivery_Date = date;
+                }
+
+            };
+
             $scope.enrollPatient = function () {
                 var attributes = [];
-                if ($scope.patientProgramAttributes.Pregnancy_Status) {
-                    angular.forEach($scope.programAttributeTypes, function (value, key) {
-                        if (value.fullySpecifiedName == "Pregnancy_Status") {
-                            angular.forEach(value.answers, function (innervalue, innerkey) {
-                                if (innervalue.conceptId == $scope.patientProgramAttributes.Pregnancy_Status) {
-                                    // for server
-                                    var pregnancyUuid = '3880f6de-2995-419f-91aa-0a376ed83cfc';
-                                    // for local
-                                    //var pregnancyUuid = 'e90c1f70-aa87-4a6a-ae05-05256c877ee5';
-                                    var value = innervalue.description;
-                                    var attribute = {};
-                                    attribute['value'] = value;
-                                    attribute['attributeType'] = pregnancyUuid;
-                                    attributes.push(attribute);
-                                }
-                            });
-                        }
-                    });
+                if ($scope.programSelected.name == "Pregnancy Enrollment") {
+                    // for server
+                    var pregnancyUuid = '3880f6de-2995-419f-91aa-0a376ed83cfc';
+                    // for local
+                    //var pregnancyUuid = 'e90c1f70-aa87-4a6a-ae05-05256c877ee5';
+                    var value = $scope.programSelected.name;
+                    var attribute = {};
+                    attribute['value'] = value;
+                    attribute['attributeType'] = pregnancyUuid;
+                    attributes.push(attribute);
+                }
+                if ($scope.programSelected.name == "Post-Partum Enrollment") {
+                    // for server
+                    var pregnancyUuid = '3880f6de-2995-419f-91aa-0a376ed83cfc';
+                    // for local
+                    //var pregnancyUuid = 'e90c1f70-aa87-4a6a-ae05-05256c877ee5';
+                    var value = $scope.programSelected.name;
+                    var attribute = {};
+                    attribute['value'] = value;
+                    attribute['attributeType'] = pregnancyUuid;
+                    attributes.push(attribute);
                 }
                 if ($scope.patientProgramAttributes.LMP_Date) {
                     // for server
@@ -150,19 +164,27 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                     // for local
                    // var lMPUuid = '6c6db42f-ba1c-4031-a9f3-ac7a1c876682';
                     var value = $scope.patientProgramAttributes.LMP_Date;
+                    var dateObject = new Date(value);
+                    var getmonth = (dateObject.getMonth() + 1) < 10 ? "0" + (dateObject.getMonth() + 1) : (dateObject.getMonth() + 1);
+                    var getDate = dateObject.getDate() < 10 ? "0" + dateObject.getDate() : dateObject.getDate();
+                    var dateString = dateObject.getFullYear() + "-" + getmonth + "-" + getDate;
                     var attribute = {};
-                    attribute['value'] = value;
+                    attribute['value'] = dateString;
                     attribute['attributeType'] = lMPUuid;
                     attributes.push(attribute);
                 }
-                if ($scope.patientProgramAttributes.Delivery_Date) {
+                if ($scope.patientProgramAttributes.Date) {
                     // for server
                     var deliveryUuid = '0df1c324-5ff7-4a28-9897-19dc2687b0f0';
                     // for local
                     //var deliveryUuid = '82cf6fa8-f35a-4f46-81c7-5ead8617f2f6';
-                    var value = $scope.patientProgramAttributes.Delivery_Date;
+                    var value = $scope.patientProgramAttributes.Date;
+                    var dateObject = new Date(value);
+                    var getmonth = (dateObject.getMonth() + 1) < 10 ? "0" + (dateObject.getMonth() + 1) : (dateObject.getMonth() + 1);
+                    var getDate = dateObject.getDate() < 10 ? "0" + dateObject.getDate() : dateObject.getDate();
+                    var dateString = dateObject.getFullYear() + "-" + getmonth + "-" + getDate;
                     var attribute = {};
-                    attribute['value'] = value;
+                    attribute['value'] = dateString;
                     attribute['attributeType'] = deliveryUuid;
                     attributes.push(attribute);
                 }

@@ -103,9 +103,9 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (age > Bahmni.Common.Constants.moreThanElevenYears && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.obstetricFormName    && maritalStatus == married) {
             return true;
-        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay  && gender == Bahmni.Common.Constants.female && pregnancyStatus == "Antenatal Period" && formName == Bahmni.Common.Constants.antenatalFormName) {
+        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay  && gender == Bahmni.Common.Constants.female && pregnancyStatus == "Pregnancy Enrollment" && formName == Bahmni.Common.Constants.antenatalFormName) {
             return true;
-        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay  && gender == Bahmni.Common.Constants.female && pregnancyStatus == "Postnatal" && deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition &&  formName == Bahmni.Common.Constants.postnatalFormName) {
+        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay  && gender == Bahmni.Common.Constants.female && pregnancyStatus == "Post-Partum Enrollment" && deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition &&  formName == Bahmni.Common.Constants.postnatalFormName) {
             return true;
         } else if (age <= Bahmni.Common.Constants.lessThanFortyTwoDays && formName == Bahmni.Common.Constants.lessThanFortyTwoDaysFormName) {
             return true;
