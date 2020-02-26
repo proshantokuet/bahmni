@@ -128,7 +128,7 @@ angular.module('bahmni.common.conceptSet')
                 return text ? String(daySplit).replace(/<[^>]+>/gm, '') : '';
             };
             $scope.ageFromBirthDate = function (dob, mod) {
-                if (dob) {
+                if (dob && mod) {
                     var dateOfBirth = new Date(dob);
                     var moneyreceiptDate = ageFormatterService.convertToDateObject(mod);
                     var ages = age.fromMoneyReceiptDate(dateOfBirth, moneyreceiptDate);
@@ -356,6 +356,12 @@ angular.module('bahmni.common.conceptSet')
                         messagingService.showMessage("error", "Service code and Item can not be empty");
                         return;
                     }
+                    if ($stateParams.moneyReceiptObject) {
+                       var dateStatus = $scope.checkValidDateWhileEdit(patientInfo.moneyReceiptDate);
+                       if(dateStatus) {
+                           return;
+                       }
+                    }
                     $scope.searchButtonText = "Submitting";
                     var jsonData = {};
                     if ($stateParams.moneyReceiptObject) {
@@ -428,6 +434,22 @@ angular.module('bahmni.common.conceptSet')
                 if (comparedValueForMoneyReceipt < comparedValueForRegistrationDate || comparedValueForMoneyReceipt < comparedValueForDobDate) {
                     $scope.patientInfo.moneyReceiptDate = null;
                     messagingService.showMessage("error", "Money receipt date cannot be entered  before patient registration date or birth date");
+                }
+            };
+
+            $scope.checkValidDateWhileEdit = function (date) {
+                var registrationDate = new Date($scope.patient.RegistrationDate.value);
+                var dateOfBirth = new Date($scope.patient.birthdate);
+                dateOfBirth.setHours(0, 0, 0, 0);
+                registrationDate.setHours(0, 0, 0, 0);
+                var splitedDate = date.split('/');
+                var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                var comparedValueForMoneyReceipt = finalizedSplitedDate.getTime();
+                var comparedValueForRegistrationDate = registrationDate.getTime();
+                var comparedValueForDobDate = dateOfBirth.getTime();
+                if (comparedValueForMoneyReceipt < comparedValueForRegistrationDate || comparedValueForMoneyReceipt < comparedValueForDobDate) {
+                    messagingService.showMessage("error", "Money receipt date cannot be entered  before patient registration date or birth date");
+                    return true;
                 }
             };
 
