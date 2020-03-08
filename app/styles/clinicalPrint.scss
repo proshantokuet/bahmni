@@ -6,3 +6,21 @@
 .dashboard-sections-wrapper .dashboard-sections.halfpage-container{
   width: 100%;
 }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+         /* Footer height */
+}
+
+.header {
+    position:fixed;
+    top:0;
+    text-align: center;
+}
+
+.content-block {
+  page-break-inside: avoid !important;
+}

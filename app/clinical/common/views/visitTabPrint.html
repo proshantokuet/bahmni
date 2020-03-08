@@ -1,15 +1,25 @@
 <html>
 <head>
-    <title>Visit Printout</title>
+    <title>.</title>
     <link rel="stylesheet" href="../styles/clinicalPrint.css" media="print"/>
 </head>
 <body>
     <div class="print-wrapper print-patient-summary">
-        <div class="print-header">
+        <div class="print-header ">
             <h1>
-                <img src="./../images/logo.jpg" width="162" height="228" /></h1>
+                <img src="./../images/logo-surjerhashi.png" width="130" height="150" /></h1>
         </div>
         <div ng-include="currentVisitUrl"></div>
     </div>
+</br>
+    <div class="print-wrapper print-patient-summary" style="float: right">
+        <label><u>Service Provider Name and Signature :</u></label>
+    </div>
+
+<footer class="footer">
+  <img src="./../images/footer-logo-prescription.png"  width="250" height="35" />
+</footer>
+
 </body>
+
 </html>
