@@ -175,6 +175,11 @@ angular.module('authentication')
                          $rootScope.currentUser.favouriteObsTemplates[16] = "PAC";
                          $rootScope.currentUser.favouriteObsTemplates[17] = "IMCI Below 2 Months";
                          $rootScope.currentUser.favouriteObsTemplates[18] = "IMCI 2 month to 5 years old";
+                         $rootScope.currentUser.favouriteObsTemplates[19] = "Eye Care";
+                         $rootScope.currentUser.favouriteObsTemplates[20] = "TB";
+                         $rootScope.currentUser.favouriteObsTemplates[21] = "Discharge Certificate";
+                         $rootScope.currentUser.favouriteObsTemplates[22] = "Inward Referral";
+                         $rootScope.currentUser.favouriteObsTemplates[23] = "Outward Referral";
                         for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
                             if ($rootScope.currentUser.privileges[i].name == "Has CRO Roles") {
                                 $rootScope.currentUser.roles = "CRO";

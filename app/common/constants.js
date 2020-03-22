@@ -295,6 +295,11 @@ Bahmni.Common = Bahmni.Common || {};
         cervicalCancerFormName:'Cervical Cancer',
         deliveryFormName: 'Delivery',
         pacsFormName: 'PAC',
+        eyeCareFormName: 'Eye Care',
+        tbFormName: 'TB',
+        inwardReferralFomrName: 'Inward Referral',
+        outwardReferralFormName: 'Outward Referral',
+        dischargeCertificateFormName: 'Discharge Certificate',
         FourtyNineYearsInDay:17885,
         moreThanFifteenYears: 5475,
         zeroToNineteenYearsInDay: 6935

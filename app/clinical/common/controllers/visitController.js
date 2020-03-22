@@ -51,7 +51,9 @@ angular.module('bahmni.clinical')
             };
 
             $scope.$on("event:printVisitTab", function () {
-                printer.printFromScope("common/views/visitTabPrint.html", $scope);
+                printer.printFromScope("common/views/visitTabPrint.html", $scope, function () {
+                    window.location.reload();
+                });
             });
 
             $scope.$on("event:clearVisitBoard", function () {

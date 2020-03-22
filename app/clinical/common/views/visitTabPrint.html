@@ -5,9 +5,9 @@
 </head>
 <body>
     <div class="print-wrapper print-patient-summary">
-        <div class="print-header ">
+        <div class="print-header" style="float: right">
             <h1>
-                <img src="./../images/logo-surjerhashi.png" width="130" height="150" /></h1>
+                <img src="./../images/prescriptionLogo.jpg" width="300" height="100" /></h1><img>
         </div>
         <div ng-include="currentVisitUrl"></div>
     </div>
@@ -17,7 +17,11 @@
     </div>
 
 <footer class="footer">
-  <img src="./../images/footer-logo-prescription.png"  width="250" height="35" />
+    <div>
+         <img src="./../images/footer-logo-prescription.png"  width="250" height="35" />
+        <p style="text-align: left"> This is a software generated prescription</p>
+    </div>
+</footer>
 </footer>
 
 </body>

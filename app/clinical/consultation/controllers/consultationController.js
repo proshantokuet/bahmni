@@ -488,7 +488,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             });
 
             $scope.save = function (toStateConfig) {
-                debugger;
                 if (!isFormValid()) {
                     $scope.$parent.$parent.$broadcast("event:errorsOnForm");
                     return $q.when({});

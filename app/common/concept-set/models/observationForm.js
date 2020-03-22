@@ -133,9 +133,21 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (formName == 'LCC') {
             return true;
-        }else if (formName == 'First Aid') {
+        } else if (formName == 'First Aid') {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.eyeCareFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.tbFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.dischargeCertificateFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.inwardReferralFomrName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.outwardReferralFormName) {
             return true;
         }
+
+
             // else if (pregnancyStatus == "প্রসব পূর্ব" && (formName == Bahmni.Common.Constants.antenatalFormName)) {
         //     return true;
         // } else if (deliveryDayDifference <= Bahmni.Common.Constants.postnatalFormDeliveryDayCondition && pregnancyStatus == "প্রসবোত্তর" && formName == Bahmni.Common.Constants.postnatalFormName) {
