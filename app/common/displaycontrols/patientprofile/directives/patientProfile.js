@@ -309,9 +309,11 @@
                         }
                     };
                     $scope.serviceProviderTabOPen = function () {
+                        var visitTypename = $scope.activeVisit.visitType.name;
                         $state.go('patient.dashboard.show.observations', {
                             conceptSetGroupName: 'observations',
                             previousUrl: null,
+                            visitTypeParams: visitTypename,
                             moneyReceiptObject: null
                         }, {reload: true});
                     };

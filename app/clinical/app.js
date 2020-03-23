@@ -171,6 +171,7 @@ angular.module('consultation')
                     cachebuster: null,
                     lastOpenedTemplate: null,
                     previousUrl: null,
+                    visitTypeParams: null,
                     moneyReceiptObject: null
                 },
                 views: {

@@ -130,6 +130,9 @@ angular.module('bahmni.common.conceptSet')
                     }
                 }
             }
+            else {
+                $scope.context.visitType = $stateParams.visitTypeParams;
+            }
             if (param1.createMoneyReceipt != undefined) {
                 $scope.money = true;
                 $scope.observationTab = false;

@@ -139,7 +139,7 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (formName == Bahmni.Common.Constants.tbFormName) {
             return true;
-        } else if (formName == Bahmni.Common.Constants.dischargeCertificateFormName) {
+        } else if (formName == Bahmni.Common.Constants.dischargeCertificateFormName && context.visitType == "IPD") {
             return true;
         } else if (formName == Bahmni.Common.Constants.inwardReferralFomrName) {
             return true;
