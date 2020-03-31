@@ -7,8 +7,9 @@ angular.module('bahmni.clinical')
             $scope.documentsPromise = encounterService.getEncountersForEncounterType($scope.patient.uuid, encounterTypeUuid).then(function (response) {
                 return new Bahmni.Clinical.PatientFileObservationsMapper().map(response.data.results);
             });
-            $scope.currentVisitUrl = $state.current.views['dashboard-content'].templateUrl ||
-                $state.current.views['print-content'].templateUrl;
+            // $scope.currentVisitUrl = $state.current.views['dashboard-content'].templateUrl ||
+            //     $state.current.views['print-content'].templateUrl;
+            $scope.currentVisitUrl = "common/views/prescriptionPrintVisit.html";
             $scope.visitHistory = visitHistory; // required as this visit needs to be overridden when viewing past visits
             $scope.visitSummary = visitSummary;
             $scope.visitTabConfig = visitConfig;
