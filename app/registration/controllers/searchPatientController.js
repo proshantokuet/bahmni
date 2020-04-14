@@ -58,7 +58,6 @@ angular.module('bahmni.registration')
             };
 
             var searchBasedOnQueryParameters = function (offset) {
-                debugger;
                 if (!isUserPrivilegedForSearch()) {
                     showInsufficientPrivMessage();
                     return;
@@ -90,15 +89,26 @@ angular.module('bahmni.registration')
                     searching = true;
                     if ($scope.searchParameters.isSearchingInDifferentServer) {
                         var searchPromise = patientService.searchPatientFromGLobalServer(stringForSearchPatientFromGlobal).then(function (response) {
-                            debugger;
-                            angular.forEach(response.pageOfResults, function (data) {
-                                data.isFromLocalServer = true;
+                            angular.forEach(response.globalServerPatients.pageOfResults, function (data) {
+                                if (response.localServerPatients.pageOfResults.length > 0) {
+                                    angular.forEach(response.localServerPatients.pageOfResults, function (data1) {
+                                        if (data.uuid == data1.uuid) {
+                                            data.isFromGlobalServer = false;
+                                        }
+                                        else {
+                                            data.isFromGlobalServer = true;
+                                        }
+                                    });
+                                }
+                                else {
+                                    data.isFromGlobalServer = true;
+                                }
                             });
-                            mapExtraIdentifiers(response);
-                            mapCustomAttributesSearchResults(response);
-                            mapAddressAttributesSearchResults(response);
-                            mapProgramAttributesSearchResults(response);
-                            return response;
+                            mapExtraIdentifiers(response.globalServerPatients);
+                            mapCustomAttributesSearchResults(response.globalServerPatients);
+                            mapAddressAttributesSearchResults(response.globalServerPatients);
+                            mapProgramAttributesSearchResults(response.globalServerPatients);
+                            return response.globalServerPatients;
                         });
                     }
                     else {
@@ -245,7 +255,6 @@ angular.module('bahmni.registration')
                 $scope.noMoreResultsPresent = false;
                 if (searchPromise) {
                     searchPromise.then(function (data) {
-                        debugger;
                         $scope.results = data.pageOfResults;
                         $scope.noResultsMessage = $scope.results.length === 0 ? 'REGISTRATION_NO_RESULTS_FOUND' : null;
                     });

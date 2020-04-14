@@ -126,10 +126,22 @@ angular.module('bahmni.registration')
                 method: "GET",
                 withCredentials: true,
                 params: {
-                    patientUuid: patientUuid
+                    patientUuid: patientUuid,
+                    loginLocationUuid: sessionService.getLoginLocationUuid()
                 }
             };
             return patientServiceStrategy.saveInLocalServer(config);
+        };
+
+        var updatePatientEntryDetails = function (patientUuid) {
+            var config = {
+                method: "GET",
+                withCredentials: true,
+                params: {
+                    patientUuid: patientUuid
+                }
+            };
+            return patientServiceStrategy.updatePatientEntryDetails(config);
         };
 
         return {
@@ -143,6 +155,7 @@ angular.module('bahmni.registration')
             fakecall: dhis,
             findUniquePatientByUicMobile: findUniquePatientByUicMobile,
             searchPatientFromGLobalServer: searchPatientFromGLobalServer,
-            savePatientInLocalServer: savePatientInLocalServer
+            savePatientInLocalServer: savePatientInLocalServer,
+            updatePatientEntryDetails: updatePatientEntryDetails
         };
     }]);

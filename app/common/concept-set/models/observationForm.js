@@ -101,7 +101,7 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (age > Bahmni.Common.Constants.lessThanTwoMonths && age <= Bahmni.Common.Constants.zeroToFiveYearsInDay && formName == Bahmni.Common.Constants.lessThanFiveYearsChildrenFormName) {
             return true;
-        } else if (age > Bahmni.Common.Constants.moreThanElevenYears && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.obstetricFormName    && maritalStatus == married) {
+        } else if (age > Bahmni.Common.Constants.moreThanElevenYears && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.obstetricFormName && pregnancyStatus == "Pregnancy Enrollment") {
             return true;
         } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay  && gender == Bahmni.Common.Constants.female && pregnancyStatus == "Pregnancy Enrollment" && formName == Bahmni.Common.Constants.antenatalFormName) {
             return true;
@@ -113,7 +113,7 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (age >= Bahmni.Common.Constants.moreThanFifteenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.womenVaccinationFormName) {
             return true;
-        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay && formName == Bahmni.Common.Constants.moreThanTwelveYearFormName) {
+        } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay && formName == Bahmni.Common.Constants.familyPlanningFormName) {
             return true;
         } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay && formName == Bahmni.Common.Constants.stiRtiFormName) {
             return true;

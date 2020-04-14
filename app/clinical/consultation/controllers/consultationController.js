@@ -508,6 +508,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                                     configurations.consultationNoteConcept(), configurations.labOrderNotesConcept(), $scope.followUpConditionConcept);
                                 var consultation = consultationMapper.map(saveResponse.data);
                                 consultation.lastvisited = $scope.lastvisited;
+                                //encounterService.saveExternalPatientEncounter($scope.patient.uuid, consultation.encounterUuid, "1");
                                 return consultation;
                             }).then(function (savedConsultation) {
                                 return spinner.forPromise(diagnosisService.populateDiagnosisInformation($scope.patient.uuid, savedConsultation)
@@ -535,6 +536,5 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                             });
                 }));
             };
-
             initialize();
         }]);
