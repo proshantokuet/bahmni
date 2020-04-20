@@ -22,7 +22,7 @@
                         <span class="obs-date">
                             {{::obsGroup.date | bahmniDateTime}}
                         </span>
-                        <span style="padding-left: 10px">{{::obsGroup.formName}}</span>
+                        <span ng-if="!print" style="padding-left: 10px">{{::obsGroup.formName}}</span>
                     </span>
                     <ul ng-if="::print" class="print-observations visible-print">
                         <li ng-repeat="observation in ::obsGroup.value">

@@ -51,7 +51,18 @@ table tr td {
     </br>
     <div ng-repeat="section in visitTabConfig.currentTab.sections">
         <div ng-switch="section.type">
-
+                        <div class="content-block" ng-switch-when="observation">
+                <div ng-if="::section.config" id="observation-section">
+                    <section class="block observation dashboard-section" id="observationSection">
+                        <ul bm-gallery access-impression="true">
+                            <bahmni-observation patient="::patient" visit-uuid="{{::visitUuid}}"
+                                                config="::section.config"
+                                                section-title="::section | titleTranslate"
+                                                class="section-title"></bahmni-observation>
+                        </ul>
+                    </section>
+                </div>
+            </div>
             <div ng-switch-when="diagnosis">
                 <section ng-if="::section.config" class="block dashboard-section">
                     <bahmni-diagnosis patient-uuid="::section.config.patientUuid"

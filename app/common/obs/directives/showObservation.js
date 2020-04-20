@@ -2,11 +2,11 @@
 
 angular.module('bahmni.common.obs')
     .directive('showObservation', ['ngDialog', function (ngDialog) {
+        debugger;
         var controller = function ($scope, $rootScope, $filter) {
             $scope.toggle = function (observation) {
                 observation.showDetails = !observation.showDetails;
             };
-
             $scope.print = $rootScope.isBeingPrinted || false;
 
             $scope.dateString = function (observation) {
@@ -31,6 +31,25 @@ angular.module('bahmni.common.obs')
                     }
                 });
             };
+
+            $scope.conceptDictionary = ["PNC","Date of maternal death","Cause of maternal death","Cause of neonatal death","Remarks","Gravida","Blood transfusion quantity","ANC","Vitals","Pulse"];
+
+
+            $scope.checkObsCondition = function (observation) {
+                debugger;
+                if ($rootScope.isBeingPrinted) {
+                    var flag = $scope.conceptDictionary.indexOf(observation);
+                    if (flag !== -1) {
+                        return true;
+                    }
+                    else return false;
+                }
+                else {
+                    return true;
+                }
+                console.log(observation);
+            };
+
         };
         return {
             restrict: 'E',
