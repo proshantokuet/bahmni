@@ -2,7 +2,6 @@
 
 angular.module('bahmni.common.obs')
     .directive('showObservation', ['ngDialog', function (ngDialog) {
-        debugger;
         var controller = function ($scope, $rootScope, $filter) {
             $scope.toggle = function (observation) {
                 observation.showDetails = !observation.showDetails;

@@ -442,7 +442,7 @@ angular.module('consultation')
                 },
                 views: {
                     'patientProgram-header': {
-                        templateUrl: '../common/ui-helper/header.html',
+                        templateUrl: '../common/uicontrols/programmanagement/views/programHeader.html',
                         controller: 'PatientListHeaderController'
                     },
                     'patientProgram-content': {

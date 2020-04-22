@@ -53,7 +53,7 @@
                                      is-form="true"></attribute-types>
                 </article>
 
-                <input class="fr" type="submit" value="{{'PROGRAM_MANAGEMENT_ENROLL_KEY' | translate}}"/>
+                <input class="fr" type="submit" ng-if="activePrograms.length < 1" value="{{'PROGRAM_MANAGEMENT_ENROLL_KEY' | translate}}"/>
             </form>
         </div>
 
