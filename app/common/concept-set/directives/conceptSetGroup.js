@@ -23,6 +23,9 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo.moneyReceiptDate = ageFormatterService.dateFormat($scope.patientInfo.moneyReceiptDate);
                     $scope.makeSlipNoReadOnly = true;
                 }
+                else {
+                    getslipNoFormoneyReceipt();
+                }
             };
             $scope.toggleSideBar = function () {
                 $rootScope.showLeftpanelToggle = !$rootScope.showLeftpanelToggle;
@@ -362,6 +365,26 @@ angular.module('bahmni.common.conceptSet')
                            return;
                        }
                     }
+                    if (!$stateParams.moneyReceiptObject) {
+                        var concatenedEslipNo = $scope.generateEslipNo(patientInfo.servicePoint);
+                        if (concatenedEslipNo.length != 16) {
+                            messagingService.showMessage("error", "Error Generating Eslip number,E-Slip length More than 16 digit");
+                            return;
+                        }
+                        else {
+                            patientInfo.eslipNo = concatenedEslipNo;
+                        }
+                    }
+                    else {
+                        var concatenedEslipNo = $scope.generateEslipNoEdit(patientInfo.servicePoint);
+                        if (concatenedEslipNo.length != 16) {
+                            messagingService.showMessage("error", "Error Generating Eslip number,E-Slip length More than 16 digit");
+                            return;
+                        }
+                        else {
+                            patientInfo.eslipNo = concatenedEslipNo;
+                        }
+                    }
                     $scope.searchButtonText = "Submitting";
                     var jsonData = {};
                     if ($stateParams.moneyReceiptObject) {
@@ -477,6 +500,50 @@ angular.module('bahmni.common.conceptSet')
                 var moneyReceiptDate = ageFormatterService.convertToDateObject(date);
                 var date = moneyReceiptDate.getFullYear().toString();
                 return patientService.checkExistingMoneyReceipt(slipNo, date, $scope.patientInfo.clinicCode);
+            };
+
+            $scope.generateEslipNo = function (servicePoint) {
+                var electronicSlipNo = "";
+                if (servicePoint == 'Static') {
+                    electronicSlipNo =  $scope.eslipNo.replace("-","100");
+                }
+                else if (servicePoint == 'Satellite') {
+                    var checkSize = $scope.patientInfo.sateliteClinicId.code < 10 ? "0" + $scope.patientInfo.sateliteClinicId.code : $scope.patientInfo.sateliteClinicId.code;
+                    if(checkSize.length > 2 ) checkSize = checkSize.substring(0,2);
+                    var concatenedString = "2" + checkSize;
+                    electronicSlipNo =  $scope.eslipNo.replace("-", concatenedString);
+                }
+                else if (servicePoint == 'CSP') {
+                    var checkSize = $scope.patientInfo['cspId'] < 10 ? "0" + $scope.patientInfo['cspId'] : $scope.patientInfo['cspId'];
+                    checkSize = checkSize.substring(0,2);
+                    var concatenedString = "3" + checkSize;
+                    electronicSlipNo =  $scope.eslipNo.replace("-", concatenedString);
+                }
+                return electronicSlipNo;
+            };
+
+            $scope.generateEslipNoEdit = function (servicePoint) {
+                var electronicSlipNo = "";
+                if (servicePoint == 'Static') {
+                    electronicSlipNo = $scope.replaceAtEslip($scope.patientInfo.eslipNo,9,"100");
+                }
+                else if (servicePoint == 'Satellite') {
+                    var checkSize = $scope.patientInfo.sateliteClinicId.code < 10 ? "0" + $scope.patientInfo.sateliteClinicId.code : $scope.patientInfo.sateliteClinicId.code;
+                    if (checkSize.length > 2) checkSize = checkSize.substring(0, 2);
+                    var concatenedString = "2" + checkSize;
+                    electronicSlipNo = $scope.replaceAtEslip($scope.patientInfo.eslipNo,9,concatenedString);
+                }
+                else if (servicePoint == 'CSP') {
+                    var checkSize = $scope.patientInfo['cspId'] < 10 ? "0" + $scope.patientInfo['cspId'] : $scope.patientInfo['cspId'];
+                    checkSize = checkSize.substring(0, 2);
+                    var concatenedString = "3" + checkSize;
+                    electronicSlipNo = $scope.replaceAtEslip($scope.patientInfo.eslipNo,9,concatenedString);
+                }
+                return electronicSlipNo;
+            };
+
+            $scope.replaceAtEslip = function (string,index, replacement) {
+                    return string.substr(0, index) + replacement+ string.substr(index + replacement.length);
             };
 
             $scope.getNormalized = function (conceptName) {
@@ -662,6 +729,14 @@ angular.module('bahmni.common.conceptSet')
                             }
                         }
                     }
+                });
+            };
+
+            var getslipNoFormoneyReceipt = function () {
+                return patientService.getEslipNo($scope.patientInfo.clinicCode).then(function (response) {
+                    debugger;
+                    $scope.eslipNo = response.data.eslipNo;
+
                 });
             };
 

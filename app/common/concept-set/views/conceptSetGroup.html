@@ -162,7 +162,7 @@
                                         <td ng-show="patientInfo.servicePoint=='Satellite'">
                                             <article class="form-field" >
                                                 <div class="field-attribute">
-                                                    <label>Satellite Clinic Id</label>
+                                                    <label>Satellite Clinic Id<span class="asterick">*</span></label>
                                                 </div>
                                             </article>
                                         </td>
@@ -170,7 +170,7 @@
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <select ng-model="patientInfo.sateliteClinicId" ng-options="sat as sat.code for sat in sateliteClinicCodes">
+                                                        <select ng-model="patientInfo.sateliteClinicId" ng-options="sat as sat.code for sat in sateliteClinicCodes" ng-required="patientInfo.servicePoint=='Satellite'">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -310,6 +310,25 @@
 
                                                         </select>
                                                     </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="makeSlipNoReadOnly">
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>E-Slip No</label>
+                                                </div>
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input ng-model="patientInfo.eslipNo" name="eslipNo" type="text" autofocus ng-readonly="true"/>
+                                                    </div>
+                                                    <span class="asterick" ng-show="myForm.slipno.$error.pattern">Should not contain characters and whitespace(Ex. 99-99)</span>
                                                 </div>
                                             </article>
                                         </td>
