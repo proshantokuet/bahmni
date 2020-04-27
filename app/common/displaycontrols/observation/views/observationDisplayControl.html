@@ -25,7 +25,7 @@
                         <span ng-if="!print" style="padding-left: 10px">{{::obsGroup.formName}}</span>
                     </span>
                     <ul ng-if="::print" class="print-observations visible-print">
-                        <li ng-repeat="observation in ::obsGroup.value">
+                        <li ng-repeat="observation in ::obsGroup.value | orderBy : 'formOrder'">
                             <ul>
                                 <show-observation show-details-button="::config.showDetailsButton" patient="::patient"
                                                   observation="::observation"
@@ -35,7 +35,7 @@
                     </ul>
                     <ul  class="print-observations hidden-print">
                         <show-observation show-details-button="::config.showDetailsButton" patient="::patient"
-                                          observation="::observation" ng-repeat="observation in ::obsGroup.value"
+                                          observation="::observation" ng-repeat="observation in ::obsGroup.value | orderBy : 'formOrder'"
                                           level="2"></show-observation>
                     </ul>
                 </li>

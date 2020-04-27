@@ -106,28 +106,28 @@ angular.module('bahmni.common.displaycontrol.observation')
                             }
                         }
                     }
-                    var formname = "";
-                    var clientHistoryArray = [];
-                    var generalExaminationArray = [];
-                    var obstetricArray = [];
-                    var othersArray = [];
-                    _.each($scope.bahmniObservations[0].value, function (observation) {
-                        if (observation.formFieldPath) {
-                            var SplittedformName = observation.formFieldPath.split('.');
-                            formname = SplittedformName[0];
-                        }
-                        if (formname == "Client History") {
-                            clientHistoryArray.push(observation);
-                        }
-                        else if (formname == "General Examination") {
-                            generalExaminationArray.push(observation);
-                        }
-                        else if (formname == "Obstetric History") {
-                            obstetricArray.push(observation);
-                        }
-                        else othersArray.push(observation);
-                    });
-                    $scope.bahmniObservations[0].value = clientHistoryArray.concat(generalExaminationArray).concat(obstetricArray).concat(othersArray);
+                    // var formname = "";
+                    // var clientHistoryArray = [];
+                    // var generalExaminationArray = [];
+                    // var obstetricArray = [];
+                    // var othersArray = [];
+                    // _.each($scope.bahmniObservations[0].value, function (observation) {
+                    //     if (observation.formFieldPath) {
+                    //         var SplittedformName = observation.formFieldPath.split('.');
+                    //         formname = SplittedformName[0];
+                    //     }
+                    //     if (formname == "Client History") {
+                    //         clientHistoryArray.push(observation);
+                    //     }
+                    //     else if (formname == "General Examination") {
+                    //         generalExaminationArray.push(observation);
+                    //     }
+                    //     else if (formname == "Obstetric History") {
+                    //         obstetricArray.push(observation);
+                    //     }
+                    //     else othersArray.push(observation);
+                    // });
+                    // $scope.bahmniObservations[0].value = clientHistoryArray.concat(generalExaminationArray).concat(obstetricArray).concat(othersArray);
 
                     if (_.isEmpty($scope.bahmniObservations)) {
                         $scope.noObsMessage = $translate.instant(Bahmni.Common.Constants.messageForNoObservation);
@@ -156,6 +156,22 @@ angular.module('bahmni.common.displaycontrol.observation')
 
                     if (formObservations.length > 0) {
                         formHierarchyService.build($scope.bahmniObservations);
+                    }
+                    if ($scope.bahmniObservations.length > 0) {
+                        var sortOrder = 3;
+                        _.each($scope.bahmniObservations[0].value, function (obs) {
+                            if (obs.concept.shortName == "Client History") {
+                                obs.formOrder = 1;
+                            }
+                            else if (obs.concept.shortName == "General Examination") {
+                                obs.formOrder = 2;
+                            }
+                            else if (obs.concept.shortName == "Obstetric History") {
+                                obs.formOrder = 3;
+                            }
+                            else obs.formOrder = sortOrder + 1;
+                            sortOrder = sortOrder + 1;
+                        });
                     }
                     $rootScope.tooglingVisitStart = undefined;
                 };

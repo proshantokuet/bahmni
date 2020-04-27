@@ -20,12 +20,8 @@ table tr td {
 </section>
 
 <div ng-if="::(!clearBoard)">
-    <!--<div><strong>Clinic Name:</strong>{{patient.ClinicName.value}}</div>-->
-    <!--<div><strong>Clinic Code:</strong>{{patient.ClinicCode.value}}</div>-->
-    <!--<div><strong>Patient Name:</strong>{{patient.name}}</div>-->
-    <!--<div><strong>UIC:</strong>{{patient.UIC.value}}</div>-->
-    <!--<div><strong>Identifier:</strong>{{patient.identifier}}</div>-->
-    <!--<br>-->
+<img ng-if="isBeingPrinted"  id="barcode"
+  jsbarcode-value="{{patient.identifier}}" />
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td align="left"  style="border-bottom: 1px solid #666; padding:10px 10px 10px 8px;"><strong>Name:</strong></td>
@@ -48,7 +44,7 @@ table tr td {
             <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"></td>
         </tr>
     </table>
-    </br>
+    <div style="margin-top: 25px;"></div>
     <div ng-repeat="section in visitTabConfig.currentTab.sections">
         <div ng-switch="section.type">
             <!--<div ng-switch-when="patientInformation">-->
@@ -123,3 +119,14 @@ table tr td {
 </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setTimeout(function () {
+            JsBarcode("#barcode").init();
+        }, 1000);
+    });
+//var $jq = jQuery.noConflict();
+
+
+</script>
