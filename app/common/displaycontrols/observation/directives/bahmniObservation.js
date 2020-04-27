@@ -51,7 +51,7 @@ angular.module('bahmni.common.displaycontrol.observation')
                     //         });
                     //         $rootScope.$broadcast('vitalsbroadcast', vitalsList);
                     //     }
-                    // }
+                    //
 
                     var conceptsConfig = appService.getAppDescriptor().getConfigValue("conceptSetUI") || {};
                     observations = new Bahmni.Common.Obs.ObservationMapper().map(observations, conceptsConfig);
@@ -106,6 +106,28 @@ angular.module('bahmni.common.displaycontrol.observation')
                             }
                         }
                     }
+                    var formname = "";
+                    var clientHistoryArray = [];
+                    var generalExaminationArray = [];
+                    var obstetricArray = [];
+                    var othersArray = [];
+                    _.each($scope.bahmniObservations[0].value, function (observation) {
+                        if (observation.formFieldPath) {
+                            var SplittedformName = observation.formFieldPath.split('.');
+                            formname = SplittedformName[0];
+                        }
+                        if (formname == "Client History") {
+                            clientHistoryArray.push(observation);
+                        }
+                        else if (formname == "General Examination") {
+                            generalExaminationArray.push(observation);
+                        }
+                        else if (formname == "Obstetric History") {
+                            obstetricArray.push(observation);
+                        }
+                        else othersArray.push(observation);
+                    });
+                    $scope.bahmniObservations[0].value = clientHistoryArray.concat(generalExaminationArray).concat(obstetricArray).concat(othersArray);
 
                     if (_.isEmpty($scope.bahmniObservations)) {
                         $scope.noObsMessage = $translate.instant(Bahmni.Common.Constants.messageForNoObservation);
@@ -175,7 +197,14 @@ angular.module('bahmni.common.displaycontrol.observation')
                         ($scope.section.expandedViewConfig.pivotTable || $scope.section.expandedViewConfig.observationGraph);
                 };
 
+                var fetchPrescriptionMetaData = function () {
+                     observationsService.fetchPrescriptionMetaData().then(function (response) {
+                        $rootScope.fetchedPrescribedData = response.data;
+                    });
+                };
+
                 fetchObservations();
+                fetchPrescriptionMetaData();
 
                 $scope.dialogData = {
                     "patient": $scope.patient,

@@ -2,7 +2,7 @@
     "sections": {
         "Patient Information": {
             "type": "patientInformation",
-            "displayOrder": 0,
+            "displayOrder": 3,
             "config": {
                 "translationKey": "VISIT_TITLE_PATIENT_INFORMATION",
                 "patientAttributes": [
@@ -16,7 +16,7 @@
         "Diagnosis": {
             "type": "diagnosis",
             "title": "Diagnosis",
-            "displayOrder": 1,
+            "displayOrder": 4,
             "config": {
                 "translationKey": "VISIT_TITLE_DIAGNOSIS_KEY",
                 "showCertainty": true,
@@ -45,7 +45,7 @@
         "Disposition": {
             "type": "disposition",
             "translationKey": "VISIT_TITLE_DISPOSITIONS_KEY",
-            "displayOrder": 3,
+            "displayOrder": 5,
             "config": {
                 "translationKey":"VISIT_TITLE_DISPOSITION_KEY",
                 "numberOfVisits": 1,
@@ -54,7 +54,7 @@
         },
         "Admission Details": {
             "type": "admissionDetails",
-            "displayOrder": 4,
+            "displayOrder": 6,
             "config": {
                 "translationKey": "VISIT_TITLE_ADMISSION_DETAILS_KEY",
                 "showDetailsButton": true
@@ -63,7 +63,7 @@
         "Investigation Result": {
             "type": "investigationResult",
             "title": "Investigation Result",
-            "displayOrder": 5,
+            "displayOrder": 7,
             "config": {
                 "translationKey": "VISIT_TITLE_LAB_INVESTIGATIONS_KEY",
                 "showChart": true,
@@ -77,7 +77,7 @@
         "Treatments": {
             "type": "treatment",
             "title": "Treatments",
-            "displayOrder": 6,
+            "displayOrder": 0,
             "config": {
                 "translationKey": "VISIT_TITLE_TREATMENTS_KEY",
                 "showFlowSheet": true,
@@ -91,17 +91,33 @@
         },
         "Radiology": {
             "type": "radiology",
-            "displayOrder": 7,
+            "displayOrder": 8,
             "config": {
                 "translationKey": "VISIT_TITLE_RADIOLOGY_KEY"
             }
         },
         "Patient Files": {
             "type": "patientFiles",
-            "displayOrder": 8,
+            "displayOrder": 9,
             "config": {
                 "translationKey": "VISIT_TITLE_PATIENT_FILES_KEY"
             }
+        },
+      "labOrder": {
+        "type": "order",
+        "displayOrder": 1,
+        "config": {
+          "translationKey": "DASHBOARD_TITLE_LAB_ORDERS_NEW_FOR_PRINT",
+          "name": "ordersControl",
+          "orderType": "Lab Order",
+          "conceptNames": [
+            "Systolic",
+            "Diastolic",
+            "Posture",
+            "Temperature"
+          ],
+          "showDetailsButton": true
         }
+      }
     }
 }

@@ -241,7 +241,7 @@ angular.module('bahmni.clinical')
                     else if (form.formName == "General Examination") {
                         form.formOrder = 2;
                     }
-                    else if (form.formName == "Obstetric Information") {
+                    else if (form.formName == "Obstetric History") {
                         form.formOrder = 3;
                     }
                 });

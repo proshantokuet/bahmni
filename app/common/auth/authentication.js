@@ -158,7 +158,7 @@ angular.module('authentication')
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
                          $rootScope.currentUser.favouriteObsTemplates[0] = "Client History";
                          $rootScope.currentUser.favouriteObsTemplates[1] = "General Examination";
-                         $rootScope.currentUser.favouriteObsTemplates[2] = "Obstetric Information";
+                         $rootScope.currentUser.favouriteObsTemplates[2] = "Obstetric History";
                          $rootScope.currentUser.favouriteObsTemplates[3] = "Antenatal Care";
                          $rootScope.currentUser.favouriteObsTemplates[4] = "Postnatal Care";
                          $rootScope.currentUser.favouriteObsTemplates[5] = "New Born Baby Care";

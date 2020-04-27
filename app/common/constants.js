@@ -112,6 +112,7 @@ Bahmni.Common = Bahmni.Common || {};
         openelisUrl: hostUrl + "/openelis",
         loggingUrl: hostUrl + "/log/",
         idgenConfigurationURL: RESTWS_V1 + "/idgen/identifiertype",
+        prescroptionMetaDataUrl: RESTWS_V1 + "/check/uniquePatient/prescriptionMetaData",
         bahmniRESTBaseURL: BAHMNI_CORE + "",
         observationsUrl: BAHMNI_CORE + "/observations",
         obsRelationshipUrl: BAHMNI_CORE + "/obsrelationships",

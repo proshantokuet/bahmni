@@ -54,6 +54,12 @@ angular.module('bahmni.common.domain')
             });
         };
 
+        this.fetchPrescriptionMetaData = function () {
+            return $http.get(Bahmni.Common.Constants.prescroptionMetaDataUrl, {
+                withCredentials: true
+            });
+        };
+
         this.getObsRelationship = function (targetObsUuid) {
             return $http.get(Bahmni.Common.Constants.obsRelationshipUrl, {
                 params: {
