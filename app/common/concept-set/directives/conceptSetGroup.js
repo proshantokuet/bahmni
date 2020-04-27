@@ -734,7 +734,6 @@ angular.module('bahmni.common.conceptSet')
 
             var getslipNoFormoneyReceipt = function () {
                 return patientService.getEslipNo($scope.patientInfo.clinicCode).then(function (response) {
-                    debugger;
                     $scope.eslipNo = response.data.eslipNo;
 
                 });
