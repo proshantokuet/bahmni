@@ -140,6 +140,10 @@
                       Health ID
                   </td>
                   <td style="padding:10px 10px 10px 8px;">{{patient.identifier}}</td>
+                  <td align="left" valign="top" style="padding:10px 10px 10px 8px;">
+                      E-slip No
+                  </td>
+                  <td style="padding:10px 10px 10px 8px;">{{servicesBySlip[0].eslipNo}}</td>
               </tr>
               <tr>
           </table>
@@ -365,38 +369,33 @@
 <script type="text/javascript">
 
 //var $jq = jQuery.noConflict();
-setTimeout(function(){
-    $(document).ready(function() {
-        /* var qr = window.qr = new QRious({
-          element: document.getElementById('qrious'),
-          size: 150,
-          value: document.getElementById("qrvalue").value
-        });*/
 
+$(document).ready(function () {
+    setTimeout(function () {
         JsBarcode(".barcode").init();
-	    var table = $('#table_id').DataTable({
-           language: {
-           emptyTable: "no service available", //
-           loadingRecords: "Please wait .. ", // default Loading...
-           zeroRecords: "No matching service found"
-          },
-          bFilter: true,
-          bInfo: false,
-          "order": [[ 0, "desc" ]]
-        }
+        var table = $('#table_id').DataTable({
+                language: {
+                    emptyTable: "no service available", //
+                    loadingRecords: "Please wait .. ", // default Loading...
+                    zeroRecords: "No matching service found"
+                },
+                bFilter: true,
+                bInfo: false,
+                "order": [[0, "desc"]]
+            }
         );
 
-        $('#search-date').on('keyup', function(){
-        table
-        .column(1)
-        .search(this.value)
-        .draw();
-      });
+        $('#search-date').on('keyup', function () {
+            table
+                .column(1)
+                .search(this.value)
+                .draw();
+        });
 
+    }, 2000);
 
+});
 
-    } );
-}, 2000);
 
 </script>
     <style>

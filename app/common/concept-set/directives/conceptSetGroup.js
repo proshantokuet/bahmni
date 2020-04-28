@@ -24,7 +24,7 @@ angular.module('bahmni.common.conceptSet')
                     $scope.makeSlipNoReadOnly = true;
                 }
                 else {
-                    getslipNoFormoneyReceipt();
+                    //getslipNoFormoneyReceipt();
                 }
             };
             $scope.toggleSideBar = function () {
@@ -365,26 +365,26 @@ angular.module('bahmni.common.conceptSet')
                            return;
                        }
                     }
-                    if (!$stateParams.moneyReceiptObject) {
-                        var concatenedEslipNo = $scope.generateEslipNo(patientInfo.servicePoint);
-                        if (concatenedEslipNo.length != 16) {
-                            messagingService.showMessage("error", "Error Generating Eslip number,E-Slip length More than 16 digit");
-                            return;
-                        }
-                        else {
-                            patientInfo.eslipNo = concatenedEslipNo;
-                        }
-                    }
-                    else {
-                        var concatenedEslipNo = $scope.generateEslipNoEdit(patientInfo.servicePoint);
-                        if (concatenedEslipNo.length != 16) {
-                            messagingService.showMessage("error", "Error Generating Eslip number,E-Slip length More than 16 digit");
-                            return;
-                        }
-                        else {
-                            patientInfo.eslipNo = concatenedEslipNo;
-                        }
-                    }
+                    // if (!$stateParams.moneyReceiptObject) {
+                    //     var concatenedEslipNo = $scope.generateEslipNo(patientInfo.servicePoint);
+                    //     if (concatenedEslipNo.length != 16) {
+                    //         messagingService.showMessage("error", "Error Generating Eslip number,E-Slip length More than 16 digit");
+                    //         return;
+                    //     }
+                    //     else {
+                    //         patientInfo.eslipNo = concatenedEslipNo;
+                    //     }
+                    // }
+                    // else {
+                    //     var concatenedEslipNo = $scope.generateEslipNoEdit(patientInfo.servicePoint);
+                    //     if (concatenedEslipNo.length != 16) {
+                    //         messagingService.showMessage("error", "Error Generating Eslip number,E-Slip length More than 16 digit");
+                    //         return;
+                    //     }
+                    //     else {
+                    //         patientInfo.eslipNo = concatenedEslipNo;
+                    //     }
+                    // }
                     $scope.searchButtonText = "Submitting";
                     var jsonData = {};
                     if ($stateParams.moneyReceiptObject) {

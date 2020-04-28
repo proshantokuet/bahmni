@@ -239,6 +239,7 @@
                                     service.validMoneyReceiptHolder = true;
                                 }
                             });
+                            angular.element('#table_id').data
                         });
                     };
                     $scope.editMoneyReceipt = function (id, moneyRceiptDate) {
