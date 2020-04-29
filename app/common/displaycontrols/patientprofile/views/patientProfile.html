@@ -345,8 +345,8 @@
                             </thead>
                             <tbody>
 
-                               <tr ng-repeat="service in services track by $index | orderBy: '-moneyReceiptDate'">
-                                    <td><span ng-hide="true">{{service.moneyReceiptDate}}</span>{{dateTOString(service.moneyReceiptDate) | date:'dd/MM/yyyy'}}</td>
+                               <tr ng-repeat="service in services track by $index ">
+                                    <td></span>{{dateTOString(service.moneyReceiptDate) | date:'dd/MM/yyyy'}}</td>
                                     <td>{{service.slipNo}} </td>
                                    <td>{{service.eslipNo}} </td>
                                      <td>{{service.code}} </td>
@@ -373,24 +373,24 @@
 $(document).ready(function () {
     setTimeout(function () {
         JsBarcode(".barcode").init();
-        var table = $('#table_id').DataTable({
-                language: {
-                    emptyTable: "no service available", //
-                    loadingRecords: "Please wait .. ", // default Loading...
-                    zeroRecords: "No matching service found"
-                },
-                bFilter: true,
-                bInfo: false,
-                "order": [[0, "desc"]]
-            }
-        );
+//        var table = $('#table_id').DataTable({
+//                language: {
+//                    emptyTable: "no service available", //
+//                    loadingRecords: "Please wait .. ", // default Loading...
+//                    zeroRecords: "No matching service found"
+//                },
+//                bFilter: true,
+//                bInfo: false,
+//                "order": [[0, "desc"]]
+//            }
+//        );
 
-        $('#search-date').on('keyup', function () {
-            table
-                .column(1)
-                .search(this.value)
-                .draw();
-        });
+//        $('#search-date').on('keyup', function () {
+//            table
+//                .column(1)
+//                .search(this.value)
+//                .draw();
+//        });
 
     }, 2000);
 

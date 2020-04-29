@@ -239,7 +239,25 @@
                                     service.validMoneyReceiptHolder = true;
                                 }
                             });
-                            angular.element('#table_id').data
+                            setTimeout(function () {
+                               var table = angular.element("#table_id").DataTable({
+                                        language: {
+                                            emptyTable: "no service available", //
+                                            loadingRecords: "Please wait .. ", // default Loading...
+                                            zeroRecords: "No matching service found"
+                                        },
+                                        bFilter: true,
+                                        bInfo: false,
+                                        "order": [[0, "desc"]]
+                                    }
+                                );
+                                angular.element("#search-date").on('keyup', function () {
+                                    table
+                                        .column(1)
+                                        .search(this.value)
+                                        .draw();
+                                });
+                            }, 1000);
                         });
                     };
                     $scope.editMoneyReceipt = function (id, moneyRceiptDate) {
