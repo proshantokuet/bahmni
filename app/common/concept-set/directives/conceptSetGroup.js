@@ -502,45 +502,45 @@ angular.module('bahmni.common.conceptSet')
                 return patientService.checkExistingMoneyReceipt(slipNo, date, $scope.patientInfo.clinicCode);
             };
 
-            $scope.generateEslipNo = function (servicePoint) {
-                var electronicSlipNo = "";
-                if (servicePoint == 'Static') {
-                    electronicSlipNo =  $scope.eslipNo.replace("-","100");
-                }
-                else if (servicePoint == 'Satellite') {
-                    var checkSize = $scope.patientInfo.sateliteClinicId.code < 10 ? "0" + $scope.patientInfo.sateliteClinicId.code : $scope.patientInfo.sateliteClinicId.code;
-                    if(checkSize.length > 2 ) checkSize = checkSize.substring(0,2);
-                    var concatenedString = "2" + checkSize;
-                    electronicSlipNo =  $scope.eslipNo.replace("-", concatenedString);
-                }
-                else if (servicePoint == 'CSP') {
-                    var checkSize = $scope.patientInfo['cspId'] < 10 ? "0" + $scope.patientInfo['cspId'] : $scope.patientInfo['cspId'];
-                    checkSize = checkSize.substring(0,2);
-                    var concatenedString = "3" + checkSize;
-                    electronicSlipNo =  $scope.eslipNo.replace("-", concatenedString);
-                }
-                return electronicSlipNo;
-            };
+            // $scope.generateEslipNo = function (servicePoint) {
+            //     var electronicSlipNo = "";
+            //     if (servicePoint == 'Static') {
+            //         electronicSlipNo =  $scope.eslipNo.replace("-","100");
+            //     }
+            //     else if (servicePoint == 'Satellite') {
+            //         var checkSize = $scope.patientInfo.sateliteClinicId.code < 10 ? "0" + $scope.patientInfo.sateliteClinicId.code : $scope.patientInfo.sateliteClinicId.code;
+            //         if(checkSize.length > 2 ) checkSize = checkSize.substring(0,2);
+            //         var concatenedString = "2" + checkSize;
+            //         electronicSlipNo =  $scope.eslipNo.replace("-", concatenedString);
+            //     }
+            //     else if (servicePoint == 'CSP') {
+            //         var checkSize = $scope.patientInfo['cspId'] < 10 ? "0" + $scope.patientInfo['cspId'] : $scope.patientInfo['cspId'];
+            //         checkSize = checkSize.substring(0,2);
+            //         var concatenedString = "3" + checkSize;
+            //         electronicSlipNo =  $scope.eslipNo.replace("-", concatenedString);
+            //     }
+            //     return electronicSlipNo;
+            // };
 
-            $scope.generateEslipNoEdit = function (servicePoint) {
-                var electronicSlipNo = "";
-                if (servicePoint == 'Static') {
-                    electronicSlipNo = $scope.replaceAtEslip($scope.patientInfo.eslipNo,9,"100");
-                }
-                else if (servicePoint == 'Satellite') {
-                    var checkSize = $scope.patientInfo.sateliteClinicId.code < 10 ? "0" + $scope.patientInfo.sateliteClinicId.code : $scope.patientInfo.sateliteClinicId.code;
-                    if (checkSize.length > 2) checkSize = checkSize.substring(0, 2);
-                    var concatenedString = "2" + checkSize;
-                    electronicSlipNo = $scope.replaceAtEslip($scope.patientInfo.eslipNo,9,concatenedString);
-                }
-                else if (servicePoint == 'CSP') {
-                    var checkSize = $scope.patientInfo['cspId'] < 10 ? "0" + $scope.patientInfo['cspId'] : $scope.patientInfo['cspId'];
-                    checkSize = checkSize.substring(0, 2);
-                    var concatenedString = "3" + checkSize;
-                    electronicSlipNo = $scope.replaceAtEslip($scope.patientInfo.eslipNo,9,concatenedString);
-                }
-                return electronicSlipNo;
-            };
+            // $scope.generateEslipNoEdit = function (servicePoint) {
+            //     var electronicSlipNo = "";
+            //     if (servicePoint == 'Static') {
+            //         electronicSlipNo = $scope.replaceAtEslip($scope.patientInfo.eslipNo,9,"100");
+            //     }
+            //     else if (servicePoint == 'Satellite') {
+            //         var checkSize = $scope.patientInfo.sateliteClinicId.code < 10 ? "0" + $scope.patientInfo.sateliteClinicId.code : $scope.patientInfo.sateliteClinicId.code;
+            //         if (checkSize.length > 2) checkSize = checkSize.substring(0, 2);
+            //         var concatenedString = "2" + checkSize;
+            //         electronicSlipNo = $scope.replaceAtEslip($scope.patientInfo.eslipNo,9,concatenedString);
+            //     }
+            //     else if (servicePoint == 'CSP') {
+            //         var checkSize = $scope.patientInfo['cspId'] < 10 ? "0" + $scope.patientInfo['cspId'] : $scope.patientInfo['cspId'];
+            //         checkSize = checkSize.substring(0, 2);
+            //         var concatenedString = "3" + checkSize;
+            //         electronicSlipNo = $scope.replaceAtEslip($scope.patientInfo.eslipNo,9,concatenedString);
+            //     }
+            //     return electronicSlipNo;
+            // };
 
             $scope.replaceAtEslip = function (string,index, replacement) {
                     return string.substr(0, index) + replacement+ string.substr(index + replacement.length);
