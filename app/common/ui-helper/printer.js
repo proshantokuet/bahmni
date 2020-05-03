@@ -8,7 +8,9 @@ angular.module('bahmni.common.uiHelper')
                 var hiddenFrame = $('<iframe style="visibility: hidden"></iframe>').appendTo('body')[0];
                 hiddenFrame.contentWindow.printAndRemove = function () {
                     var date = new Date();
-                    hiddenFrame.contentWindow.window.parent.document.title = patient.name + " " + patient.identifier + "_" + date.getDate()+ "-" + date.getMonth()+ "-" + date.getFullYear();
+                    if(patient) {
+                        hiddenFrame.contentWindow.window.parent.document.title = patient.name + " " + patient.identifier + "_" + date.getDate()+ "-" + date.getMonth()+ "-" + date.getFullYear();
+                    }
                     hiddenFrame.contentWindow.print();
                     $(hiddenFrame).remove();
                     deferred.resolve();
