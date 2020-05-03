@@ -78,6 +78,13 @@ angular.module('bahmni.common.patient')
             });
         };
 
+        this.getEslipNo = function (clinicCode) {
+            return $http.get(Bahmni.Common.Constants.getEslipNo + "/" + clinicCode, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
+
         this.search = function (query, offset, identifier) {
             offset = offset || 0;
             return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {
