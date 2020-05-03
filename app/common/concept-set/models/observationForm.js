@@ -101,7 +101,7 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (age > Bahmni.Common.Constants.lessThanTwoMonths && age <= Bahmni.Common.Constants.zeroToFiveYearsInDay && formName == Bahmni.Common.Constants.lessThanFiveYearsChildrenFormName) {
             return true;
-        } else if (age > Bahmni.Common.Constants.moreThanElevenYears && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.obstetricFormName && pregnancyStatus == "Pregnancy Enrollment") {
+        } else if (age > Bahmni.Common.Constants.moreThanElevenYears && gender == Bahmni.Common.Constants.female && formName == Bahmni.Common.Constants.obstetricFormName) {
             return true;
         } else if (age >= Bahmni.Common.Constants.moreThanElevenYears && age <= Bahmni.Common.Constants.FourtyNineYearsInDay  && gender == Bahmni.Common.Constants.female && pregnancyStatus == "Pregnancy Enrollment" && formName == Bahmni.Common.Constants.antenatalFormName) {
             return true;
@@ -144,6 +144,8 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         } else if (formName == Bahmni.Common.Constants.inwardReferralFomrName) {
             return true;
         } else if (formName == Bahmni.Common.Constants.outwardReferralFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.followupFormName) {
             return true;
         }
 

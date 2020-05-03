@@ -305,11 +305,8 @@ Bahmni.Common = Bahmni.Common || {};
         dischargeCertificateFormName: 'Discharge Certificate',
         FourtyNineYearsInDay:17885,
         moreThanFifteenYears: 5475,
-        zeroToNineteenYearsInDay: 6935
-
-
-
-
+        zeroToNineteenYearsInDay: 6935,
+        followupFormName: "Follow up"
 
     };
 })();

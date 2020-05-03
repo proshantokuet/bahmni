@@ -180,6 +180,7 @@ angular.module('authentication')
                          $rootScope.currentUser.favouriteObsTemplates[21] = "Discharge Certificate";
                          $rootScope.currentUser.favouriteObsTemplates[22] = "Inward Referral";
                          $rootScope.currentUser.favouriteObsTemplates[23] = "Outward Referral";
+                         $rootScope.currentUser.favouriteObsTemplates[24] = "Follow up";
                         for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
                             if ($rootScope.currentUser.privileges[i].name == "Has CRO Roles") {
                                 $rootScope.currentUser.roles = "CRO";
