@@ -33,6 +33,9 @@
         <!--</ul>-->
 
         <div class="dashboard-header-right-wrapper">
+            <!--<select style="padding-top: 5px; padding-bottom: 5px;margin-top: 10px;" ng-model="printModel" ng-options="itm as itm.label for itm in printOptions"  ng-required="true"><option ng-option value="">Select Print Type</option></select>-->
+            <!--<button  ng-if="showPrint()" ng-click="print()" accesskey="{{'CLINICAL_PRINT_ACCESS_KEY'| translate}}" ng-bind-html="'CLINICAL_PRINT_TRANSLATION_KEY'|translate">-->
+                <!--<i class="fa fa-print"></i>-->
             <button class="dialog-button-group" ng-if="showPrint()" ng-click="print()" accesskey="{{'CLINICAL_PRINT_ACCESS_KEY'| translate}}" ng-bind-html="'CLINICAL_PRINT_TRANSLATION_KEY'|translate">
                 <i class="fa fa-print"></i>
 

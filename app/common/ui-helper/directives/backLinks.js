@@ -30,12 +30,17 @@ angular.module('bahmni.common.uiHelper')
                      backlinkService.setUrls(state.data.backLinks);
                      $scope.backLinks = backlinkService.getAllUrls();
                      angular.forEach($scope.backLinks, function (data) {
+                         debugger;
                          if (data.id == 'homeBackLink') {
                              data.title = "Bahmni Home";
                          }
                          if (data.id == 'adtHomeBackLink') {
                              data.title = "ADT Home";
                          }
+                         if(data.label = "Home") {
+                             data.label = "";
+                         }
+
                      });
                  }
              });

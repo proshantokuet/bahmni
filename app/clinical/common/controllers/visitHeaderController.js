@@ -20,6 +20,16 @@ angular.module('bahmni.clinical')
                 }
             };
 
+            $scope.printOptions =[
+                {"id": 1, "label": "Prescription", "url": ""},
+                {"id": 2, "label": "Discharge Certificate", "url": ""},
+                {"id": 3, "label": "Birth Certificate", "url": ""},
+
+            ];
+
+            $scope.changePrint = function (printItem) {
+            };
+
             $scope.openConsultation = function () {
                 var board = clinicalAppConfigService.getAllConsultationBoards()[0];
                 var urlPrefix = urlHelper.getPatientUrl();
