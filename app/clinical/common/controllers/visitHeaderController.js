@@ -22,8 +22,8 @@ angular.module('bahmni.clinical')
 
             $scope.printOptions =[
                 {"id": 1, "label": "Prescription", "url": ""},
-                {"id": 2, "label": "Discharge Certificate", "url": ""},
-                {"id": 3, "label": "Birth Certificate", "url": ""},
+                {"id": 2, "label": "Discharge Certificate", "url": "common/views/dischargeSummaryPrintPdf.html"},
+                {"id": 3, "label": "Birth Certificate", "url": "common/views/birthCertificatePrintPdf.html"},
 
             ];
 
@@ -60,7 +60,8 @@ angular.module('bahmni.clinical')
                 $rootScope.$broadcast("event:clearVisitBoard", tab);
             };
 
-            $scope.print = function () {
+            $scope.print = function (printType) {
+                $scope.visitTabConfig.currentTab.printType = printType;
                 $rootScope.$broadcast("event:printVisitTab", $scope.visitTabConfig.currentTab);
             };
 

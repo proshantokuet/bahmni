@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Discharge Certificate</title>
+<style>
+td {
+	padding: 10px;
+}
+</style>
+</head>
+
+<body>
+<table width="1024" border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td align="center"  valign="top"><img src="./../images/logo.png" width="" height=""  alt=""/></td>
+  </tr>
+  <tr>
+    <td align="center"  valign="top"><h1 style="margin:1px;">Discharge Certificate</h1></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td width="19%" style="border-right:1px dashed #000000;"> Registration No: </td>
+          <td width="32%" style="border-right:1px dashed #000000;">&nbsp;{{patient.identifier}}</td>
+          <td width="9%" style="border-right:1px dashed #000000;"> Date:</td>
+          <td width="40%">{{currentDate | date : "dd/MM/yyyy"}}</td>
+        </tr>
+        <tr>
+          <td width="19%" style="border-right:1px dashed #000000; border-top:1px dashed #000000;"> Clinic name:</td>
+          <td width="32%" style="border-right:1px dashed #000000; border-top:1px dashed #000000;">{{patient.ClinicName.value}}&nbsp;</td>
+          <td width="9%" style="border-right:1px dashed #000000; border-top:1px dashed #000000;">&nbsp;</td>
+          <td width="40%" style="border-top:1px dashed #000000;">&nbsp;</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td style="line-height: 30px;">Client name:  {{patient.name}}</td>
+            <td style="line-height: 30px;">Age: {{ageCalculate}}</td>
+            <td style="line-height: 30px;" ng-if="patient.gender == 'M'">Gender: Male</td>
+            <td style="line-height: 30px;" ng-if="patient.gender == 'F'">Gender: Female</td>
+        </tr>
+       <tr>
+          <td style="line-height: 30px;">Address: {{address(patient.address)}}</td>
+        </tr>
+        <tr>
+          <td style="line-height: 30px;">Date of Admission:  {{dateConversion(dischargeDataList['Admission Date']) | date : "dd/MM/yyyy"}}</td>
+	      <td style="line-height: 30px;">Date of Discharge: {{dateConversion(dischargeDataList['Discharge Date']) | date : "dd/MM/yyyy"}}</td>
+        </tr>
+         <tr>
+          <td style="line-height: 30px;">Name of the Doctor:  {{dischargeDataList['Name of Doctor']}}</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td style="padding-bottom: 0px;"><h3 style="margin:2px;">Diagnosis:</h3></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #c1c1c1;">
+              <tr>
+                <td>&nbsp;{{dischargeDataList['Diagnosis']}}</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td style="padding-bottom: 0px;"><h3 style="margin:2px;">Laboratory Tests:</h3></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #c1c1c1;">
+              <tr>
+                <td>&nbsp;{{dischargeDataList['Lab Test']}}</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td style="padding-bottom: 0px;"><h3 style="margin:2px;">Medications provided while admitted:</h3></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #c1c1c1;">
+              <tr>
+                <td>&nbsp;{{dischargeDataList['Medication']}}</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td style="padding-bottom: 0px;"><h3 style="margin:2px;">Delivery Information:</h3></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #c1c1c1;">
+              <tr>
+                <td>&nbsp;{{dischargeDataList['Delivery Description']}}</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td style="padding-bottom: 0px;"><h3 style="margin:2px;">OT Note:</h3></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #c1c1c1;">
+              <tr>
+                <td><ul style="margin: 0;padding-inline-start: 23px;line-height: 30px;">
+                    <li>Date and Time : {{dateConversion(dischargeDataList['Operation Datetime']) |  date : "dd/MM/yyyy h:mm a"}}</li>
+                    <li>Indication : {{dischargeDataList['Reason']}}</li>
+                    <li>Procedure : {{dischargeDataList['Surgery Procedure']}}</li>
+                  </ul></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td style="padding-bottom: 0px;"><h3 style="margin:2px;">Newborn Information:</h3></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #c1c1c1;">
+              <tr>
+                <td><ul style="margin: 0;padding-inline-start: 23px;line-height: 30px;">
+                    <li>Date and Time : {{dateConversion(dischargeDataList['Datetime']) |  date : "dd/MM/yyyy h:mm a"}}</li>
+                    <li>Gender : {{dischargeDataList['Gender']}}</li>
+                    <li>Birth weight : {{dischargeDataList['Weight (kg)']}}</li>
+                  </ul></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+    <tr>
+        <td>
+            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="35%"><img src="./../images/blank-discharge.png" width="1" height="1" alt=""/></td>
+                    <td width="23%"><img src="./../images/blank-discharge.png" width="1" height="1" alt=""/></td>
+                </tr>
+                <tr>
+                    <td width="35%"><img src="./../images/blank-discharge.png" width="1" height="1" alt=""/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td style="padding-bottom: 0px;"><h3 style="margin:2px;">Follow-up Medications:</h3></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #c1c1c1;">
+              <tr>
+                <td>&nbsp;{{dischargeDataList['Follow Up Medication']}}</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td style="padding-bottom: 0px;"><h3 style="margin:2px;">Guidance</h3></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td><ul style="margin: 0;padding-inline-start: 23px;line-height: 30px;">
+                    <li>শিশুকে ৬মাস পর্যন্ত শুধুমাত্র বুকের দুধ খাওয়াবেন।</li>
+                    <li>শিশুর বয়স ৬ মাস পূর্ণ হলে মায়ের দুধের পাশাপাশি ঘরে তৈরি সুষম খাবার পরিমানমত খাওয়াবেন।</li>
+                    <li>শিশুকে সকালের রোদে নিবেন </li>
+                    <li>দেড় মাস বয়স থেকে শিশুকে নিয়মিত টীকা দিবেন।</li>
+                    <li>সঠিক সময় ও নিয়ম অনুযায়ী ঔষধ খাবেন।</li>
+                    <li>দেড় মাস সহবাস ও ভারী কাজ করা নিষেধ </li>
+                    <li>_ _ _ _ _ _ _ _ দিন পর চেকআপ এ আসবেন।</li>
+                    <li>৪২ দিনের মধ্যে প্রসূতি মা কে ১টি ভিটামিন এ ক্যাপসুল খেতে হবে।</li>
+                    <li>নিয়মিত চেকআপ করাবেন।</li>
+                    <li>দেড় মাস পর হতে জন্ম নিয়ন্ত্রণের ব্যবস্থা নিবেন </li>
+                  </ul></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td width="35%" style="border-right:1px dashed #000000; padding-top: 30px;"><img src="./../images/blank-discharge.png" width="1" height="1"  alt=""/></td>
+          <td width="23%" style="border-right:1px dashed #000000; padding-top: 30px;"><img src="./../images/blank-discharge.png" width="1" height="1"  alt=""/></td>
+          <td width="42%" style=" padding-top: 30px;"><span style="border-top: 1px dashed #000000">Signature of Clinic Manager</span></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td><img src="./../images/blank-discharge.png" width="1" height="1"  alt=""/></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1px dashed #000000;">
+        <tr>
+          <td width="35%" style="border-right:1px dashed #000000;"><img src="./../images/usaid.png" width="139" height="41"  alt=""/></td>
+          <td width="23%" style="border-right:1px dashed #000000;"><img src="./../images/blank-discharge.png" width="1" height="1"  alt=""/></td>
+          <td width="42%" align="right" style="border-right:1px dashed #000000;"><img src="./../images/shurjerhashi.png" width="252" height="41"  alt=""/></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body>
+</html>

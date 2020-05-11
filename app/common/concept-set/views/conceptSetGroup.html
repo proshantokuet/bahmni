@@ -646,7 +646,7 @@
     </table></td>
   </tr>
   <tr class="displayNone">
-    <td colspan="2" align="left" valign="top"  style="padding:5px 0 1px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
+    <td colspan="2" align="left" valign="top"  style="padding:5px 0 1px 8px;"><img src="./../images/blank.png" width="1" height="20" /></td>
   </tr>
   <tr class="displayNone">
     <td colspan="2" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -742,37 +742,37 @@
 <!--</div>-->
 
     <section class="concept-set-panel-right">
-        <table class="table-bordered table-hover" ng-if="listOfChildInformation.length > 0">
-            <p ng-if="listOfChildInformation.length > 0" style="padding: 10px;"><strong>Children's Information:</strong></p>
-            <colgroup style="background-color: #ccc;"></colgroup>
-            <colgroup></colgroup>
-            <colgroup span="4"></colgroup>
-            <tr>
-                <th rowspan="2">Outcome No</th>
-                <th rowspan="2">Result</th>
-                <th rowspan="2">Outcome Date</th>
-                <th rowspan="2">Complications</th>
-                <th rowspan="2">Type of Delivery</th>
-                <th style="text-align: center" colspan="4">Live Birth Baby</th>
-            </tr>
-            <tr>
-                <th>sex</th>
-                <th>weight</th>
-                <th>vaccine</th>
-                <th>Last Health Status</th>
-            </tr>
-            <tr ng-repeat="child in listOfChildInformation">
-                <td>{{child.outcomeNo}}</td>
-                <td>{{child.result}}</td>
-                <td>{{child.outcomeDate | date}}</td>
-                <td>{{child.complications}}</td>
-                <td>{{child.typeOfDelivery}}</td>
-                <td>{{child.sex}}</td>
-                <td>{{child.birthWeight}}</td>
-                <td>{{child.vaccine}}</td>
-                <td>{{child.healthStatus}}</td>
-            </tr>
-        </table>
+        <!--<table class="table-bordered table-hover" ng-if="listOfChildInformation.length > 0">-->
+            <!--<p ng-if="listOfChildInformation.length > 0" style="padding: 10px;"><strong>Children's Information:</strong></p>-->
+            <!--<colgroup style="background-color: #ccc;"></colgroup>-->
+            <!--<colgroup></colgroup>-->
+            <!--<colgroup span="4"></colgroup>-->
+            <!--<tr>-->
+                <!--<th rowspan="2">Outcome No</th>-->
+                <!--<th rowspan="2">Result</th>-->
+                <!--<th rowspan="2">Outcome Date</th>-->
+                <!--<th rowspan="2">Complications</th>-->
+                <!--<th rowspan="2">Type of Delivery</th>-->
+                <!--<th style="text-align: center" colspan="4">Live Birth Baby</th>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th>sex</th>-->
+                <!--<th>weight</th>-->
+                <!--<th>vaccine</th>-->
+                <!--<th>Last Health Status</th>-->
+            <!--</tr>-->
+            <!--<tr ng-repeat="child in listOfChildInformation">-->
+                <!--<td>{{child.outcomeNo}}</td>-->
+                <!--<td>{{child.result}}</td>-->
+                <!--<td>{{child.outcomeDate | date}}</td>-->
+                <!--<td>{{child.complications}}</td>-->
+                <!--<td>{{child.typeOfDelivery}}</td>-->
+                <!--<td>{{child.sex}}</td>-->
+                <!--<td>{{child.birthWeight}}</td>-->
+                <!--<td>{{child.vaccine}}</td>-->
+                <!--<td>{{child.healthStatus}}</td>-->
+            <!--</tr>-->
+        <!--</table>-->
 
         <h4 style="color: white;padding: 10px;background-color: #52797a;">Visit History</h4>
         <p ng-show="emptyVisitsData">No Visits Available</p>

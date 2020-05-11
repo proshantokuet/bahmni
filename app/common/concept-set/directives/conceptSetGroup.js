@@ -134,7 +134,10 @@ angular.module('bahmni.common.conceptSet')
                 }
             }
             else {
-                $scope.context.visitType = $stateParams.visitTypeParams;
+                if ($stateParams.visitTypeParams) {
+                    $rootScope.visitTypeName = $stateParams.visitTypeParams;
+                }
+                $scope.context.visitType = $stateParams.visitTypeParams != undefined ? $stateParams.visitTypeParams : $rootScope.visitTypeName;
             }
             if (param1.createMoneyReceipt != undefined) {
                 $scope.money = true;

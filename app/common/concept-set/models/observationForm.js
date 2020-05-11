@@ -2,7 +2,7 @@
 
 Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observations, extension) {
     var self = this;
-
+    var dateUtil = Bahmni.Common.Util.DateUtil;
     var init = function () {
         self.formUuid = formUuid;
         self.formVersion = formVersion;
@@ -51,11 +51,15 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
     };
 
     self.formValidation = function (context, conceptSet) {
-        var today = new Date();
+        //var today = new Date();
         // for age calculation
+        // var dob = new Date(context.patient.birthdate);
+        // var timeDiff = Math.abs(today.getTime() - dob.getTime());
+        // var age = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
         var dob = new Date(context.patient.birthdate);
-        var timeDiff = Math.abs(today.getTime() - dob.getTime());
-        var age = Math.ceil(timeDiff / (1000 * 3600 * 24)) - 1;
+        var today = dateUtil.now();
+        var timeDiff = dateUtil.diffInYearsMonthsDays(dob, today);
+        var age = (timeDiff.years * 365) + (timeDiff.months * 30) + timeDiff.days;
 
         var gender = context.patient.gender;
 
@@ -78,8 +82,10 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         var deliveryDayDifference = "";
         if (typeof context.patient.Delivery_Date !== "undefined") {
             var deliveryDate = new Date(context.patient.Delivery_Date.value);
-            var deliveryDateDifference = Math.abs(today.getTime() - deliveryDate.getTime());
-            deliveryDayDifference = Math.ceil(deliveryDateDifference / (1000 * 3600 * 24)) - 1;
+            var timeDiffDelivery = dateUtil.diffInYearsMonthsDays(deliveryDate, today);
+            deliveryDayDifference = (timeDiffDelivery.years * 365) + (timeDiffDelivery.months * 30) + timeDiffDelivery.days;
+            // var deliveryDateDifference = Math.abs(today.getTime() - deliveryDate.getTime());
+            // deliveryDayDifference = Math.ceil(deliveryDateDifference / (1000 * 3600 * 24)) - 1;
         }
 
         // Checking marital status

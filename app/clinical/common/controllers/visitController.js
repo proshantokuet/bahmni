@@ -50,11 +50,26 @@ angular.module('bahmni.clinical')
             $scope.displayDate = function (date) {
                 return moment(date).format("DD-MMM-YY");
             };
+            $scope.dateConversion = function(date) {
+                return new Date(date);
+            };
+            $scope.$on("event:printVisitTab", function (event,args) {
+                if (args.printType.label == "Discharge Certificate") {
+                    printer.printFromScope(args.printType.url, $scope, function () {
+                        window.location.reload();
+                    });
+                }
+                else if (args.printType.label == "Birth Certificate") {
+                    printer.printFromScope(args.printType.url, $scope, function () {
+                        window.location.reload();
+                    });
+                }
+                else {
+                    printer.printFromScope("common/views/visitTabPrint.html", $scope, function () {
+                        window.location.reload();
+                    });
+                }
 
-            $scope.$on("event:printVisitTab", function () {
-                printer.printFromScope("common/views/visitTabPrint.html", $scope, function () {
-                    window.location.reload();
-                });
             });
 
             $scope.$on("event:clearVisitBoard", function () {
@@ -68,6 +83,22 @@ angular.module('bahmni.clinical')
                 $state.go('patient.dashboard.visit', {visitUuid: visitUuid});
             };
 
+            $scope.getDischargeInformation = function () {
+                if($scope.visitUuid && $scope.patientUuid) {
+                     encounterService.getDischargeInfo($scope.visitUuid, $scope.patientUuid).then(function (response) {
+                         $scope.dischargeDataList = response.data;
+                     });
+                }
+            };
+
+            $scope.getBirthInformation = function () {
+                if ($scope.visitUuid && $scope.patientUuid) {
+                    encounterService.getBirthInfo($scope.visitUuid, $scope.patientUuid).then(function (response) {
+                        $scope.birhDataList = response.data;
+                    });
+                }
+            };
+
             var printOnPrint = function () {
                 if ($stateParams.print) {
                     printer.printFromScope("common/views/visitTabPrint.html", $scope, function () {
@@ -75,6 +106,43 @@ angular.module('bahmni.clinical')
                     });
                 }
             };
+            $scope.address = function (address) {
+                var addresLine = "";
+                var stateProvince = "";
+                var countyDistrict = "";
+                var address3 = "";
+                var cityVillage = "";
+                var address2 = "";
+                var address1 = "";
+                if (!address.isEmpty) {
+                    /* if (address.stateProvince != undelined) {
+                     stateProvince = address.stateProvince;
+                     addresLine += stateProvince + ", ";
+                     } */
+                    if (address.address1 != undefined) {
+                        address1 = address.address1;
+                        addresLine += address1;
+                    }
+                    if (address.address2 != undefined) {
+                        address2 = address.address2;
+                        addresLine += address2 + ", ";
+                    }
+                    if (address.cityVillage != undefined) {
+                        cityVillage = address.cityVillage;
+                        addresLine += cityVillage + ", ";
+                    }
+                    /* if (address.countyDistrict != undefined) {
+                     countyDistrict = address.countyDistrict;
+                     addresLine += countyDistrict + ",";
+                     } */
+                    if (address.address3 != undefined) {
+                        address3 = address.address3;
+                        addresLine += address3;
+                    }
+                    return addresLine;
+                }
+            };
+
             $scope.obj = {
                     "type": "order",
                     "displayOrder": 3,
@@ -111,8 +179,11 @@ angular.module('bahmni.clinical')
                     var ages = age.fromBirthDate($scope.patient.birthdate);
                     $scope.ageCalculate =  ages.years + " Y " + ages.months + " M " + ages.days + " D";
                 }
+                //$scope.addressString = $scope.address($scope.patient.address);
                 $scope.currentDate = new Date();
                 printOnPrint();
+                $scope.getDischargeInformation();
+                $scope.getBirthInformation();
             };
             init();
         }]);
