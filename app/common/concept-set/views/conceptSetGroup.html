@@ -96,7 +96,7 @@
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-attribute">
-                                                    <label>Slip No<span class="asterick">*</span></label>
+                                                    <label>Slip No</label>
                                                 </div>
                                             </article>
                                         </td>
@@ -104,7 +104,7 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input ng-model="patientInfo.slipNo" name ="slipno" type="text" ng-pattern="/^[\d-]+$/" ng-required="true" autofocus ng-readonly="makeSlipNoReadOnly"/>
+                                                        <input ng-model="patientInfo.slipNo" name ="slipno" type="text" ng-pattern="/^[\d-]+$/" ng-required="false" autofocus ng-readonly="makeSlipNoReadOnly"/>
                                                     </div>
                                                     <span class="asterick" ng-show="myForm.slipno.$error.pattern">Should not contain characters and whitespace(Ex. 99-99)</span>
                                                 </div>

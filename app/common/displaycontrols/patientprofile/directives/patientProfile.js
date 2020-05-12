@@ -257,6 +257,12 @@
                                         .search(this.value)
                                         .draw();
                                 });
+                                angular.element("#search-eslip").on('keyup', function () {
+                                    table
+                                        .column(2)
+                                        .search(this.value)
+                                        .draw();
+                                });
                             }, 1000);
                         });
                     };
