@@ -140,6 +140,10 @@
                       Health ID
                   </td>
                   <td style="padding:10px 10px 10px 8px;">{{patient.identifier}}</td>
+                  <td align="left" valign="top" style="padding:10px 10px 10px 8px;">
+                      E-slip No
+                  </td>
+                  <td style="padding:10px 10px 10px 8px;">{{servicesBySlip[0].eslipNo}}</td>
               </tr>
               <tr>
           </table>
@@ -311,8 +315,9 @@
                             <thead>
 
                                 <tr>
-                                    <th>&nbsp;</th>
+
                                     <th colspan="2" align="left" valign="top">Slip No:<input style="margin-left: 8px;" type="text" id="search-date" placeholder="search by slipNo"></th>
+                                    <th colspan="2" align="left" valign="top">E-Slip No:<input style="margin-left: 8px;" type="text" id="search-eslip" placeholder="search by E-slipNo"></th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
@@ -326,6 +331,7 @@
                                 <tr>
                                     <th>Date</th>
                                     <th>Slip No</th>
+                                    <th>E-Slip No</th>
                                     <th>Code</th>
                                     <th>Service Name</th>
                                   <!--  <th>Description</th>-->
@@ -334,7 +340,7 @@
                                     <th>Total Amount</th>
                                     <th>Discount</th>
                                     <th>Net Payable Amount</th>
-                                    <th style="text-align: center" colspan="2">Action</th>
+                                    <th style="text-align: center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -342,6 +348,7 @@
                                <tr ng-repeat="service in services track by $index | orderBy: '-moneyReceiptDate'">
                                     <td><span ng-hide="true">{{service.moneyReceiptDate}}</span>{{dateTOString(service.moneyReceiptDate) | date:'dd/MM/yyyy'}}</td>
                                     <td>{{service.slipNo}} </td>
+                                   <td>{{service.eslipNo}} </td>
                                      <td>{{service.code}} </td>
                                     <td>{{service.item}} </td>
                                    <!-- <td>{{service.description}} </td>-->
@@ -350,7 +357,7 @@
                                     <td>{{service.totalAmount}} </td>
                                     <td> {{service.discount}}</td>
                                     <td>{{service.netPayable}} </td>
-                                    <td ng-hide="services[$index-1].slipNo == service.slipNo && services[$index-1].moneyReceiptDate == service.moneyReceiptDate"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.slipNo, service.moneyReceiptDate)"><i class='fa fa-print'></i>Print preview</button>
+                                    <td ng-hide="services[$index-1].mid == service.mid && services[$index-1].moneyReceiptDate == service.moneyReceiptDate"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.slipNo, service.moneyReceiptDate)"><i class='fa fa-print'></i>Print preview</button>
                                     <button ng-if="service.isComplete==0 && service.validMoneyReceiptHolder"style="padding:5px 9px 8px" ng-click="editMoneyReceipt(service.slipNo, service.moneyReceiptDate)"> <i class='fa fa-edit'></i>Edit</button>
                                     </td>
                                 </tr>
@@ -362,38 +369,33 @@
 <script type="text/javascript">
 
 //var $jq = jQuery.noConflict();
-setTimeout(function(){
-    $(document).ready(function() {
-        /* var qr = window.qr = new QRious({
-          element: document.getElementById('qrious'),
-          size: 150,
-          value: document.getElementById("qrvalue").value
-        });*/
 
+$(document).ready(function () {
+    setTimeout(function () {
         JsBarcode(".barcode").init();
-	    var table = $('#table_id').DataTable({
-           language: {
-           emptyTable: "no service available", //
-           loadingRecords: "Please wait .. ", // default Loading...
-           zeroRecords: "No matching service found"
-          },
-          bFilter: true,
-          bInfo: false,
-          "order": [[ 0, "desc" ]]
-        }
-        );
+//        var table = $('#table_id').DataTable({
+//                language: {
+//                    emptyTable: "no service available", //
+//                    loadingRecords: "Please wait .. ", // default Loading...
+//                    zeroRecords: "No matching service found"
+//                },
+//                bFilter: true,
+//                bInfo: false,
+//                "order": [[0, "desc"]]
+//            }
+//        );
 
-        $('#search-date').on('keyup', function(){
-        table
-        .column(1)
-        .search(this.value)
-        .draw();
-      });
+//        $('#search-date').on('keyup', function () {
+//            table
+//                .column(1)
+//                .search(this.value)
+//                .draw();
+//        });
 
+    }, 2000);
 
+});
 
-    } );
-}, 2000);
 
 </script>
     <style>
