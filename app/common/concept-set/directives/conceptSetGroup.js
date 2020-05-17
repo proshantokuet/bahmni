@@ -419,6 +419,13 @@ angular.module('bahmni.common.conceptSet')
                         if (data.code.category == 'Lab Services') {
                             labString = labString + data.code.code + ",";
                         }
+
+                        if (data.code.code == 'LB13') {
+                            labString = labString + "Blood Group Patient" + ",";
+                        }
+                        if (data.code.code == 'LB39') {
+                            labString = labString + "Urine PregnancyTest" + ",";
+                        }
                     });
                     labString = labString.replace(/,\s*$/, "");
                     if (labString != null && labString != "") {
