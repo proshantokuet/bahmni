@@ -10,6 +10,6 @@
 </div>
 <div  ng-show="patientProgram.editing" class="programEditing">
     <article class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-if="isIncluded(attributeType)">
-        <attribute-types target-model="patientProgram.patientProgramAttributes" attribute="attributeType"></attribute-types>
+        <attribute-types target-model="patientProgram.patientProgramAttributes" handle-update="handleUpdate" is-read-only="isReadOnly" attribute="attributeType"></attribute-types>
     </article>
 </div>
