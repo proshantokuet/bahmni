@@ -330,9 +330,9 @@
                             <thead>
 
                                 <tr>
-                                    <th>&nbsp;</th>
+
                                     <th colspan="2" align="left" valign="top">Slip No:<input style="margin-left: 8px;" type="text" id="search-date" placeholder="search by slipNo"></th>
-                                    <th>&nbsp;</th>
+                                    <th colspan="2" align="left" valign="top">E-Slip No:<input style="margin-left: 8px;" type="text" id="search-eslip" placeholder="search by E-slipNo"></th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
@@ -355,7 +355,7 @@
                                     <th>Total Amount</th>
                                     <th>Discount</th>
                                     <th>Net Payable Amount</th>
-                                    <th style="text-align: center" colspan="2">Action</th>
+                                    <th style="text-align: center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -372,7 +372,7 @@
                                     <td>{{service.totalAmount}} </td>
                                     <td> {{service.discount}}</td>
                                     <td>{{service.netPayable}} </td>
-                                    <td ng-hide="services[$index-1].slipNo == service.slipNo && services[$index-1].moneyReceiptDate == service.moneyReceiptDate"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.slipNo, service.moneyReceiptDate)"><i class='fa fa-print'></i>Print preview</button>
+                                    <td ng-hide="services[$index-1].mid == service.mid && services[$index-1].moneyReceiptDate == service.moneyReceiptDate"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.slipNo, service.moneyReceiptDate)"><i class='fa fa-print'></i>Print preview</button>
                                     <button ng-if="service.isComplete==0 && service.validMoneyReceiptHolder"style="padding:5px 9px 8px" ng-click="editMoneyReceipt(service.slipNo, service.moneyReceiptDate)"> <i class='fa fa-edit'></i>Edit</button>
                                     </td>
                                 </tr>

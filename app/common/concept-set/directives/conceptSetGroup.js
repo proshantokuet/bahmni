@@ -453,7 +453,7 @@ angular.module('bahmni.common.conceptSet')
             $scope.test = "true";
 
             $scope.submitMoneyReceiptData = function (patientInfo, services, patient, savingStatus) {
-                if (!patientInfo.mid) {
+                if (!patientInfo.mid && patientInfo.slipNo) {
                     $scope.checkExistingMoneyAvailable(patientInfo.slipNo, patientInfo.moneyReceiptDate).then(function (result) {
                         if (result.data == true) {
                             messagingService.showMessage("error", "Money Receipt with this slip no is already exist");
