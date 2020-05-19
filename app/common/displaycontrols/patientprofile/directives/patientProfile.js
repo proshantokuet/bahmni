@@ -108,7 +108,7 @@
                         $scope.servicesBySlip = $scope.services.filter(function (service) {
                             var moneyReceiptDateOfIterator = new Date(service.moneyReceiptDate);
                             var selectedMoneyReceiptDate = new Date(moneyRceiptDate);
-                            return service.slipNo == id && moneyReceiptDateOfIterator.getYear() ==  selectedMoneyReceiptDate.getYear();
+                            return service.mid == id;
                         });
                         $scope.Dialog = ngDialog.open({
                             templateUrl: 'dialog',
@@ -307,8 +307,8 @@
                             }, 1000);
                         });
                     };
-                    $scope.editMoneyReceipt = function (id, moneyRceiptDate) {
-                        if (id == undefined) {
+                    $scope.editMoneyReceipt = function (mid) {
+                        if (mid == undefined) {
                             $state.go('patient.dashboard.show.observations', {
                                 conceptSetGroupName: 'observations',
                                 previousUrl: 'moneyreceipt'
@@ -316,9 +316,7 @@
                         }
                         else {
                             var filteringServicesBySlip = $scope.services.filter(function (service) {
-                                var moneyReceiptDateOfIterator = new Date(service.moneyReceiptDate);
-                                var selectedMoneyReceiptDate = new Date(moneyRceiptDate);
-                                return service.slipNo == id && moneyReceiptDateOfIterator.getYear() ==  selectedMoneyReceiptDate.getYear();
+                                return service.mid == mid;
                             });
                             $scope.restrictInactiveServicePreview(filteringServicesBySlip);
                             // if ($scope.inactiveServiceAvailable) {
