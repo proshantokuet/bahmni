@@ -236,6 +236,24 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 }
             };
 
+            // $scope.saveWithConfirmation = function () {
+            //     debugger;
+            //     if(!$scope.isSavingWithoutFollowUpForm()) {
+            //         return ngDialog.openConfirm({
+            //             scope: $scope,
+            //             template: '../common/ui-helper/views/saveConfirmation.html'
+            //         }).then(function (confirm) {
+            //             $scope.save();
+            //         }, function (reject) {
+            //             return $q.when({});
+            //         });
+            //     }
+            //     else {
+            //         return $scope.save();
+            //     }
+            //
+            // };
+
             var cleanUpListenerStateChangeSuccess = $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
                 if (toState.name.match(/patient.dashboard.show.+/)) {
                     $rootScope.hasVisitedConsultation = true;
@@ -462,6 +480,40 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 return valid;
             };
 
+            $scope.isSavingWithoutFollowUpForm = function () {
+                var valid = true;
+                if ($scope.consultation.observations.length < 1) {
+                    _.each($scope.consultation.observationForms, function (observationForm) {
+                        if (observationForm.formName == 'Follow up') {
+                            if (!observationForm.component) {
+                                valid = false;
+                                var confirmed = $window.confirm($translate.instant("CONFIRM_SAVE_WITHOUT_FOLLOW_UP"));
+                                if (confirmed) {
+                                    valid = true;
+                                }
+                                else {
+                                    valid = false;
+                                }
+                            }
+                            else if (observationForm.component) {
+                                var value = observationForm.component.getValue();
+                                if (value.observations.length < 1) {
+                                    valid = false;
+                                    var confirmed = $window.confirm($translate.instant("CONFIRM_SAVE_WITHOUT_FOLLOW_UP"));
+                                    if (confirmed) {
+                                        valid = true;
+                                    }
+                                    else {
+                                        valid = false;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+                return valid;
+            };
+
             var isFormValid = function () {
                 var contxChange = contextChange();
                 var shouldAllow = contxChange["allow"];
@@ -489,6 +541,10 @@ angular.module('bahmni.clinical').controller('ConsultationController',
 
             $scope.save = function (toStateConfig) {
                 if (!isFormValid()) {
+                    $scope.$parent.$parent.$broadcast("event:errorsOnForm");
+                    return $q.when({});
+                }
+                if(!$scope.isSavingWithoutFollowUpForm()) {
                     $scope.$parent.$parent.$broadcast("event:errorsOnForm");
                     return $q.when({});
                 }

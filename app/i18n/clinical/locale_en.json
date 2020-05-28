@@ -330,5 +330,6 @@
     "INVESTIGATIONS_SELECTIONS_HEADER_LABEL": "Selection",
     "CLINICAL_GO_TO_DASHBOARD_LABEL": "Go to IPD dashboard",
     "NO_FORM_FOUND_FOR_PATIENT": "No Form found for this patient",
-    "SUCCESSFULLY_SAVED_REFERRAL_FORM": "Saved Successfully"
+    "SUCCESSFULLY_SAVED_REFERRAL_FORM": "Saved Successfully",
+    "CONFIRM_SAVE_WITHOUT_FOLLOW_UP": "Are you sure you want to continue without filling follow-up information ?"
 }
