@@ -162,7 +162,7 @@ angular.module('authentication')
                          $rootScope.currentUser.favouriteObsTemplates[3] = "Antenatal Care";
                          $rootScope.currentUser.favouriteObsTemplates[4] = "Postnatal Care";
                          $rootScope.currentUser.favouriteObsTemplates[5] = "New Born Baby Care";
-                         $rootScope.currentUser.favouriteObsTemplates[6] = "LCC";
+                         $rootScope.currentUser.favouriteObsTemplates[6] = "Limited Curative Care";
                          $rootScope.currentUser.favouriteObsTemplates[7] = "Vaccination for Child";
                          $rootScope.currentUser.favouriteObsTemplates[8] = "Women Vaccination 15 to 49 Years old";
                          $rootScope.currentUser.favouriteObsTemplates[9] = "General Vaccination";

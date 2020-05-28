@@ -137,7 +137,7 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (formName == Bahmni.Common.Constants.generalVaccinationFormName) {
             return true;
-        } else if (formName == 'LCC') {
+        } else if (formName == 'Limited Curative Care') {
             return true;
         } else if (formName == 'First Aid') {
             return true;
