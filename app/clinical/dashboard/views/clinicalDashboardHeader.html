@@ -54,8 +54,8 @@
             <!--<div ng-if="!moneyreceiptPage">-->
                 <!--<button class="confirm save-consultation cancel" ng-if="visitHistory.activeVisit" ng-click="closeVisitIfDischarged()">Close Visit</button>-->
             <!--</div>-->
-            <div>
-                <button class="confirm save-consultation" ng-click="cancelServiceProviding()" style="background: #e9e8e8;border: #e9e8e8"><a >Cancel</a></button>
+            <div ng-if="!moneyreceiptPage">
+                <button class="confirm save-consultation" style="background: #e9e8e8;border: #e9e8e8"><a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY">Cancel</a></button>
             </div>
         </div>
     </div>
