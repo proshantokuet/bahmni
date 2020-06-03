@@ -93,7 +93,7 @@
         </section>
     </div>
 <script type="text/ng-template" id="dialog">
-    <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button  style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
+    <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button  ng-if="servicesBySlip[0].isComplete == 1" style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
 
     <div id="moneyReceiptBySlipNo">
   <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
@@ -263,7 +263,7 @@
             <td align="right" valign="top"  style="padding:10px 8px 10px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
           </tr>
           <tr>
-            <td colspan="8"align="left" valign="top"  style="padding:20px 10px 20px 8px;">In Words :  {{inwords(calTotalNetAmount())}}</td>
+            <td colspan="8"align="left" valign="top"  style="padding:20px 10px 20px 8px;">In Words (Taka):  {{inwords(calTotalNetAmount())}}</td>
           </tr>
 
     </table></td>
