@@ -143,8 +143,6 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (formName == Bahmni.Common.Constants.eyeCareFormName) {
             return true;
-        } else if (formName == Bahmni.Common.Constants.tbFormName) {
-            return true;
         } else if (formName == Bahmni.Common.Constants.dischargeCertificateFormName && context.visitType == "IPD") {
             return true;
         } else if (formName == Bahmni.Common.Constants.inwardReferralFomrName) {
@@ -152,6 +150,12 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
         } else if (formName == Bahmni.Common.Constants.outwardReferralFormName) {
             return true;
         } else if (formName == Bahmni.Common.Constants.followupFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.tbCaseFindingFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.tbDotsFormName) {
+            return true;
+        } else if (formName == Bahmni.Common.Constants.tbVerbalScreening) {
             return true;
         }
 

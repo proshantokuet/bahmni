@@ -169,8 +169,15 @@ angular.module('bahmni.common.displaycontrol.observation')
                             else if (obs.concept.shortName == "Obstetric History") {
                                 obs.formOrder = 3;
                             }
-                            else obs.formOrder = sortOrder + 1;
-                            sortOrder = sortOrder + 1;
+                            else if (obs.concept.shortName == "Follow up") {
+                                var orderLength = $scope.bahmniObservations[0].value.length;
+                                obs.formOrder = orderLength + 4;
+                            }
+                            else {
+                                obs.formOrder = sortOrder + 1;
+                                sortOrder = sortOrder + 1;
+                            }
+
                         });
                     }
                     $rootScope.tooglingVisitStart = undefined;

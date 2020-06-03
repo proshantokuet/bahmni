@@ -308,7 +308,10 @@ Bahmni.Common = Bahmni.Common || {};
         FourtyNineYearsInDay:17885,
         moreThanFifteenYears: 5475,
         zeroToNineteenYearsInDay: 6935,
-        followupFormName: "Follow up"
+        followupFormName: "Follow up",
+        tbCaseFindingFormName: "TB Case Finding",
+        tbDotsFormName: "TB DOTS",
+        tbVerbalScreening: "TB Verbal Screening and Referral"
 
     };
 })();
