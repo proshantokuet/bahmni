@@ -145,11 +145,11 @@ angular.module('bahmni.registration')
                 // patientService.fakecall().then(function (response) {
                 //     console.log($scope.patient);
                 // });
-                $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_self");
-                // patientService.updatePatientEntryDetails($scope.patient.uuid).then(function (result) {
-                //     if(result.patientUuid) {
-                //         $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_self");
-                //     }
-                // });
+                //$window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_self");
+                patientService.updatePatientEntryDetails($scope.patient.uuid).then(function (result) {
+                    if(result.patientUuid) {
+                        $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_self");
+                    }
+                });
             };
         }]);
