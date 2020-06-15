@@ -414,32 +414,28 @@ angular.module('bahmni.common.conceptSet')
 
             var saveMoneyReceipt = function (data) {
                 spinner.forPromise(patientService.saveMoneyReceipt(data).then(function (response) {
-                    var labString = "";
-                    angular.forEach($scope.services, function (data) {
-                        if (data.code.category == 'Lab Services') {
-                            labString = labString + data.code.code + ",";
-                        }
-
-                        if (data.code.code == 'LB13') {
-                            labString = labString + "Blood Group Patient" + ",";
-                        }
-                        if (data.code.code == 'LB39') {
-                            labString = labString + "Urine PregnancyTest" + ",";
-                        }
-                    });
-                    labString = labString.replace(/,\s*$/, "");
-                    if (labString != null && labString != "") {
-                        patientService.changePaymentStatusInOpenElis($scope.patient.identifier, labString).then(function (result) {
-                            if (result.data.response) {
-                                messagingService.showMessage("info", "Orders successfully sent to Lab");
+                    if (response.data) {
+                        var labString = "";
+                        angular.forEach($scope.services, function (data) {
+                            if (data.code.category == 'Lab Services') {
+                                labString = labString + data.code.name + ",";
                             }
-                            else messagingService.showMessage("error", "Something went wrong, please try again later");
                         });
+                        labString = labString.replace(/,\s*$/, "");
+                        if (labString != null && labString != "") {
+                            patientService.changePaymentStatusInOpenElis($scope.patient.identifier, labString).then(function (result) {
+                                if (result.data.response == "success") {
+                                    messagingService.showMessage("info", "Orders successfully sent to Lab");
+                                }
+                                else messagingService.showMessage("error", "Something went wrong, please try again later");
+                            });
+                        }
+                        $state.go("patient.dashboard.show", {
+                                patientUuid: $scope.patient.uuid
+                            }, {reload: true}
+                        );
                     }
-                    $state.go("patient.dashboard.show", {
-                            patientUuid: $scope.patient.uuid
-                        }, {reload: true}
-                    );
+
                 }));
             };
 

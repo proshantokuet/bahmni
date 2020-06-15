@@ -30,7 +30,7 @@
                                                                class="title-link">
                            <strong> Provide Service</strong>
                         </a></span>
-                            <span ng-if="activeVisit && currentUser == 'Doctor' && patient.gender == 'F' && patient.age >= 11 && patient.age < 49 || activeVisit && currentUser == 'Paramedic' && patient.gender == 'F' && patient.age >= 11 && patient.age < 49" style="padding-left:25px"><a ui-sref="patient.patientProgram.show" target="_self"
+                            <span ng-if="activeVisit && currentUser == 'Doctor' && patient.gender == 'F' && patient.age > 11 && patient.age < 49 || activeVisit && currentUser == 'Paramedic' && patient.gender == 'F' && patient.age >= 11 && patient.age < 49" style="padding-left:25px"><a ui-sref="patient.patientProgram.show" target="_self"
                                                                class="title-link">
                                 <strong>Program Enrollment</strong>
                         </a></span>
@@ -321,7 +321,7 @@
 
   </script>
 
-<div class="dashboard-patientInformation-section" ng-if="currentUser == 'CRO' || currentUser == 'Paramedic'">
+<div class="dashboard-patientInformation-section"">
     <div>
          <h3 style="background: #ddd;height:37px;padding-top: 6px;color: #000">Service history</h3>
     </div>

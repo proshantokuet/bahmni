@@ -67,13 +67,13 @@ table tr td {
                     </section>
                 </div>
             </div>
-            <!--<div ng-switch-when="diagnosis">-->
-                <!--<section ng-if="::section.config" class="block dashboard-section">-->
-                    <!--<bahmni-diagnosis patient-uuid="::section.config.patientUuid"-->
-                                      <!--config="::section.config" visit-uuid="::visitUuid" show-latest-diagnosis=-->
-                                              <!--"true"></bahmni-diagnosis>-->
-                <!--</section>-->
-            <!--</div>-->
+            <div ng-switch-when="diagnosis">
+                <section ng-if="::section.config && !isBeingPrinted" class="block dashboard-section">
+                    <bahmni-diagnosis patient-uuid="::section.config.patientUuid"
+                                      config="::section.config" visit-uuid="::visitUuid" show-latest-diagnosis=
+                                              "true"></bahmni-diagnosis>
+                </section>
+            </div>
             <!--<div ng-switch-when="pivotTable">-->
                 <!--<div ng-if="::section.config">-->
                     <!--<section pivot-table visit-uuid="::visitUuid" config="::section.config"-->
@@ -106,14 +106,18 @@ table tr td {
                 </div>
             </div>
 
-
             <div class="content-block" data-ng-switch-when="order">
                 <div class="content-block">
                     <orders-control visit-uuid="::visitUuid" patient="patient" section="section.config"
                                     order-type="section.config.orderType" config="section.config"
                                     show-title="true" section-title="section | titleTranslate"></orders-control>
                 </div>
-
+            </div>
+            <div data-ng-switch-when="investigationResult">
+                <div ng-if="::section.config && !isBeingPrinted">
+                    <investigation-results
+                            params="::section.config"></investigation-results>
+                </div>
             </div>
     </div>
 </div>
