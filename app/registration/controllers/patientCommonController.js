@@ -892,16 +892,12 @@ angular.module('bahmni.registration')
             };
 
             $scope.getShowValueString = function (attributeName) {
-                if (attributeName == "MaritalStatus") {
-                    return $scope.patient.showMaritalStatus;
-                } else if (attributeName == "education") {
+                if (attributeName == "education") {
                     return $scope.patient.showEducation;
                 } else if (attributeName == "phoneNumber") {
                     return $scope.patient.showPhoneNumber;
                 } else if (attributeName == "PregnancyStatus") {
                     return $scope.patient.showPregnancyStatus;
-                } else if (attributeName == "occupation") {
-                    return $scope.patient.showOccupation;
                 } else if (attributeName == "Husband Name_English") {
                     return $scope.patient.showHusbandName;
                 } else if (attributeName == "Husband Name_Bangla") {

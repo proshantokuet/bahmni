@@ -24,7 +24,7 @@
                 </div>
                 <!--keep it as ng-if. Don't change it to ng-show.-->
                 <div class="field-value" ng-if="patientProgram.editing">
-                    <input type="date" max="{{getMaxAllowedDate(patientProgram.states)}}"
+                    <input type="date" min="{{minDate}}" max="{{today}}"
                            ng-model="patientProgram.dateEnrolled" ng-required="true">
                 </div>
 

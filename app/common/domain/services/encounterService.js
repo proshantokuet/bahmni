@@ -173,5 +173,37 @@ angular.module('bahmni.common.domain')
                     withCredentials: true
                 });
             };
+
+            this.updatePatient = function (patient, uuid) {
+                var patientUrl = Bahmni.Common.Constants.PatientUrl + "/" + uuid;
+                return $http.post(patientUrl, patient, {
+                      withCredentials: true
+                });
+            };
+
+            this.getDischargeInfo = function (visitUuid, patientUuid) {
+                var dischargeUrl = Bahmni.Common.Constants.dischargeInfoPdfUrl + "/" + patientUuid + "/" + visitUuid;
+                return $http.get(dischargeUrl, {
+                    withCredentials: true
+                });
+            };
+
+            this.getBirthInfo = function (visitUuid, patientUuid) {
+                var birthUrl = Bahmni.Common.Constants.birthInfoPdfURl + "/" + patientUuid + "/" + visitUuid;
+                return $http.get(birthUrl, {
+                    withCredentials: true
+                });
+            };
+
+            this.saveExternalPatientEncounter = function (patient_uuid, encounterUuid, actionStatus) {
+                return $http.get(Bahmni.Common.Constants.externalPatientEncounterUrl, {
+                    params: {
+                        patient_uuid: patient_uuid,
+                        encounterUuid: encounterUuid,
+                        actionStatus: actionStatus
+                    },
+                    withCredentials: true
+                });
+            };
         }]);
 

@@ -1,4 +1,4 @@
-<div class="template-container">
+<div ng-if="!showAddigForm" class="template-container">
     <h6>{{'ALL_KEY' | translate}} {{params | titleTranslate}}</h6>
     <div class="concept-set-container">
         <section class="block dashboard-section">
@@ -6,3 +6,90 @@
         </section>
     </div>
 </div>
+
+
+<div ng-if="showAddigForm" class="template-container">
+    <h6>ADD CHILD</h6>
+    <div class="concept-set-container">
+        <section class="block dashboard-section">
+            <div class="row" style="padding: 15px 15px;">
+                <form class="form-horizontal">
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-2" for="outcome">1.Outcome No:</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" ng-model="childInformation.outcomeNo" id="outcome" name="outcome">
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <label class="col-sm-2" >6.Sex:</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" ng-model="childInformation.sex">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-2" for="outcome">2.Result:</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" ng-model="childInformation.result" id="Result" name="Result">
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <label class="col-sm-2" for="birth">7.Baby's Birth Weight:</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control" ng-model="childInformation.birthWeight" id="birth" name="birth">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-2" for="outcomedate">3.Outcome Date:</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" ng-model="childInformation.outcomeDate" id="outcomedate" name="outcomedate">
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <label class="col-sm-2" for="Vaccine">8.Vaccine:</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" ng-model="childInformation.vaccine" id="Vaccine" name="Vaccine">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-2" for="complications">4.Complications</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" ng-model="childInformation.complications" id="complications" name="complications">
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <label class="col-sm-2" for="healthstatus">9.Last Helath Status:</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" ng-model="childInformation.healthStatus" id="healthstatus" name="healthstatus">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-2" for="typeofDelivery">5.Type Of Delivery</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" ng-model="childInformation.typeOfDelivery" id="typeofDelivery" name="typeofDelivery">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-10">
+                            <button type="submit" ng-click="saveChildInformation()" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $(document).ready(function () {
+                $("#outcomedate").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    changeYear: true,
+                    yearRange: "1940:" + new Date
+                }).val();
+            })
+        }, 500);
+    });
+</script>

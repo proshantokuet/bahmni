@@ -1,6 +1,6 @@
 <fieldset>
     <div ng-show="hasTests()">
-        <legend class="order-title mylegend">{{group.description}}</legend>
+        <p class="order-title mylegend">{{group.description}}</p>
         <div class="orderBtnContainer">
             <ul>
                 <li ng-repeat="test in (tab.leftCategory.setMembers | filter:filterByConceptClass | filter:filterBySearchString)">

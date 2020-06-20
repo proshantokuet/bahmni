@@ -57,6 +57,12 @@ angular.module('bahmni.common.patient')
                 headers: {"Accept": "application/json", "Content-Type": "application/json"}
             });
         };
+        this.getPatientChildInformation = function (id) {
+            return $http.get(Bahmni.Common.Constants.childInformationGetUrl + "/" + id, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
         this.findPatients = function (params) {
             return $http.get(Bahmni.Common.Constants.sqlUrl, {
                 method: "GET",
@@ -101,6 +107,29 @@ angular.module('bahmni.common.patient')
                     personAttributes: personAttributes,
                     programAttributes: programAttributes,
                     patientIdentifiers: patientIdentifiers
+                },
+                withCredentials: true
+            });
+        };
+
+        this.savePatientChildInformation = function (data) {
+            var url = Bahmni.Common.Constants.childInformationSaveUrl;
+            return $http.post(url, data, {
+                withCredentials: true,
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        };
+
+        this.changePaymentStatusInOpenElis = function (patientId,labOrdersName) {
+            return $http.get(Bahmni.Common.Constants.openelisUrl + "/ws/rest/payment", {
+                params: {
+                    loginName: "admin",
+                    password: "adminADMIN!",
+                    patient_id: patientId,
+                    panels: labOrdersName,
                 },
                 withCredentials: true
             });

@@ -3,10 +3,14 @@
 angular.module('bahmni.common.uiHelper')
     .factory('printer', ['$rootScope', '$compile', '$http', '$timeout', '$q', 'spinner',
         function ($rootScope, $compile, $http, $timeout, $q, spinner) {
-            var printHtml = function (html) {
+            var printHtml = function (html,patient) {
                 var deferred = $q.defer();
                 var hiddenFrame = $('<iframe style="visibility: hidden"></iframe>').appendTo('body')[0];
                 hiddenFrame.contentWindow.printAndRemove = function () {
+                    var date = new Date();
+                    if(patient) {
+                        hiddenFrame.contentWindow.window.parent.document.title = patient.name + " " + patient.identifier + "_" + date.getDate()+ "-" + date.getMonth()+ "-" + date.getFullYear();
+                    }
                     hiddenFrame.contentWindow.print();
                     $(hiddenFrame).remove();
                     deferred.resolve();
@@ -66,7 +70,7 @@ angular.module('bahmni.common.uiHelper')
                         if (printScope.$$phase || $http.pendingRequests.length) {
                             $timeout(waitForRenderAndPrint);
                         } else {
-                            printHtml(element.html()).then(function () {
+                            printHtml(element.html(),scope.patient).then(function () {
                                 $rootScope.isBeingPrinted = false;
                                 if (afterPrint) {
                                     afterPrint();

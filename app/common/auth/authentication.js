@@ -156,8 +156,48 @@ angular.module('authentication')
                 userService.getProviderForUser(data.results[0].uuid).then(function (providers) {
                     if (!_.isEmpty(providers.results) && hasAnyActiveProvider(providers.results)) {
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
-                        console.log("Cookie");
-                        console.log($bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName));
+                         $rootScope.currentUser.favouriteObsTemplates[0] = "Client History";
+                         $rootScope.currentUser.favouriteObsTemplates[1] = "General Examination";
+                         $rootScope.currentUser.favouriteObsTemplates[2] = "Obstetric History";
+                         $rootScope.currentUser.favouriteObsTemplates[3] = "Antenatal Care";
+                         $rootScope.currentUser.favouriteObsTemplates[4] = "Postnatal Care";
+                         $rootScope.currentUser.favouriteObsTemplates[5] = "New Born Baby Care";
+                         $rootScope.currentUser.favouriteObsTemplates[6] = "Limited Curative Care";
+                         $rootScope.currentUser.favouriteObsTemplates[7] = "Vaccination for Child";
+                         $rootScope.currentUser.favouriteObsTemplates[8] = "Women Vaccination 15 to 49 Years old";
+                         $rootScope.currentUser.favouriteObsTemplates[9] = "General Vaccination";
+                         $rootScope.currentUser.favouriteObsTemplates[10] = "Family Planning";
+                         $rootScope.currentUser.favouriteObsTemplates[11] = "STI and RTI";
+                         $rootScope.currentUser.favouriteObsTemplates[12] = "Adolescent Health";
+                         $rootScope.currentUser.favouriteObsTemplates[13] = "First Aid";
+                         $rootScope.currentUser.favouriteObsTemplates[14] = "Cervical Cancer";
+                         $rootScope.currentUser.favouriteObsTemplates[15] = "Delivery";
+                         $rootScope.currentUser.favouriteObsTemplates[16] = "Post Abortion Care";
+                         $rootScope.currentUser.favouriteObsTemplates[17] = "IMCI (age below 2 months)";
+                         $rootScope.currentUser.favouriteObsTemplates[18] = "IMCI (age 2 months to 5 years)";
+                         $rootScope.currentUser.favouriteObsTemplates[19] = "Eye Care";
+                         $rootScope.currentUser.favouriteObsTemplates[20] = "TB";
+                         $rootScope.currentUser.favouriteObsTemplates[21] = "Discharge Certificate";
+                         $rootScope.currentUser.favouriteObsTemplates[22] = "Inward Referral";
+                         $rootScope.currentUser.favouriteObsTemplates[23] = "Outward Referral";
+                         $rootScope.currentUser.favouriteObsTemplates[24] = "Follow up";
+                         $rootScope.currentUser.favouriteObsTemplates[25] = "TB Case Finding";
+                         $rootScope.currentUser.favouriteObsTemplates[26] = "TB DOTS";
+                         $rootScope.currentUser.favouriteObsTemplates[27] = "TB Verbal Screening and Referral";
+                        for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
+                            if ($rootScope.currentUser.privileges[i].name == "Has CRO Roles") {
+                                $rootScope.currentUser.roles = "CRO";
+                                break;
+                            }
+                            if ($rootScope.currentUser.privileges[i].name == "Has Doctor Roles") {
+                                $rootScope.currentUser.roles = "Doctor";
+                                break;
+                            }
+                            if ($rootScope.currentUser.privileges[i].name == "Has Paramedic Roles") {
+                                $rootScope.currentUser.roles = "Paramedic";
+                                break;
+                            }
+                        }
                         $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;
                         $rootScope.$broadcast('event:user-credentialsLoaded', data.results[0]);
                         deferrable.resolve(data.results[0]);

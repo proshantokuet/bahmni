@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('bahmni.common.conceptSet')
-    .controller('ConceptSetGroupController', ['$scope', '$state', '$location', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
+    .controller('ConceptSetGroupController', ['$scope', '$filter', '$state', '$location', '$window', '$bahmniCookieStore', 'patientService', 'contextChangeHandler', 'spinner', 'messagingService',
         'conceptSetService', '$rootScope', 'sessionService', 'encounterService', 'treatmentConfig', '$q',
-        'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate', 'ageFormatterService', 'age',
-        function ($scope, $state, $location, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
+        'retrospectiveEntryService', 'userService', 'conceptSetUiConfigService', '$timeout', 'clinicalAppConfigService', '$stateParams', '$translate', 'ageFormatterService', 'patientVisitHistoryService', 'age',
+        function ($scope, $filter, $state, $location, $window, $bahmniCookieStore, patientService, contextChangeHandler, spinner, messagingService, conceptSetService, $rootScope, sessionService,
                   encounterService, treatmentConfig, $q, retrospectiveEntryService, userService,
-                  conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService, age) {
+                  conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService, patientVisitHistoryService, age) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
+            $scope.viewingSpecific = false;
             $scope.timeObject = {};
             var init = function () {
                 $scope.validationHandler = new Bahmni.ConceptSet.ConceptSetGroupPanelViewValidationHandler($scope.allTemplates);
@@ -27,6 +28,87 @@ angular.module('bahmni.common.conceptSet')
                     //getslipNoFormoneyReceipt();
                 }
             };
+            // for Editing VItals Information see fromsTable.html
+            // $scope.getEditObsData = function (observation) {
+            //     return {
+            //         observation: observation,
+            //         conceptSetName: observation.concept.shortName,
+            //         conceptDisplayName: observation.conceptNameToDisplay
+            //     };
+            // };
+            $scope.getPatientVisitHistoryServices = function () {
+                patientVisitHistoryService.getVisitHistory($scope.patient.uuid).then(function (results) {
+                    if (results.visits.length > 0) {
+                        $scope.visits = results.visits;
+                        $scope.seeObservationDetails($scope.visits);
+                    }
+                    else {
+                        $scope.emptyVisitsData = true;
+                    }
+                });
+            };
+
+            $scope.seeObservationDetails = function (listOfVisit) {
+                $scope.visitDetails = $filter('orderBy')(listOfVisit, 'startDatetime', true);
+                $rootScope.dateOpened = new Date($scope.visitDetails[0].startDatetime);
+                for (var i = 0; i < $scope.visitDetails.length; i++) {
+                    $scope.detailsConfig = {
+                        "patientUuid": $scope.patient.uuid,
+                        "showDetailsButton": true,
+                        "visitUuids": [$scope.visitDetails[i].uuid]
+                    };
+                    $scope.visitDetails[i].detailsConfig = $scope.detailsConfig;
+                }
+                $scope.emptyVisitsData = false;
+            };
+            // Observation data binding in forms
+            // $scope.getPatientObservation = function () {
+            //     patientVisitHistoryService.getVisitHistory($scope.patient.uuid).then(function (results) {
+            //         if (results.visits.length > 0) {
+            //             var visitsList = results.visits;
+            //             var visitDetails = $filter('orderBy')(visitsList, 'startDatetime', false);
+            //             var sortedVisit = visitDetails[0];
+            //             if (sortedVisit.encounters.length > 0) {
+            //                 var encounterUuid = sortedVisit.encounters[0].uuid;
+            //                 encounterService.findByEncounterUuid(encounterUuid).then(function (result) {
+            //                     var encounterResponse = result;
+            //                     angular.forEach($scope.allTemplates, function (template) {
+            //                         if (template.conceptName == 'Vitals') {
+            //                             template.observations = encounterResponse.data.observations;
+            //                         }
+            //                     });
+            //                 });
+            //             }
+            //         }
+            //     });
+            // };
+
+            $scope.toogleObservationDetailsViewer = function (viewPrefernce, visit, index) {
+                if (!visit.showExpanVisitDetails) {
+                    visit.showExpanVisitDetails = true;
+                    $rootScope.tooglingVisitStart = true;
+                }
+                else {
+                    visit.showExpanVisitDetails = false;
+                    $rootScope.tooglingVisitStart = false;
+                }
+
+                // if (viewPrefernce == "specific") {
+                //     $scope.visits = [];
+                //     $scope.visits.push(visit);
+                //     $scope.visitDetails = [];
+                //     // $scope.visitDetails.push(visit);
+                //     $scope.viewingSpecific = true;
+                //     $scope.showVisitDetails = false;
+                // }
+                // if (viewPrefernce == "general") {
+                //     $scope.getPatientVisitHistoryServices();
+                //     $scope.visitDetails = visit;
+                //     $scope.viewingSpecific = false;
+                //     $scope.showVisitDetails = true;
+                // }
+            };
+
             $scope.toggleSideBar = function () {
                 $rootScope.showLeftpanelToggle = !$rootScope.showLeftpanelToggle;
             };
@@ -50,6 +132,12 @@ angular.module('bahmni.common.conceptSet')
                         $scope.moneyReceiptObject = $stateParams.moneyReceiptObject;
                     }
                 }
+            }
+            else {
+                if ($stateParams.visitTypeParams) {
+                    $rootScope.visitTypeName = $stateParams.visitTypeParams;
+                }
+                $scope.context.visitType = $stateParams.visitTypeParams != undefined ? $stateParams.visitTypeParams : $rootScope.visitTypeName;
             }
             if (param1.createMoneyReceipt != undefined) {
                 $scope.money = true;
@@ -147,7 +235,7 @@ angular.module('bahmni.common.conceptSet')
                 var address2 = "";
                 var address1 = "";
                 if (!address.isEmpty) {
-                    /* if (address.stateProvince != undefined) {
+                    /* if (address.stateProvince != undelined) {
                      stateProvince = address.stateProvince;
                      addresLine += stateProvince + ", ";
                      } */
@@ -308,11 +396,47 @@ angular.module('bahmni.common.conceptSet')
                 return $scope.netAmount;
             };
 
+            $scope.getAllChildInformation = function () {
+                spinner.forPromise(patientService.getPatientChildInformation($scope.patient.uuid).then(function (response) {
+                    $scope.listOfChildInformation = response.data;
+                    angular.forEach($scope.listOfChildInformation, function (value, key) {
+                        value.outcomeDate = new Date(value.outcomeDate);
+                    });
+                }));
+            };
+
+            $scope.$on('ChildInfoClosingDialog', function (event, args) {
+                var flag = args.closingFlag;
+                if (flag) {
+                    $scope.getAllChildInformation();
+                }
+            });
+
             var saveMoneyReceipt = function (data) {
-                return patientService.saveMoneyReceipt(data).then(function (response) {
-                    console.log("save return");
-                    console.log(response);
-                });
+                spinner.forPromise(patientService.saveMoneyReceipt(data).then(function (response) {
+                    if (response.data) {
+                        var labString = "";
+                        angular.forEach($scope.services, function (data) {
+                            if (data.code.category == 'Lab Services') {
+                                labString = labString + data.code.name + ",";
+                            }
+                        });
+                        labString = labString.replace(/,\s*$/, "");
+                        if (labString != null && labString != "") {
+                            patientService.changePaymentStatusInOpenElis($scope.patient.identifier, labString).then(function (result) {
+                                if (result.data.response == "success") {
+                                    messagingService.showMessage("info", "Orders successfully sent to Lab");
+                                }
+                                else messagingService.showMessage("error", "Something went wrong, please try again later");
+                            });
+                        }
+                        $state.go("patient.dashboard.show", {
+                                patientUuid: $scope.patient.uuid
+                            }, {reload: true}
+                        );
+                    }
+
+                }));
             };
 
             $scope.dateStringConverter = function (date) {
@@ -428,12 +552,7 @@ angular.module('bahmni.common.conceptSet')
                     }
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
-                    return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
-                        $state.go("patient.dashboard.show", {
-                            patientUuid: patient.uuid
-                        }, {reload: true}
-                        );
-                    }));
+                    saveMoneyReceipt(jsonData);
                 } else {
                     $scope.Message = "You clicked NO.";
                 }
@@ -610,6 +729,22 @@ angular.module('bahmni.common.conceptSet')
                 $.scrollTo('#concept-set-' + (index + 1), 200, {offset: {top: -400}});
             };
 
+            $scope.$on('vitalsbroadcast', function (event, data) {
+                // $scope.vitalsObject = {};
+                // debugger;
+                // angular.forEach(data, function (value, key) {
+                //     $scope.vitalsObject[value.conceptNameToDisplay] = value.valueAsString;
+                //     if (value.groupMembers.length > 0) {
+                //         angular.forEach(value.groupMembers, function (member, key) {
+                //             $scope.vitalsObject[member.conceptNameToDisplay] = member.valueAsString;
+                //         });
+                //     }
+                // });
+                $scope.vitalsObject = data;
+                // for editing vitals form
+                // $scope.vitalsModalData = $scope.getEditObsData($scope.vitalsObject);
+                $scope.vitalsObject.observationDateTime = new Date($scope.vitalsObject[0].observationDateTime);
+            });
             $scope.clonePanelConceptSet = function (conceptSet) {
                 var index = _.findIndex($scope.allTemplates, conceptSet);
                 messagingService.showMessage("info", $translate.instant("CLINICAL_TEMPLATE_ADDED_SUCCESS_KEY", {label: $scope.allTemplates[index].label}));
@@ -679,6 +814,9 @@ angular.module('bahmni.common.conceptSet')
                     section.isOpen = false;
                     section.isLoaded = false;
                 }
+            };
+            $scope.savingObservation = function () {
+                $rootScope.$emit("CallSaveParentMethod", {});
             };
 
             $scope.showLeftPanelConceptSet = function (selectedConceptSet) {
@@ -770,9 +908,19 @@ angular.module('bahmni.common.conceptSet')
                 });
             };
 
-            var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)], sateliteClinicId());
-            $scope.initialization = initPromise;
+            if ($scope.money == true) {
+                var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode), sateliteClinicId()]);
+            }
+            if ($scope.observationTab == true) {
+                var initPromise = $q.all($scope.getPatientVisitHistoryServices());
+            }
 
+            $scope.initialization = initPromise;
+            $scope.dialogData = {
+                "noOfVisits": $scope.noOfVisits,
+                "patient": $scope.patient,
+                "showAddigForm": true
+            };
             init();
         }])
     .directive('conceptSetGroup', ['spinner', function (spinner) {

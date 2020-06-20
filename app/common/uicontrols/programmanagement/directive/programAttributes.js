@@ -2,6 +2,7 @@
 
 angular.module('bahmni.common.uicontrols.programmanagment')
     .controller('ProgramAttributesController', ['$scope', function ($scope) {
+        var DateUtil = Bahmni.Common.Util.DateUtil;
         var program = $scope.patientProgram.program;
         $scope.getProgramAttributesMap = function () {
             var programAttributesMap = {};
@@ -38,6 +39,28 @@ angular.module('bahmni.common.uicontrols.programmanagment')
 
         $scope.isIncluded = function (attribute) {
             return !(program && _.includes(attribute.excludeFrom, program.name));
+        };
+
+        $scope.isReadOnly = function (attribute) {
+            if (attribute == "EDD") {
+                return true;
+            }
+            else false;
+        };
+
+        $scope.handleUpdate = function (attribute) {
+            var date;
+            if (attribute == "LMP Date") {
+                if (!$scope.patientProgram.patientProgramAttributes["LMP Date"]) {
+                     $scope.patientProgram.patientProgramAttributes["LMP Date"] = new Date();
+                     date = new Date();
+                }
+                else {
+                     date = new Date($scope.patientProgram.patientProgramAttributes["LMP Date"]);
+                }
+                date.setDate(date.getDate() + 281);
+                $scope.patientProgram.patientProgramAttributes["EDD"] = date;
+            }
         };
 
         var getProgramAttributeByType = function (programAttributes, attributeType) {

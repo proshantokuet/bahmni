@@ -22,18 +22,33 @@
                                  <span>{{ 'TIME_OF_BIRTH_LABEL'|translate }}</span>
                                  <span ng-bind-html="::patient.birthtime | date:'hh:mm a'"></span>
                              </span>
-                            <span style="padding-left:25px"><a ng-click="openEditPatient(patient.uuid)" target="_self" class="title-link">
-                            Edit Patient
+                            <span ng-if="currentUser == 'CRO' || currentUser == 'Paramedic'" style="padding-left:25px"><a ng-click="openEditPatient(patient.uuid)" target="_self"
+                                                               class="title-link">
+                                <strong>Edit Patient</strong>
                         </a></span>
-                             <span class="patient-address">
+                            <span ng-if="activeVisit && currentUser == 'Doctor' || activeVisit && currentUser == 'Paramedic'" style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
+                                                               class="title-link">
+                           <strong> Provide Service</strong>
+                        </a></span>
+                            <span ng-if="activeVisit && currentUser == 'Doctor' && patient.gender == 'F' && patient.age > 11 && patient.age < 49 || activeVisit && currentUser == 'Paramedic' && patient.gender == 'F' && patient.age >= 11 && patient.age < 49" style="padding-left:25px"><a ui-sref="patient.patientProgram.show" target="_self"
+                                                               class="title-link">
+                                <strong>Program Enrollment</strong>
+                        </a></span>
+                                <span ng-if="!activeVisit && currentUser == 'CRO' || !activeVisit && currentUser == 'Paramedic'" style="padding-left:25px">
+                             <select ng-model="selectedVisit.visitObj"
+                                     ng-options="visit as visit.display for visit in visitType"
+                                     ng-required="true">
+                                 <option ng-option value="">Select Visit Type</option>
+                             </select>
+                            </span>
+                            <button style="padding: 1px 10px 1px;" ng-if="selectedVisit.visitObj" type="button" class="btn btn-success" ng-click="startSelectedVisit()">Start Visit</button>
+                            <!--<span style="padding-left:25px"><button type="button" ng-click="serviceProviderTabOPen()"  class="btn btn-success">Provide Service</button></span>-->
+                            <span class="patient-address">
                                 {{address(patient.address)}}
                              </span>
-                             <i class="ipd-indication fa fa-bed" ng-if="::hasBeenAdmitted"></i>
-                         </div>
+                            <i class="ipd-indication fa fa-bed" ng-if="::hasBeenAdmitted"></i>
+                        </div>
                 </td>
-
-
-
 
 
               </tr>
@@ -66,7 +81,7 @@
                     </td>
                 </tr>
                 </table></td>
-                <td style="text-align: center;"><a href="" ng-click="editMoneyReceipt()" class="title-link">
+                <td ng-if="currentUser == 'CRO' || currentUser == 'Paramedic'" style="text-align: center;"><a href="" ng-click="editMoneyReceipt()" class="title-link">
                             <img  src="./../images/add-Money-Receipt.png" alt="Add Money Receipt" />
 
                     <p style="text-align: center;">Add Money Receipt</p>
@@ -269,7 +284,7 @@
     </table></td>
   </tr>
   <tr>
-    <td colspan="2" align="left" valign="top"  style="padding:5px 0 1px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
+    <td colspan="2" align="left" valign="top"  style="padding:5px 0 1px 8px;"><img src="./../images/blank.png" width="1" height="20" /></td>
   </tr>
   <tr>
     <td colspan="2" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -306,7 +321,7 @@
 
   </script>
 
-<div class="dashboard-patientInformation-section">
+<div class="dashboard-patientInformation-section"">
     <div>
          <h3 style="background: #ddd;height:37px;padding-top: 6px;color: #000">Service history</h3>
     </div>
@@ -365,7 +380,6 @@
                         </table>
 
 </div>
-
 <script type="text/javascript">
 
 //var $jq = jQuery.noConflict();

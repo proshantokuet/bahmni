@@ -2,12 +2,13 @@
 
 angular.module('bahmni.registration')
     .controller('SearchPatientController', ['$rootScope', '$scope', '$location', '$window', 'spinner', 'patientService', 'age', 'appService',
-        'messagingService', '$translate', '$filter',
-        function ($rootScope, $scope, $location, $window, spinner, patientService, age, appService, messagingService, $translate, $filter) {
+        'messagingService', '$translate', '$filter', 'sessionService',
+        function ($rootScope, $scope, $location, $window, spinner, patientService, age, appService, messagingService, $translate, $filter, sessionService) {
             $scope.results = [];
             $scope.propertyName = 'givenName';
             $scope.column = 'givenName';
             $scope.reverse = false;
+            $scope.isSearchingInDifferentServer = false;
             $scope.extraIdentifierTypes = _.filter($rootScope.patientConfiguration.identifierTypes, function (identifierType) {
                 return !identifierType.primary;
             });
@@ -70,10 +71,8 @@ angular.module('bahmni.registration')
                 $scope.searchParameters.personSearchResultsConfig = searchParameters.personSearchResultsConfig || '';
 
                 $scope.searchParameters.registrationNumber = searchParameters.registrationNumber || "";
-                if (hasSearchParameters()) {
-                    searching = true;
-                    var searchPromise = patientService.search(
-                        $scope.searchParameters.name,
+                if ($scope.searchParameters.isSearchingInDifferentServer) {
+                    var stringForSearchPatientFromGlobal = $scope.jsonFormation($scope.searchParameters.name,
                         undefined,
                         $scope.addressSearchConfig.field,
                         $scope.searchParameters.addressFieldValue,
@@ -83,14 +82,56 @@ angular.module('bahmni.registration')
                         $scope.programAttributesSearchConfig.field,
                         $scope.searchParameters.programAttributeFieldValue,
                         $scope.addressSearchResultsConfig.fields,
-                        $scope.personSearchResultsConfig.fields
-                    ).then(function (response) {
-                        mapExtraIdentifiers(response);
-                        mapCustomAttributesSearchResults(response);
-                        mapAddressAttributesSearchResults(response);
-                        mapProgramAttributesSearchResults(response);
-                        return response;
-                    });
+                        $scope.personSearchResultsConfig.fields,
+                        undefined);
+                }
+                if (hasSearchParameters()) {
+                    searching = true;
+                    if ($scope.searchParameters.isSearchingInDifferentServer) {
+                        var searchPromise = patientService.searchPatientFromGLobalServer(stringForSearchPatientFromGlobal).then(function (response) {
+                            angular.forEach(response.globalServerPatients.pageOfResults, function (data) {
+                                if (response.localServerPatients.pageOfResults.length > 0) {
+                                    angular.forEach(response.localServerPatients.pageOfResults, function (data1) {
+                                        if (data.uuid == data1.uuid) {
+                                            data.isFromGlobalServer = false;
+                                        }
+                                        else {
+                                            data.isFromGlobalServer = true;
+                                        }
+                                    });
+                                }
+                                else {
+                                    data.isFromGlobalServer = true;
+                                }
+                            });
+                            mapExtraIdentifiers(response.globalServerPatients);
+                            mapCustomAttributesSearchResults(response.globalServerPatients);
+                            mapAddressAttributesSearchResults(response.globalServerPatients);
+                            mapProgramAttributesSearchResults(response.globalServerPatients);
+                            return response.globalServerPatients;
+                        });
+                    }
+                    else {
+                        var searchPromise = patientService.search(
+                            $scope.searchParameters.name,
+                            undefined,
+                            $scope.addressSearchConfig.field,
+                            $scope.searchParameters.addressFieldValue,
+                            $scope.searchParameters.customAttribute,
+                            offset,
+                            $scope.customAttributesSearchConfig.fields,
+                            $scope.programAttributesSearchConfig.field,
+                            $scope.searchParameters.programAttributeFieldValue,
+                            $scope.addressSearchResultsConfig.fields,
+                            $scope.personSearchResultsConfig.fields
+                        ).then(function (response) {
+                            mapExtraIdentifiers(response);
+                            mapCustomAttributesSearchResults(response);
+                            mapAddressAttributesSearchResults(response);
+                            mapProgramAttributesSearchResults(response);
+                            return response;
+                        });
+                    }
                     searchPromise['finally'](function () {
                         searching = false;
                     });
@@ -105,6 +146,48 @@ angular.module('bahmni.registration')
                         return " " + str.toUpperCase() + "";
                     }).trim();
                 }
+            };
+
+            $scope.jsonFormation = function (query, identifier, addressFieldName, addressFieldValue, customAttributeValue,
+                                             offset, customAttributeFields, programAttributeFieldName, programAttributeFieldValue, addressSearchResultsConfig,
+                                             patientSearchResultsConfig, filterOnAllIdentifiers) {
+                var customAttributeFieldsString = "";
+                var identifierString = "";
+                var programAttributeFieldNameString = "";
+                var patientSearchResultsConfigString = "";
+                var filterOnAllIdentifiersString = "";
+
+                angular.forEach(customAttributeFields, function (field) {
+                     customAttributeFieldsString = customAttributeFieldsString + "&patientAttributes=" + field;
+                });
+                angular.forEach(patientSearchResultsConfig, function (field) {
+                    patientSearchResultsConfigString = patientSearchResultsConfigString + "&patientSearchResultsConfig=" + field;
+                });
+                if(identifier) {
+                     identifierString = "&identifier=" + identifier;
+                }
+                if (programAttributeFieldName) {
+                    programAttributeFieldNameString = "&programAttributeFieldName=" + programAttributeFieldName;
+                }
+                if (filterOnAllIdentifiers) {
+                    filterOnAllIdentifiersString = "&filterOnAllIdentifiers=" + filterOnAllIdentifiers;
+                }
+                var urlString = "/openmrs/ws/rest/v1/bahmnicore/search/patient?" + "q=" + query + identifierString +
+                    "&" + "s=byIdOrNameOrVillage" + "&" + "addressFieldName=" + addressFieldName + "&" +
+                    "addressFieldValue=" + addressFieldValue + "&" + "customAttribute=" + customAttributeValue + "&" + "startIndex=" + offset +
+                    customAttributeFieldsString + programAttributeFieldNameString +
+                    "&programAttributeFieldValue=" + programAttributeFieldValue + "&addressSearchResultsConfig=" + addressSearchResultsConfig +
+                    patientSearchResultsConfigString + "&loginLocationUuid=" + sessionService.getLoginLocationUuid() +
+                    filterOnAllIdentifiersString;
+                return urlString;
+            };
+
+            $scope.savetoLocalServer = function (uuid) {
+              spinner.forPromise(patientService.savePatientInLocalServer(uuid).then(function (result) {
+                  if(result.patient) {
+                    $window.open('../clinical/index.html#/default/patient/' + result.patient.uuid + '/dashboard', "_self");
+                  }
+              }))
             };
 
             $scope.openMoneyReceipt = function (patientUuid) {
@@ -421,6 +504,10 @@ angular.module('bahmni.registration')
                 } else {
                     $location.url(forwardTo);
                 }
+            };
+
+            $scope.serachPatientInGlobalServer = function () {
+
             };
 
             $scope.extensionActionText = function (extension) {

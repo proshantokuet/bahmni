@@ -20,6 +20,16 @@ angular.module('bahmni.clinical')
                 }
             };
 
+            $scope.printOptions =[
+                {"id": 1, "label": "Prescription", "url": ""},
+                {"id": 2, "label": "Discharge Certificate", "url": "common/views/dischargeSummaryPrintPdf.html"},
+                {"id": 3, "label": "Birth Certificate", "url": "common/views/birthCertificatePrintPdf.html"},
+
+            ];
+
+            $scope.changePrint = function (printItem) {
+            };
+
             $scope.openConsultation = function () {
                 var board = clinicalAppConfigService.getAllConsultationBoards()[0];
                 var urlPrefix = urlHelper.getPatientUrl();
@@ -50,7 +60,8 @@ angular.module('bahmni.clinical')
                 $rootScope.$broadcast("event:clearVisitBoard", tab);
             };
 
-            $scope.print = function () {
+            $scope.print = function (printType) {
+                $scope.visitTabConfig.currentTab.printType = printType;
                 $rootScope.$broadcast("event:printVisitTab", $scope.visitTabConfig.currentTab);
             };
 

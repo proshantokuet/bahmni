@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.ipd')
-    .controller('BedManagementController', ['$scope', '$rootScope', '$stateParams', '$state', 'spinner', 'wardService', 'bedManagementService', 'visitService', 'messagingService', 'appService', 'ngDialog',
-        function ($scope, $rootScope, $stateParams, $state, spinner, wardService, bedManagementService, visitService, messagingService, appService, ngDialog) {
+    .controller('BedManagementController', ['$scope', '$rootScope', '$stateParams', '$state', 'spinner', 'wardService', 'bedManagementService', 'visitService', 'messagingService', 'appService', 'ngDialog','$window',
+        function ($scope, $rootScope, $stateParams, $state, spinner, wardService, bedManagementService, visitService, messagingService, appService, ngDialog, $window) {
             $scope.wards = null;
             $scope.ward = {};
             $scope.editTagsPrivilege = Bahmni.IPD.Constants.editTagsPrivilege;
@@ -172,14 +172,15 @@ angular.module('bahmni.ipd')
             };
 
             $scope.goToAdtPatientDashboard = function () {
-                getVisitInfoByPatientUuid($scope.patient.uuid).then(function (visitUuid) {
-                    var options = {patientUuid: $scope.patient.uuid, visitUuid: visitUuid};
-                    var url = appService.getAppDescriptor().formatUrl(links.dashboard.url, options);
-                    window.open(url);
-                });
-                if (window.scrollY > 0) {
-                    window.scrollTo(0, 0);
-                }
+                $window.open('../clinical/index.html#/default/patient/' + $scope.patient.uuid + '/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY', "_blank");
+                // getVisitInfoByPatientUuid($scope.patient.uuid).then(function (visitUuid) {
+                //     var options = {patientUuid: $scope.patient.uuid, visitUuid: visitUuid};
+                //     var url = appService.getAppDescriptor().formatUrl(links.dashboard.url, options);
+                //     window.open(url);
+                // });
+                // if (window.scrollY > 0) {
+                //     window.scrollTo(0, 0);
+                // }
             };
 
             $scope.canEditTags = function () {

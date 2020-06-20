@@ -11,7 +11,7 @@ angular.module('consultation', ['ui.router', 'ui.bootstrap', 'bahmni.clinical', 
     'bahmni.common.displaycontrol.patientprofile', 'bahmni.common.displaycontrol.diagnosis', 'bahmni.common.displaycontrol.conditionsList', 'RecursionHelper', 'ngSanitize',
     'bahmni.common.orders', 'bahmni.common.displaycontrol.orders', 'bahmni.common.displaycontrol.prescription',
     'bahmni.common.displaycontrol.navigationlinks', 'bahmni.common.displaycontrol.programs',
-    'bahmni.common.displaycontrol.pacsOrders', 'bahmni.common.uicontrols', 'bahmni.common.uicontrols.programmanagment', 'pascalprecht.translate',
+    'bahmni.common.displaycontrol.pacsOrders', 'bahmni.common.uicontrols', 'bahmni.common.uicontrols.programmanagment', 'bahmni.common.uicontrols.referralmanagement', 'pascalprecht.translate',
     'ngCookies', 'monospaced.elastic', 'bahmni.common.bacteriologyresults', 'bahmni.common.displaycontrol.bacteriologyresults',
     'bahmni.common.displaycontrol.obsVsObsFlowSheet', 'bahmni.common.displaycontrol.chronicTreatmentChart',
     'bahmni.common.displaycontrol.forms', 'bahmni.common.displaycontrol.drugOrderDetails',
@@ -171,6 +171,7 @@ angular.module('consultation')
                     cachebuster: null,
                     lastOpenedTemplate: null,
                     previousUrl: null,
+                    visitTypeParams: null,
                     moneyReceiptObject: null
                 },
                 views: {
@@ -441,7 +442,7 @@ angular.module('consultation')
                 },
                 views: {
                     'patientProgram-header': {
-                        templateUrl: '../common/ui-helper/header.html',
+                        templateUrl: '../common/uicontrols/programmanagement/views/programHeader.html',
                         controller: 'PatientListHeaderController'
                     },
                     'patientProgram-content': {
@@ -454,19 +455,51 @@ angular.module('consultation')
                         return visitHistoryInitialization($stateParams.patientUuid);
                     }
                 }
-            });
+            })
+            .state('patient.patientReferral', {
+                abstract: true,
+                views: {
+                    'content': {
+                        template: '<div ui-view="patientReferral-header"></div> <div ui-view="patientReferral-content"></div>'
+                    }
+                },
+                resolve: {
+                    retrospectiveIntialization: function (retrospectiveEntryService) {
+                        return retrospectiveEntryService.initializeRetrospectiveEntry();
+                    }
+                }
+            })
+                .state('patient.patientReferral.show', {
+                    url: '/referral',
+                    views: {
+                        'patientReferral-header': {
+                            templateUrl: '../common/ui-helper/header.html',
+                            controller: 'PatientListHeaderController'
+                        },
+                        'patientReferral-content': {
+                            templateUrl: '../common/uicontrols/referralManagement/views/referralManage.html',
+                            controller: 'ManageReferralController'
+                        }
+                    }
+                });
 
             $httpProvider.defaults.headers.common['Disable-WWW-Authenticate'] = true;
 
             $bahmniTranslateProvider.init({app: 'clinical', shouldMerge: true});
-        }]).run(['stateChangeSpinner', '$rootScope', 'auditLogService', '$window',
-            function (stateChangeSpinner, $rootScope, auditLogService, $window) {
+        }]).run(['stateChangeSpinner', '$rootScope', 'auditLogService', '$window', '$bahmniCookieStore', 'locationService',
+            function (stateChangeSpinner, $rootScope, auditLogService, $window, $bahmniCookieStore, locationService) {
                 moment.locale($window.localStorage["NG_TRANSLATE_LANG_KEY"] || "en");
                 FastClick.attach(document.body);
                 stateChangeSpinner.activate();
                 var cleanUpStateChangeSuccess = $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
                     auditLogService.log(toParams.patientUuid, Bahmni.Clinical.StateNameEvenTypeMap[toState.name], undefined, "MODULE_LABEL_CLINICAL_KEY");
                     $window.scrollTo(0, 0);
+                });
+                var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
+                locationService.getVisitLocation(loginLocationUuid).then(function (response) {
+                    if (response.data) {
+                        $rootScope.visitLocation = response.data.uuid;
+                    }
                 });
                 var cleanUpNgDialogOpened = $rootScope.$on('ngDialog.opened', function () {
                     $('html').addClass('ngdialog-open');

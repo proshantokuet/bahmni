@@ -86,6 +86,8 @@
     "VISIT_TITLE_PATIENT_FILES_KEY": "Patient Files",
     "VISIT_TITLE_RADIOLOGY_KEY": "Radiology",
     "VISIT_TITLE_OBSERVATIONS_KEY": "Observations",
+    "VISIT_VISIT_CANNOT_BE_CLOSED":"Admitted patient's visit cannot be closed. Discharge the patient and try again",
+    "VISIT_CONFIRM_CLOSE_VISIT":"Are you sure you want to close this visit?",
     "ADD_MORE_KEY": "Add More",
     "ADD_SECTION_KEY": "Add Section",
     "ADD_FORM_KEY": "Add Form",
@@ -327,5 +329,7 @@
     "INVESTIGATIONS_PANELS_HEADER_LABEL": "Panels",
     "INVESTIGATIONS_SELECTIONS_HEADER_LABEL": "Selection",
     "CLINICAL_GO_TO_DASHBOARD_LABEL": "Go to IPD dashboard",
-    "NO_FORM_FOUND_FOR_PATIENT": "No Form found for this patient"
+    "NO_FORM_FOUND_FOR_PATIENT": "No Form found for this patient",
+    "SUCCESSFULLY_SAVED_REFERRAL_FORM": "Saved Successfully",
+    "CONFIRM_SAVE_WITHOUT_FOLLOW_UP": "Are you sure you want to continue without filling follow-up information ?"
 }

@@ -8201,7 +8201,7 @@ button.toggle-patient.shift {
 }
 /* line 33, bahmni-components/_patientControlPanel.scss */
 .patient-control-panel .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -8836,110 +8836,109 @@ table.h-scroll td {
   border-top: 1px solid #eee;
   font-size: 14px;
   color: #000000;
-  background: #ddd;
   clear: both;
 }
-/* line 12, bahmni-components/_typography.scss */
+/* line 11, bahmni-components/_typography.scss */
 .hierarchy ul li .tree-list-item {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 10px;
   display: inherit;
 }
-/* line 17, bahmni-components/_typography.scss */
+/* line 16, bahmni-components/_typography.scss */
 .hierarchy ul li .tree-list-item .visit-start-date {
   margin-right: 5px;
 }
-/* line 20, bahmni-components/_typography.scss */
+/* line 19, bahmni-components/_typography.scss */
 .hierarchy ul li .tree-list-item .field-attribute {
   width: 250px;
 }
-/* line 24, bahmni-components/_typography.scss */
+/* line 23, bahmni-components/_typography.scss */
 .hierarchy ul li ul li {
   background: #FFFFFF;
 }
-/* line 26, bahmni-components/_typography.scss */
+/* line 25, bahmni-components/_typography.scss */
 .hierarchy ul li ul li.has-child {
   background: #FFFFFF;
 }
-/* line 28, bahmni-components/_typography.scss */
+/* line 27, bahmni-components/_typography.scss */
 .hierarchy ul li ul li.has-child ul li {
   background: #FFFFFF;
 }
-/* line 32, bahmni-components/_typography.scss */
+/* line 31, bahmni-components/_typography.scss */
 .hierarchy ul li ul li .tree-list-item {
   padding-left: 20px;
 }
-/* line 34, bahmni-components/_typography.scss */
+/* line 33, bahmni-components/_typography.scss */
 .hierarchy ul li ul li .tree-list-item .field-attribute {
   width: 240px;
 }
-/* line 38, bahmni-components/_typography.scss */
+/* line 37, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul li {
   font-size: 13px;
   background: #FFFFFF;
 }
-/* line 41, bahmni-components/_typography.scss */
+/* line 40, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul li .tree-list-item {
   padding-left: 30px;
 }
-/* line 43, bahmni-components/_typography.scss */
+/* line 42, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul li .tree-list-item .field-attribute {
   width: 230px;
 }
-/* line 47, bahmni-components/_typography.scss */
+/* line 46, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul li ul li {
   font-size: 12px;
 }
-/* line 49, bahmni-components/_typography.scss */
+/* line 48, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul li ul li .tree-list-item {
   padding-left: 40px;
 }
-/* line 51, bahmni-components/_typography.scss */
+/* line 50, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul li ul li .tree-list-item .testUnderPanel {
   width: 34% !important;
 }
-/* line 54, bahmni-components/_typography.scss */
+/* line 53, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul li ul li .tree-list-item .field-attribute {
   width: 220px;
 }
-/* line 60, bahmni-components/_typography.scss */
+/* line 59, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul li ul li ul li .tree-list-item {
   padding-left: 50px;
 }
-/* line 62, bahmni-components/_typography.scss */
+/* line 61, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul li ul li ul li .tree-list-item .field-attribute {
   width: 210px;
 }
-/* line 70, bahmni-components/_typography.scss */
+/* line 69, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul.is-intake-template li .tree-list-item {
   padding-left: 20px;
   font-size: 14px;
   background: #f6f6f6;
 }
-/* line 74, bahmni-components/_typography.scss */
+/* line 73, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul.is-intake-template li .tree-list-item .field-attribute {
   width: 260px;
 }
-/* line 79, bahmni-components/_typography.scss */
+/* line 78, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul.is-intake-template li ul li .tree-list-item {
   padding-left: 30px;
   font-size: 12px;
   background: #FFFFFF;
 }
-/* line 83, bahmni-components/_typography.scss */
+/* line 82, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul.is-intake-template li ul li .tree-list-item .field-attribute {
   width: 230px;
 }
-/* line 89, bahmni-components/_typography.scss */
+/* line 88, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul.is-intake-template li ul li ul li .tree-list-item {
   padding-left: 40px;
 }
-/* line 91, bahmni-components/_typography.scss */
+/* line 90, bahmni-components/_typography.scss */
 .hierarchy ul li ul li ul.is-intake-template li ul li ul li .tree-list-item .field-attribute {
   width: 220px;
 }
-/* line 101, bahmni-components/_typography.scss */
+/* line 100, bahmni-components/_typography.scss */
 .hierarchy .form-field {
   padding: 0;
 }
@@ -9186,54 +9185,53 @@ table.h-scroll td {
 /* line 13, clinical/_visit.scss */
 .visit-summary-page .hierarchy ul li ul li.has-child {
   font-family: OpenSansSemiBold;
-  background: #eee;
 }
-/* line 16, clinical/_visit.scss */
+/* line 15, clinical/_visit.scss */
 .visit-summary-page .hierarchy ul li ul li.has-child ul li {
   font-family: OpenSans;
   background: #fff;
 }
-/* line 19, clinical/_visit.scss */
+/* line 18, clinical/_visit.scss */
 .visit-summary-page .hierarchy ul li ul li.has-child ul li.has-child {
   font-family: OpenSans;
   background: #fff;
 }
-/* line 23, clinical/_visit.scss */
+/* line 22, clinical/_visit.scss */
 .visit-summary-page .hierarchy ul li ul li.has-child ul li ul li .tree-list-item .testUnderPanel {
   width: 34.4% !important;
 }
 
-/* line 31, clinical/_visit.scss */
+/* line 30, clinical/_visit.scss */
 .opd-wrapper {
   overflow-x: hidden;
 }
 
-/* line 33, clinical/_visit.scss */
+/* line 32, clinical/_visit.scss */
 .visit table tr:nth-child(even), .visit table tr:nth-child(odd) {
   background: #FFFFFF;
 }
-/* line 37, clinical/_visit.scss */
+/* line 36, clinical/_visit.scss */
 .visit table tr:nth-child(even) a:hover, .visit table tr:nth-child(odd) a:hover {
   text-decoration: underline;
 }
-/* line 39, clinical/_visit.scss */
+/* line 38, clinical/_visit.scss */
 .visit table tr:nth-child(even) a:hover .fa-star, .visit table tr:nth-child(odd) a:hover .fa-star {
   text-decoration: none;
 }
-/* line 45, clinical/_visit.scss */
+/* line 44, clinical/_visit.scss */
 .visit table
 .info-message {
   padding: 10px;
   color: red;
   border: 1px solid #ccc;
 }
-/* line 51, clinical/_visit.scss */
+/* line 50, clinical/_visit.scss */
 .visit .block-day {
   border: 3px solid #67ad95;
   padding: 10px;
   background: #FFFFFF;
 }
-/* line 55, clinical/_visit.scss */
+/* line 54, clinical/_visit.scss */
 .visit .block-day h1 {
   color: #274b59;
   float: left;
@@ -9241,121 +9239,121 @@ table.h-scroll td {
   font-family: OpenSansBold, Arial, sans-serif;
 }
 
-/* line 64, clinical/_visit.scss */
+/* line 63, clinical/_visit.scss */
 .visit .hierarchy ul li {
   overflow: hidden;
 }
-/* line 66, clinical/_visit.scss */
+/* line 65, clinical/_visit.scss */
 .visit .visit-dashboard span.visitType {
   display: inline-block;
   margin-right: 10%;
   float: right;
 }
-/* line 72, clinical/_visit.scss */
+/* line 71, clinical/_visit.scss */
 .visit .visit-dashboard.hierarchy ul li ul li span {
   padding: 3px 10px !important;
   display: inline-block;
 }
-/* line 77, clinical/_visit.scss */
+/* line 76, clinical/_visit.scss */
 .visit .visit-dashboard.hierarchy ul li ul li ul li span {
   padding: 3px 20px !important;
   display: inline-block;
 }
-/* line 83, clinical/_visit.scss */
+/* line 82, clinical/_visit.scss */
 .visit .visit-dashboard .formDataTime {
   width: 200px;
   text-align: right;
 }
-/* line 86, clinical/_visit.scss */
+/* line 85, clinical/_visit.scss */
 .visit .visit-dashboard .formDataTime .formDataEdit {
   padding: 0 !important;
 }
 @media screen and (max-width: 1024px) {
-  /* line 83, clinical/_visit.scss */
+  /* line 82, clinical/_visit.scss */
   .visit .visit-dashboard .formDataTime {
     width: 214px;
   }
 }
-/* line 93, clinical/_visit.scss */
+/* line 92, clinical/_visit.scss */
 .visit .visit-dashboard .formDataDate {
   width: 140px;
 }
 @media screen and (max-width: 1024px) {
-  /* line 93, clinical/_visit.scss */
+  /* line 92, clinical/_visit.scss */
   .visit .visit-dashboard .formDataDate {
     width: 154px;
   }
 }
-/* line 100, clinical/_visit.scss */
+/* line 99, clinical/_visit.scss */
 .visit table tr th {
   background: #eee;
   background-image: none;
   color: #333;
 }
-/* line 106, clinical/_visit.scss */
+/* line 105, clinical/_visit.scss */
 .visit table tr th.notes .accession {
   clear: both;
   overflow: auto;
   margin-bottom: 10px;
 }
 
-/* line 113, clinical/_visit.scss */
+/* line 112, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis {
   margin: 0;
   table-layout: fixed;
   border-right: 0;
 }
-/* line 116, clinical/_visit.scss */
+/* line 115, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .view {
   font-size: 11px;
 }
-/* line 119, clinical/_visit.scss */
+/* line 118, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .toggle-btn-date-wrapper {
   float: right;
   height: 15px;
 }
-/* line 122, clinical/_visit.scss */
+/* line 121, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .toggle-btn-date-wrapper .toggle-btn {
   display: inline-block;
   margin-top: -2px;
 }
-/* line 126, clinical/_visit.scss */
+/* line 125, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .toggle-btn-date-wrapper .date {
   float: left;
 }
-/* line 130, clinical/_visit.scss */
+/* line 129, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .status {
   float: none;
   padding-left: 10px;
 }
 
-/* line 137, clinical/_visit.scss */
+/* line 136, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .table-header .col.col4 {
   float: right;
   width: 9%;
   padding: 10px;
   display: inline-block;
 }
-/* line 145, clinical/_visit.scss */
+/* line 144, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .table-body .row {
   background: #FFFFFF;
 }
-/* line 146, clinical/_visit.scss */
+/* line 145, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .table-body .placeholder {
   font-size: 14px;
   padding: 10px;
 }
-/* line 150, clinical/_visit.scss */
+/* line 149, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .table-body .diagnosis-name {
   padding: 10px;
   display: inline-block;
 }
-/* line 155, clinical/_visit.scss */
+/* line 154, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .table-body .col.col1 .diagnosis-name.ruled-out {
   color: #666;
   text-decoration: line-through;
 }
-/* line 160, clinical/_visit.scss */
+/* line 159, clinical/_visit.scss */
 .visit .diagnosis .history-diagnosis .table-body .col.col4 {
   float: right;
   width: 8%;
@@ -9363,39 +9361,39 @@ table.h-scroll td {
   display: inline-block;
 }
 
-/* line 169, clinical/_visit.scss */
+/* line 168, clinical/_visit.scss */
 .observation-section h3 {
   font-family: OpenSansBold, Arial, sans-serif;
   margin-top: 10px;
 }
-/* line 173, clinical/_visit.scss */
+/* line 172, clinical/_visit.scss */
 .observation-section .is-abnormal {
   color: red;
 }
 
-/* line 178, clinical/_visit.scss */
+/* line 177, clinical/_visit.scss */
 .visit .current {
   font-size: 14px;
   margin-top: 5px;
 }
 
-/* line 183, clinical/_visit.scss */
+/* line 182, clinical/_visit.scss */
 .disposition-state {
   font-size: 14px;
   float: left;
 }
-/* line 186, clinical/_visit.scss */
+/* line 185, clinical/_visit.scss */
 .disposition-state span {
   color: #666;
   margin-left: 10px;
 }
 
-/* line 192, clinical/_visit.scss */
+/* line 191, clinical/_visit.scss */
 .obs-concept {
   width: 80%;
 }
 
-/* line 196, clinical/_visit.scss */
+/* line 195, clinical/_visit.scss */
 .expander-row, .laborder-section li {
   padding: 5px 10px;
   clear: both;
@@ -9403,16 +9401,16 @@ table.h-scroll td {
   padding-right: 0;
 }
 
-/* line 203, clinical/_visit.scss */
+/* line 202, clinical/_visit.scss */
 .disposition-section li {
   border-bottom: 1px solid #eee;
 }
-/* line 205, clinical/_visit.scss */
+/* line 204, clinical/_visit.scss */
 .disposition-section li .toggle i {
   padding-right: 0;
 }
 
-/* line 211, clinical/_visit.scss */
+/* line 210, clinical/_visit.scss */
 .toggle {
   float: left;
   background: none;
@@ -9420,181 +9418,181 @@ table.h-scroll td {
   padding: 0;
   color: #666;
 }
-/* line 217, clinical/_visit.scss */
+/* line 216, clinical/_visit.scss */
 .toggle:hover {
   background: none;
   border: none;
 }
-/* line 221, clinical/_visit.scss */
+/* line 220, clinical/_visit.scss */
 .toggle.has-notes {
   color: orange;
 }
-/* line 224, clinical/_visit.scss */
+/* line 223, clinical/_visit.scss */
 .toggle i {
   padding: 0 10px;
   font-size: 18px;
 }
-/* line 228, clinical/_visit.scss */
+/* line 227, clinical/_visit.scss */
 .toggle.fr {
   float: right;
 }
 
-/* line 232, clinical/_visit.scss */
+/* line 231, clinical/_visit.scss */
 .has-toggle-btn {
   border-right: 1px solid transparent !important;
 }
 
-/* line 235, clinical/_visit.scss */
+/* line 234, clinical/_visit.scss */
 .toggle-btn {
   padding: 0;
 }
 
-/* line 239, clinical/_visit.scss */
+/* line 238, clinical/_visit.scss */
 .consult-notes {
   margin: 0;
   padding: 10px !important;
   overflow: auto;
 }
-/* line 243, clinical/_visit.scss */
+/* line 242, clinical/_visit.scss */
 .consult-notes h5 {
   font-family: OpenSansBold, Arial, sans-serif;
   float: left;
   margin-right: 10px;
 }
-/* line 248, clinical/_visit.scss */
+/* line 247, clinical/_visit.scss */
 .consult-notes .consult-notes-text {
   width: 80%;
   float: left;
 }
 
-/* line 254, clinical/_visit.scss */
+/* line 253, clinical/_visit.scss */
 .consult-notes-item {
   border-top: 1px solid #ccc;
   overflow: auto;
   padding-top: 10px;
 }
-/* line 258, clinical/_visit.scss */
+/* line 257, clinical/_visit.scss */
 .consult-notes-item:first-child {
   border-top: 0;
   padding-top: 0;
 }
 
-/* line 266, clinical/_visit.scss */
+/* line 265, clinical/_visit.scss */
 .drug-name, .dosage-days {
   width: 340px;
 }
 @media screen and (max-width: 1024px) {
-  /* line 266, clinical/_visit.scss */
+  /* line 265, clinical/_visit.scss */
   .drug-name, .dosage-days {
     width: 160px;
   }
 }
 
-/* line 274, clinical/_visit.scss */
+/* line 273, clinical/_visit.scss */
 .treatment-section table {
   margin-top: 0;
   margin-bottom: 0px;
 }
-/* line 278, clinical/_visit.scss */
+/* line 277, clinical/_visit.scss */
 .treatment-section table td, .treatment-section table th {
   border: 0;
 }
-/* line 281, clinical/_visit.scss */
+/* line 280, clinical/_visit.scss */
 .treatment-section table tr.title th {
   background: #f1f1f1;
   font-size: 14px;
   white-space: nowrap;
 }
-/* line 286, clinical/_visit.scss */
+/* line 285, clinical/_visit.scss */
 .treatment-section table tr td {
   font-size: 14px;
   vertical-align: top;
 }
-/* line 289, clinical/_visit.scss */
+/* line 288, clinical/_visit.scss */
 .treatment-section table tr td .discontinued-text {
   display: block;
   color: #666;
   font-size: 12px;
 }
-/* line 295, clinical/_visit.scss */
+/* line 294, clinical/_visit.scss */
 .treatment-section table tr td.toggle-btn {
   width: 36px !important;
 }
-/* line 298, clinical/_visit.scss */
+/* line 297, clinical/_visit.scss */
 .treatment-section table .drugorder-date {
   text-transform: uppercase;
 }
-/* line 301, clinical/_visit.scss */
+/* line 300, clinical/_visit.scss */
 .treatment-section table .dosage-form {
   white-space: nowrap;
 }
 
-/* line 310, clinical/_visit.scss */
+/* line 309, clinical/_visit.scss */
 table.ipd-investigation .belongsToPanel {
   padding-left: 25px;
   font-family: sans-serif;
 }
-/* line 311, clinical/_visit.scss */
+/* line 310, clinical/_visit.scss */
 table.ipd-investigation .upload-file-url {
   float: left;
   width: auto;
   margin-top: 2px;
 }
 
-/* line 317, clinical/_visit.scss */
+/* line 316, clinical/_visit.scss */
 .ipd-test-results {
   padding: 3px 5px;
   border-right: 1px solid #eee;
 }
 
-/* line 321, clinical/_visit.scss */
+/* line 320, clinical/_visit.scss */
 .one-result.ipd-test-results {
   border: 0;
 }
 
-/* line 323, clinical/_visit.scss */
+/* line 322, clinical/_visit.scss */
 .laborder-section .temp-class, .observation .temp-class {
   font-family: OpenSansBold, Arial, sans-serif;
 }
-/* line 326, clinical/_visit.scss */
+/* line 325, clinical/_visit.scss */
 .laborder-section table, .observation table {
   margin-top: 0;
 }
-/* line 328, clinical/_visit.scss */
+/* line 327, clinical/_visit.scss */
 .laborder-section table td, .observation table td {
   font-size: 14px;
 }
-/* line 329, clinical/_visit.scss */
+/* line 328, clinical/_visit.scss */
 .laborder-section table td.name, .observation table td.name {
   padding: 5px 10px;
 }
-/* line 333, clinical/_visit.scss */
+/* line 332, clinical/_visit.scss */
 .laborder-section table td.value .obs-value, .observation table td.value .obs-value {
   float: left;
   width: 60%;
 }
 
-/* line 341, clinical/_visit.scss */
+/* line 340, clinical/_visit.scss */
 .observation table tr td {
   padding: 2px 10px;
 }
-/* line 343, clinical/_visit.scss */
+/* line 342, clinical/_visit.scss */
 .observation table tr td.headerRow {
   background: #f1f1f1;
   font-family: OpenSansBold, Arial, sans-serif;
   padding: 5px 5px 5px 10px;
   color: #666;
 }
-/* line 349, clinical/_visit.scss */
+/* line 348, clinical/_visit.scss */
 .observation table tr td.name {
   padding-left: 20px;
 }
-/* line 353, clinical/_visit.scss */
+/* line 352, clinical/_visit.scss */
 .observation table tr td.value .obs-value {
   margin-top: 5px;
 }
 
-/* line 358, clinical/_visit.scss */
+/* line 357, clinical/_visit.scss */
 .laborder-item, .obs-item {
   background: #eee;
   color: #666;
@@ -9604,123 +9602,123 @@ table.ipd-investigation .upload-file-url {
   display: block;
 }
 
-/* line 367, clinical/_visit.scss */
+/* line 366, clinical/_visit.scss */
 .obs-item .labresults-item {
   margin: 10px 0;
 }
 
-/* line 370, clinical/_visit.scss */
+/* line 369, clinical/_visit.scss */
 td.value {
   width: 400px;
 }
 
-/* line 374, clinical/_visit.scss */
+/* line 373, clinical/_visit.scss */
 td.header {
   background: #eee;
   color: #666;
   padding: 10px 7px;
 }
 
-/* line 380, clinical/_visit.scss */
+/* line 379, clinical/_visit.scss */
 span.range {
   font-size: 14px;
   color: #666;
   margin-top: 5px;
 }
-/* line 384, clinical/_visit.scss */
+/* line 383, clinical/_visit.scss */
 span.range .units {
   color: #666;
 }
 
-/* line 388, clinical/_visit.scss */
+/* line 387, clinical/_visit.scss */
 .laborder-section table {
   margin-bottom: 10px;
 }
-/* line 390, clinical/_visit.scss */
+/* line 389, clinical/_visit.scss */
 .laborder-section table th {
   padding-right: 10px;
 }
-/* line 391, clinical/_visit.scss */
+/* line 390, clinical/_visit.scss */
 .laborder-section table th.notes.inline-notes {
   font-family: "OpenSans", Arial, sans-serif;
 }
-/* line 394, clinical/_visit.scss */
+/* line 393, clinical/_visit.scss */
 .laborder-section table tr.header td {
   background: #f1f1f1;
   font-family: OpenSansBold, Arial, sans-serif;
   color: #666;
 }
-/* line 399, clinical/_visit.scss */
+/* line 398, clinical/_visit.scss */
 .laborder-section table tr.header.pending-result td {
   font-family: "OpenSans", Arial, sans-serif;
   color: #333;
 }
-/* line 404, clinical/_visit.scss */
+/* line 403, clinical/_visit.scss */
 .laborder-section table tr.pending-result .status {
   color: orange;
   float: right;
 }
-/* line 410, clinical/_visit.scss */
+/* line 409, clinical/_visit.scss */
 .laborder-section td.belongsToPanel {
   padding-left: 30px;
 }
-/* line 412, clinical/_visit.scss */
+/* line 411, clinical/_visit.scss */
 .laborder-section td.belongsToPanel span {
   display: block;
 }
-/* line 415, clinical/_visit.scss */
+/* line 414, clinical/_visit.scss */
 .laborder-section td.belongsToPanel span.range {
   font-size: 12px;
 }
 
-/* line 421, clinical/_visit.scss */
+/* line 420, clinical/_visit.scss */
 .radiology-investigations .radiology-doc-item {
   clear: both;
   overflow: auto;
   border-bottom: 1px solid #eee;
   padding-right: 5px;
 }
-/* line 426, clinical/_visit.scss */
+/* line 425, clinical/_visit.scss */
 .radiology-investigations .radiology-doc-item a {
   width: 80%;
   float: left;
 }
-/* line 429, clinical/_visit.scss */
+/* line 428, clinical/_visit.scss */
 .radiology-investigations .radiology-doc-item a i {
   padding-left: 0;
 }
 
-/* line 433, clinical/_visit.scss */
+/* line 432, clinical/_visit.scss */
 .toggle-btn {
   padding: 2px;
   font-family: arial;
   font-size: 14px;
 }
 
-/* line 440, clinical/_visit.scss */
+/* line 439, clinical/_visit.scss */
 .dosage-days .dosage {
   float: left;
 }
-/* line 443, clinical/_visit.scss */
+/* line 442, clinical/_visit.scss */
 .dosage-days .copy {
   font-size: 14px;
   color: #666;
 }
-/* line 447, clinical/_visit.scss */
+/* line 446, clinical/_visit.scss */
 .dosage-days .prn {
   display: block;
   margin-top: 5px;
   font-size: 12px;
 }
 
-/* line 455, clinical/_visit.scss */
+/* line 454, clinical/_visit.scss */
 .visit-actions button {
   float: right;
   margin-left: 5px;
   padding: 8px 10px;
 }
 
-/* line 462, clinical/_visit.scss */
+/* line 461, clinical/_visit.scss */
 .no-visit {
   padding: 30px 10px;
   color: #666;
@@ -9731,12 +9729,12 @@ span.range .units {
   border-radius: 3px;
 }
 
-/* line 471, clinical/_visit.scss */
+/* line 470, clinical/_visit.scss */
 .row-click {
   cursor: pointer;
 }
 
-/* line 474, clinical/_visit.scss */
+/* line 473, clinical/_visit.scss */
 .laborder-sub-heading {
   *zoom: 1;
   font-size: 14px;
@@ -9755,44 +9753,44 @@ span.range .units {
 .laborder-sub-heading:after {
   clear: both;
 }
-/* line 482, clinical/_visit.scss */
+/* line 481, clinical/_visit.scss */
 .laborder-sub-heading .toggle-btn {
   padding: 2px 5px;
   font-size: 12px;
   border: 1px #d0d0d0 solid;
 }
 
-/* line 488, clinical/_visit.scss */
+/* line 487, clinical/_visit.scss */
 .concept-set-group {
   margin-bottom: 20px;
 }
-/* line 491, clinical/_visit.scss */
+/* line 490, clinical/_visit.scss */
 .concept-set-group .checkbox-inline input[type="checkbox"], .concept-set-group .checkbox-inline form .input-prepend [type="checkbox"].add-on, form .input-prepend .concept-set-group .checkbox-inline [type="checkbox"].add-on, .concept-set-group .checkbox-inline .form .input-prepend [type="checkbox"].add-on, .form .input-prepend .concept-set-group .checkbox-inline [type="checkbox"].add-on, .concept-set-group .checkbox-inline label.add-new.checkbox-btn {
   width: auto !important;
   margin-left: 0 !important;
 }
-/* line 495, clinical/_visit.scss */
+/* line 494, clinical/_visit.scss */
 .concept-set-group .checkbox-inline label.add-new.checkbox-btn {
   margin: 4px;
 }
 
-/* line 500, clinical/_visit.scss */
+/* line 499, clinical/_visit.scss */
 legend.mylegend {
   background: #FFFFFF !important;
 }
 
-/* line 502, clinical/_visit.scss */
+/* line 501, clinical/_visit.scss */
 .visits-navbar-section {
   text-align: center;
 }
 
-/* line 505, clinical/_visit.scss */
+/* line 504, clinical/_visit.scss */
 .visits-nav-bar {
   text-align: center;
   display: inline-block;
   margin: 0 auto 10px;
 }
-/* line 509, clinical/_visit.scss */
+/* line 508, clinical/_visit.scss */
 .visits-nav-bar .prev-visit, .visits-nav-bar .next-visit {
   border-radius: 3px;
   background: linear-gradient(to bottom, #FFF, #DDD);
@@ -9928,20 +9926,20 @@ legend.mylegend {
 .visits-nav-bar .prev-visit.arrow.disabled .arrow-border-button, .visits-nav-bar .next-visit.arrow.disabled .arrow-border-button {
   border-left: 18px solid #ccc;
 }
-/* line 514, clinical/_visit.scss */
+/* line 513, clinical/_visit.scss */
 .visits-nav-bar .prev-visit:hover, .visits-nav-bar .next-visit:hover {
   text-decoration: none;
   color: #91bc2b;
 }
-/* line 519, clinical/_visit.scss */
+/* line 518, clinical/_visit.scss */
 .visits-nav-bar .prev-visit.disabled, .visits-nav-bar .next-visit.disabled {
   color: #ccc;
 }
-/* line 521, clinical/_visit.scss */
+/* line 520, clinical/_visit.scss */
 .visits-nav-bar .prev-visit.disabled:hover, .visits-nav-bar .next-visit.disabled:hover {
   cursor: not-allowed;
 }
-/* line 525, clinical/_visit.scss */
+/* line 524, clinical/_visit.scss */
 .visits-nav-bar .visit-details {
   display: inline-block;
   background: #eee;
@@ -9951,44 +9949,44 @@ legend.mylegend {
   min-width: 190px;
   margin: 0;
 }
-/* line 533, clinical/_visit.scss */
+/* line 532, clinical/_visit.scss */
 .visits-nav-bar .visit-details .visit-date {
   color: #333;
   font-family: OpenSansBold, Arial, sans-serif;
 }
-/* line 538, clinical/_visit.scss */
+/* line 537, clinical/_visit.scss */
 .visits-nav-bar i.fa-caret-right, .visits-nav-bar i.fa-caret-left {
   padding: 0;
 }
 
-/* line 543, clinical/_visit.scss */
+/* line 542, clinical/_visit.scss */
 .observation table tr td.toggle-btn {
   width: 50px;
   padding: 0;
 }
 
-/* line 547, clinical/_visit.scss */
+/* line 546, clinical/_visit.scss */
 .observation table tr td.value img {
   width: 30px;
   height: 30px;
   border: 3px solid #ccc;
   cursor: pointer;
 }
-/* line 552, clinical/_visit.scss */
+/* line 551, clinical/_visit.scss */
 .observation table tr td.value img:hover, .observation table tr td.value img:active {
   opacity: 0.8;
 }
 
-/* line 557, clinical/_visit.scss */
+/* line 556, clinical/_visit.scss */
 .h-scroll .fa-stop {
   color: #cc0000;
 }
-/* line 558, clinical/_visit.scss */
+/* line 557, clinical/_visit.scss */
 .h-scroll .fa-ok {
   color: green;
 }
 
-/* line 561, clinical/_visit.scss */
+/* line 560, clinical/_visit.scss */
 a.visit:before {
   content: "";
   position: absolute;
@@ -9996,27 +9994,27 @@ a.visit:before {
   width: 140px;
 }
 
-/* line 568, clinical/_visit.scss */
+/* line 567, clinical/_visit.scss */
 .dashboard-patientInformation-section section.block {
   background: none !important;
 }
-/* line 572, clinical/_visit.scss */
+/* line 571, clinical/_visit.scss */
 .dashboard-patientInformation-section table td.name {
   width: 35%;
 }
-/* line 575, clinical/_visit.scss */
+/* line 574, clinical/_visit.scss */
 .dashboard-patientInformation-section table td.relationshipType {
   text-indent: 10px;
 }
-/* line 578, clinical/_visit.scss */
+/* line 577, clinical/_visit.scss */
 .dashboard-patientInformation-section table td.value {
   width: auto;
 }
-/* line 581, clinical/_visit.scss */
+/* line 580, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info {
   border: 0;
 }
-/* line 583, clinical/_visit.scss */
+/* line 582, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info td {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -10024,7 +10022,7 @@ a.visit:before {
   border-top: 0;
   position: relative;
 }
-/* line 589, clinical/_visit.scss */
+/* line 588, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info td .ipd-indication {
   position: absolute;
   right: 0;
@@ -10036,96 +10034,96 @@ a.visit:before {
   font-size: 20px;
 }
 @media screen and (max-width: 1024px) {
-  /* line 589, clinical/_visit.scss */
+  /* line 588, clinical/_visit.scss */
   .dashboard-patientInformation-section table .patient-info td .ipd-indication {
     bottom: -1px;
     border-radius: 0;
     top: auto;
   }
 }
-/* line 605, clinical/_visit.scss */
+/* line 604, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info .patient-img {
   margin-right: 5px;
   display: inline-block;
   vertical-align: top;
 }
-/* line 611, clinical/_visit.scss */
+/* line 610, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info .patient-img img {
   height: 35px;
   width: auto;
   border: 1px solid #ccc;
   border-radius: 100%;
 }
-/* line 618, clinical/_visit.scss */
+/* line 617, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info .patient-value {
   display: inline-block;
   width: 86%;
 }
-/* line 621, clinical/_visit.scss */
+/* line 620, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info .patient-value span {
   font-size: 12px;
   color: #333;
 }
-/* line 625, clinical/_visit.scss */
+/* line 624, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info .patient-value .patient-name {
   font-weight: bold;
   font-size: 14px;
   color: #000;
   margin-bottom: 3px;
 }
-/* line 631, clinical/_visit.scss */
+/* line 630, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info .patient-value .patient-gender-age {
   font-family: openSansBold;
 }
-/* line 633, clinical/_visit.scss */
+/* line 632, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info .patient-value .patient-gender-age span {
   font-family: openSans;
 }
-/* line 637, clinical/_visit.scss */
+/* line 636, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info .patient-value .patient-birth-time {
   display: inline-block;
   margin-right: 5px;
 }
-/* line 641, clinical/_visit.scss */
+/* line 640, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-info .patient-value .patient-address {
   display: block;
   margin-top: 3px;
   color: #666;
 }
-/* line 648, clinical/_visit.scss */
+/* line 647, clinical/_visit.scss */
 .dashboard-patientInformation-section table .patient-estimated-text {
   font-size: 12px;
   font-style: italic;
   color: #868686 !important;
 }
 
-/* line 659, clinical/_visit.scss */
+/* line 658, clinical/_visit.scss */
 .c3 td.value {
   width: auto;
 }
 
-/* line 666, clinical/_visit.scss */
+/* line 665, clinical/_visit.scss */
 .ng-dialog-all-details-page .visit-dashboard i {
   width: 1.7em;
 }
-/* line 669, clinical/_visit.scss */
+/* line 668, clinical/_visit.scss */
 .ng-dialog-all-details-page .visit-dashboard ul li {
   background: #fff;
 }
-/* line 672, clinical/_visit.scss */
+/* line 671, clinical/_visit.scss */
 .ng-dialog-all-details-page .visit-dashboard ul li ul li span {
   padding: 3px 10px !important;
 }
-/* line 674, clinical/_visit.scss */
+/* line 673, clinical/_visit.scss */
 .ng-dialog-all-details-page .visit-dashboard ul li ul li span.formDataTime {
   width: 234px;
   text-align: right;
 }
-/* line 677, clinical/_visit.scss */
+/* line 676, clinical/_visit.scss */
 .ng-dialog-all-details-page .visit-dashboard ul li ul li span.formDataTime .formDataEdit {
   padding: 0 !important;
 }
-/* line 681, clinical/_visit.scss */
+/* line 680, clinical/_visit.scss */
 .ng-dialog-all-details-page .visit-dashboard ul li ul li span.formDataDate {
   width: 174px;
 }
@@ -12930,6 +12928,36 @@ concept-set {
   height: 80px;
 }
 
+/* line 827, clinical/_observations.scss */
+.btn-group button {
+  /*padding: 10px 24px; !* Some padding *!*/
+  cursor: pointer;
+  /* Pointer/hand icon */
+  float: left;
+  /* Float the buttons side by side */
+  margin-right: 5px;
+}
+
+/* Clear floats (clearfix hack) */
+/* line 835, clinical/_observations.scss */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* line 841, clinical/_observations.scss */
+.btn-group button:not(:last-child) {
+  border-right: none;
+  /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+/* line 846, clinical/_observations.scss */
+.btn-group button:hover {
+  background-color: #aaa;
+}
+
 /*doc
 ---
 title: Half page Layout
@@ -14486,6 +14514,112 @@ h2.section-title.section-title-pivot .btn-scrolling button {
   margin-left: 10px;
 }
 
+/* line 1202, clinical/_patientDashboard.scss */
+.btn-user-info {
+  background: #00796d;
+  padding: 16px 16px;
+  border: none;
+  border-radius: 0;
+  margin: 0px -8px 0px 0px;
+  color: #FFFFFF;
+}
+/* line 1209, clinical/_patientDashboard.scss */
+.btn-user-info:focus {
+  outline: 0;
+}
+/* line 1210, clinical/_patientDashboard.scss */
+.btn-user-info:hover {
+  background: #00796d;
+}
+/* line 1213, clinical/_patientDashboard.scss */
+.btn-user-info i.mini {
+  font-size: .9em;
+}
+/* line 1216, clinical/_patientDashboard.scss */
+.btn-user-info + ul {
+  display: none;
+}
+/* line 1218, clinical/_patientDashboard.scss */
+.btn-user-info + ul.active {
+  background: #00796d;
+  display: block;
+  position: absolute;
+  right: -10px;
+  top: 50px;
+  z-index: 1000;
+  width: 131.16px;
+}
+@media screen and (max-width: 1300px) {
+  /* line 1218, clinical/_patientDashboard.scss */
+  .btn-user-info + ul.active {
+    right: 10px;
+  }
+}
+/* line 1230, clinical/_patientDashboard.scss */
+.btn-user-info + ul li {
+  float: left;
+  clear: both;
+  text-align: left;
+  padding-left: 10px;
+  border-bottom: 1px solid #00796d;
+  margin: 0;
+  padding: 10px 10px 10px 5px;
+  color: #ccc;
+}
+/* line 1239, clinical/_patientDashboard.scss */
+.btn-user-info + ul li a {
+  color: #FFFFFF;
+}
+/* line 1241, clinical/_patientDashboard.scss */
+.btn-user-info + ul li a.disabled {
+  color: #ccc;
+}
+/* line 1243, clinical/_patientDashboard.scss */
+.btn-user-info + ul li a.disabled .fa-user {
+  color: #ccc;
+}
+
+/*** overriding jquery styling start****/
+/* line 1253, clinical/_patientDashboard.scss */
+.ui-widget-header {
+  border: 1px solid #00796d;
+  background: #00463f;
+}
+
+/* line 1258, clinical/_patientDashboard.scss */
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
+  background-image: url("../lib/jquery/images/ui-icons_222222_256x240.png");
+}
+
+/* line 1262, clinical/_patientDashboard.scss */
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+  border: 1px solid #36CC4E;
+  background: #D6FACF;
+}
+
+/* line 1267, clinical/_patientDashboard.scss */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+  border: 1px solid #36CC4E;
+  background: #D6FACF;
+  font-weight: bold;
+  color: #048B24;
+}
+
+/* line 1274, clinical/_patientDashboard.scss */
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+  border: 1px solid #107C22;
+  background: #FFF9D8;
+  color: #1EB642;
+}
+
+/* line 1279, clinical/_patientDashboard.scss */
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+  background: #ddd;
+  width: 49%;
+  background: #6f6767 none;
+}
+
+/**** overriding jquery styling end *****/
 /* line 1, clinical/_charts.scss */
 svg {
   -webkit-tap-highlight-color: transparent;
@@ -14941,7 +15075,7 @@ svg {
   text-overflow: ellipsis;
   width: 260px;
   white-space: nowrap;
-  height: 14px;
+  height: 33px;
 }
 @media (max-width: 1024px) {
   /* line 218, clinical/_orders.scss */
@@ -16914,8 +17048,9 @@ category: Components - Alerts
   font-family: OpenSansSemiBold;
   font-size: 12px;
   width: 74px;
+  color: #303745;
 }
-/* line 116, common/_notifications.scss */
+/* line 117, common/_notifications.scss */
 .messages .success-message-container {
   background: #8ad382;
   background: -moz-linear-gradient(top, #8ad382 0%, #6ab165 100%);
@@ -16928,17 +17063,17 @@ category: Components - Alerts
   border: 1px solid #4b8048;
   padding: 0px 10px;
 }
-/* line 127, common/_notifications.scss */
+/* line 128, common/_notifications.scss */
 .messages .success-message-container .fa {
   padding: 0 !important;
   padding-bottom: 3px !important;
 }
 
-/* line 135, common/_notifications.scss */
+/* line 136, common/_notifications.scss */
 .success-message-container .message-icon {
   display: table-cell !important;
 }
-/* line 138, common/_notifications.scss */
+/* line 139, common/_notifications.scss */
 .success-message-container .message-text {
   display: table-cell;
   text-align: left;

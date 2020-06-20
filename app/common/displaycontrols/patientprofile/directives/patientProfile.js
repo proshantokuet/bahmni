@@ -34,6 +34,9 @@
             'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService', 'age',
             function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService, age) {
                 var controller = function ($scope) {
+                    $scope.currentUser = $rootScope.currentUser.roles;
+                    var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
+                    var visitLocationUuid = $rootScope.visitLocation;
                     $scope.isProviderRelationship = function (relationship) {
                         return _.includes($rootScope.relationshipTypeMap.provider, relationship.relationshipType.aIsToB);
                     };
@@ -61,6 +64,44 @@
                             return date.slice(0, 10);
                         }
                     };
+
+                    var getVisitType = visitService.getVisitType().then(function (result) {
+                        var types = result.data.results;
+                        $scope.visitType = types.filter(function (item) {
+                            return item.display !== 'Special OPD' && item.display !== 'PHARMACY VISIT' &&  item.display !== 'EMERGENCY';
+                        });
+                        $scope.selectedVisit = {};
+                    });
+
+                    $scope.getActiveVisitStatus = function () {
+                        if (visitLocationUuid) {
+                            var getPatientHistory = visitService.getVisitHistory($scope.patientUuid, visitLocationUuid).then(function (response) {
+                                var visits = _.map(response, function (visitData) {
+                                    return new Bahmni.Clinical.VisitHistoryEntry(visitData);
+                                });
+                                $scope.activeVisit = visits.filter(function (visit) {
+                                    return visit.isActive() && visit.isFromCurrentLocation(visitLocationUuid);
+                                })[0];
+                            });
+                        }
+                    };
+
+                    $scope.startSelectedVisit = function () {
+                        if ($scope.selectedVisit.visitObj) {
+                            var visitType = $scope.selectedVisit.visitObj;
+                            var visitDetails = {
+                                patient: $scope.patientUuid,
+                                visitType: visitType.uuid,
+                                location: visitLocationUuid
+                            };
+                            spinner.forPromise(visitService.createVisit(visitDetails).then(function (response) {
+                                $scope.createVisitCallbackInfo = response.data;
+                                $state.reload();
+                                // if ($scope.createVisitCallbackInfo) $scope.serviceProviderTabOPen();
+                            }));
+                        }
+                    };
+
                     $scope.pmessage = "Hello ngDialog";
                     $scope.servicesBySlip = [];
                     $scope.confirmationPrompt = function (id, moneyRceiptDate) {
@@ -271,7 +312,7 @@
                             $state.go('patient.dashboard.show.observations', {
                                 conceptSetGroupName: 'observations',
                                 previousUrl: 'moneyreceipt'
-                            });
+                            }, {reload: true});
                         }
                         else {
                             var filteringServicesBySlip = $scope.services.filter(function (service) {
@@ -289,6 +330,15 @@
                             //     });
                             // }
                         }
+                    };
+                    $scope.serviceProviderTabOPen = function () {
+                        var visitTypename = $scope.activeVisit.visitType.name;
+                        $state.go('patient.dashboard.show.observations', {
+                            conceptSetGroupName: 'observations',
+                            previousUrl: null,
+                            visitTypeParams: visitTypename,
+                            moneyReceiptObject: null
+                        }, {reload: true});
                     };
 
                     $scope.restrictInactiveServicePreview = function (moneyReceiptObject) {
@@ -345,7 +395,7 @@
                         $scope.showBirthDate = $scope.config.showDOB !== false;
                         $scope.showBirthDate = $scope.showBirthDate && !!$scope.patient.birthdate;
                     };
-                    var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails(), moneyReceipt()]);
+                    var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails(), moneyReceipt(), getVisitType,$scope.getActiveVisitStatus()]);
                     initPromise.then(onDirectiveReady);
                     initPromise.then(setHasBeenAdmittedOnVisitUuidChange);
                     initPromise.then(setDirectiveAsReady);

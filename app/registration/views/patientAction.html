@@ -14,6 +14,7 @@
                         <!--ng-bind-html="::activeVisitConfig.translationKey | translate">-->
                 <!--</button>-->
         <!--</span>-->
+        <!--<span ng-if="::showStartVisitButton()" data-ng-switch-when="startVisit">-->
         <!--&lt;!&ndash;<span ng-if="::showStartVisitButton()" data-ng-switch-when="startVisit">-->
             <!--<div split-button options="::visitControl.visitTypes"-->
                  <!--primary-option="::visitControl.defaultVisitType"-->
@@ -21,6 +22,7 @@
                  <!--option-click="visitControl.startVisit"-->
                  <!--class="right">-->
              <!--</div>-->
+        <!--</span>-->
         <!--</span>&ndash;&gt;-->
         <!--<span data-ng-switch-when="configAction">-->
             <!--<button type="submit" class="right confirm" ng-click="setSubmitSource('configAction')"-->

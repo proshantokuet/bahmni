@@ -1,13 +1,20 @@
 <style>
     table td, table th {
         padding: 5px 0px 5px 8px;
-        border:none;
+        border: none;
+    }
+
+    .unique-name {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     table tr {
         border: 0;
-        border:none;
+        border: none;
     }
+
     .form .form-field .field-attribute label, form .form-field .field-attribute label {
         width: 10em;
         float: left;
@@ -15,32 +22,32 @@
         margin: .7em .8em 0 0;
     }
 
-}
+    .click-to-edit {
+        display: inline-block;
+    }
 
-.click-to-edit {
-    display: inline-block;
-}
+    .glyphicon.spinning {
+        animation: spin 1s infinite linear;
+        -webkit-animation: spin2 1s infinite linear;
+    }
 
-.glyphicon.spinning {
-    animation: spin 1s infinite linear;
-    -webkit-animation: spin2 1s infinite linear;
-}
-@keyframes spin {
-    from {
-        transform: scale(1) rotate(0deg);
+    @keyframes spin {
+        from {
+            transform: scale(1) rotate(0deg);
+        }
+        to {
+            transform: scale(1) rotate(360deg);
+        }
     }
-    to {
-        transform: scale(1) rotate(360deg);
+
+    @-webkit-keyframes spin2 {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
     }
-}
-@-webkit-keyframes spin2 {
-    from {
-        -webkit-transform: rotate(0deg);
-    }
-    to {
-        -webkit-transform: rotate(360deg);
-    }
-}
 
 </style>
 
@@ -49,7 +56,7 @@
             <form name="myForm" class="form-horizontal well" single-submit="create()">
                 <div class="box-container box-container-default">
                     <div class="box-container box-container-patient-info patient-common-info-container">
-                        <div class="form-field form-field-gender">
+                        <div class="form-field form-field-gender" style="overflow-x:auto;">
                             <section class="form-field form-field-gender">
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
                                     <tr>
@@ -341,7 +348,7 @@
 
                 <div class="box-container box-container-default" id="serviceSection">
                     <div class="box-container box-container-patient-info patient-common-info-container">
-                        <div class="form-field form-field-gender">
+                        <div class="form-field form-field-gender" style="overflow-x:auto;">
                             <section class="form-field form-field-gender">
                                 <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
                                     <tr data-ng-repeat="service in services track by $index">
@@ -639,7 +646,7 @@
     </table></td>
   </tr>
   <tr class="displayNone">
-    <td colspan="2" align="left" valign="top"  style="padding:5px 0 1px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
+    <td colspan="2" align="left" valign="top"  style="padding:5px 0 1px 8px;"><img src="./../images/blank.png" width="1" height="20" /></td>
   </tr>
   <tr class="displayNone">
     <td colspan="2" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -686,7 +693,7 @@
 </div>
 
 
-<div class="concept-set-panel clearfix" ng-show="observationTab">
+<div class="concept-set-panel clearfix" ng-if="observationTab">
     <a class="left-panel-toggle" ng-click="toggleSideBar()">
         <i ng-if="!showLeftpanelToggle()" class="fa fa-bars" aria-hidden="true"></i>
         <i ng-if="showLeftpanelToggle()" class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -697,8 +704,8 @@
         <div class="concept-set-panel-wrap" assign-height key="contentHeight">
             <div class="multi-select-lab-tests">
                 <ul>
-                    <li ng-repeat="conceptSet in allTemplates track by $index"
-                        ng-if="conceptSet.isAvailable(context) && (conceptSet.isAdded || conceptSet.alwaysShow)"  ng-class="openActiveForm(conceptSet)">
+                    <li ng-repeat="conceptSet in allTemplates | orderBy : 'formOrder' track by $index"
+                        ng-if="conceptSet.isAvailable(context)  && conceptSet.formValidation(context, conceptSet)"  ng-class="openActiveForm(conceptSet)">
                         <a ng-click="showLeftPanelConceptSet(conceptSet)">
                             <span class="concept-set-name" ng-class="{'concept-set-name-extra':conceptSet.isValid === false}">
                                 {{conceptSet.label}}
@@ -719,84 +726,189 @@
         <section class="concept-set-panel-right">
             <ul>
                 <li ng-repeat="conceptSet in allTemplates" ng-if="leftPanelConceptSet==conceptSet">
-                    <section class="concept-set-group section-grid" >
+                    <section class="concept-set-group section-grid">
                         <ng-include src="'../common/concept-set/views/conceptSetGroupSection.html'"></ng-include>
                     </section>
                 </li>
-                <li class="concept-set-panel-no-template"  ng-style="{'height': contentHeight.height + 'px'}"> </li>
+                <li class="concept-set-panel-no-template" ng-style="{'height': contentHeight.height + 'px'}"></li>
             </ul>
         </section>
     </div>
-</div>
 
+</div>
+<div class="concept-set-panel clearfix" ng-if="observationTab">
+<!--<div style="width:370px; height: 8px; margin:0 auto;">-->
+   <!--<button class="confirm save-consultation" style="padding: 5px 19px 6px;"  type="button" class="btn btn-success" ng-click="savingObservation()">Save</button>-->
+<!--</div>-->
+
+    <section class="concept-set-panel-right">
+        <!--<table class="table-bordered table-hover" ng-if="listOfChildInformation.length > 0">-->
+            <!--<p ng-if="listOfChildInformation.length > 0" style="padding: 10px;"><strong>Children's Information:</strong></p>-->
+            <!--<colgroup style="background-color: #ccc;"></colgroup>-->
+            <!--<colgroup></colgroup>-->
+            <!--<colgroup span="4"></colgroup>-->
+            <!--<tr>-->
+                <!--<th rowspan="2">Outcome No</th>-->
+                <!--<th rowspan="2">Result</th>-->
+                <!--<th rowspan="2">Outcome Date</th>-->
+                <!--<th rowspan="2">Complications</th>-->
+                <!--<th rowspan="2">Type of Delivery</th>-->
+                <!--<th style="text-align: center" colspan="4">Live Birth Baby</th>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th>sex</th>-->
+                <!--<th>weight</th>-->
+                <!--<th>vaccine</th>-->
+                <!--<th>Last Health Status</th>-->
+            <!--</tr>-->
+            <!--<tr ng-repeat="child in listOfChildInformation">-->
+                <!--<td>{{child.outcomeNo}}</td>-->
+                <!--<td>{{child.result}}</td>-->
+                <!--<td>{{child.outcomeDate | date}}</td>-->
+                <!--<td>{{child.complications}}</td>-->
+                <!--<td>{{child.typeOfDelivery}}</td>-->
+                <!--<td>{{child.sex}}</td>-->
+                <!--<td>{{child.birthWeight}}</td>-->
+                <!--<td>{{child.vaccine}}</td>-->
+                <!--<td>{{child.healthStatus}}</td>-->
+            <!--</tr>-->
+        <!--</table>-->
+
+        <h4 style="color: white;padding: 10px;background-color: #52797a;">Visit History</h4>
+        <p ng-show="emptyVisitsData">No Visits Available</p>
+        <!--search functionality-->
+        <!--<div class="input-group col-md-2 col-sm-3" style="float: right">-->
+        <!--<input type="text" class="form-control" ng-model="searchKeyword" placeholder="Search Date" id="search" name="search"><div class="input-group-addon"><span class="fa fa-search"></span></div>-->
+        <!--</div>-->
+
+    <table class="visits dashboard-table" id="visitDisplayTable" ng-if="visits.length > 0">
+            <tbody>
+            <tr>
+                <th>Date</th>
+
+
+            </tr>
+            <tr id="eachVisit" ng-repeat="visit in visits track by $index">
+                <td class="name">
+                    <a class="visit" ng-click="toogleObservationDetailsViewer('specific',visit,$index)"><i ng-if="!visit.showExpanVisitDetails" class="fa fa-plus-square-o" aria-hidden="true"></i> <i ng-if="visit.showExpanVisitDetails" class="fa fa-minus-square-o" aria-hidden="true"></i><span>{{::visit.startDatetime | date}}</span>
+                        <span ng-if="::!visit.isActive()">- {{::visit.stopDatetime | date }}</span>
+                        <i class="fa fa-star current-visit-icon" id="currentVisitIcon" ng-if="::visit.isActive()"
+                           title="Current Visit"></i>
+                    </a>
+                    <div ng-if="visit.showExpanVisitDetails">
+                    <ul bm-gallery access-impression="true">
+                        <bahmni-observation patient="::patient" visit-uuid="{{visit.uuid}}"
+                                            config="visit.detailsConfig"
+                                            class="section-title"></bahmni-observation>
+                    </ul>
+                    </div>
+                </td>
+
+                 <!--<td><a ng-if="!viewingSpecific" style="cursor: pointer" ng-click="toogleObservationDetailsViewer('specific',visit)">See this</a></td>-->
+                 <!--<td><a ng-if="viewingSpecific" style="cursor: pointer" ng-click="toogleObservationDetailsViewer('general',visits)">See all</a></td>-->
+            </tr>
+            </tbody>
+        </table>
+    <a ng-if="viewingSpecific" class="visit" ng-click="toogleObservationDetailsViewer('general',visits)" style="text-align: right">Show all</a>
+    <div ng-hide="true">
+        <p ng-if="!emptyVisitsData" style="padding: 10px;background-color: #dddddd;"><strong>Visit Details:</strong></p>
+        <div ng-if="!emptyVisitsData" id="observation-section" ng-repeat="visit in visitDetails" >
+            <section class="block observation dashboard-section" id="observationSection">
+                <ul bm-gallery access-impression="true"  >
+                    <bahmni-observation patient="::patient" visit-uuid="{{visit.uuid}}"
+                                        config="visit.detailsConfig"
+                                        class="section-title"></bahmni-observation>
+                </ul>
+            </section>
+        </div>
+    </div>
+</section>
+</div>
 <style>
-.displayNone {
-display:none
-}
+    .displayNone {
+        display: none
+    }
 </style>
 <style>
     @media print {
 
-  /*#consultation-content{
-        visibility:visible;
-  }*/
-  #serviceSection {
-    visibility: collapse;
-  }
-  #patientContext {
-       visibility: collapse;
-  }
-  #opd-tabs {
-      visibility: collapse;
-  }
-  #buttonPrint {
-      visibility: collapse;
-  }
-  .displays {
-      visibility: visible;
-  }
+        /*#consultation-content{
+              visibility:visible;
+        }*/
+        #serviceSection {
+            visibility: collapse;
+        }
 
-  .displayNone {
-	display:block;
-	}
+        #patientContext {
+            visibility: collapse;
+        }
 
-}
+        #opd-tabs {
+            visibility: collapse;
+        }
+
+        #buttonPrint {
+            visibility: collapse;
+        }
+
+        .displays {
+            visibility: visible;
+        }
+
+        .displayNone {
+            display: block;
+        }
+
+    }
 </style>
 <script>
- function printMoneyReceipt() {
-     var divToPrint = document.getElementById("moneyReceipt");
-     mywindow = window.open("");
-     var is_chrome = Boolean(mywindow.chrome);
-     mywindow.document.write(divToPrint.outerHTML);
-     mywindow.document.close();
-     if (is_chrome) {
-         mywindow.onload = function () { // wait until all resources loaded
-             mywindow.print();
-             mywindow.close();
-         };
-     }
-     else {
-         mywindow.document.close();
-         mywindow.focus();
-         mywindow.print();
-         mywindow.close();
-     }
-}
-$(function(){
+//    setTimeout(function () {
+//        $(document).ready(function () {
+//            $("#search").datepicker({
+//                dateFormat: 'yy-mm-dd',
+//                changeYear: true,
+//                yearRange: "1940:" + new Date,
+//                maxDate: new Date
+//            }).val();
+//        })
+//    }, 500);
+    function printMoneyReceipt() {
+        var divToPrint = document.getElementById("moneyReceipt");
+        mywindow = window.open("");
+        var is_chrome = Boolean(mywindow.chrome);
+        mywindow.document.write(divToPrint.outerHTML);
+        mywindow.document.close();
+        if (is_chrome) {
+            mywindow.onload = function () { // wait until all resources loaded
+                mywindow.print();
+                mywindow.close();
+            };
+        }
+        else {
+            mywindow.document.close();
+            mywindow.focus();
+            mywindow.print();
+            mywindow.close();
+        }
+    }
+    $(function () {
+        setTimeout(function () {
+            $(document).ready(function () {
+                $("#txtDate").datepicker({dateFormat: 'dd/mm/yy', changeYear: true, maxDate: new Date}).val();
+                var dtToday = new Date();
 
-     $( "#txtDate" ).datepicker({ dateFormat: 'dd/mm/yy', changeYear: true, maxDate: new Date}).val();
-    var dtToday = new Date();
+                var month = dtToday.getMonth() + 1;
+                var day = dtToday.getDate();
+                var year = dtToday.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
 
-    var month = dtToday.getMonth() + 1;
-    var day = dtToday.getDate();
-    var year = dtToday.getFullYear();
-    if(month < 10)
-        month = '0' + month.toString();
-    if(day < 10)
-        day = '0' + day.toString();
+                var maxDate = year + '-' + month + '-' + day;
 
-    var maxDate = year + '-' + month + '-' + day;
-
-    $('#txtDate').attr('max', maxDate);
-});
+                $('#txtDate').attr('max', maxDate);
+            })
+        }, 500);
+    });
 </script>

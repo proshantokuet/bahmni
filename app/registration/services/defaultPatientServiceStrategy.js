@@ -133,12 +133,54 @@ angular.module('bahmni.registration')
             return defer.promise;
         };
 
+        var globalpatientSearching = function (config) {
+            var defer = $q.defer();
+            var url = baseOpenMRSRESTURL + "/save-Patient/search/fromGlobalServer";
+            var onResults = function (result) {
+                defer.resolve(result);
+            };
+            $http.get(url, config).success(onResults)
+                .error(function (error) {
+                    defer.reject(error);
+                });
+            return defer.promise;
+        };
+
+        var saveInLocalServer = function (config) {
+            var defer = $q.defer();
+            var url = baseOpenMRSRESTURL + "/save-Patient/patient/toLocalServer";
+            var onResults = function (result) {
+                defer.resolve(result);
+            };
+            $http.get(url, config).success(onResults)
+                .error(function (error) {
+                    defer.reject(error);
+                });
+            return defer.promise;
+        };
+
+        var updatePatientEntryDetails = function (config) {
+            var defer = $q.defer();
+            var url = baseOpenMRSRESTURL + "/save-Patient/patient/updatePatientEntryDetails";
+            var onResults = function (result) {
+                defer.resolve(result);
+            };
+            $http.get(url, config).success(onResults)
+                .error(function (error) {
+                    defer.reject(error);
+                });
+            return defer.promise;
+        };
+
         return {
             search: search,
             get: getByUuid,
             create: create,
             update: update,
             generateIdentifier: generateIdentifier,
-            dhis: fakecall
+            dhis: fakecall,
+            globalpatientSearching: globalpatientSearching,
+            saveInLocalServer: saveInLocalServer,
+            updatePatientEntryDetails: updatePatientEntryDetails
         };
     }]);

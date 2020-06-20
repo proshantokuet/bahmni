@@ -17,7 +17,7 @@
                     <div class="field-value">
                         <select ng-model="programSelected" ng-options="program.name for program in allPrograms"
                                 data-ng-change="setWorkflowStates(programSelected)">
-                            <option value="">{{'PROGRAM_MANAGEMENT_CHOOSE_PROGRAM_KEY' | translate}}</option>
+
                         </select>
                     </div>
                 </article>
@@ -36,7 +36,7 @@
                     </div>
                 </article>
 
-                <article class="fl">
+                <article class="fl" >
                     <div class="field-attribute">
                         <label>
                             {{'PROGRAM_MANAGEMENT_START_DATE_KEY' | translate}} :
@@ -44,16 +44,16 @@
                         </label>
                     </div>
                     <div class="field-value">
-                        <input type="date" max="{{today}}" ng-model="programEnrollmentDate" ng-required="true">
+                        <input type="date" min="{{minDate}}" max="{{today}}"  ng-model="programEnrollmentDate" ng-required="true">
                     </div>
                 </article>
 
                 <article class="fl" ng-repeat="attribute in programAttributeTypes" ng-if="isIncluded(attribute)">
-                    <attribute-types target-model="patientProgramAttributes" attribute="attribute"
+                    <attribute-types target-model="patientProgramAttributes" attribute="attribute" is-read-only="isReadOnly" handle-update="handleUpdate"
                                      is-form="true"></attribute-types>
                 </article>
 
-                <input class="fr" type="submit" value="{{'PROGRAM_MANAGEMENT_ENROLL_KEY' | translate}}"/>
+                <input class="fr" type="submit" ng-if="activePrograms.length < 1" value="{{'PROGRAM_MANAGEMENT_ENROLL_KEY' | translate}}"/>
             </form>
         </div>
 

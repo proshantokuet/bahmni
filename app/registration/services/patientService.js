@@ -110,6 +110,40 @@ angular.module('bahmni.registration')
             return patientServiceStrategy.dhis();
         };
 
+        var searchPatientFromGLobalServer = function (searchUrl) {
+            var config = {
+                method: "GET",
+                withCredentials: true,
+                params: {
+                    patientInformation: searchUrl
+                }
+            };
+            return patientServiceStrategy.globalpatientSearching(config);
+        };
+
+        var savePatientInLocalServer = function (patientUuid) {
+            var config = {
+                method: "GET",
+                withCredentials: true,
+                params: {
+                    patientUuid: patientUuid,
+                    loginLocationUuid: sessionService.getLoginLocationUuid()
+                }
+            };
+            return patientServiceStrategy.saveInLocalServer(config);
+        };
+
+        var updatePatientEntryDetails = function (patientUuid) {
+            var config = {
+                method: "GET",
+                withCredentials: true,
+                params: {
+                    patientUuid: patientUuid
+                }
+            };
+            return patientServiceStrategy.updatePatientEntryDetails(config);
+        };
+
         return {
             search: search,
             searchByIdentifier: searchByIdentifier,
@@ -119,6 +153,9 @@ angular.module('bahmni.registration')
             updateImage: updateImage,
             searchByNameOrIdentifier: searchByNameOrIdentifier,
             fakecall: dhis,
-            findUniquePatientByUicMobile: findUniquePatientByUicMobile
+            findUniquePatientByUicMobile: findUniquePatientByUicMobile,
+            searchPatientFromGLobalServer: searchPatientFromGLobalServer,
+            savePatientInLocalServer: savePatientInLocalServer,
+            updatePatientEntryDetails: updatePatientEntryDetails
         };
     }]);

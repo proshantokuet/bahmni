@@ -46,6 +46,11 @@
                     <label for="name"><strong>{{ ::programAttributesSearchConfig.label | translate}}</strong></label>
                     <input tabindex="7" type="text" id="programAttribute" ng-model="searchParameters.programAttributeFieldValue" placeholder="{{ ::programAttributesSearchConfig.placeholder}}">
                 </article>
+                <article class="fl">
+                    <div class="checkbox"  style="padding-top: 20px;">
+                        <label><input tabindex="7" type="checkbox" id="differentserver" ng-model="searchParameters.isSearchingInDifferentServer"><strong>Search Globally</strong></label>
+                    </div>
+                </article>
 
                 <article class="fl">
                     <div class="reg-srch-btn fl">
@@ -81,7 +86,7 @@
                 <!--<th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>-->
                 <th><strong>Action</strong></th>
                 <span class="glyphicon glyphicon-triangle-bottom"></span>
-<span class="glyphicon glyphicon-triangle-top"></span>
+                <span class="glyphicon glyphicon-triangle-top"></span>
             </tr>
             </thead>
             <tbody>
@@ -89,21 +94,32 @@
                 <!--<td ng-repeat = "type in ::extraIdentifierTypes track by $index">
                     {{::result.extraIdentifiers[type.name]}}
                 </td>-->
-                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</a> </td>
-                <td ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</a></td>
-                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.gender}}</a></td>
-                <td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{ageFromBirthDate(result.birthDate)}}</a></td>
-                <td ng-repeat = "field in ::addressSearchResultsConfig.fields"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.addressFieldValue[field] || ""}}</a></td>
+                <td ng-if="!result.isFromGlobalServer"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</a> </td>
+                <td ng-if="!result.isFromGlobalServer" ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</a></td>
+                <td ng-if="!result.isFromGlobalServer"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.gender}}</a></td>
+                <td ng-if="!result.isFromGlobalServer"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{ageFromBirthDate(result.birthDate)}}</a></td>
+                <td ng-if="!result.isFromGlobalServer" ng-repeat = "field in ::addressSearchResultsConfig.fields"><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.addressFieldValue[field] || ""}}</a></td>
+                <!--<td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.dateCreated | bahmniDate}}</a></td>-->
+
+                <td ng-if="result.isFromGlobalServer"><a class="title-link">{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</a> </td>
+                <td ng-if="result.isFromGlobalServer" ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><a class="title-link">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</a></td>
+                <td ng-if="result.isFromGlobalServer"><a class="title-link">{{::result.gender}}</a></td>
+                <td ng-if="result.isFromGlobalServer"><a class="title-link">{{ageFromBirthDate(result.birthDate)}}</a></td>
+                <td ng-if="result.isFromGlobalServer" ng-repeat = "field in ::addressSearchResultsConfig.fields"><a class="title-link">{{::result.addressFieldValue[field] || ""}}</a></td>
+
                 <!--<td><a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">{{::result.dateCreated | bahmniDate}}</a></td>-->
                 <td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>
 
-                <td>
+                <td ng-if="!result.isFromGlobalServer">
                     <!--<a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">
                             Patient Profile
                     </a>  |-->
                      <a tabindex="{{ :: 8 + $index + 1 }}" ng-if="::(searchActions.length > 0)" ng-click="forPatient(result).doExtensionAction(searchActions[0])">
                         Edit profile
                     </a>
+                </td>
+                <td ng-if="result.isFromGlobalServer">
+                    <button tabindex="8" ng-click="savetoLocalServer(result.uuid)" >Add to local</button>
                 </td>
             </tr>
             </tbody>
