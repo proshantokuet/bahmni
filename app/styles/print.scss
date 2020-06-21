@@ -212,6 +212,8 @@ h3 {
         .tree-list-item {
             padding: 0 5px !important;
             background: none !important;
+            margin-top: 3px;
+            margin-bottom: 3px;
             i[class^="fa-"] {
                 display: none;
             }
@@ -243,7 +245,7 @@ h3 {
     }
     .visit-summary-page {
         .hierarchy ul li ul li.has-child {
-            font-family:OpenSansSemiBold;;
+            font-family:OpenSansBold;
             ul li {
                 font-family: Arial, sans-serif;
                 &.has-child {

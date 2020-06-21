@@ -77,7 +77,7 @@ angular.module('bahmni.common.displaycontrol.observation')
                                         string = string + splitData[0];
                                     }
                                     else {
-                                        string = string + "Vitals";
+                                        string = string + "";
                                     }
                                 }
                                 else {
@@ -86,7 +86,7 @@ angular.module('bahmni.common.displaycontrol.observation')
                                         string = string + splitData[0] + ",";
                                     }
                                     else {
-                                        string = string + "Vitals" + ",";
+                                        string = string + "" + ",";
                                     }
                                 }
                             }

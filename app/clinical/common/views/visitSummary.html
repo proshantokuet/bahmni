@@ -2,8 +2,8 @@
 
 table th, table td {
     padding: 5px 10px;
-    border: none !important;
-    /* border: 1px solid #ddd; */
+    /*border: none !important;*/
+     border: 1px solid #ddd;
 }
 
 table tr td {
@@ -24,24 +24,25 @@ table tr td {
   jsbarcode-value="{{patient.identifier}}" />
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td align="left"  style="border-bottom: 1px solid #666; padding:10px 10px 10px 8px;"><strong>Name:</strong></td>
-            <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{patient.name}}</td>
-            <td align="left" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Gender:</strong></td>
-            <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;" ng-if="patient.gender == 'M'">Male</td>
-            <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;" ng-if="patient.gender == 'F'">Female</td>
-            <td align="left" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"><strong>Age:</strong></td>
-            <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;" colspan="2">{{ageCalculate}}</td>
-            <td align="left" style="border-bottom:1px solid #666;"><strong>Date:</strong></td>
-            <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{currentDate | date : "dd/MM/yyyy"}}</td>
+            <td align="left"><strong>Name:</strong></td>
+            <td>{{patient.name}}</td>
+            <td align="left"><strong>Gender:</strong></td>
+            <td ng-if="patient.gender == 'M'">Male</td>
+            <td ng-if="patient.gender == 'F'">Female</td>
+            <td align="left"><strong>Age:</strong></td>
+            <td>{{ageCalculate}}</td>
+            <td align="left"><strong>Date:</strong></td>
+            <td>{{currentDate | date : "dd/MM/yyyy"}}</td>
         </tr>
         <tr>
-            <td align="left" style="border-bottom:1px solid #666;"><strong>UIC:</strong></td>
-            <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{patient.UIC.value}}</td>
-            <td align="left" style="border-bottom:1px solid #666;"><strong>Clinic Name:</strong></td>
-            <td colspan="3" style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{patient.ClinicName.value}}</td>
-            <td align="left" style="border-bottom:1px solid #666;"><strong>Health ID:</strong></td>
-            <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;">{{patient.identifier}}</td>
-            <td style="border-bottom:1px solid #666;padding:10px 10px 10px 8px;"></td>
+            <td align="left" ><strong>UIC:</strong></td>
+            <td>{{patient.UIC.value}}</td>
+            <td align="left"><strong>Clinic Name:</strong></td>
+            <td>{{patient.ClinicName.value}}</td>
+            <td align="left"><strong>Health ID:</strong></td>
+            <td>{{patient.identifier}}</td>
+            <td></td>
+            <td></td>
         </tr>
     </table>
     <div style="margin-top: 25px;"></div>
