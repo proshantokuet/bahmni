@@ -9,6 +9,7 @@ angular.module('bahmni.common.conceptSet')
                   conceptSetUiConfigService, $timeout, clinicalAppConfigService, $stateParams, $translate, ageFormatterService, age) {
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             $scope.timeObject = {};
+            $scope.HasSubmittedMoneyReceipt = false;
             var init = function () {
                 $scope.validationHandler = new Bahmni.ConceptSet.ConceptSetGroupPanelViewValidationHandler($scope.allTemplates);
                 contextChangeHandler.add($scope.validationHandler.validate);
@@ -428,6 +429,7 @@ angular.module('bahmni.common.conceptSet')
                     }
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
+                    $scope.HasSubmittedMoneyReceipt = true;
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
                         $state.go("patient.dashboard.show", {
                             patientUuid: patient.uuid

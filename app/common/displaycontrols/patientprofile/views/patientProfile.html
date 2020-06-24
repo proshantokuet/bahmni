@@ -14,7 +14,7 @@
                         </span>
                         <div class="patient-value">
                              <span class="patient-name">
-                                {{::patient.name | titleCase}} ({{::patient.identifier}})</span> -
+                                {{::patient.name}} ({{::patient.identifier}})</span> -
                              <span class="patient-gender-age" ng-bind-html="::patientAttributeTypes"></span>
                              <span class="patient-estimated-text" ng-if="::patient.birthdateEstimated"> (est.)</span>
                              <!--<span class="patient-gender-age" ng-show="::patient.birthtime">, {{::(patient["SelectanIDcard"].value.display || patient["SelectanIDcard"].value) | booleanFilter}} : {{::(patient["IDno"].value.display || patient["IDno"].value) | booleanFilter}}</span>-->
