@@ -92,6 +92,7 @@ Bahmni.Common = Bahmni.Common || {};
         PatientUrl: RESTWS_V1 + "/patient",
         dischargeInfoPdfUrl: RESTWS_V1 + "/check/uniquePatient/dischargeData",
         birthInfoPdfURl: RESTWS_V1 + "/check/uniquePatient/birthData",
+        providerInfoUrl: RESTWS_V1 + "/check/uniquePatient/lastProviderData",
         bahmniVisitLocationUrl: BAHMNI_CORE + "/visitLocation",
         bahmniOrderUrl: BAHMNI_CORE + "/orders",
         bahmniDrugOrderUrl: BAHMNI_CORE + "/drugOrders",

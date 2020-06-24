@@ -91,6 +91,15 @@ angular.module('bahmni.clinical')
                 }
             };
 
+            $scope.getLastProviderName = function () {
+                debugger;
+                if ($scope.visitUuid && $scope.patientUuid) {
+                    encounterService.getLastProviderInfo($scope.visitUuid).then(function (response) {
+                        $scope.lastProviderName = response.data.lastVisitedProvider;
+                    });
+                }
+            };
+
             $scope.getBirthInformation = function () {
                 if ($scope.visitUuid && $scope.patientUuid) {
                     encounterService.getBirthInfo($scope.visitUuid, $scope.patientUuid).then(function (response) {
@@ -184,6 +193,7 @@ angular.module('bahmni.clinical')
                 printOnPrint();
                 $scope.getDischargeInformation();
                 $scope.getBirthInformation();
+                $scope.getLastProviderName();
             };
             init();
         }]);

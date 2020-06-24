@@ -122,7 +122,11 @@ table tr td {
             </div>
     </div>
 </div>
-
+    <div style="margin-top: 50px;"></div>
+    <div ng-if="isBeingPrinted" style="float: right">
+        <label><u>Service Provider Name and Signature :</u></label>
+        <div style="margin-top: 10px; font-size: medium; text-align: center" > <label>{{lastProviderName}}</label></div>
+    </div>
 </div>
 
 <script type="text/javascript">

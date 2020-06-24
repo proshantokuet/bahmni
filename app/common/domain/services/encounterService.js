@@ -195,6 +195,13 @@ angular.module('bahmni.common.domain')
                 });
             };
 
+            this.getLastProviderInfo = function (visitUuid) {
+                var providerUrl = Bahmni.Common.Constants.providerInfoUrl + "/" + visitUuid;
+                return $http.get(providerUrl, {
+                    withCredentials: true
+                });
+            };
+
             this.saveExternalPatientEncounter = function (patient_uuid, encounterUuid, actionStatus) {
                 return $http.get(Bahmni.Common.Constants.externalPatientEncounterUrl, {
                     params: {
