@@ -435,36 +435,39 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                     attribute['attributeType'] = pregnancyUuid;
                     attributes.push(attribute);
                 }
-                if (patientProgram.patientProgramAttributes["LMP Date"]) {
-                    // for server
-                    var lMPUuid = 'c792d201-9a7c-47dd-8971-249384d85c19';
-                    // for local
-                    //var lMPUuid = '6c6db42f-ba1c-4031-a9f3-ac7a1c876682';
-                    var value = patientProgram.patientProgramAttributes["LMP Date"];
-                    var dateObject = new Date(value);
-                    // var getmonth = (dateObject.getMonth() + 1) < 10 ? "0" + (dateObject.getMonth() + 1) : (dateObject.getMonth() + 1);
-                    // var getDate = dateObject.getDate() < 10 ? "0" + dateObject.getDate() : dateObject.getDate();
-                    // var dateString = dateObject.getFullYear() + "-" + getmonth + "-" + getDate;
-                    var attribute = {};
-                    attribute['value'] = DateUtil.getDateWithoutTime(dateObject);
-                    attribute['attributeType'] = lMPUuid;
-                    attributes.push(attribute);
-                }
-                if (patientProgram.patientProgramAttributes["Delivery Date"]) {
-                    // for server
-                    var deliveryUuid = '0df1c324-5ff7-4a28-9897-19dc2687b0f0';
-                    // for local
-                    //var deliveryUuid = '82cf6fa8-f35a-4f46-81c7-5ead8617f2f6';
-                    var value = patientProgram.patientProgramAttributes["Delivery Date"];
-                    var dateObject = new Date(value);
-                    // var getmonth = (dateObject.getMonth() + 1) < 10 ? "0" + (dateObject.getMonth() + 1) : (dateObject.getMonth() + 1);
-                    // var getDate = dateObject.getDate() < 10 ? "0" + dateObject.getDate() : dateObject.getDate();
-                    // var dateString = dateObject.getFullYear() + "-" + getmonth + "-" + getDate;
-                    var attribute = {};
-                    attribute['value'] = DateUtil.getDateWithoutTime(dateObject);
-                    ;
-                    attribute['attributeType'] = deliveryUuid;
-                    attributes.push(attribute);
+                if(patientProgram.patientProgramAttributes) {
+                    if (patientProgram.patientProgramAttributes["LMP Date"]) {
+                        // for server
+                        var lMPUuid = 'c792d201-9a7c-47dd-8971-249384d85c19';
+                        // for local
+                        //var lMPUuid = '6c6db42f-ba1c-4031-a9f3-ac7a1c876682';
+                        var value = patientProgram.patientProgramAttributes["LMP Date"];
+                        var dateObject = new Date(value);
+                        // var getmonth = (dateObject.getMonth() + 1) < 10 ? "0" + (dateObject.getMonth() + 1) : (dateObject.getMonth() + 1);
+                        // var getDate = dateObject.getDate() < 10 ? "0" + dateObject.getDate() : dateObject.getDate();
+                        // var dateString = dateObject.getFullYear() + "-" + getmonth + "-" + getDate;
+                        var attribute = {};
+                        attribute['value'] = DateUtil.getDateWithoutTime(dateObject);
+                        attribute['attributeType'] = lMPUuid;
+                        attributes.push(attribute);
+                    }
+
+                    if (patientProgram.patientProgramAttributes["Delivery Date"]) {
+                        // for server
+                        var deliveryUuid = '0df1c324-5ff7-4a28-9897-19dc2687b0f0';
+                        // for local
+                        //var deliveryUuid = '82cf6fa8-f35a-4f46-81c7-5ead8617f2f6';
+                        var value = patientProgram.patientProgramAttributes["Delivery Date"];
+                        var dateObject = new Date(value);
+                        // var getmonth = (dateObject.getMonth() + 1) < 10 ? "0" + (dateObject.getMonth() + 1) : (dateObject.getMonth() + 1);
+                        // var getDate = dateObject.getDate() < 10 ? "0" + dateObject.getDate() : dateObject.getDate();
+                        // var dateString = dateObject.getFullYear() + "-" + getmonth + "-" + getDate;
+                        var attribute = {};
+                        attribute['value'] = DateUtil.getDateWithoutTime(dateObject);
+                        ;
+                        attribute['attributeType'] = deliveryUuid;
+                        attributes.push(attribute);
+                    }
                 }
 
                 var patientInfo = {
