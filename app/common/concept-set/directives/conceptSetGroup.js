@@ -10,6 +10,7 @@ angular.module('bahmni.common.conceptSet')
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             $scope.viewingSpecific = false;
             $scope.timeObject = {};
+            $scope.HasSubmittedMoneyReceipt = false;
             var init = function () {
                 $scope.validationHandler = new Bahmni.ConceptSet.ConceptSetGroupPanelViewValidationHandler($scope.allTemplates);
                 contextChangeHandler.add($scope.validationHandler.validate);
@@ -552,6 +553,7 @@ angular.module('bahmni.common.conceptSet')
                     }
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
+                    $scope.HasSubmittedMoneyReceipt = true;
                     saveMoneyReceipt(jsonData);
                 } else {
                     $scope.Message = "You clicked NO.";
