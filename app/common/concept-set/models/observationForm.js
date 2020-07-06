@@ -157,6 +157,8 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (formName == Bahmni.Common.Constants.tbVerbalScreening) {
             return true;
+        } else if (formName == Bahmni.Common.Constants.adverseEventForm) {
+            return true;
         }
 
 
