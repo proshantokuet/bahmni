@@ -1,9 +1,16 @@
+<!--<style> tbody:before {-->
+    <!--content:"@";-->
+    <!--display:block;-->
+    <!--line-height:10px;-->
+    <!--text-indent:-99999px;-->
+<!--}</style>-->
 <section class="concept-set-conatiner block treatment-section">
     <h2 ng-if="::params.translationKey" class="section-title">{{::params | titleTranslate}} </h2>
     <div>
         <p class="placeholder-text" ng-if="!isDataPresent()">{{::'NO_TREATMENTS_MESSAGE' | translate}} </p>
         <table ng-repeat="drugOrderSection in ::drugOrderSections | orderBy: drugOrderSection.visitDate"
                class="repeated-table drug-order-table">
+            <br>
             <thead>
             <th colspan="4" ng-if="::!isOtherActiveSection(drugOrderSection.visitDate)">
                 {{::'VISIT_ON_TRANSLATION_KEY'|translate}} {{::drugOrderSection.visitDate | bahmniDate}}
