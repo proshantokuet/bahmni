@@ -678,7 +678,7 @@
 </table>
 
 <div class="submit-btn-container clearfix" id="buttonPrint" ng-show="money">
-    <button  style="float: right;margin-top: 10px;margin-right: 5px;" ng-disabled = "patientInfo.isComplete == 0" onclick="printMoneyReceipt()">Print</button>
+    <button  style="float: right;margin-top: 10px;margin-right: 5px;" ng-hide="true" ng-disabled = "patientInfo.isComplete == 0" onclick="printMoneyReceipt()">Print</button>
     <button style="margin: 10px 20px 0 0" class="right submit-btn" ng-disabled="myForm.$invalid || HasSubmittedMoneyReceipt" ng-show="patientInfo.isComplete == 0 || patientInfo.isComplete == undefined"
             ng-click="submitMoneyReceiptData(patientInfo,services,patient,0)">
         Save as Draft

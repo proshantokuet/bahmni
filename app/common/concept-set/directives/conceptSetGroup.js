@@ -156,7 +156,7 @@ angular.module('bahmni.common.conceptSet')
                 return obj.price;
             };
             $scope.clinicType = "";
-            $scope.servicePoints = [{name: "Static"}, {name: "Satellite"}, {name: "CSP"}];
+            $scope.servicePoints = [{name: "Static"}, {name: "Satellite"}, {name: "CSP"}, {name: "Telemedicine"}];
             $scope.sessions = [{name: "EPI"}, {name: "Garments"}, {name: "Corporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "N/A"}];
             $scope.references = [{name: "Self"}, {name: "CSP"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
             $scope.services = [{"discount": 0, "quantity": 1}];
@@ -207,6 +207,13 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo['sateliteClinicId'] = "";
                     $scope.patientInfo['teamNo'] = "";
                 } else if (servicePoint == "Satellite") {
+                    $scope.patientInfo['cspId'] = "";
+                }
+                else if (servicePoint == "Telemedicine") {
+                    $scope.patientInfo['session'] = "";
+                    $scope.patientInfo['other'] = "";
+                    $scope.patientInfo['sateliteClinicId'] = "";
+                    $scope.patientInfo['teamNo'] = "";
                     $scope.patientInfo['cspId'] = "";
                 }
                 $scope.clinicType = servicePoint;
