@@ -79,6 +79,13 @@ angular.module('bahmni.common.patient')
             });
         };
 
+        this.deleteMoneyReceipt = function (moneyreceiptId) {
+            return $http.delete(Bahmni.Common.Constants.deleteMoneyReceipt + "/" + moneyreceiptId, {
+                method: "DELETE",
+                withCredentials: true
+            });
+        };
+
         this.search = function (query, offset, identifier) {
             offset = offset || 0;
             return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {

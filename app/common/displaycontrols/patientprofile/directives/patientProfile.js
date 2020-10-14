@@ -320,6 +320,31 @@
                         });
                     };
 
+                    $scope.deleteMoneyReceipt = function (moneyReceiptId) {
+                        ngDialog.openConfirm({
+                            scope: $scope,
+                            template: '../common/displaycontrols/patientprofile/views/moneyReceiptDeleteConfirmation.html'
+                        }).then(function (confirm) {
+                            patientService.deleteMoneyReceipt(moneyReceiptId).then(function (response) {
+                                if (response.data.isSuccessfull) {
+                                    messagingService.showMessage("info", "Money Receipt Deleted Successfully");
+                                    //angular.element("#table_id").DataTable().clear().destroy();
+                                    $state.go("patient.dashboard.show", {
+                                            patientUuid: $scope.patient.uuid
+                                        }, {reload: true}
+                                    );
+                                }
+                                else {
+                                    messagingService.showMessage('error', response);
+                                }
+
+                            });
+                        }, function (reject) {
+                            return $q.reject();
+                        });
+
+                    };
+
                     var assignAdmissionDetails = function () {
                         var REP = "custom:(attributes:(value,attributeType:(display,name)))";
                         var ADMISSION_STATUS_ATTRIBUTE = "Admission Status";
