@@ -335,7 +335,7 @@
                                     );
                                 }
                                 else {
-                                    messagingService.showMessage('error', response);
+                                    messagingService.showMessage('error', response.data.message);
                                 }
 
                             });

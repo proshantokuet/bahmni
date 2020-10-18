@@ -10,6 +10,8 @@ angular.module('bahmni.common.conceptSet')
             var conceptSetUIConfig = conceptSetUiConfigService.getConfig();
             $scope.timeObject = {};
             $scope.HasSubmittedMoneyReceipt = false;
+            $scope.isShowRecivedAmount = false;
+            $scope.today = ageFormatterService.dateFormat(new Date());
             var init = function () {
                 $scope.validationHandler = new Bahmni.ConceptSet.ConceptSetGroupPanelViewValidationHandler($scope.allTemplates);
                 contextChangeHandler.add($scope.validationHandler.validate);
@@ -642,6 +644,10 @@ angular.module('bahmni.common.conceptSet')
                     }
                 }
                 return false;
+            };
+
+            $scope.showReceiveAmountSection = function () {
+                $scope.isShowRecivedAmount = !$scope.isShowRecivedAmount;
             };
 
             $scope.remove = function (index) {
