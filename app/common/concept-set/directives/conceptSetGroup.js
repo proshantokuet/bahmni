@@ -187,6 +187,7 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.title = "Money Receipt";
             $scope.onChanged = function (item, index) {
+                debugger;
                 var thisCode = item.code;
                 var service = $scope.services.filter(function (service) {
                     if (service.item) {
@@ -200,8 +201,31 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].category = item.category;
                     // $scope.services[index].provider = item.provider;
                     $scope.services[index].totalAmount = item.unitCost;
+                    // if($scope.patient.wealth == "Poor") {
+                    //     $scope.services[index].discount =  $scope.services[index].discountPoor;
+                    // }
+                    // else if($scope.patient.wealth == "PoP") {
+                    //     $scope.services[index].discount =  $scope.services[index].discountPop;
+                    // }
+                    // else if($scope.patient.wealth == "Able to Pay") {
+                    //     $scope.services[index].discount =  $scope.services[index].discountAblePay;
+                    // }
+                    // else {
+                    //     $scope.services[index].discount = 0;
+                    // }
                     $scope.services[index].discount = 0;
-                    $scope.services[index].netPayable = item.unitCost;
+                    if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                        var discountAmount = (item.unitCost * 1) * (item.discountPoor / 100);
+                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    }
+                    else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                        var discountAmount = (item.unitCost * 1) * (item.discountPop / 100);
+                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    }
+                    else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                        var discountAmount = (item.unitCost * 1) * (item.discountAblePay / 100);
+                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    }
                 } else {
                     $scope.services[index].item = undefined;
                     $scope.services[index].code = undefined;
@@ -215,6 +239,7 @@ angular.module('bahmni.common.conceptSet')
                 }
             };
             $scope.onChangedForCode = function (item, index) {
+                debugger;
                 var thisCode = item.code;
                 var service = $scope.services.filter(function (service) {
                     if (service.code) {
@@ -228,8 +253,31 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].category = item.category;
                     // $scope.services[index].provider = item.provider;
                     $scope.services[index].totalAmount = item.unitCost;
+                    // if($scope.patient.wealth == "Poor") {
+                    //     $scope.services[index].discount =  $scope.services[index].discountPoor;
+                    // }
+                    // else if($scope.patient.wealth == "PoP") {
+                    //     $scope.services[index].discount =  $scope.services[index].discountPop;
+                    // }
+                    // else if($scope.patient.wealth == "Able to Pay") {
+                    //     $scope.services[index].discount =  $scope.services[index].discountAblePay;
+                    // }
+                    // else {
+                    //     $scope.services[index].discount = 0;
+                    // }
                     $scope.services[index].discount = 0;
-                    $scope.services[index].netPayable = item.unitCost;
+                    if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                        var discountAmount = (item.unitCost * 1) * (item.discountPoor / 100);
+                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    }
+                    else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                        var discountAmount = (item.unitCost * 1) * (item.discountPop / 100);
+                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    }
+                    else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                        var discountAmount = (item.unitCost * 1) * (item.discountAblePay / 100);
+                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    }
                 } else {
                     $scope.services[index].item = undefined;
                     $scope.services[index].code = undefined;
@@ -258,29 +306,68 @@ angular.module('bahmni.common.conceptSet')
                 return false;
             };
             $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
-                var totalAmount = quantity * $scope.services[index].unitCost;
-                $scope.services[index].totalAmount = parseFloat(totalAmount).toFixed(2);
-                if ($scope.services[index].discount != undefined) {
-                    $scope.services[index].netPayable = parseFloat(totalAmount) - $scope.services[index].discount.toFixed(2);
-                } else {
-                    $scope.services[index].netPayable = parseFloat(totalAmount).toFixed(2);
-                }
+                    var totalAmount = quantity * $scope.services[index].unitCost;
+                    $scope.services[index].totalAmount = parseFloat(totalAmount).toFixed(2);
+                    if ($scope.services[index].discount != undefined) {
+                        if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                            var discountAmount = totalAmount * ($scope.services[index].item.discountPoor / 100);
+                            var financialDiscountAmount = totalAmount - discountAmount;
+                            $scope.services[index].netPayable = parseFloat(financialDiscountAmount) - $scope.services[index].discount.toFixed(2);
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                            var discountAmount = totalAmount * ($scope.services[index].item.discountPop / 100);
+                            var financialDiscountAmount = totalAmount - discountAmount;
+                            $scope.services[index].netPayable = parseFloat(financialDiscountAmount) - $scope.services[index].discount.toFixed(2);
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                            var discountAmount = totalAmount * ($scope.services[index].item.discountAblePay / 100);
+                            var financialDiscountAmount = totalAmount - discountAmount;
+                            $scope.services[index].netPayable = parseFloat(financialDiscountAmount) - $scope.services[index].discount.toFixed(2);
+                        }
+                    } else {
+                        if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                            var discountAmount = totalAmount * ($scope.services[index].item.discountPoor / 100);
+                            var financialDiscountAmount = totalAmount - discountAmount;
+                            $scope.services[index].netPayable = parseFloat(financialDiscountAmount).toFixed(2);
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                            var discountAmount = totalAmount * ($scope.services[index].item.discountPop / 100);
+                            var financialDiscountAmount = totalAmount - discountAmount;
+                            $scope.services[index].netPayable = parseFloat(financialDiscountAmount).toFixed(2);
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                            var discountAmount = totalAmount * ($scope.services[index].item.discountAblePay / 100);
+                            var financialDiscountAmount = totalAmount - discountAmount;
+                            $scope.services[index].netPayable = parseFloat(financialDiscountAmount).toFixed(2);
+                        }
+                    }
             };
 
             $scope.calculateNetAmount = function (discount, index) {
-                var totalAmount = parseFloat($scope.services[index].totalAmount);
-                var disccountAmount = (discount * totalAmount) / 100;
-
-                var netpayAmount = totalAmount - disccountAmount;
-                if (discount > totalAmount) {
-                    var discountLenth = (discount.toString()).length;
-                    var prevousDiscount = (discount.toString()).slice(0, discountLenth - 1);
-                    $scope.services[index].discount = parseInt(prevousDiscount);
-                    alert("Discount amount is greater than total amount");
-                } else {
-                    $scope.services[index].netPayable = (totalAmount - discount).toFixed(2);
-                }
+                debugger;
+                    var totalAmount = parseFloat($scope.services[index].totalAmount);
+                    var financialDiscountAmount;
+                    if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                        var discountAmount = totalAmount * ($scope.services[index].item.discountPoor / 100);
+                        financialDiscountAmount = totalAmount - discountAmount;
+                    }
+                    else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                        var discountAmount = totalAmount * ($scope.services[index].item.discountPop / 100);
+                        financialDiscountAmount = totalAmount - discountAmount;
+                    }
+                    else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                        var discountAmount = totalAmount * ($scope.services[index].item.discountAblePay / 100);
+                        financialDiscountAmount = totalAmount - discountAmount;
+                    }
+                    if (discount > financialDiscountAmount) {
+                        $scope.services[index].discount = 0;
+                        $scope.services[index].netPayable = parseFloat(financialDiscountAmount).toFixed(2);
+                        alert("Discount amount is greater than total amount");
+                    } else {
+                        $scope.services[index].netPayable = (financialDiscountAmount - discount).toFixed(2);
+                    }
             };
+
             $scope.calTotalAmount = function () {
                 $scope.total = 0;
                 angular.forEach($scope.services, function (listItem) {

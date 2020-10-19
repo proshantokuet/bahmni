@@ -407,7 +407,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Quantity<span class="asterick">*</span></label>
-                                                        <input ng-model="service.quantity" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 4em;" type="number" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-required="true"/>
+                                                        <input ng-model="service.quantity" ng-disabled="!service.item" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 4em;" type="number" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -429,7 +429,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Discount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.discount"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" min="0" ng-required="true"/>
+                                                        <input ng-model="service.discount" ng-disabled="!service.item"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" min="0" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
