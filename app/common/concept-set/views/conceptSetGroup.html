@@ -464,27 +464,40 @@
                             <section class="form-field form-field-gender">
                                 <table id="advanceTable" width="100%" border="0" cellpadding="0" cellspacing="0"
                                        align="left;">
-                                    <h4>Discount and Due :</h4>
-                                    <button ng-click="showReceiveAmountSection()">Add receive Amount</button>
+                                    <h4>Overall Discount:</h4>
                                     <tr>
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Discount :</label>
-                                                        <input ng-model="discount" style="width: 10em;"
-                                                               type="number"/>
+                                                        <input ng-model="patientInfo.overallDiscount" ng-change="checkOverallDiscountValue()" style="width: 10em;" type="number" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                                     </div>
                                                 </div>
                                             </article>
                                         </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                 <h4>Advance and Due:</h4>
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <input type="button" ng-click="showReceiveAmountSection()" value="{{paymentButtonName}}">
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
                                         <td ng-show="isShowRecivedAmount">
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Recieve Date :</label>
-                                                        <input ng-model="today" style="width: 10em;"
-                                                               type="text" readonly/>
+                                                        <input ng-model="paymentLogObject.receiveDate" style="width: 10em;" type="text" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -494,9 +507,8 @@
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <label>Recieve Amount :</label>
-                                                        <input ng-model="receiveAmount" style="width: 10em;"
-                                                               type="number"/>
+                                                        <label>Receive Amount :</label>
+                                                        <input ng-model="paymentLogObject.receiveAmount" ng-change="calculateDueAmount()" style="width: 10em;" type="number" min="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -508,8 +520,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Due :</label>
-                                                        <input ng-model="due" style="width: 10em;"
-                                                               type="text" readonly/>
+                                                        <input ng-model="paymentLogObject.dueAmount" style="width: 10em;" type="number" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -698,9 +709,17 @@
                 <td align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp; {{calTotalDiscount()}}</td>
                 <td align="right" valign="top"  style="padding:10px 8px 10px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
              </tr>
+          <tr>
+                <td colspan="5" align="right" valign="top"  style="padding:10px 10px 10px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Overall Discount</strong></td>
+                <td colspan="3" align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp;{{patientInfo.overallDiscount}} </td>
+          </tr>
+          <tr>
+                <td colspan="5" align="right" valign="top"  style="padding:10px 10px 10px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Net Payable After Discount</strong></td>
+                <td colspan="3" align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp;{{calculateNetPayableAfterDiscount()}} </td>
+          </tr>
 
           <tr>
-             <td colspan="8"align="left" valign="top"  style="padding:20px 10px 8px 8px;">In Words (Taka) :  {{inwords(calTotalNetAmount())}}</td>
+             <td colspan="8"align="left" valign="top"  style="padding:20px 10px 8px 8px;">In Words (Taka) :  {{inwords(calculateNetPayableAfterDiscount())}}</td>
           </tr>
 
     </table></td>
@@ -711,7 +730,7 @@
       <tr>
     <td colspan="2" align="left" valign="top">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
-         <tr>
+         <!--<tr>
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
@@ -719,24 +738,24 @@
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Discount :</strong></td>
             <td align="left" valign="top"   style="padding:20px 0 20px 8px;">100</td>
 
-          </tr>
-          <tr>
+          </tr>-->
+          <tr ng-repeat="payment in paymentHistory track by $index">
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
-             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : 2020-10-18</strong></td>
-            <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Amount</strong></td>
-            <td align="left" valign="top"   style="padding:20px 0 20px 8px;">50</td>
+             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{payment.receiveDate | date:'dd/MM/yyyy'}}</strong></td>
+            <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Amount :</strong></td>
+            <td align="left" valign="top"   style="padding:20px 0 20px 8px;">{{payment.receiveAmount}}</td>
 
           </tr>
 
-          <tr>
+          <tr ng-if="patientInfo.dueAmount > 0 || paymentLogObject.receiveAmount > 0">
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Due :</strong></td>
-            <td align="left" valign="top"   style="padding:20px 0 20px 8px;">190</td>
+            <td align="left" valign="top"   style="padding:20px 0 20px 8px;">{{calculateTotalDueAmount()}}</td>
 
           </tr>
 
@@ -790,7 +809,7 @@
 </table>
 
 <div class="submit-btn-container clearfix" id="buttonPrint" ng-show="money">
-    <button  style="float: right;margin-top: 10px;margin-right: 5px;" ng-hide="false" ng-disabled = "patientInfo.isComplete == 0" onclick="printMoneyReceipt()">Print</button>
+    <button  style="float: right;margin-top: 10px;margin-right: 5px;" ng-hide="false" ng-disabled = "" onclick="printMoneyReceipt()">Print</button>
     <button style="margin: 10px 20px 0 0" class="right submit-btn" ng-disabled="myForm.$invalid || HasSubmittedMoneyReceipt" ng-show="patientInfo.isComplete == 0 || patientInfo.isComplete == undefined"
             ng-click="submitMoneyReceiptData(patientInfo,services,patient,0)">
         Save as Draft
@@ -798,6 +817,7 @@
     <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid || HasSubmittedMoneyReceipt" ng-click="submitMoneyReceiptData(patientInfo,services,patient,1)">
                        <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
             {{ searchButtonText }}
+
 
     </button>
 
