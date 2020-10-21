@@ -229,7 +229,6 @@
 
                     var moneyReceipt = function () {
                         return patientService.moneyReceipt($scope.patientUuid).then(function (response) {
-                            debugger;
                             $scope.services = response.data;
                             var clinicCode = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId;
                             angular.forEach($scope.services, function (service) {

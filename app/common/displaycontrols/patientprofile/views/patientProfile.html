@@ -93,7 +93,7 @@
         </section>
     </div>
 <script type="text/ng-template" id="dialog">
-    <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button  ng-if="servicesBySlip[0].isComplete == 1" style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
+    <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button   style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
 
     <div id="moneyReceiptBySlipNo">
   <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
@@ -263,11 +263,51 @@
             <td align="right" valign="top"  style="padding:10px 8px 10px 8px;border-bottom: 1px solid #666;">{{calTotalNetAmount()}} </td>
           </tr>
           <tr>
-            <td colspan="8"align="left" valign="top"  style="padding:20px 10px 20px 8px;">In Words (Taka):  {{inwords(calTotalNetAmount())}}</td>
+                <td colspan="5" align="right" valign="top"  style="padding:10px 10px 10px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Overall Discount</strong></td>
+                <td colspan="3" align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp;{{servicesBySlip[0].overallDiscount}} </td>
           </tr>
+          <tr>
+                <td colspan="5" align="right" valign="top"  style="padding:10px 10px 10px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Net Payable After Discount</strong></td>
+                <td colspan="3" align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp;{{servicesBySlip[0].netPayableAfterDiscount}} </td>
+          </tr>
+          <tr>
+            <td colspan="8"align="left" valign="top"  style="padding:20px 10px 20px 8px;">In Words (Taka):  {{inwords(servicesBySlip[0].netPayableAfterDiscount)}}</td>
+          </tr>
+
+
 
     </table></td>
   </tr>
+      <tr>
+          <td colspan="2" align="left" valign="top">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                  <tr ng-repeat="payment in servicesBySlip[0].payments track by $index">
+                      <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
+                      <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
+                      <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
+                      <td align="right" valign="top" style="padding:20px 0 20px 8px;"><strong>Receive Date :
+                          {{dateTOString(payment.receiveDate) | date:'yyyy-MM-dd'}}</strong></td>
+                      <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong>Receive Amount :</strong>
+                      </td>
+                      <td align="left" valign="top" style="padding:20px 0 20px 8px;">{{payment.receiveAmount}}</td>
+
+                  </tr>
+
+                  <tr ng-if="servicesBySlip[0].payments.length !=0">
+                      <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
+                      <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
+                      <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
+                      <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
+                      <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong>Due :</strong></td>
+                      <td align="left" valign="top" style="padding:20px 0 20px 8px;">{{servicesBySlip[0].dueAmount}}
+                      </td>
+
+                  </tr>
+
+              </table>
+          </td>
+      </tr>
   <tr>
     <td colspan="2" align="left" valign="top"  style="padding:5px 0 1px 8px;"><img src="image/blank.png" width="1" height="20" /></td>
   </tr>

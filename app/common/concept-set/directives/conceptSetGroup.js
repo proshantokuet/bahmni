@@ -228,6 +228,9 @@ angular.module('bahmni.common.conceptSet')
                         var discountAmount = (item.unitCost * 1) * (item.discountAblePay / 100);
                         $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
                     }
+                    if($scope.paymentLogObject.receiveAmount) {
+                        $scope.calculateDueAmount();
+                    }
                 } else {
                     $scope.services[index].item = undefined;
                     $scope.services[index].code = undefined;
@@ -241,7 +244,6 @@ angular.module('bahmni.common.conceptSet')
                 }
             };
             $scope.onChangedForCode = function (item, index) {
-                debugger;
                 var thisCode = item.code;
                 var service = $scope.services.filter(function (service) {
                     if (service.code) {
@@ -420,77 +422,97 @@ angular.module('bahmni.common.conceptSet')
                 return $scope.netPayableAfterDiscount;
             };
 
-            $scope.calculateDueAmount = function () {
-                var totalAmount;
-                if ($stateParams.moneyReceiptObject) {
-                    if ($scope.patientInfo.dueAmount != 0) {
-                        totalAmount = $scope.calculateTotalDueAmount();
-                        if (totalAmount < 0) {
-                            $scope.paymentLogObject.receiveAmount = 0;
-                            $scope.paymentLogObject.dueAmount = $scope.calculateTotalDueAmount();
-                            alert("Receive amount is greater than net payable amount");
-                        }
-                        else {
-                            $scope.paymentLogObject.dueAmount = totalAmount;
-                            //$scope.patientInfo.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
-                        }
-                    }
-                    else {
-                        totalAmount = $scope.netPayableAfterDiscount;
-                        if ($scope.paymentLogObject.receiveAmount > totalAmount) {
-                            $scope.paymentLogObject.receiveAmount = 0;
-                            $scope.paymentLogObject.dueAmount = $scope.calculateTotalDueAmount();
-                            alert("Receive amount is greater than net payable amount");
-                        }
-                        else {
-                            $scope.paymentLogObject.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
-                            //$scope.patientInfo.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
-                        }
-                    }
-                }
-                else {
-                    totalAmount = $scope.netPayableAfterDiscount;
-                    if ($scope.paymentLogObject.receiveAmount > totalAmount) {
-                        $scope.paymentLogObject.receiveAmount = 0;
-                        $scope.paymentLogObject.dueAmount = $scope.calculateTotalDueAmount();
-                        alert("Receive amount is greater than net payable amount");
-                    }
-                    else {
-                        $scope.paymentLogObject.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
-                        //$scope.patientInfo.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
-                    }
-                }
+            // $scope.calculateDueAmount = function () {
+            //     var totalAmount;
+            //     if ($stateParams.moneyReceiptObject) {
+            //         if ($scope.patientInfo.dueAmount != 0) {
+            //             totalAmount = $scope.calculateTotalDueAmount();
+            //             if (totalAmount < 0) {
+            //                 $scope.paymentLogObject.receiveAmount = 0;
+            //                 $scope.paymentLogObject.dueAmount = $scope.calculateTotalDueAmount();
+            //                 alert("Receive amount is greater than due amount");
+            //             }
+            //             else {
+            //                 $scope.paymentLogObject.dueAmount = totalAmount;
+            //                 //$scope.patientInfo.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
+            //             }
+            //         }
+            //         else {
+            //             totalAmount = $scope.netPayableAfterDiscount;
+            //             if ($scope.paymentLogObject.receiveAmount > totalAmount) {
+            //                 $scope.paymentLogObject.receiveAmount = 0;
+            //                 $scope.paymentLogObject.dueAmount = $scope.calculateTotalDueAmount();
+            //                 alert("Receive amount is greater than net payable amount");
+            //             }
+            //             else {
+            //                 $scope.paymentLogObject.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
+            //                 //$scope.patientInfo.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
+            //             }
+            //         }
+            //     }
+            //     else {
+            //         totalAmount = $scope.netPayableAfterDiscount;
+            //         if ($scope.paymentLogObject.receiveAmount > totalAmount) {
+            //             $scope.paymentLogObject.receiveAmount = 0;
+            //             $scope.paymentLogObject.dueAmount = $scope.calculateTotalDueAmount();
+            //             alert("Receive amount is greater than net payable amount");
+            //         }
+            //         else {
+            //             $scope.paymentLogObject.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
+            //             //$scope.patientInfo.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
+            //         }
+            //     }
+            //
+            // };
 
-            };
-
-            $scope.checkOverallDiscountValue = function () {
-                //var totalAmount = parseFloat($scope.netAmount);
-                var totalAmount;
-                if ($stateParams.moneyReceiptObject) {
-                    if ($scope.patientInfo.dueAmount != 0) {
-                        totalAmount = $scope.calculateTotalDueAmount();
-                        if (totalAmount < 0) {
-                            $scope.patientInfo.overallDiscount = 0;
-                            alert("Discount amount is greater than net payable amount");
-                        }
-                    }
-                    else {
-                        totalAmount = parseFloat($scope.netAmount);
-                        if ($scope.patientInfo.overallDiscount > totalAmount) {
-                            $scope.patientInfo.overallDiscount = 0;
-                            alert("Discount amount is greater than net payable amount");
-                        }
-                    }
-                }
-                else {
-                    totalAmount = parseFloat($scope.netAmount);
-                    if ($scope.patientInfo.overallDiscount > totalAmount) {
-                        $scope.patientInfo.overallDiscount = 0;
-                        alert("Discount amount is greater than net payable amount");
-                    }
-                }
-
-            };
+            // $scope.checkOverallDiscountValue = function () {
+            //     //var totalAmount = parseFloat($scope.netAmount);
+            //     $scope.calculateNetPayableAfterDiscount();
+            //     var totalAmount;
+            //     if ($stateParams.moneyReceiptObject) {
+            //         if ($scope.patientInfo.dueAmount != 0) {
+            //             totalAmount = $scope.calculateTotalDueAmount();
+            //             if (totalAmount < 0) {
+            //                 $scope.patientInfo.overallDiscount = 0;
+            //                 alert("Discount amount is greater than due amount");
+            //             }
+            //         }
+            //         else {
+            //             totalAmount = parseFloat($scope.netAmount);
+            //             if ($scope.patientInfo.overallDiscount > totalAmount) {
+            //                 $scope.patientInfo.overallDiscount = 0;
+            //                 alert("Discount amount is greater than net payable amount");
+            //             }
+            //         }
+            //     }
+            //     else {
+            //         if($scope.paymentLogObject.receiveAmount) {
+            //             if($scope.paymentLogObject.receiveAmount != 0) {
+            //                 totalAmount = $scope.netPayableAfterDiscount;
+            //                 $scope.paymentLogObject.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
+            //                 if ($scope.paymentLogObject.dueAmount < 0) {
+            //                     $scope.patientInfo.overallDiscount = 0;
+            //                     alert("Discount amount is greater than net payable amount");
+            //                     if ($scope.paymentLogObject.receiveAmount) {
+            //                         if ($scope.paymentLogObject.receiveAmount != 0) {
+            //                             totalAmount = $scope.calculateNetPayableAfterDiscount();
+            //                             $scope.paymentLogObject.dueAmount = (totalAmount - $scope.paymentLogObject.receiveAmount);
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //         else {
+            //             totalAmount = parseFloat($scope.netAmount);
+            //             if ($scope.patientInfo.overallDiscount > totalAmount) {
+            //                 $scope.patientInfo.overallDiscount = 0;
+            //                 alert("Discount amount is greater than net payable amount");
+            //             }
+            //         }
+            //
+            //     }
+            //
+            // };
 
             $scope.calculateTotalDueAmount = function () {
                 $scope.totalcashReceived = 0;
@@ -504,8 +526,131 @@ angular.module('bahmni.common.conceptSet')
                        $scope.totalcashReceived =  $scope.totalcashReceived + $scope.paymentLogObject.receiveAmount;
                     }
                 }
-                return  $scope.netPayableAfterDiscount - $scope.totalcashReceived;
+                var netpayableAfterdiscount = $scope.calculateNetPayableAfterDiscount();
+                var returnValue = netpayableAfterdiscount - $scope.totalcashReceived;
+                //var returnValue = $scope.netPayableAfterDiscount - $scope.totalcashReceived;
+                //return  $scope.netPayableAfterDiscount - $scope.totalcashReceived;
+                return returnValue;
             };
+
+            $scope.calculateValidationDiscount = function () {
+                debugger;
+                var totalcashReceived = 0;
+                angular.forEach($scope.paymentHistory, function (listItem) {
+                    if (listItem.receiveAmount != undefined) {
+                        totalcashReceived = totalcashReceived + listItem.receiveAmount;
+                    }
+                });
+                if ($scope.paymentLogObject.receiveAmount) {
+                    if ($scope.paymentLogObject.receiveAmount != 0) {
+                        totalcashReceived = totalcashReceived + $scope.paymentLogObject.receiveAmount;
+                    }
+                }
+                var netpayableAfterdiscount = $scope.calculateNetPayableAfterDiscount();
+                var returnValue = netpayableAfterdiscount - totalcashReceived;
+                if(returnValue < 0) {
+                    $scope.patientInfo.overallDiscount = 0;
+                    alert("Discount amount is greater than net payable amount");
+                }
+            };
+
+            $scope.showDueLabelOnPdf = function () {
+                var totalcashReceived = 0;
+                angular.forEach($scope.paymentHistory, function (listItem) {
+                    if (listItem.receiveAmount != undefined) {
+                       totalcashReceived = totalcashReceived + listItem.receiveAmount;
+                    }
+                });
+                if ($scope.paymentLogObject.receiveAmount) {
+                    if ($scope.paymentLogObject.receiveAmount != 0) {
+                        totalcashReceived = totalcashReceived + $scope.paymentLogObject.receiveAmount;
+                    }
+                }
+                if(totalcashReceived == 0) {
+                    return 0;
+                }
+                else {
+                    return 1;
+                }
+            };
+
+            $scope.calculateValidationReceiveAmount = function () {
+                debugger;
+                var totalcashReceived = 0;
+                angular.forEach($scope.paymentHistory, function (listItem) {
+                    if (listItem.receiveAmount != undefined) {
+                        totalcashReceived = totalcashReceived + listItem.receiveAmount;
+                    }
+                });
+                if ($scope.paymentLogObject.receiveAmount) {
+                    if ($scope.paymentLogObject.receiveAmount != 0) {
+                        totalcashReceived = totalcashReceived + $scope.paymentLogObject.receiveAmount;
+                    }
+                }
+                var netpayableAfterdiscount = $scope.calculateNetPayableAfterDiscount();
+                var returnValue = netpayableAfterdiscount - totalcashReceived;
+                if (returnValue < 0) {
+                    $scope.paymentLogObject.receiveAmount = 0;
+                    alert("Receive amount is greater than net payable amount");
+                }
+            };
+
+            $scope.enableSubmitButton = function () {
+                debugger;
+                var totalcashReceived = 0;
+                angular.forEach($scope.paymentHistory, function (listItem) {
+                    if (listItem.receiveAmount != undefined) {
+                        totalcashReceived = totalcashReceived + listItem.receiveAmount;
+                    }
+                });
+                if ($scope.paymentLogObject.receiveAmount) {
+                    if ($scope.paymentLogObject.receiveAmount != 0) {
+                        totalcashReceived = totalcashReceived + $scope.paymentLogObject.receiveAmount;
+                    }
+                }
+                if (totalcashReceived == 0) {
+                    return 0;
+                }
+                else {
+                    var netpayableAfterdiscount = $scope.calculateNetPayableAfterDiscount();
+                    var returnValue = netpayableAfterdiscount - totalcashReceived;
+                    return returnValue;
+                }
+            };
+
+            // $scope.showOrHideSubmitButton = function () {
+            //     $scope.totalcashReceived = 0;
+            //     if ($stateParams.moneyReceiptObject) {
+            //         angular.forEach($scope.paymentHistory, function (listItem) {
+            //             if (listItem.receiveAmount != undefined) {
+            //                 $scope.totalcashReceived = $scope.totalcashReceived + listItem.receiveAmount;
+            //             }
+            //         });
+            //         if ($scope.paymentLogObject.receiveAmount) {
+            //             if ($scope.paymentLogObject.receiveAmount != 0) {
+            //                 $scope.totalcashReceived = $scope.totalcashReceived + $scope.paymentLogObject.receiveAmount;
+            //             }
+            //         }
+            //         return $scope.netPayableAfterDiscount - $scope.totalcashReceived;
+            //     }
+            //     else {
+            //         angular.forEach($scope.paymentHistory, function (listItem) {
+            //             if (listItem.receiveAmount != undefined) {
+            //                 $scope.totalcashReceived = $scope.totalcashReceived + listItem.receiveAmount;
+            //             }
+            //         });
+            //         if ($scope.paymentLogObject.receiveAmount) {
+            //             if ($scope.paymentLogObject.receiveAmount != 0) {
+            //                 $scope.totalcashReceived = $scope.totalcashReceived + $scope.paymentLogObject.receiveAmount;
+            //                 return $scope.netPayableAfterDiscount - $scope.totalcashReceived;
+            //             }
+            //         }
+            //         else {
+            //             return 0;
+            //         }
+            //
+            //     }
+            // };
 
             var saveMoneyReceipt = function (data) {
                 return patientService.saveMoneyReceipt(data).then(function (response) {
@@ -625,7 +770,6 @@ angular.module('bahmni.common.conceptSet')
                     if (patient.RegistrationDate) {
                         patientInfo['patientRegisteredDate'] = $scope.dateStringConverter(patient.RegistrationDate.value);
                     }
-                    debugger;
                     if(!patientInfo.overallDiscount) {
                         patientInfo.overallDiscount = 0;
                     }
@@ -636,7 +780,8 @@ angular.module('bahmni.common.conceptSet')
                     var payments = [];
                     if ($scope.paymentLogObject.receiveAmount) {
                         if ($scope.paymentLogObject.receiveAmount != 0) {
-                            patientInfo.dueAmount = $scope.paymentLogObject.dueAmount;
+                            var totalDue = $scope.calculateTotalDueAmount();
+                            patientInfo.dueAmount = totalDue.toString();
                             var splitedDate = $scope.paymentLogObject.receiveDate.split('/');
                             var finalizedSplitedDate = splitedDate[2] + "-" + splitedDate[1] + "-" + splitedDate[0];
                             var paymentobj = {};
@@ -967,7 +1112,6 @@ angular.module('bahmni.common.conceptSet')
             };
 
             var getMoneyReceiptByid = function (mid) {
-                debugger;
                 return patientService.getMoneyReceiptByid(mid).then(function (response) {
                     $scope.paymentHistory = response.data.payments;
 

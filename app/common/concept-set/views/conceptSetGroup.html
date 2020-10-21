@@ -471,7 +471,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Discount :</label>
-                                                        <input ng-model="patientInfo.overallDiscount" ng-change="checkOverallDiscountValue()" style="width: 10em;" type="number" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                                        <input ng-model="patientInfo.overallDiscount" ng-change="calculateValidationDiscount()" style="width: 10em;" type="number" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -508,7 +508,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Receive Amount :</label>
-                                                        <input ng-model="paymentLogObject.receiveAmount" ng-change="calculateDueAmount()" style="width: 10em;" type="number" min="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                                        <input ng-model="paymentLogObject.receiveAmount" ng-change="calculateValidationReceiveAmount()" style="width: 10em;" type="number" min="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -520,7 +520,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Due :</label>
-                                                        <input ng-model="paymentLogObject.dueAmount" style="width: 10em;" type="number" readonly/>
+                                                        <input value="{{calculateTotalDueAmount()}}" style="width: 10em;" type="number" readonly/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -743,13 +743,24 @@
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
-             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{payment.receiveDate | date:'dd/MM/yyyy'}}</strong></td>
+             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{dateStringConverter(payment.receiveDate)}}</strong></td>
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Amount :</strong></td>
             <td align="left" valign="top"   style="padding:20px 0 20px 8px;">{{payment.receiveAmount}}</td>
 
           </tr>
 
-          <tr ng-if="patientInfo.dueAmount > 0 || paymentLogObject.receiveAmount > 0">
+
+          <tr ng-if="paymentLogObject.receiveAmount > 0">
+            <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
+             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
+             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
+             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{paymentLogObject.receiveDate}}</strong></td>
+            <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Amount :</strong></td>
+            <td align="left" valign="top"   style="padding:20px 0 20px 8px;">{{paymentLogObject.receiveAmount}}</td>
+
+          </tr>
+
+          <tr ng-if="showDueLabelOnPdf() !=0">
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
@@ -809,12 +820,12 @@
 </table>
 
 <div class="submit-btn-container clearfix" id="buttonPrint" ng-show="money">
-    <button  style="float: right;margin-top: 10px;margin-right: 5px;" ng-hide="false" ng-disabled = "" onclick="printMoneyReceipt()">Print</button>
+    <button  style="float: right;margin-top: 10px;margin-right: 5px;" ng-hide="true" ng-disabled = "" onclick="printMoneyReceipt()">Print</button>
     <button style="margin: 10px 20px 0 0" class="right submit-btn" ng-disabled="myForm.$invalid || HasSubmittedMoneyReceipt" ng-show="patientInfo.isComplete == 0 || patientInfo.isComplete == undefined"
             ng-click="submitMoneyReceiptData(patientInfo,services,patient,0)">
         Save as Draft
     </button>
-    <button  style="margin: 10px 20px 0 0"  class="right submit-btn"  ng-disabled="myForm.$invalid || HasSubmittedMoneyReceipt" ng-click="submitMoneyReceiptData(patientInfo,services,patient,1)">
+    <button  style="margin: 10px 20px 0 0"  class="right submit-btn" ng-if="enableSubmitButton() == 0"  ng-disabled="myForm.$invalid || HasSubmittedMoneyReceipt" ng-click="submitMoneyReceiptData(patientInfo,services,patient,1)">
                        <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
             {{ searchButtonText }}
 
