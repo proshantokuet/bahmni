@@ -189,7 +189,6 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.title = "Money Receipt";
             $scope.onChanged = function (item, index) {
-                debugger;
                 var thisCode = item.code;
                 var service = $scope.services.filter(function (service) {
                     if (service.item) {
@@ -203,6 +202,7 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].category = item.category;
                     // $scope.services[index].provider = item.provider;
                     $scope.services[index].totalAmount = item.unitCost;
+                    $scope.services[index].type = item.type;
                     // if($scope.patient.wealth == "Poor") {
                     //     $scope.services[index].discount =  $scope.services[index].discountPoor;
                     // }
@@ -240,6 +240,7 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].totalAmount = "";
                     $scope.services[index].discount = 0;
                     $scope.services[index].netPayable = "";
+                    $scope.services[index].type = "";
                     alert("You have selected  " + item.name + " please select another");
                 }
             };
@@ -257,6 +258,7 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].category = item.category;
                     // $scope.services[index].provider = item.provider;
                     $scope.services[index].totalAmount = item.unitCost;
+                    $scope.services[index].type = item.type;
                     // if($scope.patient.wealth == "Poor") {
                     //     $scope.services[index].discount =  $scope.services[index].discountPoor;
                     // }
@@ -291,6 +293,7 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].totalAmount = "";
                     $scope.services[index].discount = 0;
                     $scope.services[index].netPayable = "";
+                    $scope.services[index].type = "";
                     alert("You have selected  " + item.name + " please select another");
                 }
             };
@@ -348,7 +351,6 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.calculateNetAmount = function (discount, index) {
-                debugger;
                     var totalAmount = parseFloat($scope.services[index].totalAmount);
                     var financialDiscountAmount;
                     if ($scope.patient.FinancialStatus.value.display == "Poor") {
@@ -534,7 +536,6 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.calculateValidationDiscount = function () {
-                debugger;
                 var totalcashReceived = 0;
                 angular.forEach($scope.paymentHistory, function (listItem) {
                     if (listItem.receiveAmount != undefined) {
@@ -575,7 +576,6 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.calculateValidationReceiveAmount = function () {
-                debugger;
                 var totalcashReceived = 0;
                 angular.forEach($scope.paymentHistory, function (listItem) {
                     if (listItem.receiveAmount != undefined) {
@@ -596,7 +596,6 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.enableSubmitButton = function () {
-                debugger;
                 var totalcashReceived = 0;
                 angular.forEach($scope.paymentHistory, function (listItem) {
                     if (listItem.receiveAmount != undefined) {
@@ -790,9 +789,11 @@ angular.module('bahmni.common.conceptSet')
                             payments.push(paymentobj);
                         }
                     }
+                    debugger;
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
                     jsonData["payments"] = payments;
+
                     $scope.HasSubmittedMoneyReceipt = true;
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
                         $state.go("patient.dashboard.show", {
@@ -1002,7 +1003,6 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.showReceiveAmountSection = function () {
-                debugger;
                 $scope.isShowRecivedAmount = !$scope.isShowRecivedAmount;
                 if($scope.isShowRecivedAmount) {
                     $scope.paymentLogObject.receiveDate =  $scope.today;
@@ -1102,6 +1102,7 @@ angular.module('bahmni.common.conceptSet')
                                     $scope.services[index].discount = $scope.moneyReceiptObject[i].discount;
                                     $scope.services[index].netPayable = $scope.moneyReceiptObject[i].netPayable;
                                     $scope.services[index].spid = $scope.moneyReceiptObject[i].spid;
+                                    $scope.services[index].type = $scope.moneyReceiptObject[i].type;
                                     index++;
                                     break;
                                 }

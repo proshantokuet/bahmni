@@ -429,7 +429,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Discount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.discount" ng-disabled="!service.item"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" min="0" ng-required="true"/>
+                                                        <input ng-model="service.discount" ng-disabled="!service.item || service.type=='PACKAGE'"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" min="0" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
