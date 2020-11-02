@@ -320,6 +320,23 @@
                         });
                     };
 
+                    $scope.editMoneyReceiptForRefund = function (mid) {
+                        debugger;
+                        if (mid == undefined) {
+                            $state.go('patient.dashboard.show.observations', {
+                                conceptSetGroupName: 'observations',
+                                previousUrl: 'moneyreceipt'
+                            });
+                        }
+                        else {
+                            var filteringServicesBySlip = $scope.services.filter(function (service) {
+                                return service.mid == mid;
+                            });
+                            filteringServicesBySlip[0].paymentStatus = "REFUND";
+                            $scope.restrictInactiveServicePreview(filteringServicesBySlip);
+                        }
+                    };
+
                     $scope.deleteMoneyReceipt = function (moneyReceiptId) {
                         ngDialog.openConfirm({
                             scope: $scope,

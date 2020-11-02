@@ -742,6 +742,10 @@ angular.module('bahmni.common.conceptSet')
                         delete patientInfo.totalAmount;
                         delete patientInfo.unitCost;
                         patientInfo['mid'] = $scope.patientInfo.mid;
+                        if(patientInfo.paymentStatus) {
+                            patientInfo['paymentStatus'] = patientInfo.paymentStatus;
+                        }
+
                     }
                     else patientInfo['mid'] = "";
                     patientInfo['patientName'] = patient.givenName + " " + patient.familyName;
