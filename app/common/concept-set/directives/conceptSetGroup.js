@@ -610,6 +610,11 @@ angular.module('bahmni.common.conceptSet')
                 if (totalcashReceived == 0) {
                     return 0;
                 }
+               else if($scope.patientInfo.paymentStatus) {
+                    if($scope.patientInfo.paymentStatus == "REFUND") {
+                        return 0;
+                    }
+                }
                 else {
                     var netpayableAfterdiscount = $scope.calculateNetPayableAfterDiscount();
                     var returnValue = netpayableAfterdiscount - totalcashReceived;
@@ -660,7 +665,18 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.dateStringConverter = function (date) {
                 var dateObject = new Date(date);
-                var dateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 1) + "-" + dateObject.getDate();
+                var dateString = dateObject.getFullYear() + "-" + (dateObject.getMonth() + 1)  + "-" + dateObject.getDate();
+                return dateString;
+            };
+
+            $scope.paymentDateUniform = function(date) {
+                var dateObject = ageFormatterService.convertToDateObject(date);
+                var date = new Date(dateObject),
+                yr = date.getFullYear(),
+                month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
+                day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
+                newDate = day + '/' + month + '/' + yr;
+                var dateString = yr + "-" + month + "-" + day;
                 return dateString;
             };
 

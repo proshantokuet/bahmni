@@ -407,7 +407,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Quantity<span class="asterick">*</span></label>
-                                                        <input ng-model="service.quantity" ng-disabled="!service.item" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 4em;" type="number" min="1" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-required="true"/>
+                                                        <input ng-model="service.quantity" ng-disabled="!service.item" ng-change="calculateTotalAmountAndNetPayable(service.quantity,$index)" style="width: 4em;" type="number" min="0" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -743,7 +743,7 @@
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
-             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{dateStringConverter(payment.receiveDate)}}</strong></td>
+             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{dateStringToDateObj(payment.receiveDate) | date:'yyyy-MM-dd'}}</strong></td>
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Amount :</strong></td>
             <td align="left" valign="top"   style="padding:20px 0 20px 8px;">{{payment.receiveAmount}}</td>
 
@@ -754,7 +754,7 @@
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
-             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{paymentLogObject.receiveDate}}</strong></td>
+             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{paymentDateUniform(paymentLogObject.receiveDate)}}</strong></td>
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Amount :</strong></td>
             <td align="left" valign="top"   style="padding:20px 0 20px 8px;">{{paymentLogObject.receiveAmount}}</td>
 
