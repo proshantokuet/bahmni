@@ -336,19 +336,21 @@ angular.module('bahmni.registration')
                     /* var e = document.getElementById("MaritalStatus");
                     var maritalStatus = e.options[e.selectedIndex].text; */
                     var birthRank = $scope.patient[attribute];
-                    if (parseInt(birthRank) <= 9) {
-                        $scope.patient.birthRank = "0" + parseInt(birthRank);
-                    } else {
-                        $scope.patient.birthRank = birthRank.slice(1, 3);
-                    }
-                    if ($scope.patient.birthRank == "00") {
-                        $scope.patient.birthRank = null;
-                    }
-                    else {
-                        var a = $('#UIC').val();
-                        var position = 7;
-                        var output = testReplaceAt(a, position, $scope.patient.birthRank.slice(0, 2));
-                        $scope.patient.uic = output;
+                    if(birthRank) {
+                        if (parseInt(birthRank) <= 9) {
+                            $scope.patient.birthRank = "0" + parseInt(birthRank);
+                        } else {
+                            $scope.patient.birthRank = birthRank.slice(1, 3);
+                        }
+                        if ($scope.patient.birthRank == "00") {
+                            $scope.patient.birthRank = null;
+                        }
+                        else {
+                            var a = $('#UIC').val();
+                            var position = 7;
+                            var output = testReplaceAt(a, position, $scope.patient.birthRank.slice(0, 2));
+                            $scope.patient.uic = output;
+                        }
                     }
                 }
                 if (attribute == 'birthDistrict') {
