@@ -93,7 +93,7 @@
         </section>
     </div>
 <script type="text/ng-template" id="dialog">
-    <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button   style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
+    <button  style="float: right;margin-top: 10px;" ng-click="closeDialogs()">Close</button> <button ng-if="servicesBySlip[0].isComplete == 1 || servicesBySlip[0].payments.length !=0"   style="float: right;margin-top: 10px;" onclick="printMoneyReceiptBySlipNo()">Print</button>
 
     <div id="moneyReceiptBySlipNo">
   <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
