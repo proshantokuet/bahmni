@@ -104,7 +104,7 @@ angular.module('bahmni.registration')
                     finalizedSplitedDate.setDate(finalizedSplitedDate.getDate());
                     $scope.patient.RegistrationDate = finalizedSplitedDate;
                 }
-                // $scope.patient.UIC = $scope.patient.uic;
+                $scope.patient.UIC = $scope.patient.uic;
                 addNewRelationships();
                 var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
                 if (errorMessages.length > 0) {
