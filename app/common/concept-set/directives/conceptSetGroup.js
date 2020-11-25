@@ -72,7 +72,8 @@ angular.module('bahmni.common.conceptSet')
             $scope.servicePoints = [{name: "Static"}, {name: "Satellite"}, {name: "CSP"}, {name: "Telemedicine"}];
             $scope.sessions = [{name: "EPI"}, {name: "Garments"}, {name: "Corporate"}, {name: "Goverment Events"}, {name: "Camp"}, {name: "NGO"}, {name: "Others"}, {name: "N/A"}];
             $scope.references = [{name: "Self"}, {name: "CSP"}, {name: "Satellite"}, {name: "SHCSG"}, {name: "SMC"}, {name: "External"}, {name: "Others"}];
-            $scope.services = [{"discount": 0, "quantity": 1}];
+            $scope.services = [{"discount": 0, "quantity": 1,"stock": 0}];
+
             $scope.patientInfo = {
                 clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName,
                 clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId,
@@ -89,7 +90,7 @@ angular.module('bahmni.common.conceptSet')
 
             $scope.addNewChoice = function () {
                 var newItemNo = $scope.services.length + 1;
-                $scope.services.push({"discount": 0, "quantity": 1});
+                $scope.services.push({"discount": 0, "quantity": 1,"stock": 0});
             };
             $scope.removeThis = function (index) {
                 $scope.services.splice(index, 1);
@@ -196,6 +197,9 @@ angular.module('bahmni.common.conceptSet')
                     }
                 });
                 if (service.length == 1) {
+                    if(item.type =="PRODUCT") {
+                        $scope.getProductCurrentStock(item.sid, index);
+                    }
                     $scope.services[index].unitCost = item.unitCost;
                     $scope.services[index].quantity = 1;
                     $scope.services[index].code = item;
@@ -215,22 +219,38 @@ angular.module('bahmni.common.conceptSet')
                     // else {
                     //     $scope.services[index].discount = 0;
                     // }
-                    $scope.services[index].discount = 0;
-                    if ($scope.patient.FinancialStatus.value.display == "Poor") {
-                        var discountAmount = (item.unitCost * 1) * (item.discountPoor / 100);
-                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    if(item.type =="PRODUCT") {
+                        $scope.services[index].quantity = 0;
+                        $scope.services[index].discount = 0;
+                        if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountPoor / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountPop / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountAblePay / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
                     }
-                    else if ($scope.patient.FinancialStatus.value.display == "PoP") {
-                        var discountAmount = (item.unitCost * 1) * (item.discountPop / 100);
-                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    else {
+                        $scope.services[index].discount = 0;
+                        if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                            var discountAmount = (item.unitCost * 1) * (item.discountPoor / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                            var discountAmount = (item.unitCost * 1) * (item.discountPop / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                            var discountAmount = (item.unitCost * 1) * (item.discountAblePay / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                        }
                     }
-                    else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
-                        var discountAmount = (item.unitCost * 1) * (item.discountAblePay / 100);
-                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
-                    }
-                    if($scope.paymentLogObject.receiveAmount) {
-                        $scope.calculateDueAmount();
-                    }
+
                 } else {
                     $scope.services[index].item = undefined;
                     $scope.services[index].code = undefined;
@@ -241,6 +261,7 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].discount = 0;
                     $scope.services[index].netPayable = "";
                     $scope.services[index].type = "";
+                    $scope.services[index].stock = 0;
                     alert("You have selected  " + item.name + " please select another");
                 }
             };
@@ -252,6 +273,9 @@ angular.module('bahmni.common.conceptSet')
                     }
                 });
                 if (service.length == 1) {
+                    if(item.type =="PRODUCT") {
+                        $scope.getProductCurrentStock(item.sid, index);
+                    }
                     $scope.services[index].unitCost = item.unitCost;
                     $scope.services[index].quantity = 1;
                     $scope.services[index].item = item;
@@ -271,19 +295,38 @@ angular.module('bahmni.common.conceptSet')
                     // else {
                     //     $scope.services[index].discount = 0;
                     // }
-                    $scope.services[index].discount = 0;
-                    if ($scope.patient.FinancialStatus.value.display == "Poor") {
-                        var discountAmount = (item.unitCost * 1) * (item.discountPoor / 100);
-                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    if(item.type =="PRODUCT") {
+                        $scope.services[index].quantity = 0;
+                        $scope.services[index].discount = 0;
+                        if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountPoor / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountPop / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountAblePay / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
                     }
-                    else if ($scope.patient.FinancialStatus.value.display == "PoP") {
-                        var discountAmount = (item.unitCost * 1) * (item.discountPop / 100);
-                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                    else {
+                        $scope.services[index].discount = 0;
+                        if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                            var discountAmount = (item.unitCost * 1) * (item.discountPoor / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                            var discountAmount = (item.unitCost * 1) * (item.discountPop / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                            var discountAmount = (item.unitCost * 1) * (item.discountAblePay / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
+                        }
                     }
-                    else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
-                        var discountAmount = (item.unitCost * 1) * (item.discountAblePay / 100);
-                        $scope.services[index].netPayable = (item.unitCost * 1) - discountAmount;
-                    }
+
                 } else {
                     $scope.services[index].item = undefined;
                     $scope.services[index].code = undefined;
@@ -294,6 +337,7 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].discount = 0;
                     $scope.services[index].netPayable = "";
                     $scope.services[index].type = "";
+                    $scope.services[index].stock = 0;
                     alert("You have selected  " + item.name + " please select another");
                 }
             };
@@ -313,6 +357,14 @@ angular.module('bahmni.common.conceptSet')
                 return false;
             };
             $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
+                    debugger;
+                    if($scope.services[index].type == "PRODUCT") {
+                        var stock = $scope.services[index].stock;
+                        if(quantity > stock) {
+                             quantity = stock;
+                             $scope.services[index].quantity = quantity;
+                        }
+                    }
                     var totalAmount = quantity * $scope.services[index].unitCost;
                     $scope.services[index].totalAmount = parseFloat(totalAmount).toFixed(2);
                     if ($scope.services[index].discount != undefined) {
@@ -548,8 +600,8 @@ angular.module('bahmni.common.conceptSet')
                     }
                 }
                 var netpayableAfterdiscount = $scope.calculateNetPayableAfterDiscount();
-                var returnValue = netpayableAfterdiscount - totalcashReceived;
-                if(returnValue < 0) {
+                //var returnValue = netpayableAfterdiscount - totalcashReceived;
+                if(netpayableAfterdiscount < 0) {
                     $scope.patientInfo.overallDiscount = 0;
                     alert("Discount amount is greater than net payable amount");
                 }
@@ -589,10 +641,10 @@ angular.module('bahmni.common.conceptSet')
                 }
                 var netpayableAfterdiscount = $scope.calculateNetPayableAfterDiscount();
                 var returnValue = netpayableAfterdiscount - totalcashReceived;
-                if (returnValue < 0) {
-                    $scope.paymentLogObject.receiveAmount = 0;
-                    alert("Receive amount is greater than net payable amount");
-                }
+                // if (returnValue < 0) {
+                //     $scope.paymentLogObject.receiveAmount = 0;
+                //     alert("Receive amount is greater than net payable amount");
+                // }
             };
 
             $scope.enableSubmitButton = function () {
@@ -1112,7 +1164,15 @@ angular.module('bahmni.common.conceptSet')
                         for (var j = 0; j < $scope.serviceList.length; j++) {
                             for (var i = 0; i < $scope.moneyReceiptObject.length; i++) {
                                 if ($scope.serviceList[j].code == $scope.moneyReceiptObject[i].code) {
-                                    $scope.services[index] = {"discount": 0, "quantity": 1};
+                                    debugger;
+                                     $scope.services[index] = {"discount": 0, "quantity": 1};
+                                     if($scope.moneyReceiptObject[i].type == "PRODUCT") {
+                                         var productId = $scope.serviceList[j].sid;
+                                         $scope.getProductCurrentStock(productId,index);
+                                     }
+                                     else {
+                                        $scope.services[index].stock = 0;
+                                     }
                                     $scope.services[index].code = $scope.serviceList[j];
                                     $scope.services[index].item = $scope.serviceList[j];
                                     $scope.services[index].description = $scope.moneyReceiptObject[i].description;
@@ -1167,6 +1227,14 @@ angular.module('bahmni.common.conceptSet')
                             }
                         }
                     });
+                });
+            };
+
+            $scope.getProductCurrentStock = function(productId,index) {
+                var clinicPrimaryId = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id;
+                patientService.getProductCurrentStock(clinicPrimaryId,productId).then(function (response) {
+                     var stockSize = response.data.stock;
+                     $scope.services[index].stock = parseInt(stockSize);
                 });
             };
 

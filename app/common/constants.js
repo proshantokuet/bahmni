@@ -75,6 +75,7 @@ Bahmni.Common = Bahmni.Common || {};
         checkExistingMoneyReceipt: RESTWS_V1 + "/money-receipt/check-existing-money-receipt",
         getEslipNo: RESTWS_V1 + "/generate/uniqueid/eslip",
         getMoneyReceiptById: RESTWS_V1 + "/money-receipt/get",
+        getCurrentProductStock: RESTWS_V1 + "/stock/get-product-stock",
         deleteMoneyReceipt: RESTWS_V1 + "/money-receipt/void-money-receipt",
         serviceUrl: RESTWS_V1 + "/service-management/get-all",
         dataColelctorUrl: RESTWS_V1 + "/clinic-user/get-by-code",
