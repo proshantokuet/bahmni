@@ -11,9 +11,14 @@ td {
 </head>
 
 <body>
+
 <table width="1024" border="0" align="center" cellpadding="0" cellspacing="0" >
   <tr>
-    <td align="center"  valign="top"><img src="./../images/logo.png" width="" height=""  alt=""/></td>
+      <td>
+          <img ng-if="isBeingPrinted"  id="barcode" jsbarcode-value="{{patient.identifier}}" />
+          <img style="margin-left: 150px;" src="./../images/logo.png" width="" height=""  alt=""/>
+         </td>
+    <!--<td align="left" valign="top"><img src="./../images/logo.png" width="" height=""  alt=""/></td>-->
   </tr>
   <tr>
     <td align="center"  valign="top"><h1 style="margin:1px;">Birth Certificate</h1></td>
@@ -96,5 +101,11 @@ td {
       </table></td>
   </tr>
 </table>
+<script src="../lib/JsBarcode.all.min.js"></script>
+<script>
+    (function() {
+        JsBarcode("#barcode").init();
+    })();
+</script>
 </body>
 </html>
