@@ -113,6 +113,13 @@ angular.module('bahmni.common.patient')
             });
         };
 
+        this.getProductCurrentStock = function (clinicId, productId) {
+            return $http.get(Bahmni.Common.Constants.getCurrentProductStock + "/" + clinicId + "/" + productId, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
+
         this.getPatientContext = function (patientUuid, programUuid, personAttributes, programAttributes, patientIdentifiers) {
             return $http.get('/openmrs/ws/rest/v1/bahmnicore/patientcontext', {
                 params: {
