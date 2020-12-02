@@ -915,7 +915,7 @@ angular.module('bahmni.common.conceptSet')
                 }
             };
 
-            $scope.changingMinuteHourValue = function (hour, minute) {
+             $scope.changingMinuteHourValue = function (hour, minute) {
                 if (hour && minute) {
                     if ($scope.patientInfo.moneyReceiptDate) {
                         $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + hour + ":";
@@ -931,7 +931,10 @@ angular.module('bahmni.common.conceptSet')
                     $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + "00" + ":" + minute;
                 }
                 else {
-                    $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " " + "00:00";
+                      var locald = new Date();
+                      var hourLocal = locald.getHours() < 10 ? "0" + locald.getHours() : locald.getHours();
+                      var minuteLocal = locald.getMinutes() < 10 ? "0" + locald.getMinutes() : locald.getMinutes();
+                    $scope.patientInfo.moneyReceiptDate = $scope.patientInfo.moneyReceiptDate + " "  + hourLocal + ":" + minuteLocal;
                 }
             };
 
