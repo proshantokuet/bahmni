@@ -1,4 +1,5 @@
 
+
     <div class="dashboard-patientInformation-section" id="patient_information" ng-if="::isDirectiveReady">
         <section bindonce="patient" class="block patientInformation dashboard-section" ng-class="::{'more': patientSummary.show}">
 
@@ -97,11 +98,16 @@
 
     <div id="moneyReceiptBySlipNo">
   <table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="moneyReceipt">
+  <!--<tr class="displayNone"><td><img id="barcode" jsbarcode-value="{{patient.identifier}}"/></td></tr>-->
   <tr class="displayNone">
     <td align="left" valign="top"><img src="./../images/logo.jpg" width="162" height="228" /></td>
     <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="displayNone">
-    <td colspan="10"><img src="./../images/banner.jpg" width="696" height="146" /></td>
+    <td colspan="10"><img src="./../images/banner.jpg" width="446" height="146" />
+        <img id="barcode" jsbarcode-value="{{patient.identifier}}"
+
+        />
+    </td>
     </tr>
   <tr class="displayNone">
     <td><img src="./../images/blank.png" width="40" height="1" /></td>
@@ -397,7 +403,7 @@
                                     <td>{{service.totalAmount}} </td>
                                     <td> {{service.discount}}</td>
                                     <td>{{service.netPayable}} </td>
-                                    <td ng-hide="services[$index-1].mid == service.mid && services[$index-1].moneyReceiptDate == service.moneyReceiptDate"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.mid, service.moneyReceiptDate)"><i class='fa fa-print'></i>Print preview</button>
+                                    <td ng-hide="services[$index-1].mid == service.mid && services[$index-1].moneyReceiptDate == service.moneyReceiptDate"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.mid, service.moneyReceiptDate)" onclick="jsBarInitFunction()"><i class='fa fa-print'></i>Print preview</button>
                                         <button ng-if="service.isComplete==0 && service.validMoneyReceiptHolder" style="padding:5px 9px 8px" ng-click="editMoneyReceipt(service.mid)"> <i class='fa fa-edit'></i>Edit</button>
                                         <button ng-if="service.isComplete==1" show-if-privilege="Admin-User" style="padding:5px 9px 8px" ng-click="editMoneyReceiptForRefund(service.mid)"> <i class="fa fa-money"></i>Refund</button>
                                         <button style="padding:5px 9px 8px" ng-click="deleteMoneyReceipt(service.mid)"> <i class='fa fa-trash'></i>Delete</button>
@@ -435,7 +441,7 @@ $(document).ready(function () {
 //        });
 
     }, 2000);
-
+JsBarcode("#barcode").init();
 });
 
 
@@ -454,6 +460,7 @@ $(document).ready(function () {
 
 
  function printMoneyReceiptBySlipNo() {
+    JsBarcode("#barcode").init();
     var divToPrint = document.getElementById("moneyReceiptBySlipNo");
     mywindow = window.open("");
     var is_chrome = Boolean(mywindow.chrome);
@@ -472,4 +479,11 @@ $(document).ready(function () {
      mywindow.close();
     }
 }
+
+ function jsBarInitFunction() {
+     setTimeout(function () {
+         JsBarcode("#barcode").init();
+     }, 1000);
+ }
+ ;
 </script>
