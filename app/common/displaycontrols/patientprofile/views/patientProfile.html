@@ -1,6 +1,5 @@
 
-
-    <div class="dashboard-patientInformation-section" id="patient_information" ng-if="::isDirectiveReady">
+ <div class="dashboard-patientInformation-section" id="patient_information" ng-if="::isDirectiveReady">
         <section bindonce="patient" class="block patientInformation dashboard-section" ng-class="::{'more': patientSummary.show}">
 
 
@@ -208,15 +207,15 @@
             <td style="padding:10px 0 5px 8px;">5. Classification:</td>
             <td style="padding:10px 0 5px 8px;">1.  Able to Pay</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input4" type="checkbox" ng-checked="checkedBox('Able to Pay',servicesBySlip[0].wealth)"/>
+              <input name="input4" disabled type="checkbox" ng-checked="checkedBox('Able to Pay',servicesBySlip[0].wealth)"/>
             </span></td>
             <td style="padding:10px 0 5px 8px;">2. Poor</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input5" type="checkbox" ng-checked="checkedBox('Poor',servicesBySlip[0].wealth)" />
+              <input name="input5" disabled type="checkbox" ng-checked="checkedBox('Poor',servicesBySlip[0].wealth)" />
             </span></td>
             <td style="padding:10px 0 5px 8px;">3.PoP</td>
             <td style="padding:10px 0 5px 8px;"><span style="padding:8px;">
-              <input name="input6" type="checkbox" ng-checked="checkedBox('PoP',servicesBySlip[0].wealth)" />
+              <input name="input6" disabled type="checkbox" ng-checked="checkedBox('PoP',servicesBySlip[0].wealth)" />
 
             </span></td>
 
@@ -289,10 +288,10 @@
           </tr>
           <tr>
                 <td colspan="5" align="right" valign="top"  style="padding:10px 10px 10px 0px; border-bottom: 1px solid #666;  border-right:1px solid #666;"><strong>Net Payable After Discount</strong></td>
-                <td colspan="3" align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp;{{servicesBySlip[0].netPayableAfterDiscount}} </td>
+              <td colspan="3" align="right" valign="top"  style="padding:10px 8px 10px 8px; border-bottom: 1px solid #666; border-right:1px solid #666;">&nbsp;<strong>{{servicesBySlip[0].netPayableAfterDiscount}}</strong> </td>
           </tr>
           <tr>
-            <td colspan="8"align="left" valign="top"  style="padding:20px 10px 20px 8px;">In Words (Taka):  {{inwords(servicesBySlip[0].netPayableAfterDiscount)}}</td>
+              <td colspan="8"align="left" valign="top"  style="padding:20px 10px 20px 8px;"><Strong>In Words (Taka):  {{inwords(servicesBySlip[0].netPayableAfterDiscount)}}</Strong></td>
           </tr>
 
 
