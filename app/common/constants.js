@@ -72,6 +72,8 @@ Bahmni.Common = Bahmni.Common || {};
         diseaseTemplateUrl: BAHMNI_CORE + "/diseaseTemplates",
         AllDiseaseTemplateUrl: BAHMNI_CORE + "/diseaseTemplate",
         moneyReceiptURL: RESTWS_V1 + "/service-provision/get-all-by-patient-uuid",
+        getStockStatusFromPackage: RESTWS_V1 + "/package/getStockStatusFromPackage",
+        getItemsFromPackage: RESTWS_V1 + "/package/getItemsFromPackage",
         checkExistingMoneyReceipt: RESTWS_V1 + "/money-receipt/check-existing-money-receipt",
         getEslipNo: RESTWS_V1 + "/generate/uniqueid/eslip",
         getMoneyReceiptById: RESTWS_V1 + "/money-receipt/get",

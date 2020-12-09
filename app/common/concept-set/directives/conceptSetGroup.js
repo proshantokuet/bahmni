@@ -235,6 +235,23 @@ angular.module('bahmni.common.conceptSet')
                             $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
                         }
                     }
+                    else if(item.type =="PACKAGE") {
+                        $scope.services[index].quantity = 0;
+                        $scope.services[index].totalAmount = 0;
+                        $scope.services[index].discount = 0;
+                        if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountPoor / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountPop / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountAblePay / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                    }
                     else {
                         $scope.services[index].discount = 0;
                         if ($scope.patient.FinancialStatus.value.display == "Poor") {
@@ -266,6 +283,7 @@ angular.module('bahmni.common.conceptSet')
                 }
             };
             $scope.onChangedForCode = function (item, index) {
+                debugger;
                 var thisCode = item.code;
                 var service = $scope.services.filter(function (service) {
                     if (service.code) {
@@ -297,6 +315,23 @@ angular.module('bahmni.common.conceptSet')
                     // }
                     if(item.type =="PRODUCT") {
                         $scope.services[index].quantity = 0;
+                        $scope.services[index].discount = 0;
+                        if ($scope.patient.FinancialStatus.value.display == "Poor") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountPoor / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "PoP") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountPop / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                        else if ($scope.patient.FinancialStatus.value.display == "Able to Pay") {
+                            var discountAmount = (item.unitCost * 0) * (item.discountAblePay / 100);
+                            $scope.services[index].netPayable = (item.unitCost * 0) - discountAmount;
+                        }
+                    }
+                    else if(item.type =="PACKAGE") {
+                        $scope.services[index].quantity = 0;
+                        $scope.services[index].totalAmount = 0;
                         $scope.services[index].discount = 0;
                         if ($scope.patient.FinancialStatus.value.display == "Poor") {
                             var discountAmount = (item.unitCost * 0) * (item.discountPoor / 100);
@@ -363,6 +398,22 @@ angular.module('bahmni.common.conceptSet')
                         if(quantity > stock) {
                              quantity = stock;
                              $scope.services[index].quantity = quantity;
+                        }
+                    }
+                    else if ($scope.services[index].type == "PACKAGE") {
+                        var clinicPrimaryId = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id;
+                        var packageId = $scope.services[index].item.sid;
+                        if (quantity != 0) {
+                            patientService.getStockStatusFromPackage(clinicPrimaryId, quantity, packageId).then(function (response) {
+                                var stockSize = response.data.exceedStock;
+                                if (stockSize) {
+                                    quantity = 0;
+                                    $scope.services[index].quantity = quantity;
+                                    $scope.services[index].totalAmount = 0;
+                                    $scope.services[index].netPayable = 0;
+                                    messagingService.showMessage('error', "Not enough stock available for the package");
+                                }
+                            });
                         }
                     }
                     var totalAmount = quantity * $scope.services[index].unitCost;
@@ -861,7 +912,6 @@ angular.module('bahmni.common.conceptSet')
                             payments.push(paymentobj);
                         }
                     }
-                    debugger;
                     jsonData["moneyReceipt"] = patientInfo;
                     jsonData["services"] = services;
                     jsonData["payments"] = payments;
@@ -1167,7 +1217,6 @@ angular.module('bahmni.common.conceptSet')
                         for (var j = 0; j < $scope.serviceList.length; j++) {
                             for (var i = 0; i < $scope.moneyReceiptObject.length; i++) {
                                 if ($scope.serviceList[j].code == $scope.moneyReceiptObject[i].code) {
-                                    debugger;
                                      $scope.services[index] = {"discount": 0, "quantity": 1};
                                      if($scope.moneyReceiptObject[i].type == "PRODUCT") {
                                          var productId = $scope.serviceList[j].sid;
