@@ -1214,32 +1214,63 @@ angular.module('bahmni.common.conceptSet')
                         return item.voided == false;
                     });
                     if ($scope.moneyReceiptObject) {
-                        for (var j = 0; j < $scope.serviceList.length; j++) {
+                        if($scope.patientInfo.paymentStatus == "REFUND") {
                             for (var i = 0; i < $scope.moneyReceiptObject.length; i++) {
-                                if ($scope.serviceList[j].code == $scope.moneyReceiptObject[i].code) {
-                                     $scope.services[index] = {"discount": 0, "quantity": 1};
-                                     if($scope.moneyReceiptObject[i].type == "PRODUCT") {
-                                         var productId = $scope.serviceList[j].sid;
-                                         $scope.getProductCurrentStock(productId,index);
-                                     }
-                                     else {
-                                        $scope.services[index].stock = 0;
-                                     }
-                                    $scope.services[index].code = $scope.serviceList[j];
-                                    $scope.services[index].item = $scope.serviceList[j];
-                                    $scope.services[index].description = $scope.moneyReceiptObject[i].description;
-                                    $scope.services[index].unitCost = $scope.moneyReceiptObject[i].unitCost;
-                                    $scope.services[index].quantity = $scope.moneyReceiptObject[i].quantity;
-                                    $scope.services[index].totalAmount = $scope.moneyReceiptObject[i].totalAmount;
-                                    $scope.services[index].discount = $scope.moneyReceiptObject[i].discount;
-                                    $scope.services[index].netPayable = $scope.moneyReceiptObject[i].netPayable;
-                                    $scope.services[index].spid = $scope.moneyReceiptObject[i].spid;
-                                    $scope.services[index].type = $scope.moneyReceiptObject[i].type;
-                                    index++;
-                                    break;
+                                for (var j = 0; j < $scope.serviceList.length; j++) {
+                                    if ($scope.serviceList[j].code == $scope.moneyReceiptObject[i].code) {
+                                        $scope.services[index] = {"discount": 0, "quantity": 1};
+                                        if ($scope.moneyReceiptObject[i].type == "PRODUCT") {
+                                            var productId = $scope.serviceList[j].sid;
+                                            $scope.getProductCurrentStock(productId, index);
+                                        }
+                                        else {
+                                            $scope.services[index].stock = 0;
+                                        }
+                                        $scope.services[index].code = $scope.serviceList[j];
+                                        $scope.services[index].item = $scope.serviceList[j];
+                                        $scope.services[index].description = $scope.moneyReceiptObject[i].description;
+                                        $scope.services[index].unitCost = $scope.moneyReceiptObject[i].unitCost;
+                                        $scope.services[index].quantity = $scope.moneyReceiptObject[i].quantity;
+                                        $scope.services[index].totalAmount = $scope.moneyReceiptObject[i].totalAmount;
+                                        $scope.services[index].discount = $scope.moneyReceiptObject[i].discount;
+                                        $scope.services[index].netPayable = $scope.moneyReceiptObject[i].netPayable;
+                                        $scope.services[index].spid = $scope.moneyReceiptObject[i].spid;
+                                        $scope.services[index].type = $scope.moneyReceiptObject[i].type;
+                                        index++;
+                                        break;
+                                    }
                                 }
                             }
                         }
+                        else {
+                            for (var j = 0; j < $scope.serviceList.length; j++) {
+                                for (var i = 0; i < $scope.moneyReceiptObject.length; i++) {
+                                    if ($scope.serviceList[j].code == $scope.moneyReceiptObject[i].code) {
+                                        $scope.services[index] = {"discount": 0, "quantity": 1};
+                                        if ($scope.moneyReceiptObject[i].type == "PRODUCT") {
+                                            var productId = $scope.serviceList[j].sid;
+                                            $scope.getProductCurrentStock(productId, index);
+                                        }
+                                        else {
+                                            $scope.services[index].stock = 0;
+                                        }
+                                        $scope.services[index].code = $scope.serviceList[j];
+                                        $scope.services[index].item = $scope.serviceList[j];
+                                        $scope.services[index].description = $scope.moneyReceiptObject[i].description;
+                                        $scope.services[index].unitCost = $scope.moneyReceiptObject[i].unitCost;
+                                        $scope.services[index].quantity = $scope.moneyReceiptObject[i].quantity;
+                                        $scope.services[index].totalAmount = $scope.moneyReceiptObject[i].totalAmount;
+                                        $scope.services[index].discount = $scope.moneyReceiptObject[i].discount;
+                                        $scope.services[index].netPayable = $scope.moneyReceiptObject[i].netPayable;
+                                        $scope.services[index].spid = $scope.moneyReceiptObject[i].spid;
+                                        $scope.services[index].type = $scope.moneyReceiptObject[i].type;
+                                        index++;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
                     }
                 });
             };
