@@ -81,6 +81,19 @@ angular.module('bahmni.registration')
             return defer.promise;
         };
 
+        var findUniquePatientByUicMobileAndPatientUuid = function (uic, mobile, patientUuid) {
+            var url = openmrsUrl + "/ws/rest/v1/check/uniquePatient" + "/" + uic + "/" + mobile + "/" + patientUuid;
+            var config = {
+                method: "GET",
+                withCredentials: true
+            };
+            var defer = $q.defer();
+            $http.get(url, config).success(function (result) {
+                defer.resolve(result);
+            });
+            return defer.promise;
+        };
+
         var get = function (uuid) {
             return patientServiceStrategy.get(uuid);
         };
@@ -119,6 +132,7 @@ angular.module('bahmni.registration')
             updateImage: updateImage,
             searchByNameOrIdentifier: searchByNameOrIdentifier,
             fakecall: dhis,
-            findUniquePatientByUicMobile: findUniquePatientByUicMobile
+            findUniquePatientByUicMobile: findUniquePatientByUicMobile,
+            findUniquePatientByUicMobileAndPatientUuid:findUniquePatientByUicMobileAndPatientUuid
         };
     }]);

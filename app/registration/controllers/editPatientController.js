@@ -2,9 +2,9 @@
 
 angular.module('bahmni.registration')
     .controller('EditPatientController', ['$scope', 'patientService', 'encounterService', '$stateParams', 'openmrsPatientMapper',
-        '$window', '$q', 'spinner', 'appService', 'messagingService', '$rootScope', 'auditLogService',
+        '$window', '$q', 'spinner', 'appService', 'messagingService', '$rootScope', 'auditLogService','ngDialog',
         function ($scope, patientService, encounterService, $stateParams, openmrsPatientMapper, $window, $q, spinner,
-                  appService, messagingService, $rootScope, auditLogService) {
+                  appService, messagingService, $rootScope, auditLogService, ngDialog) {
             var dateUtil = Bahmni.Common.Util.DateUtil;
             var uuid = $stateParams.patientUuid;
             $scope.patient = {};
@@ -95,15 +95,6 @@ angular.module('bahmni.registration')
                 return finalizedSplitedDate;
             };
             $scope.update = function () {
-                if ($scope.patient.birthdate) {
-                    $scope.patient.birthdate = convertToDateObject($scope.patient.birthdate);
-                }
-                if ($scope.patient.RegistrationDate) {
-                    var splitedDate = $scope.patient.RegistrationDate.split('/');
-                    var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
-                    finalizedSplitedDate.setDate(finalizedSplitedDate.getDate());
-                    $scope.patient.RegistrationDate = finalizedSplitedDate;
-                }
                 $scope.patient.UIC = $scope.patient.uic;
                 addNewRelationships();
                 var errorMessages = Bahmni.Common.Util.ValidationUtil.validate($scope.patient, $scope.patientConfiguration.attributeTypes);
@@ -114,13 +105,55 @@ angular.module('bahmni.registration')
                     return $q.when({});
                 }
 
-                return spinner.forPromise(patientService.update($scope.patient, $scope.openMRSPatient).then(function (result) {
-                    var patientProfileData = result.data;
-                    if (!patientProfileData.error) {
-                        successCallBack(patientProfileData);
-                        $scope.actions.followUpAction(patientProfileData);
+                return forwaredPromise().then(function (response) {
+                    if (response) {
+                        ngDialog.openConfirm({
+                            scope: $scope,
+                            template: '../registration/views/confirmationDialog.html'
+                        }).then(function (confirm) {
+                            if ($scope.patient.birthdate) {
+                                $scope.patient.birthdate = convertToDateObject($scope.patient.birthdate);
+                            }
+                            if ($scope.patient.RegistrationDate) {
+                                var splitedDate = $scope.patient.RegistrationDate.split('/');
+                                var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                                finalizedSplitedDate.setDate(finalizedSplitedDate.getDate());
+                                $scope.patient.RegistrationDate = finalizedSplitedDate;
+                            }
+                            return spinner.forPromise(patientService.update($scope.patient, $scope.openMRSPatient).then(function (result) {
+                                var patientProfileData = result.data;
+                                if (!patientProfileData.error) {
+                                    successCallBack(patientProfileData);
+                                    $scope.actions.followUpAction(patientProfileData);
+                                }
+                            }));
+                        }, function (reject) {
+                            return $q.reject();
+                        });
                     }
-                }));
+                    else {
+                        if ($scope.patient.birthdate) {
+                            $scope.patient.birthdate = convertToDateObject($scope.patient.birthdate);
+                        }
+                        if ($scope.patient.RegistrationDate) {
+                            var splitedDate = $scope.patient.RegistrationDate.split('/');
+                            var finalizedSplitedDate = new Date(splitedDate[1] + "/" + splitedDate[0] + "/" + splitedDate[2]);
+                            finalizedSplitedDate.setDate(finalizedSplitedDate.getDate());
+                            $scope.patient.RegistrationDate = finalizedSplitedDate;
+                        }
+                        return spinner.forPromise(patientService.update($scope.patient, $scope.openMRSPatient).then(function (result) {
+                            var patientProfileData = result.data;
+                            if (!patientProfileData.error) {
+                                successCallBack(patientProfileData);
+                                $scope.actions.followUpAction(patientProfileData);
+                            }
+                        }));
+                    }
+                });
+            };
+
+            var forwaredPromise = function () {
+                return patientService.findUniquePatientByUicMobileAndPatientUuid($scope.patient.uic, $scope.patient.MobileNo,$scope.patient.uuid);
             };
 
             var addNewRelationships = function () {
