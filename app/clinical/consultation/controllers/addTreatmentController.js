@@ -724,6 +724,19 @@ angular.module('bahmni.clinical')
                 $scope.orderSetTreatments.splice(0, $scope.orderSetTreatments.length);
             };
 
+            $scope.setMinDateForEffectiveDate = function (date) {
+                var sameDay = DateUtil.isSameDate(date, DateUtil.now());
+                if (!sameDay) {
+                    var flag = DateUtil.isBeforeDate(date, DateUtil.now());
+                    if (flag) {
+                        var errorMessage = "Start Date Cannot be Past Date";
+                        messagingService.showMessage('error', errorMessage);
+                        $scope.treatment.effectiveStartDate = DateUtil.now();
+                    }
+                }
+
+            };
+
             $scope.$on("event:includeOrderSetDrugOrder", function (event, drugOrder) {
                 var conflictingDrugOrder = getConflictingDrugOrder(drugOrder);
                 if (conflictingDrugOrder) {

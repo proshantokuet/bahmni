@@ -164,8 +164,8 @@
                         <label class="start-date-label ">{{ ::treatmentConfig.translate('startDate', 'MEDICATION_LABEL_START_DATE') }} </label>
                     </div>
                     <div class="field-value">
-                        <input id="start-date" date-converter class="start-date " type="date"
-                               ng-model="treatment.effectiveStartDate" required readonly>
+                        <input id="start-date" date-converter class="start-date " type="date" ng-change="setMinDateForEffectiveDate(treatment.effectiveStartDate)"
+                               ng-model="treatment.effectiveStartDate" required>
                     </div>
                 </article>
 
