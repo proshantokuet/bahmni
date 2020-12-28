@@ -287,12 +287,12 @@
           <td colspan="2" align="left" valign="top">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-                  <tr ng-repeat="payment in servicesBySlip[0].payments track by $index">
+                  <tr ng-repeat="payment in servicesBySlip[0].payments | orderBy:'-receiveDate' track by $index">
                       <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
                       <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
                       <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong></strong></td>
                       <td align="right" valign="top" style="padding:20px 0 20px 8px;"><strong>Receive Date :
-                          {{dateTOString(payment.receiveDate) | date:'yyyy-MM-dd'}}</strong></td>
+                          {{dateTOString(payment.receiveDate) | date:'yyyy-MM-dd HH:mm'}}</strong></td>
                       <td align="center" valign="top" style="padding:20px 0 20px 8px;"><strong>Receive Amount :</strong>
                       </td>
                       <td align="left" valign="top" style="padding:20px 0 20px 8px;">{{payment.receiveAmount}}</td>
@@ -319,7 +319,7 @@
   <tr>
     <td colspan="2" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
    <tr class="displayNone">
- 	<td align="center" valign="top"  style="padding:4px 0 5px 8px;">{{servicesBySlip[0].dataCollector}}</td>
+ 	<td align="center" valign="top"  style="padding:4px 0 5px 8px;">{{servicesBySlip[0].getDataCollectorFullname}}</td>
     <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
     <td align="left" valign="top"  style="padding:4px 0 5px 8px;">&nbsp;</td>
     <td align="center" valign="top"  style="padding:4px 0 5px 8px;"> {{servicesBySlip[0].designation}}</td>

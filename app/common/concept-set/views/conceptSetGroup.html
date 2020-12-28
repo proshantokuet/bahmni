@@ -170,7 +170,7 @@
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <select ng-model="patientInfo.sateliteClinicId" ng-options="sat as sat.code for sat in sateliteClinicCodes" ng-required="patientInfo.servicePoint=='Satellite'">
+                                                        <select ng-model="patientInfo.sateliteClinicId" ng-options="sat as sat.code for sat in sateliteClinicCodes | orderBy:'sortId'" ng-required="patientInfo.servicePoint=='Satellite'">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -482,7 +482,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Discount :</label>
-                                                        <input ng-model="patientInfo.overallDiscount" ng-disabled="patientInfo.paymentStatus" ng-change="calculateValidationDiscount()" style="width: 10em;" type="number" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                                        <input ng-model="patientInfo.overallDiscount"  ng-change="calculateValidationDiscount()" style="width: 10em;" type="number" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -495,7 +495,7 @@
                                                  <h4>Advance and Due:</h4>
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input type="button" ng-disabled="patientInfo.paymentStatus" ng-click="showReceiveAmountSection()" value="{{paymentButtonName}}">
+                                                        <input type="button"  ng-click="showReceiveAmountSection()" value="{{paymentButtonName}}">
                                                     </div>
                                                 </div>
                                             </article>
@@ -750,11 +750,11 @@
             <td align="left" valign="top"   style="padding:20px 0 20px 8px;">100</td>
 
           </tr>-->
-          <tr ng-repeat="payment in paymentHistory track by $index">
+          <tr ng-repeat="payment in paymentHistory | orderBy:'-receiveDate' track by $index">
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
-             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{dateStringToDateObj(payment.receiveDate) | date:'yyyy-MM-dd'}}</strong></td>
+             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{dateStringToDateObj(payment.receiveDate) | date:'yyyy-MM-dd HH:mm'}}</strong></td>
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Amount :</strong></td>
             <td align="left" valign="top"   style="padding:20px 0 20px 8px;">{{payment.receiveAmount}}</td>
 

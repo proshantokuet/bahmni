@@ -279,11 +279,10 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].netPayable = "";
                     $scope.services[index].type = "";
                     $scope.services[index].stock = 0;
-                    alert("You have selected  " + item.name + " please select another");
+                    alert( item.name + " already exists in the list.");
                 }
             };
             $scope.onChangedForCode = function (item, index) {
-                debugger;
                 var thisCode = item.code;
                 var service = $scope.services.filter(function (service) {
                     if (service.code) {
@@ -373,7 +372,7 @@ angular.module('bahmni.common.conceptSet')
                     $scope.services[index].netPayable = "";
                     $scope.services[index].type = "";
                     $scope.services[index].stock = 0;
-                    alert("You have selected  " + item.name + " please select another");
+                    alert( item.name + " already exists in the list.");
                 }
             };
 
@@ -396,6 +395,7 @@ angular.module('bahmni.common.conceptSet')
                     if($scope.services[index].type == "PRODUCT") {
                         var stock = $scope.services[index].stock;
                         if(quantity > stock) {
+                             messagingService.showMessage('error', "Medicine out of stock");
                              quantity = stock;
                              $scope.services[index].quantity = quantity;
                         }
@@ -654,7 +654,8 @@ angular.module('bahmni.common.conceptSet')
                 //var returnValue = netpayableAfterdiscount - totalcashReceived;
                 if(netpayableAfterdiscount < 0) {
                     $scope.patientInfo.overallDiscount = 0;
-                    alert("Discount amount is greater than net payable amount");
+                    //alert("Discount amount cant' be greater than net payable amount");
+                    messagingService.showMessage('error', "Discount amount cant' be greater than net payable amount");
                 }
             };
 
@@ -692,10 +693,11 @@ angular.module('bahmni.common.conceptSet')
                 }
                 var netpayableAfterdiscount = $scope.calculateNetPayableAfterDiscount();
                 var returnValue = netpayableAfterdiscount - totalcashReceived;
-                // if (returnValue < 0) {
-                //     $scope.paymentLogObject.receiveAmount = 0;
-                //     alert("Receive amount is greater than net payable amount");
-                // }
+                if (returnValue < 0) {
+                    $scope.paymentLogObject.receiveAmount = 0;
+                    messagingService.showMessage('error', "Receive amount can't be greater due amount");
+                    //alert("Receive amount can't be greater due amount");
+                }
             };
 
             $scope.enableSubmitButton = function () {
@@ -772,14 +774,17 @@ angular.module('bahmni.common.conceptSet')
                 return dateString;
             };
 
-            $scope.paymentDateUniform = function(date) {
+            $scope.paymentDateUniform = function (date) {
                 var dateObject = ageFormatterService.convertToDateObject(date);
                 var date = new Date(dateObject),
-                yr = date.getFullYear(),
-                month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
-                day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
-                newDate = day + '/' + month + '/' + yr;
-                var dateString = yr + "-" + month + "-" + day;
+                    yr = date.getFullYear(),
+                    month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
+                    day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
+                    newDate = day + '/' + month + '/' + yr;
+                var locald = new Date();
+                var hourLocal = locald.getHours() < 10 ? "0" + locald.getHours() : locald.getHours();
+                var minuteLocal = locald.getMinutes() < 10 ? "0" + locald.getMinutes() : locald.getMinutes();
+                var dateString = yr + "-" + month + "-" + day + " " + " " + hourLocal + ":" + minuteLocal;
                 return dateString;
             };
 
@@ -904,8 +909,9 @@ angular.module('bahmni.common.conceptSet')
                         if ($scope.paymentLogObject.receiveAmount != 0) {
                             var totalDue = $scope.calculateTotalDueAmount();
                             patientInfo.dueAmount = totalDue.toString();
-                            var splitedDate = $scope.paymentLogObject.receiveDate.split('/');
-                            var finalizedSplitedDate = splitedDate[2] + "-" + splitedDate[1] + "-" + splitedDate[0];
+                            //var splitedDate = $scope.paymentLogObject.receiveDate.split('/');
+                            //var finalizedSplitedDate = splitedDate[2] + "-" + splitedDate[1] + "-" + splitedDate[0];
+                            var finalizedSplitedDate = $scope.paymentDateUniform($scope.paymentLogObject.receiveDate)
                             var paymentobj = {};
                             paymentobj.receiveDate = finalizedSplitedDate;
                             paymentobj.receiveAmount = $scope.paymentLogObject.receiveAmount;
