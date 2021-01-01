@@ -128,6 +128,11 @@ angular.module('bahmni.common.patient')
            });
         };
 
+        this.downloadPdf = function () {
+            var url = Bahmni.Common.Constants.downloadPdf;
+            return $http.get(url, {withCredentials: true, responseType: 'arraybuffer'})
+        };
+
         this.getPatientContext = function (patientUuid, programUuid, personAttributes, programAttributes, patientIdentifiers) {
             return $http.get('/openmrs/ws/rest/v1/bahmnicore/patientcontext', {
                 params: {

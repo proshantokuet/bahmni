@@ -85,6 +85,7 @@ Bahmni.Common = Bahmni.Common || {};
         serviceSaveUrl: RESTWS_V1 + "/money-receipt/add-or-update",
         teamMemberUrl: RESTWS_V1 + "/team/teammember",
         clinicUrl: RESTWS_V1 + "/clinic-user/get-by-username",
+        downloadPdf: RESTWS_V1 + "/generate/pdf/moneyreceiptdirectpdf",
         emrapiConceptUrl: EMRAPI + "/concept",
         encounterConfigurationUrl: BAHMNI_CORE + "/config/bahmniencounter",
         patientConfigurationUrl: BAHMNI_CORE + "/config/patient",
