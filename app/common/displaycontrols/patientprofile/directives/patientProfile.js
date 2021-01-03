@@ -363,15 +363,14 @@
                     };
 
                     $scope.downloadPdf = function (slipInformation) {
-                        debugger;
                         $scope.printUserInfo = {};
                         $scope.printUserInfo.patientIdentifier = $scope.patient.identifier;
                         var moneyReceiptDate = $scope.dateTOString(slipInformation.moneyReceiptDate);
                         moneyReceiptDate = $filter('date')(moneyReceiptDate, "dd/MM/yyyy HH:mm");
-                        $scope.printUserInfo.moneyReceiptDate = moneyReceiptDate;
+                        $scope.printUserInfo.moneyReceiptDate = moneyReceiptDate.toString();
                         var birthDate =  $scope.dateTOString(slipInformation.dob);
                         birthDate = $filter('date')(birthDate, "dd/MM/yyyy");
-                        $scope.printUserInfo.birthDate = birthDate;
+                        $scope.printUserInfo.birthDate = birthDate.toString();
                         $scope.printUserInfo.age = $scope.ageFromBirthDate(slipInformation.dob, slipInformation.moneyReceiptDate);
                         $scope.printUserInfo.address = $scope.address($scope.patient.address);
                         var reference = slipInformation.reference;
@@ -386,11 +385,13 @@
                         $scope.printUserInfo.birthMothersFirstName = $scope.patient.birthMothersFirstName.value;
                         $scope.printUserInfo.inWordsTaka = $scope.inwords(slipInformation.netPayableAfterDiscount);
                         $scope.printUserInfo.getDataCollectorFullname = slipInformation.getDataCollectorFullname;
+                        $scope.printUserInfo.servicePoint = slipInformation.servicePoint;
+                        $scope.printUserInfo.uic = slipInformation.uic;
+                        $scope.printUserInfo.slipNo = slipInformation.slipNo;
+                        $scope.printUserInfo.mid = slipInformation.mid;
+                        $scope.printUserInfo.eslipNo = slipInformation.eslipNo;
 
-                        //$scope.patientInfo = $scope.patient;
-
-
-                        patientService.downloadPdf().then(function (response) {
+                        patientService.downloadPdf($scope.printUserInfo).then(function (response) {
 
                             debugger;
                             /*

@@ -128,9 +128,12 @@ angular.module('bahmni.common.patient')
            });
         };
 
-        this.downloadPdf = function () {
+        this.downloadPdf = function (data) {
             var url = Bahmni.Common.Constants.downloadPdf;
-            return $http.get(url, {withCredentials: true, responseType: 'arraybuffer'})
+            return $http.post(url,data,
+                {   withCredentials: true,
+                    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+                    responseType: 'arraybuffer'})
         };
 
         this.getPatientContext = function (patientUuid, programUuid, personAttributes, programAttributes, patientIdentifiers) {
