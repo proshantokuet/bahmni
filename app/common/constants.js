@@ -316,7 +316,8 @@ Bahmni.Common = Bahmni.Common || {};
         tbCaseFindingFormName: "TB Case Finding",
         tbDotsFormName: "TB DOTS",
         tbVerbalScreening: "TB Verbal Screening and Referral",
-        adverseEventForm: "Adverse Event"
+        adverseEventForm: "Adverse Event",
+        adviceForm: "Advice"
 
     };
 })();

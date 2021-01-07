@@ -92,7 +92,6 @@ angular.module('bahmni.clinical')
             };
 
             $scope.getLastProviderName = function () {
-                debugger;
                 if ($scope.visitUuid && $scope.patientUuid) {
                     encounterService.getLastProviderInfo($scope.visitUuid).then(function (response) {
                         $scope.lastProviderName = response.data.lastVisitedProvider;

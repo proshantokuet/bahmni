@@ -159,6 +159,8 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (formName == Bahmni.Common.Constants.adverseEventForm) {
             return true;
+        } else if (formName == Bahmni.Common.Constants.adviceForm) {
+            return true;
         }
 
 

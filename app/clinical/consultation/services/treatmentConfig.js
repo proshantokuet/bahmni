@@ -11,6 +11,16 @@ angular.module('bahmni.clinical').factory('treatmentConfig',
                         {name: "Week(s)", factor: 7},
                         {name: "Month(s)", factor: 30}
                     ];
+                    config.dosingInstructions = [
+                        {name: "খাওয়ার আগে", rootConcept: null},
+                        {name: "খাওয়ার পরে", rootConcept: null},
+                        {name: "খালি পেটে", rootConcept: null},
+                        {name: "সকালে", rootConcept: null},
+                        {name: "বিকেলে", rootConcept: null},
+                        {name: "ঘুমানোর আগে", rootConcept: null},
+                        {name: "সাথেসাথেই", rootConcept: null},
+                        {name: "নির্দেশনা অনুযায়ী", rootConcept: null}
+                    ];
                     config.frequencies = _(config.frequencies)
                         .reverse()
                         .sortBy({'name': 'Immediately'})
@@ -39,6 +49,7 @@ angular.module('bahmni.clinical').factory('treatmentConfig',
             };
 
             return function (tabConfigName) {
+                debugger;
                 var drugOrderOptions;
                 var baseTreatmentConfig = {
                     allowNonCodedDrugs: function () {

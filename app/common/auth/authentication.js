@@ -185,6 +185,7 @@ angular.module('authentication')
                          $rootScope.currentUser.favouriteObsTemplates[26] = "TB DOTS";
                          $rootScope.currentUser.favouriteObsTemplates[27] = "TB Verbal Screening and Referral";
                          $rootScope.currentUser.favouriteObsTemplates[28] = "Adverse Event";
+                         $rootScope.currentUser.favouriteObsTemplates[29] = "Advice";
                         for (var i = 0; i < $rootScope.currentUser.privileges.length; i++) {
                             if ($rootScope.currentUser.privileges[i].name == "Has CRO Roles") {
                                 $rootScope.currentUser.roles = "CRO";
