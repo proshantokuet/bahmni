@@ -120,6 +120,28 @@ angular.module('bahmni.common.patient')
             });
         };
 
+        this.getStockStatusFromPackage = function (clinicId, quantity, packageId) {
+            return $http.get(Bahmni.Common.Constants.getStockStatusFromPackage + "/" + clinicId + "/" + quantity + "/" + packageId, {
+                method: "GET",
+                withCredentials: true
+           });
+        };
+
+        this.getItemsFromPackage = function (packageId) {
+            return $http.get(Bahmni.Common.Constants.getItemsFromPackage + "/" + packageId, {
+                method: "GET",
+                withCredentials: true
+           });
+        };
+
+        this.downloadPdf = function (data) {
+            var url = Bahmni.Common.Constants.downloadPdf;
+            return $http.post(url,data,
+                {   withCredentials: true,
+                    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+                    responseType: 'arraybuffer'})
+        };
+
         this.getPatientContext = function (patientUuid, programUuid, personAttributes, programAttributes, patientIdentifiers) {
             return $http.get('/openmrs/ws/rest/v1/bahmnicore/patientcontext', {
                 params: {

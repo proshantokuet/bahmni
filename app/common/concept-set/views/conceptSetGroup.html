@@ -177,7 +177,7 @@
                                             <article class="form-field" >
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <select ng-model="patientInfo.sateliteClinicId" ng-options="sat as sat.code for sat in sateliteClinicCodes" ng-required="patientInfo.servicePoint=='Satellite'">
+                                                        <select ng-model="patientInfo.sateliteClinicId" ng-options="sat as sat.code for sat in sateliteClinicCodes | orderBy:'sortId'" ng-required="patientInfo.servicePoint=='Satellite'">
                                                         </select>
                                                     </div>
                                                 </div>
@@ -358,7 +358,7 @@
                                                     <div class="field-value">
                                                         <label>Code<span class="asterick">*</span></label>
 
-                                                        <input type="text" ng-model="service.code" placeholder="Select code"
+                                                        <input type="text" ng-model="service.code" ng-disabled="patientInfo.paymentStatus" placeholder="Select code"
                                                                typeahead-on-select="onChangedForCode(service.code, $index)"
                                                                uib-typeahead="itm as itm.code for itm in serviceList | orderBy:'code' | filter:{code:$viewValue}"
                                                                typeahead-min-length="0" typeahead-editable="false" typeahead-no-results="noCodeFound">
@@ -377,7 +377,7 @@
                                                         <!--<select  ng-model="service.item" ng-change="onChanged(service.item, $index)"-->
                                                         <!--ng-options="itm as itm.name for itm in serviceList | orderBy:'name'" ng-required="true">-->
                                                         <!--</select>-->
-                                                        <input type="text" ng-model="service.item" placeholder="Select service"
+                                                        <input type="text" ng-model="service.item" ng-disabled="patientInfo.paymentStatus" placeholder="Select service"
                                                                typeahead-on-select="onChanged(service.item, $index)"
                                                                uib-typeahead="itm as itm.name for itm in serviceList | orderBy:'name' | filter:{name:$viewValue}"
                                                                typeahead-min-length="0" typeahead-editable="false" typeahead-no-results="noResults">
@@ -447,7 +447,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Discount<span class="asterick">*</span></label>
-                                                        <input ng-model="service.discount" ng-disabled="!service.item || service.type=='PACKAGE'"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" min="0" ng-required="true"/>
+                                                        <input ng-model="service.discount" ng-disabled="!service.item || service.type=='PACKAGE' || patientInfo.paymentStatus"  ng-change="calculateNetAmount(service.discount,$index)" style="width: 5em;" type="number" min="0" ng-required="true"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -464,8 +464,8 @@
                                             </article>
 
                                         </td>
-                                        <td>
-                                            <button class="remove" ng-show="!$first"  ng-click="removeThis($index)">X</button>
+                                        <td ng-if="!patientInfo.paymentStatus">
+                                            <button class="remove"  ng-show="!$first"  ng-click="removeThis($index)">X</button>
                                             <span><button class="remove" ng-show="$last" ng-click="addNewChoice()">+</button></span>
 
                                         </td>
@@ -489,7 +489,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Discount :</label>
-                                                        <input ng-model="patientInfo.overallDiscount" ng-change="calculateValidationDiscount()" style="width: 10em;" type="number" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                                        <input ng-model="patientInfo.overallDiscount"  ng-change="calculateValidationDiscount()" style="width: 10em;" type="number" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -502,7 +502,7 @@
                                                  <h4>Advance and Due:</h4>
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <input type="button" ng-click="showReceiveAmountSection()" value="{{paymentButtonName}}">
+                                                        <input type="button"  ng-click="showReceiveAmountSection()" value="{{paymentButtonName}}">
                                                     </div>
                                                 </div>
                                             </article>
@@ -757,11 +757,11 @@
             <td align="left" valign="top"   style="padding:20px 0 20px 8px;">100</td>
 
           </tr>-->
-          <tr ng-repeat="payment in paymentHistory track by $index">
+          <tr ng-repeat="payment in paymentHistory | orderBy:'-receiveDate' track by $index">
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
              <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong></strong></td>
-             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{dateStringToDateObj(payment.receiveDate) | date:'yyyy-MM-dd'}}</strong></td>
+             <td align="right" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Date : {{dateStringToDateObj(payment.receiveDate) | date:'yyyy-MM-dd HH:mm'}}</strong></td>
             <td align="center" valign="top"   style="padding:20px 0 20px 8px;"><strong>Receive Amount :</strong></td>
             <td align="left" valign="top"   style="padding:20px 0 20px 8px;">{{payment.receiveAmount}}</td>
 

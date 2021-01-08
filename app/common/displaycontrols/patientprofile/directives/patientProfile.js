@@ -31,8 +31,8 @@
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
         .directive('patientProfile', ['patientService', 'spinner', 'ngDialog', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
-            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService', 'age',
-            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService, age) {
+            'configurations', '$q', 'visitService', '$state', '$bahmniCookieStore', 'messagingService', 'age','$filter',
+            function (patientService, spinner, ngDialog, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore, messagingService, age,$filter) {
                 var controller = function ($scope) {
                     $scope.currentUser = $rootScope.currentUser.roles;
                     var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
@@ -410,6 +410,59 @@
                             return $q.reject();
                         });
 
+                    };
+
+                    $scope.downloadPdf = function (slipInformation) {
+                        $scope.printUserInfo = {};
+                        $scope.printUserInfo.patientIdentifier = $scope.patient.identifier;
+                        var moneyReceiptDate = $scope.dateTOString(slipInformation.moneyReceiptDate);
+                        moneyReceiptDate = $filter('date')(moneyReceiptDate, "dd/MM/yyyy HH:mm");
+                        $scope.printUserInfo.moneyReceiptDate = moneyReceiptDate.toString();
+                        var birthDate =  $scope.dateTOString(slipInformation.dob);
+                        birthDate = $filter('date')(birthDate, "dd/MM/yyyy");
+                        $scope.printUserInfo.birthDate = birthDate.toString();
+                        $scope.printUserInfo.age = $scope.ageFromBirthDate(slipInformation.dob, slipInformation.moneyReceiptDate);
+                        $scope.printUserInfo.address = $scope.address($scope.patient.address);
+                        var reference = slipInformation.reference;
+                        var extensionReference = $scope.referenceId(slipInformation.reference, slipInformation.referenceId);
+                        if(extensionReference) {
+                            reference = reference + extensionReference;
+                        }
+                        $scope.printUserInfo.reference = reference;
+                        $scope.printUserInfo.birthDistrict = $scope.patient.birthDistrict.value;
+                        $scope.printUserInfo.birthUpazilla = $scope.patient.birthUpazilla.value;
+                        $scope.printUserInfo.birthRank = $scope.patient.birthRank.value;
+                        $scope.printUserInfo.birthMothersFirstName = $scope.patient.birthMothersFirstName.value;
+                        $scope.printUserInfo.inWordsTaka = $scope.inwords(slipInformation.netPayableAfterDiscount);
+                        $scope.printUserInfo.getDataCollectorFullname = slipInformation.getDataCollectorFullname;
+                        $scope.printUserInfo.servicePoint = slipInformation.servicePoint;
+                        $scope.printUserInfo.uic = slipInformation.uic;
+                        $scope.printUserInfo.slipNo = slipInformation.slipNo;
+                        $scope.printUserInfo.mid = slipInformation.mid;
+                        $scope.printUserInfo.eslipNo = slipInformation.eslipNo;
+
+                        patientService.downloadPdf($scope.printUserInfo).then(function (response) {
+
+                            debugger;
+                            /*
+                               var fileName = "test.pdf";
+                             var a = document.createElement("a");
+                             document.body.appendChild(a);
+                             a.style = "display: none";
+                             var file = new Blob([response.data], {type: 'application/pdf'});
+                             var fileURL = window.URL.createObjectURL(file);
+                             a.href = fileURL;
+                             a.download = "test.pdf";
+                             a.click();*/
+                            var dllink = document.createElement("a");
+                            var file = new Blob([response.data], {type: 'application/pdf'});
+                            var fileURL = URL.createObjectURL(file);
+                            //dllink.href = window.URL.createObjectURL(file);
+                            //dllink.setAttribute("download","Money_receipt.pdf"); // Added Line
+                            //dllink.click();
+                            window.open(fileURL);
+
+                        });
                     };
 
                     var assignAdmissionDetails = function () {
