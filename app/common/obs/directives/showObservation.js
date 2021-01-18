@@ -31,6 +31,20 @@ angular.module('bahmni.common.obs')
                 });
             };
 
+
+            $scope.checkMultipleSelectionElement = function (observation) {
+                debugger;
+                if(observation.groupMembers && observation.groupMembers.length <= 0) {
+                    if(observation.concept.name == 'HIVTC, TB Treatment Outcome' || observation.concept.name == 'HIVTC, TB Treatment Outcome') {
+                        return false;
+                    }
+                    else return true;
+                }
+                else {
+                      return true;
+                }
+            };
+
             //$scope.conceptDictionary = ["PNC","Date of maternal death","Cause of maternal death","Cause of neonatal death","Remarks","Gravida","Blood transfusion quantity","ANC","Vitals","Pulse"];
             // $scope.conceptDictionary = [
             //     "Chief Complaints",
