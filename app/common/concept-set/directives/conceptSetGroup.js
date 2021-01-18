@@ -478,7 +478,6 @@ angular.module('bahmni.common.conceptSet')
                 return false;
             };
             $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
-                    debugger;
                     if($scope.services[index].type == "PRODUCT") {
                         var stock = $scope.services[index].stock;
                         if(quantity > stock) {

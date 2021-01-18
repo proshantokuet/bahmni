@@ -49,7 +49,6 @@ angular.module('bahmni.clinical').factory('treatmentConfig',
             };
 
             return function (tabConfigName) {
-                debugger;
                 var drugOrderOptions;
                 var baseTreatmentConfig = {
                     allowNonCodedDrugs: function () {
