@@ -28,6 +28,9 @@ angular.module('bahmni.common.conceptSet')
                     $scope.makeSlipNoReadOnly = true;
                     getMoneyReceiptByid($scope.patientInfo.mid);
                 }
+                else {
+                    $scope.patientInfo.dataCollector = $bahmniCookieStore.get(Bahmni.Common.Constants.currentUser);
+                }
             };
             $scope.toggleSideBar = function () {
                 $rootScope.showLeftpanelToggle = !$rootScope.showLeftpanelToggle;
@@ -391,7 +394,6 @@ angular.module('bahmni.common.conceptSet')
                 return false;
             };
             $scope.calculateTotalAmountAndNetPayable = function (quantity, index) {
-                    debugger;
                     if($scope.services[index].type == "PRODUCT") {
                         var stock = $scope.services[index].stock;
                         if(quantity > stock) {
