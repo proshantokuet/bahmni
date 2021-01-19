@@ -321,7 +321,6 @@
                     };
 
                     $scope.editMoneyReceiptForRefund = function (mid) {
-                        debugger;
                         if (mid == undefined) {
                             $state.go('patient.dashboard.show.observations', {
                                 conceptSetGroupName: 'observations',

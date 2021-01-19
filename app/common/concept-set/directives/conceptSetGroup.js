@@ -413,7 +413,7 @@ angular.module('bahmni.common.conceptSet')
                                     $scope.services[index].quantity = quantity;
                                     $scope.services[index].totalAmount = 0;
                                     $scope.services[index].netPayable = 0;
-                                    messagingService.showMessage('error', "Not enough stock available for the package");
+                                    messagingService.showMessage('error', "Not enough stock available for the products: " + response.data.stockOutProducts + ".");
                                 }
                             });
                         }
@@ -654,7 +654,8 @@ angular.module('bahmni.common.conceptSet')
                 }
                 var netpayableAfterdiscount = $scope.calculateNetPayableAfterDiscount();
                 //var returnValue = netpayableAfterdiscount - totalcashReceived;
-                if(netpayableAfterdiscount < 0) {
+                var flag = Object.is(Math.abs(netpayableAfterdiscount), +netpayableAfterdiscount);
+                if(netpayableAfterdiscount < 0 || !flag) {
                     $scope.patientInfo.overallDiscount = 0;
                     //alert("Discount amount cant' be greater than net payable amount");
                     messagingService.showMessage('error', "Discount amount cant' be greater than net payable amount");
