@@ -947,9 +947,14 @@ angular.module('bahmni.common.conceptSet')
                         if (!service.code || !service.item) {
                             $scope.passedServiceTest = false;
                         }
+                        if (!patientInfo.paymentStatus) {
+                            if (service.quantity < 1) {
+                                $scope.passedServiceTest = false;
+                            }
+                        }
                     });
                     if (!$scope.passedServiceTest) {
-                        messagingService.showMessage("error", "Service code and Item can not be empty");
+                        messagingService.showMessage("error", "Service code / Item / Quantity can not be empty or 0");
                         return;
                     }
                     if ($stateParams.moneyReceiptObject) {
