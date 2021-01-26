@@ -831,7 +831,7 @@ angular.module('bahmni.common.conceptSet')
                         }
                     });
                     if (!$scope.passedServiceTest) {
-                        messagingService.showMessage("error", "Service code / Item / Quantity can not be empty or 0");
+                        messagingService.showMessage("error", "Product quantity can not be empty or 0");
                         return;
                     }
                     if ($stateParams.moneyReceiptObject) {
