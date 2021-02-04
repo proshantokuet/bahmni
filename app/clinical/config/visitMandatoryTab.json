@@ -118,6 +118,19 @@
           ],
           "showDetailsButton": true
         }
+      },
+      "RadiologyOrders": {
+        "type": "order",
+        "displayOrder": 10,
+        "translationKey": "Radiology Orders",
+        "config": {
+          "translationKey": "Radiology Orders",
+          "name": "ordersControl",
+          "orderType": "Radiology Order",
+          "conceptNames": [
+            "Summary"
+          ]
+        }
       }
     }
 }
