@@ -127,7 +127,7 @@
                     </select>-->
 
                     <select ng-model="patient.birthDistrict" ng-change="getBirthUpazilla(patient.birthDistrict); handleUpdate('birthDistrict')"
-                            data-ng-options="blisterPackTemplate as blisterPackTemplate.districtName for blisterPackTemplate in locationDistricts" ng-required="true">
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.districtName for blisterPackTemplate in locationDistricts | orderBy:'districtName'" ng-required="true">
 
                     </select>
                 </div>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="field-value">
                     <select ng-model="patient.birthUpazilla" ng-change="handleUpdate('birthUpazilla')"
-                            data-ng-options="blisterPackTemplate as blisterPackTemplate.upazillaName for blisterPackTemplate in locationDUpazilla" ng-required="true">
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.upazillaName for blisterPackTemplate in locationDUpazilla | orderBy:'upazillaName'" ng-required="true">
                       <option value="">Select Birth Upazilla</option>
                     </select>
 
