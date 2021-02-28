@@ -373,36 +373,83 @@ angular.module('bahmni.registration')
                     addressSearchResultsConfig: $scope.addressSearchResultsConfig.fields,
                     personSearchResultsConfig: $scope.personSearchResultsConfig.fields
                 });
-
-                var searchPromise = patientService.searchByIdentifier(undefined, patientIdentifier, $scope.addressSearchConfig.field,
-                    undefined, undefined, undefined, $scope.customAttributesSearchConfig.fields,
-                    $scope.programAttributesSearchConfig.field, $scope.searchParameters.programAttributeFieldValue,
-                    $scope.addressSearchResultsConfig.fields, $scope.personSearchResultsConfig.fields,
-                    $scope.isExtraIdentifierConfigured())
-                    .then(function (data) {
-                        if (data.data.pageOfResults.length > 0) {
-                            if (data.data.pageOfResults.length === 1) {
-                                var patient = data.data.pageOfResults[0];
-                                // var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
-                                // $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
-                                $window.open('../clinical/index.html#/default/patient/' + patient.uuid + '/dashboard', "_self");
-                            } else if (data.data.pageOfResults.length > 1) {
-                                $scope.results = data.data.pageOfResults;
-                                $scope.noResultsMessage = null;
-                            } else {
-                                $scope.patientIdentifier = {'patientIdentifier': patientIdentifier};
-                                $scope.noResultsMessage = 'REGISTRATION_LABEL_COULD_NOT_FIND_PATIENT';
+                if ($scope.searchParameters.isSearchingInDifferentServer) {
+                    var stringForSearchPatientFromGlobal = $scope.jsonFormation($scope.searchParameters.name,
+                        patientIdentifier,
+                        $scope.addressSearchConfig.field,
+                        $scope.searchParameters.addressFieldValue,
+                        $scope.searchParameters.customAttribute,
+                        0,
+                        $scope.customAttributesSearchConfig.fields,
+                        $scope.programAttributesSearchConfig.field,
+                        $scope.searchParameters.programAttributeFieldValue,
+                        $scope.addressSearchResultsConfig.fields,
+                        $scope.personSearchResultsConfig.fields,
+                        undefined);
+                }
+                if ($scope.searchParameters.isSearchingInDifferentServer) {
+                    var searchPromise = patientService.searchPatientFromGLobalServer(stringForSearchPatientFromGlobal).then(function (response) {
+                        angular.forEach(response.globalServerPatients.pageOfResults, function (data) {
+                            if (response.localServerPatients.pageOfResults.length > 0) {
+                                angular.forEach(response.localServerPatients.pageOfResults, function (data1) {
+                                    if (data.uuid == data1.uuid) {
+                                        data.isFromGlobalServer = false;
+                                    }
+                                    else {
+                                        data.isFromGlobalServer = true;
+                                    }
+                                });
                             }
+                            else {
+                                data.isFromGlobalServer = true;
+                            }
+                        });
+                        if (response.globalServerPatients.pageOfResults.length > 0) {
+                            $scope.results = response.globalServerPatients.pageOfResults;
+                            $scope.noResultsMessage = null;
                         }
                         else {
                             $scope.patientIdentifier = {'patientIdentifier': patientIdentifier};
                             $scope.noResultsMessage = 'REGISTRATION_LABEL_COULD_NOT_FIND_PATIENT';
                         }
-                        mapExtraIdentifiers(data.data);
-                        mapCustomAttributesSearchResults(data.data);
-                        mapAddressAttributesSearchResults(data.data);
-                        mapProgramAttributesSearchResults(data.data);
+                        mapExtraIdentifiers(response.globalServerPatients);
+                        mapCustomAttributesSearchResults(response.globalServerPatients);
+                        mapAddressAttributesSearchResults(response.globalServerPatients);
+                        mapProgramAttributesSearchResults(response.globalServerPatients);
                     });
+                }
+                else {
+                    var searchPromise = patientService.searchByIdentifier(undefined, patientIdentifier, $scope.addressSearchConfig.field,
+                        undefined, undefined, undefined, $scope.customAttributesSearchConfig.fields,
+                        $scope.programAttributesSearchConfig.field, $scope.searchParameters.programAttributeFieldValue,
+                        $scope.addressSearchResultsConfig.fields, $scope.personSearchResultsConfig.fields,
+                        $scope.isExtraIdentifierConfigured())
+                        .then(function (data) {
+                            if (data.data.pageOfResults.length > 0) {
+                                if (data.data.pageOfResults.length === 1) {
+                                    var patient = data.data.pageOfResults[0];
+                                    // var forwardUrl = appService.getAppDescriptor().getConfigValue("searchByIdForwardUrl") || "/patient/{{patientUuid}}";
+                                    // $location.url(appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patient.uuid}));
+                                    $window.open('../clinical/index.html#/default/patient/' + patient.uuid + '/dashboard', "_self");
+                                } else if (data.data.pageOfResults.length > 1) {
+                                    $scope.results = data.data.pageOfResults;
+                                    $scope.noResultsMessage = null;
+                                } else {
+                                    $scope.patientIdentifier = {'patientIdentifier': patientIdentifier};
+                                    $scope.noResultsMessage = 'REGISTRATION_LABEL_COULD_NOT_FIND_PATIENT';
+                                }
+                            }
+                            else {
+                                $scope.patientIdentifier = {'patientIdentifier': patientIdentifier};
+                                $scope.noResultsMessage = 'REGISTRATION_LABEL_COULD_NOT_FIND_PATIENT';
+                            }
+                            mapExtraIdentifiers(data.data);
+                            mapCustomAttributesSearchResults(data.data);
+                            mapAddressAttributesSearchResults(data.data);
+                            mapProgramAttributesSearchResults(data.data);
+                        });
+
+                }
                 spinner.forPromise(searchPromise);
             };
             var isUserPrivilegedForSearch = function () {

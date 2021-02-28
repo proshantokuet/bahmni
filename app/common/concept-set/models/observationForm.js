@@ -157,9 +157,9 @@ Bahmni.ObservationForm = function (formUuid, user, formName, formVersion, observ
             return true;
         } else if (formName == Bahmni.Common.Constants.tbVerbalScreening) {
             return true;
-        } else if (formName == Bahmni.Common.Constants.adverseEventForm) {
+        } else if (formName == Bahmni.Common.Constants.adverseEventForm && gender == Bahmni.Common.Constants.female) {
             return true;
-        } else if (formName == Bahmni.Common.Constants.adviceForm) {
+        } else if (formName == Bahmni.Common.Constants.adviceForm && gender == Bahmni.Common.Constants.female) {
             return true;
         }
 
