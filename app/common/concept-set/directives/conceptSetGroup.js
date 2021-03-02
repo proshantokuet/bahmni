@@ -543,6 +543,10 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.calculateNetAmount = function (discount, index) {
+                    if (!discount) {
+                        discount = 0;
+                        $scope.services[index].discount = 0;
+                    }
                     var totalAmount = parseFloat($scope.services[index].totalAmount);
                     var financialDiscountAmount;
                     if ($scope.patient.FinancialStatus.value.display == "Poor") {
@@ -593,13 +597,14 @@ angular.module('bahmni.common.conceptSet')
                         $scope.net = $scope.net + parseFloat(listItem.netPayable);
                     }
                 });
-                var decimalPart = ($scope.net - Math.floor($scope.net));
-                $scope.netAmount = "";
-                if (decimalPart >= 0.5) {
-                    $scope.netAmount = Math.ceil($scope.net);
-                } else {
-                    $scope.netAmount = Math.floor($scope.net);
-                }
+                $scope.netAmount = $scope.net;
+                // var decimalPart = ($scope.net - Math.floor($scope.net));
+                // $scope.netAmount = "";
+                // if (decimalPart >= 0.5) {
+                //     $scope.netAmount = Math.ceil($scope.net);
+                // } else {
+                //     $scope.netAmount = Math.floor($scope.net);
+                // }
                 return $scope.netAmount;
             };
             
@@ -942,19 +947,22 @@ angular.module('bahmni.common.conceptSet')
                     $scope.enable = "false";
                     $scope.test = "true";
                     $scope.passedServiceTest = true;
+                    var errorMessageString = "";
 
                     angular.forEach(services, function (service) {
                         if (!service.code || !service.item) {
                             $scope.passedServiceTest = false;
+                             errorMessageString = "Service code / Item can not be empty";
                         }
                         if (!patientInfo.paymentStatus) {
                             if (service.quantity < 1) {
                                 $scope.passedServiceTest = false;
+                                errorMessageString = "Product quantity can not be empty or 0";
                             }
                         }
                     });
                     if (!$scope.passedServiceTest) {
-                        messagingService.showMessage("error", "Product quantity can not be empty or 0");
+                        messagingService.showMessage("error", errorMessageString);
                         return;
                     }
                     if ($stateParams.moneyReceiptObject) {
