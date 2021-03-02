@@ -173,8 +173,8 @@ angular.module('authentication')
                          $rootScope.currentUser.favouriteObsTemplates[14] = "Cervical Cancer";
                          $rootScope.currentUser.favouriteObsTemplates[15] = "Delivery";
                          $rootScope.currentUser.favouriteObsTemplates[16] = "Post Abortion Care";
-                         $rootScope.currentUser.favouriteObsTemplates[17] = "IMCI (age below 2 months)";
-                         $rootScope.currentUser.favouriteObsTemplates[18] = "IMCI (age 2 months to 5 years)";
+                         $rootScope.currentUser.favouriteObsTemplates[17] = "IMCI age below 2 months";
+                         $rootScope.currentUser.favouriteObsTemplates[18] = "IMCI age 2 months to 5 years";
                          $rootScope.currentUser.favouriteObsTemplates[19] = "Eye Care";
                          $rootScope.currentUser.favouriteObsTemplates[20] = "TB";
                          $rootScope.currentUser.favouriteObsTemplates[21] = "Discharge Certificate";
