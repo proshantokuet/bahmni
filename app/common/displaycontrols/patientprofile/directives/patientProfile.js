@@ -186,13 +186,14 @@
                                 $scope.net = $scope.net + parseFloat(listItem.netPayable);
                             }
                         });
-                        var decimalPart = ($scope.net - Math.floor($scope.net));
-                        var netAmount = "";
-                        if (decimalPart >= 0.5) {
-                            netAmount = Math.ceil($scope.net);
-                        } else {
-                            netAmount = Math.floor($scope.net);
-                        }
+                        var netAmount = $scope.net;
+                        // var decimalPart = ($scope.net - Math.floor($scope.net));
+                        //
+                        // if (decimalPart >= 0.5) {
+                        //     netAmount = Math.ceil($scope.net);
+                        // } else {
+                        //     netAmount = Math.floor($scope.net);
+                        // }
                         return netAmount;
                     };
 

@@ -510,13 +510,14 @@ angular.module('bahmni.common.conceptSet')
                         $scope.net = $scope.net + parseFloat(listItem.netPayable);
                     }
                 });
-                var decimalPart = ($scope.net - Math.floor($scope.net));
-                $scope.netAmount = "";
-                if (decimalPart >= 0.5) {
-                    $scope.netAmount = Math.ceil($scope.net);
-                } else {
-                    $scope.netAmount = Math.floor($scope.net);
-                }
+                $scope.netAmount = $scope.net;
+                // var decimalPart = ($scope.net - Math.floor($scope.net));
+                // $scope.netAmount = "";
+                // if (decimalPart >= 0.5) {
+                //     $scope.netAmount = Math.ceil($scope.net);
+                // } else {
+                //     $scope.netAmount = Math.floor($scope.net);
+                // }
                 return $scope.netAmount;
             };
             
