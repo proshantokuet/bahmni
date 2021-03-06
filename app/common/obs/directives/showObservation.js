@@ -45,14 +45,49 @@ angular.module('bahmni.common.obs')
                 }
             };
 
-            $scope.checkObsCondition = function (observation) {
-                var metaDate =  $rootScope.fetchedPrescribedData;
+            $scope.checkObsCondition = function (observation, obj) {
                 if ($rootScope.isBeingPrinted) {
-                    var flag = metaDate.indexOf(observation);
-                    if (flag !== -1) {
-                        return true;
+                    var isVoidedFormForPrint = false;
+                    if (obj.groupMembers) {
+                        if (obj.groupMembers.length > 0) {
+                            var formName = obj.groupMembers[0].formFieldPath;
+                            if (formName) {
+                                var finalFormName = formName.split(".")[0];
+                                if (finalFormName == "Delivery") {
+                                    isVoidedFormForPrint = true;
+                                }
+                            }
+                        }
+                        else if (obj.formFieldPath) {
+                            var formName = obj.formFieldPath;
+                            if (formName) {
+                                var finalFormName = formName.split(".")[0];
+                                if (finalFormName == "Delivery") {
+                                    isVoidedFormForPrint = true;
+                                }
+                            }
+                        }
                     }
-                    else return false;
+                    else if (obj.formFieldPath) {
+                        var formName = obj.groupMembers[0].formFieldPath;
+                        if (formName) {
+                            var finalFormName = formName.split(".")[0];
+                            if (finalFormName == "Delivery") {
+                                isVoidedFormForPrint = true;
+                            }
+                        }
+                    }
+                    if (!isVoidedFormForPrint) {
+                        var metaDate = $rootScope.fetchedPrescribedData;
+                        var flag = metaDate.indexOf(observation);
+                        if (flag !== -1) {
+                            return true;
+                        }
+                        else return false;
+                    }
+                    else {
+                        return false;
+                    }
                 }
                 else {
                     return true;

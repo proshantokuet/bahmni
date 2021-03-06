@@ -202,7 +202,7 @@
                             </div>
                             <div class="field-value">
                                 <input id="quantity" class="quantity fl" type="number" min="0.1" step="any"
-                                       ng-model="treatment.quantity" ng-change="treatment.setQuantityEnteredManually()"
+                                       ng-model="treatment.quantity"
                                        ng-required="treatment.isDurationRequired"/>
                             </div>
                         </article>
@@ -212,7 +212,7 @@
                             </div>
                             <div class="field-value">
                                 <select ng-if="!treatmentConfig.isHiddenField('quantityUnits')" id="total-quantity-unit"
-                                        class="fl" ng-model="treatment.quantityUnit" ng-change="treatment.setQuantityUnitEnteredManually()"
+                                        class="fl" ng-model="treatment.quantityUnit"
                                         ng-options="item.name as item.name for item in treatmentConfig.getDoseUnits()"
                                         ng-required="treatment.isDurationRequired">
                                     <option value="">{{ ::treatmentConfig.translate('quantityUnitsPlaceHolder', 'MEDICATION_CHOOSE_QUANTITY_UNIT_PLACEHOLDER') }} </option>
