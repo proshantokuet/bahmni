@@ -258,7 +258,7 @@
                <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.quantity}} </td>
                <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.unitCost}}</td>
                <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.totalAmount}} </td>
-               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.discount}}</td>
+               <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.discount + service.financialDiscount}}</td>
                <td align="right" valign="top"  style="padding:20px 8px 20px 8px; border-bottom:1px solid #666; border-right:1px solid #666;">{{service.netPayable}} </td>
            </tr>
             <tr>
@@ -378,7 +378,7 @@
                                     <th>Slip No</th>
                                     <th>E-Slip No</th>
                                     <th>Code</th>
-                                    <th>Service Name</th>
+                                    <th>Service/Medicine/Others</th>
                                   <!--  <th>Description</th>-->
                                     <th>Unit Cost</th>
                                     <th>Quantity</th>
@@ -400,7 +400,7 @@
                                     <td>{{service.unitCost}}</td>
                                     <td>{{service.quantity}} </td>
                                     <td>{{service.totalAmount}} </td>
-                                    <td> {{service.discount}}</td>
+                                    <td> {{service.discount + service.financialDiscount}}</td>
                                     <td>{{service.netPayable}} </td>
                                     <td ng-hide="services[$index-1].mid == service.mid && services[$index-1].moneyReceiptDate == service.moneyReceiptDate"><button style="padding:5px 6px 8px" ng-click="confirmationPrompt(service.mid, service.moneyReceiptDate)" onclick="jsBarInitFunction()"><i class='fa fa-print'></i>Print preview</button>
                                         <button ng-if="service.isComplete==0 && service.validMoneyReceiptHolder" style="padding:5px 9px 8px" ng-click="editMoneyReceipt(service.mid)"> <i class='fa fa-edit'></i>Edit</button>
