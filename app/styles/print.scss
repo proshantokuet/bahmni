@@ -19,7 +19,7 @@ body pre {
     font-family: Arial, sans-serif !important;
     font-size: 9pt;
     color: $black;
-    white-space: pre-wrap;
+    //white-space: pre-wrap;
 }
 
 p,
@@ -471,7 +471,7 @@ h3 {
                 font-size: 9pt;
             }
             .testUnderPanel {
-                width: 37%;
+                width: 20%;
                 font-weight: bold;
                 padding-left: 0;
                 .visit-start-date {
@@ -929,7 +929,7 @@ h3 {
                                                 padding: 0px 5px 3px 5px !important;
                                                 .testUnderPanel{
                                                     //width: 64.4% !important;
-                                                    width: 463px !important;
+                                                    width: 250px !important;
                                                     font-weight: normal !important;
 
                                                 }

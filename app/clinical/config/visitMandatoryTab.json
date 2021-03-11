@@ -16,7 +16,7 @@
         "Diagnosis": {
             "type": "diagnosis",
             "title": "Diagnosis",
-            "displayOrder": 4,
+            "displayOrder": 10,
             "config": {
                 "translationKey": "VISIT_TITLE_DIAGNOSIS_KEY",
                 "showCertainty": true,
@@ -27,7 +27,7 @@
         "Observations": {
             "type": "observation",
             "translationKey": "VISIT_TITLE_OBSERVATIONS_KEY",
-            "displayOrder": 2,
+            "displayOrder": 4,
             "config": {
                 "numberOfVisits": 1,
                 "obsIgnoreList": [
@@ -121,7 +121,7 @@
       },
       "RadiologyOrders": {
         "type": "order",
-        "displayOrder": 10,
+        "displayOrder": 2,
         "translationKey": "Radiology Orders",
         "config": {
           "translationKey": "Radiology Orders",

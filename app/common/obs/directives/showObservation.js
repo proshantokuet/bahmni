@@ -53,7 +53,7 @@ angular.module('bahmni.common.obs')
                             var formName = obj.groupMembers[0].formFieldPath;
                             if (formName) {
                                 var finalFormName = formName.split(".")[0];
-                                if (finalFormName == "Delivery") {
+                                if (finalFormName == "Delivery" || finalFormName == "Discharge Certificate") {
                                     isVoidedFormForPrint = true;
                                 }
                             }
@@ -62,7 +62,7 @@ angular.module('bahmni.common.obs')
                             var formName = obj.formFieldPath;
                             if (formName) {
                                 var finalFormName = formName.split(".")[0];
-                                if (finalFormName == "Delivery") {
+                                if (finalFormName == "Delivery" || finalFormName == "Discharge Certificate") {
                                     isVoidedFormForPrint = true;
                                 }
                             }
@@ -72,7 +72,7 @@ angular.module('bahmni.common.obs')
                         var formName = obj.groupMembers[0].formFieldPath;
                         if (formName) {
                             var finalFormName = formName.split(".")[0];
-                            if (finalFormName == "Delivery") {
+                            if (finalFormName == "Delivery" || finalFormName == "Discharge Certificate") {
                                 isVoidedFormForPrint = true;
                             }
                         }

@@ -158,27 +158,36 @@ angular.module('bahmni.common.displaycontrol.observation')
                         formHierarchyService.build($scope.bahmniObservations);
                     }
                     if ($scope.bahmniObservations.length > 0) {
-                        var sortOrder = 3;
-                        _.each($scope.bahmniObservations[0].value, function (obs) {
-                            if (obs.concept.shortName == "Client History") {
-                                obs.formOrder = 1;
-                            }
-                            else if (obs.concept.shortName == "General Examination") {
-                                obs.formOrder = 2;
-                            }
-                            else if (obs.concept.shortName == "Obstetric History") {
-                                obs.formOrder = 3;
-                            }
-                            else if (obs.concept.shortName == "Follow up") {
-                                var orderLength = $scope.bahmniObservations[0].value.length;
-                                obs.formOrder = orderLength + 4;
-                            }
-                            else {
-                                obs.formOrder = sortOrder + 1;
-                                sortOrder = sortOrder + 1;
-                            }
+                        var sortOrder = 5;
+                        _.each($scope.bahmniObservations, function (observation) {
+                            _.each(observation.value, function (obs) {
+                                if (obs.concept.shortName == "Follow up") {
+                                    obs.serial = 1;
+                                }
+                                else if (obs.concept.shortName == "Advice") {
+                                    obs.serial = 2;
+                                }
+                                else if (obs.concept.shortName == "Client History") {
+                                    obs.serial = 3;
+                                }
+                                else if (obs.concept.shortName == "General Examination") {
+                                    obs.serial = 4;
+                                }
+                                else if (obs.concept.shortName == "Obstetric History") {
+                                    obs.serial = 5;
+                                }
+                                // else if (obs.concept.shortName == "Follow up") {
+                                //     var orderLength = $scope.bahmniObservations[0].value.length;
+                                //     obs.formOrder = orderLength + 4;
+                                // }
+                                else {
+                                    obs.serial = sortOrder + 1;
+                                    sortOrder = sortOrder + 1;
+                                }
 
+                            });
                         });
+
                     }
                     $rootScope.tooglingVisitStart = undefined;
                 };

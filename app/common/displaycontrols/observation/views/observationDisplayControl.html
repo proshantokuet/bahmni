@@ -16,7 +16,7 @@
         <section class="block hierarchy">
             <ul class="form-field" ng-if="bahmniObservations.length > 0">
                 <li ng-repeat="obsGroup in ::bahmniObservations">
-                     <br ng-if="::print">
+                     <!--<br ng-if="::print">-->
                     <span ng-if="showGroupDateTime" class="tree-list-item row-click toggle-container" toggle="obsGroup.isOpen">
                         <i class="fa fa-caret-right"></i>
                         <i class="fa fa-caret-down"></i>
@@ -26,7 +26,7 @@
                         <span ng-if="!print" style="padding-left: 10px">{{::obsGroup.formName}}</span>
                     </span>
                     <ul ng-if="::print" class="print-observations visible-print">
-                        <li ng-repeat="observation in ::obsGroup.value | orderBy : 'formOrder'">
+                        <li ng-repeat="observation in ::obsGroup.value | orderBy : 'serial' track by $index">
                             <ul>
                                 <show-observation show-details-button="::config.showDetailsButton" patient="::patient"
                                                   observation="::observation"
@@ -36,7 +36,7 @@
                     </ul>
                     <ul ng-if="obsGroup.isOpen"  class="print-observations hidden-print">
                         <show-observation show-details-button="::config.showDetailsButton" patient="::patient"
-                                          observation="::observation" ng-repeat="observation in ::obsGroup.value | orderBy : 'formOrder'"
+                                          observation="::observation" ng-repeat="observation in ::obsGroup.value"
                                           level="2"></show-observation>
                     </ul>
                 </li>
