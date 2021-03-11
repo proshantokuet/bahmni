@@ -964,12 +964,16 @@ angular.module('bahmni.common.conceptSet')
                             patientInfo.dueAmount = totalDue.toString();
                             //var splitedDate = $scope.paymentLogObject.receiveDate.split('/');
                             //var finalizedSplitedDate = splitedDate[2] + "-" + splitedDate[1] + "-" + splitedDate[0];
-                            var finalizedSplitedDate = $scope.paymentDateUniform($scope.paymentLogObject.receiveDate)
+                            var finalizedSplitedDate = $scope.paymentDateUniform($scope.paymentLogObject.receiveDate);
                             var paymentobj = {};
                             paymentobj.receiveDate = finalizedSplitedDate;
                             paymentobj.receiveAmount = $scope.paymentLogObject.receiveAmount;
                             payments.push(paymentobj);
                         }
+                    }
+                    else if($scope.moneyReceiptObject && $scope.paymentHistory.length > 0) {
+                            var totalDue = $scope.calculateTotalDueAmount();
+                            patientInfo.dueAmount = totalDue.toString();
                     }
                     // angular.forEach(services, function (service) {
                     //     if (service.financialDiscount) {
@@ -1312,7 +1316,7 @@ angular.module('bahmni.common.conceptSet')
                         else {
                             for (var j = 0; j < $scope.serviceList.length; j++) {
                                 for (var i = 0; i < $scope.moneyReceiptObject.length; i++) {
-                                    if ($scope.serviceList[j].code == $scope.moneyReceiptObject[i].code) {
+                                    if ($scope.serviceList[j].code == $scope.moneyReceiptObject[i].code && $scope.serviceList[j].type == $scope.moneyReceiptObject[i].type) {
                                         $scope.services[index] = {"discount": 0, "quantity": 1};
                                         if ($scope.moneyReceiptObject[i].type == "PRODUCT") {
                                             var productId = $scope.serviceList[j].sid;
