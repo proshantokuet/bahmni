@@ -214,7 +214,8 @@
                         $scope.totalDiscount = 0;
                         angular.forEach($scope.servicesBySlip, function (listItem) {
                             if (listItem.discount != undefined) {
-                                $scope.totalDiscount = $scope.totalDiscount + listItem.discount;
+                                 //$scope.totalDiscount = $scope.totalDiscount + listItem.discount;
+                                 $scope.totalDiscount = $scope.totalDiscount + listItem.discount + (!listItem.financialDiscount ? 0 : listItem.financialDiscount);
                             }
                         });
                         return $scope.totalDiscount;
@@ -442,8 +443,6 @@
                         $scope.printUserInfo.eslipNo = slipInformation.eslipNo;
 
                         patientService.downloadPdf($scope.printUserInfo).then(function (response) {
-
-                            debugger;
                             /*
                                var fileName = "test.pdf";
                              var a = document.createElement("a");
