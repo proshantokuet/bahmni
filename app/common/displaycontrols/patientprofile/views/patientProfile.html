@@ -26,14 +26,14 @@
                                                                class="title-link">
                                 <strong>Edit Patient</strong>
                         </a></span>
-                            <span ng-if="activeVisit && currentUser == 'Doctor' || activeVisit && currentUser == 'Paramedic'" style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
+                            <span ng-if="activeVisit && currentUser == 'CRO' || activeVisit && currentUser == 'Paramedic'" style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
                                                                class="title-link">
                            <strong> Provide Service</strong>
                         </a></span>
-                            <span ng-if="activeVisit && currentUser == 'Doctor' && patient.gender == 'F' && patient.age >= 11 && patient.age < 49 || activeVisit && currentUser == 'Paramedic' && patient.gender == 'F' && patient.age >= 11 && patient.age < 49" style="padding-left:25px"><a ui-sref="patient.patientProgram.show" target="_self"
-                                                               class="title-link">
-                                <strong>Program Enrollment</strong>
-                        </a></span>
+                            <!--<span ng-if="activeVisit && currentUser == 'Doctor' && patient.gender == 'F' && patient.age >= 11 && patient.age < 49 || activeVisit && currentUser == 'Paramedic' && patient.gender == 'F' && patient.age >= 11 && patient.age < 49" style="padding-left:25px"><a ui-sref="patient.patientProgram.show" target="_self"-->
+                                                               <!--class="title-link">-->
+                                <!--<strong>Program Enrollment</strong>-->
+                        <!--</a></span>-->
                                 <span ng-if="!activeVisit && currentUser == 'CRO' || !activeVisit && currentUser == 'Paramedic'" style="padding-left:25px">
                              <select ng-model="selectedVisit.visitObj"
                                      ng-options="visit as visit.display for visit in visitType"

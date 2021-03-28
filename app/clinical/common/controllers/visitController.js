@@ -190,9 +190,9 @@ angular.module('bahmni.clinical')
                 //$scope.addressString = $scope.address($scope.patient.address);
                 $scope.currentDate = new Date();
                 printOnPrint();
-                $scope.getDischargeInformation();
-                $scope.getBirthInformation();
-                $scope.getLastProviderName();
+                //$scope.getDischargeInformation();
+                //$scope.getBirthInformation();
+               // $scope.getLastProviderName();
             };
             init();
         }]);

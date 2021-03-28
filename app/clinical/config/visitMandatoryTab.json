@@ -13,17 +13,6 @@
                 ]
             }
         },
-        "Diagnosis": {
-            "type": "diagnosis",
-            "title": "Diagnosis",
-            "displayOrder": 10,
-            "config": {
-                "translationKey": "VISIT_TITLE_DIAGNOSIS_KEY",
-                "showCertainty": true,
-                "showOrder": true,
-                "showDetailsButton": true
-            }
-        },
         "Observations": {
             "type": "observation",
             "translationKey": "VISIT_TITLE_OBSERVATIONS_KEY",
@@ -41,96 +30,6 @@
                 ],
                 "showDetailsButton": true
             }
-        },
-        "Disposition": {
-            "type": "disposition",
-            "translationKey": "VISIT_TITLE_DISPOSITIONS_KEY",
-            "displayOrder": 5,
-            "config": {
-                "translationKey":"VISIT_TITLE_DISPOSITION_KEY",
-                "numberOfVisits": 1,
-                "showDetailsButton": true
-            }
-        },
-        "Admission Details": {
-            "type": "admissionDetails",
-            "displayOrder": 6,
-            "config": {
-                "translationKey": "VISIT_TITLE_ADMISSION_DETAILS_KEY",
-                "showDetailsButton": true
-            }
-        },
-        "Investigation Result": {
-            "type": "investigationResult",
-            "title": "Investigation Result",
-            "displayOrder": 7,
-            "config": {
-                "translationKey": "VISIT_TITLE_LAB_INVESTIGATIONS_KEY",
-                "showChart": true,
-                "showTable": true,
-                "showNormalLabResults": true,
-                "showCommentsExpanded": true,
-                "showAccessionNotes": true,
-                "numberOfVisits": 10
-            }
-        },
-        "Treatments": {
-            "type": "treatment",
-            "title": "Treatments",
-            "displayOrder": 0,
-            "config": {
-                "translationKey": "VISIT_TITLE_TREATMENTS_KEY",
-                "showFlowSheet": true,
-                "showListView": true,
-                "showOtherActive": false,
-                "showDetailsButton": true,
-                "showRoute": true,
-                "showDrugForm": true,
-                "showProvider" : true
-            }
-        },
-        "Radiology": {
-            "type": "radiology",
-            "displayOrder": 8,
-            "config": {
-                "translationKey": "VISIT_TITLE_RADIOLOGY_KEY"
-            }
-        },
-        "Patient Files": {
-            "type": "patientFiles",
-            "displayOrder": 9,
-            "config": {
-                "translationKey": "VISIT_TITLE_PATIENT_FILES_KEY"
-            }
-        },
-      "labOrder": {
-        "type": "order",
-        "displayOrder": 1,
-        "config": {
-          "translationKey": "DASHBOARD_TITLE_LAB_ORDERS_NEW_FOR_PRINT",
-          "name": "ordersControl",
-          "orderType": "Lab Order",
-          "conceptNames": [
-            "Systolic",
-            "Diastolic",
-            "Posture",
-            "Temperature"
-          ],
-          "showDetailsButton": true
         }
-      },
-      "RadiologyOrders": {
-        "type": "order",
-        "displayOrder": 2,
-        "translationKey": "Radiology Orders",
-        "config": {
-          "translationKey": "Radiology Orders",
-          "name": "ordersControl",
-          "orderType": "Radiology Order",
-          "conceptNames": [
-            "Summary"
-          ]
-        }
-      }
     }
 }

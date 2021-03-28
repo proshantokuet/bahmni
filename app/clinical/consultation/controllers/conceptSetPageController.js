@@ -224,26 +224,12 @@ angular.module('bahmni.clinical')
             var getObservationForms = function (observationsForms) {
                 var forms = [];
                 var observations = $scope.consultation.observations || [];
-                 $scope.sortOrder = 3;
                 _.each(observationsForms, function (observationForm) {
                     var formUuid = observationForm.formUuid || observationForm.uuid;
                     var formName = observationForm.name || observationForm.formName;
-                    $scope.sortOrder = $scope.sortOrder + 1;
                     var formVersion = observationForm.version || observationForm.formVersion;
                     var observation = new Bahmni.ObservationForm(formUuid, $rootScope.currentUser, formName, formVersion, observations);
-                    observation.formOrder = $scope.sortOrder;
                     forms.push(observation);
-                });
-                _.each(forms,function (form) {
-                    if (form.formName == "Client History") {
-                        form.formOrder = 1;
-                    }
-                    else if (form.formName == "General Examination") {
-                        form.formOrder = 2;
-                    }
-                    else if (form.formName == "Obstetric History") {
-                        form.formOrder = 3;
-                    }
                 });
                 return forms;
             };

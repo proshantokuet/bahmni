@@ -43,7 +43,7 @@
 
             <ul class="header-tabs consultation-tabs" ng-if="!moneyreceiptPage">
                 <li class="tab-item" ng-if="currentUser == 'Doctor' || currentUser == 'Paramedic' " ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
-                    <a ng-if="board.label=='Medications'|| board.label=='Orders' || board.label=='Observations' || board.label=='Diagnosis' || board.label == 'Consultation'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
+                    <a ng-if="board.label=='Observations'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span></a>
                 </li>
             </ul>
 
@@ -145,11 +145,11 @@
                     </li>
                 </ul>
             </div>-->
-            <ul class="header-tabs consultation-tabs" ng-if="!moneyreceiptPage && visitHistory.activeVisit">
-                <li class="tab-item" ng-if="currentUser == 'CRO'" ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
-                    <a ng-if="board.label=='Orders'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
-                </li>
-            </ul>
+            <!--<ul class="header-tabs consultation-tabs" ng-if="!moneyreceiptPage && visitHistory.activeVisit">-->
+                <!--<li class="tab-item" ng-if="currentUser == 'CRO'" ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">-->
+                    <!--<a ng-if="board.label=='Orders'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>-->
+                <!--</li>-->
+            <!--</ul>-->
 
             <div ng-if="!moneyreceiptPage && currentUser == 'CRO' || currentUser == 'Paramedic'">
                 <button class="confirm save-consultation cancel" ng-if="visitHistory.activeVisit" ng-click="closeVisitIfDischarged()">Close Visit</button>
