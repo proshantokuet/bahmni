@@ -20,6 +20,9 @@ body pre {
     font-size: 9pt;
     color: $black;
     //white-space: pre-wrap;
+    max-width: 400px;
+    word-wrap: break-word;
+    line-height: 15px;
 }
 
 p,
