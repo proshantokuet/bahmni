@@ -1385,12 +1385,22 @@ angular.module('bahmni.common.conceptSet')
                 });
             };
 
-            $scope.getProductCurrentStock = function(productId,index) {
+            $scope.getProductCurrentStock = function (productId, index) {
+                debugger;
                 var clinicPrimaryId = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id;
-                patientService.getProductCurrentStock(clinicPrimaryId,productId).then(function (response) {
-                     var stockSize = response.data.stock;
-                     $scope.services[index].stock = parseInt(stockSize);
-                });
+                spinner.forPromise(patientService.getProductCurrentStock(clinicPrimaryId, productId).then(function (response) {
+                    var stockSize = response.data.stock;
+                    $scope.services[index].stock = parseInt(stockSize);
+                    if ($scope.services[index].quantity) {
+                        if ($scope.patientInfo.paymentStatus != "REFUND") {
+                            if ($scope.services[index].quantity > parseInt(stockSize)) {
+                                messagingService.showMessage('info', "Stock Updated Changing previous quantity");
+                                $scope.services[index].quantity = parseInt(stockSize);
+                            }
+                        }
+                    }
+                }));
+
             };
 
             var initPromise = $q.all([services(), dataCollectors($scope.patientInfo.clinicCode)], sateliteClinicId());
