@@ -96,7 +96,10 @@ angular.module('bahmni.registration')
                                             data.isFromGlobalServer = false;
                                         }
                                         else {
-                                            if(data.isFromGlobalServer) {
+                                            if(data.isFromGlobalServer && data.isFromGlobalServer != false) {
+                                                data.isFromGlobalServer = true;
+                                            }
+                                            else if (typeof data.isFromGlobalServer === 'undefined') {
                                                 data.isFromGlobalServer = true;
                                             }
                                         }
@@ -398,7 +401,10 @@ angular.module('bahmni.registration')
                                         data.isFromGlobalServer = false;
                                     }
                                     else {
-                                        if(data.isFromGlobalServer) {
+                                        if (data.isFromGlobalServer && data.isFromGlobalServer != false) {
+                                            data.isFromGlobalServer = true;
+                                        }
+                                        else if (typeof data.isFromGlobalServer === 'undefined') {
                                             data.isFromGlobalServer = true;
                                         }
                                     }
