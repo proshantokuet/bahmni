@@ -20,12 +20,14 @@ angular.module('bahmni.common.conceptSet')
                 if ($scope.moneyReceiptObject) {
                     var orgUnit = $scope.patientInfo.orgUnit;
                     $scope.patientInfo = $scope.moneyReceiptObject[0];
+                    $scope.patientInfo.clinicPrimaryId = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id;
                     var date = new Date($scope.patientInfo.moneyReceiptDate);
                     $scope.timeObject.hourValue = date.getHours();
                     $scope.timeObject.minuteValue = date.getMinutes();
                     $scope.patientInfo.orgUnit = orgUnit;
                     $scope.patientInfo.moneyReceiptDate = ageFormatterService.dateFormat($scope.patientInfo.moneyReceiptDate);
                     $scope.makeSlipNoReadOnly = true;
+
                     getMoneyReceiptByid($scope.patientInfo.mid);
                 }
                 else {
@@ -80,6 +82,7 @@ angular.module('bahmni.common.conceptSet')
             $scope.patientInfo = {
                 clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName,
                 clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId,
+                clinicPrimaryId: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id,
                 orgUnit: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).orgUnit,
                 overallDiscount: 0,
                 dueAmount: 0
@@ -807,6 +810,9 @@ angular.module('bahmni.common.conceptSet')
 
             var saveMoneyReceipt = function (data) {
                 return patientService.saveMoneyReceipt(data).then(function (response) {
+                    debugger;
+                    return response;
+
                     console.log("save return");
                     console.log(response);
                 });
@@ -987,10 +993,24 @@ angular.module('bahmni.common.conceptSet')
 
                     $scope.HasSubmittedMoneyReceipt = true;
                     return spinner.forPromise($q.all([saveMoneyReceipt(jsonData)]).then(function (results) {
-                        $state.go("patient.dashboard.show", {
-                            patientUuid: patient.uuid
-                        }, {reload: true}
-                        );
+                        debugger;
+                        if (results.length > 0) {
+                            var response = results[0].data;
+                            if (response.status) {
+                                $state.go("patient.dashboard.show", {
+                                        patientUuid: patient.uuid
+                                    }, {reload: true}
+                                );
+                            }
+                            else {
+                                $scope.searchButtonText = "Submit";
+                                $scope.HasSubmittedMoneyReceipt = false;
+                                $scope.patientInfo.moneyReceiptDate = ageFormatterService.dateFormat($scope.patientInfo.moneyReceiptDate);
+
+                                messagingService.showMessage("error", response.message);
+                            }
+                        }
+
                     }));
                 } else {
                     $scope.Message = "You clicked NO.";
