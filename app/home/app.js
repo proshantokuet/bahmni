@@ -34,12 +34,7 @@ angular.module('bahmni.home', ['ui.router', 'httpErrorInterceptor', 'bahmni.comm
                 {
                     url: '/login?showLoginMessage',
                     templateUrl: 'views/login.html',
-                    controller: 'LoginController',
-                    resolve: {
-                        initialData: function (loginInitialization) {
-                            return loginInitialization();
-                        }
-                    }
+                    controller: 'LoginController'
                 })
             .state('errorLog', {
                 url: '/errorLog',

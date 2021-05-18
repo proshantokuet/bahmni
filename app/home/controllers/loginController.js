@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('bahmni.home')
-    .controller('LoginController', ['$rootScope', '$scope', '$window', '$timeout', '$location', 'sessionService', 'initialData', 'spinner', '$q', '$stateParams', '$bahmniCookieStore', 'localeService', '$translate', 'userService', 'auditLogService',
-        function ($rootScope, $scope, $window, $timeout, $location, sessionService, initialData, spinner, $q, $stateParams, $bahmniCookieStore, localeService, $translate, userService, auditLogService) {
+    .controller('LoginController', ['$rootScope', '$scope', '$window', '$timeout', '$location', 'sessionService', 'spinner', '$q', '$stateParams', '$bahmniCookieStore', 'localeService', '$translate', 'userService', 'auditLogService',
+        function ($rootScope, $scope, $window, $timeout, $location, sessionService, spinner, $q, $stateParams, $bahmniCookieStore, localeService, $translate, userService, auditLogService) {
             var redirectUrl = $location.search()['from'];
             var landingPagePath = "/dashboard";
             var loginPagePath = "/login";
-            $scope.locations = initialData.locations;
+            //$scope.locations = initialData.locations;
             $scope.loginInfo = {};
             var localeLanguages = [];
 
@@ -86,9 +86,10 @@ angular.module('bahmni.home')
                 return $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName) ? $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid : null;
             };
             var getLastLoggedinLocation = function () {
-                return _.find(initialData.locations, function (location) {
-                    return location.uuid === getLoginLocationUuid();
-                });
+                return undefined;
+                // return _.find(initialData.locations, function (location) {
+                //     return location.uuid === getLoginLocationUuid();
+                // });
             };
 
             $scope.loginInfo.currentLocation = getLastLoggedinLocation();
