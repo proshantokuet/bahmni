@@ -81,7 +81,7 @@ angular.module('bahmni.registration')
                     drugOrders: [],
                     extensions: {}
                 };
-                // $scope.mappingAttributeBeforeUpdatePatient();
+                $scope.mappingAttributeBeforeUpdatePatient();
                 $scope.encounter.providers = [];
                 $scope.encounter.providers.push({"uuid": $scope.patientAtributes.doctorId});
 
