@@ -3,34 +3,72 @@
     <div class="opd-header-wrapper clinical-consultation" id="opd-tabs" ng-class="{'retro-mode':isInEditEncounterMode()}">
 
         <div class="opd-header-bottom tabs">
-            <bm-back-links></bm-back-links>
-            <recent-patients ng-if="enablePatientSearch()"></recent-patients>
-            <a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(consultation.uuid)}}"
-               title="{{adtNavigationConfig.title}}">
-                <i class="fa fa-bed fa-white"></i>
-            </a>
+
+
+            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="h" href="../home/index.html" ng-click="onHomeNavigate($event)">
+                <i class="fa fa-home" style="line-height:1; font-size: 15px; margin-right:5px; font-weight: 700;"></i>Home</a>
+
+            <a class="back-btn"  style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html" ng-click="onHomeNavigate($event)">
+                <i class="fa fa-search" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i>Search</a>
+
+
+            <a class="back-btn"  style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../clinical/index.html#/default/patient/search" ng-click="onHomeNavigate($event)">
+                <i class="fa fa-users" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i>Clinical Dashboard</a>
+
+
+
+<!--
+             <bm-back-links></bm-back-links>
+-->
+             <button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel, 'hide-ipad': availableBoards }">
+                <i class="fa fa-bars fa-white fa-large"></i>
+            </button>
+           <!-- <bm-back-links></bm-back-links>-->
+
+            <!--<recent-patients ng-if="enablePatientSearch()"></recent-patients>-->
+            <!--<a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(consultation.uuid)}}"-->
+               <!--title="{{adtNavigationConfig.title}}">-->
+                <!--<i class="fa fa-bed fa-white"></i>-->
+            <!--</a>-->
+
+
+
+
+
             <a class="back-btn-link" id="dashboard-link" accesskey="d" ng-click="gotoPatientDashboard()" title="Back to {{patient.name}} Dashboard">
                 <img class="patient-image" ng-src="{{::patient.image}}" fallback-src="../images/blank-user.gif">
               <span class="patient-info">
                 <span class="patient-name" >{{patient.name}} </span>
                 <span class="patient-id">{{patient.identifier}}</span>
-            </span>
+              </span>
             </a>
 
 
             <ul class="header-tabs consultation-tabs">
-                <li class="tab-item" ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
-                    <a ng-click="showBoard($index)">{{ board | titleTranslate }}</a>
+                <li class="tab-item"  ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
+                    <a ng-if="board.label=='Orders' || board.label=='Observations'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
                 </li>
             </ul>
+<!--            <ul class="header-tabs consultation-tabs">
+                <li class="tab-item" >
+                    <a ng-click="serviceProviderTabOPen()"><span>Prescription</span></a>
+                </li>
+            </ul>-->
 
-            <button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel, 'hide-ipad': availableBoards }">
-                <i class="fa fa-bars fa-white fa-large"></i>
-            </button>
-            <button class="confirm save-consultation" ng-show="availableBoards" single-click="save()" accesskey="{{'SAVE_ACCESS_KEY' | translate}}" ng-class="{'hideSaveText':availableBoards.length > 6}">
+
+            <button class="confirm save-consultation" single-click="save()" accesskey="{{'SAVE_ACCESS_KEY' | translate}}" ng-class="{'hideSaveText':availableBoards.length > 6}">
                 <i class="fa fa-save"></i>
                 <span class="text" ng-bind-html="'CLINICAL_SAVE_TRANSLATION_KEY'| translate"></span>
             </button>
+            <!--<div ng-if="!moneyreceiptPage">-->
+                <!--<button class="confirm save-consultation cancel" ng-if="visitHistory.activeVisit" ng-click="closeVisitIfDischarged()">Close Visit</button>-->
+            <!--</div>-->
+            <div>
+                <button class="confirm save-consultation" style="background: #e9e8e8;border: #e9e8e8"><a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY">Cancel</a></button>
+            </div>
+<!--            <div>
+                <button class="confirm save-consultation" style="background: #e9e8e8;border: #e9e8e8"><a href="" ng-click="serviceProviderTabOPen()" >Prescription</a></button>
+            </div>-->
         </div>
     </div>
 </div>
@@ -39,13 +77,51 @@
 <div ng-show="stateChange()" confirm-on-exit>
     <div bindonce class="dashboard-header opd-header-wrapper">
         <div class="opd-header-bottom tabs">
-            <bm-back-links></bm-back-links>
-            <recent-patients></recent-patients>
-            <a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(visitHistory.activeVisit.uuid)}}"
+
+
+            <a class="back-btn" style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="h" href="../home/index.html" ng-click="onHomeNavigate($event)">
+                <i class="fa fa-home" style="line-height:1; font-size: 15px; margin-right:5px; font-weight: 700;"></i>Home</a>
+
+            <a class="back-btn"  style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../registration/index.html" ng-click="onHomeNavigate($event)">
+                <i class="fa fa-search" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i>Search</a>
+
+            <a class="back-btn"  style="margin-top: 15px;padding: 4px 10px 5px;height: 28px; border: none;background: none;" accesskey="r" href="../clinical/index.html#/default/patient/search" ng-click="onHomeNavigate($event)">
+                <i class="fa fa-users" style="line-height:1; font-size: 15px; margin-right:5px;font-weight: 700;"></i>Clinical Dashboard</a>
+
+
+            <button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel, 'hide-ipad': availableBoards }">
+                <i class="fa fa-bars fa-white fa-large"></i>
+            </button>
+
+            <!--<div class="fr">-->
+                <!--<button class="btn-user-info fr">-->
+                    <!--<i class="fa fa-user-md fa-white small"></i>-->
+                    <!--<i class="fa fa-caret-down fa-white mini"></i>-->
+                <!--</button>-->
+                <!--<ul>-->
+                    <!--<li>-->
+                        <!--<a><i class="fa fa-user fa-white small"></i><span>{{:: currentUser.username}}</span></a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<i class="fa fa-map-marker fa-white small"></i><span>{{:: currentUser.currentLocation | translate}}</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a log-out><i class="fa fa-power-off fa-white small"></i><span-->
+                                <!--class="nav-link">Logout</span></a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel}">-->
+                    <!--<i class="fa fa-bars fa-white fa-large"></i>-->
+                <!--</button>-->
+
+           <!-- <bm-back-links></bm-back-links>-->
+            <!--<recent-patients></recent-patients>-->
+            <!--<a show-if-privilege="{{adtNavigationConfig.privilege}}" ng-click= "displayConfirmationDialog($event)" class="back-btn" ng-href="{{adtNavigationURL(visitHistory.activeVisit.uuid)}}"
                title="{{adtNavigationConfig.title}}">
                 <i class="fa fa-bed fa-white"></i>
-            </a>
-            <div class="desktop-menu fl">
+            </a>-->
+            <div class="desktop-menu fl" ng-show="!restrictOptions()">
                 <ul class="header-tabs" ng-if="clinicalDashboardConfig.showTabs()">
                     <li class="tab-item dashboard" ng-repeat="dashboard in clinicalDashboardConfig.visibleTabs"
                         ng-class="{'tab-selected' : clinicalDashboardConfig.isCurrentTab(dashboard), 'tab-removable': clinicalDashboardConfig.isCurrentTab(dashboard) && !dashboard.displayByDefault}">
@@ -81,52 +157,58 @@
                     </li>
                 </ul>
             </div>
-            <div class="dashboard-header-right-wrapper">
-                <div ng-if="::clinicalDashboardConfig.quickPrints" class="fl print-list-wrapper" toggle="togglePrintList">
-                    <button ng-if="clinicalDashboardConfig.showPrint()" class="dialog-button-group"
-                            accesskey="{{'CLINICAL_PRINT_ACCESS_KEY'| translate}}">
-                        <span ng-bind-html="'CLINICAL_PRINT_TRANSLATION_KEY'|translate"></span> <i class="fa fa-print"></i> <i class="fa fa-caret-down"></i>
-                    </button>
-                    <ul>
-                        <li accesskey="{{::tab.printing.shortcutKey}}" ng-repeat="tab in ::printList" ng-click="::printDashboard(tab)">
-                            <span ng-bind-html="::(tab.printing.label || tab.printing.header)"></span>
-                        </li>
-                    </ul>
-                </div>
-                <button ng-if="::!clinicalDashboardConfig.quickPrints" class="dialog-button-group print" ng-click="printDashboard()"
-                        accesskey="{{'CLINICAL_PRINT_ACCESS_KEY'| translate}}" ng-bind-html="'CLINICAL_PRINT_TRANSLATION_KEY'|translate">
-                    <i class="fa fa-print"></i>
 
-                </button>
-                <div class="dashboard-date-picker" ng-controller="PatientListHeaderController">
-                    <div class="retro-date-widget-wrapper fr">
-                        <div class="retro-date-widget-header fr">
-                            <button ng-click="popUpHandler()" show-if-privilege="{{retrospectivePrivilege}},{{onBehalfOfPrivilege}},{{locationPickerPrivilege}}" ng-if="getTitle()">{{ getTitle() | translate }}</button>
 
-                        </div>
-                    </div>
-                </div>
-                <span class="grouped-buttons">
+            <div ng-show="!restrictOptions()">
+                <button class="confirm save-consultation cancel" ng-if="visitHistory.activeVisit" ng-click="closeVisitIfDischarged()">Close Visit</button>
+            </div>
+
+            <div ng-show="restrictOptions()">
+            <a class="back-btn-link" id="dashboard-link-for-prescription"  accesskey="d" ng-click="gotoPatientDashboard()"
+               title="Back to {{patient.name}} Dashboard">
+                <img class="patient-image" ng-src="{{::patient.image}}" fallback-src="../images/blank-user.gif">
+                <span class="patient-info">
+                <span class="patient-name">{{patient.name}} </span>
+                <span class="patient-id">{{patient.identifier}}</span>
+              </span>
+            </a>
+            </div>
+
+
+            <!--<div class="dashboard-header-right-wrapper">-->
+               <!--<div ng-if="::clinicalDashboardConfig.quickPrints" class="fl print-list-wrapper" toggle="togglePrintList">-->
+                    <!--<ul>-->
+                        <!--<li accesskey="{{::tab.printing.shortcutKey}}" ng-repeat="tab in ::printList" ng-click="::printDashboard(tab)">-->
+                            <!--<span ng-bind-html="::(tab.printing.label || tab.printing.header)"></span>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<button ng-if="::!clinicalDashboardConfig.quickPrints" class="dialog-button-group print" ng-click="printDashboard()"-->
+                        <!--accesskey="{{'CLINICAL_PRINT_ACCESS_KEY'| translate}}" ng-bind-html="'CLINICAL_PRINT_TRANSLATION_KEY'|translate">-->
+                    <!--<i class="fa fa-print"></i>-->
+
+                <!--</button>-->
+            <!--</div>-->
+                <!--<div class="dashboard-date-picker" ng-controller="PatientListHeaderController">-->
+                    <!--<div class="retro-date-widget-wrapper fr">-->
+                        <!--<div class="retro-date-widget-header fr">-->
+                            <!--&lt;!&ndash;<button ng-click="popUpHandler()" show-if-privilege="{{retrospectivePrivilege}},{{onBehalfOfPrivilege}},{{locationPickerPrivilege}}" ng-if="getTitle()">{{ getTitle() | translate }}</button>-->
+<!--&ndash;&gt;-->
+                            <!--<button ng-if="getTitle()">{{ getTitle() | translate }}</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <span class="grouped-buttons">
                  <a class=" btn--left btn--success "
                     ng-if="visitHistory.activeVisit || retrospectiveEntry || allowConsultation()"
                     ng-click="openConsultation()"
-                    accesskey="{{ 'CONSULTATION_SHORTCUT_KEY' | translate }}"
+                    accesskey="{{'CONSULTATION_SHORTCUT_KEY' | translate}}"
                     ng-bind-html="'CONSULTATION_TAB_KEY' | translate">
                  </a>
-                 <a class=" btn--left btn--success " style="background: #ff4949;background-color: #ff4949;"
-                    ng-if="visitHistory.activeVisit || retrospectiveEntry || allowConsultation()"
-                    ng-click="closeVisitIfDischarged()"
-                    ng-bind="'CONSULTATION_CANCEL_KEY' | translate">
-                 </a>
-                <a class="btn--right btn--success " title="{{ 'OPEN_IN_NEW_WINDOW'|translate }}"
+                <!--<a class="btn&#45;&#45;right btn&#45;&#45;success " title="{{'OPEN_IN_NEW_WINDOW'|translate}}"
                    ng-if="visitHistory.activeVisit || retrospectiveEntry"
-                   ng-click="openConsultationInNewTab()"><i class="fa fa-external-link"></i></a>
+                   ng-click="openConsultationInNewTab()"><i class="fa fa-external-link"></i></a>-->
            </span>
-
-
-                <button class="toggle-patient" ng-click="toggleControlPanel()" ng-class="{'shift': showControlPanel}">
-                    <i class="fa fa-bars fa-white fa-large"></i>
-                </button>
             </div>
         </div>
     </div>

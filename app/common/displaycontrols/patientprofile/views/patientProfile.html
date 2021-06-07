@@ -17,6 +17,10 @@
                                  <span>{{ 'TIME_OF_BIRTH_LABEL'|translate }}</span>
                                  <span ng-bind-html="::patient.birthtime | date:'hh:mm a'"></span>
                              </span>
+                            <span  style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
+                                                               class="title-link">
+                           <strong> Prescription</strong>
+                        </a></span>
                              <span class="patient-address">
                                  {{::addressLine}}
                              </span>

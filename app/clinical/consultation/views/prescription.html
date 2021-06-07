@@ -1,0 +1,292 @@
+<style>
+    table td, table th {
+        padding: 5px 0px 5px 8px;
+        border: none;
+    }
+
+    .unique-name {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table tr {
+        border: 0;
+        border: none;
+    }
+
+    .form .form-field .field-attribute label, form .form-field .field-attribute label {
+        width: 10em;
+        float: left;
+        text-align: right;
+        margin: .7em .8em 0 0;
+    }
+
+    .click-to-edit {
+        display: inline-block;
+    }
+
+    .glyphicon.spinning {
+        animation: spin 1s infinite linear;
+        -webkit-animation: spin2 1s infinite linear;
+    }
+
+    @keyframes spin {
+        from {
+            transform: scale(1) rotate(0deg);
+        }
+        to {
+            transform: scale(1) rotate(360deg);
+        }
+    }
+
+    @-webkit-keyframes spin2 {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+</style>
+<section class="block consultation-notes section-grid">
+        <h2 style="text-align: center;" class="section-title ng-binding">Consultation</h2>
+
+<div class="reg-body-wrapper">
+        <div class="simple-form-ui new-patient">
+            <form name="myForm" class="form-horizontal well" single-submit="create()">
+                <div class="box-container box-container-default">
+                    <div class="box-container box-container-patient-info patient-common-info-container">
+                        <div class="form-field form-field-gender" style="overflow-x:auto;">
+                            <section class="form-field form-field-gender">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Chief Complaint</label>
+                                                </div>
+
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+
+
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <textarea class="form-control" ng-model="prescription.chiefcomplaint" id="chiefcomplaint"></textarea>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Diagnosis</label>
+                                                </div>
+
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+
+
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <textarea class="form-control" ng-model="prescription.diagnosis" id="diagnosis"></textarea>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-attribute">
+                                                    <label>Advice</label>
+                                                </div>
+
+                                            </article>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+
+
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                         <textarea class="form-control" ng-model="prescription.advice" id="advice" ></textarea></textarea>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-container box-container-default" id="serviceSection">
+                    <div class="box-container box-container-patient-info patient-common-info-container">
+                        <div class="form-field form-field-gender" style="overflow-x:auto;">
+                            <section class="form-field form-field-gender">
+                                <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
+                                    <tr data-ng-repeat="service in prescription.service track by $index">
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <label>Medicine Name with Prefix<span class="asterick">*</span></label>
+
+                                                        <input type="text" class="form-control" ng-model="service.code" placeholder="Select Medicine"
+                                                               typeahead-on-select="onChangedForCode(service.code, $index)"
+                                                               uib-typeahead="itm as itm.name for itm in medicine | filter:{name:$viewValue}"
+                                                               typeahead-min-length="0" typeahead-editable="false" typeahead-no-results="noCodeFound">
+
+                                                    </div>
+                                                </div>
+                                            </article>
+                                            <span style="opacity: 0.5" ng-show="noCodeFound">No results found</span>
+                                        </td>
+                                        <td>
+                                            <article class="form-field">
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                        <label>Frequency<span class="asterick">*</span></label>
+                                                        <select id="frequency"
+                                                                class="frequency form-control"
+                                                                ng-model="prescription.service.frequency">
+                                                            <option value="" class="ng-binding" selected="selected">
+                                                                Choose Frequency
+                                                            </option>
+                                                            <option label="Immediately" value="Immediately">
+                                                                Immediately
+                                                            </option>
+                                                            <option label="Once a day" value="Once a day">Once a
+                                                                day
+                                                            </option>
+                                                            <option label="Twice a day" value="Twice a day">Twice
+                                                                a day
+                                                            </option>
+                                                            <option label="Thrice a day" value="Thrice a day">
+                                                                Thrice a day
+                                                            </option>
+                                                            <option label="Four times a day"
+                                                                    value="Four times a day">Four times a day
+                                                            </option>
+                                                            <option label="Every Hour" value="Every Hour">Every
+                                                                Hour
+                                                            </option>
+                                                            <option label="Every 2 hours" value="Every 2 hours">
+                                                                Every 2 hours
+                                                            </option>
+                                                            <option label="Every 3 hours" value="Every 3 hours">
+                                                                Every 3 hours
+                                                            </option>
+                                                            <option label="Every 4 hours" value="Every 4 hours">
+                                                                Every 4 hours
+                                                            </option>
+                                                            <option label="Every 6 hours" value="Every 6 hours">
+                                                                Every 6 hours
+                                                            </option>
+                                                            <option label="Every 8 hours" value="Every 8 hours">
+                                                                Every 8 hours
+                                                            </option>
+                                                            <option label="Every 12 hours"
+                                                                    value="Every 12 hours">Every 12 hours
+                                                            </option>
+                                                            <option label="On alternate days"
+                                                                    value="On alternate days">On alternate days
+                                                            </option>
+                                                            <option label="Once a week" value="Once a week">Once
+                                                                a week
+                                                            </option>
+                                                            <option label="Twice a week" value="Twice a week">
+                                                                Twice a week
+                                                            </option>
+                                                            <option label="Thrice a week" value="Thrice a week">
+                                                                Thrice a week
+                                                            </option>
+                                                            <option label="Every 2 weeks" value="Every 2 weeks">
+                                                                Every 2 weeks
+                                                            </option>
+                                                            <option label="Every 3 weeks" value="Every 3 weeks">
+                                                                Every 3 weeks
+                                                            </option>
+                                                            <option label="Once a month" value="Once a month">
+                                                                Once a month
+                                                            </option>
+                                                            <option label="Five times a day"
+                                                                    value="Five times a day">Five times a day
+                                                            </option>
+                                                            <option label="Four days a week"
+                                                                    value="Four days a week">Four days a week
+                                                            </option>
+                                                            <option label="Five days a week"
+                                                                    value="Five days a week">Five days a week
+                                                            </option>
+                                                            <option label="Six days a week"
+                                                                    value="Six days a week">Six days a week
+                                                            </option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </article>
+                                            <span style="opacity: 0.5" ng-show="noResults">No results found</span>
+                                        </td>
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                         <label>Duration<span class="asterick">*</span></label>
+                                                        <input class="form-control" ng-model="service.unitCost" type="number"  step="any"/>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+
+                                        <td>
+                                            <article class="form-field" >
+                                                <div class="field-value">
+                                                    <div class="field-value">
+                                                         <label>Instruction<span class="asterick">*</span></label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" style="width: 300px;"></textarea>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </td>
+
+
+                                        <td>
+                                            <button class="remove"  ng-show="!$first"  ng-click="removeThis($index)">X</button>
+                                            <span><button class="remove" ng-show="$last" ng-click="addNewChoice()">+</button></span>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="submit-btn-container clearfix" id="buttonPrint" >
+            <button  style="margin: 10px 20px 0 0"  class="right submit-btn" ng-click="submitMoneyReceiptData(patientInfo,services,patient,1)">
+                       Complete</button>
+    <button  style="float: right;margin-top: 10px;margin-right: 5px;"  onclick="printMoneyReceipt()">Print and complete</button>
+
+
+
+    <a onclick="return confirm('Do you really want to cancel this prescription?')"  style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
+</div>
+</section>

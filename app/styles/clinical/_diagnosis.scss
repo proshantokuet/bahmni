@@ -50,13 +50,14 @@
             color: $mediumGray;
             font-family: $OpenSansBoldFont;
             font-weight: normal;
-            padding-left: 12px;
+            padding-left: 18px;
         }
     }
     input[type=number] {
         width: 50px;
     }
     .col1 {
+        padding-left: 7px;
         @include column(3);
         input[type="text"] {
             min-width: 160px;

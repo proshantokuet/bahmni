@@ -1199,4 +1199,89 @@ h2.section-title.section-title-pivot{
 
 }
 
+.btn-user-info {
+    background: lighten($bahmniPrimaryColor, 10%);
+    padding: 16px 16px;
+    border: none;
+    border-radius: 0;
+    margin: 0px -8px 0px 0px;
+    color: $white;
+    &:focus {outline:0;}
+    &:hover {
+        background: #00796d;
+      }
+    i.mini {
+      font-size: .9em;
+    }
+    & + ul {
+      display: none;
+      &.active {
+        background: lighten($bahmniPrimaryColor, 10%);
+        display: block;
+        position: absolute;
+        right: -10px;
+        top: 50px;
+        z-index: 1000;
+        width: 131.16px;
+        @media screen and (max-width: $max-page-width) {
+          right:10px;
+        }
+      }
+      li {
+        float: left;
+        clear: both;
+        text-align: left;
+        padding-left: 10px;
+        border-bottom: 1px solid lighten($bahmniPrimaryColor, 10%);
+        margin: 0;
+        padding: 10px 10px 10px 5px;
+        color: $lightGray;
+        a{
+          color: $white;
+          &.disabled {
+            color: $lightGray;
+            .fa-user {
+              color: $lightGray;
+            }
+          }
+        }
+      }
+    }
+  }
+
+/*** overriding jquery styling start****/
+.ui-widget-header{
+  border:1px solid lighten($bahmniPrimaryColor, 10%);
+  background:$bahmniPrimaryColor;
+}
+
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon{
+  background-image:url("../lib/jquery/images/ui-icons_222222_256x240.png");
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+  border: 1px solid #36CC4E;
+  background: #D6FACF;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus{
+  border: 1px solid #36CC4E;
+  background: #D6FACF;
+  font-weight: bold;
+  color: #048B24;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+  border: 1px solid #107C22;
+  background: #FFF9D8;
+  color: #1EB642;
+}
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+    background: #ddd;
+    width: 49%;
+    background: #6f6767 none;
+}
+/**** overriding jquery styling end *****/
+
+
 

@@ -31,8 +31,8 @@
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
         .directive('patientProfile', ['patientService', 'spinner', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
-            'configurations', '$q', 'visitService',
-            function (patientService, spinner, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService) {
+            'configurations', '$q', 'visitService','$state',
+            function (patientService, spinner, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state) {
                 var controller = function ($scope) {
                     $scope.isProviderRelationship = function (relationship) {
                         return _.includes($rootScope.relationshipTypeMap.provider, relationship.relationshipType.aIsToB);
@@ -71,6 +71,11 @@
                     };
                     var setDirectiveAsReady = function () {
                         $scope.isDirectiveReady = true;
+                    };
+                    $scope.serviceProviderTabOPen = function () {
+                        $state.go('patient.dashboard.show.prescription', {
+                            cachebuster: null
+                        });
                     };
                     var onDirectiveReady = function () {
                         $scope.addressLine = getAddress($scope);
