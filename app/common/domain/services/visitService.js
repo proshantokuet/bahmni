@@ -67,4 +67,24 @@ angular.module('bahmni.common.domain')
                 withCredentials: true
             });
         };
+
+        this.getMedicineList = function () {
+            return $http.get(Bahmni.Common.Constants.medicineGetUrl, {
+                withCredentials: true
+            });
+        };
+
+        this.savePrescriptionData = function (prescriptData) {
+            return $http.post(Bahmni.Common.Constants.prescriptionSaveUrl, prescriptData, {
+                withCredentials: true,
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        };
+
+
+
+
     }]);

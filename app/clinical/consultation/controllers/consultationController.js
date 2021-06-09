@@ -15,7 +15,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             $scope.patient = patientContext.patient;
             $scope.showDashboardMenu = false;
             $scope.stateChange = function () {
-                debugger;
                 return $state.current.name === 'patient.dashboard.show' || $state.current.name ===  'patient.dashboard.show.prescription';
             };
             $scope.restrictOptions = function () {
@@ -23,7 +22,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             }
             $scope.showComment = true;
             $scope.showSaveAndContinueButton = true;
-
             $scope.visitHistory = visitHistory;
             $scope.consultationBoardLink = clinicalAppConfigService.getConsultationBoardLink();
             $scope.showControlPanel = false;
@@ -121,6 +119,12 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     }
                     $state.go("patient.dashboard.show", params);
                 }
+            };
+
+            $scope.serviceProviderTabOPen = function () {
+                $state.go('patient.dashboard.show.prescription', {
+                    cachebuster: null
+                });
             };
 
             var isLongerName = function (value) {

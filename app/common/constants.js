@@ -94,6 +94,8 @@ Bahmni.Common = Bahmni.Common || {};
         endVisitUrl: BAHMNI_CORE + "/visit/endVisit",
         endVisitAndCreateEncounterUrl: BAHMNI_CORE + "/visit/endVisitAndCreateEncounter",
         visitTypeUrl: RESTWS_V1 + "/visittype",
+        medicineGetUrl: RESTWS_V1 + "/prescription/medicinelist",
+        prescriptionSaveUrl: RESTWS_V1 + "/prescription/save-update",
         patientImageUrlByPatientUuid: RESTWS_V1 + "/patientImage?patientUuid=",
         labResultUploadedFileNameUrl: "/uploaded_results/",
         visitSummaryUrl: BAHMNI_CORE + "/visit/summary",

@@ -209,6 +209,15 @@
                    ng-if="visitHistory.activeVisit || retrospectiveEntry"
                    ng-click="openConsultationInNewTab()"><i class="fa fa-external-link"></i></a>-->
            </span>
+            <span class="grouped-buttons" ng-show="!restrictOptions()">
+                 <a class=" btn--left btn--success "
+                    ng-if="visitHistory.activeVisit"
+                    ng-click="serviceProviderTabOPen()">Prescription
+                 </a>
+                <!--<a class="btn&#45;&#45;right btn&#45;&#45;success " title="{{'OPEN_IN_NEW_WINDOW'|translate}}"
+                   ng-if="visitHistory.activeVisit || retrospectiveEntry"
+                   ng-click="openConsultationInNewTab()"><i class="fa fa-external-link"></i></a>-->
+           </span>
             </div>
         </div>
     </div>

@@ -371,7 +371,13 @@ angular.module('bahmni.registration')
             var loadProviders = function () {
                 visitService.loadProviders().then(function (data) {
                     var providerList = data.data.results;
-                    $scope.filteredProviderList = providerList.filter(provider => provider.display != null && provider.display != "");
+                    var filtered_array = _.filter(
+                        providerList, function (provider) {
+                            return provider.display != null && provider.display != "";
+                        }
+                    );
+                    $scope.filteredProviderList = filtered_array;
+                    //$scope.filteredProviderList = providerList.filter((provider) => provider.display != null && provider.display != "");
                 });
             };
 

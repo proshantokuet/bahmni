@@ -76,7 +76,7 @@
 
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <textarea class="form-control" ng-model="prescription.chiefcomplaint" id="chiefcomplaint"></textarea>
+                                                        <textarea class="form-control" ng-model="prescription.chiefComplaint" id="chiefcomplaint" ng-required="true" height="100px" cols="30"></textarea>
                                                     </div>
                                                 </div>
                                             </article>
@@ -97,7 +97,7 @@
 
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                        <textarea class="form-control" ng-model="prescription.diagnosis" id="diagnosis"></textarea>
+                                                        <textarea class="form-control" ng-model="prescription.diagnosis" id="diagnosis" ng-required="true"></textarea>
                                                     </div>
                                                 </div>
                                             </article>
@@ -118,7 +118,7 @@
 
                                                 <div class="field-value">
                                                     <div class="field-value">
-                                                         <textarea class="form-control" ng-model="prescription.advice" id="advice" ></textarea></textarea>
+                                                         <textarea class="form-control" ng-model="prescription.advice" id="advice" ng-required="true"></textarea></textarea>
                                                     </div>
                                                 </div>
                                             </article>
@@ -135,17 +135,17 @@
                         <div class="form-field form-field-gender" style="overflow-x:auto;">
                             <section class="form-field form-field-gender">
                                 <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0" align="left;">
-                                    <tr data-ng-repeat="service in prescription.service track by $index">
+                                    <tr data-ng-repeat="service in prescription.prescribedMedicine track by $index">
                                         <td>
                                             <article class="form-field">
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                         <label>Medicine Name with Prefix<span class="asterick">*</span></label>
 
-                                                        <input type="text" class="form-control" ng-model="service.code" placeholder="Select Medicine"
+                                                        <input type="text" class="form-control" ng-model="service.medicineName" placeholder="Select Medicine"
                                                                typeahead-on-select="onChangedForCode(service.code, $index)"
-                                                               uib-typeahead="itm as itm.name for itm in medicine | filter:{name:$viewValue}"
-                                                               typeahead-min-length="0" typeahead-editable="false" typeahead-no-results="noCodeFound">
+                                                               uib-typeahead="itm.name as itm.name for itm in medicine | filter:{name:$viewValue}"
+                                                               typeahead-min-length="0" typeahead-editable="false" typeahead-no-results="noCodeFound" ng-required="true">
 
                                                     </div>
                                                 </div>
@@ -159,7 +159,7 @@
                                                         <label>Frequency<span class="asterick">*</span></label>
                                                         <select id="frequency"
                                                                 class="frequency form-control"
-                                                                ng-model="prescription.service.frequency">
+                                                                ng-model="service.frequency" ng-required="true">
                                                             <option value="" class="ng-binding" selected="selected">
                                                                 Choose Frequency
                                                             </option>
@@ -244,7 +244,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                          <label>Duration<span class="asterick">*</span></label>
-                                                        <input class="form-control" ng-model="service.unitCost" type="number"  step="any"/>
+                                                        <input class="form-control" ng-model="service.duration" type="number" ng-required="true"   min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
                                                     </div>
                                                 </div>
                                             </article>
@@ -255,7 +255,7 @@
                                                 <div class="field-value">
                                                     <div class="field-value">
                                                          <label>Instruction<span class="asterick">*</span></label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" style="width: 300px;"></textarea>
+                                                        <textarea class="form-control" ng-model="service.instruction" id="exampleFormControlTextarea1" style="width: 300px; height: 50px" ng-required="true"></textarea>
                                                     </div>
                                                 </div>
                                             </article>
@@ -263,8 +263,8 @@
 
 
                                         <td>
-                                            <button class="remove"  ng-show="!$first"  ng-click="removeThis($index)">X</button>
-                                            <span><button class="remove" ng-show="$last" ng-click="addNewChoice()">+</button></span>
+                                            <input type="button" class="remove"  ng-show="!$first"  ng-click="removeThis($index)" value="X">
+                                            <span><input type="button" class="remove" ng-show="$last" ng-click="addNewChoice()" value="+"></span>
 
                                         </td>
                                     </tr>
@@ -281,9 +281,9 @@
     </div>
 
     <div class="submit-btn-container clearfix" id="buttonPrint" >
-            <button  style="margin: 10px 20px 0 0"  class="right submit-btn" ng-click="submitMoneyReceiptData(patientInfo,services,patient,1)">
+            <button  style="margin: 10px 20px 0 0"  class="right"  ng-disabled="myForm.$invalid" ng-click="savePrescriptionDetailsWhenComplete()">
                        Complete</button>
-    <button  style="float: right;margin-top: 10px;margin-right: 5px;"  onclick="printMoneyReceipt()">Print and complete</button>
+    <button  style="float: right;margin-top: 10px;margin-right: 5px;" ng-disabled="myForm.$invalid"  ng-click="savePrescriptionDetailsWhenPrintAndComplete()">Print and complete</button>
 
 
 
