@@ -84,6 +84,16 @@ angular.module('bahmni.common.domain')
             });
         };
 
+        this.saveAndDownloadPdf = function (data) {
+            var url = Bahmni.Common.Constants.prescriptionAndDownloadPdfUrl;
+            return $http.post(url, data,
+                {
+                    withCredentials: true,
+                    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+                    responseType: 'arraybuffer'
+                })
+        };
+
 
 
 

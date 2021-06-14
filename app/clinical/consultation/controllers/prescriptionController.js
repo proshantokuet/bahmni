@@ -56,10 +56,16 @@ angular.module('bahmni.clinical')
                 $scope.prescription.providerName = $rootScope.currentUser.fullName;
                 console.log($scope.prescription);
 
-                spinner.forPromise(visitService.savePrescriptionData($scope.prescription).then(function (response) {
-                    if (response.data) {
-                        messagingService.showMessage("info", response.data.message);
-                    }
+                spinner.forPromise(visitService.saveAndDownloadPdf($scope.prescription).then(function (response) {
+                    debugger;
+                    var dllink = document.createElement("a");
+                    var file = new Blob([response.data], {type: 'application/pdf'});
+                    var fileURL = URL.createObjectURL(file);
+                    window.open(fileURL);
+                    $state.go("patient.dashboard.show", {
+                            patientUuid: $scope.patient.uuid
+                        }
+                    );
                 }));
             };
 
