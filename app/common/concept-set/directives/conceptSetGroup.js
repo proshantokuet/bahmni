@@ -21,6 +21,7 @@ angular.module('bahmni.common.conceptSet')
                 if ($scope.moneyReceiptObject) {
                     var orgUnit = $scope.patientInfo.orgUnit;
                     $scope.patientInfo = $scope.moneyReceiptObject[0];
+                    $scope.patientInfo.clinicPrimaryId = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id;
                     var date = new Date($scope.patientInfo.moneyReceiptDate);
                     $scope.timeObject.hourValue = date.getHours();
                     $scope.timeObject.minuteValue = date.getMinutes();
@@ -167,6 +168,7 @@ angular.module('bahmni.common.conceptSet')
             $scope.patientInfo = {
                 clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName,
                 clinicCode: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId,
+                clinicPrimaryId: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id,
                 orgUnit: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).orgUnit,
                 overallDiscount: 0,
                 dueAmount: 0
@@ -910,29 +912,41 @@ angular.module('bahmni.common.conceptSet')
 
             var saveMoneyReceipt = function (data,patientInfo) {
                 spinner.forPromise(patientService.saveMoneyReceipt(data).then(function (response) {
-                    if (response.data) {
-                        if(patientInfo.isComplete) {
-                            var labString = "";
-                            angular.forEach($scope.services, function (data) {
-                                if (data.code.category == 'Lab Services') {
-                                    var trimmedString = data.code.name;
-                                    labString = labString + trimmedString.trim() + ",";
-                                }
-                            });
-                            labString = labString.replace(/,\s*$/, "");
-                            if (labString != null && labString != "") {
-                                patientService.changePaymentStatusInOpenElis($scope.patient.identifier, labString).then(function (result) {
-                                    if (result.data.response == "success") {
-                                        messagingService.showMessage("info", "Orders successfully sent to Lab");
+                    if(response.data) {
+                        if (response.data.status) {
+                            if (patientInfo.isComplete) {
+                                var labString = "";
+                                angular.forEach($scope.services, function (data) {
+                                    if (data.code.category == 'Lab Services') {
+                                        var trimmedString = data.code.name;
+                                        labString = labString + trimmedString.trim() + ",";
                                     }
-                                    else messagingService.showMessage("error", "Something went wrong, please try again later");
                                 });
+                                labString = labString.replace(/,\s*$/, "");
+                                if (labString != null && labString != "") {
+                                    patientService.changePaymentStatusInOpenElis($scope.patient.identifier, labString).then(function (result) {
+                                        if (result.data.response == "success") {
+                                            messagingService.showMessage("info", "Orders successfully sent to Lab");
+                                        }
+                                        else messagingService.showMessage("error", "Something went wrong, please try again later");
+                                    });
+                                }
+                                else {
+                                     messagingService.showMessage("info", response.data.message);
+                                }
                             }
+                            $state.go("patient.dashboard.show", {
+                                    patientUuid: $scope.patient.uuid
+                                }, {reload: true}
+                            );
                         }
-                        $state.go("patient.dashboard.show", {
-                                patientUuid: $scope.patient.uuid
-                            }, {reload: true}
-                        );
+                        else {
+                            $scope.searchButtonText = "Submit";
+                            $scope.HasSubmittedMoneyReceipt = false;
+                            $scope.patientInfo.moneyReceiptDate = ageFormatterService.dateFormat($scope.patientInfo.moneyReceiptDate);
+
+                            messagingService.showMessage("error", response.data.message);
+                        }
                     }
 
                 }));
