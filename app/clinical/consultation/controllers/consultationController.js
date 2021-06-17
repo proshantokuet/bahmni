@@ -15,10 +15,10 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             $scope.patient = patientContext.patient;
             $scope.showDashboardMenu = false;
             $scope.stateChange = function () {
-                return $state.current.name === 'patient.dashboard.show' || $state.current.name ===  'patient.dashboard.show.prescription';
+                return $state.current.name === 'patient.dashboard.show' || $state.current.name ===  'patient.dashboard.show.prescription' || $state.current.name ===  'patient.dashboard.show.commoditiesDistribution';
             };
             $scope.restrictOptions = function () {
-                return $state.current.name ===  'patient.dashboard.show.prescription';
+                return $state.current.name ===  'patient.dashboard.show.prescription' || $state.current.name ===  'patient.dashboard.show.commoditiesDistribution';
             }
             $scope.showComment = true;
             $scope.showSaveAndContinueButton = true;
@@ -61,6 +61,12 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             };
             $scope.serviceProviderTabOPen = function () {
                 $state.go('patient.dashboard.show.prescription', {
+                    cachebuster: null
+                });
+            };
+
+            $scope.goToDistributeHealthTab = function () {
+                $state.go('patient.dashboard.show.commoditiesDistribution', {
                     cachebuster: null
                 });
             };

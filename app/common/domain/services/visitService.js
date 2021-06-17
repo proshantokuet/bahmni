@@ -68,8 +68,11 @@ angular.module('bahmni.common.domain')
             });
         };
 
-        this.getMedicineList = function () {
+        this.getMedicineList = function (typeName) {
             return $http.get(Bahmni.Common.Constants.medicineGetUrl, {
+                params: {
+                        type: typeName
+                    },
                 withCredentials: true
             });
         };
@@ -88,6 +91,19 @@ angular.module('bahmni.common.domain')
             var url = Bahmni.Common.Constants.prescriptionAndDownloadPdfUrl;
             return $http.post(url, data,
                 {
+                    withCredentials: true,
+                    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+                    responseType: 'arraybuffer'
+                })
+        };
+
+        this.downloadPdf = function (visitUuid) {
+            var url = Bahmni.Common.Constants.prescriptionDownloadUrl;
+            return $http.get(url,
+                {
+                    params: {
+                        visituuid: visitUuid
+                    },
                     withCredentials: true,
                     headers: {"Accept": "application/json", "Content-Type": "application/json"},
                     responseType: 'arraybuffer'

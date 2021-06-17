@@ -1,0 +1,143 @@
+<style>
+    table td, table th {
+        padding: 5px 0px 5px 8px;
+        border: none;
+    }
+
+    .unique-name {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table tr {
+        border: 0;
+        border: none;
+    }
+
+    .form .form-field .field-attribute label, form .form-field .field-attribute label {
+        width: 10em;
+        float: left;
+        text-align: right;
+        margin: .7em .8em 0 0;
+    }
+
+    .click-to-edit {
+        display: inline-block;
+    }
+
+    .glyphicon.spinning {
+        animation: spin 1s infinite linear;
+        -webkit-animation: spin2 1s infinite linear;
+    }
+
+    @keyframes spin {
+        from {
+            transform: scale(1) rotate(0deg);
+        }
+        to {
+            transform: scale(1) rotate(360deg);
+        }
+    }
+
+    @-webkit-keyframes spin2 {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+</style>
+<section class="block consultation-notes section-grid">
+        <h2 style="text-align: center;" class="section-title ng-binding">Health Commodities and Medicine Distribution</h2>
+
+<div class="reg-body-wrapper">
+        <div class="simple-form-ui new-patient">
+            <form name="myForm" class="form-horizontal well" single-submit="create()">
+                <div class="box-container box-container-default">
+                    <div class="box-container">
+                        <div class="form-field form-field-gender" style="overflow-x:auto;">
+                            <section class="form-field form-field-gender">
+
+                                <div class="form-field">
+                                    <label>Date :</label>
+                                </div>
+
+
+
+                                    <div class="field-value">
+                                        <div class="field-value">
+                                            <input type="date" class="form-control" name="date" id="date"
+                                                   max="{{today}}" onkeydown="return false">
+                                        </div>
+                                    </div>
+
+
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-container box-container-default" id="serviceSection">
+                    <div class="box-container box-container-patient-info patient-common-info-container">
+                        <div class="form-field form-field-gender" style="overflow-x:auto;">
+                            <section class="form-field form-field-gender">
+                                <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0"
+                                       align="left;">
+                                    <tr data-ng-repeat="service in prescription.prescribedMedicine track by $index">
+                                        <td>
+
+                                            <div>
+                                                <label>Item<span class="asterick">*</span></label>
+
+                                                <input type="text" class="form-control" ng-model="service.medicineName"
+                                                       placeholder="Select Medicine"
+                                                       typeahead-on-select="onChangedForCode(service.code, $index)"
+                                                       uib-typeahead="itm.name as itm.name for itm in medicine | filter:{name:$viewValue}"
+                                                       typeahead-min-length="0" typeahead-editable="false"
+                                                       typeahead-no-results="noCodeFound" ng-required="true">
+
+                                            </div>
+
+                                            <span style="opacity: 0.5" ng-show="noCodeFound">No results found</span>
+                                        </td>
+
+                                        <td>
+
+                                            <div>
+                                                <label>Quantity<span class="asterick">*</span></label>
+                                                <input class="form-control" ng-model="service.quantity" type="number"
+                                                       ng-required="true" min="1" step="1"
+                                                       onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+                                            </div>
+
+                                        </td>
+
+                                        <td>
+                                            <input type="button" class="remove" ng-show="!$first"
+                                                   ng-click="removeThis($index)" value="X">
+                                            <span><input type="button" class="remove" ng-show="$last"
+                                                         ng-click="addNewChoice()" value="+"></span>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="submit-btn-container clearfix" id="buttonPrint" >
+            <button  style="margin: 10px 20px 0 0"  class="right"  ng-disabled="myForm.$invalid" ng-click="savePrescriptionDetailsWhenComplete()">
+                       Complete</button>
+    <a onclick="return confirm('Do you really want to cancel?')"  style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
+</div>
+</section>

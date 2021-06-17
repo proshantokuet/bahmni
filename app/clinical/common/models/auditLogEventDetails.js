@@ -15,5 +15,6 @@ Bahmni.Clinical.StateNameEvenTypeMap = {
     "patient.dashboard.observation": "VIEWED_DASHBOARD_OBSERVATION",
     "patient.patientProgram.show": "VIEWED_PATIENTPROGRAM",
     "patient.dashboard.show.prescription": "VIEWED_PRESCRIPTION_TAB",
+    "patient.dashboard.show.commoditiesDistribution": "VIEWED_HEALTH_COMMODITIES_TAB"
 
 };

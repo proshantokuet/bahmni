@@ -301,6 +301,18 @@ angular.module('consultation')
                     }
                 }
             })
+            .state('patient.dashboard.show.commoditiesDistribution', {
+                url: '/commoditiesDistribution',
+                params: {
+                    cachebuster: null
+                },
+                views: {
+                    'consultation-content': {
+                        templateUrl: 'consultation/views/healthCommoditiesDistribution.html',
+                        controller: 'healthCommoditiesController'
+                    }
+                }
+            })
             .state('patient.dashboard.show.investigation', {
                 url: '/investigation',
                 params: {

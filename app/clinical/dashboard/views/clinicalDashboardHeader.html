@@ -198,17 +198,32 @@
                         <!--</div>-->
                     <!--</div>-->
                 <!--</div>-->
-            <span class="grouped-buttons">
+            <div ng-show="!restrictOptions()">
+            <ul class="header-tabs consultation-tabs"  ng-if="visitHistory.activeVisit || retrospectiveEntry || allowConsultation()">
+                <li class="tab-item"  ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
+                    <a ng-if="board.label=='Orders' || board.label=='Observations'" ng-click="showBoard($index)"><span ng-if="board.label=='Observations'">Services</span><span ng-if="board.label!=='Observations'">{{ board | titleTranslate }}</span></a>
+                </li>
+            </ul>
+            </div>
+            <span class="grouped-buttons" ng-show="!restrictOptions()">
                  <a class=" btn--left btn--success "
-                    ng-if="visitHistory.activeVisit || retrospectiveEntry || allowConsultation()"
-                    ng-click="openConsultation()"
-                    accesskey="{{'CONSULTATION_SHORTCUT_KEY' | translate}}"
-                    ng-bind-html="'CONSULTATION_TAB_KEY' | translate">
+                    ng-click="goToDistributeHealthTab()">Distribute Commodities
                  </a>
                 <!--<a class="btn&#45;&#45;right btn&#45;&#45;success " title="{{'OPEN_IN_NEW_WINDOW'|translate}}"
                    ng-if="visitHistory.activeVisit || retrospectiveEntry"
                    ng-click="openConsultationInNewTab()"><i class="fa fa-external-link"></i></a>-->
            </span>
+            <!--<span class="grouped-buttons">
+                 <a class=" btn&#45;&#45;left btn&#45;&#45;success "
+                    ng-if="visitHistory.activeVisit || retrospectiveEntry || allowConsultation()"
+                    ng-click="openConsultation()"
+                    accesskey="{{'CONSULTATION_SHORTCUT_KEY' | translate}}"
+                    ng-bind-html="'CONSULTATION_TAB_KEY' | translate">
+                 </a>
+                &lt;!&ndash;<a class="btn&#45;&#45;right btn&#45;&#45;success " title="{{'OPEN_IN_NEW_WINDOW'|translate}}"
+                   ng-if="visitHistory.activeVisit || retrospectiveEntry"
+                   ng-click="openConsultationInNewTab()"><i class="fa fa-external-link"></i></a>&ndash;&gt;
+           </span>-->
             <span class="grouped-buttons" ng-show="!restrictOptions()">
                  <a class=" btn--left btn--success "
                     ng-if="visitHistory.activeVisit"

@@ -73,7 +73,7 @@
                         $scope.isDirectiveReady = true;
                     };
                     $scope.serviceProviderTabOPen = function () {
-                        $state.go('patient.dashboard.show.prescription', {
+                        $state.go('patient.dashboard.show.commoditiesDistribution', {
                             cachebuster: null
                         });
                     };

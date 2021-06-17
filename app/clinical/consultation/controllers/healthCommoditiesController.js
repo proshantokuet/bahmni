@@ -1,23 +1,23 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .controller('PrescriptionController', ['$scope', '$rootScope', 'spinner',
+    .controller('healthCommoditiesController', ['$scope', '$rootScope', 'spinner',
         'messagingService', 'appService','visitService', 'visitHistory','$state',
         function ($scope, $rootScope,  spinner, messagingService, appService, visitService, visitHistory, $state) {
             $scope.today = Bahmni.Common.Util.DateUtil.getDateWithoutTime(Bahmni.Common.Util.DateUtil.now());
             debugger;
             $scope.visitHistory = visitHistory;
             $scope.prescription = {"prescriptionId" : 0};
-            $scope.prescription.prescribedMedicine = [{"pmId":0,"duration":1}];
+            $scope.prescription.prescribedMedicine = [{"pmId":0,"quantity":1}];
             var init = function () {
-                visitService.getMedicineList("MEDICINE").then(function (response) {
+                visitService.getMedicineList("COMMODITIES").then(function (response) {
                     $scope.medicine = response.data;
                 });
 
             };
             $scope.addNewChoice = function () {
                 var newItemNo = $scope.prescription.prescribedMedicine.length + 1;
-                $scope.prescription.prescribedMedicine.push({"pmId":0,"duration":1});
+                $scope.prescription.prescribedMedicine.push({"pmId":0,"quantity":1});
             };
             $scope.removeThis = function (index) {
                 $scope.prescription.prescribedMedicine.splice(index, 1);
