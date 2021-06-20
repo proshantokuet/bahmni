@@ -110,6 +110,18 @@ angular.module('bahmni.common.domain')
                 })
         };
 
+        this.saveHealthDistribution = function (data) {
+            var url = Bahmni.Common.Constants.healtCommoditiesSaveUrl;
+            return $http.post(url, data,
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    }
+                })
+        };
+
 
 
 

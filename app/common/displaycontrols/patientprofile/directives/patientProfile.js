@@ -53,6 +53,13 @@
                             $scope.relationships = response.data.results;
                         });
                     };
+                    $scope.users = [
+                        {name: "Madhav Sai", age: 10, location: 'Nagpur'},
+                        {name: "Suresh Dasari", age: 30, location: 'Chennai'},
+                        {name: "Rohini Alavala", age: 29, location: 'Chennai'},
+                        {name: "Praveen Kumar", age: 25, location: 'Bangalore'},
+                        {name: "Sateesh Chandra", age: 27, location: 'Vizag'},
+                    ];
                     var assignAdmissionDetails = function () {
                         var REP = "custom:(attributes:(value,attributeType:(display,name)))";
                         var ADMISSION_STATUS_ATTRIBUTE = "Admission Status";
@@ -83,7 +90,24 @@
                         $scope.showBirthDate = $scope.config.showDOB !== false;
                         $scope.showBirthDate = $scope.showBirthDate && !!$scope.patient.birthdate;
                     };
-                    var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails()]);
+
+                    var getPatientHealthCommoditiesHistory = function () {
+                        setTimeout(function () {
+                            var table = angular.element("#table_id").DataTable({
+                                    language: {
+                                        emptyTable: "no service available", //
+                                        loadingRecords: "Please wait .. ", // default Loading...
+                                        zeroRecords: "No matching service found"
+                                    },
+                                    bFilter: true,
+                                    bInfo: false,
+                                    "order": [[0, "desc"]]
+                                }
+                            );
+                        }, 1500);
+
+                    }
+                    var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails(),getPatientHealthCommoditiesHistory()]);
                     initPromise.then(onDirectiveReady);
                     initPromise.then(setHasBeenAdmittedOnVisitUuidChange);
                     initPromise.then(setDirectiveAsReady);

@@ -63,5 +63,55 @@
                 </tbody>
             </table>
         </section>
+        <div class="dashboard-patientInformation-section">
+    <div>
+         <h3 style="background: #ddd;height:37px;padding-top: 6px;color: #000">Health Commodities and Medicine Distribution history</h3>
+    </div>
+
+<table style="padding-top: 10px;" id="table_id" class="display">
+                            <thead>
+
+                                <tr>
+                                    <th>name</th>
+                                    <th>age</th>
+                                    <th>location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                               <tr ng-repeat="service in users track by $index">
+                                   <td>{{service.name}} </td>
+                                   <td>{{service.age}} </td>
+                                   <td>{{service.location}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+</div>
     </div>
 </div>
+
+<!--<script type="text/javascript">-->
+
+<!--//var $jq = jQuery.noConflict();-->
+
+<!--$(document).ready(function () {-->
+    <!--setTimeout(function () {-->
+
+        <!--var table = $('#table_id').DataTable({-->
+                <!--language: {-->
+                    <!--emptyTable: "no service available", //-->
+                    <!--loadingRecords: "Please wait .. ", // default Loading...-->
+                    <!--zeroRecords: "No matching service found"-->
+                <!--},-->
+                <!--bFilter: true,-->
+                <!--bInfo: false,-->
+                <!--"order": [[0, "desc"]]-->
+            <!--}-->
+        <!--);-->
+
+    <!--}, 1000);-->
+<!--});-->
+
+
+<!--</script>-->

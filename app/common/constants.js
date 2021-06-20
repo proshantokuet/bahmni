@@ -97,6 +97,7 @@ Bahmni.Common = Bahmni.Common || {};
         medicineGetUrl: RESTWS_V1 + "/prescription/medicinelist",
         prescriptionSaveUrl: RESTWS_V1 + "/prescription/save-update",
         prescriptionAndDownloadPdfUrl: RESTWS_V1 + "/prescription/prescriptionPdfGenerate",
+        healtCommoditiesSaveUrl: RESTWS_V1 + "/commodities/save-update",
         prescriptionDownloadUrl: RESTWS_V1 + "/prescription/prescriptionDownload",
         patientImageUrlByPatientUuid: RESTWS_V1 + "/patientImage?patientUuid=",
         labResultUploadedFileNameUrl: "/uploaded_results/",

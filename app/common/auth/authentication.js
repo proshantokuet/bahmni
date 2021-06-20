@@ -139,7 +139,6 @@ angular.module('authentication')
                     if (!_.isEmpty(providers.results) && hasAnyActiveProvider(providers.results)) {
                         console.log("Printing User Information");
                         console.log(data.results[0]);
-                        debugger;
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
                         $rootScope.currentUser.fullName = providers.results[0].name;
                         console.log("Printing After visiting User Class");

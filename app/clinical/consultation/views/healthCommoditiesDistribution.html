@@ -69,7 +69,7 @@
 
                                     <div class="field-value">
                                         <div class="field-value">
-                                            <input type="date" class="form-control" name="date" id="date"
+                                            <input type="date" class="form-control" ng-model="healthCommodities.distributeDateModel" name="date" id="date" ng-required="true"
                                                    max="{{today}}" onkeydown="return false">
                                         </div>
                                     </div>
@@ -86,16 +86,16 @@
                             <section class="form-field form-field-gender">
                                 <table id="addItemTable" width="100%" border="0" cellpadding="0" cellspacing="0"
                                        align="left;">
-                                    <tr data-ng-repeat="service in prescription.prescribedMedicine track by $index">
+                                    <tr data-ng-repeat="service in healthCommodities.ubsCommoditiesDistributeDetailsDto track by $index">
                                         <td>
 
                                             <div>
                                                 <label>Item<span class="asterick">*</span></label>
 
-                                                <input type="text" class="form-control" ng-model="service.medicineName"
+                                                <input type="text" class="form-control" ng-model="service.commoditiesItem"
                                                        placeholder="Select Medicine"
-                                                       typeahead-on-select="onChangedForCode(service.code, $index)"
-                                                       uib-typeahead="itm.name as itm.name for itm in medicine | filter:{name:$viewValue}"
+                                                       typeahead-on-select="onChanged(service.commoditiesItem, $index)"
+                                                       uib-typeahead="itm as itm.name for itm in medicine | filter:{name:$viewValue}"
                                                        typeahead-min-length="0" typeahead-editable="false"
                                                        typeahead-no-results="noCodeFound" ng-required="true">
 
@@ -136,7 +136,7 @@
     </div>
 
     <div class="submit-btn-container clearfix" id="buttonPrint" >
-            <button  style="margin: 10px 20px 0 0"  class="right"  ng-disabled="myForm.$invalid" ng-click="savePrescriptionDetailsWhenComplete()">
+            <button  style="margin: 10px 20px 0 0"  class="right"  ng-disabled="myForm.$invalid" ng-click="saveHealthCommodities()">
                        Complete</button>
     <a onclick="return confirm('Do you really want to cancel?')"  style="margin: 18px;" href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY"  class="right submit-btn" >Cancel</a>
 </div>
