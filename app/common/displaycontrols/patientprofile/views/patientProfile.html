@@ -65,24 +65,26 @@
         </section>
         <div class="dashboard-patientInformation-section">
     <div>
-         <h3 style="background: #ddd;height:37px;padding-top: 6px;color: #000">Health Commodities and Medicine Distribution history</h3>
+         <h3 style="background: #ddd;height:37px;padding-top: 6px;color: #000">Health Commodities and Medicine Distribution History</h3>
     </div>
 
 <table style="padding-top: 10px;" id="table_id" class="display">
                             <thead>
 
                                 <tr>
-                                    <th>name</th>
-                                    <th>age</th>
-                                    <th>location</th>
+                                    <th>Distrubute Date</th>
+                                    <th>Slip No</th>
+                                    <th>Commodities Name</th>
+                                    <th>Quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                               <tr ng-repeat="service in users track by $index">
-                                   <td>{{service.name}} </td>
-                                   <td>{{service.age}} </td>
-                                   <td>{{service.location}} </td>
+                               <tr ng-repeat="service in patientCommoditiesList track by $index">
+                                   <td>{{service.distributeDate}} </td>
+                                   <td>{{service.slipNo}} </td>
+                                   <td>{{service.commoditiesName}} </td>
+                                    <td>{{service.quantity}} </td>
                                 </tr>
                             </tbody>
                         </table>

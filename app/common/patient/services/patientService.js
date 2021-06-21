@@ -27,6 +27,14 @@ angular.module('bahmni.common.patient')
             });
         };
 
+        this.findCommoditiesByPatient = function (patientUuid) {
+            var url = Bahmni.Common.Constants.commoditiesBYPatient + "/" + patientUuid;
+            return $http.get(url, {
+                method: "GET",
+                withCredentials: true
+            });
+        };
+
         this.search = function (query, offset, identifier) {
             offset = offset || 0;
             return $http.get(Bahmni.Common.Constants.bahmniSearchUrl + "/patient", {

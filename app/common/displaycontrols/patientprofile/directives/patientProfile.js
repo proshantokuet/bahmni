@@ -92,6 +92,10 @@
                     };
 
                     var getPatientHealthCommoditiesHistory = function () {
+                        patientService.findCommoditiesByPatient($scope.patientUuid).then(function(response) {
+                            debugger;
+                            $scope.patientCommoditiesList = response.data;
+                        });
                         setTimeout(function () {
                             var table = angular.element("#table_id").DataTable({
                                     language: {

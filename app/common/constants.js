@@ -214,6 +214,7 @@ Bahmni.Common = Bahmni.Common || {};
         bahmniBacteriologyResultsUrl: BACTERIOLOGY + "/specimen",
         bedFromVisit: RESTWS_V1 + "/beds",
         ordersUrl: RESTWS_V1 + "/order",
+        commoditiesBYPatient: RESTWS_V1 + "/commodities/commoditiesList",
         formDataUrl: RESTWS_V1 + "/obs",
         providerUrl: RESTWS_V1 + "/provider",
         drugUrl: RESTWS_V1 + "/drug",

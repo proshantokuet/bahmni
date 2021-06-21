@@ -66,7 +66,7 @@ angular.module('bahmni.clinical')
                         messagingService.showMessage("info", response.data.message);
                         $state.go("patient.dashboard.show", {
                                 patientUuid: $scope.patient.uuid
-                            }
+                            },{reload:true}
                         );
                     }
                 }));
