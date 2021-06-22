@@ -9,7 +9,7 @@ angular.module('bahmni.clinical')
             $scope.healthCommodities = {"distributeId" : 0};
             $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto = [{"distributeDetailsId":0,"quantity":1}];
             var init = function () {
-                visitService.getMedicineList("COMMODITIES").then(function (response) {
+                visitService.getMedicineList("ALL").then(function (response) {
                     $scope.medicine = response.data;
                 });
 
