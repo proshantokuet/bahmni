@@ -465,8 +465,8 @@
 
                                         </td>
                                         <td ng-if="!patientInfo.paymentStatus">
-                                            <button class="remove"  ng-show="!$first"  ng-click="removeThis($index)">X</button>
-                                            <span><button class="remove" ng-show="$last" ng-click="addNewChoice()">+</button></span>
+                                            <button class="remove" type="button" ng-show="!$first"  ng-click="removeThis($index)">X</button>
+                                            <span><button class="remove" type="button" ng-show="$last" ng-click="addNewChoice()">+</button></span>
 
                                         </td>
                                     </tr>
