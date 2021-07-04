@@ -148,6 +148,18 @@ angular.module('authentication')
                             if ($rootScope.currentUser.privileges[i].name == "View Doctor Forms") {
                                 $rootScope.currentUser.favouriteObsTemplates[0] = "History and Examination";
                                 $rootScope.currentUser.favouriteObsTemplates[1] = "Vitals";
+                                $rootScope.currentUser.favouriteObsTemplates[2] = "Acute Health Condition";
+                                $rootScope.currentUser.favouriteObsTemplates[3] = "Sexual & Reproductive health (SRH)";
+                                $rootScope.currentUser.favouriteObsTemplates[4] = "Admission";
+                                $rootScope.currentUser.favouriteObsTemplates[5] = "Child Vaccination Form";
+                                $rootScope.currentUser.favouriteObsTemplates[6] = "Communicable Diease";
+                                $rootScope.currentUser.favouriteObsTemplates[7] = "Delivery Service";
+                                $rootScope.currentUser.favouriteObsTemplates[8] = "Discharge";
+                                $rootScope.currentUser.favouriteObsTemplates[9] = "Injuries";
+                                $rootScope.currentUser.favouriteObsTemplates[10] = "Non Communicable and other Chronic Disease";
+                                $rootScope.currentUser.favouriteObsTemplates[11] = "Nutrition";
+                                $rootScope.currentUser.favouriteObsTemplates[12] = "Mental Health";
+                                $rootScope.currentUser.favouriteObsTemplates[13] = "Status";
                                 console.log($rootScope.currentUser.privileges[i].name);
                             }
                             if ($rootScope.currentUser.privileges[i].name == "View MidWife Forms") {
