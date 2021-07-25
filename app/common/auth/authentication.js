@@ -160,6 +160,8 @@ angular.module('authentication')
                                 $rootScope.currentUser.favouriteObsTemplates[11] = "Nutrition";
                                 $rootScope.currentUser.favouriteObsTemplates[12] = "Mental Health";
                                 $rootScope.currentUser.favouriteObsTemplates[13] = "Status";
+                                $rootScope.currentUser.favouriteObsTemplates[14] = "Death";
+				                $rootScope.currentUser.favouriteObsTemplates[15] = "Referrals";
                                 console.log($rootScope.currentUser.privileges[i].name);
                             }
                             if ($rootScope.currentUser.privileges[i].name == "View MidWife Forms") {
