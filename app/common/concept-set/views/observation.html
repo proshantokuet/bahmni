@@ -1,3 +1,9 @@
+<style>
+    .form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: -15px;
+}
+</style>
 <div class="observations-tab" ng-if="!observation.hide">
     <div ng-if="!observation.voided || (observation.getControlType() == 'image' && observation.value)">
         <div class="field-value" ng-switch="::observation.getControlType()"  ng-class="{'field-value-buttonSelectType' :observation.getControlType()== 'buttonselect' || observation.getControlType()== 'grid'}">

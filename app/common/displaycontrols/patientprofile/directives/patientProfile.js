@@ -92,25 +92,24 @@
                     };
 
                     var getPatientHealthCommoditiesHistory = function () {
-                        patientService.findCommoditiesByPatient($scope.patientUuid).then(function(response) {
-                            debugger;
+                        patientService.findCommoditiesByPatient($scope.patientUuid).then(function (response) {
                             $scope.patientCommoditiesList = response.data;
+                            setTimeout(function () {
+                                var table = angular.element("#table_id").DataTable({
+                                        language: {
+                                            emptyTable: "no service available", //
+                                            loadingRecords: "Please wait .. ", // default Loading...
+                                            zeroRecords: "No matching service found"
+                                        },
+                                        bFilter: true,
+                                        bInfo: false,
+                                        "order": [[0, "desc"]]
+                                    }
+                                );
+                            }, 1000);
                         });
-                        setTimeout(function () {
-                            var table = angular.element("#table_id").DataTable({
-                                    language: {
-                                        emptyTable: "no service available", //
-                                        loadingRecords: "Please wait .. ", // default Loading...
-                                        zeroRecords: "No matching service found"
-                                    },
-                                    bFilter: true,
-                                    bInfo: false,
-                                    "order": [[0, "desc"]]
-                                }
-                            );
-                        }, 1500);
-
                     }
+
                     var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails(),getPatientHealthCommoditiesHistory()]);
                     initPromise.then(onDirectiveReady);
                     initPromise.then(setHasBeenAdmittedOnVisitUuidChange);

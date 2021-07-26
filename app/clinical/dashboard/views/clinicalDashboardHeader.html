@@ -64,7 +64,7 @@
                 <!--<button class="confirm save-consultation cancel" ng-if="visitHistory.activeVisit" ng-click="closeVisitIfDischarged()">Close Visit</button>-->
             <!--</div>-->
             <div>
-                <button class="confirm save-consultation" style="background: #e9e8e8;border: #e9e8e8"><a href="../clinical/index.html#/default/patient/{{patient.uuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY">Cancel</a></button>
+                <button class="confirm save-consultation" style="background: #e9e8e8;border: #e9e8e8"><a href="" ng-click="gotoPatientDashboard()" >Cancel</a></button>
             </div>
 <!--            <div>
                 <button class="confirm save-consultation" style="background: #e9e8e8;border: #e9e8e8"><a href="" ng-click="serviceProviderTabOPen()" >Prescription</a></button>
@@ -198,6 +198,7 @@
                         <!--</div>-->
                     <!--</div>-->
                 <!--</div>-->
+            <div show-if-privilege="view consultation forms">
             <div ng-show="!restrictOptions()">
             <ul class="header-tabs consultation-tabs"  ng-if="visitHistory.activeVisit || retrospectiveEntry || allowConsultation()">
                 <li class="tab-item"  ng-repeat="board in availableBoards track by $index" ng-class="{'tab-selected':board.isSelectedTab}">
@@ -205,8 +206,9 @@
                 </li>
             </ul>
             </div>
+            </div>
             <span class="grouped-buttons" ng-show="!restrictOptions()">
-                 <a class=" btn--left btn--success "
+                 <a class=" btn--left btn--success " show-if-privilege="view medicine distribution"
                     ng-click="goToDistributeHealthTab()">Distribute Commodities
                  </a>
                 <!--<a class="btn&#45;&#45;right btn&#45;&#45;success " title="{{'OPEN_IN_NEW_WINDOW'|translate}}"
@@ -225,7 +227,7 @@
                    ng-click="openConsultationInNewTab()"><i class="fa fa-external-link"></i></a>&ndash;&gt;
            </span>-->
             <span class="grouped-buttons" ng-show="!restrictOptions()">
-                 <a class=" btn--left btn--success "
+                 <a class=" btn--left btn--success " show-if-privilege="view prescription module"
                     ng-if="visitHistory.activeVisit"
                     ng-click="serviceProviderTabOPen()">Prescription
                  </a>

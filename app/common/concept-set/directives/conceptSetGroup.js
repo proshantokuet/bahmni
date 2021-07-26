@@ -135,8 +135,6 @@ angular.module('bahmni.common.conceptSet')
             };
 
             $scope.openActiveForm = function (conceptSet) {
-                console.log("printing Concept set");
-                console.log(conceptSet);
                 if (conceptSet && conceptSet.klass == 'active' && conceptSet != $scope.leftPanelConceptSet) {
                     $scope.showLeftPanelConceptSet(conceptSet);
                 }

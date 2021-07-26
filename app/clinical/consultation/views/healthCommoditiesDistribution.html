@@ -26,6 +26,10 @@
         display: inline-block;
     }
 
+    .button-centre{
+        margin-top:30px;
+    }
+
     .glyphicon.spinning {
         animation: spin 1s infinite linear;
         -webkit-animation: spin2 1s infinite linear;
@@ -115,12 +119,12 @@
 
                                         </td>
 
-                                        <td>
+                                        <td><div class="button-centre">
                                             <input type="button" class="remove" ng-show="!$first"
                                                    ng-click="removeThis($index)" value="X">
                                             <span><input type="button" class="remove" ng-show="$last"
                                                          ng-click="addNewChoice()" value="+"></span>
-
+                                            </div>
                                         </td>
                                     </tr>
                                 </table>

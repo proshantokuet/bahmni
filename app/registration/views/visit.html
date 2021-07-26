@@ -53,26 +53,26 @@
                     </section>
 
                     <!-- TODO: need to find a better way to render the directive again on context change or after all the calls are made.-->
-                    <section class="observation-section" ng-if="context">
-                        <div ng-repeat="conceptSet in ::availableConceptSets" class="concept-set-group">
-                            <div class="registraion_legend" ng-if="conceptSet.conceptName=='Fee Information'">
-                                <span class="mylegend" ng-if="::conceptSet.options.translationKey">{{::conceptSet.options.translationKey | translate}}</span>
-                                <span class="mylegend" ng-if="::!conceptSet.options.translationKey">{{::conceptSet.label}}</span>
-                            </div>
-                            <div class="clearfix">
-                                <article ng-if="!isFormTemplate(conceptSet) && conceptSet.conceptName=='Fee Information'" class="fl obs-section-form">
-                                    <concept-set concept-set-name="::conceptSet.options.conceptName" required="::conceptSet.options.required" patient="patient" observations="observations"
-                                                 obs-scope="::conceptSet.options.scope" show-title="false" concept-set-focused="::$index === 0"></concept-set>
-                                </article>
-                                <article ng-if="isFormTemplate(conceptSet)" class="fl obs-section-form" id={{::conceptSet.formUuid}}>
-                                    <form-controls form="conceptSet" patient="patient" validate-form="true"></form-controls>
-                                </article>
-                                <!--<article ng-if="::conceptSet.options.showLatest" class="obs-section fr" id="observationSection">
-                                    <bahmni-observation patient="patient" config="{conceptNames: conceptSet.options.conceptNames, scope: 'latest'}" section-title="'REGISTRATON_LATEST_KEY'"></bahmni-observation>
-                                </article> !-->
-                            </div>
-                        </div>
-                    </section>
+                    <!--<section class="observation-section" ng-if="context">-->
+                        <!--<div ng-repeat="conceptSet in ::availableConceptSets" class="concept-set-group">-->
+                            <!--<div class="registraion_legend" ng-if="conceptSet.conceptName=='Fee Information'">-->
+                                <!--<span class="mylegend" ng-if="::conceptSet.options.translationKey">{{::conceptSet.options.translationKey | translate}}</span>-->
+                                <!--<span class="mylegend" ng-if="::!conceptSet.options.translationKey">{{::conceptSet.label}}</span>-->
+                            <!--</div>-->
+                            <!--<div class="clearfix">-->
+                                <!--<article ng-if="!isFormTemplate(conceptSet) && conceptSet.conceptName=='Fee Information'" class="fl obs-section-form">-->
+                                    <!--<concept-set concept-set-name="::conceptSet.options.conceptName" required="::conceptSet.options.required" patient="patient" observations="observations"-->
+                                                 <!--obs-scope="::conceptSet.options.scope" show-title="false" concept-set-focused="::$index === 0"></concept-set>-->
+                                <!--</article>-->
+                                <!--<article ng-if="isFormTemplate(conceptSet)" class="fl obs-section-form" id={{::conceptSet.formUuid}}>-->
+                                    <!--<form-controls form="conceptSet" patient="patient" validate-form="true"></form-controls>-->
+                                <!--</article>-->
+                                <!--&lt;!&ndash;<article ng-if="::conceptSet.options.showLatest" class="obs-section fr" id="observationSection">-->
+                                    <!--<bahmni-observation patient="patient" config="{conceptNames: conceptSet.options.conceptNames, scope: 'latest'}" section-title="'REGISTRATON_LATEST_KEY'"></bahmni-observation>-->
+                                <!--</article> !&ndash;&gt;-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</section>-->
                 </div>
                 <div class="submit-btn-container">
                     <button type="button" class="cancel" tabindex="-1" ng-show="::canCloseVisit" ng-click="closeVisitIfDischarged()">{{ ::'REGISTRATION_LABEL_CLOSE_VISIT' | translate}}</button>

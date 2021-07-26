@@ -137,12 +137,8 @@ angular.module('authentication')
             userService.getUser(currentUser).then(function (data) {
                 userService.getProviderForUser(data.results[0].uuid).then(function (providers) {
                     if (!_.isEmpty(providers.results) && hasAnyActiveProvider(providers.results)) {
-                        console.log("Printing User Information");
-                        console.log(data.results[0]);
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
                         $rootScope.currentUser.fullName = providers.results[0].name;
-                        console.log("Printing After visiting User Class");
-                        console.log($rootScope.currentUser);
                         var i = 0;
                         for (i = 0; i < $rootScope.currentUser.privileges.length; i++) {
                             if ($rootScope.currentUser.privileges[i].name == "View Doctor Forms") {
@@ -162,23 +158,16 @@ angular.module('authentication')
                                 $rootScope.currentUser.favouriteObsTemplates[13] = "Status";
                                 $rootScope.currentUser.favouriteObsTemplates[14] = "Death";
 				                $rootScope.currentUser.favouriteObsTemplates[15] = "Referrals";
-                                console.log($rootScope.currentUser.privileges[i].name);
                             }
                             if ($rootScope.currentUser.privileges[i].name == "View MidWife Forms") {
                                 $rootScope.currentUser.favouriteObsTemplates[0] = "Vitals";
-                                // $rootScope.currentUser.favouriteObsTemplates[1] = "ANC";
                                 $rootScope.currentUser.favouriteObsTemplates[1] = "ANC Service";
-                                // $rootScope.currentUser.favouriteObsTemplates[3] = "PNC";
                                 $rootScope.currentUser.favouriteObsTemplates[2] = "PNC Service";
                                 $rootScope.currentUser.favouriteObsTemplates[3] = "Delivery Service";
-                                // $rootScope.currentUser.favouriteObsTemplates[6] = "Delivery note";
-                                // $rootScope.currentUser.favouriteObsTemplates[7] = "Family Planning Template";
                                 $rootScope.currentUser.favouriteObsTemplates[4] = "Family Planning Service";
-                                console.log($rootScope.currentUser.privileges[i].name);
                             }
                             if ($rootScope.currentUser.privileges[i].name == "View Paramedic Forms") {
                                 $rootScope.currentUser.favouriteObsTemplates[0] = "Child Vaccination Form";
-                                console.log($rootScope.currentUser.privileges[i].name);
                             }
                         }
                         $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;

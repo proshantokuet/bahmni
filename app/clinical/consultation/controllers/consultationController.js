@@ -110,6 +110,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             };
 
             $scope.gotoPatientDashboard = function () {
+                debugger;
                 if (!isFormValid()) {
                     $scope.$parent.$parent.$broadcast("event:errorsOnForm");
                     return $q.when({});
@@ -123,7 +124,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     if ($scope.dashboardDirty) {
                         params['dashboardCachebuster'] = Math.random();
                     }
-                    $state.go("patient.dashboard.show", params);
+                    $state.go("patient.dashboard.show", params,{reload:true});
                 }
             };
 
