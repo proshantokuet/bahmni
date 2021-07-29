@@ -230,9 +230,11 @@
                  ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
             <article class="form-field" ng-repeat="attribute in ::attributeRow"
                      ng-class="::{'right-form-field' : $index%2 != 0}">
+                <span ng-show="attribute.canShow">
                 <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
                                  is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                                  get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
+                </span>
             </article>
         </section>
     </div>

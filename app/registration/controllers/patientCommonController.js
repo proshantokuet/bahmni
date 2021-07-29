@@ -133,14 +133,42 @@ angular.module('bahmni.registration')
                 });
             };
 
+            var showAttribute = function (attributesToShow, allattributes) {
+                _.each(allattributes, function (attributeList) {
+                    _.each(attributeList, function (attribute) {
+                        attribute.canShow = true;
+                    });
+                });
+            };
+
+            var hideAttribute = function (attributesToHide, allattributes) {
+              _.each(allattributes, function (attributeList) {
+                    _.each(attributeList, function (attribute) {
+                        if(attributesToHide.length > 0) {
+                            if (attribute["fullySpecifiedName"] == attributesToHide) {
+                                attribute.canShow = false;
+                            }
+                            else {
+                                attribute.canShow = true;
+                            }
+                        }
+                        else {
+                            attribute.canShow = true;
+                        }
+
+                    });
+                });
+            };
+
             var executeRule = function (ruleFunction) {
                 var attributesShowOrHideMap = ruleFunction($scope.patient);
-                var patientAttributesSections = $rootScope.patientConfiguration.getPatientAttributesSections();
-                showSections(attributesShowOrHideMap.show, patientAttributesSections);
-                hideSections(attributesShowOrHideMap.hide, patientAttributesSections);
+                var patientAttributesSections = $rootScope.patientConfiguration.customAttributeRows();
+                showAttribute(attributesShowOrHideMap.show, patientAttributesSections);
+                hideAttribute(attributesShowOrHideMap.hide, patientAttributesSections);
             };
 
             $scope.handleUpdate = function (attribute) {
+                debugger;
                 var ruleFunction = Bahmni.Registration.AttributesConditions.rules && Bahmni.Registration.AttributesConditions.rules[attribute];
                 if (ruleFunction) {
                     executeRule(ruleFunction);
