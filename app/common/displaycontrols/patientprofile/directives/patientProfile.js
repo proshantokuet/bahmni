@@ -31,9 +31,12 @@
     };
     angular.module('bahmni.common.displaycontrol.patientprofile')
         .directive('patientProfile', ['patientService', 'spinner', '$sce', '$rootScope', '$stateParams', '$window', '$translate',
-            'configurations', '$q', 'visitService','$state',
-            function (patientService, spinner, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state) {
+            'configurations', '$q', 'visitService','$state','$bahmniCookieStore',
+            function (patientService, spinner, $sce, $rootScope, $stateParams, $window, $translate, configurations, $q, visitService, $state, $bahmniCookieStore) {
                 var controller = function ($scope) {
+                    debugger;
+                    var loginLocationUuid = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid;
+                    var visitLocationUuid = $rootScope.visitLocation;
                     $scope.isProviderRelationship = function (relationship) {
                         return _.includes($rootScope.relationshipTypeMap.provider, relationship.relationshipType.aIsToB);
                     };
@@ -91,6 +94,43 @@
                         $scope.showBirthDate = $scope.showBirthDate && !!$scope.patient.birthdate;
                     };
 
+                    var getVisitType = visitService.getVisitType().then(function (result) {
+                        var types = result.data.results;
+                        $scope.visitType = types.filter(function (item) {
+                            return item.display !== 'Special OPD' && item.display !== 'PHARMACY VISIT' && item.display !== 'EMERGENCY';
+                        });
+                        $scope.selectedVisit = {};
+                    });
+
+                    $scope.getActiveVisitStatus = function () {
+                        if (visitLocationUuid) {
+                            var getPatientHistory = visitService.getVisitHistory($scope.patientUuid, visitLocationUuid).then(function (response) {
+                                var visits = _.map(response, function (visitData) {
+                                    return new Bahmni.Clinical.VisitHistoryEntry(visitData);
+                                });
+                                $scope.activeVisit = visits.filter(function (visit) {
+                                    return visit.isActive() && visit.isFromCurrentLocation(visitLocationUuid);
+                                })[0];
+                            });
+                        }
+                    };
+
+                    $scope.startSelectedVisit = function () {
+                        if ($scope.selectedVisit.visitObj) {
+                            var visitType = $scope.selectedVisit.visitObj;
+                            var visitDetails = {
+                                patient: $scope.patientUuid,
+                                visitType: visitType.uuid,
+                                location: visitLocationUuid
+                            };
+                            spinner.forPromise(visitService.createVisit(visitDetails).then(function (response) {
+                                $scope.createVisitCallbackInfo = response.data;
+                                $state.reload();
+                                // if ($scope.createVisitCallbackInfo) $scope.serviceProviderTabOPen();
+                            }));
+                        }
+                    };
+
                     var getPatientHealthCommoditiesHistory = function () {
                         patientService.findCommoditiesByPatient($scope.patientUuid).then(function (response) {
                             $scope.patientCommoditiesList = response.data;
@@ -110,7 +150,7 @@
                         });
                     }
 
-                    var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails(),getPatientHealthCommoditiesHistory()]);
+                    var initPromise = $q.all([assignPatientDetails(), assignRelationshipDetails(),getPatientHealthCommoditiesHistory(),getVisitType,$scope.getActiveVisitStatus()]);
                     initPromise.then(onDirectiveReady);
                     initPromise.then(setHasBeenAdmittedOnVisitUuidChange);
                     initPromise.then(setDirectiveAsReady);

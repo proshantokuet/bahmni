@@ -1,4 +1,4 @@
-<div>
+<div xmlns="http://www.w3.org/1999/html">
     <div class="dashboard-patientInformation-section" id="patient_information" ng-if="::isDirectiveReady">
         <section bindonce="patient" class="block patientInformation dashboard-section" ng-class="::{'more': patientSummary.show}">
             <table class="patient dashboard-table">
@@ -17,11 +17,13 @@
                                  <span>{{ 'TIME_OF_BIRTH_LABEL'|translate }}</span>
                                  <span ng-bind-html="::patient.birthtime | date:'hh:mm a'"></span>
                              </span>
+
 <!--                            <span  style="padding-left:25px"><a ng-click="serviceProviderTabOPen()" target="_self"
                                                                class="title-link">
                            <strong> Prescription</strong>
                         </a></span>-->
-                             <span class="patient-address">
+
+                            <span class="patient-address">
                                  {{::addressLine}}
                              </span>
                              <i class="ipd-indication fa fa-bed" ng-if="::hasBeenAdmitted"></i>
@@ -63,6 +65,25 @@
                 </tbody>
             </table>
         </section>
+
+        <div ng-if="!activeVisit">
+
+                <h3 style="background: #ddd;height:37px;padding-top: 6px;color: #000">Start Triage </h3>
+            <div class="col-md-6" style="margin-bottom: 20px">
+                <select class="form-control" ng-model="selectedVisit.visitObj"
+                        ng-options="visit as visit.display for visit in visitType"
+                        ng-required="true">
+                    <option ng-option value="">Select Visit Type</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button ng-if="selectedVisit.visitObj" type="button"
+                        class="btn btn-success" ng-click="startSelectedVisit()">Start Visit
+                </button>
+            </div>
+
+        </div>
+    </br>
         <div class="dashboard-patientInformation-section">
     <div>
          <h3 style="background: #ddd;height:37px;padding-top: 6px;color: #000">Health Commodities and Medicine Distribution History</h3>

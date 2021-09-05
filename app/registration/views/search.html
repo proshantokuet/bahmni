@@ -66,12 +66,13 @@
                 <th ng-repeat = "field in ::addressSearchResultsConfig.fields"><strong>{{::convertToTableHeader(getAddressColumnName(field))}}</strong></th>
                 <th><strong>{{ ::'REGISTRATION_LABEL_REGISTRATION_DATE' | translate}}</strong></th>
                 <th ng-if="::programAttributesSearchConfig.show"><strong>{{::convertToTableHeader(programAttributesSearchConfig.label)}}</strong></th>
+                 <th><strong>Action</strong></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="result in results">
                 <td>
-                    <a tabindex="{{ :: 8 + $index + 1 }}" ng-if="::(searchActions.length > 0)" ng-click="forPatient(result).doExtensionAction(searchActions[0])">
+                    <a href="../clinical/index.html#/default/patient/{{result.uuid}}/dashboard"  class="title-link">
                         {{::result.identifier || 'Not Assigned'}}
                     </a>
                 </td>
@@ -86,6 +87,11 @@
                 <td ng-repeat = "field in ::addressSearchResultsConfig.fields">{{::result.addressFieldValue[field] || ""}}</td>
                 <td>{{::result.dateCreated | bahmniDate}}</td>
                 <td ng-if="::programAttributesSearchConfig.show">{{getProgramAttributeValues(result) | bahmniDateInStrictMode}}</td>
+                <td>
+                     <a tabindex="{{ :: 8 + $index + 1 }}" ng-if="::(searchActions.length > 0)" ng-click="forPatient(result).doExtensionAction(searchActions[0])">
+                        Edit profile
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>
