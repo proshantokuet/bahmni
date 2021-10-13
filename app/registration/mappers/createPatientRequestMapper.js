@@ -45,11 +45,39 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
                     causeOfDeath: patient.causeOfDeath ? patient.causeOfDeath.uuid : '',
                     uuid: patient.uuid
                 },
-                identifiers: identifiers,
+                identifiers: [{"identifier": "", "identifierType": "Patient_Identifier", "preferred": true, "voided": false }],
                 uuid: patient.uuid
             }
         };
+        for (var i = 0; i < openMRSPatient.patient.person.attributes.length; i++) {
+            debugger
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "district") {
+                if(patient.birthDistrict) {
+                    openMRSPatient.patient.person.attributes[i].value = patient.birthDistrict.districtName;
+                    openMRSPatient.patient.person.attributes[i].voided = false;
+                }
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "upazilla") {
+                if(patient.birthUpazilla) {
+                    openMRSPatient.patient.person.attributes[i].value = patient.birthUpazilla.upazillaName;
+                    openMRSPatient.patient.person.attributes[i].voided = false;
+                }
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "union") {
+                if(patient.union) {
+                    openMRSPatient.patient.person.attributes[i].value = patient.union.unionName;
+                    openMRSPatient.patient.person.attributes[i].voided =  false;
+                 }
+            }
 
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "clinicCode") {
+                openMRSPatient.patient.person.attributes[i].value = '001';
+            }
+            if (openMRSPatient.patient.person.attributes[i].attributeType.name == "clinicName") {
+                openMRSPatient.patient.person.attributes[i].value = 'Test001';
+            }
+        }
+        console.log(openMRSPatient);
         this.setImage(patient, openMRSPatient);
         openMRSPatient.relationships = patient.relationships;
         return openMRSPatient;

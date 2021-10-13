@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state',
-        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state) {
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state','locationService',
+        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state,locationService) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
             var personAttributes = [];
@@ -21,6 +21,17 @@ angular.module('bahmni.registration')
             var dontSaveButtonClicked = false;
 
             var isHref = false;
+
+            $scope.locationDistricts = [];
+
+            $scope.locationDUpazilla = [];
+
+            $scope.locationUpazillas = [];
+
+            $scope.locationDUnion = [];
+
+            $scope.locationUnion = [];
+
 
             $rootScope.onHomeNavigate = function (event) {
                 if ($scope.showSaveConfirmDialogConfig && $state.current.name != "patient.visit") {
@@ -155,6 +166,7 @@ angular.module('bahmni.registration')
 
             $scope.$watch('patientLoaded', function () {
                 if ($scope.patientLoaded) {
+                    getBirthDistricts();
                     executeShowOrHideRules();
                 }
             });
@@ -188,5 +200,100 @@ angular.module('bahmni.registration')
             $scope.disableIsDead = function () {
                 return ($scope.patient.causeOfDeath || $scope.patient.deathDate) && $scope.patient.dead;
             };
+
+
+            var getBirthDistricts = function () {
+                var districtInformation = $rootScope.zillaBinding;
+                return locationService.getAllByTag("District").then(function (response) {
+                    debugger;
+                    $scope.locations = response.data.results;
+                    var i = 0;
+                    for (i = 0; i < $scope.locations.length; i++) {
+                        $scope.locationDistricts.push({districtName: $scope.locations[i].name, uuid: $scope.locations[i].uuid, districtCode: $scope.locations[i].address2});
+                    }
+                    if (districtInformation) {
+                        for (i = 0; i < $scope.locationDistricts.length; i++) {
+                            if ($scope.locationDistricts[i].districtName == districtInformation.birthDistrictName) {
+                                $scope.patient.birthDistrict = $scope.locationDistricts[i];
+                                $scope.getBirthUpazilla($scope.locationDistricts[i]);
+                            }
+                        }
+                    }
+                    return response;
+                });
+            };
+
+            $scope.getBirthUpazilla = function (districtName) {
+                $scope.locationDUnion = [];
+                $scope.locationUnion = [];
+                if (districtName != undefined) {
+                    return locationService.getByUuid(districtName.uuid).then(function (response) {
+                        $scope.locationDUpazilla = [];
+                        $scope.locationUpazillas = [];
+
+                        var i = 0;
+                        for (i = 0; i < response.childLocations.length; i++) {
+                            console.log(":upazilla: " + response.childLocations[i]);
+                            $scope.getCode(response.childLocations[i].uuid);
+                        }
+                        return response;
+                    });
+                }
+            };
+
+
+            $scope.getCode = function (uuid) {
+                var districtInformation = $rootScope.zillaBinding;
+                return locationService.getByUuid(uuid).then(function (response) {
+                    debugger;
+                    $scope.locationDUpazilla.push({upazillaName: response.display, upazillaCode: response.address2,uuid: response.uuid});
+                    if (districtInformation) {
+                        for (var i = 0; i < $scope.locationDUpazilla.length; i++) {
+                            if ($scope.locationDUpazilla[i].upazillaName == districtInformation.birthupazillaName) {
+                                $scope.patient.birthUpazilla = $scope.locationDUpazilla[i];
+                                 $scope.getUnion($scope.locationDUpazilla[i]);
+                            }
+                        }
+                    }
+                    return response;
+                });
+            };
+
+
+            $scope.getUnion = function (upzilla) {
+                debugger;
+                if (upzilla != undefined) {
+                    return locationService.getByUuid(upzilla.uuid).then(function (response) {
+                        $scope.locationDUnion = [];
+                        $scope.locationUnion = [];
+                        var i = 0;
+                        for (i = 0; i < response.childLocations.length; i++) {
+                            $scope.getUnionList(response.childLocations[i].uuid);
+                        }
+                        return response;
+                    });
+                }
+            };
+
+
+            $scope.getUnionList = function (uuid) {
+                var unionInformation = $rootScope.zillaBinding;
+                return locationService.getByUuid(uuid).then(function (response) {
+                    debugger;
+                    $scope.locationDUnion.push({unionName: response.display, unionCode: response.address2,uuid: response.uuid});
+                    if (unionInformation) {
+                        for (var i = 0; i < $scope.locationDUnion.length; i++) {
+                            if ($scope.locationDUnion[i].unionName == unionInformation.union) {
+                                $scope.patient.union = $scope.locationDUnion[i];
+                            }
+                        }
+                        $rootScope.unionBinding = null;
+                    }
+                    return response;
+                });
+            }
+
+
+
         }]);
 
