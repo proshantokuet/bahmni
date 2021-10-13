@@ -94,7 +94,8 @@ Bahmni.Common = Bahmni.Common || {};
         endVisitUrl: BAHMNI_CORE + "/visit/endVisit",
         endVisitAndCreateEncounterUrl: BAHMNI_CORE + "/visit/endVisitAndCreateEncounter",
         visitTypeUrl: RESTWS_V1 + "/visittype",
-        medicineGetUrl: RESTWS_V1 + "/prescription/medicinelist",
+        medicineGetUrl: RESTWS_V1 + "/service-management/pdosuct-list",
+        productStockGetUrl: RESTWS_V1 + "/stock/get-product-stock",
         prescriptionSaveUrl: RESTWS_V1 + "/prescription/save-update",
         prescriptionAndDownloadPdfUrl: RESTWS_V1 + "/prescription/prescriptionPdfGenerate",
         healtCommoditiesSaveUrl: RESTWS_V1 + "/commodities/save-update",
@@ -149,6 +150,7 @@ Bahmni.Common = Bahmni.Common || {};
         emrapiConceptMappingSource: "org.openmrs.module.emrapi",
         abbreviationConceptMappingSource: "Abbreviation",
         includeAllObservations: false,
+        clinicCookieName: 'bahmni.user.clinic',
         openmrsObsUrl: RESTWS_V1 + "/obs",
         openmrsObsRepresentation: "custom:(uuid,obsDatetime,value:(uuid,name:(uuid,name)))",
         admissionCode: 'ADMIT',
@@ -260,7 +262,8 @@ Bahmni.Common = Bahmni.Common || {};
         localeLangs: "/bahmni_config/openmrs/apps/home/locale_languages.json",
         privilegeRequiredErrorMessage: "PRIVILEGE_REQUIRED",
         patientFormsUrl: BAHMNI_CORE + "/patient/{patientUuid}/forms",
-        defaultPossibleRelativeSearchLimit: 10
+        defaultPossibleRelativeSearchLimit: 10,
+        clinicUrl: RESTWS_V1 + "/clinic-user/get-by-username",
     };
 })();
 

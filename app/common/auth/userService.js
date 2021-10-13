@@ -70,4 +70,21 @@ angular.module('authentication')
                 withCredentials: true
             });
         };
+
+        var getClinicInformation = function (username) {
+            var clinicUrl = Bahmni.Common.Constants.clinicUrl + "/" + username;
+            return $http.get(clinicUrl, {
+                method: "GET",
+                cache: false
+            });
+        };
+        this.getClinicInformation = function (username) {
+            var deferrable = $q.defer();
+            getClinicInformation(username).success(function (data) {
+                deferrable.resolve(data);
+            }).error(function () {
+                deferrable.reject('Unable to get user data');
+            });
+            return deferrable.promise;
+        };
     }]);

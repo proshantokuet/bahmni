@@ -99,7 +99,7 @@ angular.module('authentication')
             return deferrable.promise;
         };
 
-        this.loginUser = function (username, password, location, otp) {
+        /*this.loginUser = function (username, password, location, otp) {
             var deferrable = $q.defer();
             createSession(username, password, otp).then(function (data) {
                 if (data.authenticated) {
@@ -108,6 +108,48 @@ angular.module('authentication')
                         $bahmniCookieStore.remove(Bahmni.Common.Constants.locationCookieName);
                         $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {name: location.display, uuid: location.uuid}, {path: '/', expires: 7});
                     }
+                    deferrable.resolve(data);
+                } else if (data.firstFactAuthorization) {
+                    deferrable.resolve(data);
+                } else {
+                    deferrable.reject('LOGIN_LABEL_LOGIN_ERROR_MESSAGE_KEY');
+                }
+            }, function (errorInfo) {
+                deferrable.reject(errorInfo);
+            });
+            return deferrable.promise;
+        };*/
+
+    this.loginUser = function (username, password, location, otp) {
+        debugger;
+            $rootScope.isFoundTeamAndClinicInformation = true;
+            var deferrable = $q.defer();
+            $bahmniCookieStore.remove(Bahmni.Common.Constants.locationCookieName);
+            $bahmniCookieStore.remove(Bahmni.Common.Constants.clinicCookieName);
+            createSession(username, password, otp).then(function (data) {
+                if (data.authenticated) {
+                    $bahmniCookieStore.put(Bahmni.Common.Constants.currentUser, username, {path: '/', expires: 7});
+                    userService.getUser(username).then(function (data) {
+                        userService.getClinicInformation(username).then(function (data) {
+                            debugger;
+                            var clinicInformation = data;
+                            console.log(data);
+                            if (clinicInformation.status == "success") {
+                                $bahmniCookieStore.put(Bahmni.Common.Constants.clinicCookieName, clinicInformation, {
+                                    path: '/',
+                                    expires: 7
+                                });
+                                $bahmniCookieStore.put(Bahmni.Common.Constants.locationCookieName, {
+                                    name: 'General Ward',
+                                    uuid: 'baf7bd38-d225-11e4-9c67-080027b662ec'
+
+                                }, {path: '/', expires: 7});
+                            } else {
+                                self.destroy();
+                                deferrable.reject("YOU_HAVE_NOT_BEEN_SETUP_PROVIDER");
+                            }
+                        });
+                    });
                     deferrable.resolve(data);
                 } else if (data.firstFactAuthorization) {
                     deferrable.resolve(data);
