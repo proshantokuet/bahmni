@@ -2,17 +2,24 @@
 
 angular.module('bahmni.clinical')
     .controller('healthCommoditiesController', ['$scope', '$rootScope', 'spinner',
-        'messagingService', 'appService','visitService', 'visitHistory','$state',
-        function ($scope, $rootScope,  spinner, messagingService, appService, visitService, visitHistory, $state) {
+        'messagingService', 'appService','visitService', 'visitHistory','$state','$bahmniCookieStore',
+        function ($scope,$rootScope,  spinner, messagingService, appService, visitService, visitHistory, $state,$bahmniCookieStore) {
             $scope.today = Bahmni.Common.Util.DateUtil.getDateWithoutTime(Bahmni.Common.Util.DateUtil.now());
             $scope.visitHistory = visitHistory;
             $scope.healthCommodities = {"distributeId" : 0};
-            $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto = [{"distributeDetailsId":0,"quantity":1}];
+            $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto = [{"distributeDetailsId":0,"quantity":1,"currentStock":0}];
+            $scope.clinicInfo = {
+                 clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName,
+                 clinicPrimaryId: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id,
+                 clinicCode:$bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId
+             };
+            debugger;
+            $scope.test = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName);
+            console.log($scope.test);
             var init = function () {
-                visitService.getMedicineList("ALL").then(function (response) {
+                visitService.getMedicineList("ALL",$scope.clinicInfo.clinicPrimaryId).then(function (response) {
                     $scope.medicine = response.data;
                 });
-
             };
             $scope.addNewChoice = function () {
                 var newItemNo = $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto.length + 1;
@@ -23,6 +30,7 @@ angular.module('bahmni.clinical')
             };
 
             $scope.onChanged = function (item, index) {
+                debugger;
                 var thisCode = item.name;
                 var service = $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto.filter(function (service) {
                     if (service.commoditiesItem) {
@@ -30,7 +38,8 @@ angular.module('bahmni.clinical')
                     }
                 });
                 if (service.length == 1) {
-                    console.log("good");
+                    console.log(item.medicineId);
+                    getCurrentStock(item.medicineId,index);
                 }
                 else {
                     $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto[index].distributeDetailsId = 0;
@@ -48,6 +57,9 @@ angular.module('bahmni.clinical')
                 var date = Bahmni.Common.Util.DateUtil.getDateWithoutTime($scope.healthCommodities.distributeDateModel);
                 $scope.healthCommodities.distributeDate = date;
                 $scope.healthCommodities.providerName = $rootScope.currentUser.fullName;
+                console.log("clinicId ");
+                $scope.healthCommodities.clinicId = $scope.clinicInfo.clinicPrimaryId;
+                $scope.healthCommodities.clinicCode = $scope.clinicInfo.clinicCode;
                 angular.forEach($scope.healthCommodities.ubsCommoditiesDistributeDetailsDto, function (listItem) {
                     if (listItem.commoditiesItem != undefined) {
                        listItem.commoditiesId = listItem.commoditiesItem.medicineId;
@@ -73,6 +85,27 @@ angular.module('bahmni.clinical')
             };
 
             init();
+            var getCurrentStock = function (productId,index){
+                console.log("product stock retrieved" +productId);
+                    visitService.getProductStock(productId,$scope.clinicInfo.clinicPrimaryId).then(function (response) {
+                    var stock = response.data;
+                    $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto[index].currentStock=parseInt(stock.stock);
+                });
+            };
+
+            $scope.checkStock = function (quantity, index) {
+                debugger;
+                   var stock = $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto[index].currentStock;
+                   console.log("entered quantity ");
+                    if (quantity > stock) {
+                        messagingService.showMessage('error', "Medicine out of stock");
+                        quantity = stock;
+                        $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto[index].quantity = quantity;
+                    }
+
+             };
+
+
         }
     ])
 ;

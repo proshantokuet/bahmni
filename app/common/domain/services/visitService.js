@@ -68,11 +68,20 @@ angular.module('bahmni.common.domain')
             });
         };
 
-        this.getMedicineList = function (typeName) {
-            return $http.get(Bahmni.Common.Constants.medicineGetUrl, {
+        this.getMedicineList = function (typeName,clinicId) {
+            return $http.get(Bahmni.Common.Constants.medicineGetUrl+ '/' +clinicId+'/'+typeName, {
                 params: {
-                        type: typeName
+                       // clinicId:clinicId,
+                        //category: typeName
+
                     },
+                withCredentials: true
+            });
+        };
+
+        this.getProductStock = function (productId,clinicId) {
+            return $http.get(Bahmni.Common.Constants.productStockGetUrl+ '/' +clinicId+'/'+productId, {
+                params: {},
                 withCredentials: true
             });
         };

@@ -2,15 +2,20 @@
 
 angular.module('bahmni.clinical')
     .controller('PrescriptionController', ['$scope', '$rootScope', 'spinner',
-        'messagingService', 'appService','visitService', 'visitHistory','$state',
-        function ($scope, $rootScope,  spinner, messagingService, appService, visitService, visitHistory, $state) {
+        'messagingService', 'appService','visitService', 'visitHistory','$state','$bahmniCookieStore',
+        function ($scope, $rootScope,  spinner, messagingService, appService, visitService, visitHistory, $state,$bahmniCookieStore) {
             $scope.today = Bahmni.Common.Util.DateUtil.getDateWithoutTime(Bahmni.Common.Util.DateUtil.now());
             debugger;
             $scope.visitHistory = visitHistory;
             $scope.prescription = {"prescriptionId" : 0};
             $scope.prescription.prescribedMedicine = [{"pmId":0,"duration":1}];
+            $scope.clinicInfo = {
+                 clinicName: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicName,
+                 clinicPrimaryId: $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).id,
+                 clinicCode:$bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName).clinicId
+             };
             var init = function () {
-                visitService.getMedicineList("MEDICINE").then(function (response) {
+                visitService.getMedicineList("Medicine",$scope.clinicInfo.clinicPrimaryId).then(function (response) {
                     $scope.medicine = response.data;
                 });
 
