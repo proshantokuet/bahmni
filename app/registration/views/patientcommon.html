@@ -146,12 +146,12 @@
                  field-validation="::fieldValidation" ng-if="::addressHierarchyConfigs.showAddressFieldsTopDown"
                  strict-autocomplete-from-level="::addressHierarchyConfigs.strictAutocompleteFromLevel"></section> -->
 
-        <legend class="registraion_legend" ng-if="patient.extraIdentifiers.length>0">
+        <!--<legend class="registraion_legend" ng-if="patient.extraIdentifiers.length>0">
             <span class="mylegend">{{ ::'REGISTRATION_ADDTIONAL_IDENTIFIERS' | translate}}</span>
-        </legend>
+        </legend> -->
 
-        <section>
-            <!--edit patient flow-->
+       <!-- <section>
+
            <section>
                 <div ng-if="patient.uuid != undefined">
                     <article ng-repeat="identifier in patient.extraIdentifiers" class="form-field existing-patient">
@@ -220,7 +220,7 @@
                     </article>
                 </div>
            </section>
-        </section>
+        </section> -->
 
         <legend class="registraion_legend" ng-if="patientConfiguration.customAttributeRows().length > 0">
             <span class="mylegend">{{ ::'REGISTRATION_LABEL_OTHER_INFO' | translate}}</span>
@@ -237,7 +237,7 @@
         </section>
     </div>
 
-    <!--<div ng-repeat="section in ::patientConfiguration.getOrderedPatientAttributesSections()"
+    <div ng-repeat="section in ::patientConfiguration.getOrderedPatientAttributesSections()"
          class="additional-info-wrapper">
         <div ng-if="section.canShow">
             <div class="box-container form" ng-if="::(section.attributes.length > 0 && section.title)">
@@ -249,11 +249,47 @@
                       <a ng-if="::section.translationKey" href accesskey="{{::section.shortcutKey | translate}}"
                          ng-bind-html="::section.translationKey | translate">
                       </a>
-                      <a ng-if="::(section.title && !section.translationKey)" href>{{::'REGISTRATION_TITLE_ADDITIONAL_PATIENT' | translate}}</a>
+                      <a  href>{{section.title}}</a>
                   </strong>
               </span>
                 </legend>
                 <section class="form-field-inline clearfix" ng-show="section.expand">
+<section  ng-if="section.order==2">
+
+<article class="form-field">
+                <div class="field-attribute">
+                    <label>District<span class="asterick">*</span></label>
+                </div>
+
+                <div class="field-value">
+
+                    <select ng-model="patient.birthDistrict" ng-change="getBirthUpazilla(patient.birthDistrict); handleUpdate('birthDistrict')"
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.districtName for blisterPackTemplate in locationDistricts | orderBy:'districtName'" ng-required="true">
+			 <option value="">Select District</option>
+                    </select>
+                </div>
+            </article>
+<article class="form-field">
+                <div class="field-attribute">
+                    <label>Upazilla<span class="asterick">*</span></label>
+                </div>
+                <div class="field-value">
+                    <select ng-model="patient.birthUpazilla" ng-change="getUnion(patient.birthUpazilla)"
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.upazillaName for blisterPackTemplate in locationDUpazilla | orderBy:'upazillaName'" ng-required="true">
+                      <option value="">Select Upazilla</option>
+                    </select>
+            </article>
+<article class="form-field">
+                <div class="field-attribute">
+                    <label>Union<span class="asterick">*</span></label>
+                </div>
+                <div class="field-value">
+                    <select ng-model="patient.union"
+                            data-ng-options="blisterPackTemplate as blisterPackTemplate.unionName for blisterPackTemplate in locationDUnion | orderBy:'unionName'" ng-required="true">
+                      <option value="">Select Union</option>
+                    </select>
+            </article>
+</section>
                     <article class="form-field" ng-repeat="attribute in ::section.attributes"
                              ng-class="::{'right-form-field' : $index%2 != 0}">
                         <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
@@ -263,7 +299,8 @@
                 </section>
             </div>
         </div>
-    </div> -->
+    </div>
+
     <!-- <div class="box-container" ng-if="::(relationshipTypes.length > 0)">
         <legend class="additional-attribute" ng-show="::relationshipTypes" toggle="patient.hasRelationships">
           <span>

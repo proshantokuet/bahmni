@@ -8,7 +8,8 @@ Bahmni.Common.Domain.AttributeFormatter = (function () {
         return attributeTypes.map(function (result) {
             var attribute = {
                 attributeType: {
-                    uuid: result.uuid
+                    uuid: result.uuid,
+                    name: result.name
                 }
             };
             if (!_.isEmpty(model)) {
