@@ -5,7 +5,7 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
         this.currentDate = currentDate;
     }
 
-    CreatePatientRequestMapper.prototype.mapFromPatient = function (patientAttributeTypes, patient) {
+    CreatePatientRequestMapper.prototype.mapFromPatient = function (patientAttributeTypes, patient, cookieObj) {
         var constants = Bahmni.Registration.Constants;
         var allIdentifiers = _.concat(patient.extraIdentifiers, patient.primaryIdentifier);
         var identifiers = _.filter(allIdentifiers, function (identifier) {
@@ -71,10 +71,10 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
             }
 
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "clinicCode") {
-                openMRSPatient.patient.person.attributes[i].value = '001';
+                openMRSPatient.patient.person.attributes[i].value = cookieObj.clinicId;
             }
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "clinicName") {
-                openMRSPatient.patient.person.attributes[i].value = 'Test001';
+                openMRSPatient.patient.person.attributes[i].value = cookieObj.clinicName;
             }
         }
         console.log(openMRSPatient);
