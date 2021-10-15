@@ -183,33 +183,36 @@ angular.module('authentication')
                         $rootScope.currentUser.fullName = providers.results[0].name;
                         var i = 0;
                         for (i = 0; i < $rootScope.currentUser.privileges.length; i++) {
-                            if ($rootScope.currentUser.privileges[i].name == "View Doctor Forms") {
-                                $rootScope.currentUser.favouriteObsTemplates[0] = "History and Examination";
-                                $rootScope.currentUser.favouriteObsTemplates[1] = "Vitals";
-                                $rootScope.currentUser.favouriteObsTemplates[2] = "Acute Health Condition";
-                                $rootScope.currentUser.favouriteObsTemplates[3] = "Sexual & Reproductive health (SRH)";
-                                $rootScope.currentUser.favouriteObsTemplates[4] = "Admission";
-                                $rootScope.currentUser.favouriteObsTemplates[5] = "Child Vaccination Form";
-                                $rootScope.currentUser.favouriteObsTemplates[6] = "Communicable Diease";
-                                $rootScope.currentUser.favouriteObsTemplates[7] = "Delivery Service";
-                                $rootScope.currentUser.favouriteObsTemplates[8] = "Discharge";
-                                $rootScope.currentUser.favouriteObsTemplates[9] = "Injuries";
-                                $rootScope.currentUser.favouriteObsTemplates[10] = "Non Communicable and other Chronic Disease";
-                                $rootScope.currentUser.favouriteObsTemplates[11] = "Nutrition";
-                                $rootScope.currentUser.favouriteObsTemplates[12] = "Mental Health";
-                                $rootScope.currentUser.favouriteObsTemplates[13] = "Status";
-                                $rootScope.currentUser.favouriteObsTemplates[14] = "Death";
-				                $rootScope.currentUser.favouriteObsTemplates[15] = "Referrals";
-                            }
-                            if ($rootScope.currentUser.privileges[i].name == "View MidWife Forms") {
-                                $rootScope.currentUser.favouriteObsTemplates[0] = "Vitals";
-                                $rootScope.currentUser.favouriteObsTemplates[1] = "ANC Service";
-                                $rootScope.currentUser.favouriteObsTemplates[2] = "PNC Service";
-                                $rootScope.currentUser.favouriteObsTemplates[3] = "Delivery Service";
-                                $rootScope.currentUser.favouriteObsTemplates[4] = "Family Planning Service";
-                            }
-                            if ($rootScope.currentUser.privileges[i].name == "View Paramedic Forms") {
-                                $rootScope.currentUser.favouriteObsTemplates[0] = "Child Vaccination Form";
+                            if ($rootScope.currentUser.privileges[i].name == "View Doctor Forms" || $rootScope.currentUser.privileges[i].name == "View MidWife Forms") {
+                                $rootScope.currentUser.favouriteObsTemplates[0] = "Triage";
+                                $rootScope.currentUser.favouriteObsTemplates[1] = "Vital Signs";
+                                $rootScope.currentUser.favouriteObsTemplates[2] = "Physical Examination";
+                                $rootScope.currentUser.favouriteObsTemplates[3] = "IPD Admission";
+                                $rootScope.currentUser.favouriteObsTemplates[4] = "ANC";
+                                $rootScope.currentUser.favouriteObsTemplates[5] = "PNC";
+                                $rootScope.currentUser.favouriteObsTemplates[6] = "Neonatal Care";
+                                $rootScope.currentUser.favouriteObsTemplates[7] = "Family Planning";
+                                $rootScope.currentUser.favouriteObsTemplates[8] = "Delivery";
+                                $rootScope.currentUser.favouriteObsTemplates[9] = "MR";
+                                $rootScope.currentUser.favouriteObsTemplates[10] = "PAC";
+                                $rootScope.currentUser.favouriteObsTemplates[11] = "SGBV";
+                                $rootScope.currentUser.favouriteObsTemplates[12] = "STI";
+                                $rootScope.currentUser.favouriteObsTemplates[13] = "Bloody Diarreah";
+                                $rootScope.currentUser.favouriteObsTemplates[14] = "MUMPS";
+                                $rootScope.currentUser.favouriteObsTemplates[15] = "Jaundice";
+                                $rootScope.currentUser.favouriteObsTemplates[16] = "AFP";
+                                $rootScope.currentUser.favouriteObsTemplates[17] = "ABD";
+                                $rootScope.currentUser.favouriteObsTemplates[18] = "AWD";
+                                $rootScope.currentUser.favouriteObsTemplates[19] = "Death Case";
+                                $rootScope.currentUser.favouriteObsTemplates[20] = "Vericella";
+                                $rootScope.currentUser.favouriteObsTemplates[21] = "Measles";
+                                $rootScope.currentUser.favouriteObsTemplates[22] = "Malaria form";
+                                $rootScope.currentUser.favouriteObsTemplates[23] = "Referrals";
+                                $rootScope.currentUser.favouriteObsTemplates[24] = "Consent Form";
+                                $rootScope.currentUser.favouriteObsTemplates[25] = "Death";
+                                $rootScope.currentUser.favouriteObsTemplates[26] = "Exit Interview";
+                                $rootScope.currentUser.favouriteObsTemplates[27] = "Nutrition Counselling";
+
                             }
                         }
                         $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;
