@@ -197,7 +197,7 @@ angular.module('authentication')
                                 $rootScope.currentUser.favouriteObsTemplates[10] = "PAC";
                                 $rootScope.currentUser.favouriteObsTemplates[11] = "SGBV";
                                 $rootScope.currentUser.favouriteObsTemplates[12] = "STI";
-                                $rootScope.currentUser.favouriteObsTemplates[13] = "Bloody Diarreah";
+                                $rootScope.currentUser.favouriteObsTemplates[13] = "Bloody Diarrhea";
                                 $rootScope.currentUser.favouriteObsTemplates[14] = "MUMPS";
                                 $rootScope.currentUser.favouriteObsTemplates[15] = "Jaundice";
                                 $rootScope.currentUser.favouriteObsTemplates[16] = "AFP";
@@ -207,7 +207,7 @@ angular.module('authentication')
                                 $rootScope.currentUser.favouriteObsTemplates[20] = "Vericella";
                                 $rootScope.currentUser.favouriteObsTemplates[21] = "Measles";
                                 $rootScope.currentUser.favouriteObsTemplates[22] = "Malaria form";
-                                $rootScope.currentUser.favouriteObsTemplates[23] = "Referrals";
+                                $rootScope.currentUser.favouriteObsTemplates[23] = "Referral";
                                 $rootScope.currentUser.favouriteObsTemplates[24] = "Consent Form";
                                 $rootScope.currentUser.favouriteObsTemplates[25] = "Death";
                                 $rootScope.currentUser.favouriteObsTemplates[26] = "Exit Interview";
