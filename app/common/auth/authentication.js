@@ -212,6 +212,7 @@ angular.module('authentication')
                                 $rootScope.currentUser.favouriteObsTemplates[25] = "Death";
                                 $rootScope.currentUser.favouriteObsTemplates[26] = "Exit Interview";
                                 $rootScope.currentUser.favouriteObsTemplates[27] = "Nutrition Counselling";
+				$rootScope.currentUser.favouriteObsTemplates[28] = "EPI";
 
                             }
                         }
