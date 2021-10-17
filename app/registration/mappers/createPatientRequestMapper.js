@@ -72,9 +72,11 @@ Bahmni.Registration.CreatePatientRequestMapper = (function () {
 
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "clinicCode") {
                 openMRSPatient.patient.person.attributes[i].value = cookieObj.clinicId;
+		 openMRSPatient.patient.person.attributes[i].voided =  false;
             }
             if (openMRSPatient.patient.person.attributes[i].attributeType.name == "clinicName") {
                 openMRSPatient.patient.person.attributes[i].value = cookieObj.clinicName;
+		 openMRSPatient.patient.person.attributes[i].voided =  false;
             }
         }
         console.log(openMRSPatient);
