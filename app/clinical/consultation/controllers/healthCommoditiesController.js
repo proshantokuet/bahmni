@@ -75,11 +75,17 @@ angular.module('bahmni.clinical')
                 });
                 spinner.forPromise(visitService.saveHealthDistribution(jsonData).then(function (response) {
                     if(response.data) {
-                        messagingService.showMessage("info", response.data.message);
-                        $state.go("patient.dashboard.show", {
-                                patientUuid: $scope.patient.uuid
-                            },{reload:true}
-                        );
+                        var stockoutFlag = response.data.stockOutflag;
+                        if(!stockoutFlag) {
+                            messagingService.showMessage("info", response.data.message);
+                            $state.go("patient.dashboard.show", {
+                                    patientUuid: $scope.patient.uuid
+                                }, {reload: true}
+                            );
+                        }
+                        else {
+                            messagingService.showMessage('error', "Medicine out of stock "+response.data.message);
+                        }
                     }
                 }));
             };
