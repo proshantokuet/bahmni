@@ -17,7 +17,7 @@ angular.module('bahmni.clinical')
             $scope.test = $bahmniCookieStore.get(Bahmni.Common.Constants.clinicCookieName);
             console.log($scope.test);
             var init = function () {
-                visitService.getMedicineList("ALL",$scope.clinicInfo.clinicPrimaryId).then(function (response) {
+                visitService.getMedicineList("Commodities",$scope.clinicInfo.clinicPrimaryId).then(function (response) {
                     $scope.medicine = response.data;
                 });
             };

@@ -182,8 +182,10 @@ angular.module('authentication')
                         $rootScope.currentUser = new Bahmni.Auth.User(data.results[0]);
                         $rootScope.currentUser.fullName = providers.results[0].name;
                         var i = 0;
+                       // console.log("form Name "+" "+$rootScope.currentUser.role[i].name +" "+$rootScope.currentUser.privileges[i].name);
                         for (i = 0; i < $rootScope.currentUser.privileges.length; i++) {
-                            if ($rootScope.currentUser.privileges[i].name == "View Doctor Forms" || $rootScope.currentUser.privileges[i].name == "View MidWife Forms") {
+                            if ($rootScope.currentUser.privileges[i].name == "View Doctor Forms" /*|| $rootScope.currentUser.privileges[i].name == "View MidWife Forms"*/) {
+                                console.log($rootScope.currentUser.privileges[i].name);
                                 $rootScope.currentUser.favouriteObsTemplates[0] = "Triage";
                                 $rootScope.currentUser.favouriteObsTemplates[1] = "Vital Signs";
                                 $rootScope.currentUser.favouriteObsTemplates[2] = "Physical Examination";
@@ -212,10 +214,14 @@ angular.module('authentication')
                                 $rootScope.currentUser.favouriteObsTemplates[25] = "Death";
                                 $rootScope.currentUser.favouriteObsTemplates[26] = "Exit Interview";
                                 $rootScope.currentUser.favouriteObsTemplates[27] = "Nutrition Counselling";
-				$rootScope.currentUser.favouriteObsTemplates[28] = "EPI";
-				$rootScope.currentUser.favouriteObsTemplates[29] = "MHPSS";
+                                $rootScope.currentUser.favouriteObsTemplates[28] = "EPI";
+                                $rootScope.currentUser.favouriteObsTemplates[29] = "MHPSS";
 				
 
+                            }
+                            else if()
+                            {
+                                $rootScope.currentUser.favouriteObsTemplates[0] = "Triage";
                             }
                         }
                         $rootScope.currentUser.currentLocation = $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).name;
