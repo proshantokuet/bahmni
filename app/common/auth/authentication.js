@@ -219,7 +219,7 @@ angular.module('authentication')
 				
 
                             }
-                            else if()
+                            else if($rootScope.currentUser.privileges[i].name == "View MidWife Forms" || $rootScope.currentUser.privileges[i].name == "view triage form")
                             {
                                 $rootScope.currentUser.favouriteObsTemplates[0] = "Triage";
                             }

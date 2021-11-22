@@ -40,6 +40,7 @@ angular.module('bahmni.clinical')
                 if (service.length == 1) {
                     console.log(item.medicineId);
                     getCurrentStock(item.medicineId,index);
+
                 }
                 else {
                     $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto[index].distributeDetailsId = 0;
@@ -92,17 +93,19 @@ angular.module('bahmni.clinical')
 
             init();
             var getCurrentStock = function (productId,index){
+                debugger;
                 console.log("product stock retrieved" +productId);
                     visitService.getProductStock(productId,$scope.clinicInfo.clinicPrimaryId).then(function (response) {
                     var stock = response.data;
                     $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto[index].currentStock=parseInt(stock.stock);
+                   $scope.checkStock($scope.healthCommodities.ubsCommoditiesDistributeDetailsDto[index].quantity,index);
                 });
             };
 
             $scope.checkStock = function (quantity, index) {
                 debugger;
                    var stock = $scope.healthCommodities.ubsCommoditiesDistributeDetailsDto[index].currentStock;
-                   console.log("entered quantity ");
+                   console.log("entered quantity "+quantity +" "+stock);
                     if (quantity > stock) {
                         messagingService.showMessage('error', "Medicine out of stock");
                         quantity = stock;

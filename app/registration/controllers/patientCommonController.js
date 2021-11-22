@@ -156,6 +156,9 @@ angular.module('bahmni.registration')
                 if (ruleFunction) {
                     executeRule(ruleFunction);
                 }
+                if (attribute == 'identificationType') {
+                    $scope.patient.showIdentificationNo= true;
+                }
             };
 
             var executeShowOrHideRules = function () {
@@ -291,9 +294,15 @@ angular.module('bahmni.registration')
                     }
                     return response;
                 });
-            }
+            };
 
-
+        $scope.getShowValueString = function (attributeName) {
+                if (attributeName == "idNo") {
+                    return $scope.patient.showIdentificationNo;
+                }  else {
+                    return true;
+                }
+            };
 
         }]);
 

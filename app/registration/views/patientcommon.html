@@ -230,9 +230,16 @@
                  ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
             <article class="form-field" ng-repeat="attribute in ::attributeRow"
                      ng-class="::{'right-form-field' : $index%2 != 0}">
-                <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
+                <!--<attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
+                                 is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
+                                 get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate">
+
+                </attribute-types>-->
+                <span ng-show="getShowValueString(attribute.name)">
+                    <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
                                  is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                                  get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
+                </span>
             </article>
         </section>
     </div>
@@ -324,4 +331,5 @@
             <ng-include src="'views/patientDeathInformation.html'"></ng-include>
         </section>
     </div> -->
+
 </div>
