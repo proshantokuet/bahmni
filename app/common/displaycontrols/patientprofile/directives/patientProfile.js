@@ -95,10 +95,8 @@
                     };
 
                     var getVisitType = visitService.getVisitType().then(function (result) {
-                        var types = result.data.results;
-                        $scope.visitType = types.filter(function (item) {
-                            return item.display !== 'Special OPD' && item.display !== 'PHARMACY VISIT' && item.display !== 'EMERGENCY';
-                        });
+                        //var types = result.data.results;
+                        $scope.visitType = result.data.results;
                         $scope.selectedVisit = {};
                     });
 
